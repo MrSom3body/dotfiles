@@ -1,0 +1,81 @@
+{
+  "keymap" : {
+    "win.new_tab" : [
+      "<Shift><Control>t"
+    ],
+    "win.zoom-in" : [
+      "<Shift><Control>plus",
+      "<Control>plus"
+    ],
+    "win.zoom-out" : [
+      "<Control>minus"
+    ],
+    "win.switch-tab-1" : [
+      "<Alt>1"
+    ],
+    "win.edit_preferences" : [
+      "<Control>comma"
+    ],
+    "win.switch-tab-2" : [
+      "<Alt>2"
+    ],
+    "win.search" : [
+      "<Shift><Control>f"
+    ],
+    "win.switch-tab-3" : [
+      "<Alt>3"
+    ],
+    "app.new-window" : [
+      "<Shift><Control>n"
+    ],
+    "win.fullscreen" : [
+      "F11"
+    ],
+    "win.switch-tab-4" : [
+      "<Alt>4"
+    ],
+    "app.focus-previous-tab" : [
+      "<Shift><Control>Tab"
+    ],
+    "win.switch-tab-5" : [
+      "<Alt>5"
+    ],
+    "win.switch-tab-6" : [
+      "<Alt>6"
+    ],
+    "win.paste" : [
+      "<Shift><Control>v"
+    ],
+    "win.zoom-default" : [
+      "<Control>0",
+      "<Shift><Control>parenright"
+    ],
+    "win.switch-tab-7" : [
+      "<Alt>7"
+    ],
+    "win.show-help-overlay" : [
+      "<Shift><Control>question"
+    ],
+    "win.switch-tab-8" : [
+      "<Alt>8"
+    ],
+    "win.switch-tab-9" : [
+      "<Alt>9"
+    ],
+    "win.switch-tab-last" : [
+      "<Alt>0"
+    ],
+    "app.focus-next-tab" : [
+      "<Control>Tab"
+    ],
+    "win.switch-headerbar-mode" : [
+      "<Shift><Control>h"
+    ],
+    "win.copy" : [
+      "<Shift><Control>c"
+    ],
+    "win.close-tab" : [
+      "<Shift><Control>w"
+    ]
+  }
+}

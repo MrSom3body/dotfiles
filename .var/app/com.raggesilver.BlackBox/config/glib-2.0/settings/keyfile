@@ -1,0 +1,23 @@
+[com/raggesilver/BlackBox]
+window-width=1012
+window-height=751
+headerbar-draw-line-single-tab=false
+floating-controls=false
+cursor-shape=1
+theme-dark='Catppuccin Mocha Adwaita'
+font='FantasqueSansMono Nerd Font 12'
+window-show-borders=false
+pretty=true
+opacity=100
+scrollback-mode=0
+command-as-login-shell=false
+fill-tabs=true
+hide-single-tab=true
+stealth-single-tab=true
+theme-light='Catppuccin Latte Adwaita'
+headerbar-drag-area=false
+show-headerbar=true
+was-maximized=false
+use-sixel=false
+show-menu-button=true
+remember-window-size=false

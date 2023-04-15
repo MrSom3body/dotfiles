@@ -1,0 +1,29 @@
+{
+  "name": "Catppuccin Mocha Adwaita",
+  "comment": "Default GNOME look with the Catppuccin Mocha colors.",
+  "background-color": "#1E1E1E",
+  "foreground-color": "#D6D6D6",
+  "palette": [
+    "#45475A",
+    "#F38BA8",
+    "#A6E3A1",
+    "#F9E2AF",
+    "#89B4FA",
+    "#F5C2E7",
+    "#94E2D5",
+    "#BAC2DE",
+    "#585B70",
+    "#F38BA8",
+    "#A6E3A1",
+    "#F9E2AF",
+    "#89B4FA",
+    "#F5C2E7",
+    "#94E2D5",
+    "#A6ADC8"
+  ],
+  "use-badge-color": false,
+  "use-bold-color": false,
+  "use-cursor-color": true,
+  "use-highlight-color": true,
+  "use-theme-colors": false
+}

@@ -1,0 +1,12 @@
+{
+  "css_file": "theme.css",
+  "css_file_gtk_3.20+": "theme-gtk-3.20.css",
+  "display_name": "libadwaita",
+  "extend_theme": null,
+  "manifest_version": "1",
+  "matched_text_hl_colors": {
+    "when_not_selected": "#333333",
+    "when_selected": "#333333"
+  },
+  "name": "libadwaita"
+}

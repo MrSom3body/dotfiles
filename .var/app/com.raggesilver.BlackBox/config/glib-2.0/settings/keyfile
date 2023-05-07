@@ -1,11 +1,11 @@
 [com/raggesilver/BlackBox]
-window-width=1012
-window-height=751
+window-width=1290
+window-height=750
 headerbar-draw-line-single-tab=false
 floating-controls=false
 cursor-shape=1
 theme-dark='Catppuccin Mocha Adwaita'
-font='FantasqueSansMono Nerd Font 12'
+font='FantasqueSansM Nerd Font 12'
 window-show-borders=false
 pretty=true
 opacity=100
@@ -21,3 +21,6 @@ was-maximized=false
 use-sixel=false
 show-menu-button=true
 remember-window-size=false
+terminal-padding=(10, 10, 10, 10)
+terminal-cell-width=1.0
+terminal-cell-height=1.0

@@ -211,11 +211,12 @@ gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Cantarell Bold 13'
 ```
 
 #### 🖼️ Icons <a name="icons"/>
-For icons, I use the [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) with the [Papirus Folders script](https://github.com/PapirusDevelopmentTeam/papirus-folders). Installing both the icon theme and the script and setting the folder color to black takes only the following three commands:
+For icons, I use the [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) with the [Papirus Folders script](https://github.com/PapirusDevelopmentTeam/papirus-folders). Installing both the icon theme and the script, setting the icons themselves and setting the folder color to black takes only the following four commands:
 
 ```sh
 sudo dnf install papirus-icon-theme
 wget -qO- https://git.io/papirus-folders-install | sh
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
 papirus-folders -C black
 ```
 

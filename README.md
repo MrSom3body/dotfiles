@@ -149,7 +149,7 @@ nautilus-open-any-terminal
 ### 🥡 AppImages <a name="appimages"/>
 
 #### 🧰 JetBrains Toolbox <a name="jetbrains-toolbox"/>
-[JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) is a tool to install, manage and keep all your JetBrains programs updated. I’ve tried using the Flatpaks, but their sandbox is just too limiting, and the IDEs are not available in the repositories, so that's the next best thing besides just installing them separately. To get to using it, just download the AppImage from the link above. After downloading it, these 3 command will get you going:
+[JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) is a tool to install, manage and keep all your JetBrains programs updated. I’ve tried using the Flatpaks, but their sandbox is just too limiting, and the IDEs are not available in the repositories, so that's the next best thing besides just installing them separately. To get to using it, just download the AppImage from the link above. After downloading it, these 5 command will get you going:
 
 ```sh
 cd ~/Downloads/

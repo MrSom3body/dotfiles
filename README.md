@@ -33,7 +33,7 @@ This guide is a write-up about how I set up [Fedora]([https://getfedora.com](htt
 Before I do anything, I always edit the `/etc/dnf/dnf.conf` and add `max_parrallel_downloads=10` to get `dnf` to download more things simultaneously.
 
 ```sh
-sudo echo max_parrallel_downloads=10 >> /etc/dnf/dnf.conf
+echo max_parallel_downloads=10 | sudo tee -a /etc/dnf/dnf.conf
 ```
 
 ## 🗄️ Setting Up Some Repositories <a name='setting-up-some-repositories'/>

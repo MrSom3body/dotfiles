@@ -115,6 +115,7 @@ syncthing \
 telnet \
 tldr \
 touchegg \
+ulauncher \
 yt-dlp \
 -y
 ```
@@ -197,8 +198,8 @@ blackbox-installer.sh
 After that install [starship](https://starship.rs) to have an easy customizable prompt for pretty much all shells. On Fedora, there is a copr available to keep starship up to date.
 
 ```sh
-sudo dnf copr enable atim/starship  
-sudo dnf install starship
+sudo dnf copr enable atim/starship -y
+sudo dnf install starship -y
 ```
 
 If you have cloned my repository and are using my configs, you don’t need to do anything anymore and the prompt should now be starship and not the default fish one.
@@ -207,9 +208,9 @@ If you have cloned my repository and are using my configs, you don’t need to d
 So that section isn’t really theming because I’m just applying, [adw-gtk3](https://github.com/lassekongo83/adw-gtk3), a libadwaita port to GTK-3. Installing and setting this theme is as easy as using four commands:
 
 ```sh
-sudo dnf copr enable nickavem/adw-gtk3
-sudo dnf install adw-gtk3
-flatpak install org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gtk3theme.adw-gtk3-dark
+sudo dnf copr enable nickavem/adw-gtk3 -y
+sudo dnf install adw-gtk3 -y
+flatpak install org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gtk3theme.adw-gtk3-dark -y
 gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark' && gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 ```
 
@@ -229,7 +230,7 @@ gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Cantarell Bold 13'
 For icons, I use the [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) with the [Papirus Folders script](https://github.com/PapirusDevelopmentTeam/papirus-folders). Installing both the icon theme and the script, setting the icons themselves and setting the folder color to black takes only the following four commands:
 
 ```sh
-sudo dnf install papirus-icon-theme
+sudo dnf install papirus-icon-theme -y
 wget -qO- https://git.io/papirus-folders-install | sh
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
 papirus-folders -C black
@@ -288,7 +289,7 @@ Extensions are a big part for me when using GNOME. The following list contains t
 I also have some keyboard shortcuts set that are very handy. Before you can set the individually, you must run this command first to create the places to store the following shortcuts:
 
 ```sh
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
 ```
 
 - Open Black Box with `Ctrl + Alt + T`:
@@ -299,7 +300,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings ['
   ```
 - Open Nautilus with `Super + E`:
   ```sh
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom keybindings/custom1/ name 'Nautilus'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Nautilus'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'nautilus'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super>e'
   ```

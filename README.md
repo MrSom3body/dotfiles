@@ -1,3 +1,4 @@
+# Fedora Workstation Setup 🚀
 This guide is a write-up about how I set up [Fedora]([https://getfedora.com](https://fedoraproject.org/)) for me. In addition, I have written a few things that are useful for me (and maybe you too), so that I do not have to search for them from different websites. If you’re just interested in my configs and how I actually set up my applications to look how they look and don’t need/want to read the other stuff, jump to [🛠️ Configs](#configs).
 
 ![Fedora Setup](Pictures/setup.png)

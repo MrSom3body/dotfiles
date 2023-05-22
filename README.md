@@ -95,7 +95,7 @@ btop \
 cowsay \
 dconf-editor \
 exa \
-fds-find \
+fd-find \
 fish \
 fzf \
 g++ \

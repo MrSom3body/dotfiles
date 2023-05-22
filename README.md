@@ -1,4 +1,3 @@
-# Fedora Workstation Setup 🚀
 This guide is a write-up about how I set up [Fedora]([https://getfedora.com](https://fedoraproject.org/)) for me. In addition, I have written a few things that are useful for me (and maybe you too), so that I do not have to search for them from different websites. If you’re just interested in my configs and how I actually set up my applications to look how they look and don’t need/want to read the other stuff, jump to [🛠️ Configs](#configs).
 
 ![Fedora Setup](Pictures/setup.png)
@@ -60,16 +59,16 @@ Because of the nature of Fedora, proprietary codecs are not included, even thoug
 These commands will install all the packages and codecs required for `gstreamer` enabled applications.
 
 ```sh
-sudo dnf groupupdate multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin
-sudo dnf groupupdate sound-and-video
+sudo dnf groupupdate multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin -y
+sudo dnf groupupdate sound-and-video -y
 ```
 
 ### 💻 Hardware Codecs <a name='hardware-codecs'/>
 Fedora has removed VA-API Support from the mesa drivers in Fedora 37. Fortunately, RPM Fusion repackaged the drivers with the needed flags. These two commands swap the Fedora drivers with the RPM Fusion ones:
 
 ```sh
-sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld
-sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
+sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld -y
+sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld -y
 ```
 
 ## 🐙 Setting up git <a name='setting-up-git'/>
@@ -156,18 +155,31 @@ cd jetbrains-toolbox-*
 ```
 
 ## 🛠️ Configs <a name='configs'/>
-First up we’re going to get my configs from the GitHub repository. These commands will clone the repository into `~/.dotfiles` and disable showing untracked files:
+First up, we’re going to set the shell to fish and log out & in again:
 
 ```sh
-git clone --bare git@github.com:MrSom3body/dotfiles.git $HOME/.dotfiles
+sudo usermod -s $(which fish) $USER
+gnome-session-quit --logout
+```
+
+Next create this alias so that the next commands work as intended:
+```sh
+alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+```
+
+Now let's get my configs from the GitHub repository. These commands will clone the repository into `~/.dotfiles` and disable showing untracked files:
+
+```sh
+git clone --bare https://github.com/MrSom3body/dotfiles $HOME/.dotfiles
 dots config --local status.showUntrackedFiles no
 ```
 
 Now that we have cloned my repository, we can get all my configs by using the following two commands (all existing configs will be moved to the `~/.dotfiles-backup`):
 
 ```sh
-dots checkout 2>&1 | egrep '\s+\.' | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
-dots checkout
+mkdir .dotfiles-backup
+dots checkout 2>&1 | grep -E '\s+\.' | awk {'print $1'} | xargs -I{} install -D {} .dotfiles-backup/{}
+dots checkout -f
 ```
 
 Now that we got all configs, let's set everything up. There will be sections for the different tools and applications I use and how I set them up.
@@ -231,7 +243,7 @@ I use [Bibata Cursor](https://github.com/ful1e5/Bibata_Cursor) as my cursor set.
 gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'
 ```
 
-#### 🦊 Firefox <a name="firefox"/>
+#### 🦊 Firefox <a name='firefox'/>
 I also use the [Firefox GNOME theme](https://github.com/rafaelmardojai/firefox-gnome-theme) to make Firefox integrate better with the libadwaita theme. Installing it takes only one command:
 
 ```sh

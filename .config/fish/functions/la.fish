@@ -1,4 +1,4 @@
-function la --wraps='exa --group-directories-first -a' --description 'alias la=exa --group-directories-first -a'
-  exa --group-directories-first -a $argv
+function la --wraps='ls -la' --wraps='ls -a' --description 'alias la=ls -a'
+  ls -a $argv
         
 end

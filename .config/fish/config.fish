@@ -15,7 +15,7 @@ set -gx MANGOHUD 1
 ### INTERACTIVE ###
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    nitch
+    macchina
 end
 
 ### DISCORD RPC ###

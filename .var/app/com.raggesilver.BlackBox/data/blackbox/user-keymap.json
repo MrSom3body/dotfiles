@@ -13,6 +13,9 @@
     "win.switch-tab-1" : [
       "<Alt>1"
     ],
+    "win.rename-tab" : [
+      "<Shift><Control>r"
+    ],
     "win.edit_preferences" : [
       "<Control>comma"
     ],

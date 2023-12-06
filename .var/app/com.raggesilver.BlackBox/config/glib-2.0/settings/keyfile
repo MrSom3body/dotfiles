@@ -1,6 +1,6 @@
 [com/raggesilver/BlackBox]
-window-width=1290
-window-height=750
+window-width=1265
+window-height=1388
 headerbar-draw-line-single-tab=false
 floating-controls=false
 cursor-shape=1
@@ -24,3 +24,9 @@ remember-window-size=false
 terminal-padding=(10, 10, 10, 10)
 terminal-cell-width=1.0
 terminal-cell-height=1.0
+easy-copy-paste=false
+scrollback-lines=999
+theme-bold-is-bright=false
+working-directory-mode=0
+use-overlay-scrolling=true
+was-fullscreened=false

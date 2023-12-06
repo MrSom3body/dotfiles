@@ -1,10 +1,10 @@
 # Fedora Workstation Setup 🚀
-This guide is a write-up about how I set up [Fedora]([https://getfedora.com](https://fedoraproject.org/)) for me. In addition, I have written a few things that are useful for me (and maybe you too), so that I do not have to search for them from different websites. If you’re just interested in my configs and how I actually set up my applications to look how they look and don’t need/want to read the other stuff, jump to [🛠️ Configs](#-configs).
+This guide is a write-up about how I set up [Fedora](https://fedoraproject.org/) for me. In addition, I have written a few things that are useful for me (and maybe you too), so that I do not have to search for them from different websites. If you’re just interested in my configs and how I actually set up my applications to look how they look and don’t need/want to read the other stuff, jump to [🛠️ Configs](#-configs).
 
 ![Fedora Setup](Pictures/setup.png)
 
 ## 🗂️ Table of Content
-- [🗂️ Table of Content](#-table-of-content)
+
 - [⚡ Making `dnf` Faster](#-making-dnf-faster)
 - [🗄️ Setting Up Some Repositories](#-setting-up-some-repositories)
 	- [🌐 RPM Fusion](#-rpm-fusion)
@@ -16,6 +16,8 @@ This guide is a write-up about how I set up [Fedora]([https://getfedora.com](htt
 - [💾 Software](#-software)
 	- [🌐 RPMs](#-rpms)
 	- [📦 Flatpaks](#-flatpaks)
+	- [🦀 Rust](#-rust)
+	- [🐍 Python](#-python)
 	- [🥡 AppImages](#-appimages)
 		- [🧰 JetBrains Toolbox](#-jetbrains-toolbox)
 - [🛠️ Configs](#-configs)
@@ -26,10 +28,11 @@ This guide is a write-up about how I set up [Fedora]([https://getfedora.com](htt
 		- [👆 Cursor](#-cursor)
 		- [🦊 Firefox](#-firefox)
 	- [🔩 Extensions](#-extensions)
-	- [🕵️‍♂️ Ulauncher](#-ulauncher)
 	- [⚙️ Keyboard Shortcuts](#-keyboard-shortcuts)
 
+
 ## ⚡ Making `dnf` Faster
+
 Before I do anything, I always edit the `/etc/dnf/dnf.conf` and add `max_parrallel_downloads=10` to get `dnf` to download more things simultaneously.
 
 ```sh
@@ -37,9 +40,11 @@ echo max_parallel_downloads=10 | sudo tee -a /etc/dnf/dnf.conf
 ```
 
 ## 🗄️ Setting Up Some Repositories
-Fedora only includes free and open source software. Most of the software we would use daily like Discord, Steam or Spotify are probably not in the official repositories. Fortunately, there are some repositories you can add.
+
+Fedora only includes free and open source software. Most of the software we would use daily like Discord, Steam, or Spotify are probably not in the official repositories. Fortunately, there are some repositories you can add.
 
 ### 🌐 RPM Fusion
+
 As the name suggests, [RPM Fusion](https://rpmfusion.org) is a repository in which all sorts of programs and tools are stored as RPMs. Installing it is a simple and quick process:
 
 ```sh
@@ -47,6 +52,7 @@ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-releas
 ```
 
 ### 📦 Flathub
+
 [Flathub](https://flathub.org) is a repository for [flatpak](https://flatpak.org) applications. Flatpaks are distro agnostic, meaning they can be installed on pretty much every Linux distribution. On Fedora 37 and below the Flathub Repository must be installed manually, but after this release Fedora will automatically enable Flathub if you clicked enable third party repositories on installation.
 
 ```sh
@@ -54,9 +60,11 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 ```
 
 ## 🗃️ Codecs
+
 Because of the nature of Fedora, proprietary codecs are not included, even though some applications need these codecs to work correctly.
 
 ### 🔊 Multimedia Codecs
+
 These commands will install all the packages and codecs required for `gstreamer` enabled applications.
 
 ```sh
@@ -65,6 +73,7 @@ sudo dnf groupupdate sound-and-video -y
 ```
 
 ### 💻 Hardware Codecs
+
 Fedora has removed VA-API Support from the mesa drivers in Fedora 37. Fortunately, RPM Fusion repackaged the drivers with the needed flags. These two commands swap the Fedora drivers with the RPM Fusion ones:
 
 ```sh
@@ -73,6 +82,7 @@ sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld -y
 ```
 
 ## 🐙 Setting up git
+
 If you do not know what [git](https://git-scm.com/) is, here is a short explanation: It is a distributed version control system used for tracking changes in code. It allows multiple developers to collaborate on a project while maintaining a history of all changes made.  
 This section is not important for you if you are only looking to use my configs. The following commands generate an ssh key, set up your git username and email, and tell git to use the ssh key to sign commits.
 
@@ -85,16 +95,16 @@ git config --global user.signingkey .ssh/git.pub
 ```
 
 ## 💾 Software
-This section could be to no use of you, but that's the stuff I use. Because I always forget what I had actually installed on my last install, I keep this list pretty much always up to date. The installation methods separate the commands. So all RPMs are under [🌐 RPMs](#-rpms) and all AppImages under [🥡 AppImages](#-appimages).
+
+This section could be to no use of you, but that's the stuff I use. Because I always forget what I had installed on my last install, so I keep this list up to date. The installation methods separate the commands. So all RPMs are under [🌐 RPMs](#-rpms) and all AppImages under [🥡 AppImages](#-appimages), etc.
 
 ### 🌐 RPMs
 ```sh
 sudo dnf install \
 bat \
 btop \
-cowsay \
+cargo \
 dconf-editor \
-exa \
 fd-find \
 fish \
 fzf \
@@ -102,20 +112,23 @@ g++ \
 gnome-tweaks \
 goverlay \
 java-latest-openjdk \
-lolcat \
+kernel-devel \
+micro \
 nautilus-python \
 neovim \
 obs-studio \
 openssl \
 pandoc \
-pandoc \
 poetry \
+python-pip \
+speedtest-cli \
 steam \
 syncthing \
 telnet \
+thefuck \
 tldr \
 touchegg \
-ulauncher \
+xdotool \
 yt-dlp \
 -y
 ```
@@ -123,29 +136,58 @@ yt-dlp \
 ### 📦 Flatpaks
 ```sh
 flatpak install flathub \
-com.bitwarden.desktop \
+app.drey.Warp \
+com.dec05eba.gpu_screen_recorder \
 com.discordapp.Discord \
+com.github.finefindus.eyedropper \
+com.github.GradienceTeam.Gradience \
+com.github.huluti.Curtail \
 com.github.tchx84.Flatseal \
-com.github.wwmm.easyeffects \
+com.github.tenderowl.frog \
+com.heroicgameslauncher.hgl \
 com.mattjakeman.ExtensionManager \
+com.notesnook.Notesnook \
 com.spotify.Client \
 com.usebottles.bottles \
 de.haeckerfelix.Fragments \
+hu.kramo.Cartridges \
+io.github.flattool.Warehouse \
 io.github.Foldex.AdwSteamGtk \
 io.github.trigg.discover_overlay \
+io.gitlab.theevilskeleton.Upscaler \
+io.itch.itch \
 md.obsidian.Obsidian \
 net.davidotek.pupgui2 \
-org.freedesktop.Platform.VulkanLayer.MangoHud \
+net.nokyan.Resources \
+net.veloren.airshipper \
+org.gnome.Loupe \
+org.gnome.Snapshot \
 org.gnome.World.PikaBackup \
-org.gtk.Gtk3theme.adw-gtk3 \
-org.gtk.Gtk3theme.adw-gtk3-dark \
+org.mozilla.Thunderbird \
+org.prismlauncher.PrismLauncher \
 org.signal.Signal \
+-y
+```
+
+### 🦀 Rust
+```sh
+cargo install \
+macchina \
+eza \
+-y
+```
+
+### 🐍 Python
+```
+pip install \
+thefuck \
 -y
 ```
 
 ### 🥡 AppImages
 
 #### 🧰 JetBrains Toolbox
+
 [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) is a tool to install, manage and keep all your JetBrains programs updated. I’ve tried using the Flatpaks, but their sandbox is just too limiting, and the IDEs are not available in the repositories, so that's the next best thing besides just installing them separately. To get to using it, just download the AppImage from the link above. After downloading it, these 5 command will get you going:
 
 ```sh
@@ -157,6 +199,7 @@ cd jetbrains-toolbox-*
 ```
 
 ## 🛠️ Configs
+
 First up, we’re going to set the shell to fish and log out & in again:
 
 ```sh
@@ -165,6 +208,7 @@ gnome-session-quit --logout
 ```
 
 Next create this alias so that the next commands work as intended:
+
 ```sh
 alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 ```
@@ -187,6 +231,7 @@ dots checkout -f
 Now that we got all configs, let's set everything up. There will be sections for the different tools and applications I use and how I set them up.
 
 ### ⌨️ Terminal & Shell
+
 That’s probably the most important part for me because I use my terminal for many kinds of important things like editing files and running fetches. The advantage of the shell is everything can be done with commands in the terminal (most if not all GUI things too, but not as easy).
 
 The terminal emulator that I use is called [Black Box](https://gitlab.gnome.org/raggesilver/blackbox). I have this [script](https://github.com/dr3mro/blackbox-installer) in my repository to install Black Box and configure it as your default terminal emulator on GNOME. You need to rerun the script when you install a terminal program so that it can create a shortcut to run it with Black Box and not the default gnome terminal. The script is located in your PATH if you have cloned my repo and thus should be runnable:
@@ -205,11 +250,11 @@ sudo dnf install starship -y
 If you have cloned my repository and are using my configs, you don’t need to do anything anymore and the prompt should now be starship and not the default fish one.
 
 ### 🎨 Theme
+
 So that section isn’t really theming because I’m just applying, [adw-gtk3](https://github.com/lassekongo83/adw-gtk3), a libadwaita port to GTK-3. Installing and setting this theme is as easy as using four commands:
 
 ```sh
-sudo dnf copr enable nickavem/adw-gtk3 -y
-sudo dnf install adw-gtk3 -y
+sudo dnf install adw-gtk3-theme -y
 flatpak install org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gtk3theme.adw-gtk3-dark -y
 gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark' && gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 ```
@@ -217,6 +262,7 @@ gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark' && gsettings
 Now, if you want to auto switch between light and dark mode, you will need to use the [Night Theme Switcher](https://extensions.gnome.org/extension/2236/night-theme-switcher/) Extension. In there, you can select which Theme should be used for legacy applications in light and dark mode.
 
 #### 🔣 Fonts
+
 I use the default [Cantarell](https://cantarell.gnome.org/) font that comes with [GNOME](https://gnome.org), but I use Fantasque Sans Mono, a [Nerd Font](https://www.nerdfonts.com/), as the Monospaced font. The font is in my repository and is in the correct directory to be detected by your font picker and your terminal. If you want to use another font or want to get the fonts yourself, you just need to download the font and move the extracted font to `~/.local/share/fonts`. The following command set the fonts to a bigger font size for interface, document, monospaced and legacy window title fonts and uses Fantasque Sans Mono as the monospaced font:
 
 ```sh
@@ -227,6 +273,7 @@ gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Cantarell Bold 13'
 ```
 
 #### 🖼️ Icons
+
 For icons, I use the [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) with the [Papirus Folders script](https://github.com/PapirusDevelopmentTeam/papirus-folders). Installing both the icon theme and the script, setting the icons themselves and setting the folder color to black takes only the following four commands:
 
 ```sh
@@ -239,6 +286,7 @@ papirus-folders -C black
 If the folder color should change back in the future, just run the last command to set it to black again.
 
 #### 👆 Cursor
+
 I use [Bibata Cursor](https://github.com/ful1e5/Bibata_Cursor) as my cursor set. It can be downloaded from [GitHub Releases](https://github.com/ful1e5/Bibata_Cursor/releases/latest) and [pling](https://www.pling.com/p/1914825/). Then it needs to be moved into `~/.local/share/icons`. It is also in my GitHub repository in the correct directory. The following command will activate the cursor:
 
 ```sh
@@ -246,6 +294,7 @@ gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'
 ```
 
 #### 🦊 Firefox
+
 I also use the [Firefox GNOME theme](https://github.com/rafaelmardojai/firefox-gnome-theme) to make Firefox integrate better with the libadwaita theme. Installing it takes only one command:
 
 ```sh
@@ -253,7 +302,9 @@ curl -s -o- https://raw.githubusercontent.com/rafaelmardojai/firefox-gnome-theme
 ```
 
 ### 🔩 Extensions
+
 Extensions are a big part for me when using GNOME. The following list contains the extensions I always install and use. I won’t write up how I set them up because I’m too lazy and most of that is visible in the Screenshots.
+
 - [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/)
 - [Aylur’s Widgets](https://extensions.gnome.org/extension/5338/aylurs-widgets/)
 - [Blur my Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/)
@@ -268,30 +319,13 @@ Extensions are a big part for me when using GNOME. The following list contains t
 - [User Themes](https://extensions.gnome.org/extension/19/user-themes/)
 - [X11 Gestures](https://extensions.gnome.org/extension/4033/x11-gestures/)
 
-### 🕵️‍♂️ Ulauncher
-[Ulauncher](https://ulauncher.io/) is an application launcher on Linux with extension and theme support. If you are using my configs, Ulauncher should have the libadwaita theme installed and set. The extensions I use with Ulauncher are the following:
-- [Emoji](https://github.com/Ulauncher/ulauncher-emoji)
-- [Calculate Anything](https://github.com/tchar/ulauncher-albert-calculate-anything)  
-	Calculate Anything needs some Python dependencies to be installed. These can be easily installed with the following commands:
-	```sh
-	sudo dnf install \
-	python-parsedatetime \
-	python-pint \
-	python-pytz \
-	python-simpleeval \
-	-y
-	```
-- [File Search](https://github.com/brpaz/ulauncher-file-search)
-- [Process Murderer](https://github.com/isacikgoz/ukill)
-- [Obsidian](https://github.com/mikebarkmin/ulauncher-obsidian)
-
 ### ⚙️ Keyboard Shortcuts
+
 I also have some keyboard shortcuts set that are very handy. Before you can set the individually, you must run this command first to create the places to store the following shortcuts:
 
 ```sh
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
 ```
-
 - Open Black Box with `Ctrl + Alt + T`:
   ```sh
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Black Box'
@@ -303,10 +337,4 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Nautilus'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'nautilus'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super>e'
-  ```
-- Open Ulauncher with `Ctrl + Space`:
-  ```sh
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Ulauncher'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'ulauncher-toggle'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Control>space'
   ```

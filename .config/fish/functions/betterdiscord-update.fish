@@ -1,3 +1,0 @@
-function betterdiscord-update --description "Updates BetterDiscord(Flatpak)"
-  set DISC_CONFIG "$HOME/.var/app/com.discordapp.Discord/config/discord" && set BD_ASAR betterdiscord.asar && wget --timestamping -P "$DISC_CONFIG/../BetterDiscord/data" -- "https://github.com/BetterDiscord/BetterDiscord/releases/latest/download/$BD_ASAR" && set DISC_VER (ls --sort=time --time=creation --no-icons "$DISC_CONFIG" | grep -E -m 1 '^[0-9]+\.[0-9]+\.[0-9]+$') && echo -e "require('../../../../BetterDiscord/data/$BD_ASAR');\nmodule.exports = require('./core.asar');" | tee "$DISC_CONFIG/$DISC_VER/modules/discord_desktop_core/index.js" && echo -e "\nBetterDiscord installed. Restart Discord if currently running." || echo -e "\nInstallation failed."
-end

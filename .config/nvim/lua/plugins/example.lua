@@ -2,7 +2,7 @@
 -- stylua: ignore
 if true then return {} end
 
--- every spec file under config.plugins will be loaded automatically by lazy.nvim
+-- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
 --
 -- In your plugin files, you can:
 -- * add extra plugins
@@ -142,7 +142,6 @@ return {
     opts = {
       ensure_installed = {
         "bash",
-        "help",
         "html",
         "javascript",
         "json",
@@ -168,8 +167,8 @@ return {
     opts = function(_, opts)
       -- add tsx and treesitter
       vim.list_extend(opts.ensure_installed, {
-          "tsx",
-          "typescript",
+        "tsx",
+        "typescript",
       })
     end,
   },
@@ -197,7 +196,7 @@ return {
   -- use mini.starter instead of alpha
   { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
-  -- add jsonls and schemastore ans setup treesitter for json, json5 and jsonc
+  -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
 
   -- add any tools you want to have installed below
@@ -243,7 +242,7 @@ return {
           if cmp.visible() then
             cmp.select_next_item()
             -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- they way you will only jump inside the snippet region
+            -- this way you will only jump inside the snippet region
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
           elseif has_words_before() then

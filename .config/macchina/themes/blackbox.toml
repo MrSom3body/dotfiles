@@ -5,8 +5,8 @@ padding             = 0
 hide_ascii          = true 
 prefer_small_ascii  = false
 separator           = "->" 
-key_color           = "Blue"
-separator_color     = "Blue"
+key_color           = "Green"
+separator_color     = "Green"
 
 [palette]
 type 	= "Dark"

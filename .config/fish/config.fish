@@ -9,6 +9,8 @@ fish_add_path ~/.spicetify/
 set -g fish_greeting
 
 ### VARIABLES ###
+set -gx EDITOR nvim
+set -gx BROWSER firefox
 set -gx BAT_THEME ansi
 set -gx MANGOHUD 1
 

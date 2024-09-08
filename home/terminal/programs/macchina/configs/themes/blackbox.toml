@@ -21,7 +21,7 @@ visible = true
 hide_delimiters = true
 
 [box]
-title = " blackbox "
+title = ""
 border = "round"
 visible = true
 

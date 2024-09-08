@@ -1,0 +1,5 @@
+{...}: {
+  programs.fzf = {
+    enable = true;
+  };
+}

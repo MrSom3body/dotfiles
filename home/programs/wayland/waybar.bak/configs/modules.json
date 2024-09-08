@@ -1,0 +1,233 @@
+{
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%a, %d %b, %H:%M}"
+  },
+  "hyprland/window": {
+    "max-length": 50,
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "󰈹 $1",
+      "Mozilla Firefox": "󰈹 New Tab",
+      "(.*) - VSCodium": " $1",
+      "(.*) - Obsidian (.*)": " $1",
+      "(.*) - Discord": "󰙯 $1",
+      "(.*) - Vivaldi": "󰖟 $1",
+      "nvim (.*)": " $1",
+      "Signal( .*)?": "󰭹 Signal$1"
+    },
+    "separate-outputs": true
+  },
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ]
+  },
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1",
+    "active-only": false,
+    "all-outputs": true,
+    "format": "{}",
+    "format-icons": {
+      "urgent": "",
+      "active": "",
+      "default": ""
+    },
+    "persistent-workspaces": {
+      "*": 5
+    }
+  },
+  "mpris": {
+    "interval": 1,
+    "format": "  {player_icon}  {dynamic}  ",
+    "format-paused": "  {status_icon}  {dynamic}  ",
+    "tooltip-format": "",
+    "player-icons": {
+      "default": "▶",
+      "spotify": ""
+    },
+    "status-icons": {
+      "paused": "⏸"
+    },
+    "dynamic-order": [
+      "title",
+      "artist"
+      /*"album"*/
+    ]
+  },
+  "pulseaudio": {
+    "reverse-scrolling": 1,
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon}󰂯 {format_source}",
+    "format-bluetooth-muted": "󰝟  {icon}󰂯 {format_source}",
+    "format-muted": "󰝟  {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "󰋋",
+      "speaker": "󰓃",
+      "hdmi": "󰽟",
+      "hands-free": "󰋎",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
+    },
+    "on-click": "pavucontrol",
+    "min-length": 13
+  },
+  "backlight": {
+    "reverse-scrolling": true,
+    "tooltip": false,
+    "format": "<big>{icon}</big> {percent}%",
+    "format-icons": [
+      "󱩎 ",
+      "󱩏 ",
+      "󱩐 ",
+      "󱩑 ",
+      "󱩒 ",
+      "󱩓 ",
+      "󱩔 ",
+      "󱩕 ",
+      "󱩖 ",
+      "󰛨 "
+    ],
+    "min-length": 7
+  },
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+      "locked": " ",
+      "unlocked": " "
+    }
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰈈",
+      "deactivated": "󰈉"
+    },
+    "on-click": "killall hypridle || hypridle"
+  },
+  "custom/power_profile_module": {
+    "exec": "sleep 0.3 && ~/.config/waybar/scripts/power-profile-module.fish",
+    "exec-on-event": true,
+    "return-type": "json",
+    "interval": 60,
+    "format": "<big>{icon}</big>",
+    "format-icons": [
+      "󰾆",
+      "󰾅",
+      "󰓅"
+    ],
+    "on-click": "~/.config/waybar/scripts/power-profile-module.fish switch"
+  },
+  "battery": {
+    "states": {
+      "good": 90,
+      "warning": 40,
+      "critical": 20
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": "  {capacity}%",
+    "format-alt": "{icon}  {time}",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ]
+  },
+  "group/power": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "battery",
+      "idle_inhibitor",
+      "custom/power_profile_module"
+    ]
+  },
+  "custom/system": {
+    "format": "󰄨",
+    "tooltip": false,
+    "on-click": "kitty btop"
+  },
+  "cpu": {
+    "format": "   {usage}%"
+  },
+  "memory": {
+    "format": "󰆼  {used}GiB"
+  },
+  "temperature": {
+    "format": "󰔏 {temperatureC}°C",
+    "critical-format": "󰸁 {temperatureC}°C",
+    "critical-threshold": 90
+  },
+  "group/hardware": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/system",
+      "cpu",
+      "temperature",
+      "memory"
+    ]
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "",
+      "none": "",
+      "dnd-notification": "",
+      "dnd-none": "",
+      "inhibited-notification": "",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-middle": "swaync-client -C",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  }
+}

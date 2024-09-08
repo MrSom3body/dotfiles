@@ -1,0 +1,5 @@
+{...}: {
+  programs.thefuck = {
+    enable = true;
+  };
+}

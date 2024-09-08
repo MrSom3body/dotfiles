@@ -1,0 +1,23 @@
+--- a/spa/plugins/alsa/mixer/paths/analog-output.conf.common
++++ b/spa/plugins/alsa/mixer/paths/analog-output.conf.common
+@@ -134,12 +134,20 @@
+ ;                                      # numbering schemes, so we can't hardcode the full jack name in our configuration
+ ;                                      # files.
+ 
++[Element Master]
++switch = mute
++volume = ignore
++
+ [Element PCM]
+ switch = mute
+ volume = merge
+ override-map.1 = all
+ override-map.2 = all-left,all-right
+ 
++[Element LFE]
++switch = mute
++volume = ignore
++
+ [Element External Amplifier]
+ switch = select
+ 

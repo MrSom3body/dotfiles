@@ -27,6 +27,10 @@
           };
         };
       };
+
+      vscode-css-language-server = {
+        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-languageserver";
+      };
     };
 
     language = [

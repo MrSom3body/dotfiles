@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+
+# used for running individual installation scripts located in ./meta/configs/ folder
+# usage:
+# ./install-standalone nvim
+# ./install-standalone tmux
+# ./install-standalone zsh
+#
+# or
+# ./install-standalone nvim tmux zsh
+#
+# NOTE: to run a config in sudo, then add '-sudo' as a suffix of the config to run.
+# Ex: ./install-standalone apt-sudo
+# check: https://github.com/ecarlson94/dotbot-template#for-installing-single-configurations
+#
+# ./meta/configs/ folder will contain .yaml files that will be used as config. It
+# has the same directives as the default dotbot install-conf.yaml
+# check: https://github.com/anishathalye/dotbot#full-example
+#
+# obtained from https://github.com/anishathalye/dotbot/wiki/Tips-and-Tricks#install-standalone
+# author ecarlson94
+
+set -e
+
+BASE_CONFIG="base"
+CONFIG_SUFFIX=".yaml"
+
+META_DIR="meta"
+CONFIG_DIR="configs"
+PROFILES_DIR="profiles"
+
+DOTBOT_DIR="dotbot"
+DOTBOT_BIN="bin/dotbot"
+
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+cd "${BASE_DIR}"
+git submodule update --init --recursive
+
+# load env variables.
+# load XDG dotfile locations. https://wiki.archlinux.org/title/XDG_Base_Directory
+#
+# Why?
+#   You can load ENV variables and use them in dotbot configs.
+#   Ex: setting ENV ALACRITTY_CONFIG_PATH and using it in a dotbot config file
+# source tools/zsh/zshenv       # file to load ENV variables
+
+# ------------------------------------------------------------------------------------------------ #
+# Verify dotbot config files exist.
+# Also checks if the config file exists if it has a suffix of '-sudo'. Ex: apt-sudo
+# Checks if the file exists in meta/configs/ folder
+# Exits program if a dotbot config doesn't exist
+
+sudoSuffix="-sudo"
+exitIfConfigNotFound=false # used as a flag to exit IF a config file is NOT found
+for config in ${@}; do
+	# remove suffix '-sudo' in the variable $config
+	# check if the config filepath doesn't exist
+	#   print message
+	#   flag variable to exit
+
+	# remove suffix '-sudo'
+	# obtained from https://stackoverflow.com/a/16623897/3053548
+	config=${config%"$sudoSuffix"}
+	configFilepath="${BASE_DIR}/${META_DIR}/${CONFIG_DIR}/${config}${CONFIG_SUFFIX}"
+	if [[ ! -e $configFilepath ]]; then
+		echo -e "Dotbot config \\033[1;31m$configFilepath \\033[0mDOESN'T exists"
+
+		exitIfConfigNotFound=true
+	fi
+done
+
+# exit if a config filepath is NOT found
+if [[ $exitIfConfigNotFound == true ]]; then
+	echo -e "\nexiting"
+	exit 1
+fi
+
+# cleanup variables
+unset sudoSuffix
+unset exitIfConfigNotFound
+
+# ------------------------------------------------------------------------------------------------ #
+# Run dotbot config, one at a time
+
+# loop through each command line argument
+#   make a temp file
+#   concatenate meta/base.yaml and the dotbot config together and place it to a temp file
+#   run command
+#   remove temp file
+
+for config in ${@}; do
+	# create temporary file
+	configFile="$(mktemp)"
+	suffix="-sudo"
+	echo -e "$(<"${BASE_DIR}/${META_DIR}/${BASE_CONFIG}${CONFIG_SUFFIX}")\n$(<"${BASE_DIR}/${META_DIR}/${CONFIG_DIR}/${config%"$suffix"}${CONFIG_SUFFIX}")" >"$configFile"
+
+	cmd=("${BASE_DIR}/${META_DIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" --plugin-dir "${BASE_DIR}/${META_DIR}/plugin/plugins" -d "${BASE_DIR}" -c "$configFile")
+
+	# print a line depending on the terminal width
+	# get terminal width: https://unix.stackexchange.com/a/425158
+	# print a line of   : https://stackoverflow.com/a/17030976/3053548
+	printf '%0.s=' $(seq 1 $(stty size | awk '{print $2}'))
+	printf '%0.s=' $(seq 1 $(stty size | awk '{print $2}'))
+	echo -e "\nConfigure $config\n"
+
+	if [[ $config == *"sudo"* ]]; then
+		# - pass tools/zsh/zshenv file when running in sudo to load ENV
+		#   - Why?
+		#     - some of the dotbot configs are using using sudo and XDG envs defined in ./tools/zsh/zshenv
+		# - set HOME to current home user path
+		#   - Why?
+		#     - when running in sudo, the XDG env tools/zsh/zshenv are not not loaded
+		#
+		# - passing ENV in sudo https://unix.stackexchange.com/a/396528
+		# - setting BASH_ENV https://unix.stackexchange.com/a/429235
+		# - setting env HOME : assuming dotfiles repo is in the Home folder
+		#   - requires full directory path
+		# cmd=(sudo env HOME="$(echo $HOME)" BASH_ENV="./tools/zsh/zshenv" "${cmd[@]}")
+
+		cmd=(sudo "${cmd[@]}")
+	fi
+
+	"${cmd[@]}"
+	rm -f "$configFile"
+done
+
+cd "${BASE_DIR}"
+
+echo "Restart your terminal..."

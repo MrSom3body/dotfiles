@@ -1,0 +1,50 @@
+shell = "sh -c '{}'"
+default_scheme = "base16-gruvbox-dark-medium"
+
+[[items]]
+path = "~/.config/tinty/templates/kitty"
+name = "base16-kitty"
+themes-dir = "colors"
+hook = "cp -f %f ~/.config/kitty/base16.conf ; pkill -SIGUSR1 kitty"
+
+[[items]]
+path = "~/.config/tinty/templates/hyprland"
+name = "base16-hyprland"
+themes-dir = "colors"
+hook = "cp -f %f ~/.config/hypr/colors/base16.conf"
+
+[[items]]
+path = "https://github.com/tinted-theming/base16-vim"
+name = "base16-vim"
+themes-dir = "colors"
+# hook = "tinty current > ~/.local/share/nvim/colorsaver"
+
+[[items]]
+path = "~/.config/tinty/templates/waybar"
+name = "base16-waybar"
+themes-dir = "colors"
+hook = "cp -f %f ~/.config/waybar/themes/base16.css && pkill waybar && waybar & disown"
+
+[[items]]
+path = "https://github.com/tinted-theming/base16-rofi"
+name = "base16-rofi"
+themes-dir = "colors"
+hook = "cp -f %f ~/.config/rofi/themes/base16.rasi"
+
+[[items]]
+path = "~/.config/tinty/templates/qt"
+name = "base16-qt"
+themes-dir = "colors"
+hook = "cp -f %f ~/.config/qt5ct/colors/base16.conf && cp -f %f ~/.config/qt6ct/colors/base16.conf"
+
+# [[items]]
+# path = "https://github.com/tinted-theming/base16-dunst"
+# name = "base16-dunst"
+# themes-dir = "themes"
+# hook = "head -n -18 ~/.config/dunst/dunstrc > dunstrc.tmp; mv dunstrc.tmp ~/.config/dunst/dunstrc; cat %f >> ~/.config/dunst/dunstrc"
+
+[[items]]
+path = "https://github.com/deathbeam/base16-discord"
+name = "base16-discord"
+themes-dir = "themes"
+hook = "cp -f %f ~/.var/app/dev.vencord.Vesktop/config/vesktop/themes/base16.theme.css"

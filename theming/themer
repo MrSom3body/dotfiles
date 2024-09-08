@@ -1,0 +1,125 @@
+#!/bin/fish
+
+set -g script_name themer
+
+function print_help
+    echo "Usage: $script_name [options]"
+    echo "Options:"
+    echo "-h, --help        Display this help message"
+    echo "-l, --list        List available themes"
+    echo "-t, --theme       Specify theme"
+    echo "-b, --background  Specify background"
+    echo "-n, --notify      Send notification"
+end
+
+if test -z "$argv"
+    print_help
+    return 1
+end
+
+function _check_commands
+    for command in $argv
+        if not $command --help >/dev/null
+            echo $command exists >&2
+        end
+    end
+end
+
+function list_themes
+    for theme in ~/.config/wal/colorschemes/dark/*
+        echo "$(path basename $theme | string replace -r "\..*\$" "")"
+    end
+end
+
+function reload_configs
+    wal -c
+    wal --theme $theme
+
+    echo Applying $theme to waybar
+    kill -SIGUSR2 waybar >/dev/null
+
+    echo Applying $theme to hyprland
+    hyprctl reload >/dev/null
+
+    echo Applying $theme to Firefox
+    pywalfox update
+
+    echo Applying $theme to Discord
+    cp ~/.cache/wal/colors-discord.css ~/.var/app/dev.vencord.Vesktop/config/vesktop/themes/discord-wal.theme.css
+
+    echo Applying $theme to SwayNC
+    swaync-client -R -rs
+
+    echo Applying $theme to GTK
+    cp -f $HOME/.cache/wal/pywal.json $HOME/.var/app/com.github.GradienceTeam.Gradience/config/presets/user/pywal.json
+    gradience-cli apply -n pywal --gtk both
+
+    echo Applying $theme to nvim
+    echo $theme >~/.local/share/nvim/colorsaver
+
+    echo Applying $theme to Kvantum
+    cp -f $HOME/.cache/wal/pywal.kvconfig $HOME/.config/Kvantum/pywal/pywal.kvconfig
+    cp -f $HOME/.cache/wal/pywal.svg $HOME/.config/Kvantum/pywal/pywal.svg
+
+    echo Applied $theme to your system
+end
+
+function notify
+    notify-send Themer "Applied $theme theme" -a $script_name -i preferences-desktop-color
+end
+
+set options h/help
+set options $options l/list
+set options $options "t/theme="
+set options $options "b/background="
+set options $options n/notify
+argparse -n $script_name -x theme,background $options -- $argv
+or return
+
+if set -ql _flag_help
+    print_help
+    return
+end
+
+if set -ql _flag_list
+    list_themes
+    return
+end
+
+if set -ql _flag_theme
+    set -g theme $_flag_theme
+    if test $_flag_theme = random
+        set _flag_theme (path basename $(random choice ~/.config/wal/colorschemes/dark/*) | string replace -r "\..*\$" "")
+    end
+
+    set -f theme_path ~/.config/wal/colorschemes/dark/$_flag_theme.json
+
+    if not test -f $theme_path
+        echo "The theme `$_flag_theme` does not exist"
+        echo
+        echo "Here are the available themes:"
+        list_themes
+        return 1
+    end
+
+    reload_configs
+    set -f wall_folder ~/walls/$_flag_theme
+    ln -fs (random choice $wall_folder/*) ~/.config/background
+    if test -d $wall_folder
+        swww img -t none ~/.config/background
+    else
+        echo "There are no images in $wall_folder -> not setting wallpaper"
+    end
+end
+
+if set -ql _flag_background
+    set -g background $_flag_background
+    string match -r "~/walls/(?<theme>.*)/.*" $background
+    if string match -re "~/walls/.*/.*" $background
+
+    end
+
+    if set -ql _flag_notify
+        notify
+    end
+end

@@ -1,0 +1,104 @@
+@import "~/.cache/wal/colors-rofi.rasi"
+
+* {
+    margin: 0;
+    padding: 0;
+    width: 750;
+    border-radius: 15px;
+    font: "Ubuntu Nerd Font 13";
+}
+
+element-text, element-icon , mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+window {
+    border: 3px;
+    border-color: @accent;
+    background-color: @background;
+}
+
+mainbox {
+    padding: 10px;
+    background-color: @background;
+}
+
+inputbar {
+    margin: 10px;
+    background-color: @background;
+    children: [prompt,entry];
+}
+
+prompt {
+    padding: 5px;
+    margin: 0px 5px 0px 0px;
+    background-color: @accent;
+    text-color: @background;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
+
+entry {
+    padding: 6px;
+    margin: 0px 0px 0px 5px;
+    text-color: @foreground;
+    background-color: @color0;
+}
+
+listview {
+    margin: 10px;
+    columns: 2;
+    lines: 5;
+    spacing: 5px;
+    background-color: @background;
+}
+
+element {
+    padding: 5px;
+    background-color: @background;
+    text-color: @foreground;
+}
+
+element-icon {
+    size: 25px;
+}
+
+element .active,
+element selected.active {
+    text-color: @color2;
+}
+
+element selected {
+    background-color: @color0;
+}
+
+mode-switcher {
+    spacing: 5px;
+}
+
+button {
+    padding: 5px;
+    background-color: @background;
+    text-color: @color7;
+    vertical-align: 0.5; 
+    horizontal-align: 0.5;
+}
+
+button selected {
+  border-radius: 15px;
+  background-color: @color0;
+  text-color: @accent;
+}
+
+message {
+    background-color: @color0;
+}
+
+textbox {
+    text-color: @accent;
+    background-color: @color0;
+}

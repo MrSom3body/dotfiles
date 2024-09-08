@@ -1,0 +1,14 @@
+[[manager.prepend_keymap]]
+on = ["y"]
+run = [
+  "yank",
+  '''
+	shell --confirm 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list'
+''',
+]
+
+[[manager.prepend_keymap]]
+on = ["<C-n>"]
+run = '''
+  shell --confirm '~/.cargo/bin/ripdrag "$@" -x 2>/dev/null &'
+'''

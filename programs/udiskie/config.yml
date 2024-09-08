@@ -1,0 +1,13 @@
+program_options:
+  tray: auto
+  menu: flat
+  automount: true
+  password_cache: 10
+
+device_config:
+  - id_uuid: 9882-A313
+    automount: true
+  - id_uuid: ee5a204b-65b5-42bf-aff2-54cb54b0d0ab
+    automount: true
+    keyfile: ~/Pictures/profile.jpg
+  - automount: false

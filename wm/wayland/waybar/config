@@ -1,0 +1,27 @@
+{
+  "layer": "top",
+  "margin": "5 5 0 5",
+  "height": 16,
+  "spacing": 0,
+
+  "include": ["~/.config/waybar/modules.json"],
+  
+  "modules-left": [
+    "clock",
+    "privacy",
+    "hyprland/window"
+  ],
+  
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-right": [
+    "pulseaudio",
+    "backlight",
+    "group/power",
+    "group/hardware",
+    "tray",
+    "custom/notification"
+  ]
+}

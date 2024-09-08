@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+
+# install-profile
+# used for running group of installation scripts as a profile located in ./meta/profiles/ folder
+# Ex: install script for MacOS, debian
+# Usage: ./install-profile <profile ...>
+# ./install-profile mac
+# ./install-profile debian-terminal
+# ./install-profile debian-terminal debian-gui
+#
+# ------------------------------------------------------------------------------------------------ #
+#
+# files in ./meta/profiles/ folder are plain text files that have config filename(no file extenstion).
+# check example: https://github.com/ecarlson94/dotbot-template/blob/main/meta/profiles/exampleOS1
+# Ex:
+# ./meta/profiles/macos contains
+# nvim
+# tmux
+# homebrew
+#
+# ------------------------------------------------------------------------------------------------ #
+#
+# NOTE: to run a config in sudo, then add '-sudo' as a suffix of the config to run.
+# Ex: ./meta/profiles/debian contains
+# apt-sudo
+#
+# ------------------------------------------------------------------------------------------------ #
+#
+# to ignore a line in a profile, add '#' at the beginning of that line
+# Ex: ./meta/profiles/macos contains
+# nvim
+# tmux
+# homebrew
+# # astronvim
+#
+# This will ignore 'astronvim' config
+#
+# ------------------------------------------------------------------------------------------------ #
+#
+# check example: https://github.com/ecarlson94/dotbot-template/blob/main/meta/profiles/exampleOS1
+# check: https://github.com/ecarlson94/dotbot-template#for-installing-single-configurations
+#
+# obtained from https://github.com/anishathalye/dotbot/wiki/Tips-and-Tricks#install-profile
+# author ecarlson94
+
+set -e
+
+META_DIR="meta"
+CONFIG_DIR="configs"
+PROFILES_DIR="profiles"
+
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+cd "${BASE_DIR}"
+git submodule update --init --recursive
+
+# ------------------------------------------------------------------------------------------------ #
+# Utility functions
+
+# print line banner
+# used for segmenting when a profile configs is being executed.
+# For VISUAL purposes
+printLineBanner() {
+	# print a line depending on the terminal width
+	# https://unix.stackexchange.com/a/425158
+	# https://stackoverflow.com/a/17030976/3053548
+	#
+	# print ANSI color using printf
+	# https://stackoverflow.com/a/26873040/3053548
+	printf '\e[1;34m%0.s#\e[0m' $(seq 1 $(stty size | awk '{print $2}'))
+}
+
+# ------------------------------------------------------------------------------------------------ #
+# Verify dotbot profile exists
+# Checks if the file exists in meta/profiles/ folder
+
+exitIfProfileNotFound=false # used as a flag to exit IF a profile is NOT found
+for profile in ${@}; do
+	# check if the profile filepath doesn't exist
+	#   print message
+	#   flag variable to exit
+
+	profileFilepath="${BASE_DIR}/${META_DIR}/${PROFILES_DIR}/${profile}"
+
+	if [[ ! -e $profileFilepath ]]; then
+		echo -e "Dotbot profile \\033[1;31m$profileFilepath \\033[0mNOT found"
+
+		exitIfProfileNotFound=true
+	fi
+done
+
+# exit if a profile filepath is NOT found
+if [[ $exitIfProfileNotFound == true ]]; then
+	echo -e "\nexiting"
+	exit 1
+fi
+
+# cleanup variables
+unset exitIfProfileNotFound
+
+# ------------------------------------------------------------------------------------------------ #
+# Running profile
+
+# loop through each argument
+#   extract dotbot configs to run
+#   run dotbot configs using ./install-standalone
+for profile in ${@}; do
+	# extract dotbot configs to run
+	while IFS= read -r config; do
+		CONFIGS+=" ${config}"
+
+		# read lines that DON'T start with #
+		# obtained from https://stackoverflow.com/a/8197412/3053548
+	done < <(grep -v '^#' "${META_DIR}/${PROFILES_DIR}/$profile")
+
+	# print line banner multiple times
+	# https://serverfault.com/a/273241
+	for i in $(seq 2); do printLineBanner; done
+	echo -e "\nRunning profile \e[1;34m$profile\e[0m\n"
+
+	# run profile configs
+	source ./install-standalone ${CONFIGS}
+
+	# cleanup variables
+	unset CONFIGS
+done
+
+cd "${BASE_DIR}"
+
+echo "Restart your terminal..."

@@ -1,0 +1,14 @@
+# If you want to use a completely custom prompt uncomment link part and comment out the shell part.
+
+# - link:
+#   ~/.config/starship.toml: terminal/programs/starship/starship.toml
+
+- shell:
+    - [
+        "starship preset nerd-font-symbols > ~/.config/starship.toml",
+        "Create the starship prompt from preset.",
+      ]
+    - [
+        "cat ~/dotfiles/terminal/programs/starship/starship.toml >> ~/.config/starship.toml",
+        "Override template with edits.",
+      ]

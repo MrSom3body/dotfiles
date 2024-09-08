@@ -1,12 +1,13 @@
 {
   config,
   lib,
+  dotfiles,
   ...
 }: {
   services.greetd = let
     session = {
       command = "${lib.getExe config.programs.hyprland.package}";
-      user = "karun";
+      user = dotfiles.username;
     };
   in {
     enable = true;

@@ -18,7 +18,7 @@
 
           options = {
             nixos = {
-              expr = "(builtins.getFlake \"${config.home.homeDirectory}/dotfiles\").nixosConfigurations.blackbox.options";
+              expr = "(builtins.getFlake \"${config.home.homeDirectory}/dotfiles\").nixosConfigurations.${dotfiles.hostname}.options";
             };
 
             home-manager = {

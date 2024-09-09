@@ -9,6 +9,7 @@
     name = "Karun Sandhu";
     email = "129101708+MrSom3body@users.noreply.github.com";
     key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFKSJm8M+cxXmYVQMjKYtEMuP3pdYdIJBJzbm3NP/v2q karun@blackbox";
+    path = "/home/karun/dotfiles"; # Full path to this flake
 
     # System settings
     hostname = "blackbox"; # Before changing the hostname make sure a default.nix and home.nix are available under the hosts/HOSTNAME directory

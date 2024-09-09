@@ -6,6 +6,6 @@
       dates = "daily";
       extraArgs = "--keep-since 4d --keep 3";
     };
-    flake = "/home/${dotfiles.username}/dotfiles";
+    flake = dotfiles.path;
   };
 }

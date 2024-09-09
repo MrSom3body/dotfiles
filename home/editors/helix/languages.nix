@@ -18,11 +18,11 @@
 
           options = {
             nixos = {
-              expr = "(builtins.getFlake \"${config.home.homeDirectory}/dotfiles\").nixosConfigurations.${dotfiles.hostname}.options";
+              expr = "(builtins.getFlake \"${dotfiles.path}\").nixosConfigurations.${dotfiles.hostname}.options";
             };
 
             home-manager = {
-              expr = "(builtins.getFlake \"${config.home.homeDirectory}/dotfiles\").homeManagerConfigurations.${dotfiles.username}.options";
+              expr = "(builtins.getFlake \"${dotfiles.path}\").homeManagerConfigurations.${dotfiles.username}.options";
             };
           };
         };

@@ -37,6 +37,7 @@
       {
         name = "nix";
         language-servers = ["nixd"];
+        auto-format = true;
       }
     ];
   };

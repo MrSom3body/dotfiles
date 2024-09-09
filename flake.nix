@@ -65,6 +65,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    helix.url = "github:helix-editor/helix";
+
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     hypridle = {

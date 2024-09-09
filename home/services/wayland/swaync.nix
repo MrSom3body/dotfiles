@@ -773,7 +773,7 @@
 
   home.activation.reloadSwaync = lib.hm.dag.entryAfter ["installPackages"] ''
     if ${lib.getExe' pkgs.procps "pgrep"} swaync > /dev/null; then
-      ${lib.getExe' pkgs.swaynotificationcenter "swaync-client"} --reload-css
+      ${lib.getExe' pkgs.swaynotificationcenter "swaync-client"} --reload-config --reload-css
     fi
   '';
 }

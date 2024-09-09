@@ -6,10 +6,7 @@
       # wifi.powersave = true;
     };
     nameservers = [
-      "45.90.28.0#5781e6.dns.nextdns.io"
-      "2a07:a8c0::#5781e6.dns.nextdns.io"
-      "45.90.30.0#5781e6.dns.nextdns.io"
-      "2a07:a8c1::#5781e6.dns.nextdns.io"
+      "9.9.9.9#dns.quad9.net"
     ];
   };
 

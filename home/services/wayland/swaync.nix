@@ -130,6 +130,10 @@
           label = "";
           device = "amdgpu_bl1";
         };
+        "backlight#backup" = {
+          label = "";
+          device = "amdgpu_bl2";
+        };
         "backlight#KB" = {
           label = "";
           device = "asus::kbd_backlight";

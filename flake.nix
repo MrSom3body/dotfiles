@@ -4,7 +4,6 @@
   outputs = inputs @ {
     nixpkgs,
     nixpkgs-stable,
-    stylix,
     ...
   }: let
     inherit (import ./settings.nix) dotfiles;
@@ -40,7 +39,6 @@
           {
             home-manager.users.${dotfiles.username}.imports = [./hosts/${dotfiles.hostname}/home.nix];
           }
-          stylix.nixosModules.stylix
         ];
       };
     };

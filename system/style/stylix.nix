@@ -7,8 +7,8 @@
   stylix = {
     enable = true;
     autoEnable = false;
-    image = ../../walls/gruvbox/wallhaven-l8g1oy.png;
-    polarity = "dark";
+    image = dotfiles.wallpaper;
+    polarity = dotfiles.polarity;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${dotfiles.theme}.yaml";
 
     fonts = {

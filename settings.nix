@@ -1,32 +1,30 @@
 {
-  /*
-  Setting anything here won't install it. It's just a configuration file.
-  It will only set some values.
-  */
+  # This file contains settings for your system configuration.
+  # It doesn't install anything but sets values that other parts of your system may use.
+
   dotfiles = {
-    # User settings
-    username = "karun";
-    name = "Karun Sandhu";
-    email = "129101708+MrSom3body@users.noreply.github.com";
-    key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFKSJm8M+cxXmYVQMjKYtEMuP3pdYdIJBJzbm3NP/v2q karun@blackbox";
-    path = "/home/karun/dotfiles"; # Full path to this flake
+    # User information
+    username = "karun"; # Your username
+    name = "Karun Sandhu"; # Your full name
+    email = "129101708+MrSom3body@users.noreply.github.com"; # Your email for Git
+    key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFKSJm8M+cxXmYVQMjKYtEMuP3pdYdIJBJzbm3NP/v2q karun@blackbox"; # Your SSH key for Git
+    path = "/home/karun/dotfiles"; # Path to your dotfiles
 
     # System settings
-    hostname = "blackbox"; # Before changing the hostname make sure a default.nix and home.nix are available under the hosts/HOSTNAME directory
+    hostname = "blackbox"; # Hostname for your machine
 
-    # Theming related settings
-    theme = "gruvbox-dark-medium"; # Themes can be found at https://github.com/tinted-theming/schemes
-    rounding = 15;
-    # Use any font from the nerd-fonts package
-    fontMono = "Fira Code Nerd Font";
-    fontSans = "Ubuntu Nerd Font";
+    # Appearance settings
+    theme = "gruvbox-dark-medium"; # Theme for your system (find more themes at https://github.com/tinted-theming/schemes)
+    rounding = 15; # Window rounding (if supported)
+    fontMono = "Fira Code Nerd Font"; # Monospace font
+    fontSans = "Ubuntu Nerd Font"; # Sans-serif font
 
-    # Default apps
-    shell = "fish";
-    editor = "hx";
-    terminal = "kitty";
-    browser = "firefox";
-    fileManager = "nautilus";
-    terminalFileManager = "yazi";
+    # Default applications
+    shell = "fish"; # Default shell
+    editor = "hx"; # Default text editor
+    terminal = "kitty"; # Default terminal
+    browser = "firefox"; # Default web browser
+    fileManager = "nautilus"; # Default GUI file manager
+    terminalFileManager = "yazi"; # Default terminal file manager
   };
 }

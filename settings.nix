@@ -16,7 +16,7 @@
     # Appearance settings
     theme = "gruvbox-dark-medium"; # Theme for your system (find more themes at https://github.com/tinted-theming/schemes)
     polarity = "dark"; # Set light or dark mode
-    wallpaper = ./walls/gruvbox/wallhaven-l8g1oy.png; # Wallpaper for WMs
+    wallpaper = ./walls/gruvbox/wave.png; # Wallpaper for WMs
     rounding = 15; # Window rounding (if supported)
     fontMono = "Fira Code Nerd Font"; # Monospace font
     fontSans = "Ubuntu Nerd Font"; # Sans-serif font

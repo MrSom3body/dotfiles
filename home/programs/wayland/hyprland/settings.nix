@@ -34,7 +34,7 @@
       resize_on_border = false;
 
       # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
-      allow_tearing = false;
+      allow_tearing = true;
     };
 
     decoration = {

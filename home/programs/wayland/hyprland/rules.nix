@@ -43,6 +43,9 @@
 
       # don't render hyprbars on tiling windows
       "plugin:hyprbars:nobar, floating:0"
+
+      # Games
+      "immediate, class:^(Minecraft.*)$"
     ];
 
     layerrule = [

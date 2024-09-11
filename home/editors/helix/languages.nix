@@ -14,6 +14,22 @@
         command = lib.getExe pkgs.marksman;
       };
 
+      nil = {
+        command = lib.getExe pkgs.nil;
+        config.nil = {
+          formatting = {
+            command = ["${lib.getExe pkgs.alejandra}"];
+          };
+          nix = {
+            flake = {
+              autoArchive = true;
+              autoEvalInputs = true;
+              nixpkgsInputName = "nixpkgs";
+            };
+          };
+        };
+      };
+
       nixd = {
         command = lib.getExe pkgs.nixd;
         config.nixd = {
@@ -56,7 +72,7 @@
       }
       {
         name = "nix";
-        language-servers = ["nixd"];
+        language-servers = ["nil"];
         auto-format = true;
       }
     ];

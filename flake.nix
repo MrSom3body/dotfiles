@@ -1,11 +1,12 @@
 {
   description = "MrSom3body's flake";
 
-  outputs = inputs @ {
+  outputs = {
+    self,
     nixpkgs,
     nixpkgs-stable,
     ...
-  }: let
+  } @ inputs: let
     inherit (import ./settings.nix) dotfiles;
 
     lib = nixpkgs.lib;
@@ -43,8 +44,21 @@
       };
     };
 
+    checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+      src = ./.;
+      hooks = {
+        alejandra.enable = true;
+        deadnix.enable = true;
+        markdownlint.enable = true;
+        nil.enable = true;
+      };
+    };
+
     devShells.${system}.default = pkgs.mkShell {
       name = "dotfiles";
+
+      inherit (self.checks.${system}.pre-commit-check) shellHook;
+      buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
 
       packages = with pkgs; [
         alejandra
@@ -62,6 +76,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
 
     helix.url = "github:helix-editor/helix";
 

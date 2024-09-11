@@ -1,4 +1,4 @@
-{...}: {
+{dotfiles, ...}: {
   wayland.windowManager.hyprland.settings = {
     "$floatingSize" = "600 400";
     "$polkit" = "polkit-gnome-authentication-agent-1";
@@ -70,7 +70,7 @@
       "special:spotify, on-created-empty:spotify"
       "special:spotify, gapsout:75"
 
-      "special:monitor, on-created-empty:kitty -- btop"
+      "special:monitor, on-created-empty:${dotfiles.terminal} -- btop"
       "special:monitor, gapsout:50"
 
       "special:discord, on-created-empty:vesktop"

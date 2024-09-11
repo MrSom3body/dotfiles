@@ -43,7 +43,7 @@
       };
     };
 
-    devShells."x86_64-linux".default = pkgs.mkShell {
+    devShells.${system}.default = pkgs.mkShell {
       name = "dotfiles";
 
       packages = with pkgs; [

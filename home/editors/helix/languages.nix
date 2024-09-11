@@ -57,6 +57,7 @@
     language = [
       {
         name = "bash";
+        auto-format = true;
         formatter = {
           command = lib.getExe pkgs.shfmt;
           args = ["-i" "2"];
@@ -64,16 +65,16 @@
       }
       {
         name = "markdown";
+        auto-format = true;
         formatter = {
           command = lib.getExe pkgs.nodePackages.prettier;
           args = ["--parser" "markdown"];
         };
-        auto-format = true;
       }
       {
         name = "nix";
-        language-servers = ["nil"];
         auto-format = true;
+        language-servers = ["nil"];
       }
     ];
   };

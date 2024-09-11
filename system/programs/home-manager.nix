@@ -1,6 +1,7 @@
 {
   inputs,
   specialArgs,
+  dotfiles,
   ...
 }: {
   imports = [
@@ -12,5 +13,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = specialArgs;
+
+    users.${dotfiles.username}.imports = [../../hosts/${dotfiles.hostname}/home.nix];
   };
 }

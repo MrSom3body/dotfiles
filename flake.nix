@@ -37,9 +37,6 @@
           {nixpkgs.pkgs = pkgs;}
 
           ./hosts/${dotfiles.hostname}
-          {
-            home-manager.users.${dotfiles.username}.imports = [./hosts/${dotfiles.hostname}/home.nix];
-          }
         ];
       };
     };

@@ -31,7 +31,7 @@
       variables = ["--all"];
     };
 
-    plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
+    plugins = with pkgs.hyprlandPlugins; [
       hyprbars
     ];
   };

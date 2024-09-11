@@ -63,7 +63,6 @@
       packages = with pkgs; [
         alejandra
         git
-        lua-language-server
       ];
     };
   };

@@ -1,4 +1,4 @@
-{lib, ...}: {
+{...}: {
   stylix = {
     autoEnable = false;
     targets = {

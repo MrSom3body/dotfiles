@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{config, ...}: {
   # Enable CUDA
   # environment.systemPackages = with pkgs; [
   #   cudatoolkit

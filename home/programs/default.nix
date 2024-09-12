@@ -23,6 +23,7 @@
     # JetBrains
     jetbrains.idea-ultimate
     jetbrains.phpstorm
+    jetbrains.datagrip
 
     # Proton
     proton-pass

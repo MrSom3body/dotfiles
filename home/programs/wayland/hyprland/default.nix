@@ -3,6 +3,7 @@
     ./settings.nix
     ./keybindings.nix
     ./rules.nix
+    ./pyprland.nix
   ];
 
   home.packages = with pkgs; [

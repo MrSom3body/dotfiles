@@ -82,6 +82,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    pyprland.url = "github:hyprland-community/pyprland";
+
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";

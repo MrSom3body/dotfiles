@@ -18,7 +18,7 @@
         tooltip {
           background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
 
-          border-radius: ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px;
           border: 3px solid ${base0D};
         }
 
@@ -32,7 +32,7 @@
 
           color: ${base05};
           background: ${base00};
-          border-radius: ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px;
         }
 
         #window {
@@ -41,7 +41,7 @@
 
           color: ${base05};
           background: ${base00};
-          border-radius: ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px;
         }
 
         window#waybar.empty #window {
@@ -60,7 +60,7 @@
           background: ${base00};
           min-width: 1.5em;
 
-          border-radius: ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px;
           transition: all 0.3s ease-in-out;
         }
 
@@ -82,7 +82,7 @@
 
           color: ${base00};
           background: ${base0C};
-          border-radius: ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px;
         }
 
         #wireplumber {
@@ -95,7 +95,7 @@
 
           color: ${base00};
           background: ${base0C};
-          border-radius: ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px;
         }
 
         #battery.warning {
@@ -130,7 +130,7 @@
           padding: .2em .5em;
 
           color: ${base00};
-          border-radius: ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px;
         }
 
         #power-profiles-daemon.performance {
@@ -151,7 +151,7 @@
 
           color: ${base05};
           background: ${base00};
-          border-radius: ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px;
         }
 
         #idle_inhibitor.activated {
@@ -172,11 +172,11 @@
         #custom-monitor {
           margin: 0 .25em;
 
-          border-radius: ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px;
         }
 
         #cpu {
-          border-radius: ${builtins.toString dotfiles.rounding}px 0 0 ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px 0 0 ${rounding}px;
           margin: 0 0 0 .25em;
         }
 
@@ -185,7 +185,7 @@
         }
 
         #memory {
-          border-radius: 0 ${builtins.toString dotfiles.rounding}px ${builtins.toString dotfiles.rounding}px 0;
+          border-radius: 0 ${rounding}px ${rounding}px 0;
         }
 
         #tray {
@@ -193,7 +193,7 @@
           padding: .2em .5em;
 
           background: ${base00};
-          border-radius: ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px;
         }
 
         #tray > .passive {
@@ -211,7 +211,7 @@
 
           color: ${base05};
           background: ${base00};
-          border-radius: ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px;
         }
 
         #custom-notification.notification,
@@ -228,7 +228,7 @@
 
           color: ${base05};
           background: ${base00};
-          border-radius: ${builtins.toString dotfiles.rounding}px;
+          border-radius: ${rounding}px;
         }
       '';
 }

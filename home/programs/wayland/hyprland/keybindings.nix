@@ -44,7 +44,7 @@
         "$mainMod, W, Toggle floating, togglefloating"
         "$mainMod, I, Change split direction (dwindle), togglesplit"
         "$mainMod, N, Open notification center, exec, swaync-client -t"
-        "$mainMod, ESCAPE, Lock screen, exec, hyprlock"
+        "$mainMod, ESCAPE, Lock screen, exec, pgrep hyprlock || hyprlock"
         "$mainMod, C, Open color picker, exec, hyprpicker -a"
 
         # Clipboard

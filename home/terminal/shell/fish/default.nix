@@ -1,19 +1,15 @@
 {pkgs, ...}: {
   programs.fish = {
     enable = true;
-    plugins = with pkgs.fishPlugins; [
-      {
-        name = "autopair";
-        src = autopair.src;
-      }
-      {
-        name = "done";
-        src = pkgs.fishPlugins.done.src;
-      }
-      {
-        name = "fzf-fish";
-        src = fzf-fish.src;
-      }
+    plugins = with pkgs.fishPlugins; let
+      fishPlugin = name: {
+        name = name.pname;
+        inherit (name) src;
+      };
+    in [
+      (fishPlugin autopair)
+      (fishPlugin done)
+      (fishPlugin fzf-fish)
     ];
     functions = {
       fish_greeting = "macchina";

@@ -52,9 +52,8 @@
         "$mainMod CTRL, V, Clear clipboard history, exec, cliphist wipe"
 
         # Screenshots
-        ", PRINT, Take screenshot of screen, exec, ${runOnce "grimblast"} --notify copysave screen"
-        "$mainMod, PRINT, Take screenshot of window, exec, ${runOnce "grimblast"} --notify copysave active"
-        "SHIFT, PRINT, Take screenshot of area, exec, ${runOnce "grimblast"} --notify copysave area"
+        ", PRINT, Take screenshot of screen, exec, ${runOnce "grimblast"} --notify copysave area"
+        "$mainMod, PRINT, Take screenshot of window, exec, ${runOnce "grimblast"} --notify copysave screen"
 
         # Move window focus
         "$mainMod, H, Focus window to the left, movefocus, l"

@@ -41,6 +41,11 @@
         };
       };
 
+      basedpyright = {
+        command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
+        args = ["--stdio"];
+      };
+
       vscode-css-language-server = {
         command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-languageserver";
       };
@@ -75,6 +80,14 @@
         name = "nix";
         auto-format = true;
         language-servers = ["nil"];
+      }
+      {
+        name = "python";
+        language-servers = ["basedpyright"];
+        formatter = {
+          command = lib.getExe pkgs.ruff;
+          args = ["format"];
+        };
       }
     ];
   };

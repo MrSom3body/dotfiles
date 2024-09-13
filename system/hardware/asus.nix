@@ -1,4 +1,4 @@
-{...}: {
+_: {
   services.asusd = {
     enable = true;
     asusdConfig = ''

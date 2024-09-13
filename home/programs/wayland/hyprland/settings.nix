@@ -38,7 +38,7 @@
     };
 
     decoration = {
-      rounding = dotfiles.rounding;
+      inherit (dotfiles) rounding;
 
       # active_opacity = config.stylix.opacity.applications;
       # inactive_opacity = 0.75;

@@ -1,4 +1,4 @@
-{...}: {
+_: {
   services.gammastep = {
     enable = true;
     dawnTime = "6:00-7:45";

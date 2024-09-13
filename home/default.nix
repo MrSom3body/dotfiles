@@ -5,7 +5,7 @@
   ];
 
   home = {
-    username = dotfiles.username;
+    inherit (dotfiles) username;
     homeDirectory = "/home/${dotfiles.username}";
     stateVersion = "24.05";
 

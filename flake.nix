@@ -9,7 +9,7 @@
   } @ inputs: let
     inherit (import ./settings.nix) dotfiles;
 
-    lib = nixpkgs.lib;
+    inherit (nixpkgs) lib;
     system = "x86_64-linux";
 
     pkgs = import nixpkgs {
@@ -48,6 +48,7 @@
         deadnix.enable = true;
         markdownlint.enable = true;
         nil.enable = true;
+        statix.enable = true;
       };
     };
 

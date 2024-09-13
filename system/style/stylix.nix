@@ -8,7 +8,7 @@
     enable = true;
     autoEnable = false;
     image = dotfiles.wallpaper;
-    polarity = dotfiles.polarity;
+    inherit (dotfiles) polarity;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${dotfiles.theme}.yaml";
 
     fonts = {

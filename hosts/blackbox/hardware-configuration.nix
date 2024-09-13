@@ -13,7 +13,7 @@
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
     initrd = {
-      initrd.availableKernelModules = [
+      availableKernelModules = [
         "nvme"
         "xhci_pci"
         "thunderbolt"
@@ -22,8 +22,8 @@
         "sd_mod"
         "sdhci_pci"
       ];
-      initrd.kernelModules = [];
-      initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/1fa397f7-31d5-42b7-b553-a9fb4827b93c";
+      kernelModules = [];
+      luks.devices."crypted".device = "/dev/disk/by-uuid/1fa397f7-31d5-42b7-b553-a9fb4827b93c";
     };
   };
 

@@ -6,7 +6,7 @@
   programs.kitty = {
     enable = true;
     font = {
-      name = config.stylix.fonts.monospace.name;
+      inherit (config.stylix.fonts.monospace) name;
       size = config.stylix.fonts.sizes.terminal;
     };
     shellIntegration = {

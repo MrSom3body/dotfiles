@@ -1,4 +1,4 @@
-{...}: {
+_: {
   # network discovery, mDNS
   services.avahi = {
     enable = true;

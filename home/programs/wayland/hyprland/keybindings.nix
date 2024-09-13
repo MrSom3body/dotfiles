@@ -16,7 +16,7 @@
     ];
 
     bindd = let
-      rofi = "pkill rofi || rofi";
+      runOnce = cmd: "pkill ${cmd} || ${cmd}";
     in
       [
         # Vesktop
@@ -31,10 +31,10 @@
         "$mainMod SHIFT, E, Open file manager, exec, ${dotfiles.fileManager}"
 
         # Launcher
-        "$mainMod, D, Open application launcher, exec, ${rofi} -show drun"
-        "$mainMod, TAB, Open window switcher, exec, ${rofi} -show window"
-        "$mainMod CTRL, Q, Open power menu, exec, ${rofi} -show powermenu -modes powermenu"
-        "$mainMod, SPACE, Open file browser, exec, ${rofi} -show filebrowser"
+        "$mainMod, D, Open application launcher, exec, ${runOnce "rofi"} -show drun"
+        "$mainMod, TAB, Open window switcher, exec, ${runOnce "rofi"} -show window"
+        "$mainMod CTRL, Q, Open power menu, exec, ${runOnce "rofi"} -show powermenu -modes powermenu"
+        "$mainMod, SPACE, Open file browser, exec, ${runOnce "rofi"} -show filebrowser"
         "$mainMod, PERIOD, Open symbols search, exec, pkill rofi || BEMOJI_PICKER_CMD=\"rofi -no-show-icons -dmenu\" bemoji -cn"
 
         # Actions
@@ -48,7 +48,7 @@
         "$mainMod, C, Open color picker, exec, hyprpicker -a"
 
         # Clipboard
-        "$mainMod, V, Show clipboard history, exec, ${rofi} -modi clipboard:cliphist-rofi-img -show clipboard"
+        "$mainMod, V, Show clipboard history, exec, ${runOnce "rofi"} -modi clipboard:cliphist-rofi-img -show clipboard"
         "$mainMod CTRL, V, Clear clipboard history, exec, cliphist wipe"
 
         # Screenshots

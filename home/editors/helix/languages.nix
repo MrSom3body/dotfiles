@@ -5,7 +5,47 @@
   ...
 }: {
   programs.helix.languages = {
+    language = [
+      {
+        name = "bash";
+        auto-format = true;
+        formatter = {
+          command = lib.getExe pkgs.shfmt;
+          args = ["-i" "2"];
+        };
+      }
+
+      {
+        name = "markdown";
+        auto-format = true;
+        formatter = {
+          command = lib.getExe pkgs.nodePackages.prettier;
+          args = ["--parser" "markdown"];
+        };
+      }
+
+      {
+        name = "nix";
+        auto-format = true;
+        language-servers = ["nil"];
+      }
+
+      {
+        name = "python";
+        language-servers = ["basedpyright"];
+        formatter = {
+          command = lib.getExe pkgs.ruff;
+          args = ["format"];
+        };
+      }
+    ];
+
     language-server = {
+      basedpyright = {
+        command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
+        args = ["--stdio"];
+      };
+
       bash-language-server = {
         command = lib.getExe pkgs.bash-language-server;
       };
@@ -41,11 +81,6 @@
         };
       };
 
-      basedpyright = {
-        command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
-        args = ["--stdio"];
-      };
-
       vscode-css-language-server = {
         command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-languageserver";
       };
@@ -58,37 +93,5 @@
         command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-languageserver";
       };
     };
-
-    language = [
-      {
-        name = "bash";
-        auto-format = true;
-        formatter = {
-          command = lib.getExe pkgs.shfmt;
-          args = ["-i" "2"];
-        };
-      }
-      {
-        name = "markdown";
-        auto-format = true;
-        formatter = {
-          command = lib.getExe pkgs.nodePackages.prettier;
-          args = ["--parser" "markdown"];
-        };
-      }
-      {
-        name = "nix";
-        auto-format = true;
-        language-servers = ["nil"];
-      }
-      {
-        name = "python";
-        language-servers = ["basedpyright"];
-        formatter = {
-          command = lib.getExe pkgs.ruff;
-          args = ["format"];
-        };
-      }
-    ];
   };
 }

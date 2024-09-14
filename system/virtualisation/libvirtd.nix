@@ -11,7 +11,10 @@
     spiceUSBRedirection.enable = true;
   };
 
-  services.spice-vdagentd.enable = true;
+  services = {
+    spice-vdagentd.enable = true;
+    spice-webdavd.enable = true;
+  };
 
   programs.virt-manager.enable = true;
 

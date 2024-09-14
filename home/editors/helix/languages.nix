@@ -22,6 +22,7 @@
           command = lib.getExe pkgs.nodePackages.prettier;
           args = ["--parser" "markdown"];
         };
+        language-servers = ["marksman" "ltex"];
       }
 
       {
@@ -48,6 +49,10 @@
 
       bash-language-server = {
         command = lib.getExe pkgs.bash-language-server;
+      };
+
+      ltex = {
+        command = "${pkgs.ltex-ls}/bin/ltex-ls";
       };
 
       marksman = {

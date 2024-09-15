@@ -18,6 +18,7 @@
       {
         name = "markdown";
         auto-format = true;
+        soft-wrap.enable = true;
         formatter = {
           command = lib.getExe pkgs.nodePackages.prettier;
           args = ["--parser" "markdown"];

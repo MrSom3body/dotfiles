@@ -15,13 +15,13 @@
     ../../system/programs/hyprland.nix
     ../../system/programs/steam.nix
     ../../system/programs/vmware.nix
-    ../../system/programs/zerotier.nix
 
     ../../system/services/fprintd.nix
     ../../system/services/gnome-services.nix
     ../../system/services/gns3.nix
     ../../system/services/location.nix
     ../../system/services/printing.nix
+    ../../system/services/zerotier.nix
 
     ../../system/virtualisation/libvirtd.nix
     ../../system/virtualisation/podman.nix

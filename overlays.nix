@@ -2,9 +2,9 @@
   nixpkgs.overlays = [
     (
       final: prev: {
-        linuxPackages_xanmod_latest = prev.linuxPackages_xanmod_latest.extend (
+        linuxPackages_latest = prev.linuxPackages_latest.extend (
           _lpfinal: _lpprev: {
-            vmware = prev.linuxPackages_xanmod_latest.vmware.overrideAttrs (_oldAttrs: {
+            vmware = prev.linuxPackages_latest.vmware.overrideAttrs (_oldAttrs: {
               version = "workstation-17.5.2-k6.9+-unstable-2024-08-22";
               src = final.fetchFromGitHub {
                 owner = "nan0desu";

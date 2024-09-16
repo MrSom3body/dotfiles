@@ -18,7 +18,7 @@
     # Default applications
     editor = "hx"; # Default text editor
     terminal = "kitty"; # Default terminal
-    browser = "firefox"; # Default web browser
+    browser = "firefox-beta"; # Default web browser
     fileManager = "nautilus"; # Default GUI file manager
     terminalFileManager = "yazi"; # Default terminal file manager
   };

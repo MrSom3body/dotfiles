@@ -4,5 +4,6 @@
     notesnook
     obsidian
     papers
+    simple-scan
   ];
 }

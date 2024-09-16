@@ -82,7 +82,7 @@
           formatting = lib.getExe pkgs.alejandra;
           options = {
             nixos = {expr = "(builtins.getFlake \"${dotfiles.path}\").nixosConfigurations.${dotfiles.hostname}.options";};
-            home-manager = {expr = "(builtins.getFlake \"${dotfiles.path}\").homeManagerConfigurations.\"${dotfiles.username}\".options";};
+            home-manager = {expr = "(builtins.getFlake \"${dotfiles.path}\").homeManagerConfigurations.\"karun\".options";};
           };
         };
       };

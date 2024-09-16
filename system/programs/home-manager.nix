@@ -14,6 +14,6 @@
     useUserPackages = true;
     extraSpecialArgs = specialArgs;
 
-    users.${dotfiles.username}.imports = [../../hosts/${dotfiles.hostname}/home.nix];
+    users.karun.imports = [../../hosts/${dotfiles.hostname}/home.nix];
   };
 }

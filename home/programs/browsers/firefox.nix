@@ -14,9 +14,9 @@ in {
       if dotfiles.browser == "firefox-beta"
       then pkgs.firefox-beta
       else pkgs.firefox;
-    profiles.${dotfiles.username} = {
+    profiles.default = {
       id = 0;
-      name = dotfiles.username;
+      name = "default";
       isDefault = true;
       search = {
         force = true;

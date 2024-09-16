@@ -5,8 +5,8 @@
   ];
 
   home = {
-    inherit (dotfiles) username;
-    homeDirectory = "/home/${dotfiles.username}";
+    username = "karun";
+    homeDirectory = "/home/karun";
     stateVersion = "24.05";
 
     sessionVariables = {

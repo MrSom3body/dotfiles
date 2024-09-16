@@ -1,9 +1,6 @@
-{
-  config,
-  dotfiles,
-  ...
-}: let
+{config, ...}: let
   cfg = config.programs.git;
+  key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFKSJm8M+cxXmYVQMjKYtEMuP3pdYdIJBJzbm3NP/v2q karun@blackbox";
 in {
   programs.git = {
     enable = true;
@@ -45,11 +42,11 @@ in {
       };
     };
 
-    userName = dotfiles.name;
-    userEmail = dotfiles.email;
+    userName = "Karun Sandhu";
+    userEmail = "129101708+MrSom3body@users.noreply.github.com";
   };
 
   xdg.configFile."git/allowed_signers".text = ''
-    ${cfg.userEmail} namespaces="git" ${dotfiles.key}
+    ${cfg.userEmail} namespaces="git" ${key}
   '';
 }

@@ -1,12 +1,8 @@
-{
-  pkgs,
-  dotfiles,
-  ...
-}: {
-  users.users.${dotfiles.username} = {
+{pkgs, ...}: {
+  users.users.karun = {
     isNormalUser = true;
-    description = dotfiles.name;
-    shell = pkgs.${dotfiles.shell};
+    description = "Karun Sandhu";
+    shell = pkgs.fish;
     initialPassword = "password";
     extraGroups = [
       "networkmanager"

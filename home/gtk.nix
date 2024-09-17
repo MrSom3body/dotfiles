@@ -5,5 +5,6 @@
     "Notes"
     "Sync"
     "Documents/Code"
+    "Documents/Schule/2024-25"
   ];
 }

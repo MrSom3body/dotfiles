@@ -16,6 +16,11 @@
       }
 
       {
+        name = "go";
+        auto-format = true;
+      }
+
+      {
         name = "markdown";
         auto-format = true;
         soft-wrap.enable = true;
@@ -50,6 +55,14 @@
 
       bash-language-server = {
         command = lib.getExe pkgs.bash-language-server;
+      };
+
+      golangci-lint = {
+        command = lib.getExe pkgs.golangci-lint;
+      };
+
+      gopls = {
+        command = lib.getExe pkgs.gopls;
       };
 
       ltex = {

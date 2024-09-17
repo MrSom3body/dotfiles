@@ -4,7 +4,7 @@
     "Games"
     "Notes"
     "Sync"
-    "Documents/Code"
+    "Documents/Codes"
     "Documents/Schule/2024-25"
   ];
 }

@@ -19,4 +19,6 @@
 
     inputs.stylix.nixosModules.stylix
   ];
+
+  hardware.enableAllFirmware = true;
 }

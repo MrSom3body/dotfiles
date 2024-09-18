@@ -9,9 +9,6 @@
   ];
 
   home.packages = with pkgs; [
-    pika-backup
-    signal-desktop
-
     # GNOME
     baobab # Disk Usage Analyzer
     gnome-calculator
@@ -19,7 +16,13 @@
     gnome-weather
     kooha # Screen Recorder
     snapshot # Camera App
+
+    # Messaging and socials
+    signal-desktop
     tuba # Mastodon Client
+
+    # Tools
+    pika-backup
 
     # JetBrains
     jetbrains.idea-ultimate

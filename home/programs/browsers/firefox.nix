@@ -82,7 +82,6 @@ in {
       AutofillCreditCardEnabled = false;
       Cookies = {
         Allow = [
-          "https://aniwave.to"
           "https://chatgpt.com"
           "https://github.com"
           "https://languagetool.org"

@@ -85,6 +85,7 @@ in {
           "https://chatgpt.com"
           "https://github.com"
           "https://languagetool.org"
+          "https://mastodon.social"
           "https://monkeytype.com"
           "https://netflix.com"
           "https://proton.me"

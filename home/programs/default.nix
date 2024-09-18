@@ -19,6 +19,7 @@
     gnome-weather
     kooha # Screen Recorder
     snapshot # Camera App
+    tuba # Mastodon Client
 
     # JetBrains
     jetbrains.idea-ultimate

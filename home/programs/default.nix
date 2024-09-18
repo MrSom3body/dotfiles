@@ -29,8 +29,5 @@
     # Proton
     proton-pass
     protonvpn-gui
-
-    # Misc
-    papirus-icon-theme
   ];
 }

@@ -18,6 +18,7 @@
     snapshot # Camera App
 
     # Messaging and socials
+    element-desktop # Matrix client
     signal-desktop
     tuba # Mastodon Client
 

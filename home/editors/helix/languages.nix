@@ -100,6 +100,10 @@
         };
       };
 
+      taplo = {
+        command = lib.getExe pkgs.taplo;
+      };
+
       vscode-css-language-server = {
         command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-languageserver";
       };

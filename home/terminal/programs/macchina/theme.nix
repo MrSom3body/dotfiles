@@ -1,0 +1,59 @@
+{
+  home.file.".config/macchina/themes/default.toml".text =
+    # toml
+    ''
+      spacing = 2
+      padding = 0
+      hide_ascii = true
+      prefer_small_ascii = false
+      separator = "->"
+      key_color = "Green"
+      separator_color = "Green"
+
+      [palette]
+      type = "Dark"
+      glyph = "  "
+      visible = true
+
+      [bar]
+      glyph = ""
+      symbol_open = '['
+      symbol_close = ']'
+      visible = true
+      hide_delimiters = true
+
+      [box]
+      title = ""
+      border = "round"
+      visible = true
+
+      [box.inner_margin]
+      x = 1
+      y = 0
+
+      [custom_ascii]
+      color = "blue"
+      path = "~/.config/macchina/themes/Fedora.ascii"
+
+      [randomize]
+      key_color = false
+      separator_color = false
+      pool = "base"
+
+      [keys]
+      kernel = "  Kernel"
+      de = "󰧨  DE/WM"
+      distro = "󰌽  Distro"
+      shell = "  Shell"
+      packages = "󰏖  Packages"
+      uptime = "  Uptime"
+      local_ip = "  Local IP"
+      memory = "  Memory"
+      battery = "󰁹  Battery"
+      backlight = "󰃠  Brightness"
+      resolution = "󰍹  Resolution"
+      cpu = "  CPU"
+      cpu_load = "  CPU %"
+      disk_space = "󰨣  Disk Space"
+    '';
+}

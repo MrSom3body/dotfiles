@@ -31,10 +31,6 @@
       x = 1
       y = 0
 
-      [custom_ascii]
-      color = "blue"
-      path = "~/.config/macchina/themes/Fedora.ascii"
-
       [randomize]
       key_color = false
       separator_color = false

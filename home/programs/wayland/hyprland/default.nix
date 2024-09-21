@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./settings.nix
     ./keybindings.nix
@@ -6,16 +10,21 @@
     ./pyprland.nix
   ];
 
-  home.packages = with pkgs; [
-    brightnessctl
-    grimblast
-    hyprpicker
-    hyprshot
-    nautilus
-    networkmanagerapplet
-    nwg-displays
-    wl-clipboard
-  ];
+  home.packages =
+    (with pkgs; [
+      brightnessctl
+      hyprshot
+      nautilus
+      networkmanagerapplet
+      nwg-displays
+      wl-clipboard
+    ])
+    ++ (with inputs.hyprland-contrib.packages.${pkgs.system}; [
+      grimblast
+    ])
+    ++ [
+      inputs.hyprpicker.packages.${pkgs.system}.default
+    ];
 
   home.file.".config/hypr/scripts" = {
     source = ./scripts;
@@ -28,7 +37,7 @@
       variables = ["--all"];
     };
 
-    plugins = with pkgs.hyprlandPlugins; [
+    plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
       hyprbars
     ];
   };

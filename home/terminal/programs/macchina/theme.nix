@@ -19,7 +19,7 @@
       glyph = ""
       symbol_open = '['
       symbol_close = ']'
-      visible = true
+      visible = false
       hide_delimiters = true
 
       [box]
@@ -37,19 +37,21 @@
       pool = "base"
 
       [keys]
-      kernel = "  Kernel"
-      de = "󰧨  DE/WM"
       distro = "󰌽  Distro"
-      shell = "  Shell"
-      packages = "󰏖  Packages"
+      host = "  Host"
+      kernel = "  Kernel"
       uptime = "  Uptime"
-      local_ip = "  Local IP"
-      memory = "  Memory"
-      battery = "󰁹  Battery"
-      backlight = "󰃠  Brightness"
-      resolution = "󰍹  Resolution"
+      packages = "󰏖  Packages"
+      shell = "  Shell"
+      de = "󰧨  DE/WM"
+      terminal = " Term"
       cpu = "  CPU"
       cpu_load = "  CPU %"
+      gpu = "󰟽 GPU"
+      memory = "  Memory"
       disk_space = "󰨣  Disk Space"
+      local_ip = "  Local IP"
+      backlight = "󰃠  Brightness"
+      battery = "󰁹  Battery"
     '';
 }

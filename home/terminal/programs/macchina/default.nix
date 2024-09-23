@@ -1,5 +1,26 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [macchina];
+{
+  lib,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [
+    (macchina.overrideAttrs (oldAttrs: rec {
+      version = "6.2.1";
+
+      src = fetchFromGitHub {
+        owner = "Macchina-CLI";
+        repo = oldAttrs.pname;
+        rev = "v${version}";
+        hash = "sha256-v1EaC4VBOvZFL2GoKlTDBMjSe8+4bxaLFvy2V7e7RW4=";
+      };
+
+      cargoDeps = oldAttrs.cargoDeps.overrideAttrs (lib.const {
+        name = "${oldAttrs.pname}-vendor.tar.gz";
+        inherit src;
+        outputHash = "sha256-Mv+zfzGVmdmh0TdgJpqqBxVIDY0IHA5ptL+Ii05p8d4=";
+      });
+    }))
+  ];
 
   imports = [
     ./theme.nix
@@ -17,16 +38,21 @@
       theme = "default"
 
       show = [
-        "Backlight",
-        "Kernel",
         "Distribution",
-        "DesktopEnvironment",
-        "Packages",
-        "LocalIP",
-        "Shell",
+        "Host",
+        "Kernel",
         "Uptime",
+        "Packages",
+        "Shell",
+        "DesktopEnvironment",
+        "Terminal",
         "Processor",
+        "GPU",
         "Memory",
+        "DiskSpace",
+        "LocalIP",
+        # "Backlight",
+        # "Battery",
       ]
     '';
 }

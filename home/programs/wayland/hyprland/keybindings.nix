@@ -78,8 +78,11 @@
         "$mainMod SHIFT, A, Move focused window to special workspace, movetoworkspace, special:all"
 
         "$mainMod, S, Toggle Spotify workspace, togglespecialworkspace, spotify"
+        "$mainMod SHIFT, S, Move focused window to Spotify workspace, movetoworkspace, special:spotify"
         "$mainMod, M, Toggle Monitor workspace, togglespecialworkspace, monitor"
+        "$mainMod SHIFT, M, Move focused window to Monitor workspace, movetoworkspace, special:monitor"
         "$mainMod, X, Toggle Discord workspace, togglespecialworkspace, discord"
+        "$mainMod SHIFT, X, Move focused window to Discord workspace, movetoworkspace, special:discord"
 
         # Switch workspaces
         "$mainMod, Prior, Switch to next workspace, workspace, r-1"

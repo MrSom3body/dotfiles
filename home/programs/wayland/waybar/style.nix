@@ -85,7 +85,7 @@
           border-radius: ${rounding}px;
         }
 
-        #wireplumber {
+        #wireplumber.muted {
           background: ${base0A};
         }
 

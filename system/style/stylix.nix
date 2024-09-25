@@ -12,11 +12,11 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${dotfiles.theme}.yaml";
 
     fonts = {
-      sizes = {
-        applications = 14;
-        desktop = 14;
-        popups = 14;
-        terminal = 13;
+      sizes = with dotfiles.fonts; {
+        applications = sans.size;
+        desktop = sans.size;
+        popups = sans.size;
+        terminal = mono.size;
       };
       sansSerif = with dotfiles.fonts.sans; {
         package = pkgs.nerdfonts.override {fonts = [pkgName];};

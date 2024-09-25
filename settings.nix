@@ -18,11 +18,13 @@
         # Monospace font
         name = "Fira Code Nerd Font";
         pkgName = "FiraCode";
+        size = 13;
       };
       sans = {
         # Sans-serif font
         name = "Ubuntu Nerd Font";
         pkgName = "Ubuntu";
+        size = 14;
       };
     };
 

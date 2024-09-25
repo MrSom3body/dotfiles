@@ -2,7 +2,9 @@
   home.packages = with pkgs; [
     libreoffice-fresh
     notesnook
-    obsidian
+    (obsidian.override {
+      commandLineArgs = "--ozone-platform=x11";
+    })
     papers
     simple-scan
   ];

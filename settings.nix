@@ -12,8 +12,19 @@
     polarity = "dark"; # Set light or dark mode
     wallpaper = ./walls/gruvbox/wave.png; # Wallpaper for WMs
     rounding = 15; # Window rounding (if supported)
-    fontMono = "Fira Code Nerd Font"; # Monospace font
-    fontSans = "Ubuntu Nerd Font"; # Sans-serif font
+    fonts = {
+      # fonts must be a Nerd Fonts
+      mono = {
+        # Monospace font
+        name = "Fira Code Nerd Font";
+        pkgName = "FiraCode";
+      };
+      sans = {
+        # Sans-serif font
+        name = "Ubuntu Nerd Font";
+        pkgName = "Ubuntu";
+      };
+    };
 
     # Default applications
     editor = "hx"; # Default text editor

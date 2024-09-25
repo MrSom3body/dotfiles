@@ -18,14 +18,14 @@
         popups = 14;
         terminal = 13;
       };
-      sansSerif = {
-        package = pkgs.nerdfonts.override {fonts = ["Ubuntu"];};
-        name = "Ubuntu Nerd Font";
+      sansSerif = with dotfiles.fonts.sans; {
+        package = pkgs.nerdfonts.override {fonts = [pkgName];};
+        inherit name;
       };
       serif = config.stylix.fonts.sansSerif;
-      monospace = {
-        package = pkgs.nerdfonts.override {fonts = ["FiraCode"];};
-        name = "Fira Code Nerd Font";
+      monospace = with dotfiles.fonts.mono; {
+        package = pkgs.nerdfonts.override {fonts = [pkgName];};
+        inherit name;
       };
       emoji = {
         package = pkgs.noto-fonts-emoji;

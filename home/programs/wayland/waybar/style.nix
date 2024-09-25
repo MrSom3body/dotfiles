@@ -76,6 +76,21 @@
           background: ${base0D};
         }
 
+        #custom-hyprcast {
+          margin: 0 .25em;
+          padding: .2em .5em;
+
+          color: ${base00};
+          background: ${base08};
+          border-radius: ${rounding}px;
+
+          animation-name: blink;
+          animation-duration: 1s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+        }
+
         #privacy {
           margin: 0 .25em;
           padding: .2em .5em;

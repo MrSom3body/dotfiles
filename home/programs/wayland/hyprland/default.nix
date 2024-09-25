@@ -18,6 +18,7 @@
       networkmanagerapplet
       nwg-displays
       wl-clipboard
+      wl-screenrec
     ])
     ++ (with inputs.hyprland-contrib.packages.${pkgs.system}; [
       grimblast

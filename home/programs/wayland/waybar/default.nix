@@ -25,6 +25,7 @@
         modules-center = ["hyprland/workspaces"];
 
         modules-right = [
+          "custom/hyprcast"
           "privacy"
           "wireplumber"
           "group/power"
@@ -74,6 +75,14 @@
           persistent-workspaces = {
             "*" = 5;
           };
+        };
+
+        "custom/hyprcast" = {
+          exec = "~/.config/hypr/scripts/hyprcast.fish -w";
+          return-type = "json";
+          hide-empty-text = true;
+          interval = "once";
+          signal = 1;
         };
 
         "hyprland/window" = {

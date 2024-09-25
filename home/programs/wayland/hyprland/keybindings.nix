@@ -17,6 +17,7 @@
 
     bindd = let
       runOnce = cmd: "pkill ${cmd} || ${cmd}";
+      hyprcast = "~/.config/hypr/scripts/hyprcast.fish";
     in
       [
         # Vesktop
@@ -54,6 +55,9 @@
         # Screenshots
         ", PRINT, Take screenshot of screen, exec, ${runOnce "grimblast"} --notify copysave area"
         "$mainMod, PRINT, Take screenshot of window, exec, ${runOnce "grimblast"} --notify copysave screen"
+
+        # Screencast
+        "$mainMod, R, Start/stop screencast, exec, ${hyprcast}"
 
         # Move window focus
         "$mainMod, H, Focus window to the left, movefocus, l"

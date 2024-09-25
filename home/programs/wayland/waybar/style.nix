@@ -76,6 +76,15 @@
           background: ${base0D};
         }
 
+        #privacy {
+          margin: 0 .25em;
+          padding: .2em .5em;
+
+          color: ${base00};
+          background: ${base09};
+          border-radius: ${rounding}px;
+        }
+
         #wireplumber {
           margin: 0 .25em;
           padding: .2em .5em;

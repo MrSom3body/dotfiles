@@ -25,6 +25,7 @@
         modules-center = ["hyprland/workspaces"];
 
         modules-right = [
+          "privacy"
           "wireplumber"
           "group/power"
           "group/hardware"

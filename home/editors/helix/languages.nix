@@ -34,7 +34,7 @@
       {
         name = "nix";
         auto-format = true;
-        language-servers = ["nil"];
+        language-servers = ["nixd"];
       }
 
       {
@@ -92,11 +92,9 @@
       nixd = {
         command = lib.getExe pkgs.nixd;
         config.nixd = {
-          formatting = lib.getExe pkgs.alejandra;
-          options = {
-            nixos = {expr = "(builtins.getFlake \"${dotfiles.path}\").nixosConfigurations.${dotfiles.hostname}.options";};
-            home-manager = {expr = "(builtins.getFlake \"${dotfiles.path}\").homeManagerConfigurations.\"karun\".options";};
-          };
+          nixpkgs.expr = "import (builtins.getFlake \"${dotfiles.path}\").inputs.nixpkgs { }";
+          formatting.command = ["${lib.getExe pkgs.alejandra}"];
+          options.nixos.expr = "(builtins.getFlake \"${dotfiles.path}\").nixosConfigurations.${dotfiles.hostname}.options";
         };
       };
 

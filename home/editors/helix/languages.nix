@@ -16,6 +16,11 @@
       }
 
       {
+        name = "git-commit";
+        language-servers = ["ltex"];
+      }
+
+      {
         name = "go";
         auto-format = true;
       }

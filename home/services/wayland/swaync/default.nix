@@ -52,11 +52,11 @@
         };
       };
       notification-visibility = {
-        # mute-spotify = {
-        #   state = "muted";
-        #   urgency = "Low";
-        #   app-name = "Spotify";
-        # };
+        mute-spotify = {
+          state = "transient";
+          urgency = "Low";
+          app-name = "Spotify";
+        };
         mute-gpu-notifications = {
           state = "transient";
           app-name = "ROG Control";

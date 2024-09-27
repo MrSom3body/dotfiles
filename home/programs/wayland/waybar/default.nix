@@ -164,16 +164,19 @@
 
         "cpu" = {
           format = "  {usage}%";
+          interval = 1;
         };
 
         "temperature" = {
           format = "  {temperatureC}°C";
+          interval = 1;
           critical-format = "󰸁 {temperatureC}°C";
           critical-threshold = 90;
         };
 
         "memory" = {
           format = "  {used}/{total}GiB";
+          interval = 1;
         };
 
         "group/hardware" = {

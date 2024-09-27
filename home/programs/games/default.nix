@@ -2,6 +2,7 @@
   imports = [
     ./mangohud.nix
   ];
+
   home.packages = with pkgs; [
     goverlay
     heroic

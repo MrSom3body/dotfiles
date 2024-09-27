@@ -59,8 +59,8 @@
         };
         mute-gpu-notifications = {
           state = "transient";
-          app-name = "ROG Control";
-          summary = "dGPU status changed: .*";
+          app-name = "rog-control-center";
+          body = "dGPU status changed:.*";
         };
       };
       widgets = [

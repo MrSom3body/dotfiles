@@ -19,6 +19,7 @@
       ../../system/programs/hyprland.nix
       ../../system/programs/steam.nix
       ../../system/programs/vmware.nix
+      ../../system/programs/wireshark.nix
 
       ../../system/services/fprintd.nix
       ../../system/services/gnome-services.nix

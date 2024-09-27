@@ -78,8 +78,8 @@
         "$mainMod CTRL, L, Increase window size to the right, resizeactive, 100 0"
 
         # Special workspaces
-        "$mainMod, A, Toggle special workspace, togglespecialworkspace, all"
-        "$mainMod SHIFT, A, Move focused window to special workspace, movetoworkspace, special:all"
+        "$mainMod, A, Toggle special workspace, togglespecialworkspace, special"
+        "$mainMod SHIFT, A, Move focused window to special workspace, movetoworkspace, special"
 
         "$mainMod, S, Toggle Spotify workspace, togglespecialworkspace, spotify"
         "$mainMod SHIFT, S, Move focused window to Spotify workspace, movetoworkspace, special:spotify"

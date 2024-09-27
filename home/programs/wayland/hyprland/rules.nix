@@ -67,6 +67,8 @@
     ];
 
     workspace = [
+      "special:special, gapsout:75"
+
       "special:spotify, on-created-empty:spotify"
       "special:spotify, gapsout:75"
 

@@ -156,6 +156,7 @@ in {
           Value = 0;
           Status = "locked";
         };
+        "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = lock-true;
         "sidebar.revamp" = lock-true;
         "sidebar.verticalTabs" = lock-true;
       };

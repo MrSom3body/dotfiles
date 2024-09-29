@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  dotfiles,
+  ...
+}: {
   gtk = {
     enable = true;
 
@@ -10,7 +14,10 @@
     #
     iconTheme = {
       package = pkgs.papirus-icon-theme;
-      name = "Papirus";
+      name =
+        if dotfiles.polarity == "dark"
+        then "Papirus-Dark"
+        else "Papirus-Light";
     };
   };
 }

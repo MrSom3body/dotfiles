@@ -44,7 +44,7 @@
       packages = "󰏖  Packages"
       shell = "  Shell"
       de = "󰧨  DE/WM"
-      terminal = " Term"
+      terminal = "  Term"
       cpu = "  CPU"
       cpu_load = "  CPU %"
       gpu = "󰟽 GPU"

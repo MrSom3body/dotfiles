@@ -11,8 +11,9 @@
     amberol
 
     # images
-    loupe
+    inkscape
     krita
+    loupe
 
     # videos
     totem

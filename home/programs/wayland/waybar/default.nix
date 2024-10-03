@@ -81,6 +81,7 @@
           exec = "~/.config/hypr/scripts/hyprcast.fish -w";
           return-type = "json";
           hide-empty-text = true;
+          on-click = "~/.config/hypr/scripts/hyprcast.fish";
           interval = "once";
           signal = 1;
         };

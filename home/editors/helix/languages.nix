@@ -108,15 +108,15 @@
       };
 
       vscode-css-language-server = {
-        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-languageserver";
+        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-language-server";
       };
 
       vscode-html-language-server = {
-        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-html-languageserver";
+        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-html-language-server";
       };
 
       vscode-json-language-server = {
-        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-languageserver";
+        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
       };
     };
   };

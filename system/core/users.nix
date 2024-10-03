@@ -5,9 +5,10 @@
     shell = pkgs.fish;
     initialPassword = "password";
     extraGroups = [
-      "networkmanager"
       "wheel"
       "input"
+      "networkmanager"
+      "wireshark"
     ];
   };
 }

@@ -6,7 +6,6 @@
 }: {
   stylix = {
     enable = true;
-    autoEnable = false;
     image = dotfiles.wallpaper;
     inherit (dotfiles) polarity;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${dotfiles.theme}.yaml";
@@ -44,16 +43,6 @@
       desktop = 0.7;
       popups = 0.95;
       terminal = 0.95;
-    };
-
-    targets = {
-      chromium.enable = true;
-      console.enable = true;
-      fish.enable = true;
-      gnome.enable = true;
-      gtk.enable = true;
-      nixos-icons.enable = true;
-      plymouth.enable = true;
     };
   };
 }

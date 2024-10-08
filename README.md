@@ -6,10 +6,12 @@ blindly use them but rather use them as a starting point.
 
 ## 💾 Credits & Resources
 
-I’ve drawn inspiration from these fantastic projects:
+I’ve drawn inspiration from these fantastic projects, people and sources:
 
 - [fufexan/dotfiles](https://github.com/fufexan/dotfiles)
 - [librephoenix/nixos-config](https://github.com/librephoenix/nixos-config)
-- and many more
+- [NixOS & Flakes Book](https://nixos-and-flakes.thiscute.world/)
+- [Vimjoyer](https://www.youtube.com/@vimjoyer)
+- and many many more...
 
 Feel free to explore, adapt, and contribute!

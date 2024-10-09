@@ -47,6 +47,7 @@
       # Games
       "immediate, class:^(Minecraft.*)$"
       "immediate, title:^(Warframe)$"
+      "immediate, class:^(steam_app_1966720)$"
     ];
 
     layerrule = [

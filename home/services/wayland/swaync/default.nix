@@ -116,7 +116,7 @@
               type = "toggle";
               active = false;
               command = "fish -c 'test $SWAYNC_TOGGLE_STATE = true && swaync-client --dnd-on || swaync-client --dnd-off'";
-              update-command = "fish -c 'test $(swaync-client --get-dnd) = \"true\" && echo true || echo false'";
+              update-command = "fish -c 'swaync-client --get-dnd'";
             }
           ];
         };

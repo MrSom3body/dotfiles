@@ -35,9 +35,13 @@
       # Proton Pass
       "float, class:^(Proton Pass)$"
 
+      # GNS3
+      "stayfocused, class:^(gns3)$, title:^(Change hostname)$"
+
       # Move apps to workspaces
       "workspace special:discord, class:^(vesktop)$"
 
+      # Dim some programs
       "dimaround, class:^(xdg-desktop-portal-gtk)$"
       "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
 

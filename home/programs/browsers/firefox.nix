@@ -80,19 +80,6 @@ in {
 
     policies = {
       AutofillCreditCardEnabled = false;
-      Cookies = {
-        Allow = [
-          "https://chatgpt.com"
-          "https://github.com"
-          "https://languagetool.org"
-          "https://mastodon.social"
-          "https://monkeytype.com"
-          "https://netflix.com"
-          "https://proton.me"
-          "https://web.whatsapp.com"
-          "https://www.instagram.com"
-        ];
-      };
       DisablePocket = true;
       DisplayBookmarksToolbar = "newtab";
       DisplayMenuBar = "default-off";
@@ -132,12 +119,6 @@ in {
       OfferToSaveLogins = false;
       # OfferToSaveLoginsDefault = false;
       PasswordManagerEnabled = false;
-      SanitizeOnShutdown = {
-        Cache = true;
-        Cookies = true;
-        Session = true;
-        Locked = true;
-      };
       SearchBar = "unified";
       SearchSuggestEnabled = true;
       TranslateEnabled = true;

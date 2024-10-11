@@ -69,6 +69,7 @@
           format-icons = {
             "spotify" = "";
             "discord" = "";
+            "obsidian" = "";
             "monitor" = "󰍹";
           };
 

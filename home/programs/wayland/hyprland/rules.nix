@@ -71,6 +71,8 @@
     workspace = [
       "special:special, gapsout:75"
 
+      "special:obsidian, on-created-empty:obsidian"
+
       "special:spotify, on-created-empty:spotify"
       "special:spotify, gapsout:75"
 

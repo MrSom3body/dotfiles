@@ -28,6 +28,7 @@
     jetbrains.phpstorm
 
     # Misc
+    ente-auth
     pika-backup
     proton-pass
     protonvpn-gui

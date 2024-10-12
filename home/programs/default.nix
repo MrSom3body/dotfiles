@@ -9,7 +9,7 @@
   ];
 
   home.packages = with pkgs; [
-    # GNOME
+    # GNOME utilities
     baobab # Disk Usage Analyzer
     gnome-calculator
     gnome-disk-utility
@@ -17,20 +17,18 @@
     kooha # Screen Recorder
     snapshot # Camera App
 
-    # Messaging and socials
+    # Communication & Social Media
     element-desktop # Matrix client
     signal-desktop
     tuba # Mastodon Client
 
-    # Tools
-    pika-backup
-
-    # JetBrains
+    # Development Tools
+    jetbrains.datagrip
     jetbrains.idea-ultimate
     jetbrains.phpstorm
-    jetbrains.datagrip
 
-    # Proton
+    # Misc
+    pika-backup
     proton-pass
     protonvpn-gui
   ];

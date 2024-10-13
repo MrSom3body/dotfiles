@@ -13,7 +13,6 @@
   home.packages =
     (with pkgs; [
       brightnessctl
-      hyprshot
       nautilus
       networkmanagerapplet
       nwg-displays

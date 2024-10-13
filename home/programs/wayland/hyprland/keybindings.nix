@@ -52,8 +52,8 @@
         "$mainMod CTRL, V, Clear clipboard history, exec, cliphist wipe"
 
         # Screenshots
-        ", PRINT, Take screenshot of screen, exec, ${runOnce "grimblast"} --notify copysave area"
-        "$mainMod, PRINT, Take screenshot of window, exec, ${runOnce "grimblast"} --notify copysave screen"
+        ", PRINT, Take screenshot of screen, exec, ${runOnce "grimblast"} --freeze --notify copysave area"
+        "$mainMod, PRINT, Take screenshot of window, exec, ${runOnce "grimblast"} --freeze --notify copysave screen"
 
         # Screencast
         "$mainMod, R, Start/stop screencast, exec, ${hyprcast}"

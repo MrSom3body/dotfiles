@@ -26,6 +26,7 @@
     (pkgs.jetbrains.plugins.addPlugins jetbrains.datagrip ["github-copilot" "ideavim"])
     (pkgs.jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot" "ideavim"])
     (pkgs.jetbrains.plugins.addPlugins jetbrains.phpstorm ["github-copilot" "ideavim"])
+    temurin-bin
 
     # Misc
     ente-auth

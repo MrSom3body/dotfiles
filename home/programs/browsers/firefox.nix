@@ -20,7 +20,7 @@ in {
       isDefault = true;
       search = {
         force = true;
-        default = "Startpage";
+        default = "DuckDuckGo";
         engines = {
           "Startpage" = {
             urls = [{template = "https://www.startpage.com/do/search?query={searchTerms}";}];

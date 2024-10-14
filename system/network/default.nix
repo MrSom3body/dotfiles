@@ -7,6 +7,7 @@
     };
     nameservers = [
       "9.9.9.9#dns.quad9.net"
+      "149.112.112.112@853#dns.quad9.net"
     ];
   };
 

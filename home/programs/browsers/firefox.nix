@@ -83,12 +83,6 @@ in {
       DisablePocket = true;
       DisplayBookmarksToolbar = "newtab";
       DisplayMenuBar = "default-off";
-      # DNSOverHTTPS = {
-      #   Enabled = true;
-      #   ProviderURL = "https://firefox.dns.nextdns.io/";
-      #   Locked = true;
-      #   Fallback = false;
-      # };
       DontCheckDefaultBrowser = true;
       EnableTrackingProtection = {
         Value = true;
@@ -117,7 +111,6 @@ in {
       NewTabPage = true;
       NoDefaultBookmarks = true;
       OfferToSaveLogins = false;
-      # OfferToSaveLoginsDefault = false;
       PasswordManagerEnabled = false;
       SearchBar = "unified";
       SearchSuggestEnabled = true;

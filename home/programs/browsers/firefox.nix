@@ -20,8 +20,14 @@ in {
       isDefault = true;
       search = {
         force = true;
-        default = "DuckDuckGo";
+        default = "Startpage";
         engines = {
+          "Startpage" = {
+            urls = [{template = "https://www.startpage.com/do/search?query={searchTerms}";}];
+            iconUpdateURL = "https://www.startpage.com/favicon.ico";
+            updateInterval = 24 * 60 * 60 * 1000; # every day
+            definedAliases = ["!sp"];
+          };
           "ProtonDB" = {
             urls = [{template = "https://protondb.com/search?q={searchTerms}";}];
             icon = "https://protondb.com/favicon.ico";

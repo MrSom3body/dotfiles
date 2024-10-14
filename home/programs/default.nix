@@ -23,9 +23,9 @@
     tuba # Mastodon Client
 
     # Development Tools
-    jetbrains.datagrip
-    jetbrains.idea-ultimate
-    jetbrains.phpstorm
+    (pkgs.jetbrains.plugins.addPlugins jetbrains.datagrip ["github-copilot" "ideavim"])
+    (pkgs.jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot" "ideavim"])
+    (pkgs.jetbrains.plugins.addPlugins jetbrains.phpstorm ["github-copilot" "ideavim"])
 
     # Misc
     ente-auth

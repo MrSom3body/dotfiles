@@ -16,6 +16,14 @@
       }
 
       {
+        name = "css";
+        formatter = {
+          command = lib.getExe pkgs.nodePackages.prettier;
+          args = ["--parser" "css"];
+        };
+      }
+
+      {
         name = "git-commit";
         language-servers = ["ltex"];
       }
@@ -23,6 +31,14 @@
       {
         name = "go";
         auto-format = true;
+      }
+
+      {
+        name = "html";
+        formatter = {
+          command = lib.getExe pkgs.nodePackages.prettier;
+          args = ["--parser" "html"];
+        };
       }
 
       {

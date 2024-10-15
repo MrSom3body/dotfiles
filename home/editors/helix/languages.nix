@@ -119,6 +119,10 @@
         };
       };
 
+      superhtml = {
+        command = lib.getExe pkgs.superhtml;
+      };
+
       taplo = {
         command = lib.getExe pkgs.taplo;
       };

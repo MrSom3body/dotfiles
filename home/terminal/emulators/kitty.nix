@@ -11,13 +11,6 @@
       size = config.stylix.fonts.sizes.terminal;
     };
 
-    shellIntegration = {
-      mode = "no-sudo";
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
-
     settings = {
       background_opacity = lib.mkForce 1;
       touch_scroll_multiplier = "5.0";

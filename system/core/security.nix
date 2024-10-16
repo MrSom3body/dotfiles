@@ -50,7 +50,7 @@
     # userland niceness
     rtkit.enable = true;
 
-    # don't ask for password for wheel group
-    sudo.wheelNeedsPassword = true;
+    # use sudo-rs
+    sudo-rs.enable = true;
   };
 }

@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: {
+{config, ...}: {
   programs.kitty = {
     enable = true;
 
@@ -12,7 +8,6 @@
     };
 
     settings = {
-      background_opacity = lib.mkForce 1;
       touch_scroll_multiplier = "5.0";
       window_padding_width = 20;
     };

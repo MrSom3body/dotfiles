@@ -12,7 +12,7 @@
     settings = {
       general = {
         hide_cursor = false;
-        grace = 2;
+        grace = 0;
       };
 
       background = {

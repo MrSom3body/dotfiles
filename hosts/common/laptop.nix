@@ -15,7 +15,6 @@
     ../../system/services/greetd.nix
     ../../system/services/pipewire.nix
     ../../system/services/power.nix
-    ../../system/services/timesyncd.nix
 
     inputs.stylix.nixosModules.stylix
   ];

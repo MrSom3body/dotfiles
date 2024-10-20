@@ -31,7 +31,7 @@
           padding: .2em .5em;
 
           color: ${base05};
-          background: ${base00};
+          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
           border-radius: ${rounding}px;
         }
 
@@ -40,7 +40,7 @@
           padding: .2em .5em;
 
           color: ${base05};
-          background: ${base00};
+          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
           border-radius: ${rounding}px;
         }
 
@@ -57,7 +57,7 @@
           padding: .2em .4em;
 
           color: ${base05};
-          background: ${base00};
+          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
           min-width: 1.5em;
 
           border-radius: ${rounding}px;
@@ -136,7 +136,7 @@
         @keyframes blink {
           to {
             color: ${base05};
-            background: ${base00};
+            background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
           }
         }
 
@@ -174,7 +174,7 @@
           padding: .2em .5em;
 
           color: ${base05};
-          background: ${base00};
+          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
           border-radius: ${rounding}px;
         }
 
@@ -190,7 +190,7 @@
           padding: .2em .5em;
 
           color: ${base05};
-          background: ${base00};
+          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
         }
 
         #custom-monitor {
@@ -216,7 +216,7 @@
           margin: 0 .25em;
           padding: .2em .5em;
 
-          background: ${base00};
+          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
           border-radius: ${rounding}px;
         }
 
@@ -234,7 +234,7 @@
           padding: .2em .5em;
 
           color: ${base05};
-          background: ${base00};
+          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
           border-radius: ${rounding}px;
         }
 
@@ -251,7 +251,7 @@
           padding: .2em .5em;
 
           color: ${base05};
-          background: ${base00};
+          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
           border-radius: ${rounding}px;
         }
       '';

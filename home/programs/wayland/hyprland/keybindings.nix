@@ -27,6 +27,7 @@
         # Open applications
         "$mainMod, T, Open terminal, exec, ${dotfiles.terminal}"
         "$mainMod, B, Open browser, exec, ${dotfiles.browser}"
+        "$mainMod, O, Open Obsidian, exec, obsidian"
         "$mainMod, E, Open terminal terminal file manager, exec, ${dotfiles.terminal} ${dotfiles.terminalFileManager}"
         "$mainMod SHIFT, E, Open file manager, exec, ${dotfiles.fileManager}"
 
@@ -84,8 +85,6 @@
         "$mainMod SHIFT, S, Move focused window to Spotify workspace, movetoworkspace, special:spotify"
         "$mainMod, M, Toggle Monitor workspace, togglespecialworkspace, monitor"
         "$mainMod SHIFT, M, Move focused window to Monitor workspace, movetoworkspace, special:monitor"
-        "$mainMod, O, Toggle Obsidian workspace, togglespecialworkspace, obsidian"
-        "$mainMod SHIFT, O, Move focused window to Obsidian workspace, movetoworkspace, special:obsidian"
         "$mainMod, X, Toggle Discord workspace, togglespecialworkspace, discord"
         "$mainMod SHIFT, X, Move focused window to Discord workspace, movetoworkspace, special:discord"
 

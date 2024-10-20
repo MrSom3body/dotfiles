@@ -4,6 +4,7 @@
     "Games"
     "Notes"
     "Sync"
+    "dotfiles"
     "Documents/Codes"
     "Documents/Schule/2024-25"
   ];

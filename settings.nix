@@ -28,6 +28,9 @@
       };
     };
 
+    # Artifical Intelligence
+    ollamaModels = ["llama3.2"]; # empty list to disable
+
     # Default applications
     editor = "hx"; # Default text editor
     terminal = "kitty"; # Default terminal

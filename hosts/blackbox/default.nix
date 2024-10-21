@@ -27,6 +27,8 @@
       ../../system/services/location.nix
       ../../system/services/printing.nix
       ../../system/services/zerotier.nix
+      ../../system/services/ollama.nix
+      ../../system/services/ollama.nix
 
       ../../system/virtualisation/libvirtd.nix
       ../../system/virtualisation/podman.nix

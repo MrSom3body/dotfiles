@@ -10,7 +10,7 @@
     # Appearance settings
     theme = "gruvbox-dark-medium"; # Theme for your system (find more themes at https://github.com/tinted-theming/schemes)
     polarity = "dark"; # Set light or dark mode
-    wallpaper = ./walls/gruvbox/night-alley.png; # Wallpaper for WMs
+    wallpaper = ./walls/gruvbox/abstract-shapes.png; # Wallpaper for WMs
     rounding = 15; # Window rounding (if supported)
     fonts = {
       # fonts must be Nerd Fonts

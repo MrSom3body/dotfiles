@@ -13,7 +13,7 @@
     wallpaper = ./walls/gruvbox/night-alley.png; # Wallpaper for WMs
     rounding = 15; # Window rounding (if supported)
     fonts = {
-      # fonts must be a Nerd Fonts
+      # fonts must be Nerd Fonts
       mono = {
         # Monospace font
         name = "Fira Code Nerd Font";

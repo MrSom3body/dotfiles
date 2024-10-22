@@ -1,11 +1,7 @@
 {
-  lib,
-  dotfiles,
-  ...
-}: {
   services.ollama = {
-    enable = lib.mkIf ((builtins.length dotfiles.ollamaModels) == 1) true;
+    enable = true;
     acceleration = "cuda";
-    loadModels = dotfiles.ollamaModels;
+    loadModels = ["llama3.2" "llama2-uncensored" "llava"];
   };
 }

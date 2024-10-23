@@ -47,6 +47,7 @@
         "$mainMod, N, Open notification center, exec, swaync-client -t"
         "$mainMod, ESCAPE, Lock screen, exec, pgrep hyprlock || hyprlock"
         "$mainMod, C, Open color picker, exec, hyprpicker -a"
+        "$mainMod SHIFT, O, Ask ollama something, exec, fish -c \"chat -fcs\""
 
         # Clipboard
         "$mainMod, V, Show clipboard history, exec, ${runOnce "rofi"} -modi clipboard:cliphist-rofi-img -show clipboard"

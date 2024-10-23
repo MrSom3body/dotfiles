@@ -7,6 +7,7 @@
     goverlay
     heroic
     ludusavi
+    mindustry-wayland
     modrinth-app
     r2modman
   ];

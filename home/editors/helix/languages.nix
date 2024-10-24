@@ -60,10 +60,11 @@
 
       {
         name = "python";
-        language-servers = ["basedpyright"];
+        language-servers = ["basedpyright" "ruff"];
+        auto-format = true;
         formatter = {
           command = lib.getExe pkgs.ruff;
-          args = ["format"];
+          args = ["format" "--line-length=80" "-"];
         };
       }
     ];
@@ -117,6 +118,10 @@
           formatting.command = ["${lib.getExe pkgs.alejandra}"];
           options.nixos.expr = "(builtins.getFlake \"${dotfiles.path}\").nixosConfigurations.${dotfiles.hostname}.options";
         };
+      };
+
+      ruff = {
+        command = lib.getExe pkgs.ruff;
       };
 
       superhtml = {

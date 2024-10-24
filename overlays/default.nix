@@ -1,5 +1,4 @@
 {
   nixpkgs.overlays = [
-    (import ./vmware)
   ];
 }

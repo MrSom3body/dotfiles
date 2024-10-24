@@ -3,7 +3,7 @@
     enable = true;
     clean = {
       enable = true;
-      extraArgs = "--keep-since 30d";
+      extraArgs = "--keep-since 1w --keep 3";
     };
     flake = dotfiles.path;
   };

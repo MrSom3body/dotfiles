@@ -33,7 +33,7 @@
         inherit system;
         inherit specialArgs;
         modules = [
-          (import ./overlays.nix)
+          (import ./overlays)
           {nixpkgs.pkgs = pkgs;}
 
           ./hosts/${dotfiles.hostname}

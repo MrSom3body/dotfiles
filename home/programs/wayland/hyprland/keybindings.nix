@@ -30,6 +30,7 @@
         "$mainMod, O, Open Obsidian, exec, obsidian"
         "$mainMod, E, Open terminal terminal file manager, exec, ${dotfiles.terminal} ${dotfiles.terminalFileManager}"
         "$mainMod SHIFT, E, Open file manager, exec, ${dotfiles.fileManager}"
+        ", XF86Calculator, Open calculator, exec, gnome-calculator"
 
         # Launcher
         "$mainMod, D, Open application launcher, exec, ${runOnce "rofi"} -show drun"

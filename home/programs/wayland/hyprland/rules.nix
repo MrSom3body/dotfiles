@@ -38,6 +38,10 @@
       # GNS3
       "stayfocused, class:^(gns3)$, title:^(Change hostname)$"
 
+      # Calculator
+      "float, class:^(org.gnome.Calculator)$"
+      "size > >, class:^(org.gnome.Calculator)$"
+
       # Move apps to workspaces
       "workspace special:discord, class:^(vesktop)$"
 

@@ -14,7 +14,6 @@
 
     pkgs = import nixpkgs {
       inherit system;
-      config.allowUnfree = true;
     };
 
     pkgs-stable = import nixpkgs-stable {
@@ -33,9 +32,6 @@
         inherit system;
         inherit specialArgs;
         modules = [
-          (import ./overlays)
-          {nixpkgs.pkgs = pkgs;}
-
           ./hosts/${dotfiles.hostname}
         ];
       };

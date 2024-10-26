@@ -1,11 +1,12 @@
 {
   services.gammastep = {
     enable = true;
-    dawnTime = "6:00-7:45";
-    duskTime = "18:30-20:00";
-    temperature = {
-      day = 5500;
-      night = 3700;
-    };
+
+    provider = "manual";
+    # don't bother with it it isn't my real location
+    latitude = 48.2083537;
+    longitude = 16.3725042;
+
+    settings.general.adjustment-method = "wayland";
   };
 }

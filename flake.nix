@@ -51,13 +51,21 @@
     devShells.${system}.default = pkgs.mkShell {
       name = "dotfiles";
 
-      inherit (self.checks.${system}.pre-commit-check) shellHook;
       buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
 
       packages = with pkgs; [
         alejandra
         git
       ];
+
+      shellHook = ''
+        ${self.checks.${system}.pre-commit-check.shellHook}
+
+        tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "last 5 commits"
+        git log --all --decorate --graph --oneline -5
+        tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "status"
+        git status --short
+      '';
     };
   };
 

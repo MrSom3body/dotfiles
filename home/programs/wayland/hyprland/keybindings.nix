@@ -132,10 +132,10 @@
       ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
 
       # Caps Lock
-      ", Caps_Lock, exec, sleep 0.2; swayosd-client --caps-lock"
+      ", Caps_Lock, exec, sleep 0.07; swayosd-client --caps-lock"
 
       # Num Lock
-      ", Num_Lock, exec, sleep 0.2; swayosd-client --num-lock"
+      ", Num_Lock, exec, sleep 0.07; swayosd-client --num-lock"
     ];
   };
 }

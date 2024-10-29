@@ -57,6 +57,7 @@
       "immediate, title:^(Warframe)$"
       "immediate, class:^(steam_app_1966720)$"
       "immediate, class:^(steam_app_960090)$" # Bloons TD6
+      "immediate, class:^(hl2_linux)$" # Left 4 Dead 2
     ];
 
     layerrule = [

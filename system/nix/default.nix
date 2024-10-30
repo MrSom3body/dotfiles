@@ -8,6 +8,8 @@
   environment.systemPackages = [pkgs.git];
 
   nix = {
+    package = pkgs.lix;
+
     settings = {
       auto-optimise-store = true;
       builders-use-substitutes = true;

@@ -49,6 +49,16 @@
     kernelModules = ["tcp_bbr"];
   };
 
+  # Harden SSH client
+  programs.ssh = {
+    # Known vulnerability. See
+    # https://security.stackexchange.com/questions/110639/how-exploitable-is-the-recent-useroaming-ssh-vulnerability
+    extraConfig = ''
+      Host *
+        UseRoaming no
+    '';
+  };
+
   security = {
     # allow wayland lockers to unlock the screen
     pam.services.hyprlock.text = "auth include login";

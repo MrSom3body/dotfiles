@@ -42,6 +42,7 @@ in {
       };
 
       pull.rebase = true;
+      rebase.autoStash = true;
     };
 
     userName = "Karun Sandhu";

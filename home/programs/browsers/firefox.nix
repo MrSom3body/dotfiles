@@ -101,7 +101,7 @@ in {
         TopSites = true;
         Highlights = true;
         Pocket = false;
-        Snippets = false;
+        Snippets = true;
       };
       FirefoxSuggest = {
         WebSuggestions = false;

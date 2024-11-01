@@ -18,6 +18,7 @@
       nwg-displays
       wl-clipboard
       wl-screenrec
+      satty
     ])
     ++ (with inputs.hyprland-contrib.packages.${pkgs.system}; [
       grimblast

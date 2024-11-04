@@ -18,13 +18,14 @@ in {
       co = "checkout";
       d = "diff";
       ds = "diff --staged";
+      l = "log";
       p = "push";
       pf = "push --force-with-lease";
       pl = "pull";
-      l = "log";
       r = "rebase";
       s = "status --short";
       ss = "status";
+      sw = "switch";
       forgor = "commit --amend --no-edit";
       graph = "log --all --decorate --graph --oneline";
       oops = "checkout --";
@@ -42,6 +43,7 @@ in {
       };
 
       pull.rebase = true;
+      push.autoSetupRemote = true;
       rebase.autoStash = true;
     };
 

@@ -8,7 +8,8 @@ blindly use them but rather use them as a starting point.
 
 I’ve drawn inspiration from these fantastic projects, people and sources:
 
-- [fufexan/dotfiles](https://github.com/fufexan/dotfiles)
+- [fufexan/dotfiles](https://github.com/fufexan/dotfiles) (shamelessly copied
+  most of my config from here)
 - [librephoenix/nixos-config](https://github.com/librephoenix/nixos-config)
 - [NixOS & Flakes Book](https://nixos-and-flakes.thiscute.world/)
 - [Vimjoyer](https://www.youtube.com/@vimjoyer)

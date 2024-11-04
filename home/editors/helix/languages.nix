@@ -17,6 +17,7 @@
 
       {
         name = "css";
+        auto-format = true;
         formatter = {
           command = lib.getExe pkgs.nodePackages.prettier;
           args = ["--parser" "css"];

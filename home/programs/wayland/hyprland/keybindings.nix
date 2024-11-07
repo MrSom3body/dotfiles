@@ -25,7 +25,7 @@
         "CTRL SHIFT, D, Deaf on vesktop, pass, ^(vesktop)$"
 
         # Open applications
-        "$mainMod, T, Open terminal, exec, ${dotfiles.terminal}"
+        "$mainMod, RETURN, Open terminal, exec, ${dotfiles.terminal}"
         "$mainMod, B, Open browser, exec, ${dotfiles.browser}"
         "$mainMod, O, Open Obsidian, exec, obsidian"
         "$mainMod, E, Open terminal terminal file manager, exec, ${dotfiles.terminal} ${dotfiles.terminalFileManager}"
@@ -91,6 +91,8 @@
         "$mainMod SHIFT, M, Move focused window to Monitor workspace, movetoworkspace, special:monitor"
         "$mainMod, X, Toggle Discord workspace, togglespecialworkspace, discord"
         "$mainMod SHIFT, X, Move focused window to Discord workspace, movetoworkspace, special:discord"
+        "$mainMod, T, Toggle Lunatask workspace, togglespecialworkspace, lunatask"
+        "$mainMod SHIFT, T, Move focused window to Lunatask workspace, movetoworkspace, special:lunatask"
 
         # Switch workspaces
         "$mainMod, Prior, Switch to next workspace, workspace, r-1"

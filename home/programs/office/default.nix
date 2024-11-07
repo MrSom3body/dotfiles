@@ -1,10 +1,9 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    (obsidian.override {commandLineArgs = "--ozone-platform=x11";})
     libreoffice-fresh
+    lunatask
     notesnook
-    (obsidian.override {
-      commandLineArgs = "--ozone-platform=x11";
-    })
     papers
     simple-scan
   ];

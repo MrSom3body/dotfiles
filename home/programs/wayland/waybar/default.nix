@@ -67,10 +67,11 @@
           format = "{icon}";
 
           format-icons = {
-            "spotify" = "";
             "discord" = "";
-            "obsidian" = "";
+            "lunatask" = "";
             "monitor" = "󰍹";
+            "obsidian" = "";
+            "spotify" = "";
           };
 
           persistent-workspaces = {

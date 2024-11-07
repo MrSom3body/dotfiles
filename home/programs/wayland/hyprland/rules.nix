@@ -44,6 +44,7 @@
 
       # Move apps to workspaces
       "workspace special:discord, class:^(vesktop)$"
+      "workspace special:lunatask, class:^(Lunatask)$"
 
       # Dim some programs
       "dimaround, class:^(xdg-desktop-portal-gtk)$"
@@ -91,6 +92,9 @@
 
       "special:discord, on-created-empty:vesktop"
       "special:discord, gapsout:75"
+
+      "special:lunatask, on-created-empty:lunatask"
+      "special:lunatask, gapsout:75"
     ];
   };
 }

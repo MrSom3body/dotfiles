@@ -5,7 +5,7 @@
 }: {
   imports = [
     ./settings.nix
-    ./keybindings.nix
+    ./binds.nix
     ./rules.nix
     ./pyprland.nix
   ];

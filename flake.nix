@@ -84,7 +84,7 @@
 
     helix.url = "github:helix-editor/helix";
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.url = "github:hyprwm/hyprland";
 
     hypridle = {
       url = "github:hyprwm/hypridle";

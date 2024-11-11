@@ -44,8 +44,7 @@
       # inactive_opacity = 0.75;
       fullscreen_opacity = 1;
 
-      drop_shadow = true;
-      shadow_range = 30;
+      shadow.range = 30;
 
       blur = {
         enabled = true;

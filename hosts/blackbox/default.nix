@@ -50,7 +50,7 @@
     asus.battery.chargeUpto = 75;
 
     nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       open = true;
 
       powerManagement.finegrained = true;

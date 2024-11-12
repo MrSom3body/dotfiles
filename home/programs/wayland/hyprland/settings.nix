@@ -10,18 +10,17 @@
     ];
 
     exec-once = [
+      "uwsm finalize"
       "wpctl set-mute @DEFAULT_AUDIO_SINK@ 1"
-      "waybar"
-      "cliphist wipe"
-      "nm-applet"
-      "blueman-applet"
+      "uwsm app -- nm-applet"
+      "uwsm app -- blueman-applet"
 
       # Applications
-      "solaar -w hide"
-      "rog-control-center"
-      "kdeconnectd & kdeconnect-indicator"
-      "signal"
-      "[workspace 1 silent] ${dotfiles.browser}"
+      "uwsm app -- solaar -w hide"
+      "uwsm app -- rog-control-center"
+      "uwsm app -- kdeconnect-indicator"
+      "uwsm app -- signal"
+      "[workspace 1 silent] uwsm app -- ${dotfiles.browser}"
     ];
 
     general = {

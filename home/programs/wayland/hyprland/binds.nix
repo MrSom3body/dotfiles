@@ -16,8 +16,9 @@
     ];
 
     bindd = let
-      runOnce = cmd: "pkill ${cmd} || ${cmd}";
-      hyprcast = "~/.config/hypr/scripts/hyprcast.fish";
+      toggle = cmd: "pkill ${cmd} || uwsm app -- ${cmd}";
+      runOnce = cmd: "pgrep ${cmd} || uwsm app -- ${cmd}";
+      hyprcast = "uwsm app -- ~/.config/hypr/scripts/hyprcast.fish";
     in
       [
         # Vesktop
@@ -25,19 +26,19 @@
         "CTRL SHIFT, D, Deaf on vesktop, pass, ^(vesktop)$"
 
         # Open applications
-        "$mainMod, RETURN, Open terminal, exec, ${dotfiles.terminal}"
-        "$mainMod, B, Open browser, exec, ${dotfiles.browser}"
-        "$mainMod, O, Open Obsidian, exec, obsidian"
-        "$mainMod, E, Open terminal terminal file manager, exec, ${dotfiles.terminal} ${dotfiles.terminalFileManager}"
-        "$mainMod SHIFT, E, Open file manager, exec, ${dotfiles.fileManager}"
-        ", XF86Calculator, Open calculator, exec, gnome-calculator"
+        "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${dotfiles.terminal}"
+        "$mainMod, B, Open browser, exec, uwsm app -- ${dotfiles.browser}"
+        "$mainMod, O, Open Obsidian, exec, uwsm app -- obsidian"
+        "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- ${dotfiles.terminal} ${dotfiles.terminalFileManager}"
+        "$mainMod SHIFT, E, Open file manager, exec, uwsm app -- ${dotfiles.fileManager}"
+        ", XF86Calculator, Open calculator, exec, ${runOnce "gnome-calculator"}"
 
         # Launcher
-        "$mainMod, D, Open application launcher, exec, ${runOnce "rofi"} -show drun"
-        "$mainMod, TAB, Open window switcher, exec, ${runOnce "rofi"} -show window"
-        "$mainMod CTRL, Q, Open power menu, exec, ${runOnce "rofi"} -show powermenu -modes powermenu"
-        "$mainMod, SPACE, Open file browser, exec, ${runOnce "rofi"} -show filebrowser"
-        "$mainMod, PERIOD, Open symbols search, exec, pkill rofi || BEMOJI_PICKER_CMD=\"rofi -no-show-icons -dmenu\" bemoji -cn"
+        "$mainMod, D, Open application launcher, exec, ${toggle "rofi"} -show drun"
+        "$mainMod, TAB, Open window switcher, exec, ${toggle "rofi"} -show window"
+        "$mainMod CTRL, Q, Open power menu, exec, ${toggle "rofi"} -show powermenu -modes powermenu"
+        "$mainMod, SPACE, Open file browser, exec, ${toggle "rofi"} -show filebrowser"
+        "$mainMod, PERIOD, Open symbols search, exec, pkill rofi || BEMOJI_PICKER_CMD=\"rofi -no-show-icons -dmenu\" uwsm app -- bemoji -cn"
 
         # Actions
         "$mainMod, Q, Close focused window, killactive"
@@ -46,16 +47,16 @@
         "$mainMod, W, Toggle floating, togglefloating"
         "$mainMod, I, Change split direction (dwindle), togglesplit"
         "$mainMod, N, Open notification center, exec, swaync-client -t"
-        "$mainMod, ESCAPE, Lock screen, exec, pgrep hyprlock || hyprlock"
-        "$mainMod, C, Open color picker, exec, hyprpicker -a"
-        "$mainMod SHIFT, O, Ask ollama something, exec, fish -c \"chat -fcs\""
+        "$mainMod, ESCAPE, Lock screen, exec, ${runOnce "hyprlock"}"
+        "$mainMod, C, Open color picker, exec, ${runOnce "hyprpicker -a"}"
+        "$mainMod SHIFT, O, Ask ollama something, exec, uwsm app -- fish -c \"chat -fcs\""
         "$mainMod, G, Toggle group, togglegroup"
         "$mainMod SHIFT, N, Change active window in group right, changegroupactive, f"
         "$mainMod SHIFT, P, Change active window in group left, changegroupactive, b"
 
         # Clipboard
         "$mainMod, V, Show clipboard history, exec, ${runOnce "rofi"} -modi clipboard:cliphist-rofi-img -show clipboard"
-        "$mainMod CTRL, V, Clear clipboard history, exec, cliphist wipe"
+        "$mainMod CTRL, V, Clear clipboard history, exec, ${runOnce "cliphist wipe"}"
 
         # Screenshots
         ", PRINT, Take screenshot of screen, exec, ${runOnce "grimblast"} --freeze --notify copysave area ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"

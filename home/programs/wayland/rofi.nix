@@ -19,7 +19,7 @@
                 case Suspend
                     systemctl suspend
                 case Exit
-                    hyprctl dispatch exit
+                    pkill Hyprland
                 case Reboot
                     systemctl reboot
                 case Poweroff
@@ -58,6 +58,7 @@
       modi = "run,drun,window,filebrowser";
       show-icons = true;
       hover-select = true;
+      run-command = "uwsm app -- {cmd}";
       display-run = "  Run ";
       display-drun = "  Apps ";
       display-window = "  Windows ";

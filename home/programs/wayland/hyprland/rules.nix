@@ -82,18 +82,18 @@
     workspace = [
       "special:special, gapsout:75"
 
-      "special:obsidian, on-created-empty:obsidian"
+      "special:obsidian, on-created-empty:uwsm app -- obsidian"
 
-      "special:spotify, on-created-empty:spotify"
+      "special:spotify, on-created-empty:uwsm app -- spotify"
       "special:spotify, gapsout:75"
 
-      "special:monitor, on-created-empty:${dotfiles.terminal} -- btop"
+      "special:monitor, on-created-empty:uwsm app -- ${dotfiles.terminal} -- btop"
       "special:monitor, gapsout:50"
 
-      "special:discord, on-created-empty:vesktop"
+      "special:discord, on-created-empty:uwsm app -- vesktop"
       "special:discord, gapsout:75"
 
-      "special:lunatask, on-created-empty:lunatask"
+      "special:lunatask, on-created-empty:uwsm app -- lunatask"
       "special:lunatask, gapsout:75"
     ];
   };

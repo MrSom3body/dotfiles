@@ -33,10 +33,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd = {
-      enable = true;
-      variables = ["--all"];
-    };
+    systemd.enable = false;
 
     # plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
     #   hyprbars

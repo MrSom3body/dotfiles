@@ -5,6 +5,7 @@
     ../../system/hardware/bluetooth.nix
     ../../system/hardware/fwupd.nix
     ../../system/hardware/graphics.nix
+    ../../system/programs/uwsm.nix
 
     ../../system/network
     ../../system/network/avahi.nix

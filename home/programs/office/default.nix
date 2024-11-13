@@ -7,7 +7,6 @@
 
     # Notes & Tasks
     lunatask
-    notesnook
     obsidian
   ];
 }

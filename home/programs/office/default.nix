@@ -8,5 +8,9 @@
     # Notes & Tasks
     lunatask
     obsidian
+
+    # Communication
+    protonmail-desktop
+    slack
   ];
 }

@@ -20,7 +20,6 @@
     # Communication & Social Media
     element-desktop # Matrix client
     signal-desktop
-    slack
     tuba # Mastodon Client
 
     # Development Tools

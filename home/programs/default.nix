@@ -20,7 +20,6 @@
     # Communication & Social Media
     element-desktop # Matrix client
     signal-desktop
-    tuba # Mastodon Client
 
     # Development Tools
     (pkgs.jetbrains.plugins.addPlugins jetbrains.datagrip ["github-copilot" "ideavim"])

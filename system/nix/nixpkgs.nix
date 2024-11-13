@@ -5,8 +5,6 @@
       allowUnfreePredicate = _: true;
     };
 
-    overlays = [
-      (import ../../overlays/swayosd)
-    ];
+    overlays = [];
   };
 }

@@ -13,6 +13,7 @@
     # programs
     ../../home/programs
     ../../home/programs/games
+    ../../home/programs/school
     ../../home/programs/wayland
 
     # media services

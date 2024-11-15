@@ -19,7 +19,6 @@
       "uwsm app -- solaar -w hide"
       "uwsm app -- rog-control-center"
       "uwsm app -- kdeconnect-indicator"
-      "uwsm app -- signal"
       "[workspace 1 silent] uwsm app -- ${dotfiles.browser}"
     ];
 

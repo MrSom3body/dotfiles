@@ -14,7 +14,7 @@
         "image/jpeg" = ["org.gnome.Loupe.desktop"]; # Images
         "image/jpg" = ["org.gnome.Loupe.desktop"]; # Images
         "image/png" = ["org.gnome.Loupe.desktop"]; # Images
-        "inode/directory" = ["yazi"]; # Files
+        "inode/directory" = ["yazi.desktop"]; # Files
         "text/plain" = ["Helix.desktop"]; # Plain text
         "x-scheme-handler/http" = ["firefox.desktop"]; # Links
         "x-scheme-handler/https" = ["firefox.desktop"]; # Links

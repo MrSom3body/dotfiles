@@ -91,6 +91,11 @@
       new_status = "master";
     };
 
+    cursor = {
+      no_hardware_cursors = 0;
+      use_cpu_buffer = true;
+    };
+
     misc = {
       disable_hyprland_logo = true;
       disable_splash_rendering = true;

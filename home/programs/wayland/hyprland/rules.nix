@@ -1,13 +1,11 @@
 {dotfiles, ...}: {
   wayland.windowManager.hyprland.settings = {
     "$floatingSize" = "600 400";
-    "$polkit" = "polkit-gnome-authentication-agent-1";
     "$pwvucontrol" = "com.saivert.pwvucontrol";
 
     windowrulev2 = [
-      # "float, class:^($polkit)$"
-      # "size $floatingSize, class:^($polkit)$"
-      # "center, class:^($polkit)$"
+      # Ignore maximize requests from apps
+      "suppressevent maximize, class:.*"
 
       # NetworkManager applet
       "float, class:^(nm-connection-editor)$"

@@ -4,7 +4,8 @@ set choices " Lock
  Suspend
 󰿅 Exit
  Reboot
- Poweroff"
+ Poweroff
+󱄅 Update"
 set choice (echo -en $choices | fuzzel --dmenu --prompt " " --placeholder "Search for system actions..." --lines 5)
 
 switch (string split -f 2 " " $choice)
@@ -18,4 +19,6 @@ switch (string split -f 2 " " $choice)
         systemctl reboot
     case Poweroff
         systemctl poweroff
+    case Update
+        hyprctl dispatch exec [floating\; size 1000 600] kitty -- nh os switch -u
 end

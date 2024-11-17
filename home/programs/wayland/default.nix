@@ -1,8 +1,8 @@
 {...}: {
   imports = [
+    ./fuzzel
     ./hyprland
     ./hyprlock.nix
-    ./rofi.nix
     ./waybar
   ];
 }

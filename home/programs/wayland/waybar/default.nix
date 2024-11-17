@@ -228,7 +228,7 @@
 
         "custom/powermenu" = {
           format = "";
-          on-click = "rofi -show powermenu -modes powermenu";
+          on-click = "fuzzel-powermenu.fish";
         };
       };
     };

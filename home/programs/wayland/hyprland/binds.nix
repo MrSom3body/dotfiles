@@ -17,6 +17,7 @@
 
     bindd = let
       toggle = cmd: "pkill ${cmd} || uwsm app -- ${cmd}";
+      toggleScript = cmd: script: "pkill ${cmd} || uwsm app -- ${script}";
       runOnce = cmd: "pgrep ${cmd} || uwsm app -- ${cmd}";
       hyprcast = "uwsm app -- ~/.config/hypr/scripts/hyprcast.fish";
     in
@@ -34,11 +35,10 @@
         ", XF86Calculator, Open calculator, exec, ${runOnce "gnome-calculator"}"
 
         # Launcher
-        "$mainMod, D, Open application launcher, exec, ${toggle "rofi"} -show drun"
-        "$mainMod, TAB, Open window switcher, exec, ${toggle "rofi"} -show window"
-        "$mainMod CTRL, Q, Open power menu, exec, ${toggle "rofi"} -show powermenu -modes powermenu"
-        "$mainMod, SPACE, Open file browser, exec, ${toggle "rofi"} -show filebrowser"
-        "$mainMod, PERIOD, Open symbols search, exec, pkill rofi || BEMOJI_PICKER_CMD=\"rofi -no-show-icons -dmenu\" uwsm app -- bemoji -cn"
+        "$mainMod, D, Open application launcher, exec, ${toggle "fuzzel"}"
+        # "$mainMod, TAB, Open window switcher, exec, ${toggle "rofi"} -show window"
+        "$mainMod CTRL, Q, Open power menu, exec, ${toggleScript "fuzzel" "fuzzel-powermenu.fish"}"
+        "$mainMod, PERIOD, Open symbols search, exec, ${toggleScript "fuzzel" "fuzzel-icons.fish"}"
 
         # Actions
         "$mainMod, Q, Close focused window, killactive"
@@ -55,8 +55,8 @@
         "$mainMod SHIFT, P, Change active window in group left, changegroupactive, b"
 
         # Clipboard
-        "$mainMod, V, Show clipboard history, exec, ${runOnce "rofi"} -modi clipboard:cliphist-rofi-img -show clipboard"
-        "$mainMod CTRL, V, Clear clipboard history, exec, ${runOnce "cliphist wipe"}"
+        "$mainMod, V, Show clipboard history, exec, ${toggleScript "fuzzel" "fuzzel-clipboard.fish"}"
+        "$mainMod CTRL, V, Clear clipboard history, exec, uwsm app -- rm $XDG_CACHE_HOME/cliphist/db"
 
         # Screenshots
         ", PRINT, Take screenshot of screen, exec, ${runOnce "grimblast"} --freeze --notify copysave area ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"

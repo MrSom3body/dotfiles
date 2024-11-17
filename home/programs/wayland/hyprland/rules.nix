@@ -77,6 +77,12 @@
       "dimaround, rofi"
       "blur, rofi"
       "ignorezero, rofi"
+
+      # fuzzel
+      "animation slide, launcher"
+      "dimaround, launcher"
+      "blur, launcher"
+      "ignorezero, launcher"
     ];
 
     workspace = [

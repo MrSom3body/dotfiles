@@ -12,13 +12,15 @@
 
   home.packages =
     (with pkgs; [
+      bemoji
       brightnessctl
       nautilus
       networkmanagerapplet
       nwg-displays
+      satty
       wl-clipboard
       wl-screenrec
-      satty
+      wtype
     ])
     ++ (with inputs.hyprland-contrib.packages.${pkgs.system}; [
       grimblast

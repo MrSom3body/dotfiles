@@ -1,4 +1,8 @@
-{dotfiles, ...}: {
+{
+  pkgs,
+  dotfiles,
+  ...
+}: {
   programs.fuzzel = {
     enable = true;
     settings = {
@@ -22,6 +26,10 @@
       };
     };
   };
+
+  home.packages = with pkgs; [
+    jq
+  ];
 
   home.file."bin" = {
     source = ./scripts;

@@ -37,6 +37,7 @@
         # Launcher
         "$mainMod, D, Open application launcher, exec, ${toggle "fuzzel"}"
         # "$mainMod, TAB, Open window switcher, exec, ${toggle "rofi"} -show window"
+        "$mainMod, TAB, Open window switcher, exec, ${toggleScript "fuzzel" "fuzzel-windows.fish"}"
         "$mainMod CTRL, Q, Open power menu, exec, ${toggleScript "fuzzel" "fuzzel-powermenu.fish"}"
         "$mainMod, PERIOD, Open symbols search, exec, ${toggleScript "fuzzel" "fuzzel-icons.fish"}"
 

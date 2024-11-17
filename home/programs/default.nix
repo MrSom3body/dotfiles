@@ -22,12 +22,13 @@
     signal-desktop
 
     # Development Tools
-    (pkgs.jetbrains.plugins.addPlugins jetbrains.datagrip ["github-copilot" "ideavim"])
-    (pkgs.jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot" "ideavim"])
-    (pkgs.jetbrains.plugins.addPlugins jetbrains.phpstorm ["github-copilot" "ideavim"])
+    (pkgs.jetbrains.plugins.addPlugins jetbrains.datagrip ["github-copilot-intellij" "ideavim"])
+    (pkgs.jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot-intellij" "ideavim"])
+    (pkgs.jetbrains.plugins.addPlugins jetbrains.phpstorm ["github-copilot-intellij" "ideavim"])
     temurin-bin
 
     # Misc
+    easyeffects
     ente-auth
     pika-backup
     proton-pass

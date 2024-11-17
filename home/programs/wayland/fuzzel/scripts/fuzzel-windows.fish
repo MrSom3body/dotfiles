@@ -17,5 +17,5 @@ end
 set choices (string trim -c "\n" $choices)
 
 # EXTREMELY hacky workaround for hidden text but idc it works :)
-set choice (echo -e $choices | fuzzel --dmenu --prompt "  " --index --tabs 200 || exit)
+set choice (echo -e $choices | fuzzel --dmenu --prompt " " --placeholder "Search for windows..." --index --tabs 200 || exit)
 hyprctl dispatch focuswindow address:$addresses[(math $choice + 1)]

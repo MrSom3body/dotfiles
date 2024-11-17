@@ -7,6 +7,7 @@
         prompt = "'❯ '";
         icon-theme = "Papirus";
         launch-prefix = "uwsm app --";
+        lines = 8;
         match-counter = true;
         show-actions = true;
         terminal = "${dotfiles.terminal} -e";

@@ -2,6 +2,6 @@
   programs.fd = {
     enable = true;
     hidden = false;
-    ignores = [".git/"];
+    ignores = [".git/" "venv/"];
   };
 }

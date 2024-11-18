@@ -29,7 +29,7 @@
         # Open applications
         "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${dotfiles.terminal}"
         "$mainMod, B, Open browser, exec, uwsm app -- ${dotfiles.browser}"
-        "$mainMod, O, Open Obsidian, exec, uwsm app -- obsidian"
+        "$mainMod SHIFT, O, Open Obsidian, exec, uwsm app -- obsidian"
         "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- ${dotfiles.terminal} ${dotfiles.terminalFileManager}"
         "$mainMod SHIFT, E, Open file manager, exec, uwsm app -- ${dotfiles.fileManager}"
         ", XF86Calculator, Open calculator, exec, ${runOnce "gnome-calculator"}"
@@ -48,6 +48,7 @@
         "$mainMod, W, Toggle floating, togglefloating"
         "$mainMod, I, Change split direction (dwindle), togglesplit"
         "$mainMod, N, Open notification center, exec, swaync-client -t"
+        "$mainMod, O, Copy text from screen, exec, wl-ocr"
         "$mainMod, ESCAPE, Lock screen, exec, ${runOnce "hyprlock"}"
         "$mainMod, C, Open color picker, exec, ${runOnce "hyprpicker -a"}"
         "$mainMod SHIFT, O, Ask ollama something, exec, uwsm app -- fish -c \"chat -fcs\""

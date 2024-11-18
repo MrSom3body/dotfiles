@@ -4,5 +4,6 @@
     ./hyprland
     ./hyprlock.nix
     ./waybar
+    ./wl-ocr.nix
   ];
 }

@@ -1,3 +1,3 @@
 #!/usr/bin/env fish
 
-open (fd | fuzzel --dmenu --prompt " " --placeholder "Search for files/directories...")
+open (fd -E Games -E Documents/Codes/nixpkgs | fuzzel --dmenu --prompt " " --placeholder "Search for files/directories...")

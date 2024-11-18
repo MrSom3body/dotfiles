@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   inputs,
   pkgs,
   ...
@@ -17,7 +16,6 @@
       };
 
       background = {
-        path = lib.mkForce "${config.stylix.image}";
         blur_size = 6;
         blur_passes = 2;
       };

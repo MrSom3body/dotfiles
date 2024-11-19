@@ -20,5 +20,5 @@ switch (string split -f 2 " " $choice)
     case Poweroff
         systemctl poweroff
     case Update
-        hyprctl dispatch exec [floating\; size 1000 600] kitty -- nh os switch -u
+        hyprctl dispatch exec [floating\; size 1000 600] kitty -- nh os switch -au
 end

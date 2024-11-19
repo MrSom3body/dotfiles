@@ -1,9 +1,9 @@
 #!/usr/bin/env fish
 
 set clients (hyprctl clients -j)
-set classes (echo $clients | jq '.[] | .class' | string trim -c \")
-set titles (echo $clients | jq '.[] | .title' | string trim -c \")
-set addresses (echo $clients | jq '.[] | .address' | string trim -c \")
+set classes (echo $clients | jq -r '.[] | .class')
+set titles (echo $clients | jq -r '.[] | .title')
+set addresses (echo $clients | jq -r '.[] | .address')
 set choices ""
 
 for i in (seq (count $classes))

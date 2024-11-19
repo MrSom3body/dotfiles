@@ -5,6 +5,7 @@
   ];
 
   home.packages = with pkgs; [
+    bottles
     goverlay
     heroic
     mindustry-wayland

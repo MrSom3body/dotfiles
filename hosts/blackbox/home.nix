@@ -8,6 +8,7 @@
     ../../home/editors/nvim
 
     # terminals
+    ../../home/terminal/emulators/foot.nix
     ../../home/terminal/emulators/kitty.nix
 
     # programs

@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ./bash.nix
     ./fish
@@ -10,6 +10,7 @@
   home.shellAliases = {
     ip = "ip -c";
     l = "ls";
+    icat = "${pkgs.libsixel}/bin/img2sixel";
     mkdev = "nix flake new -t \"github:numtide/devshell\"";
   };
 

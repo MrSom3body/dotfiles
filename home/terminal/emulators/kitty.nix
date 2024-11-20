@@ -16,8 +16,4 @@
       "ctrl+shift+t" = "new_tab_with_cwd";
     };
   };
-
-  home.shellAliases = {
-    icat = "kitten icat";
-  };
 }

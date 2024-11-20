@@ -4,7 +4,6 @@
     settings = {
       main = {
         pad = "15x15 center";
-        box-drawings-uses-font-glyphs = "yes";
       };
 
       bell = {

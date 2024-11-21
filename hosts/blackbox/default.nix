@@ -6,6 +6,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ../../system/core/lanzaboote.nix
 
       ../common/laptop.nix
 

@@ -1,9 +1,13 @@
 {
+  lib,
   config,
   dotfiles,
   ...
 }: {
-  wayland.windowManager.hyprland.settings = {
+  wayland.windowManager.hyprland.settings = let
+    rgb = color: "rgb(${color})";
+    cfg = config.wayland.windowManager.hyprland.settings;
+  in {
     source = [
       "~/.config/hypr/monitors.conf"
       "~/.config/hypr/workspaces.conf"
@@ -97,6 +101,24 @@
       use_cpu_buffer = true;
     };
 
+    group = with config.lib.stylix.colors;
+      lib.mkForce {
+        "col.border_active" = rgb base0D;
+        "col.border_inactive" = rgb base03;
+        "col.border_locked_active" = rgb base09;
+        "col.border_locked_inactive" = rgb base03;
+        groupbar = {
+          text_color = rgb base00;
+          font_size = dotfiles.fonts.sans.size;
+          height = builtins.floor (dotfiles.fonts.sans.size * 1.5);
+
+          "col.active" = cfg.group."col.border_active";
+          "col.inactive" = cfg.group."col.border_inactive";
+          "col.locked_active" = cfg.group."col.border_locked_active";
+          "col.locked_inactive" = rgb base0A;
+        };
+      };
+
     misc = {
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
@@ -117,8 +139,8 @@
         bar_precedence_over_border = true;
 
         bar_text_size = config.stylix.fonts.sizes.desktop;
-        bar_color = "rgb(${config.lib.stylix.colors.base00})";
-        "col.text" = "rgb(${config.lib.stylix.colors.base05})";
+        bar_color = rgb config.lib.stylix.colors.base00;
+        "col.text" = rgb config.lib.stylix.colors.base05;
 
         hyprbars-button = let
           buttonSize = builtins.toString (config.stylix.fonts.sizes.desktop * 1.5);

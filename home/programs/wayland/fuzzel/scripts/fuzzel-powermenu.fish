@@ -14,7 +14,7 @@ switch (string split -f 2 " " $choice)
     case Suspend
         systemctl suspend
     case Exit
-        pkill Hyprland
+        uwsm stop
     case Reboot
         systemctl reboot
     case Poweroff

@@ -53,6 +53,7 @@
         "$mainMod, C, Open color picker, exec, ${runOnce "hyprpicker -a"}"
         "$mainMod SHIFT, O, Ask ollama something, exec, uwsm app -- fish -c \"chat -fcs\""
         "$mainMod, G, Toggle group, togglegroup"
+        "$mainMod SHIFT, G, Lock or unlock active group, lockactivegroup, toggle"
         "$mainMod SHIFT, N, Change active window in group right, changegroupactive, f"
         "$mainMod SHIFT, P, Change active window in group left, changegroupactive, b"
 

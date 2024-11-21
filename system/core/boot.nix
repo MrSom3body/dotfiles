@@ -1,5 +1,11 @@
 {pkgs, ...}: {
   boot = {
+    bootspec.enable = true;
+
+    initrd = {
+      systemd.enable = true;
+    };
+
     # use latest kernel
     kernelPackages = pkgs.linuxPackages_latest;
 

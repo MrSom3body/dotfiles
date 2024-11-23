@@ -1,9 +1,11 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
+  home.packages = with pkgs; let
+    plugins = ["github-copilot-intellij" "ideavim" "mermaid"];
+  in [
     # IDEs
-    (pkgs.jetbrains.plugins.addPlugins jetbrains.datagrip ["github-copilot-intellij" "ideavim"])
-    (pkgs.jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot-intellij" "ideavim"])
-    (pkgs.jetbrains.plugins.addPlugins jetbrains.phpstorm ["github-copilot-intellij" "ideavim"])
+    (pkgs.jetbrains.plugins.addPlugins jetbrains.datagrip plugins)
+    (pkgs.jetbrains.plugins.addPlugins jetbrains.idea-ultimate plugins)
+    (pkgs.jetbrains.plugins.addPlugins jetbrains.phpstorm plugins)
 
     # JDKs
     temurin-bin

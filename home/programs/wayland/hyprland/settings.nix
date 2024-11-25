@@ -97,7 +97,7 @@
     };
 
     cursor = {
-      no_hardware_cursors = 0;
+      no_hardware_cursors = false;
       use_cpu_buffer = true;
     };
 

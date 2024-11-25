@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; let
-    plugins = ["github-copilot-intellij" "ideavim" "mermaid"];
+    plugins = ["github-copilot" "ideavim" "mermaid"];
   in [
     # IDEs
     (pkgs.jetbrains.plugins.addPlugins jetbrains.datagrip plugins)

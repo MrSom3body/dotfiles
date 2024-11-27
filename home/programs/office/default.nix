@@ -1,23 +1,16 @@
-{
-  pkgs,
-  pkgs-stable,
-  ...
-}: {
-  home.packages =
-    (with pkgs; [
-      # Documents
-      papers
-      simple-scan
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    # Documents
+    libreoffice-fresh
+    papers
+    simple-scan
 
-      # Notes & Tasks
-      lunatask
-      obsidian
+    # Notes & Tasks
+    lunatask
+    obsidian
 
-      # Communication
-      protonmail-desktop
-      slack
-    ])
-    ++ (with pkgs-stable; [
-      libreoffice-fresh
-    ]);
+    # Communication
+    protonmail-desktop
+    slack
+  ];
 }

@@ -12,5 +12,6 @@
 
     # Other thingies
     ciscoPacketTracer8
+    openfortivpn
   ];
 }

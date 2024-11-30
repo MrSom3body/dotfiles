@@ -11,8 +11,9 @@
 
     settings = {
       general = {
-        hide_cursor = false;
+        hide_cursor = true;
         grace = 0;
+        enable_fingerprint = true;
       };
 
       background = {
@@ -53,7 +54,7 @@
 
       label = [
         {
-          text = "cmd[update:30000] echo \"$(date +\"%R\")\"";
+          text = "$TIME";
           color = "rgb(${config.lib.stylix.colors.base05})";
           font_size = 90;
           font_family = config.stylix.fonts.sansSerif.name;

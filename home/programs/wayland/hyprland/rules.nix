@@ -9,7 +9,6 @@
 
       # Fix some dragging issues with XWayland
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-
       # NetworkManager applet
       "float, class:^(nm-connection-editor)$"
       "size $floatingSize, class:^(nm-connection-editor)$"
@@ -56,9 +55,7 @@
 
       # Games
       "immediate, class:^(Minecraft.*)$"
-      "immediate, title:^(Warframe)$"
-      "immediate, class:^(steam_app_1966720)$"
-      "immediate, class:^(steam_app_960090)$" # Bloons TD6
+      "immediate, class:^(steam_app_*)$"
       "immediate, class:^(hl2_linux)$" # Left 4 Dead 2
     ];
 

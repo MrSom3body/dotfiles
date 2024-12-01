@@ -18,12 +18,12 @@
         terminal = mono.size;
       };
       sansSerif = with dotfiles.fonts.sans; {
-        package = pkgs.nerdfonts.override {fonts = [pkgName];};
+        package = pkgs.nerd-fonts.${pkgName};
         inherit name;
       };
       serif = config.stylix.fonts.sansSerif;
       monospace = with dotfiles.fonts.mono; {
-        package = pkgs.nerdfonts.override {fonts = [pkgName];};
+        package = pkgs.nerd-fonts.${pkgName};
         inherit name;
       };
       emoji = {

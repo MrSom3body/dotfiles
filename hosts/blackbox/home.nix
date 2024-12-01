@@ -5,7 +5,6 @@
 
     # editors
     ../../home/editors/helix
-    ../../home/editors/nvim
 
     # terminals
     ../../home/terminal/emulators/alacritty.nix

@@ -10,7 +10,6 @@
 
       ../common/laptop.nix
 
-      ../../system/hardware/asus.nix
       ../../system/hardware/opentabletdriver.nix
       ../../system/hardware/logitech.nix
 

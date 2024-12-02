@@ -11,14 +11,14 @@
 
     settings = {
       general = let
-        beforeSleep = l: lib.concatStringsSep " && " l;
+        beforeSleep = l: lib.concatStringsSep "; " l;
       in {
         ignore_dbus_inhibit = false;
         lock_cmd = "uwsm app -- hyprlock";
         unlock_cmd = "pkill -SIGUSR1 hyprlock";
         before_sleep_cmd = beforeSleep [
-          "playerctl pause"
           "loginctl lock-session"
+          "playerctl pause"
         ];
         after_sleep_cmd = "hyprctl dispatch dpms on";
       };

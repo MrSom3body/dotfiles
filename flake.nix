@@ -72,7 +72,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "nixpkgs/nixos-24.11";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.1";

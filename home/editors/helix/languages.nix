@@ -144,6 +144,11 @@
       vscode-json-language-server = {
         command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
       };
+
+      qmlls = {
+        command = "${pkgs.kdePackages.qtdeclarative}/bin/qmlls";
+        args = ["-E"];
+      };
     };
   };
 }

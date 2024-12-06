@@ -23,7 +23,6 @@
     signal-desktop
 
     # Misc
-    easyeffects
     ente-auth
     pika-backup
     proton-pass

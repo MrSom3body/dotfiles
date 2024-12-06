@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./easyeffects.nix
     ./spotify.nix
   ];
 

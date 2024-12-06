@@ -9,80 +9,101 @@
     with config.lib.stylix.colors.withHashtag; # css
     
       ''
-        window#waybar {
-          background: transparent;
+        @define-color base00 ${base00};
+        @define-color base01 ${base01};
+        @define-color base02 ${base02};
+        @define-color base03 ${base03};
+        @define-color base04 ${base04};
+        @define-color base05 ${base05};
+        @define-color base06 ${base06};
+        @define-color base07 ${base07};
+        @define-color base08 ${base08};
+        @define-color base09 ${base09};
+        @define-color base0A ${base0A};
+        @define-color base0B ${base0B};
+        @define-color base0C ${base0C};
+        @define-color base0D ${base0D};
+        @define-color base0E ${base0E};
+        @define-color base0F ${base0F};
 
+        * {
+          padding: 0;
+          margin: 0;
+        }
+
+        window#waybar {
+          background: alpha(@base00, ${builtins.toString (config.stylix.opacity.desktop - 0.02)});
           transition: all 0.3s ease-in-out;
         }
 
         tooltip {
-          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
-
-          border-radius: ${rounding}px;
-          border: 3px solid ${base0D};
+          background: @base00;
+          border: 3px solid @base0D;
+          border-radius: ${rounding};
         }
 
         tooltip label {
-          color: ${base05};
+          color: @base05;
+
+          padding: 0.2em 0.5em;
         }
 
-        #clock {
-          margin: 0 .25em 0 0;
-          padding: .2em .5em;
+        #workspaces {
+          background: @base01;
+          border-radius: ${rounding};
 
-          color: ${base05};
-          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
-          border-radius: ${rounding}px;
+          padding: 0.05em;
+          margin: 0.4em 0.2em 0.4em 0.4em;
         }
 
-        #window {
-          margin: 0 .25em;
-          padding: .2em .5em;
+        #workspaces button {
+          color: @base05;
+          border-radius: ${rounding};
 
-          color: ${base05};
-          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
-          border-radius: ${rounding}px;
+          padding: 0.05em;
+          margin: 0.2em 0.3em;
+          transition: all 0.3s ease-in-out;
+        }
+
+        #workspaces button.active {
+          color: @base00;
+          background: @base0D;
+
+          min-width: 3em;
+        }
+
+        #workspaces button.special {
+          color: @base00;
+          background: @base0D;
         }
 
         window#waybar.empty #window {
           background: transparent;
         }
 
-        #workspaces {
-          transition: all 0.3s ease-in-out;
+        #window {
+          background: transparent;
+          border-radius: ${rounding};
+
+          padding: 0.2em 0.5em;
+          margin: 0.4em 0.2em;
         }
 
-        #workspaces button {
-          margin: 0 .2em;
-          padding: .2em .4em;
+        #clock {
+          background: transparent;
+          border-radius: ${rounding};
 
-          color: ${base05};
-          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
-          min-width: 1.5em;
-
-          border-radius: ${rounding}px;
-          transition: all 0.3s ease-in-out;
-        }
-
-        #workspaces button.active {
-          color: ${base00};
-          background: ${base0D};
-
-          min-width: 3em;
-        }
-
-        #workspaces button.special {
-          color: ${base00};
-          background: ${base0D};
+          padding: 0.2em 0.5em;
+          margin: 0.4em;
         }
 
         #custom-hyprcast {
-          margin: 0 .25em;
-          padding: .2em .5em;
+          margin: 0 0.25em;
+          padding: 0.2em 0.5em;
 
-          color: ${base00};
-          background: ${base08};
-          border-radius: ${rounding}px;
+          color: @base00;
+          background: @base08;
+          border-radius: ${rounding};
 
           animation-name: blink;
           animation-duration: 1s;
@@ -91,57 +112,49 @@
           animation-direction: alternate;
         }
 
-        #privacy {
-          margin: 0 .25em;
-          padding: .2em .5em;
-
-          color: ${base00};
-          background: ${base09};
-          border-radius: ${rounding}px;
-        }
-
         #wireplumber {
-          margin: 0 .25em;
-          padding: .2em .5em;
+          color: @base05;
+          background: @base01;
+          border-radius: ${rounding};
 
-          color: ${base00};
-          background: ${base0C};
-          border-radius: ${rounding}px;
+          padding: 0.2em 0.5em;
+          margin: 0.4em 0.2em;
         }
 
         #wireplumber.muted {
-          background: ${base0A};
+          color: @base00;
+          background: @base0A;
         }
 
         #battery {
-          margin: 0 .25em;
-          padding: .2em .5em;
+          color: @base05;
+          background: @base01;
+          border-radius: ${rounding};
 
-          color: ${base00};
-          background: ${base0C};
-          border-radius: ${rounding}px;
+          padding: 0.2em 0.5em;
+          margin: 0.4em 0.2em;
         }
 
         #battery.warning {
-          color: ${base00};
-          background: ${base0A};
+          color: @base00;
+          background: @base0A;
         }
 
-
-        #battery.charging, #battery.plugged {
-          color: ${base00};
-          background: ${base0B};
+        #battery.charging,
+        #battery.plugged {
+          color: @base00;
+          background: @base0B;
         }
 
         @keyframes blink {
           to {
-            color: ${base05};
-            background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
+            color: @base05;
+            background: @base01;
           }
         }
 
         #battery.critical:not(.charging) {
-          background-color: ${base08};
+          background-color: @base08;
           animation-name: blink;
           animation-duration: 0.5s;
           animation-timing-function: linear;
@@ -150,74 +163,68 @@
         }
 
         #power-profiles-daemon {
-          margin: 0 .25em;
-          padding: .2em .5em;
+          color: @base00;
+          border-radius: ${rounding};
 
-          color: ${base00};
-          border-radius: ${rounding}px;
+          padding: 0 0.6em;
+          margin: 0.4em 0.2em;
         }
 
         #power-profiles-daemon.performance {
-          background: ${base08};
+          background: @base08;
         }
 
         #power-profiles-daemon.balanced {
-          background: ${base0B};
+          background: @base0B;
         }
 
         #power-profiles-daemon.power-saver {
-          background: ${base0D};
+          background: @base0D;
         }
 
         #idle_inhibitor {
-          margin: 0 .25em;
-          padding: .2em .5em;
+          color: @base05;
+          background: @base01;
+          border-radius: ${rounding};
 
-          color: ${base05};
-          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
-          border-radius: ${rounding}px;
+          padding: 0 0.6em;
+          margin: 0.4em 0.2em;
         }
 
         #idle_inhibitor.activated {
-          color: ${base00};
-          background: ${base09};
+          color: @base00;
+          background: @base09;
         }
 
         #custom-monitor,
         #cpu,
         #temperature,
         #memory {
-          padding: .2em .5em;
+          color: @base05;
+          background: @base01;
+          border-radius: ${rounding};
 
-          color: ${base05};
-          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
+          padding: 0 0.6em;
+          margin: 0.4em 0.2em;
         }
 
-        #custom-monitor {
-          margin: 0 .25em;
-
-          border-radius: ${rounding}px;
-        }
-
-        #cpu {
-          border-radius: ${rounding}px 0 0 ${rounding}px;
-          margin: 0 0 0 .25em;
+        #cpu,
+        #temperature,
+        #memory {
+          background: @base01;
         }
 
         #temperature.critical {
-          color: ${base08};
-        }
-
-        #memory {
-          border-radius: 0 ${rounding}px ${rounding}px 0;
+          color: @base08;
         }
 
         #tray {
-          margin: 0 .25em;
-          padding: .2em .5em;
+          color: @base05;
+          background: @base01;
+          border-radius: ${rounding};
 
-          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
-          border-radius: ${rounding}px;
+          padding: 0 0.6em;
+          margin: 0.4em 0.2em;
         }
 
         #tray > .passive {
@@ -226,33 +233,33 @@
 
         #tray > .needs-attention {
           -gtk-icon-effect: highlight;
-          background-color: ${base0A};
+          background-color: @base0A;
         }
 
         #custom-notification {
-          margin: 0 .25em;
-          padding: .2em .5em;
+          color: @base05;
+          background: transparent;
+          border-radius: ${rounding};
 
-          color: ${base05};
-          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
-          border-radius: ${rounding}px;
+          padding: 0 0.6em;
+          margin: 0.4em 0.2em;
         }
 
         #custom-notification.notification,
         #custom-notification.dnd-notification,
         #custom-notification.inhibited-notification,
         #custom-notification.dnd-inhibited-notification {
-          color: ${base00};
-          background: ${base0A};
+          color: @base00;
+          background: @base0A;
         }
 
         #custom-powermenu {
-          margin: 0 0 0 .25em;
-          padding: .2em .5em;
+          color: @base05;
+          background: @base01;
+          border-radius: ${rounding};
 
-          color: ${base05};
-          background: alpha(${base00}, ${builtins.toString config.stylix.opacity.desktop});
-          border-radius: ${rounding}px;
+          padding: 0 0.6em;
+          margin: 0.4em 0.2em 0.4em 0.2em;
         }
       '';
 }

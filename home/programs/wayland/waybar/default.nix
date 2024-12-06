@@ -15,15 +15,14 @@
       mainBar = {
         layer = "top";
         position = "top";
-        margin = "10 10 0 10";
         reload_style_on_change = true;
 
         modules-left = [
-          "clock"
+          "hyprland/workspaces"
           "hyprland/window"
         ];
 
-        modules-center = ["hyprland/workspaces"];
+        modules-center = ["clock"];
 
         modules-right = [
           "custom/hyprcast"

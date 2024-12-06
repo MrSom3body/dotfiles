@@ -4,6 +4,12 @@
     "$pwvucontrol" = "com.saivert.pwvucontrol";
 
     windowrulev2 = [
+      # Smart Gaps
+      "bordersize 0, floating:0, onworkspace:w[tv1] s[false]"
+      "rounding 0, floating:0, onworkspace:w[tv1] s[false]"
+      "bordersize 0, floating:0, onworkspace:f[1] s[false]"
+      "rounding 0, floating:0, onworkspace:f[1] s[false]"
+
       # Ignore maximize requests from apps
       "suppressevent maximize, class:.*"
 
@@ -84,6 +90,10 @@
     ];
 
     workspace = [
+      # Smart Gaps
+      "w[tv1], gapsout:0, gapsin:0"
+      "f[1], gapsout:0, gapsin:0"
+
       "special:special, gapsout:75"
 
       "special:obsidian, on-created-empty:uwsm app -- obsidian"

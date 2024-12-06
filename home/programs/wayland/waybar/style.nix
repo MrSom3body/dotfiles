@@ -227,6 +227,12 @@
           margin: 0.4em 0.2em;
         }
 
+        #tray menu,
+        #tray menuitem {
+          padding: 0.25em;
+          margin: 0.1em;
+        }
+
         #tray > .passive {
           -gtk-icon-effect: dim;
         }

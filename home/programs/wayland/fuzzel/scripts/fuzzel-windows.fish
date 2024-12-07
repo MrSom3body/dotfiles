@@ -10,7 +10,8 @@ for i in (seq (count $classes))
     if string match "*.*.*" $classes[$i]
         set choices "$choices$titles[$i]\t$classes[$i]\0icon\x1f$classes[$i]\n"
     else
-        set choices "$choices$titles[$i]\t$classes[$i]\0icon\x1f$(string lower $classes[$i])\n"
+        set class (string lower (string replace "jetbrains-" "" $classes[$i]))
+        set choices "$choices$titles[$i]\t$classes[$i]\0icon\x1f$class\n"
     end
 end
 

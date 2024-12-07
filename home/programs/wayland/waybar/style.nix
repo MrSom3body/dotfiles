@@ -49,12 +49,14 @@
         }
 
         #custom-actions {
+          font-size: 1.3em;
+
           color: @base05;
           background: transparent;
-          border-radius: ${rounding}px;
+          border-radius: 15px;
 
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em 0.4em 0.4em;
+          padding: 0.2rem 0.5rem;
+          margin: 0.4rem 0.2rem 0.4rem 0.2rem;
         }
 
         #workspaces {
@@ -72,6 +74,14 @@
           padding: 0.05em;
           margin: 0.2em 0.3em;
           transition: all 0.3s ease-in-out;
+        }
+
+        #workspace button:first-child {
+          margin: 0.2em 0.3em 0.2em 0px;
+        }
+
+        #workspace button:last-child {
+          margin: 0.2em 0px 0.2em 0.3em;
         }
 
         #workspaces button.active {
@@ -197,8 +207,8 @@
         #power-profiles-daemon {
           color: @base00;
           border-radius: ${rounding}px;
+          min-width: 2em;
 
-          padding: 0.2em 0.5em;
           margin: 0.4em 0.2em;
         }
 
@@ -218,8 +228,8 @@
           color: @base05;
           background: @base02;
           border-radius: ${rounding}px;
+          min-width: 2em;
 
-          padding: 0.2em 0.5em;
           margin: 0.4em 0.2em;
         }
 
@@ -236,14 +246,19 @@
           background: @base01;
           border-radius: ${rounding}px;
 
-          padding: 0.2em 0.5em;
           margin: 0.4em 0.2em;
+        }
+
+        #custom-monitor {
+          min-width: 2em;
         }
 
         #cpu,
         #temperature,
         #memory {
           background: @base02;
+
+          padding: 0.2em 0.5em;
         }
 
         #temperature.critical {

@@ -1593,11 +1593,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1733483998,
-        "narHash": "sha256-fLxervv9e5xns/BkoZn9stdIPy8Ymw91BSc+cuQLFr8=",
+        "lastModified": 1733545118,
+        "narHash": "sha256-m0VDCgH8Qar4n6RtX2CgRhxQJy64C7IUul15fI9Xayo=",
         "ref": "refs/heads/master",
-        "rev": "ded3708762d43d9af0cb40cf69bd64232cbc96a3",
-        "revCount": 436,
+        "rev": "3fc1c914c7946f139b22006a6c554cce9ecc1064",
+        "revCount": 438,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
@@ -1683,11 +1683,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1733458623,
-        "narHash": "sha256-52PZbQysGpULrOehi4+807Qj3jSa3fXGJw0wuRxQfvo=",
+        "lastModified": 1733544993,
+        "narHash": "sha256-JQwL9JxVYHe/wmNepuNQkJsvVeAeG+P4wjt+L+EuC74=",
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
-        "rev": "ebe9e466f8eb5b1ae3079d9c44cb4d8a56f8e5c2",
+        "rev": "6ed218850b5a13e4fc3bbb52a7af4e36642b1157",
         "type": "github"
       },
       "original": {

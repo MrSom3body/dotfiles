@@ -39,7 +39,7 @@
         tooltip {
           background: @base00;
           border: 3px solid @base0D;
-          border-radius: ${rounding};
+          border-radius: ${rounding}px;
         }
 
         tooltip label {
@@ -50,7 +50,7 @@
 
         #workspaces {
           background: @base01;
-          border-radius: ${rounding};
+          border-radius: ${rounding}px;
 
           padding: 0.05em;
           margin: 0.4em 0.2em 0.4em 0.4em;
@@ -58,7 +58,7 @@
 
         #workspaces button {
           color: @base05;
-          border-radius: ${rounding};
+          border-radius: ${rounding}px;
 
           padding: 0.05em;
           margin: 0.2em 0.3em;
@@ -83,7 +83,7 @@
 
         #window {
           background: transparent;
-          border-radius: ${rounding};
+          border-radius: ${rounding}px;
 
           padding: 0.2em 0.5em;
           margin: 0.4em 0.2em;
@@ -91,19 +91,19 @@
 
         #clock {
           background: transparent;
-          border-radius: ${rounding};
+          border-radius: ${rounding}px;
 
           padding: 0.2em 0.5em;
-          margin: 0.4em;
+          margin: 0.4em 0.2em;
         }
 
         #mpris {
           color: @base00;
           background: @base0C;
-          border-radius: ${rounding};
+          border-radius: ${rounding}px;
 
           padding: 0.2em 0.5em;
-          margin: 0.4em;
+          margin: 0.4em 0.2em;
         }
 
         #mpris.paused {
@@ -111,25 +111,34 @@
           background: @base01;
         }
 
-        #custom-hyprcast {
-          margin: 0 0.25em;
-          padding: 0.2em 0.5em;
+        #privacy {
+          color: @base05;
+          background: transparent;
+          border-radius: ${rounding}px;
 
+          padding: 0.2em 0.5em;
+          margin: 0.4em 0.2em;
+        }
+
+        #custom-hyprcast {
           color: @base00;
           background: @base08;
-          border-radius: ${rounding};
+          border-radius: ${rounding}px;
 
           animation-name: blink;
           animation-duration: 1s;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
           animation-direction: alternate;
+
+          padding: 0.2em 0.5em;
+          margin: 0.4em 0.2em;
         }
 
         #wireplumber {
           color: @base05;
           background: @base01;
-          border-radius: ${rounding};
+          border-radius: ${rounding}px;
 
           padding: 0.2em 0.5em;
           margin: 0.4em 0.2em;
@@ -143,7 +152,7 @@
         #battery {
           color: @base05;
           background: @base01;
-          border-radius: ${rounding};
+          border-radius: ${rounding}px;
 
           padding: 0.2em 0.5em;
           margin: 0.4em 0.2em;
@@ -178,9 +187,9 @@
 
         #power-profiles-daemon {
           color: @base00;
-          border-radius: ${rounding};
+          border-radius: ${rounding}px;
 
-          padding: 0 0.6em;
+          padding: 0.2em 0.5em;
           margin: 0.4em 0.2em;
         }
 
@@ -198,10 +207,10 @@
 
         #idle_inhibitor {
           color: @base05;
-          background: @base01;
-          border-radius: ${rounding};
+          background: @base02;
+          border-radius: ${rounding}px;
 
-          padding: 0 0.6em;
+          padding: 0.2em 0.5em;
           margin: 0.4em 0.2em;
         }
 
@@ -216,16 +225,16 @@
         #memory {
           color: @base05;
           background: @base01;
-          border-radius: ${rounding};
+          border-radius: ${rounding}px;
 
-          padding: 0 0.6em;
+          padding: 0.2em 0.5em;
           margin: 0.4em 0.2em;
         }
 
         #cpu,
         #temperature,
         #memory {
-          background: @base01;
+          background: @base02;
         }
 
         #temperature.critical {
@@ -234,10 +243,10 @@
 
         #tray {
           color: @base05;
-          background: @base01;
-          border-radius: ${rounding};
+          background: @base02;
+          border-radius: ${rounding}px;
 
-          padding: 0 0.6em;
+          padding: 0.2em 0.5em;
           margin: 0.4em 0.2em;
         }
 
@@ -258,10 +267,10 @@
 
         #custom-notification {
           color: @base05;
-          background: transparent;
-          border-radius: ${rounding};
+          background: @base01;
+          border-radius: ${rounding}px;
 
-          padding: 0 0.6em;
+          padding: 0.2em 0.5em;
           margin: 0.4em 0.2em;
         }
 
@@ -276,10 +285,10 @@
         #custom-powermenu {
           color: @base05;
           background: @base01;
-          border-radius: ${rounding};
+          border-radius: ${rounding}px;
 
-          padding: 0 0.6em;
-          margin: 0.4em 0.2em 0.4em 0.2em;
+          padding: 0.2em 0.5em;
+          margin: 0.4em 0.4em 0.4em 0.2em;
         }
       '';
 }

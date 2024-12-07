@@ -274,10 +274,13 @@
           margin: 0.4em 0.2em;
         }
 
-        #custom-notification.notification,
         #custom-notification.dnd-notification,
-        #custom-notification.inhibited-notification,
         #custom-notification.dnd-inhibited-notification {
+          background: @base02;
+        }
+
+        #custom-notification.notification,
+        #custom-notification.inhibited-notification {
           color: @base00;
           background: @base0A;
         }

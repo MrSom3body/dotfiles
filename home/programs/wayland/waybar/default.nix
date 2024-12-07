@@ -56,8 +56,9 @@
             };
           };
 
+          on-click = "gnome-clocks";
+
           actions = {
-            on-click = "shift_reset";
             on-click-right = "mode";
             on-scroll-up = "shift_up";
             on-scroll-down = "shift_down";

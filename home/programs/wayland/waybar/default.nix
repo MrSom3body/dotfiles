@@ -22,7 +22,10 @@
           "hyprland/window"
         ];
 
-        modules-center = ["clock"];
+        modules-center = [
+          "clock"
+          "mpris"
+        ];
 
         modules-right = [
           "custom/hyprcast"
@@ -59,6 +62,26 @@
             on-scroll-up = "shift_up";
             on-scroll-down = "shift_down";
           };
+        };
+
+        "mpris" = {
+          player = "spotify";
+          format = "{player_icon} {status_icon} {dynamic}";
+          interval = 1;
+          dynamic-order = ["title" "artist"];
+          dynamic-separator = "  ";
+          dynamic-len = 30;
+          tooltip-format = "{album} [{position}/{length}]";
+          player-icons = {
+            default = "";
+            spotify = "󰓇";
+            kdeconnect = "";
+          };
+          status-icons = {
+            paused = "󰏤";
+          };
+          # on-scroll-up = "playerctld shift";
+          # on-scroll-down = "playerctld unshift";
         };
 
         "hyprland/workspaces" = {

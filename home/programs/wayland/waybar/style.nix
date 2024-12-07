@@ -97,6 +97,20 @@
           margin: 0.4em;
         }
 
+        #mpris {
+          color: @base00;
+          background: @base0C;
+          border-radius: ${rounding};
+
+          padding: 0.2em 0.5em;
+          margin: 0.4em;
+        }
+
+        #mpris.paused {
+          color: @base05;
+          background: @base01;
+        }
+
         #custom-hyprcast {
           margin: 0 0.25em;
           padding: 0.2em 0.5em;

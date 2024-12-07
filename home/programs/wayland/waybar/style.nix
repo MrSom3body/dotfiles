@@ -239,6 +239,7 @@
         }
 
         #custom-monitor,
+        #disk,
         #cpu,
         #temperature,
         #memory {
@@ -253,6 +254,7 @@
           min-width: 2em;
         }
 
+        #disk,
         #cpu,
         #temperature,
         #memory {

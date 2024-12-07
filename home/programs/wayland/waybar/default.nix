@@ -189,6 +189,10 @@
           on-click = "hyprctl dispatch workspace special:monitor";
         };
 
+        "disk" = {
+          format = "󰋊 {percentage_free}%";
+        };
+
         "cpu" = {
           format = "  {usage}%";
           interval = 1;
@@ -216,6 +220,7 @@
 
           modules = [
             "custom/monitor"
+            "disk"
             "cpu"
             "temperature"
             "memory"

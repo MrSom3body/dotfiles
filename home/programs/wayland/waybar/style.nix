@@ -48,12 +48,21 @@
           padding: 0.2em 0.5em;
         }
 
+        #custom-actions {
+          color: @base05;
+          background: transparent;
+          border-radius: ${rounding}px;
+
+          padding: 0.2em 0.5em;
+          margin: 0.4em 0.2em 0.4em 0.4em;
+        }
+
         #workspaces {
           background: @base01;
           border-radius: ${rounding}px;
 
-          padding: 0.05em;
-          margin: 0.4em 0.2em 0.4em 0.4em;
+          padding: 0.2em 0.5em;
+          margin: 0.4em 0.2em;
         }
 
         #workspaces button {
@@ -271,7 +280,7 @@
           border-radius: ${rounding}px;
 
           padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em;
+          margin: 0.4em 0.4em 0.4em 0.2em;
         }
 
         #custom-notification.dnd-notification,
@@ -283,15 +292,6 @@
         #custom-notification.inhibited-notification {
           color: @base00;
           background: @base0A;
-        }
-
-        #custom-powermenu {
-          color: @base05;
-          background: @base01;
-          border-radius: ${rounding}px;
-
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.4em 0.4em 0.2em;
         }
       '';
 }

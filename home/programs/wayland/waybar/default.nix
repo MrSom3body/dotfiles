@@ -18,6 +18,7 @@
         reload_style_on_change = true;
 
         modules-left = [
+          "custom/actions"
           "hyprland/workspaces"
           "hyprland/window"
         ];
@@ -35,7 +36,6 @@
           "group/hardware"
           "tray"
           "custom/notification"
-          "custom/powermenu"
         ];
 
         "clock" = {
@@ -249,9 +249,9 @@
           escape = true;
         };
 
-        "custom/powermenu" = {
-          format = "";
-          on-click = "fuzzel-powermenu.fish";
+        "custom/actions" = {
+          format = "";
+          on-click = "fuzzel-actions.fish";
         };
       };
     };

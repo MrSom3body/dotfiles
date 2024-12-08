@@ -48,6 +48,10 @@
       "float, class:^(org.gnome.Calculator)$"
       "size > >, class:^(org.gnome.Calculator)$"
 
+      # Clock
+      "float, class:^(org.gnome.clocks)$"
+      "size 800 600, class:^(org.gnome.clocks)$"
+
       # Move apps to workspaces
       "workspace special:discord, class:^(vesktop)$"
       "workspace special:lunatask, class:^(Lunatask)$"

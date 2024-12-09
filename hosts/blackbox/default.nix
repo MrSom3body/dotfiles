@@ -35,30 +35,37 @@
       ../../system/style/stylix.nix
     ]
     ++ (with inputs.nixos-hardware.nixosModules; [
-      common-pc-laptop
-      common-pc-laptop-ssd
       asus-battery
-
-      common-cpu-amd
-      common-cpu-amd-pstate
-
-      common-gpu-amd
-      common-gpu-nvidia
     ]);
 
+  boot.kernelParams = [
+    "amd_pstate=active"
+  ];
+
+  services.xserver.videoDrivers = ["nvidia"];
+
   hardware = {
+    amdgpu.initrd.enable = true;
+
     asus.battery.chargeUpto = 75;
 
     nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
       open = true;
 
-      powerManagement.finegrained = true;
+      powerManagement = {
+        enable = true;
+        finegrained = true;
+      };
 
       dynamicBoost.enable = true;
       prime = {
-        nvidiaBusId = "PCI:101:00:0";
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
         amdgpuBusId = "PCI:01:00:0";
+        nvidiaBusId = "PCI:101:00:0";
       };
     };
   };

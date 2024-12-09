@@ -1,6 +1,12 @@
-{
+{dotfiles, ...}: {
   programs.foot = {
     enable = true;
+
+    server.enable =
+      if dotfiles.terminal == "footclient"
+      then true
+      else false;
+
     settings = {
       main = {
         pad = "15x15 center";

@@ -56,6 +56,7 @@
       packages = with pkgs; [
         alejandra
         git
+        just
       ];
 
       shellHook = ''

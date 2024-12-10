@@ -2,8 +2,8 @@
   plugins-repo = pkgs.fetchFromGitHub {
     owner = "yazi-rs";
     repo = "plugins";
-    rev = "d85bfd6f31bd32183c8cc748c887ae88e048dca9";
-    sha256 = "sha256-79PyDqHJdBg9afr/bL3LPzkZTRLkBz1QVvE3qEGqB3o=";
+    rev = "ec97f8847feeb0307d240e7dc0f11d2d41ebd99d";
+    sha256 = "sha256-By8XuqVJvS841u+8Dfm6R8GqRAs0mO2WapK6r2g7WI8=";
   };
 in {
   home.packages = with pkgs; [ripdrag];
@@ -30,8 +30,8 @@ in {
       starship = pkgs.fetchFromGitHub {
         owner = "Rolv-Apneseth";
         repo = "starship.yazi";
-        rev = "77a65f5a367f833ad5e6687261494044006de9c3";
-        sha256 = "sha256-sAB0958lLNqqwkpucRsUqLHFV/PJYoJL2lHFtfHDZF8=";
+        rev = "247f49da1c408235202848c0897289ed51b69343";
+        sha256 = "sha256-0J6hxcdDX9b63adVlNVWysRR5htwAtP5WhIJ2AK2+Gs=";
       };
     };
 

@@ -11,6 +11,7 @@ for i in (seq (count $classes))
         set choices "$choices$titles[$i]\t$classes[$i]\0icon\x1f$classes[$i]\n"
     else
         set class (string lower (string replace "jetbrains-" "" $classes[$i]))
+        set class (string lower (string replace "footclient" "foot" $classes[$i]))
         set choices "$choices$titles[$i]\t$classes[$i]\0icon\x1f$class\n"
     end
 end

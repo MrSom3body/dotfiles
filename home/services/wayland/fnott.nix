@@ -12,7 +12,8 @@ with config.stylix.fonts; {
       opacity = lib.toHexString (((builtins.ceil (config.stylix.opacity.popups * 100)) * 255) / 100);
     in {
       main = {
-        min-width = 400;
+        min-width = 500;
+        max-width = 500;
 
         icon-theme = config.gtk.iconTheme.name;
 

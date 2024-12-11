@@ -30,7 +30,7 @@
 
     # Default applications
     editor = "hx"; # Default text editor
-    terminal = "footclient"; # Default terminal
+    terminal = "foot"; # Default terminal
     browser = "firefox-beta"; # Default web browser
     fileManager = "nautilus"; # Default GUI file manager
     terminalFileManager = "yazi"; # Default terminal file manager

@@ -15,6 +15,7 @@
       mainBar = {
         layer = "top";
         position = "top";
+        spacing = 0;
         reload_style_on_change = true;
 
         modules-left = [

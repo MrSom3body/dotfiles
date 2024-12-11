@@ -36,6 +36,23 @@
           transition: all 0.3s ease-in-out;
         }
 
+        .module {
+          color: @base05;
+          background: transparent;
+          border-radius: 15px;
+
+          padding: 0.2em 0.5em;
+          margin: 0.4em 0.2em;
+        }
+
+        .modules-left:first-child {
+          margin-left: 0.2em;
+        }
+
+        .modules-right:last-child {
+          margin-right: 0.2em;
+        }
+
         tooltip {
           background: @base00;
           border: 3px solid @base0D;
@@ -50,21 +67,12 @@
 
         #custom-actions {
           font-size: 1.3em;
-
           color: @base05;
-          background: transparent;
-          border-radius: 15px;
-
           padding: 0.2rem 0.5rem;
-          margin: 0.4rem 0.2rem 0.4rem 0.2rem;
         }
 
         #workspaces {
           background: @base01;
-          border-radius: ${rounding}px;
-
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em;
         }
 
         #workspaces button {
@@ -100,29 +108,9 @@
           background: transparent;
         }
 
-        #window {
-          background: transparent;
-          border-radius: ${rounding}px;
-
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em;
-        }
-
-        #clock {
-          background: transparent;
-          border-radius: ${rounding}px;
-
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em;
-        }
-
         #mpris {
           color: @base00;
           background: @base0C;
-          border-radius: ${rounding}px;
-
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em;
         }
 
         #mpris.paused {
@@ -130,37 +118,19 @@
           background: @base01;
         }
 
-        #privacy {
-          color: @base05;
-          background: transparent;
-          border-radius: ${rounding}px;
-
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em;
-        }
-
         #custom-hyprcast {
           color: @base00;
           background: @base08;
-          border-radius: ${rounding}px;
 
           animation-name: blink;
           animation-duration: 1s;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
           animation-direction: alternate;
-
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em;
         }
 
         #wireplumber {
-          color: @base05;
           background: @base01;
-          border-radius: ${rounding}px;
-
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em;
         }
 
         #wireplumber.muted {
@@ -169,12 +139,7 @@
         }
 
         #battery {
-          color: @base05;
           background: @base01;
-          border-radius: ${rounding}px;
-
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em;
         }
 
         #battery.warning {
@@ -206,10 +171,6 @@
 
         #power-profiles-daemon {
           color: @base00;
-          border-radius: ${rounding}px;
-          min-width: 2em;
-
-          margin: 0.4em 0.2em;
         }
 
         #power-profiles-daemon.performance {
@@ -225,12 +186,7 @@
         }
 
         #idle_inhibitor {
-          color: @base05;
           background: @base02;
-          border-radius: ${rounding}px;
-          min-width: 2em;
-
-          margin: 0.4em 0.2em;
         }
 
         #idle_inhibitor.activated {
@@ -238,20 +194,8 @@
           background: @base09;
         }
 
-        #custom-monitor,
-        #disk,
-        #cpu,
-        #temperature,
-        #memory {
-          color: @base05;
-          background: @base01;
-          border-radius: ${rounding}px;
-
-          margin: 0.4em 0.2em;
-        }
-
         #custom-monitor {
-          min-width: 2em;
+          background: @base01;
         }
 
         #disk,
@@ -259,8 +203,6 @@
         #temperature,
         #memory {
           background: @base02;
-
-          padding: 0.2em 0.5em;
         }
 
         #temperature.critical {
@@ -268,12 +210,7 @@
         }
 
         #tray {
-          color: @base05;
           background: @base02;
-          border-radius: ${rounding}px;
-
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em;
         }
 
         #tray menu,
@@ -292,12 +229,7 @@
         }
 
         #custom-swaync {
-          color: @base05;
           background: @base01;
-          border-radius: ${rounding}px;
-
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.4em 0.4em 0.2em;
         }
 
         #custom-swaync.dnd-notification,

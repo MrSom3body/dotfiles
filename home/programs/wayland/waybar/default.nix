@@ -32,6 +32,7 @@
         modules-right = [
           "custom/hyprcast"
           "privacy"
+          "backlight"
           "wireplumber"
           "group/power"
           "group/hardware"
@@ -123,6 +124,23 @@
           on-click = "~/.config/hypr/scripts/hyprcast.fish";
           interval = "once";
           signal = 1;
+        };
+
+        "backlight" = {
+          format = "{icon}  {percent}%";
+          format-icons = [
+            "󱩎 "
+            "󱩏 "
+            "󱩐 "
+            "󱩑 "
+            "󱩒 "
+            "󱩓 "
+            "󱩔 "
+            "󱩕 "
+            "󱩖 "
+            "󰛨 "
+          ];
+          tooltip = false;
         };
 
         "wireplumber" = {

@@ -139,6 +139,10 @@
           margin: 0.4em 0.2em;
         }
 
+        #backlight {
+          background: @base01;
+        }
+
         #wireplumber {
           background: @base01;
         }

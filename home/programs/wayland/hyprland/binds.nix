@@ -47,7 +47,6 @@
         "$mainMod, P, Pseudotile focused window (dwindle), pseudo"
         "$mainMod, W, Toggle floating, togglefloating"
         "$mainMod, I, Change split direction (dwindle), togglesplit"
-        "$mainMod, N, Open notification center, exec, swaync-client -t"
         "$mainMod, O, Copy text from screen, exec, wl-ocr"
         "$mainMod, ESCAPE, Lock screen, exec, ${runOnce "hyprlock"}"
         "$mainMod, C, Open color picker, exec, ${runOnce "hyprpicker -a"}"
@@ -56,6 +55,10 @@
         "$mainMod SHIFT, G, Lock or unlock active group, lockactivegroup, toggle"
         "$mainMod SHIFT, N, Change active window in group right, changegroupactive, f"
         "$mainMod SHIFT, P, Change active window in group left, changegroupactive, b"
+
+        # Notifications
+        "$mainMod, N, Open notification center, exec, fnottctl actions"
+        "$mainMod SHIFT, N, Open notification center, exec, fnottctl dismiss"
 
         # Clipboard
         "$mainMod, V, Show clipboard history, exec, ${toggleScript "fuzzel" "fuzzel-clipboard.fish"}"

@@ -29,10 +29,10 @@
 
     # wayland services
     ../../home/services/wayland/cliphist.nix
+    ../../home/services/wayland/fnott.nix
     ../../home/services/wayland/gammastep.nix
     ../../home/services/wayland/hypridle.nix
     ../../home/services/wayland/hyprpaper.nix
-    ../../home/services/wayland/swaync
     ../../home/services/wayland/swayosd.nix
 
     # styles

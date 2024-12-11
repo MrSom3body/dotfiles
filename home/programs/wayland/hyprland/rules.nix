@@ -91,6 +91,11 @@
       "dimaround, launcher"
       "blur, launcher"
       "ignorezero, launcher"
+
+      # fnott
+      "animation slide, notifications"
+      "blur, notifications"
+      "ignorezero, notifications"
     ];
 
     workspace = [

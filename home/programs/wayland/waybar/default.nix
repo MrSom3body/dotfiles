@@ -35,7 +35,7 @@
           "group/power"
           "group/hardware"
           "tray"
-          "custom/notification"
+          "custom/swaync"
         ];
 
         "custom/actions" = {
@@ -237,7 +237,7 @@
           spacing = 5;
         };
 
-        "custom/notification" = {
+        "custom/swaync" = {
           tooltip = false;
           format = "{} {icon}";
 

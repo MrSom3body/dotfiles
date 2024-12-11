@@ -129,6 +129,16 @@
           animation-direction: alternate;
         }
 
+        #privacy {
+          /* Because waybar does not set the module class */
+          color: @base05;
+          background: transparent;
+          border-radius: 15px;
+
+          padding: 0.2em 0.5em;
+          margin: 0.4em 0.2em;
+        }
+
         #wireplumber {
           background: @base01;
         }

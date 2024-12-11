@@ -8,8 +8,6 @@ blindly use them but rather use them as a starting point.
 
 ![Desktop Preview](assets/showcase.png)
 
-![Notifications Preview](assets/showcase-notif.png)
-
 ## 💾 Credits & Resources
 
 I’ve drawn inspiration from these fantastic projects, people and sources:

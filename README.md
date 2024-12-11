@@ -6,7 +6,9 @@ blindly use them but rather use them as a starting point.
 
 ## 🖼️ Showcase
 
-![Desktop Preview](assets/showcase.png)
+![Desktop Preview](assets/desktop.png)
+![Windows Preview](assets/windows.png)
+![Launcher Preview](assets/launcher.png)
 
 ## 💾 Credits & Resources
 

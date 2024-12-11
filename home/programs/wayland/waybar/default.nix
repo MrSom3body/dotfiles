@@ -38,6 +38,36 @@
           "custom/notification"
         ];
 
+        "custom/actions" = {
+          format = "";
+          tooltip-format = "System Actions";
+          on-click = "fuzzel-actions.fish";
+        };
+
+        "hyprland/workspaces" = {
+          show-special = true;
+          special-visible-only = true;
+          format = "{icon}";
+
+          format-icons = {
+            "discord" = "";
+            "lunatask" = "";
+            "monitor" = "󰍹";
+            "obsidian" = "";
+            "spotify" = "";
+          };
+
+          persistent-workspaces = {
+            "*" = 5;
+          };
+        };
+
+        "hyprland/window" = {
+          max-length = 50;
+          format = "{title}";
+          icon = true;
+        };
+
         "clock" = {
           format = "  {:%H:%M}";
           tooltip-format = "  {:%a, %d %b}";
@@ -85,24 +115,6 @@
           # on-scroll-down = "playerctld unshift";
         };
 
-        "hyprland/workspaces" = {
-          show-special = true;
-          special-visible-only = true;
-          format = "{icon}";
-
-          format-icons = {
-            "discord" = "";
-            "lunatask" = "";
-            "monitor" = "󰍹";
-            "obsidian" = "";
-            "spotify" = "";
-          };
-
-          persistent-workspaces = {
-            "*" = 5;
-          };
-        };
-
         "custom/hyprcast" = {
           exec = "~/.config/hypr/scripts/hyprcast.fish -w";
           return-type = "json";
@@ -112,10 +124,30 @@
           signal = 1;
         };
 
-        "hyprland/window" = {
-          max-length = 50;
-          format = "{title}";
-          icon = true;
+        "wireplumber" = {
+          format = "{icon}  {volume}%";
+          format-muted = "󰝟";
+          on-click = "pwvucontrol";
+          format-icons = [
+            "󰕿"
+            "󰖀"
+            "󰕾"
+          ];
+        };
+
+        "group/power" = {
+          orientation = "inherit";
+
+          drawer = {
+            transition-duration = 300;
+            transition-left-to-right = false;
+          };
+
+          modules = [
+            "battery"
+            "idle_inhibitor"
+            "power-profiles-daemon"
+          ];
         };
 
         "battery" = {
@@ -157,18 +189,7 @@
           };
         };
 
-        "wireplumber" = {
-          format = "{icon}  {volume}%";
-          format-muted = "󰝟";
-          on-click = "pwvucontrol";
-          format-icons = [
-            "󰕿"
-            "󰖀"
-            "󰕾"
-          ];
-        };
-
-        "group/power" = {
+        "group/hardware" = {
           orientation = "inherit";
 
           drawer = {
@@ -177,9 +198,11 @@
           };
 
           modules = [
-            "battery"
-            "idle_inhibitor"
-            "power-profiles-daemon"
+            "custom/monitor"
+            "disk"
+            "cpu"
+            "temperature"
+            "memory"
           ];
         };
 
@@ -210,23 +233,6 @@
           interval = 1;
         };
 
-        "group/hardware" = {
-          orientation = "inherit";
-
-          drawer = {
-            transition-duration = 300;
-            transition-left-to-right = false;
-          };
-
-          modules = [
-            "custom/monitor"
-            "disk"
-            "cpu"
-            "temperature"
-            "memory"
-          ];
-        };
-
         "tray" = {
           spacing = 5;
         };
@@ -252,12 +258,6 @@
           on-click-middle = "swaync-client -C";
           on-click-right = "swaync-client -d -sw";
           escape = true;
-        };
-
-        "custom/actions" = {
-          format = "";
-          tooltip-format = "System Actions";
-          on-click = "fuzzel-actions.fish";
         };
       };
     };

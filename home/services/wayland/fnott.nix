@@ -41,13 +41,14 @@ with config.stylix.fonts; let
       body-color = base05 + "ff";
 
       max-timeout = 30;
-      default-timeout = 10;
+      default-timeout = 8;
       idle-timeout = 60;
     };
 
     sections = {
       low = {
         border-color = base03 + "ff";
+        default-timeout = 5;
       };
 
       critical = {

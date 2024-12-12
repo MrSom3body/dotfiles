@@ -36,6 +36,8 @@
 
   networking.hostName = dotfiles.hostname;
 
+  console.keyMap = "de";
+
   # compresses half the ram for use as swap
   zramSwap.enable = true;
 

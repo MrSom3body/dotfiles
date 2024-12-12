@@ -99,12 +99,11 @@
 
         "mpris" = {
           player = "spotify";
-          format = "{player_icon} {status_icon} {dynamic}";
-          interval = 1;
-          dynamic-order = ["title" "artist"];
-          dynamic-separator = "  ";
-          dynamic-len = 30;
-          tooltip-format = "{album} [{position}/{length}]";
+          format = "{player_icon} {status_icon} <b>{title}</b> by <i>{artist}</i>";
+          tooltip-format = "Album: {album}";
+          artist-len = 12;
+          title-len = 22;
+          ellipsis = "...";
           player-icons = {
             default = "";
             spotify = "󰓇";
@@ -113,8 +112,8 @@
           status-icons = {
             paused = "󰏤";
           };
-          # on-scroll-up = "playerctld shift";
-          # on-scroll-down = "playerctld unshift";
+          on-scroll-up = "playerctl volume 0.1+";
+          on-scroll-down = "playerctl volume 0.1-";
         };
 
         "custom/hyprcast" = {

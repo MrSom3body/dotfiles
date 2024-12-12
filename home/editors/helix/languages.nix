@@ -68,6 +68,11 @@
           args = ["format" "--line-length=80" "-"];
         };
       }
+
+      {
+        name = "sql";
+        language-servers = ["sqls"];
+      }
     ];
 
     language-server = {
@@ -127,6 +132,10 @@
 
       superhtml = {
         command = lib.getExe pkgs.superhtml;
+      };
+
+      sqls = {
+        command = pkgs.sqls;
       };
 
       taplo = {

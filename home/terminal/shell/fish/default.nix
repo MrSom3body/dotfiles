@@ -13,6 +13,7 @@
     ];
     functions = {
       fish_greeting = "macchina";
+      highscore = "history | awk '{print $1}' | sort | uniq -c | sort -rn | head -n 10";
     };
   };
 

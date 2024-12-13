@@ -77,7 +77,7 @@
           on-click = "${dotfiles.terminal} -H -- sudo systemctl list-units --failed";
         };
 
-        "clock" = {
+        clock = {
           format = "  {:%H:%M}";
           tooltip-format = "  {:%a, %d %b}";
           # tooltip-format="<tt><small>{calendar}</small></tt>";
@@ -104,7 +104,7 @@
           };
         };
 
-        "mpris" = {
+        mpris = {
           player = "spotify";
           format = "{player_icon} {status_icon} <b>{title}</b> by <i>{artist}</i>";
           tooltip-format = "Album: {album}";
@@ -132,7 +132,7 @@
           signal = 1;
         };
 
-        "backlight" = {
+        backlight = {
           format = "{icon}  {percent}%";
           format-icons = [
             "󱩎 "
@@ -149,7 +149,7 @@
           tooltip = false;
         };
 
-        "wireplumber" = {
+        wireplumber = {
           format = "{icon}  {volume}%";
           format-muted = "󰝟";
           on-click = "pwvucontrol";
@@ -175,7 +175,7 @@
           ];
         };
 
-        "battery" = {
+        battery = {
           states = {
             warning = 30;
             critical = 15;
@@ -193,7 +193,7 @@
           ];
         };
 
-        "idle_inhibitor" = {
+        idle_inhibitor = {
           format = "{icon}";
 
           format-icons = {
@@ -202,7 +202,7 @@
           };
         };
 
-        "power-profiles-daemon" = {
+        power-profiles-daemon = {
           format = "{icon}";
           tooltip-format = "Power profile: {profile}\nDriver: {driver}";
           tooltip = true;
@@ -237,28 +237,28 @@
           on-click = "hyprctl dispatch workspace special:monitor";
         };
 
-        "disk" = {
+        disk = {
           format = "󰋊 {percentage_free}%";
         };
 
-        "cpu" = {
+        cpu = {
           format = "  {usage}%";
           interval = 1;
         };
 
-        "temperature" = {
+        temperature = {
           format = "  {temperatureC}°C";
           interval = 1;
           critical-format = "󰸁 {temperatureC}°C";
           critical-threshold = 90;
         };
 
-        "memory" = {
+        memory = {
           format = "  {used}/{total}GiB";
           interval = 1;
         };
 
-        "tray" = {
+        tray = {
           spacing = 5;
         };
 

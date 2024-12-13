@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     ludusavi
   ];
@@ -7,7 +11,7 @@
     services.ludusavi-backup = {
       Unit.Description = "Ludusavi backup";
       Service = {
-        ExecStart = "ludusavi backup --force";
+        ExecStart = "${lib.getExe pkgs.ludusavi} backup --force";
       };
     };
     timers.ludusavi-backup = {

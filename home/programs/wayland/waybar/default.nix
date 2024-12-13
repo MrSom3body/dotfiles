@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  dotfiles,
   ...
 }
 : {
@@ -25,6 +26,7 @@
         ];
 
         modules-center = [
+          "systemd-failed-units"
           "clock"
           "mpris"
         ];
@@ -68,6 +70,11 @@
           max-length = 50;
           format = "{title}";
           icon = true;
+        };
+
+        systemd-failed-units = {
+          format = "✗ {nr_failed}";
+          on-click = "${dotfiles.terminal} -H -- sudo systemctl list-units --failed";
         };
 
         "clock" = {

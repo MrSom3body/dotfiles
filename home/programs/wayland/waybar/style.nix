@@ -108,6 +108,11 @@
           background: transparent;
         }
 
+        #systemd-failed-units {
+          color: @base00;
+          background: @base08;
+        }
+
         #mpris {
           color: @base00;
           background: @base0C;

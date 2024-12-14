@@ -17,7 +17,7 @@
       };
 
       background = {
-        blur_size = 6;
+        blur_size = 4;
         blur_passes = 2;
       };
 

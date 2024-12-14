@@ -51,11 +51,8 @@
 
       blur = {
         enabled = true;
-        size = 6;
+        size = 4;
         passes = 2;
-        ignore_opacity = true;
-        xray = false;
-        special = false;
       };
     };
 

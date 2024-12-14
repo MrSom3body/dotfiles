@@ -32,7 +32,7 @@
         }
 
         window#waybar {
-          background: alpha(@base00, ${builtins.toString (config.stylix.opacity.desktop - 0.05)});
+          background: alpha(@base00, ${builtins.toString (config.stylix.opacity.desktop - 0.02)});
           transition: all 0.3s ease-in-out;
         }
 

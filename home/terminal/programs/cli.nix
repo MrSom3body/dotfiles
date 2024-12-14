@@ -11,7 +11,6 @@
     # utils
     glow
     speedtest-cli
-    tldr
     wget
   ];
 }

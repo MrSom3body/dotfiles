@@ -74,7 +74,7 @@
 
         systemd-failed-units = {
           format = "✗ {nr_failed}";
-          on-click = "${dotfiles.terminal} -H -- sudo systemctl list-units --failed";
+          on-click = "${dotfiles.terminal} -H -- systemctl list-units --user --failed && sudo systemctl list-units --failed";
         };
 
         clock = {

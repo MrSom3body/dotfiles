@@ -67,4 +67,9 @@ in {
   };
 
   xdg.configFile."fnott/fnott.ini".source = lib.mkForce (pkgs.writeText "fnott.ini" (lib.generators.toINIWithGlobalSection {} settings));
+
+  home.file."bin/fnott-dnd.fish" = {
+    source = ./scripts/fnott-dnd.fish;
+    executable = true;
+  };
 }

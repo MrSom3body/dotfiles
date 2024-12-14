@@ -58,8 +58,9 @@
         "$mainMod SHIFT, P, Change active window in group left, changegroupactive, b"
 
         # Notifications
-        "$mainMod, N, Open notification center, exec, fnottctl actions"
-        "$mainMod SHIFT, N, Open notification center, exec, fnottctl dismiss"
+        "$mainMod, N, Open notification action, exec, fnottctl actions"
+        "$mainMod SHIFT, N, Dismiss notification, exec, fnottctl dismiss"
+        "$mainMod CTRL, N, Toggle do not disturb mode, exec, fnott-dnd.fish"
 
         # Clipboard
         "$mainMod, V, Show clipboard history, exec, ${toggleScript "fuzzel" "fuzzel-clipboard.fish"}"

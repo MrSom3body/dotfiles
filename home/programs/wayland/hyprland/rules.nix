@@ -5,10 +5,12 @@
 
     windowrulev2 = [
       # Smart Gaps
-      "bordersize 0, floating:0, onworkspace:w[tv1] s[false]"
-      "rounding 0, floating:0, onworkspace:w[tv1] s[false]"
-      "bordersize 0, floating:0, onworkspace:f[1] s[false]"
-      "rounding 0, floating:0, onworkspace:f[1] s[false]"
+      "noborder 1, floating:0, onworkspace:w[tv1] s[false]"
+      "norounding 1, floating:0, onworkspace:w[tv1] s[false]"
+      "noshadow 1, floating:0, onworkspace:w[tv1] s[false]"
+      "noborder 1, floating:0, onworkspace:f[1] s[false]"
+      "norounding 1, floating:0, onworkspace:f[1] s[false]"
+      "noshadow 1, floating:0, onworkspace:w[f1] s[false]"
 
       # Ignore maximize requests from apps
       "suppressevent maximize, class:.*"

@@ -63,7 +63,7 @@
         "$mainMod CTRL, N, Toggle do not disturb mode, exec, fnott-dnd"
 
         # Clipboard
-        "$mainMod, V, Show clipboard history, exec, ${toggleScript "fuzzel" "fuzzel-clipboard.fish"}"
+        "$mainMod, V, Show clipboard history, exec, ${toggleScript "fuzzel" "fuzzel-clipboard"}"
         "$mainMod CTRL, V, Clear clipboard history, exec, uwsm app -- rm $XDG_CACHE_HOME/cliphist/db"
 
         # Screenshots

@@ -17,6 +17,11 @@ set options $options w/waybar
 argparse $options -- $argv
 or return
 
+if set -ql _flag_h
+    print_help
+    exit 0
+end
+
 set fnott_state (journalctl --user -u fnott.service -b -r | rg --max-count 1 "(un)?pausing" -o)
 
 function toggle

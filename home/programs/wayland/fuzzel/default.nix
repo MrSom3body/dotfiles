@@ -29,9 +29,26 @@
     jq
   ];
 
-  home.file."bin" = {
-    source = ./scripts;
-    recursive = true;
-    executable = true;
+  home.file = {
+    "bin/fuzzel-actions" = {
+      source = ./scripts/fuzzel-actions.fish;
+      executable = true;
+    };
+    "bin/fuzzel-clipboard" = {
+      source = ./scripts/fuzzel-clipboard.fish;
+      executable = true;
+    };
+    "bin/fuzzel-files" = {
+      source = ./scripts/fuzzel-files.fish;
+      executable = true;
+    };
+    "bin/fuzzel-icons" = {
+      source = ./scripts/fuzzel-icons.fish;
+      executable = true;
+    };
+    "bin/fuzzel-windows" = {
+      source = ./scripts/fuzzel-windows.fish;
+      executable = true;
+    };
   };
 }

@@ -36,11 +36,11 @@
 
         # Launcher
         "$mainMod, D, Open application launcher, exec, ${toggle "fuzzel"}"
-        "$mainMod, SPACE, Open file/directory picker, exec, ${toggleScript "fuzzel" "fuzzel-files.fish"}"
-        "$mainMod, TAB, Open window switcher, exec, ${toggleScript "fuzzel" "fuzzel-windows.fish"}"
-        "ALT, TAB, Open window switcher, exec, ${toggleScript "fuzzel" "fuzzel-windows.fish"}"
-        "$mainMod CTRL, Q, Open power menu, exec, ${toggleScript "fuzzel" "fuzzel-actions.fish"}"
-        "$mainMod, PERIOD, Open symbols search, exec, ${toggleScript "fuzzel" "fuzzel-icons.fish"}"
+        "$mainMod, SPACE, Open file/directory picker, exec, ${toggleScript "fuzzel" "fuzzel-files"}"
+        "$mainMod, TAB, Open window switcher, exec, ${toggleScript "fuzzel" "fuzzel-windows"}"
+        "ALT, TAB, Open window switcher, exec, ${toggleScript "fuzzel" "fuzzel-windows"}"
+        "$mainMod CTRL, Q, Open power menu, exec, ${toggleScript "fuzzel" "fuzzel-actions"}"
+        "$mainMod, PERIOD, Open symbols search, exec, ${toggleScript "fuzzel" "fuzzel-icons"}"
 
         # Actions
         "$mainMod, Q, Close focused window, killactive"

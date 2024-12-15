@@ -39,7 +39,7 @@
           "group/power"
           "group/hardware"
           "tray"
-          "custom/swaync"
+          "custom/fnott"
         ];
 
         "custom/actions" = {
@@ -260,6 +260,17 @@
 
         tray = {
           spacing = 5;
+        };
+
+        "custom/fnott" = {
+          return-type = "json";
+          exec = "fnott-dnd -w";
+          exec-if = "which fnott-dnd";
+          interval = "once";
+          signal = 2;
+
+          on-click = "fnottctl dismiss";
+          on-click-right = "fnott-dnd";
         };
 
         "custom/swaync" = {

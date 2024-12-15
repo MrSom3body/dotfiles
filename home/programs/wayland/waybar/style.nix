@@ -247,6 +247,15 @@
           background-color: @base0A;
         }
 
+        #custom-fnott {
+          background: @base01;
+        }
+
+        #custom-fnott.dnd-on {
+          color: @base00;
+          background: @base0A;
+        }
+
         #custom-swaync {
           background: @base01;
         }

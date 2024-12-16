@@ -6,6 +6,8 @@
       systemd.enable = true;
     };
 
+    tmp.cleanOnBoot = true;
+
     # use latest kernel
     kernelPackages = pkgs.linuxPackages_latest;
 

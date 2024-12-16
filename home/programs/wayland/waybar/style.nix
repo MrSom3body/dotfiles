@@ -65,6 +65,10 @@
           padding: 0.2em 0.5em;
         }
 
+        window#waybar.battery-critical {
+          background: mix(@base00, @base08, 0.3);
+        }
+
         #custom-actions {
           font-size: 1.3em;
           color: @base05;

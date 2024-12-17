@@ -9,6 +9,7 @@
     libnotify
 
     # utils
+    devenv
     glow
     speedtest-cli
     wget

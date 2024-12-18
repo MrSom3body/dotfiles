@@ -22,6 +22,7 @@
     };
 
     specialArgs = {
+      inherit self;
       inherit pkgs-stable;
       inherit inputs;
       inherit dotfiles;
@@ -34,17 +35,6 @@
         modules = [
           ./hosts/${dotfiles.hostname}
         ];
-      };
-    };
-
-    checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-      src = ./.;
-      hooks = {
-        alejandra.enable = true;
-        deadnix.enable = true;
-        markdownlint.enable = true;
-        nil.enable = true;
-        statix.enable = true;
       };
     };
 
@@ -68,6 +58,19 @@
         tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "status"
         git status --short
       '';
+    };
+
+    packages.x86_64-linux = import ./pkgs {inherit pkgs;};
+
+    checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+      src = ./.;
+      hooks = {
+        alejandra.enable = true;
+        deadnix.enable = true;
+        markdownlint.enable = true;
+        nil.enable = true;
+        statix.enable = true;
+      };
     };
   };
 

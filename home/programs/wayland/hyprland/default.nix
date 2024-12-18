@@ -1,4 +1,5 @@
 {
+  self,
   inputs,
   pkgs,
   ...
@@ -30,11 +31,10 @@
       wl-screenrec
       wtype
     ])
-    ++ (with inputs.hyprland-contrib.packages.${pkgs.system}; [
-      grimblast
-    ])
     ++ [
+      inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       inputs.hyprpicker.packages.${pkgs.system}.default
+      self.packages.${pkgs.system}.wl-ocr
     ];
 
   home.file.".config/hypr/scripts" = {

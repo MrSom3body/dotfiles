@@ -13,8 +13,9 @@
       general = {
         hide_cursor = true;
         grace = 0;
-        enable_fingerprint = true;
       };
+
+      auth.fingerprint.enabled = true;
 
       background = {
         blur_size = 4;

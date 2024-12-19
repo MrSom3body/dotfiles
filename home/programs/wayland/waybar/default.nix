@@ -59,6 +59,11 @@
             "monitor" = "󰍹";
             "obsidian" = "";
             "spotify" = "";
+
+            "active" = "";
+            "empty" = "";
+            "persistent" = "";
+            "urgent" = "";
           };
 
           persistent-workspaces = {

@@ -32,17 +32,23 @@
         }
 
         window#waybar {
-          background: alpha(@base00, ${builtins.toString (config.stylix.opacity.desktop - 0.02)});
+          ${
+          if config.stylix.opacity.desktop < 1
+          then ''
+            background: alpha(@base00, ${builtins.toString (config.stylix.opacity.desktop - 0.02)});
+          ''
+          else ""
+        }
           transition: all 0.3s ease-in-out;
         }
 
         .module {
           color: @base05;
-          background: transparent;
-          border-radius: 15px;
+          background: @base01;
+          border-radius: ${rounding}px;
 
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em;
+          padding: 0.2rem 0.5rem;
+          margin: 0.4rem 0.2rem;
         }
 
         .modules-left:first-child {
@@ -62,7 +68,7 @@
         tooltip label {
           color: @base05;
 
-          padding: 0.2em 0.5em;
+          padding: 0.2rem 0.5rem;
         }
 
         window#waybar.battery-critical {
@@ -70,42 +76,45 @@
         }
 
         #custom-actions {
+          color: @base0B;
           font-size: 1.3em;
-          color: @base05;
-          padding: 0.2rem 0.5rem;
-        }
-
-        #workspaces {
-          background: @base01;
         }
 
         #workspaces button {
           color: @base05;
-          border-radius: ${rounding}px;
 
-          padding: 0.05em;
-          margin: 0.2em 0.3em;
+          padding: 0.05rem;
+          margin: 0.2rem 0.3rem;
           transition: all 0.3s ease-in-out;
         }
 
         #workspace button:first-child {
-          margin: 0.2em 0.3em 0.2em 0px;
+          margin: 0.2rem 0.3rem 0.2rem 0px;
         }
 
         #workspace button:last-child {
-          margin: 0.2em 0px 0.2em 0.3em;
+          margin: 0.2rem 0px 0.2rem 0.3rem;
+        }
+
+        #workspaces button.empty {
+          color: @base03;
+        }
+
+        #workspaces button.visible {
+          color: @base0E;
         }
 
         #workspaces button.active {
-          color: @base00;
-          background: @base0D;
-
-          min-width: 3em;
+          color: @base0D;
         }
 
         #workspaces button.special {
-          color: @base00;
-          background: @base0D;
+          color: @base0C;
+        }
+
+        #workspaces button:hover {
+          color: @base0B;
+          background: transparent;
         }
 
         window#waybar.empty #window {
@@ -142,27 +151,15 @@
           /* Because waybar does not set the module class */
           color: @base05;
           background: transparent;
-          border-radius: 15px;
+          border-radius: ${rounding}px;
 
-          padding: 0.2em 0.5em;
-          margin: 0.4em 0.2em;
-        }
-
-        #backlight {
-          background: @base01;
-        }
-
-        #wireplumber {
-          background: @base01;
+          padding: 0.2rem 0.5rem;
+          margin: 0.4rem 0.2rem;
         }
 
         #wireplumber.muted {
           color: @base00;
           background: @base0A;
-        }
-
-        #battery {
-          background: @base01;
         }
 
         #battery.warning {
@@ -217,10 +214,6 @@
           background: @base09;
         }
 
-        #custom-monitor {
-          background: @base01;
-        }
-
         #disk,
         #cpu,
         #temperature,
@@ -238,8 +231,8 @@
 
         #tray menu,
         #tray menuitem {
-          padding: 0.25em;
-          margin: 0.1em;
+          padding: 0.25rem;
+          margin: 0.1rem;
         }
 
         #tray > .passive {
@@ -251,17 +244,9 @@
           background-color: @base0A;
         }
 
-        #custom-fnott {
-          background: @base01;
-        }
-
         #custom-fnott.dnd-on {
           color: @base00;
           background: @base0A;
-        }
-
-        #custom-swaync {
-          background: @base01;
         }
 
         #custom-swaync.dnd-notification,

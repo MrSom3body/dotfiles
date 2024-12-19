@@ -8,10 +8,10 @@
     path = "/home/karun/dotfiles"; # Path to your dotfiles
 
     # Appearance settings
-    theme = "gruvbox-dark-medium"; # Theme for your system (find more themes at https://github.com/tinted-theming/schemes)
+    theme = "gruvbox-material-dark-medium"; # Theme for your system (find more themes at https://github.com/tinted-theming/schemes)
     polarity = "dark"; # Set light or dark mode
     wallpaper = ./walls/gruvbox/secluded-grove.png; # Wallpaper for WMs
-    rounding = 15; # Window rounding (if supported)
+    rounding = 5; # Window rounding (if supported)
     fonts = {
       # fonts must be Nerd Fonts
       mono = {

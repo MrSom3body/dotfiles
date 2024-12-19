@@ -4,7 +4,8 @@
   ...
 }: {
   services.swaync.style = let
-    rounding = builtins.toString dotfiles.rounding;
+    radius = builtins.toString dotfiles.border.radius;
+    border-size = builtins.toString dotfiles.border.size;
   in
     with config.lib.stylix.colors.withHashtag; # css
     
@@ -28,7 +29,7 @@
           color: ${base05};
           text-shadow: none;
           padding: 0;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
           margin-top: 5px;
           margin-right: 5px;
           box-shadow: none;
@@ -46,8 +47,8 @@
 
         .notification-row .notification-background .notification {
           /* The actual notification */
-          border-radius: ${rounding}px;
-          border: 3px solid ${base0D};
+          border-radius: ${radius}px;
+          border: ${border-size}px solid ${base0D};
           padding: 0;
           transition: background 0.15s ease-in-out;
           background: ${base00};
@@ -96,7 +97,7 @@
           .notification
           .notification-default-action {
           /* The large action that also displays the notification summary and body */
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
         }
 
         .notification-row
@@ -114,7 +115,7 @@
           .notification-default-action
           .notification-content {
           background: transparent;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
           padding: 4px;
         }
 
@@ -208,7 +209,7 @@
           /* The "extra" optional bottom notification image */
           margin-top: 4px;
           background-color: white;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
           -gtk-icon-effect: none;
         }
 
@@ -232,8 +233,8 @@
           background: ${base00};
           color: ${base05};
           caret-color: ${base04};
-          border: 3px solid ${base0D};
-          border-radius: ${rounding}px;
+          border: ${border-size}px solid ${base0D};
+          border-radius: ${radius}px;
         }
 
         .notification-row
@@ -245,8 +246,8 @@
           .inline-reply-button {
           margin-left: 4px;
           background: ${base00};
-          border: 3px solid ${base0D};
-          border-radius: ${rounding}px;
+          border: ${border-size}px solid ${base0D};
+          border-radius: ${radius}px;
           color: ${base05};
         }
 
@@ -259,7 +260,7 @@
           .inline-reply-button:disabled {
           background: ${base02};
           color: ${base03};
-          border: 3px solid ${base0D};
+          border: ${border-size}px solid ${base0D};
           border-color: transparent;
         }
 
@@ -362,8 +363,8 @@
           /* The Control Center which contains the old notifications + widgets */
           background: ${base00};
           color: ${base05};
-          border-radius: ${rounding}px;
-          border: 3px solid ${base0D};
+          border-radius: ${radius}px;
+          border: ${border-size}px solid ${base0D};
         }
 
         .control-center .control-center-list-placeholder {
@@ -427,7 +428,7 @@
           /* border: 3px solid ${base0D}; */
           border: none;
           box-shadow: none;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
         }
 
         .widget-title > button:hover {
@@ -443,9 +444,9 @@
 
         .widget-dnd > switch {
           font-size: initial;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
           background: ${base00};
-          border: 3px solid ${base0D};
+          border: ${border-size}px solid ${base0D};
           box-shadow: none;
         }
 
@@ -455,7 +456,7 @@
 
         .widget-dnd > switch slider {
           background: ${base00};
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
         }
 
         /* Label widget */
@@ -479,7 +480,7 @@
           padding: 16px;
           margin: 16px 20px;
           background-color: @mpris-album-art-overlay;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
         }
 
@@ -489,7 +490,7 @@
         }
 
         .widget-mpris .widget-mpris-player .widget-mpris-album-art {
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
         }
 
@@ -522,14 +523,14 @@
         .widget-buttons-grid {
           padding: 8px;
           margin: 8px;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
           background-color: ${base01};
         }
 
         .widget-buttons-grid > flowbox > flowboxchild > button {
           color: ${base05};
           background: ${base00};
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
           transition: all 0.3s ease-in-out;
         }
 
@@ -559,7 +560,7 @@
           background-color: @background;
           padding: 8px;
           margin: 8px;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
         }
 
         .AnyName>button {
@@ -582,20 +583,20 @@
           background-color: ${base01};
           padding: 8px;
           margin: 8px 8px 0 8px;
-          border-radius: ${rounding}px ${rounding}px 0 0;
+          border-radius: ${radius}px ${radius}px 0 0;
         }
 
         .widget-volume > box > button {
           background: transparent;
           border: none;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
         }
 
         .per-app-volume {
           background-color: ${base01};
           padding: 4px 8px 8px 8px;
           margin: 0 8px 8px 8px;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
         }
 
         /* Backlight widget */
@@ -607,7 +608,7 @@
         }
 
         .widget-backlight.KB {
-          border-radius: 0 0 ${rounding}px ${rounding}px;
+          border-radius: 0 0 ${radius}px ${radius}px;
           margin: 0 8px 8px 8px;
         }
 
@@ -622,9 +623,9 @@
           color: ${base05};
           text-shadow: none;
           background: ${base00};
-          border: 3px solid ${base0D};
+          border: ${border-size}px solid ${base0D};
           box-shadow: none;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
         }
 
         .widget-inhibitors > button:hover {

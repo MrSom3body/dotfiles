@@ -27,8 +27,8 @@ with config.stylix.fonts; let
       border-color = base0D + "ff";
       progress-bar-color = base02 + "ff";
 
-      border-size = 3;
-      border-radius = dotfiles.rounding;
+      border-size = dotfiles.border.size;
+      border-radius = dotfiles.border.radius;
 
       title-format = "<i>%a%A<i>";
       title-font = "${sansSerif.name}:size=${toString sizes.popups}";

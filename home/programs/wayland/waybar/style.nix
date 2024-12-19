@@ -4,7 +4,8 @@
   ...
 }: {
   programs.waybar.style = let
-    rounding = builtins.toString dotfiles.rounding;
+    radius = builtins.toString dotfiles.border.radius;
+    border-size = builtins.toString dotfiles.border.size;
   in
     with config.lib.stylix.colors.withHashtag; # css
     
@@ -45,7 +46,7 @@
         .module {
           color: @base05;
           background: @base01;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
 
           padding: 0.2rem 0.5rem;
           margin: 0.4rem 0.2rem;
@@ -61,8 +62,8 @@
 
         tooltip {
           background: @base00;
-          border: 3px solid @base0D;
-          border-radius: ${rounding}px;
+          border: ${border-size}px solid @base0D;
+          border-radius: ${radius}px;
         }
 
         tooltip label {
@@ -151,7 +152,7 @@
           /* Because waybar does not set the module class */
           color: @base05;
           background: transparent;
-          border-radius: ${rounding}px;
+          border-radius: ${radius}px;
 
           padding: 0.2rem 0.5rem;
           margin: 0.4rem 0.2rem;

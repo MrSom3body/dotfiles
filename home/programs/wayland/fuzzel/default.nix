@@ -19,8 +19,8 @@
       };
 
       border = {
-        width = 3;
-        radius = dotfiles.rounding;
+        width = dotfiles.border.size;
+        inherit (dotfiles.border) radius;
       };
     };
   };

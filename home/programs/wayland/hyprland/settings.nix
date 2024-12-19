@@ -28,7 +28,7 @@
     ];
 
     general = {
-      border_size = 3;
+      border_size = dotfiles.border.size;
       gaps_in = 5;
       gaps_out = 10;
       layout = "dwindle";
@@ -41,7 +41,7 @@
     };
 
     decoration = {
-      inherit (dotfiles) rounding;
+      rounding = dotfiles.border.radius;
 
       # active_opacity = config.stylix.opacity.applications;
       # inactive_opacity = 0.75;

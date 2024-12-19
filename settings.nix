@@ -11,7 +11,12 @@
     theme = "gruvbox-material-dark-medium"; # Theme for your system (find more themes at https://github.com/tinted-theming/schemes)
     polarity = "dark"; # Set light or dark mode
     wallpaper = ./walls/gruvbox/secluded-grove.png; # Wallpaper for WMs
-    rounding = 5; # Window rounding (if supported)
+
+    border = {
+      size = 2;
+      radius = 5;
+    };
+
     fonts = {
       # fonts must be Nerd Fonts
       mono = {

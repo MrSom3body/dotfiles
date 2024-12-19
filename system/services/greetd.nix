@@ -16,9 +16,6 @@
 
   programs.regreet = {
     enable = true;
-    settings = {
-      background.fit = "Cover";
-    };
   };
 
   # unlock GPG keyring on login

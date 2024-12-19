@@ -14,7 +14,7 @@
 
     border = {
       size = 2;
-      radius = 5;
+      radius = 7;
     };
 
     fonts = {

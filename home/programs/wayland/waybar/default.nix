@@ -45,7 +45,7 @@
         "custom/actions" = {
           format = "";
           tooltip-format = "System Actions";
-          on-click = "fuzzel-actions.fish";
+          on-click = "fuzzel-actions";
         };
 
         "hyprland/workspaces" = {

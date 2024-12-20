@@ -61,6 +61,7 @@
             "spotify" = "";
 
             "active" = "";
+            "default" = "";
             "empty" = "";
             "persistent" = "";
             "urgent" = "";

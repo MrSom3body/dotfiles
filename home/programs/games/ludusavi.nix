@@ -17,8 +17,9 @@
     timers.ludusavi-backup = {
       Unit.Description = "Ludusavi backup timer";
       Timer = {
-        OnCalendar = "*-*-* 00:00:00";
+        OnCalendar = "daily";
         Unit = "ludusavi-backup.service";
+        Persistent = true;
       };
       Install.WantedBy = ["timers.target"];
     };

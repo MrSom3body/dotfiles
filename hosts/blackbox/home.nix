@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     # home manager stuff
     ../../home
@@ -39,4 +39,18 @@
     ../../home/style/stylix.nix
     ../../home/style/gtk.nix
   ];
+
+  systemd.user.services.proton-drive = {
+    Unit = {
+      Description = "Mount a Proton Drive Folder automatically";
+      After = ["network-online.target"];
+    };
+    Service = {
+      Type = "notify";
+      ExecStartPre = "/usr/bin/env mkdir -p %h/ProtonDrive";
+      ExecStart = "${pkgs.rclone}/bin/rclone --config=%h/.config/rclone/rclone.conf --vfs-cache-mode writes mount --allow-non-empty \"proton:Computers/blackbox\" \"ProtonDrive\"";
+      ExecStop = "/bin/fusermount -u %h/ProtonDrive/%i";
+    };
+    Install.WantedBy = ["default.target"];
+  };
 }

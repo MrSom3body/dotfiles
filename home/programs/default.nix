@@ -27,5 +27,6 @@
     pika-backup
     proton-pass
     protonvpn-gui
+    rclone
   ];
 }

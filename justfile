@@ -1,7 +1,17 @@
 alias u := upgrade
 alias update := upgrade
 
-upgrade:
-    nh os switch -u
-    git add flake.lock
-    git commit flake.lock -m "flake.lock: update"
+default:
+    @just --list
+
+switch:
+    nh os switch -a
+
+test:
+    nh os test -a
+
+boot:
+    nh os boot -a
+
+upgrade: 
+    nh os switch -ua

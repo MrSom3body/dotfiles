@@ -38,6 +38,8 @@
       size = 24;
     };
 
+    targets.fish.enable = false;
+
     # opacity = {
     #   applications = 0.95;
     #   desktop = 0.95;

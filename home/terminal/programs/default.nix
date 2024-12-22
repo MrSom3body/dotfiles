@@ -12,7 +12,6 @@
     ./ripgrep.nix
     ./tealdeer.nix
     ./thefuck.nix
-    ./trash-cli.nix
     ./xdg.nix
     ./yazi.nix
   ];

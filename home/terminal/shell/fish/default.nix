@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  dotfiles,
+  ...
+}: {
   programs.fish = {
     enable = true;
 
@@ -15,33 +19,49 @@
 
     functions = {
       fish_greeting = "macchina";
+
+      cat = {
+        body = "bat $argv";
+        wraps = "bat";
+      };
       highscore = {
         body = "history | awk '{print $1}' | sort | uniq -c | sort -rn | head -n 10";
-        description = "See your most used fish commands.";
+        description = "See your most used fish commands";
       };
-
-      ip = {
-        body = "ip -c";
-        wraps = "ip";
-      };
-
       icat = {
         body = "${pkgs.libsixel}/bin/img2sixel";
         wraps = "img2sixel";
-        description = "View Images in your terminal.";
+        description = "View Images in your terminal";
+      };
+      ip = {
+        body = "command ip -c $argv";
+        wraps = "ip";
+      };
+      ls = {
+        body = "eza --icons auto --git --group-directories-first --header $argv";
+        wraps = "eza";
+      };
+      man = {
+        body = "batman $argv";
+        wraps = "batman";
+      };
+      rm = {
+        body = "trash-put %argv";
+        wraps = "trash-put";
+      };
+      tree = {
+        body = "eza -t $argv";
+        wraps = "eza";
       };
     };
 
     shellAbbrs = {
+      d = "cd ${dotfiles.path}";
+
       l = "ls";
-      la = {
-        setCursor = "%";
-        expansion = "ls -a%";
-      };
-      ll = {
-        setCursor = "%";
-        expansion = "ls -l%";
-      };
+      la = "ls -a";
+      ll = "ls -l";
+      lla = "ls -la";
 
       # Git Stuff
       gti = "git"; # because I can't type
@@ -55,7 +75,7 @@
         expansion = "git commit -m \"%\"";
       };
       gd = "git diff";
-      gds = "git diff -S";
+      gds = "git diff --staged";
       gf = "git commit --amend --no-edit";
       gg = "git log --all --decorate --graph --oneline";
       gl = "git log --oneline";

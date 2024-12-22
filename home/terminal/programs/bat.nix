@@ -6,9 +6,4 @@
       prettybat
     ];
   };
-
-  home.shellAliases = {
-    cat = "bat";
-    man = "batman";
-  };
 }

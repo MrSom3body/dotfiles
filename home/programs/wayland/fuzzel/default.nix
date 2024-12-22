@@ -19,8 +19,8 @@
       };
 
       border = {
-        width = dotfiles.border.size;
-        inherit (dotfiles.border) radius;
+        width = dotfiles.appearance.border.size;
+        inherit (dotfiles.appearance.border) radius;
       };
     };
   };

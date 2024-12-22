@@ -82,7 +82,7 @@
       # quotes
       inherit (config.lib.formats.rasi) mkLiteral;
       opacity = lib.toHexString (builtins.floor ((config.stylix.opacity.popups - 0.0) * 255));
-      border-radius = mkLiteral (builtins.toString dotfiles.border.radius + "px");
+      border-radius = mkLiteral (builtins.toString dotfiles.appearance.border.radius + "px");
     in {
       "*" = {
         margin = mkLiteral "0";

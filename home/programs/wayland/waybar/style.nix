@@ -4,8 +4,8 @@
   ...
 }: {
   programs.waybar.style = let
-    radius = builtins.toString dotfiles.border.radius;
-    border-size = builtins.toString dotfiles.border.size;
+    radius = builtins.toString dotfiles.appearance.border.radius;
+    border-size = builtins.toString dotfiles.appearance.border.size;
   in
     with config.lib.stylix.colors.withHashtag; # css
     

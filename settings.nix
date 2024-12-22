@@ -8,28 +8,30 @@
     path = "/home/karun/dotfiles"; # Path to your dotfiles
 
     # Appearance settings
-    theme = "gruvbox-material-dark-medium"; # Theme for your system (find more themes at https://github.com/tinted-theming/schemes)
-    polarity = "dark"; # Set light or dark mode
-    wallpaper = ./walls/gruvbox/secluded-grove.png; # Wallpaper for WMs
+    appearance = {
+      theme = "gruvbox-material-dark-medium"; # Theme for your system (find more themes at https://github.com/tinted-theming/schemes)
+      polarity = "dark"; # Set light or dark mode
+      wallpaper = ./walls/gruvbox/secluded-grove.png; # Wallpaper for WMs
 
-    border = {
-      size = 2;
-      radius = 7;
-    };
-
-    fonts = {
-      # fonts must be Nerd Fonts
-      mono = {
-        # Monospace font
-        name = "Fira Code Nerd Font";
-        pkgName = "fira-code";
-        size = 13;
+      border = {
+        size = 2;
+        radius = 7;
       };
-      sans = {
-        # Sans-serif font
-        name = "Ubuntu Nerd Font";
-        pkgName = "ubuntu";
-        size = 14;
+
+      fonts = {
+        # fonts must be Nerd Fonts
+        mono = {
+          # Monospace font
+          name = "Fira Code Nerd Font";
+          pkgName = "fira-code";
+          size = 13;
+        };
+        sans = {
+          # Sans-serif font
+          name = "Ubuntu Nerd Font";
+          pkgName = "ubuntu";
+          size = 14;
+        };
       };
     };
 

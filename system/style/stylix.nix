@@ -6,25 +6,25 @@
 }: {
   stylix = {
     enable = true;
-    image = dotfiles.wallpaper;
-    inherit (dotfiles) polarity;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/${dotfiles.theme}.yaml";
+    image = dotfiles.appearance.wallpaper;
+    inherit (dotfiles.appearance) polarity;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/${dotfiles.appearance.theme}.yaml";
 
-    fonts = {
-      sizes = with dotfiles.fonts; {
+    fonts = with dotfiles.appearance.fonts; {
+      sizes = {
         applications = sans.size;
         desktop = sans.size;
         popups = sans.size;
         terminal = mono.size;
       };
-      sansSerif = with dotfiles.fonts.sans; {
-        package = pkgs.nerd-fonts.${pkgName};
-        inherit name;
+      sansSerif = {
+        package = pkgs.nerd-fonts.${sans.pkgName};
+        inherit (sans) name;
       };
       serif = config.stylix.fonts.sansSerif;
-      monospace = with dotfiles.fonts.mono; {
-        package = pkgs.nerd-fonts.${pkgName};
-        inherit name;
+      monospace = {
+        package = pkgs.nerd-fonts.${mono.pkgName};
+        inherit (mono) name;
       };
       emoji = {
         package = pkgs.noto-fonts-emoji;

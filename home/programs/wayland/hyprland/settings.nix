@@ -28,7 +28,7 @@
     ];
 
     general = {
-      border_size = dotfiles.border.size;
+      border_size = dotfiles.appearance.border.size;
       gaps_in = 5;
       gaps_out = 10;
       layout = "dwindle";
@@ -41,7 +41,7 @@
     };
 
     decoration = {
-      rounding = dotfiles.border.radius;
+      rounding = dotfiles.appearance.border.radius;
 
       # active_opacity = config.stylix.opacity.applications;
       # inactive_opacity = 0.75;
@@ -106,8 +106,8 @@
         "col.border_locked_inactive" = rgb base03;
         groupbar = {
           text_color = rgb base00;
-          font_size = dotfiles.fonts.sans.size;
-          height = builtins.floor (dotfiles.fonts.sans.size * 1.5);
+          font_size = dotfiles.appearance.fonts.sans.size;
+          height = builtins.floor (dotfiles.appearance.fonts.sans.size * 1.5);
 
           "col.active" = cfg.group."col.border_active";
           "col.inactive" = cfg.group."col.border_inactive";

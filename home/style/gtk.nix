@@ -15,7 +15,7 @@
     iconTheme = {
       package = pkgs.papirus-icon-theme;
       name =
-        if dotfiles.polarity == "dark"
+        if dotfiles.appearance.polarity == "dark"
         then "Papirus-Dark"
         else "Papirus-Light";
     };

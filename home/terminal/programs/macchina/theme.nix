@@ -6,7 +6,7 @@
       padding = 0
       hide_ascii = true
       prefer_small_ascii = false
-      separator = "->"
+      separator = ""
       key_color = "Green"
       separator_color = "Green"
 
@@ -25,7 +25,7 @@
       [box]
       title = ""
       border = "round"
-      visible = true
+      visible = false
 
       [box.inner_margin]
       x = 1

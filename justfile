@@ -1,11 +1,11 @@
+alias b := boot
 alias u := upgrade
+alias s := switch
+alias t := test
 alias update := upgrade
 
 default:
     @just --list
-
-switch:
-    nh os switch -a
 
 test:
     nh os test -a
@@ -15,3 +15,6 @@ boot:
 
 upgrade: 
     nh os switch -ua
+
+switch:
+    nh os switch -a

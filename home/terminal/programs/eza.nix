@@ -7,6 +7,5 @@
       "--group-directories-first"
       "--header"
     ];
-    enableFishIntegration = false;
   };
 }

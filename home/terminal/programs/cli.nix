@@ -12,7 +12,6 @@
     devenv
     glow
     speedtest-cli
-    trash-cli
     wget
   ];
 }

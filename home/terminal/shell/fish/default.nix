@@ -20,38 +20,9 @@
     functions = {
       fish_greeting = "macchina";
 
-      cat = {
-        body = "bat $argv";
-        wraps = "bat";
-      };
       highscore = {
         body = "history | awk '{print $1}' | sort | uniq -c | sort -rn | head -n 10";
         description = "See your most used fish commands";
-      };
-      icat = {
-        body = "${pkgs.libsixel}/bin/img2sixel";
-        wraps = "img2sixel";
-        description = "View Images in your terminal";
-      };
-      ip = {
-        body = "command ip -c $argv";
-        wraps = "ip";
-      };
-      ls = {
-        body = "eza --icons auto --git --group-directories-first --header $argv";
-        wraps = "eza";
-      };
-      man = {
-        body = "batman $argv";
-        wraps = "batman";
-      };
-      rm = {
-        body = "trash-put %argv";
-        wraps = "trash-put";
-      };
-      tree = {
-        body = "eza -t $argv";
-        wraps = "eza";
       };
     };
 

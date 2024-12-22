@@ -18,7 +18,8 @@ in {
       co = "checkout";
       d = "diff";
       ds = "diff --staged";
-      l = "log";
+      l = "log --oneline";
+      ll = "log";
       p = "push";
       pf = "push --force-with-lease";
       pl = "pull";

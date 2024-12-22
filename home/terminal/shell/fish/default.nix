@@ -42,21 +42,22 @@
         setCursor = "%";
         expansion = "ls -l%";
       };
-      ip = "ip -c";
 
       # Git Stuff
       gti = "git"; # because I can't type
       g = "git";
       ga = "git add";
+      gb = "git branch";
       gc = "git commit";
-      gca = "git commit --ammend";
+      gca = "git commit --amend";
       gcm = {
         setCursor = "%";
         expansion = "git commit -m \"%\"";
       };
-      gco = "git checkout";
       gd = "git diff";
       gds = "git diff -S";
+      gf = "git commit --amend --no-edit";
+      gg = "git log --all --decorate --graph --oneline";
       gl = "git log --oneline";
       gll = "git log";
       gp = "git push";
@@ -66,8 +67,6 @@
       gs = "git status --short";
       gss = "git status --short";
       gsw = "git switch";
-      gf = "git commit --amend --no-edit";
-      gg = "git log --all --decorate --graph --oneline";
     };
   };
 

@@ -6,6 +6,7 @@
     (pkgs.jetbrains.plugins.addPlugins jetbrains.datagrip plugins)
     (pkgs.jetbrains.plugins.addPlugins jetbrains.idea-ultimate plugins)
     (pkgs.jetbrains.plugins.addPlugins jetbrains.phpstorm plugins)
+    pkgs.jetbrains-toolbox
 
     # JDKs
     temurin-bin

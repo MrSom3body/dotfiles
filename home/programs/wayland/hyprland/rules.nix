@@ -67,7 +67,7 @@
 
       # Games
       "immediate, class:^(Minecraft.*)$"
-      "immediate, class:^(steam_app_*)$"
+      "immediate, class:^(steam_app_.*)$"
       "immediate, class:^(hl2_linux)$" # Left 4 Dead 2
     ];
 

@@ -1,6 +1,6 @@
 {
-  config,
   inputs,
+  config,
   ...
 }: {
   imports =

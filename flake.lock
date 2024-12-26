@@ -322,6 +322,26 @@
         "type": "github"
       }
     },
+    "gotcha": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1735244871,
+        "narHash": "sha256-5ZhxvFwVica6sHrsgnzGms2tcqX0hRcgxaujhwjuaW0=",
+        "owner": "MrSom3body",
+        "repo": "gotcha",
+        "rev": "dea298c5c82a05bd0d308791d6739df680bebdc8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MrSom3body",
+        "repo": "gotcha",
+        "type": "github"
+      }
+    },
     "helix": {
       "inputs": {
         "crane": "crane",
@@ -1082,6 +1102,7 @@
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
+        "gotcha": "gotcha",
         "helix": "helix",
         "home-manager": "home-manager",
         "hypridle": "hypridle",

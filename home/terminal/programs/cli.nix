@@ -1,17 +1,25 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    # archives
-    zip
-    unzip
-    unrar
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  home.packages = with pkgs;
+    [
+      # archives
+      zip
+      unzip
+      unrar
 
-    # misc
-    libnotify
+      # misc
+      libnotify
 
-    # utils
-    devenv
-    glow
-    speedtest-cli
-    wget
-  ];
+      # utils
+      devenv
+      glow
+      speedtest-cli
+      wget
+    ]
+    ++ [
+      inputs.gotcha.packages.${pkgs.system}.gotcha
+    ];
 }

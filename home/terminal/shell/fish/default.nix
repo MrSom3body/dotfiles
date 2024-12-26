@@ -18,7 +18,7 @@
     ];
 
     functions = {
-      fish_greeting = "macchina";
+      fish_greeting = "gotcha";
 
       highscore = {
         body = "history | awk '{print $1}' | sort | uniq -c | sort -rn | head -n 10";

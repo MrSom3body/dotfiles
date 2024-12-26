@@ -121,6 +121,13 @@
       };
     };
 
+    gotcha = {
+      url = "github:MrSom3body/gotcha";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     helix = {
       url = "github:helix-editor/helix";
       inputs = {

@@ -7,8 +7,9 @@
   mountpoint = "proton:Computers/${dotfiles.hostname}";
   rcloneSync = dir: ''
     ${pkgs.rclone}/bin/rclone --config=.config/rclone/rclone.conf \
-      sync ${dir} ${mountpoint}/${dir}\
-      --ignore-errors'';
+      sync ${dir} ${mountpoint}/${dir} \
+      --ignore-errors \
+      --protondrive-replace-existing-draft=true'';
   rcloneMultiSync = dirs: builtins.concatStringsSep "\n" (map rcloneSync dirs);
   rcloneProtonDriveBackupScript = pkgs.writeShellScript "rcloneProtonDriveBackupScript" "${
     rcloneMultiSync [

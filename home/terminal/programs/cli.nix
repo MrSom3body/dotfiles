@@ -20,6 +20,6 @@
       wget
     ]
     ++ [
-      inputs.gotcha.packages.${pkgs.system}.gotcha
+      inputs.gotcha.packages.${pkgs.system}.default
     ];
 }

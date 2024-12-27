@@ -14,6 +14,7 @@
 
     settings = {
       editor = {
+        default-yank-register = "+";
         line-number = "relative";
         cursorline = true;
         auto-format = true;

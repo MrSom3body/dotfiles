@@ -8,13 +8,13 @@ default:
     @just --list
 
 test:
-    nh os test -a
+    nh os test
 
 boot:
-    nh os boot -a
+    nh os boot
 
 upgrade: 
-    nh os switch -ua
+    nh os switch -u
 
 switch:
-    nh os switch -a
+    nh os switch

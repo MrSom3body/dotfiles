@@ -8,6 +8,7 @@
   rcloneSync = dir: ''
     ${pkgs.rclone}/bin/rclone --config=.config/rclone/rclone.conf \
       sync ${dir} ${mountpoint}/${dir} \
+      -vv \
       --ignore-errors \
       --protondrive-replace-existing-draft=true'';
   rcloneMultiSync = dirs: builtins.concatStringsSep "\n" (map rcloneSync dirs);
@@ -46,8 +47,9 @@ in {
       };
 
       Timer = {
-        OnCalendar = "daily";
+        OnCalendar = "*:00/30";
         Unit = "${unitName}.service";
+        Persistent = true;
       };
 
       Install.WantedBy = ["timers.target"];

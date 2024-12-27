@@ -47,7 +47,7 @@ in {
       };
 
       Timer = {
-        OnCalendar = "*:00/30";
+        OnCalendar = "daily";
         Unit = "${unitName}.service";
         Persistent = true;
       };

@@ -60,7 +60,7 @@
       '';
     };
 
-    packages.x86_64-linux = import ./pkgs {inherit pkgs;};
+    packages.${system} = import ./pkgs {inherit pkgs;};
 
     checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
       src = ./.;

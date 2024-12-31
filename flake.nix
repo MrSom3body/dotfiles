@@ -72,6 +72,8 @@
         statix.enable = true;
       };
     };
+
+    formatter.${system} = pkgs.alejandra;
   };
 
   inputs = {

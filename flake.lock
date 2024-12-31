@@ -329,11 +329,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735514074,
-        "narHash": "sha256-ez4vGEEMTtSuJrSCKRJyAKUUA6JXigdP7RsnJP1DGlo=",
+        "lastModified": 1735640441,
+        "narHash": "sha256-ZQI9+67khK+X7A51poHG2EH09OJMVLIOWlrZuRVg9TA=",
         "owner": "MrSom3body",
         "repo": "gotcha",
-        "rev": "2b53a8d75d30af3b0c58a8e1e86f0508919b630b",
+        "rev": "ff65e1b0bd0b213e12a1cda94703e4ac42b08b30",
         "type": "github"
       },
       "original": {

@@ -20,6 +20,8 @@
       wget
     ]
     ++ [
-      inputs.gotcha.packages.${pkgs.system}.default
+      (inputs.gotcha.packages.${pkgs.system}.default.override {
+        ifaceName = "wlp2s0";
+      })
     ];
 }

@@ -56,7 +56,7 @@
 
       # Move apps to workspaces
       "workspace special:discord, class:^(vesktop)$"
-      "workspace special:lunatask, class:^(Lunatask)$"
+      "workspace special:todoist, class:^(todoist)$"
 
       # Dim some programs
       "dimaround, class:^(xdg-desktop-portal-gtk)$"
@@ -118,8 +118,8 @@
       "special:discord, on-created-empty:uwsm app -- vesktop"
       "special:discord, gapsout:75"
 
-      "special:lunatask, on-created-empty:uwsm app -- lunatask"
-      "special:lunatask, gapsout:75"
+      "special:todoist, on-created-empty:uwsm app -- todoist-electron"
+      "special:todoist, gapsout:75"
     ];
   };
 }

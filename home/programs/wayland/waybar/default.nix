@@ -55,7 +55,7 @@
 
           format-icons = {
             "discord" = "";
-            "lunatask" = "";
+            "todoist" = "";
             "monitor" = "󰍹";
             "obsidian" = "";
             "spotify" = "";

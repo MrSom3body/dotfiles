@@ -6,8 +6,8 @@
     simple-scan
 
     # Notes & Tasks
-    lunatask
     obsidian
+    todoist-electron
 
     # Communication
     protonmail-desktop

@@ -118,7 +118,6 @@
       url = "github:cachix/git-hooks.nix";
       inputs = {
         flake-compat.follows = "flake-compat";
-        nixpkgs-stable.follows = "nixpkgs-stable";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -165,6 +164,7 @@
         hyprgraphics.follows = "hyprland/hyprgraphics";
         hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
+        # hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
       };

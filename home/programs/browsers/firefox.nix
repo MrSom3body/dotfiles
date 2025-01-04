@@ -125,12 +125,6 @@ in {
       # about:config
       Preferences = {
         "browser.ctrlTab.sortByRecentlyUsed" = lock-true;
-        "browser.ml.chat.enabled" = lock-true;
-        "browser.ml.chat.provider" = {
-          Value = "https://chatgpt.com";
-          Status = "locked";
-        };
-        "browser.ml.chat.shortcuts" = lock-true;
         "browser.tabs.hoverPreview.enabled" = lock-true;
         "browser.tabs.inTitlebar" = {
           Value = 0;

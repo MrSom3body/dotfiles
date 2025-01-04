@@ -54,8 +54,8 @@
       open = true;
 
       powerManagement = {
-        enable = true;
-        finegrained = true;
+        enable = false;
+        finegrained = false;
       };
 
       dynamicBoost.enable = true;

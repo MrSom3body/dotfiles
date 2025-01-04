@@ -60,7 +60,6 @@
             "obsidian" = "";
             "spotify" = "";
 
-            "active" = "";
             "default" = "";
             "empty" = "";
             "persistent" = "";

@@ -38,9 +38,12 @@
       asus-battery
     ]);
 
-  boot.kernelParams = [
-    "amd_pstate=active"
-  ];
+  boot = {
+    kernelParams = [
+      "amd_pstate=active"
+    ];
+    kernelModules = ["nvidia_uvm"];
+  };
 
   services.xserver.videoDrivers = ["nvidia"];
 

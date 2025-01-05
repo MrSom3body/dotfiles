@@ -33,5 +33,11 @@
         indent-guides.render = true;
       };
     };
+
+    ignores = [
+      "!.github/"
+      "!.gitignore"
+      "!.gitattributes"
+    ];
   };
 }

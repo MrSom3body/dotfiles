@@ -9,6 +9,7 @@
     ./fzf.nix
     ./git.nix
     ./ripgrep.nix
+    ./ssh.nix
     ./tealdeer.nix
     ./thefuck.nix
     ./trash-cli.nix

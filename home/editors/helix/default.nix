@@ -17,7 +17,7 @@
         line-number = "relative";
         cursorline = true;
         auto-format = true;
-        completion-replace = true;
+        completion-replace = false;
         rulers = [80];
         bufferline = "multiple";
         color-modes = true;

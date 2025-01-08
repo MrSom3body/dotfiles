@@ -31,7 +31,7 @@
         "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${dotfiles.terminal}"
         "$mainMod, B, Open browser, exec, uwsm app -- ${dotfiles.browser}"
         "$mainMod SHIFT, O, Open Obsidian, exec, uwsm app -- obsidian"
-        "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- ${dotfiles.terminal} --app-id ${dotfiles.terminalFileManager} ${dotfiles.terminalFileManager}"
+        "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- ${dotfiles.terminal} -e \"${dotfiles.terminalFileManager}\""
         "$mainMod SHIFT, E, Open file manager, exec, uwsm app -- ${dotfiles.fileManager}"
         ", XF86Calculator, Open calculator, exec, ${runOnce "gnome-calculator"}"
 

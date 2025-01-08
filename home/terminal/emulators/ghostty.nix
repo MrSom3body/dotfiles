@@ -1,28 +1,40 @@
 {
+  config,
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  cfg = config.programs.ghostty;
+in {
   programs.ghostty = {
     enable = true;
     package = inputs.ghostty.packages.${pkgs.system}.default;
     settings = {
       cursor-style = "bar";
       cursor-style-blink = true;
+      font-feature = ["ss06"];
       gtk-single-instance = true;
       mouse-hide-while-typing = true;
       window-decoration = false;
       window-padding-balance = true;
       window-padding-x = 15;
       window-padding-y = 15;
-      font-feature = [
-        "cv01"
-        "cv02"
-        "ss01"
-        "cv14"
-        "cv18"
-        "ss06"
-      ];
     };
+  };
+
+  systemd.user.services.ghostty = {
+    Unit = {
+      Description = "Fast, native, feature-rich terminal emulator pushing modern features.";
+      Documentation = "man:ghostty(1)";
+      PartOf = ["graphical-session.target"];
+      After = ["graphical-session.target"];
+    };
+
+    Service = {
+      ExecStart = "${cfg.package}/bin/ghostty --gtk-single-instance=true --initial-window=false --quit-after-last-window-closed=false";
+      Restart = "on-failure";
+    };
+
+    Install = {WantedBy = ["graphical-session.target"];};
   };
 }

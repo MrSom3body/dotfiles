@@ -17,18 +17,22 @@
         notify = "yes";
       };
 
-      scrollback = {
-        lines = 10000;
-        indicator-format = "line";
-      };
-
       cursor = {
         style = "beam";
         unfocused-style = "hollow";
         blink = "yes";
       };
 
+      key-bindings = {
+        pipe-command-output = "[sh -c \"bat --paging always -\"] Control+Shift+g";
+      };
+
       mouse.hide-when-typing = "yes";
+
+      scrollback = {
+        lines = 10000;
+        indicator-format = "line";
+      };
     };
   };
 }

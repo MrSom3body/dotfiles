@@ -35,4 +35,29 @@
       };
     };
   };
+
+  programs.fish.functions = {
+    # Jumping between prompts
+    mark_prompt_start = {
+      onEvent = "fish_prompt";
+      body = ''
+        echo -en "\e]133;A\e\\"
+      '';
+    };
+
+    # Piping last command's output
+    foot_cmd_start = {
+      onEvent = "fish_preexec";
+      body = ''
+        echo -en "\e]133;C\e\\"
+      '';
+    };
+
+    foot_cmd_end = {
+      onEvent = "fish_postexec";
+      body = ''
+        echo -en "\e]133;D\e\\"
+      '';
+    };
+  };
 }

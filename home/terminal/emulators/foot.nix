@@ -36,28 +36,21 @@
     };
   };
 
-  programs.fish.functions = {
-    # Jumping between prompts
-    mark_prompt_start = {
-      onEvent = "fish_prompt";
-      body = ''
+  programs.fish.shellInit =
+    # fish
+    ''
+      # Jumping between prompts
+      function mark_prompt_start --on-event fish_prompt
         echo -en "\e]133;A\e\\"
-      '';
-    };
+      end
 
-    # Piping last command's output
-    foot_cmd_start = {
-      onEvent = "fish_preexec";
-      body = ''
+      # Piping last command's output
+      function foot_cmd_start --on-event fish_preexec
         echo -en "\e]133;C\e\\"
-      '';
-    };
+      end
 
-    foot_cmd_end = {
-      onEvent = "fish_postexec";
-      body = ''
+      function foot_cmd_end --on-event fish_postexec
         echo -en "\e]133;D\e\\"
-      '';
-    };
-  };
+      end
+    '';
 }

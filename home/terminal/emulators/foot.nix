@@ -1,4 +1,16 @@
-{dotfiles, ...}: {
+{
+  pkgs,
+  dotfiles,
+  ...
+}: let
+  foot-pipe = pkgs.writeScript "foot-pipe" ''
+    #!${pkgs.fish}/bin/fish
+    set tmp (mktemp)
+    cat > $tmp
+    ${dotfiles.terminal} ${dotfiles.editor} -- $tmp
+    rm -f -- $tmp
+  '';
+in {
   programs.foot = {
     enable = true;
 
@@ -24,7 +36,7 @@
       };
 
       key-bindings = {
-        pipe-command-output = "[sh -c \"bat --paging always -\"] Control+Shift+g";
+        pipe-command-output = "[${foot-pipe}] Control+Shift+g";
       };
 
       mouse.hide-when-typing = "yes";

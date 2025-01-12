@@ -11,11 +11,11 @@
     fish.functions = {
       man = {
         body = "batman";
-        wraps = "eza";
+        wraps = "batman";
       };
       cat = {
-        body = "batman";
-        wraps = "eza";
+        body = "bat";
+        wraps = "bat";
       };
     };
 

@@ -23,8 +23,8 @@
     in
       [
         # Vesktop
-        "CTRL SHIFT, M, Mute on vesktop, pass, ^(vesktop)$"
-        "CTRL SHIFT, D, Deaf on vesktop, pass, ^(vesktop)$"
+        "CTRL SHIFT, M, Mute on vesktop, pass, class:^(vesktop)$"
+        "CTRL SHIFT, D, Deaf on vesktop, pass, class:^(vesktop)$"
 
         # Open applications
         "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${dotfiles.terminal}"

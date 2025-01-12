@@ -10,11 +10,11 @@
   programs = {
     fish.functions = {
       ip = {
-        body = "ip -c";
+        body = "ip -c $argv";
         wraps = "ip";
       };
       icat = {
-        body = "${pkgs.libsixel}/bin/img2sixel";
+        body = "${pkgs.libsixel}/bin/img2sixel $argv";
         wraps = "${pkgs.libsixel}/bin/img2sixel";
       };
     };

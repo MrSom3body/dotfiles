@@ -5,7 +5,7 @@
 
   programs = {
     fish.functions.rm = {
-      body = "trash-put";
+      body = "trash-put $argv";
       wraps = "trash-put";
     };
 

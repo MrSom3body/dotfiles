@@ -10,11 +10,11 @@
 
     fish.functions = {
       man = {
-        body = "batman";
+        body = "batman $argv";
         wraps = "batman";
       };
       cat = {
-        body = "bat";
+        body = "bat $argv";
         wraps = "bat";
       };
     };

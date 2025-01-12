@@ -239,7 +239,7 @@
         "custom/monitor" = {
           format = "";
           tooltip = false;
-          on-click = "hyprctl dispatch workspace special:monitor";
+          on-click = "hyprctl dispatch togglespecialworkspace monitor";
         };
 
         disk = {

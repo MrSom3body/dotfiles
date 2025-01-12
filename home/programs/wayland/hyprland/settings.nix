@@ -67,7 +67,7 @@
       scroll_method = "2fg";
 
       touchpad = {
-        disable_while_typing = false;
+        disable_while_typing = true;
         natural_scroll = true;
         tap_button_map = "lrm";
         tap-to-click = true;

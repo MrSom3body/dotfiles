@@ -7,15 +7,24 @@
     ./zoxide.nix
   ];
 
-  home = {
-    sessionPath = ["$HOME/bin"];
-    shellAliases = {
+  programs = {
+    fish.functions = {
+      ip = {
+        body = "ip -c";
+        wraps = "ip";
+      };
+      icat = {
+        body = "${pkgs.libsixel}/bin/img2sixel";
+        wraps = "${pkgs.libsixel}/bin/img2sixel";
+      };
+    };
+
+    bash.shellAliases = {
       ip = "ip -c";
       l = "ls";
       icat = "${pkgs.libsixel}/bin/img2sixel";
-      cat = "bat";
-      man = "batman";
-      rm = "trash-put";
     };
   };
+
+  home.sessionPath = ["$HOME/bin"];
 }

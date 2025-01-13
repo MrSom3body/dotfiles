@@ -38,6 +38,7 @@ in {
     };
 
     extraConfig = {
+      init.defaultBranch = "main";
       gpg = {
         format = "ssh";
         ssh.allowedSignersFile = config.home.homeDirectory + "/" + config.xdg.configFile."git/allowed_signers".target;

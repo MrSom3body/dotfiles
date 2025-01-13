@@ -4,6 +4,7 @@
     browsed.enable = true;
     drivers = with pkgs; [
       gutenprint
+      hplip
     ];
   };
 }

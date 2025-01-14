@@ -21,13 +21,14 @@
       ../../system/programs/vmware.nix
       ../../system/programs/wireshark.nix
 
+      ../../system/services/flatpak.nix
       ../../system/services/fprintd.nix
       ../../system/services/gnome-services.nix
       ../../system/services/gns3.nix
       ../../system/services/location.nix
+      ../../system/services/ollama.nix
       ../../system/services/printing.nix
       ../../system/services/zerotier.nix
-      ../../system/services/ollama.nix
 
       ../../system/virtualisation/libvirtd.nix
       ../../system/virtualisation/podman.nix

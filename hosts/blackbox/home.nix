@@ -38,6 +38,5 @@
 
     # styles
     ../../home/style/stylix.nix
-    ../../home/style/gtk.nix
   ];
 }

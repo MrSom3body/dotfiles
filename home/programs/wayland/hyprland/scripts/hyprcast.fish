@@ -28,12 +28,18 @@ if set -ql _flag_waybar
 end
 
 if test -e ~/.hyprcast
-    pkill -SIGINT wl-screenrec || notify-send -e -u critical -a wl-screenrec -t 1000 "Screencast not started" "A screencast is already starting"
-    return
+    if pidof wl-screenrec
+        echo wl-screenrec running
+        pkill -SIGINT wl-screenrec
+        return
+    else
+        kill (cat ~/.hyprcast)
+        return
+    end
 end
 
 set file_name ~/Videos/Screencasts/$(date +%Y-%m-%d-%H%M%S).mp4
-touch ~/.hyprcast
+echo $fish_pid >~/.hyprcast
 
 set notif_id 0
 for i in (seq 5 -1 1)

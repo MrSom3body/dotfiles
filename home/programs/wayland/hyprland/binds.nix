@@ -19,7 +19,6 @@
       toggle = cmd: "pkill ${cmd} || uwsm app -- ${cmd}";
       toggleScript = cmd: script: "pkill ${cmd} || uwsm app -- ${script}";
       runOnce = cmd: "pgrep ${cmd} || uwsm app -- ${cmd}";
-      hyprcast = "uwsm app -- ~/.config/hypr/scripts/hyprcast.fish";
     in
       [
         # Vesktop
@@ -73,7 +72,7 @@
         "$mainMod SHIFT, PRINT, Take screenshot of window, exec, ${runOnce "grimblast"} --freeze save screen - | satty -f - --fullscreen -o ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png --early-exit --copy-command wl-copy --save-after-copy"
 
         # Screencast
-        "$mainMod, R, Start/stop screencast, exec, ${hyprcast}"
+        "$mainMod, R, Start/stop screencast, exec, uwsm app -- hyprcast"
 
         # Move window focus
         "$mainMod, H, Focus window to the left, movefocus, l"

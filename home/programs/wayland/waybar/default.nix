@@ -129,10 +129,10 @@
         };
 
         "custom/hyprcast" = {
-          exec = "~/.config/hypr/scripts/hyprcast.fish -w";
+          exec = "hyprcast -w";
           return-type = "json";
           hide-empty-text = true;
-          on-click = "~/.config/hypr/scripts/hyprcast.fish";
+          on-click = "hyprcast";
           interval = "once";
           signal = 1;
         };

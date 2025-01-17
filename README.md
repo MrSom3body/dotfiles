@@ -4,6 +4,15 @@ Welcome to my dotfiles repository! These configurations are tailored to me and
 my system only (for now), so if you really want to copy my configs don't just
 blindly use them but rather use them as a starting point.
 
+## 📦 Packages
+
+My repository also provides some packages that may be useful for you:
+
+| Package    | Use                                                                                                   |
+| ---------- | ----------------------------------------------------------------------------------------------------- |
+| `hyprcast` | Record your screen with wl-screenrec with notification support (most useful when run with a key bind) |
+| `wl-ocr`   | OCR your screen on wayland                                                                            |
+
 ## 🖼️ Showcase
 
 ![Desktop Preview](assets/desktop.png)

@@ -84,9 +84,9 @@
 
         clock = {
           format = "  {:%H:%M}";
-          tooltip-format = "  {:%a, %d %b}";
-          # tooltip-format="<tt><small>{calendar}</small></tt>";
+          format-alt = "  {:%a, %d %b}";
 
+          tooltip-format = "<tt><small>{calendar}</small></tt>";
           calendar = {
             mode = "month";
             weeks-pos = "left";
@@ -100,10 +100,9 @@
             };
           };
 
-          on-click = "gnome-clocks";
-
           actions = {
             on-click-right = "mode";
+            on-click-middle = "shift_reset";
             on-scroll-up = "shift_up";
             on-scroll-down = "shift_down";
           };

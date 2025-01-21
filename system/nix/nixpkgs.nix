@@ -5,6 +5,8 @@
       allowUnfreePredicate = _: true;
     };
 
-    overlays = [];
+    overlays = [
+      (import ../../overlays/vpnc)
+    ];
   };
 }

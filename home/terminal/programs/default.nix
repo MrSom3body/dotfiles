@@ -7,6 +7,7 @@
     ./eza.nix
     ./fd.nix
     ./fzf.nix
+    ./gh.nix
     ./git.nix
     ./ripgrep.nix
     ./ssh.nix

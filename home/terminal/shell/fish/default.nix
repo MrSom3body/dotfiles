@@ -6,6 +6,17 @@
   programs.fish = {
     enable = true;
 
+    interactiveShellInit =
+      # fish
+      ''
+        fish_vi_key_bindings
+        set fish_cursor_default block blink
+        set fish_cursor_insert line blink
+        set fish_cursor_replace_one underscore blink
+        set fish_cursor_replace underscore blink
+        set fish_cursor_visual block
+      '';
+
     plugins = with pkgs.fishPlugins; let
       fishPlugin = name: {
         name = name.pname;

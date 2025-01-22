@@ -10,11 +10,13 @@
       # fish
       ''
         fish_vi_key_bindings
-        set fish_cursor_default block blink
-        set fish_cursor_insert line blink
-        set fish_cursor_replace_one underscore blink
-        set fish_cursor_replace underscore blink
-        set fish_cursor_visual block
+        set fish_cursor_default block blink # normal mode
+        set fish_cursor_insert line blink # insert mode
+        set fish_cursor_replace_one underscore blink # replace mode
+        set fish_cursor_replace underscore blink # replace mode
+        set fish_cursor_visual block # visual mode
+
+        set fish_cursor_external line # in commands
       '';
 
     plugins = with pkgs.fishPlugins; let

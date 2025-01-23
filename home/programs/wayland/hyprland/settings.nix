@@ -58,7 +58,7 @@
 
     input = {
       kb_layout = "at";
-      # kb_options = "eurosign:e";
+      kb_options = "eurosign:e,caps:swapescape";
 
       sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
 

@@ -1,8 +1,13 @@
 {
+  self,
   pkgs,
   dotfiles,
   ...
 }: {
+  home.packages = [
+    self.packages.${pkgs.system}.fuzzel-goodies
+  ];
+
   programs.fuzzel = {
     enable = true;
     settings = {
@@ -22,33 +27,6 @@
         width = dotfiles.appearance.border.size;
         inherit (dotfiles.appearance.border) radius;
       };
-    };
-  };
-
-  home.packages = with pkgs; [
-    jq
-  ];
-
-  home.file = {
-    "bin/fuzzel-actions" = {
-      source = ./scripts/fuzzel-actions.fish;
-      executable = true;
-    };
-    "bin/fuzzel-clipboard" = {
-      source = ./scripts/fuzzel-clipboard.fish;
-      executable = true;
-    };
-    "bin/fuzzel-files" = {
-      source = ./scripts/fuzzel-files.fish;
-      executable = true;
-    };
-    "bin/fuzzel-icons" = {
-      source = ./scripts/fuzzel-icons.fish;
-      executable = true;
-    };
-    "bin/fuzzel-windows" = {
-      source = ./scripts/fuzzel-windows.fish;
-      executable = true;
     };
   };
 }

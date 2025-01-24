@@ -8,11 +8,11 @@ blindly use them but rather use them as a starting point.
 
 My repository also provides some packages that may be useful for you:
 
-| Package           | Use                                                                                                      |
-| ----------------- | -------------------------------------------------------------------------------------------------------- |
-| `fuzzel--goodies` | Fuzzel scripts for a bunch of functionality like: emoji picker, file picker, hyprland window picker, ... |
-| `hyprcast`        | Record your screen with wl-screenrec with notification support (most useful when run with a key bind)    |
-| `wl-ocr`          | OCR your screen on wayland                                                                               |
+| Package          | Use                                                                                                      |
+| ---------------- | -------------------------------------------------------------------------------------------------------- |
+| `fuzzel-goodies` | Fuzzel scripts for a bunch of functionality like: emoji picker, file picker, hyprland window picker, ... |
+| `hyprcast`       | Record your screen with wl-screenrec with notification support (most useful when run with a key bind)    |
+| `wl-ocr`         | OCR your screen on wayland                                                                               |
 
 ## 🖼️ Showcase
 

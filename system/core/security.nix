@@ -1,6 +1,20 @@
 # security tweaks borrowed from @hlissner
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   boot = {
+    ## System security tweaks
+    tmp = {
+      # tmpfs = /tmp is mounted in ram. Doing so makes temp file management speedy
+      # on ssd systems and more secure (and volatile)! Because it's wiped on reboot.
+      useTmpfs = lib.mkDefault true;
+      # If not using tmpfs, which is naturally purged on reboot, we must clean it
+      # /tmp ourselves. /tmp should be volatile storage!
+      cleanOnBoot = lib.mkDefault (!config.boot.tmp.useTmpfs);
+    };
+
     # Fix a security hole in place for backwards compatibility. See desc in
     # nixpkgs/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
     loader.systemd-boot.editor = lib.mkDefault false;
@@ -45,7 +59,6 @@
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.default_qdisc" = "cake";
     };
-
     kernelModules = ["tcp_bbr"];
   };
 

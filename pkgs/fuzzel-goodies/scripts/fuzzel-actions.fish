@@ -20,5 +20,5 @@ switch (string split -f 2 " " $choice)
     case Poweroff
         systemctl poweroff
     case Update
-        hyprctl dispatch exec [floating\; size 1000 600] "xdg-terminal-exec -T 'NixOS Update' --app-id 'nix-snowflake' -- nh os switch -au"
+        hyprctl dispatch exec "[float; size 1000 600] xdg-terminal-exec -T 'NixOS Update' --app-id 'nix-snowflake' -- nh os switch -au"
 end

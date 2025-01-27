@@ -143,6 +143,7 @@
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs = {
+        hyprland-protocols.follows = "hyprland/hyprland-protocols";
         hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
         nixpkgs.follows = "hyprland/nixpkgs";
@@ -208,6 +209,7 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
       };
     };
 

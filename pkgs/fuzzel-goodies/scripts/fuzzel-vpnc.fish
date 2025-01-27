@@ -18,6 +18,7 @@ else
 
     if test "$selection" != ""
         pkexec vpnc $selection &&
-            notify-send -a vpnc "Connected successfully to $selection"
+            notify-send -a vpnc "Connected successfully to $selection" ||
+            notify-send -a vpnc "Could not connect to $selection"
     end
 end

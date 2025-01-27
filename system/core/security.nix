@@ -9,7 +9,7 @@
     tmp = {
       # tmpfs = /tmp is mounted in ram. Doing so makes temp file management speedy
       # on ssd systems and more secure (and volatile)! Because it's wiped on reboot.
-      useTmpfs = lib.mkDefault true;
+      useTmpfs = lib.mkDefault false;
       # If not using tmpfs, which is naturally purged on reboot, we must clean it
       # /tmp ourselves. /tmp should be volatile storage!
       cleanOnBoot = lib.mkDefault (!config.boot.tmp.useTmpfs);

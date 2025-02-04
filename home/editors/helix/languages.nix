@@ -61,7 +61,7 @@
 
       {
         name = "python";
-        language-servers = ["basedpyright" "ruff"];
+        language-servers = ["basedpyright" "ruff" "gpt"];
         auto-format = true;
         formatter = {
           command = lib.getExe pkgs.ruff;
@@ -91,6 +91,10 @@
 
       gopls = {
         command = lib.getExe pkgs.gopls;
+      };
+
+      gpt = {
+        command = lib.getExe pkgs.helix-gpt;
       };
 
       ltex = {

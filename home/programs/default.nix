@@ -24,6 +24,7 @@
 
     # Misc
     ente-auth
+    fragments
     pika-backup
     proton-pass
     protonvpn-gui

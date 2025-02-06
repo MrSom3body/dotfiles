@@ -34,6 +34,8 @@
 
   time.timeZone = lib.mkDefault "Europe/Vienna";
 
+  services.localtimed.enable = true; # automatic timezone switching
+
   networking.hostName = dotfiles.hostname;
 
   console.keyMap = "de";

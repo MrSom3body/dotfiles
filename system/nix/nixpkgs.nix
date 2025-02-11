@@ -6,7 +6,6 @@
     };
 
     overlays = [
-      (import ../../overlays/vpnc)
     ];
   };
 }

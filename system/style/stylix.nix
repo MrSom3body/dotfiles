@@ -1,14 +1,20 @@
 {
+  lib,
   config,
   pkgs,
   dotfiles,
   ...
-}: {
+}: let
+  alternatePolarity =
+    if dotfiles.appearance.polarity == "dark"
+    then "light"
+    else "dark";
+in {
   stylix = {
     enable = true;
     image = dotfiles.appearance.wallpaper;
     inherit (dotfiles.appearance) polarity;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/${dotfiles.appearance.theme}.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/${dotfiles.appearance."${dotfiles.appearance.polarity}-theme"}.yaml";
 
     fonts = with dotfiles.appearance.fonts; {
       sizes = {
@@ -46,5 +52,13 @@
     #   popups = 0.75;
     #   terminal = 0.95;
     # };
+  };
+
+  specialisation."${alternatePolarity}Mode".configuration = {
+    environment.etc."specialisation".text = "${alternatePolarity}Mode";
+    stylix = {
+      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/${dotfiles.appearance."${alternatePolarity}-theme"}.yaml";
+      polarity = lib.mkForce alternatePolarity;
+    };
   };
 }

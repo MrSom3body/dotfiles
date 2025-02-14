@@ -10,7 +10,7 @@
   programs = {
     fish.functions = {
       ip = {
-        body = "ip -c $argv";
+        body = "command ip -c $argv";
         wraps = "ip";
       };
       icat = {

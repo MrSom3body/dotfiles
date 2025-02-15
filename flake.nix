@@ -207,7 +207,6 @@
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs = {
-        flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
       };

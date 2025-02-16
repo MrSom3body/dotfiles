@@ -21,12 +21,27 @@ in {
         max_width = 1000;
         max_height = 1000;
       };
+      # for git plugin
+      plugin.prepend_fetches = [
+        {
+          id = "git";
+          name = "*";
+          run = "git";
+        }
+        {
+          id = "git";
+          name = "*/";
+          run = "git";
+        }
+      ];
     };
 
     plugins = {
       chmod = "${plugins-repo}/chmod.yazi";
       full-border = "${plugins-repo}/full-border.yazi";
+      git = "${plugins-repo}/git.yazi";
       max-preview = "${plugins-repo}/max-preview.yazi";
+      mount = "${plugins-repo}/mount.yazi";
       starship = pkgs.fetchFromGitHub {
         owner = "Rolv-Apneseth";
         repo = "starship.yazi";
@@ -37,11 +52,17 @@ in {
 
     initLua = ''
       require("full-border"):setup()
+      require("git"):setup()
       require("starship"):setup()
     '';
 
     keymap = {
       manager.prepend_keymap = [
+        {
+          on = "M";
+          run = "plugin mount";
+          desc = "Open mount";
+        }
         {
           on = "T";
           run = "plugin --sync max-preview";

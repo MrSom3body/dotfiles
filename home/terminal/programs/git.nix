@@ -1,7 +1,4 @@
-{config, ...}: let
-  cfg = config.programs.git;
-  key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFKSJm8M+cxXmYVQMjKYtEMuP3pdYdIJBJzbm3NP/v2q karun@blackbox";
-in {
+{config, ...}: {
   programs.git = {
     enable = true;
 
@@ -33,17 +30,13 @@ in {
     };
 
     signing = {
+      format = "ssh";
       key = "${config.home.homeDirectory}/.ssh/id_ed25519";
       signByDefault = true;
     };
 
     extraConfig = {
       init.defaultBranch = "main";
-      gpg = {
-        format = "ssh";
-        ssh.allowedSignersFile = config.home.homeDirectory + "/" + config.xdg.configFile."git/allowed_signers".target;
-      };
-
       pull.rebase = true;
       push.autoSetupRemote = true;
       rebase.autoStash = true;
@@ -52,8 +45,4 @@ in {
     userName = "Karun Sandhu";
     userEmail = "129101708+MrSom3body@users.noreply.github.com";
   };
-
-  xdg.configFile."git/allowed_signers".text = ''
-    ${cfg.userEmail} namespaces="git" ${key}
-  '';
 }

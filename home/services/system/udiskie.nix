@@ -7,15 +7,19 @@
     settings = {
       device_config = [
         {
-          id_uuid = "9882-A313";
+          id_uuid = "2451-4927";
           automount = true;
         }
         {
-          id_uuid = "9882-A313";
+          id_uuid = "f7680595-9723-4caa-856f-2f5bc54f65bf";
           automount = true;
-          keyfile = "~/Pictures/profile.jpg";
+          keyfile = "~/.face";
         }
-        {automount = false;}
+
+        # Default
+        {
+          automount = false;
+        }
       ];
     };
   };

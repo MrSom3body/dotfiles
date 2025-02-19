@@ -13,15 +13,6 @@
 
   home.packages =
     (with pkgs; [
-      (bemoji.overrideAttrs (_oldAttrs: rec {
-        version = "0.4.1";
-        src = pkgs.fetchFromGitHub {
-          owner = "MrSom3body";
-          repo = "bemoji";
-          rev = "refs/tags/v${version}";
-          hash = "sha256-GxZVJQfYueNyUXYpRnmZ76C/m1x76BJPbhHWqkHHWpc=";
-        };
-      }))
       brightnessctl
       nautilus
       networkmanagerapplet
@@ -50,6 +41,8 @@
     enable = true;
     systemd.enable = false;
 
+    package = null;
+    portalPackage = null;
     # plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
     #   hyprbars
     # ];

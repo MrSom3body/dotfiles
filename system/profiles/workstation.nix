@@ -17,6 +17,9 @@
     ../../system/services/greetd.nix
     ../../system/services/pipewire.nix
     ../../system/services/printing.nix
+
+    ../../system/virtualisation/vm.nix
+
     ../../system/style/stylix.nix
 
     inputs.stylix.nixosModules.stylix

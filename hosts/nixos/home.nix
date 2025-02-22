@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [
     # home manager stuff
     ../../home
@@ -39,5 +43,5 @@
     ''
   ];
 
-  programs.hyprlock.settings.input-field.placeholder_text = lib.mkForce "Default password is password";
+  programs.hyprlock.settings.input-field.placeholder_text = lib.mkForce "<span foreground=\"##${config.lib.stylix.colors.base05}\">󰌾  Password is <span foreground=\"##${config.lib.stylix.colors.base0D}\"><i>password</i></span></span>";
 }

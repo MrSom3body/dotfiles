@@ -1,7 +1,7 @@
 {
   inputs,
+  config,
   specialArgs,
-  dotfiles,
   ...
 }: {
   imports = [
@@ -14,6 +14,6 @@
     useUserPackages = true;
     extraSpecialArgs = specialArgs;
 
-    users.karun.imports = [../../hosts/${dotfiles.hostname}/home.nix];
+    users.karun.imports = [../../hosts/${config.networking.hostName}/home.nix];
   };
 }

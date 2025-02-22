@@ -25,17 +25,20 @@
       inherit self;
       inherit pkgs-stable;
       inherit inputs;
-      inherit dotfiles;
     };
-  in {
-    nixosConfigurations = {
-      ${dotfiles.hostname} = lib.nixosSystem {
+
+    mkNixosConfig = hostname:
+      lib.nixosSystem {
         inherit system;
-        inherit specialArgs;
+        specialArgs = specialArgs // {dotfiles = dotfiles hostname;};
         modules = [
-          ./hosts/${dotfiles.hostname}
+          ./hosts/${hostname}
         ];
       };
+  in {
+    nixosConfigurations = {
+      blackbox = mkNixosConfig "blackbox";
+      nixos = mkNixosConfig "nixos";
     };
 
     devShells.${system}.default = pkgs.mkShell {

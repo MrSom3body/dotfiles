@@ -2,9 +2,9 @@
   # This file contains settings for your system configuration.
   # It doesn't install anything but sets values that other parts of your system may use.
 
-  dotfiles = {
+  dotfiles = hostname: {
     # System settings
-    hostname = "blackbox"; # Hostname for your machine
+    inherit hostname;
     path = "/home/karun/dotfiles"; # Path to your dotfiles
 
     # Appearance settings

@@ -23,7 +23,7 @@
         # fonts must be Nerd Fonts
         mono = {
           # Monospace font
-          name = "Fira Code Nerd Font";
+          name = "FiraCode Nerd Font";
           pkgName = "fira-code";
           size = 13;
         };

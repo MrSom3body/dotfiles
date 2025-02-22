@@ -16,24 +16,17 @@
       ../../system/network/spotify.nix
 
       ../../system/programs/gamemode.nix
-      ../../system/programs/hyprland.nix
       ../../system/programs/steam.nix
       ../../system/programs/vmware.nix
       ../../system/programs/wireshark.nix
 
-      ../../system/services/flatpak.nix
       ../../system/services/fprintd.nix
-      ../../system/services/gnome-services.nix
       ../../system/services/gns3.nix
-      ../../system/services/location.nix
       ../../system/services/ollama.nix
-      ../../system/services/printing.nix
       ../../system/services/zerotier.nix
 
       ../../system/virtualisation/libvirtd.nix
       ../../system/virtualisation/podman.nix
-
-      ../../system/style/stylix.nix
     ]
     ++ (with inputs.nixos-hardware.nixosModules; [
       asus-battery

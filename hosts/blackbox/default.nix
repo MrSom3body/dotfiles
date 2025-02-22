@@ -5,10 +5,10 @@
 }: {
   imports =
     [
+      ../../system/profiles/laptop.nix
       ./hardware-configuration.nix
-      ../../system/core/lanzaboote.nix
 
-      ../common/laptop.nix
+      ../../system/core/lanzaboote.nix
 
       ../../system/hardware/opentabletdriver.nix
       ../../system/hardware/logitech.nix

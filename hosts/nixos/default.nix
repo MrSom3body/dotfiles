@@ -1,5 +1,5 @@
 {
   imports = [
-    ../common/workstation.nix
+    ../../system/profiles/workstation.nix
   ];
 }

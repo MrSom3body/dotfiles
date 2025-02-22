@@ -1177,6 +1177,29 @@
         "type": "github"
       }
     },
+    "programsdb": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": [
+          "flake-utils"
+        ]
+      },
+      "locked": {
+        "lastModified": 1740223948,
+        "narHash": "sha256-xTIftWUP21LIBN+CtB79oAOsXvnO5hnr0qvwqKVoen0=",
+        "owner": "wamserma",
+        "repo": "flake-programs-sqlite",
+        "rev": "a6f20e6f28b016e1a7c6292af0c3ee93315f3a81",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wamserma",
+        "repo": "flake-programs-sqlite",
+        "type": "github"
+      }
+    },
     "pyprland": {
       "inputs": {
         "flake-compat": [
@@ -1226,6 +1249,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "pre-commit-hooks": "pre-commit-hooks_2",
+        "programsdb": "programsdb",
         "pyprland": "pyprland",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",

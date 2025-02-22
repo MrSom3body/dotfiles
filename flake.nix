@@ -204,6 +204,14 @@
       };
     };
 
+    programsdb = {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
+    };
+
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs = {

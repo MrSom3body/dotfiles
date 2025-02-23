@@ -18,7 +18,7 @@
         unlock_cmd = "pkill -SIGUSR1 hyprlock";
         before_sleep_cmd = beforeSleep [
           "loginctl lock-session"
-          "playerctl pause"
+          "${lib.getExe pkgs.playerctl} pause"
         ];
         after_sleep_cmd = "hyprctl dispatch dpms on";
       };

@@ -1,5 +1,7 @@
 {
+  lib,
   config,
+  pkgs,
   dotfiles,
   ...
 }: {
@@ -129,11 +131,13 @@
       ));
 
     # Player control
-    bindl = [
-      ", XF86AudioPlay, exec, playerctl play-pause"
-      ", XF86AudioPause, exec, playerctl pause"
-      ", XF86AudioNext, exec, playerctl next"
-      ", XF86AudioPrev, exec, playerctl previous"
+    bindl = let
+      playerctl = lib.getExe pkgs.playerctl;
+    in [
+      ", XF86AudioPlay, exec, ${playerctl} play-pause"
+      ", XF86AudioPause, exec, ${playerctl} pause"
+      ", XF86AudioNext, exec, ${playerctl} next"
+      ", XF86AudioPrev, exec, ${playerctl} previous"
     ];
 
     bindel = [

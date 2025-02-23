@@ -110,7 +110,9 @@
           };
         };
 
-        mpris = {
+        mpris = let
+          playerctl = lib.getExe pkgs.playerctl;
+        in {
           player = "spotify";
           format = "{player_icon} {status_icon} <b>{title}</b> by <i>{artist}</i>";
           tooltip-format = "Album: {album}";
@@ -125,8 +127,8 @@
           status-icons = {
             paused = "󰏤";
           };
-          on-scroll-up = "playerctl volume 0.1+";
-          on-scroll-down = "playerctl volume 0.1-";
+          on-scroll-up = "${playerctl} volume 0.1+";
+          on-scroll-down = "${playerctl} volume 0.1-";
         };
 
         "custom/hyprcast" = {

@@ -10,9 +10,6 @@
     ../../home/programs/games
     ../../home/programs/school
 
-    # media services
-    ../../home/services/media/playerctl.nix
-
     # system services
     ../../home/services/system/kdeconnect.nix
     ../../home/services/system/rclone.nix

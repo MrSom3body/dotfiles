@@ -18,6 +18,9 @@
     ../../home/services/system/polkit.nix
     ../../home/services/system/udiskie.nix
 
+    # media services
+    ../../home/services/media/playerctl.nix
+
     # wayland services
     ../../home/services/wayland/cliphist.nix
     ../../home/services/wayland/fnott

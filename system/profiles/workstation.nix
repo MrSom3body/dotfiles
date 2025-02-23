@@ -10,6 +10,7 @@
 
     ../../system/programs
     ../../system/programs/hyprland.nix
+    ../../system/programs/command-not-found.nix
 
     ../../system/services
     ../../system/services/flatpak.nix

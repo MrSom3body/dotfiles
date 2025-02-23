@@ -35,7 +35,6 @@
         hide_input = false;
         rounding = -1;
         fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
-        fail_transition = 300;
         capslock_color = "rgb(${config.lib.stylix.colors.base0A})";
 
         position = "0, -70";

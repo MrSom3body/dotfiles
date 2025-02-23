@@ -15,7 +15,6 @@
 
     exec-once = [
       "uwsm finalize"
-      "uwsm app -- hyprlock"
       "wpctl set-mute @DEFAULT_AUDIO_SINK@ 1"
       "uwsm app -- nm-applet"
       "uwsm app -- blueman-applet"

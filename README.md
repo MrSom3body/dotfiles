@@ -4,6 +4,14 @@ Welcome to my dotfiles repository! These configurations are tailored to me and
 my system only (for now), so if you really want to copy my configs don't just
 blindly use them but rather use them as a starting point.
 
+## 🧪 Try It
+
+You can also try my configuration in a VM extremely easy if you're running NixOS with this simple command:
+
+```bash
+nixos-rebuild build-vm --flake github:MrSom3body/dotfiles#nixos
+```
+
 ## 📦 Packages
 
 My repository also provides some packages that may be useful for you:

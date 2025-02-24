@@ -1,86 +1,27 @@
 {
   description = "MrSom3body's flake";
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    ...
-  } @ inputs: let
-    inherit (import ./settings.nix) dotfiles;
-
-    inherit (nixpkgs) lib;
-    system = "x86_64-linux";
-
-    pkgs = import nixpkgs {
-      inherit system;
-    };
-
-    pkgs-stable = import nixpkgs-stable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-
-    specialArgs = {
-      inherit self;
-      inherit pkgs-stable;
+  outputs = inputs:
+    inputs.snowfall-lib.mkFlake {
       inherit inputs;
-    };
-
-    mkNixosConfig = hostname:
-      lib.nixosSystem {
-        inherit system;
-        specialArgs = specialArgs // {dotfiles = dotfiles hostname;};
-        modules = [
-          ./hosts/${hostname}
-        ];
-      };
-  in {
-    nixosConfigurations = {
-      blackbox = mkNixosConfig "blackbox";
-      nixos = mkNixosConfig "nixos";
-    };
-
-    devShells.${system}.default = pkgs.mkShell {
-      name = "dotfiles";
-
-      buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
-
-      packages = with pkgs; [
-        alejandra
-        git
-        just
-      ];
-
-      shellHook = ''
-        ${self.checks.${system}.pre-commit-check.shellHook}
-
-        tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "last 5 commits"
-        git log --all --decorate --graph --oneline -5
-        echo
-        tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "status"
-        git status --short
-      '';
-    };
-
-    packages.${system} = import ./pkgs {inherit pkgs;};
-
-    checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
       src = ./.;
-      hooks = {
-        alejandra.enable = true;
-        deadnix.enable = true;
-        markdownlint = {
-          enable = true;
-          settings.configuration.MD013.tables = false;
+
+      channels-config = {
+        allowUnfree = true;
+      };
+
+      outputs-builder = channels: {
+        formatter = channels.nixpkgs.alejandra;
+      };
+
+      snowfall = {
+        namespace = "dotfiles";
+        meta = {
+          name = "dotfiles";
+          title = "MrSom3body's dotfiles";
         };
-        nil.enable = true;
-        statix.enable = true;
       };
     };
-
-    formatter.${system} = pkgs.alejandra;
-  };
 
   inputs = {
     # global, so they can be `.follow`ed
@@ -103,6 +44,14 @@
     };
 
     # the rest
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
+    };
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs = {

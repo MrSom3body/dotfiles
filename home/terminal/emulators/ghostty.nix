@@ -10,8 +10,6 @@ in {
     enable = true;
     package = inputs.ghostty.packages.${pkgs.system}.default;
     settings = {
-      cursor-style = "bar";
-      cursor-style-blink = true;
       font-feature = ["ss06"];
       gtk-single-instance = true;
       mouse-hide-while-typing = true;

@@ -27,6 +27,8 @@
       inherit inputs;
     };
 
+    hosts = ["blackbox" "nixos"];
+
     mkNixosConfig = hostname:
       lib.nixosSystem {
         inherit system;
@@ -36,10 +38,11 @@
         ];
       };
   in {
-    nixosConfigurations = {
-      blackbox = mkNixosConfig "blackbox";
-      nixos = mkNixosConfig "nixos";
-    };
+    nixosConfigurations = builtins.listToAttrs (map (hostname: {
+        name = hostname;
+        value = mkNixosConfig hostname;
+      })
+      hosts);
 
     devShells.${system}.default = pkgs.mkShell {
       name = "dotfiles";

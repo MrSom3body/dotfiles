@@ -108,6 +108,7 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
+        pre-commit-hooks-nix.follows = "pre-commit-hooks";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -138,6 +139,7 @@
       url = "github:helix-editor/helix";
       inputs = {
         flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
       };
     };
 
@@ -149,6 +151,7 @@
         hyprland-protocols.follows = "hyprland/hyprland-protocols";
         hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
+        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
       };
@@ -228,6 +231,7 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         flake-utils.follows = "flake-utils";
+        git-hooks.follows = "pre-commit-hooks";
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";

@@ -18,3 +18,8 @@ upgrade:
 
 switch:
     nh os switch
+
+fix-switch:
+    nh clean all -k 3 -K 4d
+    sudo rm /boot/EFI/nixos/*
+    just s

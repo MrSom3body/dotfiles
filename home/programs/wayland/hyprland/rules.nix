@@ -112,7 +112,7 @@
       "special:spotify, on-created-empty:uwsm app -- spotify"
       "special:spotify, gapsout:75"
 
-      "special:monitor, on-created-empty:uwsm app -- ${dotfiles.terminal} -e btop"
+      "special:monitor, on-created-empty:uwsm app -- ${dotfiles.terminal} --title btop --app-id btop -- btop"
       "special:monitor, gapsout:50"
 
       "special:discord, on-created-empty:uwsm app -- vesktop"

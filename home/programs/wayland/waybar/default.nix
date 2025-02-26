@@ -79,7 +79,7 @@
 
         systemd-failed-units = {
           format = "✗ {nr_failed}";
-          on-click = "${dotfiles.terminal} -e \"bat -f (systemctl list-units --user --failed | psub -s -user-units) (systemctl list-units --failed | psub -s -system-units)\"";
+          on-click = "${dotfiles.terminal} -H -- fish -c \"bat -f (systemctl list-units --user --failed | psub -s -user-units) (systemctl list-units --failed | psub -s -system-units)\"";
         };
 
         clock = {

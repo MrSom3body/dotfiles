@@ -1,6 +1,5 @@
 {dotfiles, ...}: {
   imports = [
-    ./gtk.nix
     ./terminal
   ];
 

@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../home/profiles/workstation.nix
 
@@ -10,6 +14,8 @@
     # programs
     ../../home/programs/games
     ../../home/programs/school
+    ../../home/programs/solaar.nix # Logitech Mouse
+    ../../home/programs/vesktop.nix # Discord
 
     # system services
     ../../home/services/system/kdeconnect.nix
@@ -29,5 +35,18 @@
     "Sync"
     "Videos"
     "dotfiles"
+  ];
+
+  home.packages = with pkgs; [
+    # Communication & Social Media
+    element-desktop # Matrix client
+    signal-desktop
+
+    # Misc
+    ente-auth
+    fragments
+    pika-backup
+    proton-pass
+    protonvpn-gui
   ];
 }

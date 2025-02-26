@@ -7,6 +7,9 @@
 
     # programs
     ../../home/programs
+    ../../home/programs/browsers/firefox.nix
+    ../../home/programs/media
+    ../../home/programs/office
 
     # wayland programs
     ../../home/programs/wayland/fuzzel

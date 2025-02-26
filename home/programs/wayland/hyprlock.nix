@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   inputs,
   pkgs,
@@ -13,6 +14,11 @@
       general = {
         hide_cursor = true;
         grace = 0;
+      };
+
+      # TODO remove this part when https://github.com/danth/stylix/pull/925 gets merged
+      background = {
+        path = lib.mkForce "${config.stylix.image}";
       };
 
       auth.fingerprint.enabled = true;

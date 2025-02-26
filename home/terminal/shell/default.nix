@@ -14,15 +14,15 @@
         wraps = "ip";
       };
       icat = {
-        body = "${pkgs.libsixel}/bin/img2sixel $argv";
-        wraps = "${pkgs.libsixel}/bin/img2sixel";
+        body = "${pkgs.viu}/bin/viu $argv";
+        wraps = "${pkgs.viu}/bin/viu";
       };
     };
 
     bash.shellAliases = {
       ip = "ip -c";
       l = "ls";
-      icat = "${pkgs.libsixel}/bin/img2sixel";
+      icat = "${pkgs.viu}/bin/viu";
     };
   };
 

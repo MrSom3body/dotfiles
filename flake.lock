@@ -1199,8 +1199,7 @@
         "pyprland": "pyprland",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
-        "systems": "systems_5",
-        "waybar": "waybar"
+        "systems": "systems_5"
       }
     },
     "rust-overlay": {
@@ -1512,30 +1511,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "waybar": {
-      "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1740125099,
-        "narHash": "sha256-VpT3ePqmo75Ni6/02KFGV6ltnpiV70/ovG/p1f2wKkU=",
-        "owner": "Alexays",
-        "repo": "Waybar",
-        "rev": "8490a1d9b9a5c8770dd63e9faca0a5e01acedcae",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Alexays",
-        "ref": "master",
-        "repo": "Waybar",
         "type": "github"
       }
     },

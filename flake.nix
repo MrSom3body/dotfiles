@@ -249,13 +249,5 @@
         systems.follows = "systems";
       };
     };
-
-    waybar = {
-      url = "github:Alexays/Waybar/master";
-      inputs = {
-        flake-compat.follows = "flake-compat";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
   };
 }

@@ -4,7 +4,7 @@
 
     # terminals
     ../../home/terminal/emulators/alacritty.nix
-    ../../home/terminal/emulators/ghostty.nix
+    ../../home/terminal/emulators/foot.nix
     ../../home/terminal/emulators/kitty.nix
 
     # programs

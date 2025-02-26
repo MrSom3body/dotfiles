@@ -3,7 +3,7 @@
     ./server.nix
 
     # terminals
-    ../../home/terminal/emulators/foot.nix
+    ../../home/terminal/emulators/ghostty.nix
 
     # programs
     ../../home/programs

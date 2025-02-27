@@ -27,7 +27,7 @@
       inherit inputs;
     };
 
-    hosts = ["blackbox" "nixos"];
+    hosts = builtins.attrNames (builtins.readDir ./hosts);
 
     mkNixosConfig = hostname:
       lib.nixosSystem {
@@ -66,7 +66,14 @@
       '';
     };
 
-    packages.${system} = import ./pkgs {inherit pkgs;};
+    packages.${system} = let
+      packageFiles = builtins.attrNames (builtins.readDir ./pkgs);
+      importPackage = name: {
+        inherit name;
+        value = pkgs.callPackage (./pkgs + "/${name}") {};
+      };
+    in
+      builtins.listToAttrs (builtins.map importPackage packageFiles);
 
     checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
       src = ./.;

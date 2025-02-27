@@ -5,6 +5,8 @@
   dotfiles = hostname: {
     # System settings
     inherit hostname;
+    user = "karun";
+    username = "Karun Sandhu";
     path = "/home/karun/dotfiles"; # Path to your dotfiles
 
     # Appearance settings

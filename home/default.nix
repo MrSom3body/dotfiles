@@ -4,8 +4,8 @@
   ];
 
   home = {
-    username = "karun";
-    homeDirectory = "/home/karun";
+    username = dotfiles.user;
+    homeDirectory = "/home/${dotfiles.user}";
     stateVersion = "24.05";
 
     sessionVariables = {

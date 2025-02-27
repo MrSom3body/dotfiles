@@ -72,7 +72,7 @@
       "// lol" = config.lib.formats.rasi.mkLiteral ''
 
           filebrowser {
-            directory: "/home/karun";
+            directory: "/home/${dotfiles.user}";
           }
         // '';
     };

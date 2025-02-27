@@ -1,7 +1,11 @@
-{pkgs, ...}: {
-  users.users.karun = {
+{
+  pkgs,
+  dotfiles,
+  ...
+}: {
+  users.users.${dotfiles.user} = {
     isNormalUser = true;
-    description = "Karun Sandhu";
+    description = dotfiles.username;
     shell = pkgs.fish;
     initialPassword = "password";
     extraGroups = [

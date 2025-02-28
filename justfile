@@ -2,6 +2,7 @@ alias b := boot
 alias u := upgrade
 alias s := switch
 alias t := test
+alias fl := fix-lanzaboote
 alias update := upgrade
 
 default:
@@ -19,7 +20,7 @@ upgrade:
 switch:
     nh os switch
 
-fix-switch:
+fix-lanzaboote:
     nh clean all -k 3 -K 4d
-    sudo rm /boot/EFI/nixos/*
+    sudo rm /boot/EFI/nixos/ -r
     just s

@@ -17,7 +17,7 @@
         icon-theme = "Papirus";
         launch-prefix = "uwsm app --";
         match-counter = true;
-        terminal = "${dotfiles.terminal} -e";
+        terminal = "${dotfiles.programs.terminal} -e";
         horizontal-pad = 40;
         vertical-pad = 20;
         inner-pad = 15;

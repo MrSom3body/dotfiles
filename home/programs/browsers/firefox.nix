@@ -11,7 +11,7 @@ in {
   programs.firefox = {
     enable = true;
     package =
-      if dotfiles.browser == "firefox-beta"
+      if dotfiles.programs.browser == "firefox-beta"
       then pkgs.firefox-beta
       else pkgs.firefox;
     profiles.default = {

@@ -2,7 +2,7 @@
   # This file contains settings for your system configuration.
   # It doesn't install anything but sets values that other parts of your system may use.
 
-  dotfiles = hostname: {
+  dotfiles = hostname: rec {
     # System settings
     inherit hostname;
     user = "karun";
@@ -38,11 +38,17 @@
       };
     };
 
-    # Default applications
-    editor = "hx"; # Default text editor
-    terminal = "foot"; # Default terminal
-    browser = "firefox-beta"; # Default web browser
-    fileManager = "nautilus"; # Default GUI file manager
-    terminalFileManager = "yazi"; # Default terminal file manager
+    # Program options
+    programs = {
+      editor = "hx"; # Default text editor
+      terminal = "foot"; # Default terminal
+      browser = "firefox-beta"; # Default web browser
+      fileManager = "nautilus"; # Default GUI file manager
+      terminalFileManager = "yazi"; # Default terminal file manager
+      git = {
+        username = user;
+        mail = "129101708+MrSom3body@users.noreply.github.com";
+      };
+    };
   };
 }

@@ -23,7 +23,7 @@
       "uwsm app -- solaar -w hide"
       "uwsm app -- rog-control-center"
       "uwsm app -- kdeconnect-indicator"
-      "[workspace 1 silent] uwsm app -- ${dotfiles.browser}"
+      "[workspace 1 silent] uwsm app -- ${dotfiles.programs.browser}"
     ];
 
     general = {

@@ -9,8 +9,8 @@
     stateVersion = "24.05";
 
     sessionVariables = {
-      EDITOR = dotfiles.editor;
-      BROWSER = dotfiles.browser;
+      EDITOR = dotfiles.programs.editor;
+      BROWSER = dotfiles.programs.browser;
     };
   };
 

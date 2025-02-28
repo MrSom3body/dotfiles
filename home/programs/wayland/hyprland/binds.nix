@@ -28,11 +28,11 @@
         "CTRL SHIFT, D, Deaf on vesktop, pass, class:^(vesktop)$"
 
         # Open applications
-        "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${dotfiles.terminal}"
-        "$mainMod, B, Open browser, exec, uwsm app -- ${dotfiles.browser}"
+        "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${dotfiles.programs.terminal}"
+        "$mainMod, B, Open browser, exec, uwsm app -- ${dotfiles.programs.browser}"
         "$mainMod SHIFT, O, Open Obsidian, exec, uwsm app -- obsidian"
-        "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- ${dotfiles.terminal} --app-id ${dotfiles.terminalFileManager} ${dotfiles.terminalFileManager}"
-        "$mainMod SHIFT, E, Open file manager, exec, uwsm app -- ${dotfiles.fileManager}"
+        "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- ${dotfiles.programs.terminal} --app-id ${dotfiles.programs.terminalFileManager} ${dotfiles.programs.terminalFileManager}"
+        "$mainMod SHIFT, E, Open file manager, exec, uwsm app -- ${dotfiles.programs.fileManager}"
         ", XF86Calculator, Open calculator, exec, ${runOnce "gnome-calculator"}"
 
         # Launcher

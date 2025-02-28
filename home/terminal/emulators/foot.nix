@@ -7,7 +7,7 @@
     #!${pkgs.fish}/bin/fish
     set tmp (mktemp)
     cat > $tmp
-    ${dotfiles.terminal} ${dotfiles.editor} -- $tmp
+    ${dotfiles.programs.terminal} ${dotfiles.programs.editor} -- $tmp
     rm -f -- $tmp
   '';
 in {
@@ -15,7 +15,7 @@ in {
     enable = true;
 
     server.enable =
-      if dotfiles.terminal == "footclient"
+      if dotfiles.programs.terminal == "footclient"
       then true
       else false;
 

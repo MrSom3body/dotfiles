@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  dotfiles,
+  ...
+}: {
   programs.git = {
     enable = true;
 
@@ -42,7 +46,7 @@
       rebase.autoStash = true;
     };
 
-    userName = "Karun Sandhu";
-    userEmail = "129101708+MrSom3body@users.noreply.github.com";
+    userName = dotfiles.programs.git.username;
+    userEmail = dotfiles.programs.git.mail;
   };
 }

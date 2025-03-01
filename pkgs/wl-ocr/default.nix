@@ -1,3 +1,4 @@
+# copied from @fufexan
 {
   lib,
   writeShellScriptBin,

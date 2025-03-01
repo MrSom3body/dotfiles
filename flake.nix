@@ -256,5 +256,15 @@
         systems.follows = "systems";
       };
     };
+
+    yazi-plugins = {
+      url = "github:yazi-rs/plugins";
+      flake = false;
+    };
+
+    yazi-starship-plugin = {
+      url = "github:Rolv-Apneseth/starship.yazi";
+      flake = false;
+    };
   };
 }

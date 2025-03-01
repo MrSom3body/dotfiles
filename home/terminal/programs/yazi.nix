@@ -1,11 +1,8 @@
-{pkgs, ...}: let
-  plugins-repo = pkgs.fetchFromGitHub {
-    owner = "yazi-rs";
-    repo = "plugins";
-    rev = "beb586aed0d41e6fdec5bba7816337fdad905a33";
-    sha256 = "sha256-enIt79UvQnKJalBtzSEdUkjNHjNJuKUWC4L6QFb3Ou4=";
-  };
-in {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [ripdrag];
 
   programs.yazi = {
@@ -37,17 +34,12 @@ in {
     };
 
     plugins = {
-      chmod = "${plugins-repo}/chmod.yazi";
-      full-border = "${plugins-repo}/full-border.yazi";
-      git = "${plugins-repo}/git.yazi";
-      max-preview = "${plugins-repo}/max-preview.yazi";
-      mount = "${plugins-repo}/mount.yazi";
-      starship = pkgs.fetchFromGitHub {
-        owner = "Rolv-Apneseth";
-        repo = "starship.yazi";
-        rev = "f6939fbdbc3fdfcdc2a80251841e429e0cd5cf3c";
-        sha256 = "sha256-5QQsFozbulgLY/Gl6QuKSOTtygULveoRD49V00e0WOw=";
-      };
+      chmod = "${inputs.yazi-plugins}/chmod.yazi";
+      full-border = "${inputs.yazi-plugins}/full-border.yazi";
+      git = "${inputs.yazi-plugins}/git.yazi";
+      max-preview = "${inputs.yazi-plugins}/max-preview.yazi";
+      mount = "${inputs.yazi-plugins}/mount.yazi";
+      starship = "${inputs.yazi-starship-plugin}";
     };
 
     initLua = ''

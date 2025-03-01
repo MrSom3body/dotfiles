@@ -1199,7 +1199,9 @@
         "pyprland": "pyprland",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
-        "systems": "systems_5"
+        "systems": "systems_5",
+        "yazi-plugins": "yazi-plugins",
+        "yazi-starship-plugin": "yazi-starship-plugin"
       }
     },
     "rust-overlay": {
@@ -1552,6 +1554,38 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
+        "type": "github"
+      }
+    },
+    "yazi-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740134867,
+        "narHash": "sha256-Cw5iMljJJkxOzAGjWGIlCa7gnItvBln60laFMf6PSPM=",
+        "owner": "yazi-rs",
+        "repo": "plugins",
+        "rev": "5186af7984aa8cb0550358aefe751201d7a6b5a8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yazi-rs",
+        "repo": "plugins",
+        "type": "github"
+      }
+    },
+    "yazi-starship-plugin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740302717,
+        "narHash": "sha256-bhLUziCDnF4QDCyysRn7Az35RAy8ibZIVUzoPgyEO1A=",
+        "owner": "Rolv-Apneseth",
+        "repo": "starship.yazi",
+        "rev": "6c639b474aabb17f5fecce18a4c97bf90b016512",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Rolv-Apneseth",
+        "repo": "starship.yazi",
         "type": "github"
       }
     },

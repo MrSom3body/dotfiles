@@ -7,6 +7,8 @@
     [
       ../../system/profiles/laptop.nix
       ./hardware-configuration.nix
+      inputs.disko.nixosModules.disko
+      ./disko.nix
 
       ../../system/core/lanzaboote.nix
 

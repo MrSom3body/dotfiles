@@ -23,36 +23,6 @@
         "sdhci_pci"
       ];
       kernelModules = [];
-      luks.devices."crypted".device = "/dev/disk/by-uuid/1fa397f7-31d5-42b7-b553-a9fb4827b93c";
-    };
-  };
-
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/f01ef6e4-39f7-4d7b-b60d-5e347ee01948";
-      fsType = "btrfs";
-      options = ["subvol=root" "compress=zstd" "noatime"];
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/AA53-810D";
-      fsType = "vfat";
-      options = [
-        "fmask=0022"
-        "dmask=0022"
-      ];
-    };
-
-    "/home" = {
-      device = "/dev/disk/by-uuid/f01ef6e4-39f7-4d7b-b60d-5e347ee01948";
-      fsType = "btrfs";
-      options = ["subvol=home" "compress=zstd" "noatime"];
-    };
-
-    "/nix" = {
-      device = "/dev/disk/by-uuid/f01ef6e4-39f7-4d7b-b60d-5e347ee01948";
-      fsType = "btrfs";
-      options = ["subvol=nix" "compress=zstd" "noatime"];
     };
   };
 

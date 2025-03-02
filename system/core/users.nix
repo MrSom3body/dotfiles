@@ -1,11 +1,11 @@
 {
   pkgs,
-  dotfiles,
+  settings,
   ...
 }: {
-  users.users.${dotfiles.user} = {
+  users.users.${settings.user} = {
     isNormalUser = true;
-    description = dotfiles.username;
+    description = settings.username;
     shell = pkgs.fish;
     initialPassword = "password";
     extraGroups = [

@@ -1,7 +1,7 @@
 {
   lib,
   pkgs,
-  dotfiles,
+  settings,
   ...
 }: {
   programs.helix.languages = {
@@ -124,9 +124,9 @@
       nixd = {
         command = lib.getExe pkgs.nixd;
         config.nixd = {
-          nixpkgs.expr = "import (builtins.getFlake \"${dotfiles.path}\").inputs.nixpkgs { }";
+          nixpkgs.expr = "import (builtins.getFlake \"${settings.path}\").inputs.nixpkgs { }";
           formatting.command = ["${lib.getExe pkgs.alejandra}"];
-          options.nixos.expr = "(builtins.getFlake \"${dotfiles.path}\").nixosConfigurations.${dotfiles.hostname}.options";
+          options.nixos.expr = "(builtins.getFlake \"${settings.path}\").nixosConfigurations.${settings.hostname}.options";
         };
       };
 

@@ -2,14 +2,14 @@
   lib,
   config,
   pkgs,
-  dotfiles,
+  settings,
   ...
 }:
 with config.lib.stylix.colors;
 with config.stylix.fonts; let
   opacity = lib.toHexString (((builtins.ceil (config.stylix.opacity.popups * 100)) * 255) / 100);
   # this is a hacky workaround for https://codeberg.org/dnkl/fnott/issues/137
-  settings = {
+  fnott-settings = {
     globalSection = {
       min-width = 500;
       max-width = 500;
@@ -27,8 +27,8 @@ with config.stylix.fonts; let
       border-color = base0D + "ff";
       progress-bar-color = base02 + "ff";
 
-      border-size = dotfiles.appearance.border.size;
-      border-radius = dotfiles.appearance.border.radius;
+      border-size = settings.appearance.border.size;
+      border-radius = settings.appearance.border.radius;
 
       title-format = "<i>%a%A<i>";
       title-font = "${sansSerif.name}:size=${toString sizes.popups}";
@@ -66,7 +66,7 @@ in {
     enable = true;
   };
 
-  xdg.configFile."fnott/fnott.ini".source = lib.mkForce (pkgs.writeText "fnott.ini" (lib.generators.toINIWithGlobalSection {} settings));
+  xdg.configFile."fnott/fnott.ini".source = lib.mkForce (pkgs.writeText "fnott.ini" (lib.generators.toINIWithGlobalSection {} fnott-settings));
 
   home.file."bin/fnott-dnd" = {
     source = ./scripts/fnott-dnd.fish;

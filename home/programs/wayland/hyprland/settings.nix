@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  dotfiles,
+  settings,
   ...
 }: {
   wayland.windowManager.hyprland.settings = let
@@ -23,11 +23,11 @@
       "uwsm app -- solaar -w hide"
       "uwsm app -- rog-control-center"
       "uwsm app -- kdeconnect-indicator"
-      "[workspace 1 silent] uwsm app -- ${dotfiles.programs.browser}"
+      "[workspace 1 silent] uwsm app -- ${settings.programs.browser}"
     ];
 
     general = {
-      border_size = dotfiles.appearance.border.size;
+      border_size = settings.appearance.border.size;
       gaps_in = 5;
       gaps_out = 10;
       layout = "dwindle";
@@ -40,7 +40,7 @@
     };
 
     decoration = {
-      rounding = dotfiles.appearance.border.radius;
+      rounding = settings.appearance.border.radius;
 
       # active_opacity = config.stylix.opacity.applications;
       # inactive_opacity = 0.75;
@@ -105,8 +105,8 @@
         "col.border_locked_inactive" = rgb base03;
         groupbar = {
           text_color = rgb base00;
-          font_size = dotfiles.appearance.fonts.sans.size;
-          height = builtins.floor (dotfiles.appearance.fonts.sans.size * 1.5);
+          font_size = settings.appearance.fonts.sans.size;
+          height = builtins.floor (settings.appearance.fonts.sans.size * 1.5);
 
           "col.active" = cfg.group."col.border_active";
           "col.inactive" = cfg.group."col.border_inactive";

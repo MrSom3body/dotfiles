@@ -1,10 +1,10 @@
 {
   pkgs,
-  dotfiles,
+  settings,
   ...
 }: let
   unitName = "rclone-proton-drive-backup";
-  mountpoint = "proton:Computers/${dotfiles.hostname}";
+  mountpoint = "proton:Computers/${settings.hostname}";
   rcloneSync = dir: ''
     ${pkgs.rclone}/bin/rclone --config=.config/rclone/rclone.conf \
       sync ${dir} ${mountpoint}/${dir} \

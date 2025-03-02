@@ -2,7 +2,7 @@
   inputs,
   config,
   specialArgs,
-  dotfiles,
+  settings,
   ...
 }: {
   imports = [
@@ -15,6 +15,6 @@
     useUserPackages = true;
     extraSpecialArgs = specialArgs;
 
-    users.${dotfiles.user}.imports = [../../hosts/${config.networking.hostName}/home.nix];
+    users.${settings.user}.imports = [../../hosts/${config.networking.hostName}/home.nix];
   };
 }

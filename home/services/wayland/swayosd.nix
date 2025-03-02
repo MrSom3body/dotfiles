@@ -1,6 +1,6 @@
 {
   config,
-  dotfiles,
+  settings,
   ...
 }: {
   services.swayosd = {
@@ -9,7 +9,7 @@
   };
 
   home.file.".config/swayosd/style.css".text = with config.lib.stylix.colors.withHashtag; let
-    inherit (dotfiles.appearance) border;
+    inherit (settings.appearance) border;
   in
     # css
     ''

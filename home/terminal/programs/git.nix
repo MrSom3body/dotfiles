@@ -1,6 +1,6 @@
 {
   config,
-  dotfiles,
+  settings,
   ...
 }: {
   programs.git = {
@@ -46,7 +46,7 @@
       rebase.autoStash = true;
     };
 
-    userName = dotfiles.programs.git.username;
-    userEmail = dotfiles.programs.git.mail;
+    userName = settings.programs.git.username;
+    userEmail = settings.programs.git.mail;
   };
 }

@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  dotfiles,
+  settings,
   ...
 }: {
   xdg = {
@@ -34,7 +34,7 @@
   home.packages = [
     # used by `gio open` and xdp-gtk
     (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
-      ${dotfiles.programs.terminal} "$@"
+      ${settings.programs.terminal} "$@"
     '')
     pkgs.xdg-utils
   ];

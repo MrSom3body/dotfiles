@@ -1,16 +1,16 @@
-{dotfiles, ...}: {
+{settings, ...}: {
   imports = [
     ./terminal
   ];
 
   home = {
-    username = dotfiles.user;
-    homeDirectory = "/home/${dotfiles.user}";
+    username = settings.user;
+    homeDirectory = "/home/${settings.user}";
     stateVersion = "24.05";
 
     sessionVariables = {
-      EDITOR = dotfiles.programs.editor;
-      BROWSER = dotfiles.programs.browser;
+      EDITOR = settings.programs.editor;
+      BROWSER = settings.programs.browser;
     };
   };
 

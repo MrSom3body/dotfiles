@@ -1,6 +1,6 @@
 {
   pkgs,
-  dotfiles,
+  settings,
   ...
 }: let
   lock-true = {
@@ -11,7 +11,7 @@ in {
   programs.firefox = {
     enable = true;
     package =
-      if dotfiles.programs.browser == "firefox-beta"
+      if settings.programs.browser == "firefox-beta"
       then pkgs.firefox-beta
       else pkgs.firefox;
     profiles.default = {

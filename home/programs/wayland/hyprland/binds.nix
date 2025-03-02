@@ -2,7 +2,7 @@
   lib,
   config,
   pkgs,
-  dotfiles,
+  settings,
   ...
 }: {
   wayland.windowManager.hyprland.settings = {
@@ -28,11 +28,11 @@
         "CTRL SHIFT, D, Deaf on vesktop, pass, class:^(vesktop)$"
 
         # Open applications
-        "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${dotfiles.programs.terminal}"
-        "$mainMod, B, Open browser, exec, uwsm app -- ${dotfiles.programs.browser}"
+        "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${settings.programs.terminal}"
+        "$mainMod, B, Open browser, exec, uwsm app -- ${settings.programs.browser}"
         "$mainMod SHIFT, O, Open Obsidian, exec, uwsm app -- obsidian"
-        "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- ${dotfiles.programs.terminal} --app-id ${dotfiles.programs.terminalFileManager} ${dotfiles.programs.terminalFileManager}"
-        "$mainMod SHIFT, E, Open file manager, exec, uwsm app -- ${dotfiles.programs.fileManager}"
+        "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- ${settings.programs.terminal} --app-id ${settings.programs.terminalFileManager} ${settings.programs.terminalFileManager}"
+        "$mainMod SHIFT, E, Open file manager, exec, uwsm app -- ${settings.programs.fileManager}"
         ", XF86Calculator, Open calculator, exec, ${runOnce "gnome-calculator"}"
 
         # Launcher

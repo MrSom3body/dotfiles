@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  dotfiles,
+  settings,
   ...
 }: {
   home = {
@@ -72,7 +72,7 @@
       "// lol" = config.lib.formats.rasi.mkLiteral ''
 
           filebrowser {
-            directory: "/home/${dotfiles.user}";
+            directory: "/home/${settings.user}";
           }
         // '';
     };
@@ -82,7 +82,7 @@
       # quotes
       inherit (config.lib.formats.rasi) mkLiteral;
       opacity = lib.toHexString (builtins.floor ((config.stylix.opacity.popups - 0.0) * 255));
-      border-radius = mkLiteral (builtins.toString dotfiles.appearance.border.radius + "px");
+      border-radius = mkLiteral (builtins.toString settings.appearance.border.radius + "px");
     in {
       "*" = {
         margin = mkLiteral "0";

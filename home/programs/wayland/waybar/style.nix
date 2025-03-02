@@ -1,11 +1,11 @@
 {
   config,
-  dotfiles,
+  settings,
   ...
 }: {
   programs.waybar.style = let
-    radius = builtins.toString dotfiles.appearance.border.radius;
-    border-size = builtins.toString dotfiles.appearance.border.size;
+    radius = builtins.toString settings.appearance.border.radius;
+    border-size = builtins.toString settings.appearance.border.size;
   in
     with config.lib.stylix.colors.withHashtag; # css
     

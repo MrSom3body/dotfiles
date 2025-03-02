@@ -1,7 +1,7 @@
 {
   self,
   pkgs,
-  dotfiles,
+  settings,
   ...
 }: {
   home.packages = [
@@ -17,15 +17,15 @@
         icon-theme = "Papirus";
         launch-prefix = "uwsm app --";
         match-counter = true;
-        terminal = "${dotfiles.programs.terminal} -e";
+        terminal = "${settings.programs.terminal} -e";
         horizontal-pad = 40;
         vertical-pad = 20;
         inner-pad = 15;
       };
 
       border = {
-        width = dotfiles.appearance.border.size;
-        inherit (dotfiles.appearance.border) radius;
+        width = settings.appearance.border.size;
+        inherit (settings.appearance.border) radius;
       };
     };
   };

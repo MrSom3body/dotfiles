@@ -1,13 +1,13 @@
 {
   pkgs,
-  dotfiles,
+  settings,
   ...
 }: let
   foot-pipe = pkgs.writeScript "foot-pipe" ''
     #!${pkgs.fish}/bin/fish
     set tmp (mktemp)
     cat > $tmp
-    ${dotfiles.programs.terminal} ${dotfiles.programs.editor} -- $tmp
+    ${settings.programs.terminal} ${settings.programs.editor} -- $tmp
     rm -f -- $tmp
   '';
 in {
@@ -15,7 +15,7 @@ in {
     enable = true;
 
     server.enable =
-      if dotfiles.programs.terminal == "footclient"
+      if settings.programs.terminal == "footclient"
       then true
       else false;
 

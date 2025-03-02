@@ -2,21 +2,21 @@
   lib,
   config,
   pkgs,
-  dotfiles,
+  settings,
   ...
 }: let
   alternatePolarity =
-    if dotfiles.appearance.polarity == "dark"
+    if settings.appearance.polarity == "dark"
     then "light"
     else "dark";
 in {
   stylix = {
     enable = true;
-    image = dotfiles.appearance.wallpaper;
-    inherit (dotfiles.appearance) polarity;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/${dotfiles.appearance."${dotfiles.appearance.polarity}-theme"}.yaml";
+    image = settings.appearance.wallpaper;
+    inherit (settings.appearance) polarity;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/${settings.appearance."${settings.appearance.polarity}-theme"}.yaml";
 
-    fonts = with dotfiles.appearance.fonts; {
+    fonts = with settings.appearance.fonts; {
       sizes = {
         applications = sans.size;
         desktop = sans.size;
@@ -57,7 +57,7 @@ in {
   specialisation."${alternatePolarity}Mode".configuration = {
     environment.etc."specialisation".text = "${alternatePolarity}Mode";
     stylix = {
-      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/${dotfiles.appearance."${alternatePolarity}-theme"}.yaml";
+      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/${settings.appearance."${alternatePolarity}-theme"}.yaml";
       polarity = lib.mkForce alternatePolarity;
     };
   };

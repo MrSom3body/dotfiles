@@ -2,7 +2,7 @@
   # This file contains settings for your system configuration.
   # It doesn't install anything but sets values that other parts of your system may use.
 
-  dotfiles = hostname: rec {
+  settings = hostname: rec {
     # System settings
     inherit hostname;
     user = "karun";

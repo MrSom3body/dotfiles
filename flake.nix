@@ -7,7 +7,7 @@
     nixpkgs-stable,
     ...
   } @ inputs: let
-    inherit (import ./settings.nix) dotfiles;
+    inherit (import ./settings.nix) settings;
 
     inherit (nixpkgs) lib;
     system = "x86_64-linux";
@@ -32,7 +32,7 @@
     mkNixosConfig = hostname:
       lib.nixosSystem {
         inherit system;
-        specialArgs = specialArgs // {dotfiles = dotfiles hostname;};
+        specialArgs = specialArgs // {settings = settings hostname;};
         modules = [
           ./hosts/${hostname}
         ];

@@ -1,6 +1,6 @@
 {
   lib,
-  dotfiles,
+  settings,
   ...
 }: {
   imports = [
@@ -36,7 +36,7 @@
 
   services.localtimed.enable = true; # automatic timezone switching
 
-  networking.hostName = dotfiles.hostname;
+  networking.hostName = settings.hostname;
 
   console.keyMap = "de";
 

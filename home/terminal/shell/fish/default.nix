@@ -1,6 +1,6 @@
 {
   pkgs,
-  dotfiles,
+  settings,
   ...
 }: {
   programs.fish = {
@@ -40,7 +40,7 @@
     };
 
     shellAbbrs = {
-      d = "cd ${dotfiles.path}";
+      d = "cd ${settings.path}";
 
       l = "ls";
       la = "ls -a";

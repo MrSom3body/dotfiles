@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  dotfiles,
+  settings,
   ...
 }: {
   imports = [
@@ -10,6 +10,6 @@
 
   services.greetd.settings.initial_session = {
     command = "${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop";
-    inherit (dotfiles) user;
+    inherit (settings) user;
   };
 }

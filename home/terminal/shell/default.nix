@@ -14,15 +14,15 @@
         wraps = "ip";
       };
       icat = {
-        body = "${pkgs.viu}/bin/viu $argv";
-        wraps = "${pkgs.viu}/bin/viu";
+        body = "${pkgs.timg}/bin/timg $argv";
+        wraps = "${pkgs.timg}/bin/timg";
       };
     };
 
     bash.shellAliases = {
       ip = "ip -c";
       l = "ls";
-      icat = "${pkgs.viu}/bin/viu";
+      icat = "${pkgs.timg}/bin/timg";
     };
   };
 

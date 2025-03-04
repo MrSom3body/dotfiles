@@ -75,7 +75,7 @@
     in
       builtins.listToAttrs (builtins.map importPackage packageFiles);
 
-    checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+    checks.${system}.pre-commit-check = inputs.git-hooks-nix.lib.${system}.run {
       src = ./.;
       hooks = {
         alejandra.enable = true;
@@ -118,7 +118,7 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
-        pre-commit-hooks-nix.follows = "pre-commit-hooks";
+        pre-commit-hooks-nix.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -135,7 +135,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pre-commit-hooks = {
+    git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
       inputs = {
         flake-compat.follows = "flake-compat";
@@ -255,7 +255,7 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         flake-utils.follows = "flake-utils";
-        git-hooks.follows = "pre-commit-hooks";
+        git-hooks.follows = "git-hooks-nix";
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";

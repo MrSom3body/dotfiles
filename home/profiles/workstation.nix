@@ -7,7 +7,7 @@
 
     # programs
     ../../home/programs
-    ../../home/programs/browsers/firefox.nix
+    ../../home/programs/browsers/zen-browser.nix
     ../../home/programs/media
     ../../home/programs/office
 

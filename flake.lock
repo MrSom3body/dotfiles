@@ -1206,8 +1206,7 @@
         "stylix": "stylix",
         "systems": "systems_5",
         "yazi-plugins": "yazi-plugins",
-        "yazi-starship-plugin": "yazi-starship-plugin",
-        "zen-browser": "zen-browser"
+        "yazi-starship-plugin": "yazi-starship-plugin"
       }
     },
     "rust-overlay": {
@@ -1592,26 +1591,6 @@
       "original": {
         "owner": "Rolv-Apneseth",
         "repo": "starship.yazi",
-        "type": "github"
-      }
-    },
-    "zen-browser": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1740729275,
-        "narHash": "sha256-/0dJi65+7oBpfEYWrg4jihkEzAf975TVeOk+FpxaW6o=",
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
-        "rev": "17bd241d6a5692848b01737f595824a707de855a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
         "type": "github"
       }
     },

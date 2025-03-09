@@ -16,9 +16,9 @@
         "image/png" = ["org.gnome.Loupe.desktop"]; # Images
         "inode/directory" = ["yazi.desktop"]; # Files
         "text/plain" = ["Helix.desktop"]; # Plain text
-        "x-scheme-handler/http" = ["zen.desktop"]; # Links
-        "x-scheme-handler/https" = ["zen.desktop"]; # Links
-        "x-scheme-handler/mailto" = ["zen.desktop"]; # Links
+        "x-scheme-handler/http" = ["firefox.desktop"]; # Links
+        "x-scheme-handler/https" = ["firefox.desktop"]; # Links
+        "x-scheme-handler/mailto" = ["firefox.desktop"]; # Links
       };
     };
 

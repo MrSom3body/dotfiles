@@ -2,22 +2,28 @@
   pkgs,
   settings,
   ...
-}: let
-  lock-true = {
-    Value = true;
-    Status = "locked";
-  };
-in {
+}: {
   programs.firefox = {
     enable = true;
     package =
       if settings.programs.browser == "firefox-beta"
       then pkgs.firefox-beta-bin
       else pkgs.firefox-bin;
+
     profiles.default = {
       id = 0;
       name = "default";
       isDefault = true;
+      settings = {
+        "cookiebanners.service.mode" = 2;
+        "cookiebanners.service.mode.privateBrowsing" = 2;
+        "cookiebanners.ui.desktop.enabled" = 2;
+        "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = true;
+        "network.trr.mode" = 2;
+        "network.trr.uri" = "https://dns.quad9.net/dns-query";
+        "sidebar.verticalTabs" = true;
+      };
+
       search = {
         force = true;
         default = "DuckDuckGo";
@@ -47,7 +53,7 @@ in {
             definedAliases = ["@yt"];
           };
           "NixOS Wiki" = {
-            urls = [{template = "https://wiki.nixos.org/index.php?search={searchTerms}";}];
+            urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
             iconUpdateURL = "https://wiki.nixos.org/favicon.png";
             updateInterval = 24 * 60 * 60 * 1000; # every day
             definedAliases = ["@nw"];
@@ -81,16 +87,6 @@ in {
             definedAliases = ["@np"];
           };
         };
-      };
-
-      settings = {
-        "browser.ctrlTab.sortByRecentlyUsed" = lock-true;
-        "browser.tabs.hoverPreview.enabled" = lock-true;
-        "browser.tabs.inTitlebar" = {
-          Value = 0;
-          Status = "locked";
-        };
-        "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = lock-true;
       };
     };
   };

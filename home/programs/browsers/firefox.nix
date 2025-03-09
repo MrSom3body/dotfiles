@@ -86,6 +86,12 @@
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = ["@np"];
           };
+          "Subreddit" = {
+            urls = [{template = "https://reddit.com/r/{searchTerms}";}];
+            iconUpdateURL = "https://reddit.com/favicon.png";
+            updateInterval = 24 * 60 * 60 * 1000; # every day
+            definedAliases = ["r/"];
+          };
         };
       };
     };

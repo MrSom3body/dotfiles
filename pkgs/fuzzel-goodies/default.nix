@@ -13,7 +13,7 @@
 }:
 stdenv.mkDerivation {
   pname = "fuzzel-goodies";
-  version = "1.1.0";
+  version = "1.1.1";
 
   src = ./scripts;
 
@@ -27,7 +27,6 @@ stdenv.mkDerivation {
   '';
 
   fixupPhase = ''
-    echo $out
     for script in $out/bin/*; do
       wrapProgram "$script" --prefix PATH : ${
       lib.makeBinPath [

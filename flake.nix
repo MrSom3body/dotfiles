@@ -35,6 +35,8 @@
         specialArgs = specialArgs // {settings = settings hostname;};
         modules = [
           ./hosts/${hostname}
+          ./hosts/${hostname}/disko.nix
+          inputs.disko.nixosModules.disko
         ];
       };
   in {

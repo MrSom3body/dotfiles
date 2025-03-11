@@ -1,6 +1,11 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   stylix = {
     targets = {
+      firefox.profileNames = ["default"];
       fish.enable = false;
       kitty.variant256Colors = true;
       neovim.enable = false;
@@ -17,4 +22,7 @@
       dark = "Papirus-Dark";
     };
   };
+
+  # TODO remove when https://github.com/danth/stylix/issues/865 get resolved
+  nixpkgs.overlays = lib.mkForce null;
 }

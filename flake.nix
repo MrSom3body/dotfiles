@@ -267,6 +267,14 @@
       };
     };
 
+    yazi = {
+      url = "github:sxyazi/yazi";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     yazi-plugins = {
       url = "github:yazi-rs/plugins";
       flake = false;

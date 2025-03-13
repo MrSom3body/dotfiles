@@ -7,7 +7,7 @@
 
   programs.yazi = {
     enable = true;
-    enableZshIntegration = true;
+    package = inputs.yazi.packages.${pkgs.system}.default;
     shellWrapperName = "y";
 
     settings = {

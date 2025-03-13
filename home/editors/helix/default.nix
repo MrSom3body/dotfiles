@@ -35,6 +35,16 @@
 
         indent-guides.render = true;
       };
+
+      keys.normal.space = {
+        e = [
+          ":sh rm -f /tmp/helix-yazi"
+          ":insert-output yazi %{buffer_name} --chooser-file=/tmp/helix-yazi"
+          ":insert-output echo \"\x1b[?1049h\x1b[?2004h\" > /dev/tty"
+          ":open %sh{cat /tmp/helix-yazi}"
+          ":redraw"
+        ];
+      };
     };
 
     ignores = [

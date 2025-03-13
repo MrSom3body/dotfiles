@@ -13,6 +13,7 @@
       ../../system/hardware/opentabletdriver.nix
       ../../system/hardware/logitech.nix
 
+      ../../system/network/kdeconnect.nix
       ../../system/network/spotify.nix
 
       ../../system/programs/gamemode.nix

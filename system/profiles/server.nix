@@ -11,6 +11,7 @@
     ../../system/programs/command-not-found.nix
 
     ../../system/services
+    ../../system/services/location.nix
 
     ../../system/virtualisation/vm.nix
 

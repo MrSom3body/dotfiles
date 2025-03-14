@@ -24,7 +24,7 @@
       ../../system/services/fprintd.nix
       ../../system/services/gns3.nix
       ../../system/services/ollama.nix
-      ../../system/services/zerotier.nix
+      ../../system/services/tailscale.nix
 
       ../../system/virtualisation/libvirtd.nix
       ../../system/virtualisation/podman.nix

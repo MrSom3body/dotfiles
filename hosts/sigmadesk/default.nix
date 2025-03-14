@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
 
     ../../system/services/openssh.nix
+    ../../system/services/tailscale.nix
   ];
 
   security.tpm2.enable = true;

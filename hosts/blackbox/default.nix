@@ -40,7 +40,10 @@
     kernelModules = ["nvidia_uvm"];
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services = {
+    xserver.videoDrivers = ["nvidia"];
+    tailscale.useRoutingFeatures = "client";
+  };
 
   hardware = {
     amdgpu.initrd.enable = true;

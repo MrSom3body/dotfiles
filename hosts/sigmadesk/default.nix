@@ -26,6 +26,8 @@
       };
     };
 
+    tailscale.useRoutingFeatures = "server";
+
     ddns-updater.enable = true;
   };
   security.tpm2.enable = true;

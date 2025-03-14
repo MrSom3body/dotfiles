@@ -8,6 +8,9 @@
     user = "karun";
     username = "Karun Sandhu";
     path = "/home/karun/dotfiles"; # Path to your dotfiles
+    authorizedSshKeys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFKSJm8M+cxXmYVQMjKYtEMuP3pdYdIJBJzbm3NP/v2q karun@blackbox"
+    ];
 
     # Appearance settings
     appearance = {

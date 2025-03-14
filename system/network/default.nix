@@ -13,15 +13,9 @@
     ];
   };
 
-  services = {
-    openssh = {
-      settings.UseDns = true;
-    };
-
-    # DNS resolver
-    resolved = {
-      enable = true;
-      dnsovertls = "opportunistic";
-    };
+  # DNS resolver
+  services.resolved = {
+    enable = true;
+    dnsovertls = "opportunistic";
   };
 }

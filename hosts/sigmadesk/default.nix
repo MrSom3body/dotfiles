@@ -1,10 +1,10 @@
 {...}: {
   imports = [
-    ../../system/profiles/workstation.nix
+    ../../system/profiles/server.nix
     ./hardware-configuration.nix
-  ];
 
-  services.openssh.enable = true;
+    ../../system/services/openssh.nix
+  ];
 
   security.tpm2.enable = true;
   powerManagement.enable = true;

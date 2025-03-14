@@ -140,6 +140,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
       inputs = {

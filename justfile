@@ -11,19 +11,19 @@ up INPUT="":
 
 [group("local")]
 test:
-    sudo nixos-rebuild test --flake .
+    nh os test
 
 [group("local")]
 boot:
-    sudo nixos-rebuild boot --flake .
+    nh os boot
 
 [group("local")]
 build:
-    sudo nixos-rebuild build --flake .
+    nh os build
 
 [group("local")]
 switch:
-    sudo nixos-rebuild switch --flake .
+    nh os switch
 
 [group("local")]
 fix-lanzaboote:

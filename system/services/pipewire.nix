@@ -10,5 +10,10 @@
     wireplumber.extraConfig."wireplumber.profiles".main."monitor.libcamera" = "disabled";
   };
 
+  # TODO remove after https://github.com/NixOS/nixpkgs/issues/390071 is fixed
+  environment.pathsToLink = [
+    "/share/wireplumber"
+  ];
+
   services.pulseaudio.enable = lib.mkForce false;
 }

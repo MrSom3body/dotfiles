@@ -4,17 +4,21 @@
   outputs = {
     self,
     nixpkgs,
+    systems,
     ...
   } @ inputs: let
     inherit (import ./settings.nix) settings;
-
     inherit (nixpkgs) lib;
     inherit (self) outputs;
-    system = "x86_64-linux";
 
-    pkgs = import nixpkgs {
-      inherit system;
-    };
+    forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs (import systems) (
+      system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+    );
 
     specialArgs = {
       inherit inputs;
@@ -23,7 +27,6 @@
 
     mkNixosConfig = hostname:
       lib.nixosSystem {
-        inherit system;
         specialArgs = specialArgs // {settings = settings hostname;};
         modules = [
           ./hosts/${hostname}
@@ -33,8 +36,8 @@
       };
   in {
     overlays = import ./overlays {inherit inputs;};
-    packages.${system} = import ./pkgs {inherit pkgs;};
-    formatter.${system} = pkgs.alejandra;
+    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+    formatter = forEachSystem (pkgs: pkgs.alejandra);
 
     nixosConfigurations = {
       blackbox = mkNixosConfig "blackbox";
@@ -42,44 +45,50 @@
       nixos = mkNixosConfig "nixos";
     };
 
-    devShells.${system}.default = pkgs.mkShell {
-      name = "dotfiles";
+    devShells = forEachSystem (pkgs: {
+      default = pkgs.mkShell {
+        name = "dotfiles";
 
-      buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+        buildInputs = self.checks.${pkgs.system}.pre-commit-check.enabledPackages;
 
-      packages = with pkgs; [
-        alejandra
-        git
-        just
-      ];
+        packages = with pkgs; [
+          alejandra
+          git
+          just
+        ];
 
-      shellHook = ''
-        ${self.checks.${system}.pre-commit-check.shellHook}
+        shellHook = ''
+          ${self.checks.${pkgs.system}.pre-commit-check.shellHook}
 
-        tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "last 5 commits"
-        git log --all --decorate --graph --oneline -5
-        echo
-        tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "status"
-        git status --short
-      '';
-    };
+          tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "last 5 commits"
+          git log --all --decorate --graph --oneline -5
+          echo
+          tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "status"
+          git status --short
+        '';
+      };
+    });
 
-    checks.${system}.pre-commit-check = inputs.git-hooks-nix.lib.${system}.run {
-      src = ./.;
-      hooks = {
-        alejandra.enable = true;
-        deadnix.enable = true;
-        markdownlint = {
-          enable = true;
-          settings.configuration = {
-            line-length.tables = false;
-            no-inline-html = false;
+    checks = forEachSystem (
+      pkgs: {
+        pre-commit-check = inputs.git-hooks-nix.lib.${pkgs.system}.run {
+          src = ./.;
+          hooks = {
+            alejandra.enable = true;
+            deadnix.enable = true;
+            markdownlint = {
+              enable = true;
+              settings.configuration = {
+                line-length.tables = false;
+                no-inline-html = false;
+              };
+            };
+            nil.enable = true;
+            statix.enable = true;
           };
         };
-        nil.enable = true;
-        statix.enable = true;
-      };
-    };
+      }
+    );
   };
 
   inputs = {

@@ -111,7 +111,25 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    # the rest
+    # nix ecosystem
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs = {
@@ -120,18 +138,6 @@
         pre-commit-hooks-nix.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
       };
-    };
-
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-minecraft = {
@@ -143,14 +149,37 @@
       };
     };
 
-    git-hooks-nix = {
-      url = "github:cachix/git-hooks.nix";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    programsdb = {
+      url = "github:wamserma/flake-programs-sqlite";
       inputs = {
-        flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
       };
     };
 
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+        git-hooks.follows = "git-hooks-nix";
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
+    # programs
     ghostty = {
       url = "github:ghostty-org/ghostty";
       inputs = {
@@ -162,9 +191,7 @@
 
     gotcha = {
       url = "github:MrSom3body/gotcha";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs = {nixpkgs.follows = "nixpkgs";};
     };
 
     helix = {
@@ -175,8 +202,16 @@
       };
     };
 
-    hyprland.url = "github:hyprwm/hyprland";
+    yazi = {
+      url = "github:sxyazi/yazi";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
 
+    # hyprland stuff
+    hyprland.url = "github:hyprwm/hyprland";
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs = {
@@ -242,42 +277,7 @@
       };
     };
 
-    programsdb = {
-      url = "github:wamserma/flake-programs-sqlite";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        utils.follows = "flake-utils";
-      };
-    };
-
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-
-    stylix = {
-      url = "github:danth/stylix";
-      inputs = {
-        flake-compat.follows = "flake-compat";
-        flake-utils.follows = "flake-utils";
-        git-hooks.follows = "git-hooks-nix";
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-
-    yazi = {
-      url = "github:sxyazi/yazi";
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
+    # non flakes
     yazi-plugins = {
       url = "github:yazi-rs/plugins";
       flake = false;

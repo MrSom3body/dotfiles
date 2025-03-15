@@ -26,7 +26,13 @@
       };
     };
 
-    tailscale.useRoutingFeatures = "server";
+    tailscale = {
+      useRoutingFeatures = "server";
+      extraUpFlags = [
+        "--advertise-exit-node"
+        "--exit-node-allow-lan-access"
+      ];
+    };
 
     ddns-updater.enable = true;
   };

@@ -21,8 +21,6 @@
       inherit outputs;
     };
 
-    hosts = builtins.attrNames (builtins.readDir ./hosts);
-
     mkNixosConfig = hostname:
       lib.nixosSystem {
         inherit system;
@@ -38,11 +36,11 @@
     packages.${system} = import ./pkgs {inherit pkgs;};
     formatter.${system} = pkgs.alejandra;
 
-    nixosConfigurations = builtins.listToAttrs (map (hostname: {
-        name = hostname;
-        value = mkNixosConfig hostname;
-      })
-      hosts);
+    nixosConfigurations = {
+      blackbox = mkNixosConfig "blackbox";
+      sigmadesk = mkNixosConfig "sigmadesk";
+      nixos = mkNixosConfig "nixos";
+    };
 
     devShells.${system}.default = pkgs.mkShell {
       name = "dotfiles";

@@ -30,20 +30,15 @@
       ../../system/virtualisation/podman.nix
     ]
     ++ (with inputs.nixos-hardware.nixosModules; [
+      common-pc-laptop
+      common-cpu-amd-pstate
+      common-gpu-nvidia
       asus-battery
     ]);
 
-  boot = {
-    kernelParams = [
-      "amd_pstate=active"
-    ];
-    kernelModules = ["nvidia_uvm"];
-  };
+  boot.kernelModules = ["nvidia_uvm"];
 
-  services = {
-    xserver.videoDrivers = ["nvidia"];
-    tailscale.useRoutingFeatures = "client";
-  };
+  services.tailscale.useRoutingFeatures = "client";
 
   hardware = {
     amdgpu.initrd.enable = true;
@@ -61,10 +56,6 @@
 
       dynamicBoost.enable = true;
       prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
         amdgpuBusId = "PCI:01:00:0";
         nvidiaBusId = "PCI:101:00:0";
       };

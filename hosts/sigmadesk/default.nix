@@ -1,12 +1,23 @@
-{pkgs, ...}: {
-  imports = [
-    ../../system/profiles/server.nix
-    ./hardware-configuration.nix
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  imports =
+    [
+      ../../system/profiles/server.nix
+      ./hardware-configuration.nix
 
-    ../../system/services/minecraft.nix
-    ../../system/services/openssh.nix
-    ../../system/services/tailscale.nix
-  ];
+      ../../system/services/minecraft.nix
+      ../../system/services/openssh.nix
+      ../../system/services/tailscale.nix
+    ]
+    ++ (with inputs.nixos-hardware.nixosModules; [
+      common-pc
+    ])
+    ++ [
+      (inputs.nixos-hardware + "/common/cpu/intel/haswell")
+    ];
 
   services = {
     minecraft-servers.servers = {

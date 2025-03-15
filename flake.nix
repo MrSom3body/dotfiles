@@ -42,7 +42,6 @@
     nixosConfigurations = {
       blackbox = mkNixosConfig "blackbox";
       sigmadesk = mkNixosConfig "sigmadesk";
-      nixos = mkNixosConfig "nixos";
     };
 
     devShells = forEachSystem (pkgs:

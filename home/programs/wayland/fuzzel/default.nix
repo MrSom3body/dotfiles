@@ -1,11 +1,11 @@
 {
-  self,
+  outputs,
   pkgs,
   settings,
   ...
 }: {
   home.packages = [
-    self.packages.${pkgs.system}.fuzzel-goodies
+    outputs.packages.${pkgs.system}.fuzzel-goodies
   ];
 
   programs.fuzzel = {

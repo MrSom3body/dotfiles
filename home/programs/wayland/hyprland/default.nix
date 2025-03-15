@@ -1,5 +1,5 @@
 {
-  self,
+  outputs,
   inputs,
   pkgs,
   ...
@@ -23,7 +23,7 @@
       wtype
     ])
     ++ (
-      with self.packages.${pkgs.system}; [
+      with outputs.packages.${pkgs.system}; [
         wl-ocr
         hyprcast
       ]

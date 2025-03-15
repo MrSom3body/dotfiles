@@ -4,27 +4,21 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-stable,
     ...
   } @ inputs: let
     inherit (import ./settings.nix) settings;
 
     inherit (nixpkgs) lib;
+    inherit (self) outputs;
     system = "x86_64-linux";
 
     pkgs = import nixpkgs {
       inherit system;
     };
 
-    pkgs-stable = import nixpkgs-stable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-
     specialArgs = {
-      inherit self;
-      inherit pkgs-stable;
       inherit inputs;
+      inherit outputs;
     };
 
     hosts = builtins.attrNames (builtins.readDir ./hosts);
@@ -40,6 +34,10 @@
         ];
       };
   in {
+    overlays = import ./overlays {inherit inputs;};
+    packages.${system} = import ./pkgs {inherit pkgs;};
+    formatter.${system} = pkgs.alejandra;
+
     nixosConfigurations = builtins.listToAttrs (map (hostname: {
         name = hostname;
         value = mkNixosConfig hostname;
@@ -68,8 +66,6 @@
       '';
     };
 
-    packages.${system} = import ./pkgs pkgs;
-
     checks.${system}.pre-commit-check = inputs.git-hooks-nix.lib.${system}.run {
       src = ./.;
       hooks = {
@@ -86,8 +82,6 @@
         statix.enable = true;
       };
     };
-
-    formatter.${system} = pkgs.alejandra;
   };
 
   inputs = {

@@ -1,11 +1,11 @@
 {
+  outputs,
   inputs,
   pkgs,
   ...
 }: {
   imports = [
     ./nh.nix
-    ./nixpkgs.nix
     ./substituters.nix
   ];
 
@@ -35,5 +35,10 @@
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     registry.nixpkgs.flake = inputs.nixpkgs;
     channel.enable = false; # remove nix-channel related tools & configs, we use flakes instead.
+  };
+
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = builtins.attrValues outputs.overlays;
   };
 }

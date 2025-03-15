@@ -68,14 +68,7 @@
       '';
     };
 
-    packages.${system} = let
-      packageFiles = builtins.attrNames (builtins.readDir ./pkgs);
-      importPackage = name: {
-        inherit name;
-        value = pkgs.callPackage (./pkgs + "/${name}") {};
-      };
-    in
-      builtins.listToAttrs (builtins.map importPackage packageFiles);
+    packages.${system} = import ./pkgs pkgs;
 
     checks.${system}.pre-commit-check = inputs.git-hooks-nix.lib.${system}.run {
       src = ./.;

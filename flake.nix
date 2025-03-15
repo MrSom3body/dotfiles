@@ -45,50 +45,16 @@
       nixos = mkNixosConfig "nixos";
     };
 
-    devShells = forEachSystem (pkgs: {
-      default = pkgs.mkShell {
-        name = "dotfiles";
-
-        buildInputs = self.checks.${pkgs.system}.pre-commit-check.enabledPackages;
-
-        packages = with pkgs; [
-          alejandra
-          git
-          just
-        ];
-
-        shellHook = ''
-          ${self.checks.${pkgs.system}.pre-commit-check.shellHook}
-
-          tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "last 5 commits"
-          git log --all --decorate --graph --oneline -5
-          echo
-          tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "status"
-          git status --short
-        '';
-      };
-    });
-
-    checks = forEachSystem (
-      pkgs: {
-        pre-commit-check = inputs.git-hooks-nix.lib.${pkgs.system}.run {
-          src = ./.;
-          hooks = {
-            alejandra.enable = true;
-            deadnix.enable = true;
-            markdownlint = {
-              enable = true;
-              settings.configuration = {
-                line-length.tables = false;
-                no-inline-html = false;
-              };
-            };
-            nil.enable = true;
-            statix.enable = true;
-          };
-        };
-      }
-    );
+    devShells = forEachSystem (pkgs:
+      import ./shell.nix {
+        inherit self;
+        inherit pkgs;
+      });
+    checks = forEachSystem (pkgs:
+      import ./checks.nix {
+        inherit inputs;
+        inherit pkgs;
+      });
   };
 
   inputs = {

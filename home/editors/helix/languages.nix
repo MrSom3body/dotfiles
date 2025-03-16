@@ -124,7 +124,6 @@
       nixd = {
         command = lib.getExe pkgs.nixd;
         config.nixd = {
-          nixpkgs.expr = "import (builtins.getFlake \"${settings.path}\").inputs.nixpkgs { }";
           formatting.command = ["${lib.getExe pkgs.alejandra}"];
           options.nixos.expr = "(builtins.getFlake \"${settings.path}\").nixosConfigurations.${settings.hostname}.options";
         };
@@ -156,10 +155,6 @@
 
       vscode-json-language-server = {
         command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
-      };
-
-      qmlls = {
-        command = "${pkgs.kdePackages.qtdeclarative}/bin/qmlls";
       };
     };
   };

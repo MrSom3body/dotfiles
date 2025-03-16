@@ -1,6 +1,5 @@
 {
   inputs,
-  config,
   specialArgs,
   settings,
   ...
@@ -15,6 +14,6 @@
     useUserPackages = true;
     extraSpecialArgs = specialArgs;
 
-    users.${settings.user}.imports = [../../hosts/${config.networking.hostName}/home.nix];
+    users.${settings.user}.imports = [../../hosts/${settings.hostname}/home.nix];
   };
 }

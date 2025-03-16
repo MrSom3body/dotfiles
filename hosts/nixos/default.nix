@@ -19,6 +19,9 @@
 
   users.users.root.openssh.authorizedKeys.keys = settings.authorizedSshKeys;
 
+  # Build the iso faster
+  isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+
   # Options to make my config override the iso one
   security.sudo.enable = lib.mkForce false;
   networking.wireless.enable = lib.mkForce false;

@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   pkgs,
   settings,
   ...
@@ -10,6 +11,10 @@
     then "light"
     else "dark";
 in {
+  imports = [
+    inputs.stylix.nixosModules.stylix
+  ];
+
   stylix = {
     enable = true;
     image = settings.appearance.wallpaper;

@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{...}: {
   imports = [
     ../../system/core
 
@@ -16,7 +16,6 @@
     ../../system/virtualisation/vm.nix
 
     ../../system/style/stylix.nix
-    inputs.stylix.nixosModules.stylix
   ];
 
   hardware.enableAllFirmware = true;

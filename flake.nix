@@ -48,7 +48,7 @@
 
     nixosConfigurations = {
       blackbox = mkNixosConfig "blackbox";
-      sigmadesk = mkNixosConfig "sigmadesk";
+      pandora = mkNixosConfig "pandora";
 
       nixos = lib.nixosSystem {
         specialArgs = specialArgs // {settings = settings "nixos";};

@@ -29,7 +29,7 @@
         serverProperties = {
           difficulty = "normal";
           enforce-secure-profile = false;
-          motd = "Server managed my SigmaDesk";
+          motd = "Server managed my pandora";
           online-mode = false;
           server-port = 25565;
         };
@@ -41,12 +41,13 @@
       useRoutingFeatures = "server";
       extraUpFlags = [
         "--advertise-exit-node"
-        "--exit-node-allow-lan-access"
+        "--advertise-routes \"10.0.0.10/32\""
       ];
     };
 
     ddns-updater.enable = true;
   };
+
   security.tpm2.enable = true;
   powerManagement.enable = true;
 }

@@ -8,7 +8,6 @@
       # archives
       zip
       unzip
-      unrar
 
       # misc
       libnotify

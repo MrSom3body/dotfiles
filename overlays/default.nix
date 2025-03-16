@@ -1,5 +1,13 @@
-{inputs, ...}: {
-  additions = final: _prev: import ../pkgs {inherit (final) pkgs;};
+{
+  inputs,
+  outputs,
+  ...
+}: {
+  additions = final: _prev:
+    import ../pkgs {
+      inherit outputs;
+      inherit (final) pkgs;
+    };
 
   modifications = final: prev: {
     obsidian = prev.obsidian.overrideAttrs (oldAttrs: {

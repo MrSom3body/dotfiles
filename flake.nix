@@ -35,13 +35,25 @@
         ];
       };
   in {
-    overlays = import ./overlays {inherit inputs;};
-    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+    overlays = import ./overlays {
+      inherit inputs;
+      inherit outputs;
+    };
+    packages = forEachSystem (pkgs:
+      import ./pkgs {
+        inherit outputs;
+        inherit pkgs;
+      });
     formatter = forEachSystem (pkgs: pkgs.alejandra);
 
     nixosConfigurations = {
       blackbox = mkNixosConfig "blackbox";
       sigmadesk = mkNixosConfig "sigmadesk";
+
+      nixos = lib.nixosSystem {
+        specialArgs = specialArgs // {settings = settings "nixos";};
+        modules = [./hosts/nixos];
+      };
     };
 
     devShells = forEachSystem (pkgs:

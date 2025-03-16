@@ -5,12 +5,10 @@
   ...
 }: {
   imports = [
-    (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
+    (modulesPath + "/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
     ../../system/profiles/server.nix
 
     ../../system/services/openssh.nix
-
-    ../../system/programs/home-manager.nix
   ];
 
   disabledModules = [

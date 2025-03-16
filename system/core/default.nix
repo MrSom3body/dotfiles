@@ -6,6 +6,7 @@
   imports = [
     ./boot.nix
     ./security.nix
+    ./sops.nix
     ./users.nix
 
     ../nix

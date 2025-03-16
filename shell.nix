@@ -12,6 +12,7 @@
       alejandra
       git
       just
+      sops
     ];
 
     shellHook = ''

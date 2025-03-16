@@ -1,18 +1,24 @@
 {
+  config,
   pkgs,
   settings,
   ...
 }: {
-  users.users.${settings.user} = {
-    isNormalUser = true;
-    description = settings.username;
-    shell = pkgs.fish;
-    initialPassword = "password";
-    extraGroups = [
-      "wheel"
-      "input"
-      "networkmanager"
-      "wireshark"
-    ];
+  users = {
+    mutableUsers = false;
+    users.${settings.user} = {
+      isNormalUser = true;
+      description = settings.username;
+      shell = pkgs.fish;
+      hashedPasswordFile = config.sops.secrets.karun-password.path;
+      extraGroups = [
+        "wheel"
+        "input"
+        "networkmanager"
+        "wireshark"
+      ];
+    };
   };
+
+  sops.secrets.karun-password.neededForUsers = true;
 }

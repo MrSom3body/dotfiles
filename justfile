@@ -10,7 +10,7 @@ up INPUT="":
     nix flake update {{INPUT}}
 
 iso:
-    nix build .#default
+    nix run nixpkgs#nix-fast-build -- --skip-cached --flake .#packages.x86_64-linux.default
 
 [group("local")]
 test:

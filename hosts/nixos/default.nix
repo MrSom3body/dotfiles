@@ -1,7 +1,6 @@
 {
   lib,
   modulesPath,
-  settings,
   ...
 }: {
   imports = [
@@ -14,8 +13,6 @@
   disabledModules = [
     ../../system/core/boot.nix
   ];
-
-  users.users.root.openssh.authorizedKeys.keys = settings.authorizedSshKeys;
 
   # Options to make my config override the iso one
   security.sudo.enable = lib.mkForce false;

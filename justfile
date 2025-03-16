@@ -36,8 +36,8 @@ fix-lanzaboote:
 
 [group("srv")]
 srv NAME MODE="switch":
-    nixos-rebuild switch --flake .#{{NAME}} --target-host {{NAME}} --use-remote-sudo
+    nixos-rebuild switch --flake .#{{NAME}} --target-host root@{{NAME}} 
 
 [group("srv")]
 srv-verbose NAME MODE="switch":
-    nixos-rebuild switch --flake .#{{NAME}} --target-host {{NAME}} --use-remote-sudo --show-trace
+    nixos-rebuild switch --flake .#{{NAME}} --target-host root@{{NAME}} --show-trace

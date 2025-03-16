@@ -9,6 +9,9 @@ default:
 up INPUT="":
     nix flake update {{INPUT}}
 
+iso:
+    nix build .#default
+
 [group("local")]
 test:
     nh os test
@@ -35,5 +38,6 @@ fix-lanzaboote:
 srv NAME MODE="switch":
     nixos-rebuild switch --flake .#{{NAME}} --target-host {{NAME}} --use-remote-sudo
 
+[group("srv")]
 srv-verbose NAME MODE="switch":
     nixos-rebuild switch --flake .#{{NAME}} --target-host {{NAME}} --use-remote-sudo --show-trace

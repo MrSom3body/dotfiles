@@ -9,6 +9,7 @@
       ../../system/services/tailscale.nix
 
       ./services/caddy.nix
+      ./services/ddns-updater.nix
       ./services/send.nix
     ]
     ++ (with inputs.nixos-hardware.nixosModules; [
@@ -18,16 +19,12 @@
       (inputs.nixos-hardware + "/common/cpu/intel/haswell")
     ];
 
-  services = {
-    tailscale = {
-      useRoutingFeatures = "server";
-      extraUpFlags = [
-        "--advertise-exit-node"
-        "--advertise-routes \"10.0.0.10/32\""
-      ];
-    };
-
-    ddns-updater.enable = true;
+  services.tailscale = {
+    useRoutingFeatures = "server";
+    extraUpFlags = [
+      "--advertise-exit-node"
+      "--advertise-routes \"10.0.0.10/32\""
+    ];
   };
 
   security.tpm2.enable = true;

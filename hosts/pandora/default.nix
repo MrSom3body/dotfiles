@@ -13,6 +13,7 @@
       ../../system/services/tailscale.nix
 
       ./services/caddy.nix
+      ./services/send.nix
     ]
     ++ (with inputs.nixos-hardware.nixosModules; [
       common-pc

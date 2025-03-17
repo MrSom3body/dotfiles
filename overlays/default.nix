@@ -32,6 +32,20 @@
         hash = "sha256-79DaK1s+YmROKbcWIXte+GZh0qq9LAQlSmczooR86H8=";
       };
     });
+
+    send =
+      (prev.send.overrideAttrs (_oldAttrs: {
+        version = "unstable-2025-03-16";
+        src = final.fetchFromGitHub {
+          owner = "timvisee";
+          repo = "send";
+          rev = "5124572dba7cac073d85f3e277d647aa3433ea38";
+          hash = "sha256-31GWRufIvs51beLK2q7qo7WVmZ35DdCAe1fVfUV9YiI=";
+        };
+      }))
+      .override {
+        nodejs = final.nodejs_18;
+      };
   };
 
   stable-packages = final: _prev: {

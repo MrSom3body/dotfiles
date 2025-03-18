@@ -1,5 +1,6 @@
 {
   self,
+  inputs,
   pkgs,
   ...
 }: {
@@ -8,12 +9,16 @@
 
     buildInputs = self.checks.${pkgs.system}.pre-commit-check.enabledPackages;
 
-    packages = with pkgs; [
-      alejandra
-      git
-      just
-      sops
-    ];
+    packages = with pkgs;
+      [
+        alejandra
+        git
+        just
+        sops
+      ]
+      ++ [
+        inputs.deploy-rs.packages.${pkgs.system}.default
+      ];
 
     shellHook = ''
       ${self.checks.${pkgs.system}.pre-commit-check.shellHook}

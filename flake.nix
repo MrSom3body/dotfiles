@@ -5,6 +5,7 @@
     self,
     nixpkgs,
     systems,
+    deploy-rs,
     ...
   } @ inputs: let
     inherit (import ./settings.nix) settings;
@@ -56,16 +57,29 @@
       };
     };
 
+    deploy.nodes = {
+      pandora = {
+        hostname = "pandora";
+        profiles.system = {
+          sshUser = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos outputs.nixosConfigurations.pandora;
+        };
+      };
+    };
+
     devShells = forEachSystem (pkgs:
       import ./shell.nix {
         inherit self;
-        inherit pkgs;
-      });
-    checks = forEachSystem (pkgs:
-      import ./checks.nix {
         inherit inputs;
         inherit pkgs;
       });
+    checks =
+      builtins.mapAttrs (_system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib
+      // forEachSystem (pkgs:
+        import ./checks.nix {
+          inherit inputs;
+          inherit pkgs;
+        });
   };
 
   inputs = {
@@ -89,6 +103,15 @@
     };
 
     # nix ecosystem
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

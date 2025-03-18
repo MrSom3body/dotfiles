@@ -6,7 +6,6 @@ in {
       enable = true;
       host = "127.0.0.1";
       port = 1443;
-      openFirewall = true;
       environment = {
         MAX_EXPIRE_SECONDS = 345600;
         MAX_DOWNLOADS = 10;

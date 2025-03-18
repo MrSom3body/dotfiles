@@ -5,7 +5,6 @@
       ./hardware-configuration.nix
 
       ../../system/services/glance.nix
-      ../../system/services/minecraft.nix
       ../../system/services/openssh.nix
       ../../system/services/tailscale.nix
 

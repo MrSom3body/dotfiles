@@ -17,6 +17,10 @@
       glow
       speedtest-cli
       wget
+
+      # net
+      dig
+      inetutils
     ]
     ++ [
       inputs.gotcha.packages.${pkgs.system}.default

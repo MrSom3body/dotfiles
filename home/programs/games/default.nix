@@ -9,7 +9,9 @@
     goverlay
     heroic
     mindustry-wayland
-    modrinth-app
+    # TODO switch back to unstable when
+    # https://github.com/NixOS/nixpkgs/pull/389948 gets merged
+    stable.modrinth-app
     r2modman
   ];
 }

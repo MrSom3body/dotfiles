@@ -1,5 +1,4 @@
 {
-  outputs,
   inputs,
   pkgs,
   ...
@@ -23,7 +22,8 @@
       wtype
     ])
     ++ (
-      with outputs.packages.${pkgs.system}; [
+      with pkgs; [
+        # my packages
         wl-ocr
         hyprcast
       ]

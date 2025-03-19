@@ -71,6 +71,7 @@ in {
                       };
                     in [
                       (mkSite "loxone" "https://loxone.sndh.dev")
+                      (mkSite "immich" "https://immich.sndh.dev")
                       (mkSite "ddns updater" "https://ddns.sndh.dev")
                       (mkSite "firefox send" "https://send.sndh.dev")
                     ];

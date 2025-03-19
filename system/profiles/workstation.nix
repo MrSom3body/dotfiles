@@ -16,8 +16,6 @@
     ../../system/services/printing.nix
   ];
 
-  nix.daemonCPUSchedPolicy = "idle";
-
   programs = {
     # make HM-managed GTK stuff work
     dconf.enable = true;

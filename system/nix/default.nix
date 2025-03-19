@@ -1,4 +1,5 @@
 {
+  config,
   outputs,
   inputs,
   pkgs,
@@ -15,7 +16,7 @@
     package = pkgs.lix;
 
     settings = {
-      auto-optimise-store = true;
+      auto-optimise-store = !config.boot.isContainer;
       builders-use-substitutes = true;
       experimental-features = [
         "nix-command"

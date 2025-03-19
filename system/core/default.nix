@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   settings,
   ...
@@ -10,7 +11,6 @@
     ./users.nix
 
     ../nix
-    ../programs/fish.nix
   ];
 
   documentation.dev.enable = true;
@@ -35,7 +35,7 @@
 
   time.timeZone = lib.mkDefault "Europe/Vienna";
 
-  services.localtimed.enable = true; # automatic timezone switching
+  services.localtimed.enable = config.services.geoclue2.enable or false; # automatic timezone switching
 
   networking.hostName = settings.hostname;
 

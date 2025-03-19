@@ -2,6 +2,9 @@
   imports = [
     ./common.nix
 
+    ../../system/programs/xdg.nix
+    ../../system/programs/fonts.nix
+
     ../../system/hardware/graphics.nix
 
     ../../system/programs/hyprland.nix
@@ -12,4 +15,13 @@
     ../../system/services/pipewire.nix
     ../../system/services/printing.nix
   ];
+
+  nix.daemonCPUSchedPolicy = "idle";
+
+  programs = {
+    # make HM-managed GTK stuff work
+    dconf.enable = true;
+
+    seahorse.enable = true;
+  };
 }

@@ -77,6 +77,9 @@
     rtkit.enable = true;
 
     # use sudo-rs
-    sudo-rs.enable = true;
+    sudo-rs = {
+      enable = true;
+      execWheelOnly = true;
+    };
   };
 }

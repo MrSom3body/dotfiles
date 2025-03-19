@@ -96,6 +96,23 @@ in {
                         ];
                       }
                       {
+                        title = "management";
+                        links = [
+                          {
+                            title = "cloudflare";
+                            url = "https://dash.cloudflare.com";
+                          }
+                          {
+                            title = "nextdns";
+                            url = "https://my.nextdns.io";
+                          }
+                          {
+                            title = "tailscale";
+                            url = "https://login.tailscale.com";
+                          }
+                        ];
+                      }
+                      {
                         title = "entertainment";
                         links = [
                           {

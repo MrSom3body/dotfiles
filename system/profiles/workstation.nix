@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./server.nix
+    ./common.nix
 
     ../../system/hardware/graphics.nix
 

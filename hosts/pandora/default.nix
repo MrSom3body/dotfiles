@@ -11,6 +11,7 @@
       ./hardware-configuration.nix
 
       ../../system/services/glance.nix
+      ../../system/services/immich.nix
       ../../system/services/tailscale.nix
 
       ./services/caddy.nix

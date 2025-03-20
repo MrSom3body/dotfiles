@@ -19,51 +19,44 @@
         "cookiebanners.service.mode.privateBrowsing" = 2;
         "cookiebanners.ui.desktop.enabled" = 2;
         "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = true;
-        "network.trr.mode" = 2;
-        "network.trr.uri" = "https://dns.quad9.net/dns-query";
         "sidebar.verticalTabs" = true;
       };
 
       search = {
         force = true;
-        default = "DuckDuckGo";
+        default = "ddg";
         engines = {
-          "ProtonDB" = {
+          "protondb" = {
             urls = [{template = "https://protondb.com/search?q={searchTerms}";}];
             icon = "https://protondb.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000; # every day
             definedAliases = ["@pdb"];
           };
-          "GitHub" = {
+          "github" = {
             urls = [{template = "https://github.com/search?q={searchTerms}";}];
-            iconUpdateURL = "https://github.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000; # every day
+            icon = "https://github.com/favicon.ico";
             definedAliases = ["@gh"];
           };
-          "Alternativeto.net" = {
+          "alternativeto" = {
             urls = [{template = "https://alternativeto.net/browse/search/?q={searchTerms}";}];
-            iconUpdateURL = "https://alternativeto.net/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000; # every day
+            icon = "https://alternativeto.net/favicon.ico";
             definedAliases = ["@alt"];
           };
-          "YouTube" = {
+          "youtube" = {
             urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
-            iconUpdateURL = "https://www.youtube.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000; # every day
+            icon = "https://www.youtube.com/favicon.ico";
             definedAliases = ["@yt"];
           };
-          "NixOS Wiki" = {
+          "nixos-wiki" = {
             urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
-            iconUpdateURL = "https://wiki.nixos.org/favicon.png";
-            updateInterval = 24 * 60 * 60 * 1000; # every day
+            icon = "https://wiki.nixos.org/favicon.png";
             definedAliases = ["@nw"];
           };
-          "MyNixOS" = {
+          "mynixos" = {
             urls = [{template = "https://mynixos.com/search?q={searchTerms}";}];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = ["@no"];
           };
-          "Nix Packages" = {
+          "nix-packages" = {
             urls = [
               {
                 template = "https://search.nixos.org/packages";
@@ -86,10 +79,9 @@
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = ["@np"];
           };
-          "Subreddit" = {
+          "subreddit" = {
             urls = [{template = "https://reddit.com/r/{searchTerms}";}];
-            iconUpdateURL = "https://reddit.com/favicon.png";
-            updateInterval = 24 * 60 * 60 * 1000; # every day
+            icon = "https://reddit.com/favicon.png";
             definedAliases = ["r/"];
           };
         };

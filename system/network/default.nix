@@ -1,5 +1,6 @@
 {
   networking = {
+    domain = "sndh.dev";
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";

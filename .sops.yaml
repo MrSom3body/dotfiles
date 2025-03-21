@@ -11,9 +11,13 @@ creation_rules:
       - *karun
       - *blackbox
       - *pandora
+  - path_regex: secrets/blackbox/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *karun
+      - *blackbox
   - path_regex: secrets/pandora/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *karun
       - *pandora
-  

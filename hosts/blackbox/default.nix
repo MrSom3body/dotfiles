@@ -39,7 +39,10 @@
 
   boot.kernelModules = ["nvidia_uvm"];
 
-  services.tailscale.useRoutingFeatures = "client";
+  services.tailscale = {
+    useRoutingFeatures = "client";
+    extraUpFlags = ["--accept-routes"];
+  };
 
   hardware = {
     amdgpu.initrd.enable = true;

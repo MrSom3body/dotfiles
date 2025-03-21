@@ -1260,6 +1260,7 @@
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "systems": "systems_5",
+        "tailray": "tailray",
         "yazi": "yazi",
         "yazi-plugins": "yazi-plugins",
         "yazi-starship-plugin": "yazi-starship-plugin"
@@ -1489,6 +1490,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "tailray": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1722168813,
+        "narHash": "sha256-HYWkK4V+g/sLgpV3iznVS7SUV3bVMA9Zlk0Ce47iuhw=",
+        "owner": "NotAShelf",
+        "repo": "tailray",
+        "rev": "dbacf0116d394abd00926a3da9d108869677b00d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotAShelf",
+        "repo": "tailray",
         "type": "github"
       }
     },

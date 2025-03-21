@@ -207,6 +207,11 @@
       };
     };
 
+    tailray = {
+      url = "github:NotAShelf/tailray";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     yazi = {
       url = "github:sxyazi/yazi";
       inputs = {

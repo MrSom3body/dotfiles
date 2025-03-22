@@ -10,12 +10,12 @@
       ../../system/profiles/server.nix
       ./hardware-configuration.nix
 
-      ../../system/services/glance.nix
-      ../../system/services/immich.nix
       ../../system/services/tailscale.nix
 
       ./services/caddy.nix
       ./services/ddns-updater.nix
+      ./services/glance.nix
+      ./services/immich.nix
       ./services/send.nix
     ]
     ++ (with inputs.nixos-hardware.nixosModules; [
@@ -45,6 +45,7 @@
     };
   };
 
+  networking.firewall.allowedTCPPorts = [80 443];
   security.tpm2.enable = true;
   powerManagement.enable = true;
 }

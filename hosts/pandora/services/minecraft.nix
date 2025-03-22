@@ -2,6 +2,7 @@
   import = [
     ../../../system/services/minecraft.nix
   ];
+
   services.minecraft-servers.servers = {
     test = {
       enable = true;

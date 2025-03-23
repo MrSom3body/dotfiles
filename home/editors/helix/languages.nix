@@ -4,6 +4,10 @@
   settings,
   ...
 }: {
+  imports = [
+    ./ai
+  ];
+
   programs.helix.languages = {
     language = [
       {
@@ -93,32 +97,12 @@
         command = lib.getExe pkgs.gopls;
       };
 
-      gpt = {
-        command = lib.getExe pkgs.helix-gpt;
-      };
-
       ltex = {
         command = "${pkgs.ltex-ls}/bin/ltex-ls";
       };
 
       marksman = {
         command = lib.getExe pkgs.marksman;
-      };
-
-      nil = {
-        command = lib.getExe pkgs.nil;
-        config.nil = {
-          formatting = {
-            command = ["${lib.getExe pkgs.alejandra}"];
-          };
-          nix = {
-            flake = {
-              autoArchive = true;
-              autoEvalInputs = true;
-              nixpkgsInputName = "nixpkgs";
-            };
-          };
-        };
       };
 
       nixd = {

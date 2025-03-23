@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./helix-gpt.nix
+  ];
+}

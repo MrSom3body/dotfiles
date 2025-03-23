@@ -3,7 +3,7 @@
     "$floatingSize" = "600 400";
     "$pwvucontrol" = "com.saivert.pwvucontrol";
 
-    windowrulev2 = [
+    windowrule = [
       # Smart Gaps
       "noborder 1, floating:0, onworkspace:w[tv1] s[false]"
       "norounding 1, floating:0, onworkspace:w[tv1] s[false]"

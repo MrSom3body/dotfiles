@@ -37,8 +37,6 @@
       asus-battery
     ]);
 
-  boot.kernelModules = ["nvidia_uvm"];
-
   services.tailscale = {
     useRoutingFeatures = "client";
     extraUpFlags = ["--accept-routes"];

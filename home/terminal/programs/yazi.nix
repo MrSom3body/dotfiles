@@ -37,7 +37,7 @@
       chmod = "${inputs.yazi-plugins}/chmod.yazi";
       full-border = "${inputs.yazi-plugins}/full-border.yazi";
       git = "${inputs.yazi-plugins}/git.yazi";
-      max-preview = "${inputs.yazi-plugins}/max-preview.yazi";
+      toggle-pane = "${inputs.yazi-plugins}/toggle-pane.yazi";
       mount = "${inputs.yazi-plugins}/mount.yazi";
       starship = "${inputs.yazi-starship-plugin}";
     };
@@ -57,7 +57,7 @@
         }
         {
           on = "T";
-          run = "plugin --sync max-preview";
+          run = "plugin toggle-pane max-preview";
           desc = "Maximize or restore the preview pane";
         }
         {

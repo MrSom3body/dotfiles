@@ -22,6 +22,8 @@ in {
     settings = {
       main = {
         pad = "15x15 center";
+        # changes the background color -> makes it not match waybar anymore 😥
+        gamma-correct-blending = false;
       };
 
       bell = {

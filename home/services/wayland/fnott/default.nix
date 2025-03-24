@@ -7,7 +7,9 @@
 }:
 with config.lib.stylix.colors;
 with config.stylix.fonts; let
-  opacity = lib.toHexString (((builtins.ceil (config.stylix.opacity.popups * 100)) * 255) / 100);
+  fg = color: color + "ff";
+  bg = color: color + lib.toHexString (((builtins.floor (config.stylix.opacity.popups * 100 + 0.5)) * 255) / 100);
+
   # this is a hacky workaround for https://codeberg.org/dnkl/fnott/issues/137
   fnott-settings = {
     globalSection = {
@@ -23,22 +25,22 @@ with config.stylix.fonts; let
       edge-margin-horizontal = 10;
       notification-margin = 10;
 
-      background = base00 + opacity;
-      border-color = base0D + "ff";
-      progress-bar-color = base02 + "ff";
+      background = bg base00;
+      border-color = fg base0D;
+      progress-bar-color = fg base02;
 
       border-size = settings.appearance.border.size;
       border-radius = settings.appearance.border.radius;
 
       title-format = "<i>%a%A<i>";
       title-font = "${sansSerif.name}:size=${toString sizes.popups}";
-      title-color = base05 + "ff";
+      title-color = fg base05;
       summary-format = "<b>%s</b>";
       summary-font = "${sansSerif.name}:size=${toString sizes.popups}";
-      summary-color = base05 + "ff";
+      summary-color = fg base05;
       body-format = "%b";
       body-font = "${sansSerif.name}:size=${toString sizes.popups}";
-      body-color = base05 + "ff";
+      body-color = fg base05;
 
       max-timeout = 30;
       default-timeout = 8;
@@ -47,14 +49,14 @@ with config.stylix.fonts; let
 
     sections = {
       low = {
-        border-color = base03 + "ff";
+        border-color = fg base03;
         default-timeout = 5;
       };
 
       critical = {
         layer = "overlay";
 
-        border-color = base08 + "ff";
+        border-color = fg base08;
 
         max-timeout = 0;
         default-timeout = 0;

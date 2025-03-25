@@ -9,7 +9,11 @@
 
   systemd.user = {
     services.ludusavi-backup = {
-      Unit.Description = "Ludusavi backup";
+      Unit = {
+        Description = "Ludusavi backup";
+        After = ["network-online.target"];
+        Requires = ["network-online.target"];
+      };
       Service = {
         ExecStart = "${lib.getExe pkgs.ludusavi} backup --force";
       };

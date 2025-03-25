@@ -19,6 +19,25 @@
     ../../home/services/system/syncthing.nix
   ];
 
+  my.programs.rclone = {
+    enable = true;
+    protonDriveBackup = {
+      enable = true;
+      directories = [
+        "DataGripProjects"
+        "Desktop"
+        "Documents"
+        "dotfiles"
+        "Games/Saves"
+        "Music"
+        "Notes"
+        "Pictures"
+        "Templates"
+        "Videos"
+      ];
+    };
+  };
+
   gtk.gtk3.bookmarks = map (dir: "file://${config.home.homeDirectory}/" + dir) [
     "Desktop"
     "Documents"

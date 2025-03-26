@@ -9,12 +9,13 @@
 
   systemd.user = {
     services.ludusavi-backup = {
-      Unit = {
-        Description = "Ludusavi backup";
-        After = ["network-online.target"];
-        Requires = ["network-online.target"];
-      };
+      Unit.Description = "Ludusavi backup";
       Service = {
+        ExecStartPre = pkgs.writeShellScript "waitForNetwork" ''
+          while ! ${pkgs.inetutils}/bin/ping -c 1 9.9.9.9; do
+            sleep 1
+          done
+        '';
         ExecStart = "${lib.getExe pkgs.ludusavi} backup --force";
       };
     };

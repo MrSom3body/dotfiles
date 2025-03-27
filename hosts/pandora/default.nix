@@ -45,7 +45,10 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [80 443];
+  networking = {
+    firewall.allowedTCPPorts = [80 443];
+    interfaces.eno1.wakeOnLan.enable = true;
+  };
   security.tpm2.enable = true;
   powerManagement.enable = true;
 }

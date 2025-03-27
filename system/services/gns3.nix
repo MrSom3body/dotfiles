@@ -28,7 +28,7 @@
     gns3-server
 
     dynamips
-    inetutils
+    iputils
     ubridge
     vpcs
   ];

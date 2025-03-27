@@ -16,6 +16,7 @@
       ../../system/network/kdeconnect.nix
       ../../system/network/spotify.nix
 
+      ../../system/programs/adb.nix
       ../../system/programs/gamemode.nix
       ../../system/programs/steam.nix
       ../../system/programs/vmware.nix

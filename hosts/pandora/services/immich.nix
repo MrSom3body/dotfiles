@@ -8,7 +8,10 @@ in {
   sops.secrets.immich-db-password.sopsFile = ../../../secrets/pandora/secrets.yaml;
 
   services = {
-    immich.secretsFile = config.sops.secrets.immich-db-password.path;
+    immich = {
+      secretsFile = config.sops.secrets.immich-db-password.path;
+      accelerationDevices = ["/dev/dri/renderD128"];
+    };
 
     caddy.virtualHosts = {
       "immich.sndh.dev" = {
@@ -26,4 +29,8 @@ in {
       };
     };
   };
+
+  # from https://wiki.nixos.org/wiki/Immich#Enabling_Hardware_Accelerated_Video_Transcoding
+  environment.sessionVariables.LIBVA_DRIVER_NAME = "i965";
+  users.users.immich.extraGroups = ["video" "render"];
 }

@@ -19,7 +19,7 @@
         max_height = 1000;
       };
       # for git plugin
-      plugin.prepend_fetches = [
+      plugin.prepend_fetchers = [
         {
           id = "git";
           name = "*";

@@ -17,6 +17,6 @@
   # DNS resolver
   services.resolved = {
     enable = true;
-    dnsovertls = "opportunistic";
+    dnsovertls = "true";
   };
 }

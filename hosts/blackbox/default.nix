@@ -24,7 +24,6 @@
 
       ../../system/services/fprintd.nix
       ../../system/services/gns3.nix
-      ../../system/services/nextdns.nix
       ../../system/services/ollama.nix
       ../../system/services/tailscale.nix
 

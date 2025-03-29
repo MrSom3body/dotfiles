@@ -54,7 +54,9 @@ for i in (seq 5 -1 1)
 end
 
 pkill -35 waybar
-wl-screenrec -f $file_name
+wl-screenrec \
+    -f $file_name \
+    --audio --audio-device (wpctl inspect @DEFAULT_AUDIO_SINK@ | grep "node.name" | cut -d"\"" -f2).monitor
 pkill -35 waybar
 
 notify -t 3000 -i $file_name "Screencast finished" "Saved to $file_name"

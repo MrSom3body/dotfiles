@@ -18,7 +18,6 @@
       nwg-displays
       satty
       wl-clipboard
-      wl-screenrec
       wtype
     ])
     ++ (

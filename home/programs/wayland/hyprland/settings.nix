@@ -103,17 +103,23 @@
       lib.mkForce {
         "col.border_active" = rgb base0D;
         "col.border_inactive" = rgb base03;
-        "col.border_locked_active" = rgb base09;
-        "col.border_locked_inactive" = rgb base03;
-        groupbar = {
+        "col.border_locked_active" = rgb base0C;
+        "col.border_locked_inactive" = rgb base0B;
+        groupbar = let
+          rounding = settings.appearance.border.radius;
+        in {
           text_color = rgb base00;
-          font_size = settings.appearance.fonts.sans.size;
-          height = builtins.floor (settings.appearance.fonts.sans.size * 1.5);
+          font_size = config.stylix.fonts.sizes.desktop;
+          height = builtins.floor (config.stylix.fonts.sizes.desktop * 1.5 + 0.5);
+          indicator_height = 0;
+          inherit rounding;
+          gradients = true;
+          gradient_rounding = rounding;
 
           "col.active" = cfg.group."col.border_active";
           "col.inactive" = cfg.group."col.border_inactive";
           "col.locked_active" = cfg.group."col.border_locked_active";
-          "col.locked_inactive" = rgb base0A;
+          "col.locked_inactive" = cfg.group."col.border_locked_inactive";
         };
       };
 

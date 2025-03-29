@@ -42,8 +42,10 @@
     decoration = {
       rounding = settings.appearance.border.radius;
 
-      # active_opacity = config.stylix.opacity.applications;
-      # inactive_opacity = 0.75;
+      active_opacity = config.stylix.opacity.applications;
+      inactive_opacity =
+        lib.mkIf (config.stylix.opacity.applications < 1)
+        (config.stylix.opacity.applications - 0.2);
       fullscreen_opacity = 1;
 
       shadow.range = 30;

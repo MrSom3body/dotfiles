@@ -16,6 +16,6 @@
     loupe
 
     # videos
-    totem
+    celluloid
   ];
 }

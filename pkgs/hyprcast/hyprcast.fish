@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/usr/bin/env -S fish --no-config
 
 function print_help
     echo "Usage: hyprcast.fish [flags]"
@@ -47,7 +47,7 @@ set file_name ~/Videos/Screencasts/$(date +%Y-%m-%d-%H%M%S).mp4
 echo $fish_pid >~/.hyprcast
 
 set notif_id 0
-for i in (seq 5 -1 1)
+for i in (seq 3 -1 1)
     set notif_id (notify -e -p -r $notif_id -t (math $i x 1000) "Screencast will start in $i")
     echo $notif_id >>~/.hyprcast
     sleep 1

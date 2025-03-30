@@ -2,14 +2,16 @@
   lib,
   stdenv,
   makeWrapper,
+  coreutils,
   fish,
   libnotify,
-  wl-screenrec,
   procps,
+  wireplumber,
+  wl-screenrec,
 }:
 stdenv.mkDerivation {
   pname = "hyprcast";
-  version = "2.0.0";
+  version = "2.0.1";
 
   src = ./.;
 
@@ -19,13 +21,15 @@ stdenv.mkDerivation {
     install -Dm755 $src/hyprcast.fish $out/bin/hyprcast
   '';
 
-  postInstall = ''
+  fixupPhase = ''
     wrapProgram $out/bin/hyprcast --set PATH ${
       lib.makeBinPath [
+        coreutils
         fish
         libnotify
-        wl-screenrec
         procps
+        wireplumber
+        wl-screenrec
       ]
     }
   '';

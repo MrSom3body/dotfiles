@@ -15,7 +15,7 @@
     # Appearance settings
     appearance = {
       dark-theme = "gruvbox-material-dark-medium"; # Dark theme for your system (find more themes at https://github.com/tinted-theming/schemes)
-      light-theme = "one-light"; # Light theme for your system (find more themes at https://github.com/tinted-theming/schemes)
+      light-theme = "gruvbox-material-light-medium"; # Light theme for your system (find more themes at https://github.com/tinted-theming/schemes)
       polarity = "dark"; # Default mode
       wallpaper = ./walls/gruvbox/secluded-grove.png; # Wallpaper for WMs
 

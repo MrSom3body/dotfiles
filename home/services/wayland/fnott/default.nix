@@ -68,7 +68,12 @@ in {
     enable = true;
   };
 
-  xdg.configFile."fnott/fnott.ini".source = lib.mkForce (pkgs.writeText "fnott.ini" (lib.generators.toINIWithGlobalSection {} fnott-settings));
+  xdg.configFile."fnott/fnott.ini" = {
+    source = lib.mkForce (pkgs.writeText "fnott.ini" (lib.generators.toINIWithGlobalSection {} fnott-settings));
+    onChange = ''
+      ${lib.getExe' pkgs.systemd "systemctl"} restart --user fnott
+    '';
+  };
 
   home.file."bin/fnott-dnd" = {
     source = ./scripts/fnott-dnd.fish;

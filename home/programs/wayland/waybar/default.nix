@@ -307,10 +307,11 @@
 
   systemd.user.services.waybar.Unit.After = lib.mkForce "graphical-session.target";
 
-  home.activation.restartWaybar = lib.hm.dag.entryAfter ["installPackages"] ''
-    if ${lib.getExe' pkgs.procps "pgrep"} waybar > /dev/null; then
-      ${lib.getExe' pkgs.procps "pkill"} -SIGUSR2 waybar
-    fi '';
+  xdg.configFile."waybar/config" = {
+    onChange = ''
+      ${pkgs.procps}/bin/pkill -u $USER waybar || true
+    '';
+  };
 
   home.file.".config/waybar/scripts" = {
     source = ./scripts;

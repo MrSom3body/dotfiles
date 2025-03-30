@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   settings,
   ...
 }: {
@@ -261,4 +262,10 @@
           background: @base0A;
         }
       '';
+
+  xdg.configFile."waybar/style.css" = {
+    onChange = ''
+      ${pkgs.procps}/bin/pkill -u $USER waybar || true
+    '';
+  };
 }

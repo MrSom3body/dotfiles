@@ -20,7 +20,7 @@
       # video
       vo = "gpu-next";
       gpu-api = "vulkan";
-      hwdec = "auto-unsafe";
+      hwdec = "auto";
 
       # subtitles
       demuxer-mkv-subtitle-preroll = true; # force showing subtitles while seeking
@@ -31,6 +31,9 @@
       # interpolation
       video-sync = "display-resample";
       interpolation = "yes";
+    };
+    scriptOpts = {
+      autoload.directory_mode = "ignore";
     };
   };
 }

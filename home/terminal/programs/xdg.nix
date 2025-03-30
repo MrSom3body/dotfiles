@@ -16,7 +16,7 @@
       })
       list);
 
-  images = xdgAssociations "image" ["png" "svg" "jpeg" "gif"] imageViewer;
+  images = xdgAssociations "image" ["png" "svg" "jpeg" "gif" "heif"] imageViewer;
   audios = xdgAssociations "audio" ["mp3" "flac" "wav" "aac"] audioPlayer;
   videos = xdgAssociations "video" ["mp4" "avi" "mkv"] videoPlayer;
 

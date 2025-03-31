@@ -42,7 +42,7 @@
       Z = "osd-msg add sub-delay +0.1";
 
       "." = "frame-step";
-      "," = "frame-step-back";
+      "," = "frame-back-step";
 
       "Ctrl++" = "add video-zoom 0.1";
       "Ctrl+-" = "add video-zoom -0.1";

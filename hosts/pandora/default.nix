@@ -16,6 +16,7 @@
       ./services/ddns-updater.nix
       ./services/glance.nix
       ./services/immich.nix
+      ./services/jellyfin.nix
       ./services/send.nix
     ]
     ++ (with inputs.nixos-hardware.nixosModules; [

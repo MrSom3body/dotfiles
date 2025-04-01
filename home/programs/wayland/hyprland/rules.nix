@@ -17,6 +17,7 @@
 
       # Fix some dragging issues with XWayland
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+
       # NetworkManager applet
       "float, class:^(nm-connection-editor)$"
       "size $floatingSize, class:^(nm-connection-editor)$"
@@ -36,9 +37,9 @@
       "float, class:^(udiskie)$"
       "center, class:^(udiskie)$"
 
-      # make Firefox PiP window floating and sticky
-      "float, title:^(Picture-in-Picture)$"
-      "pin, title:^(Picture-in-Picture)$"
+      # make some windows floating and sticky
+      "float, title:^(Picture-in-Picture)$" # firefox
+      "pin, title:^(Picture-in-Picture)$" # firefox
 
       # Proton Pass
       "float, class:^(Proton Pass)$"

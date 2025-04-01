@@ -15,6 +15,7 @@
       name = "default";
       isDefault = true;
       settings = {
+        "browser.download.start_downloads_in_tmp_dir" = true;
         "cookiebanners.service.mode" = 2;
         "cookiebanners.service.mode.privateBrowsing" = 2;
         "cookiebanners.ui.desktop.enabled" = 2;

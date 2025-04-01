@@ -2,22 +2,24 @@
   programs.mpv = {
     enable = true;
     scripts =
-      (with pkgs.mpvScripts.builtins; [autoload])
+      (with pkgs.mpvScripts.builtins; [
+        autoload
+      ])
       ++ (with pkgs.mpvScripts; [
-        # modernz
+        modernz
         mpris
         thumbfast
       ]);
 
     bindings = {
       # vim bindings
-      h = "seek -5";
+      h = "no-osd seek -5";
       j = "add volume -2";
       k = "add volume 2";
-      l = "seek 5";
+      l = "no-osd seek 5";
 
-      H = "seek -60";
-      L = "seek 60";
+      H = "no-osd seek -60";
+      L = "no-osd seek 60";
 
       "Ctrl+h" = "add video-pan-x -0.1";
       "Ctrl+j" = "add video-pan-y 0.1";
@@ -48,6 +50,7 @@
       "Ctrl+-" = "add video-zoom -0.1";
       "Ctrl+0" = "set video-zoom 0; no-osd set panscan 0; no-osd set video-pan-x 0; no-osd set video-pan-y 0; no-osd set video-align-x 0; no-osd set video-align-y 0";
 
+      "Ctrl+o" = "cycle-values loop-file \"inf\" \"no\"";
       "Ctrl+p" = "script-binding select/select-playlist";
       "Ctrl+c" = "script-binding select/select-chapter";
 
@@ -68,13 +71,13 @@
 
       WHEEL_UP = "add volume 2";
       WHEEL_DOWN = "add volume -2";
-      WHEEL_LEFT = "seek -10";
-      WHEEL_RIGHT = "seek 10";
+      WHEEL_LEFT = "no-osd seek -10";
+      WHEEL_RIGHT = "no-osd seek 10";
     };
 
     config = {
       # general
-      # osc = false;
+      osc = false;
       input-default-bindings = false;
       keep-open = true;
       profile = "high-quality";

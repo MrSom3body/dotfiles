@@ -18,6 +18,8 @@
       ./services/immich.nix
       ./services/jellyfin.nix
       ./services/send.nix
+
+      ./vpn/proton.nix
     ]
     ++ (with inputs.nixos-hardware.nixosModules; [
       common-pc

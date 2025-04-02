@@ -108,6 +108,14 @@
                     (mkSite "loxone" "https://loxone.sndh.dev")
                     (mkSite "immich" "https://immich.sndh.dev")
                     (mkSite "jellyfin" "https://jellyfin.sndh.dev")
+                    (mkSite "sonarr" "https://sonarr.sndh.dev")
+                    (mkSite "radarr" "https://radarr.sndh.dev")
+                    (mkSite "prowlarr" "https://prowlarr.sndh.dev")
+                    {
+                      title = "transmission";
+                      url = "https://transmission.sndh.dev";
+                      alt-status-codes = [401];
+                    }
                     (mkSite "ddns updater" "https://ddns.sndh.dev")
                     (mkSite "firefox send" "https://send.sndh.dev")
                   ];

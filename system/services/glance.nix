@@ -98,26 +98,25 @@
                   type = "monitor";
                   cache = "1m";
                   title = "Services";
-                  style = "compact";
                   sites = let
-                    mkSite = title: url: {
+                    mkSite = title: url: icon: {
                       inherit title;
                       inherit url;
+                      inherit icon;
                     };
                   in [
-                    (mkSite "loxone" "https://loxone.sndh.dev")
-                    (mkSite "immich" "https://immich.sndh.dev")
-                    (mkSite "jellyfin" "https://jellyfin.sndh.dev")
-                    (mkSite "sonarr" "https://sonarr.sndh.dev")
-                    (mkSite "radarr" "https://radarr.sndh.dev")
-                    (mkSite "prowlarr" "https://prowlarr.sndh.dev")
-                    {
-                      title = "transmission";
-                      url = "https://transmission.sndh.dev";
-                      alt-status-codes = [401];
-                    }
-                    (mkSite "ddns updater" "https://ddns.sndh.dev")
-                    (mkSite "firefox send" "https://send.sndh.dev")
+                    (mkSite "loxone" "https://loxone.sndh.dev" "di:home-assistant")
+                    (mkSite "immich" "https://immich.sndh.dev" "di:immich")
+                    (mkSite "jellyfin" "https://jellyfin.sndh.dev" "di:jellyfin")
+                    (mkSite "sonarr" "https://sonarr.sndh.dev" "di:sonarr")
+                    (mkSite "radarr" "https://radarr.sndh.dev" "di:radarr")
+                    (mkSite "prowlarr" "https://prowlarr.sndh.dev" "di:prowlarr")
+                    (mkSite "transmission" "https://transmission.sndh.dev" "di:transmission"
+                      // {
+                        alt-status-codes = [401];
+                      })
+                    (mkSite "ddns updater" "https://ddns.sndh.dev" "di:ddns-updater")
+                    (mkSite "firefox send" "https://send.sndh.dev" "di:firefox-send")
                   ];
                 }
                 {

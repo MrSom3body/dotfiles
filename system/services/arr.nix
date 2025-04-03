@@ -1,4 +1,8 @@
 {
+  imports = [
+    ./transmission.nix
+  ];
+
   users.groups.arr.members = [
     "transmission"
     "sonarr"
@@ -6,8 +10,6 @@
   ];
 
   services = {
-    transmission.enable = true;
-
     prowlarr.enable = true;
     recyclarr = {
       enable = true;

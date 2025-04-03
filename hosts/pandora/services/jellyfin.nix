@@ -27,7 +27,9 @@
       "d /media 2775 root arr -"
       "d /media/movies 2775 root arr -"
       "d /media/shows 2775 root arr -"
-      "d /media/downloads 2775 root arr -"
+      "d /media/torrents 2775 root arr -"
+      "d /media/torrents/movies 2775 root arr -"
+      "d /media/torrents/shows 2775 root arr -"
     ];
     services.recyclarr.serviceConfig.LoadCredential = [
       "sonarr-api-key:${config.sops.secrets.sonarr-api-key.path}"
@@ -40,6 +42,7 @@
       settings = {
         bind-address-ipv4 = "10.2.0.2";
         rpc-authentication-required = true;
+        download-dir = "/media/torrents";
       };
 
       credentialsFile = config.sops.templates."transmission.json".path;

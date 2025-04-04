@@ -22,6 +22,10 @@
     };
   };
 
+  users.groups.arr.members = [
+    "jellyfin"
+  ];
+
   systemd = {
     tmpfiles.rules = [
       "d /media 2775 root arr -"

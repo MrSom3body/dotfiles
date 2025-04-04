@@ -89,6 +89,10 @@
         command = lib.getExe pkgs.bash-language-server;
       };
 
+      docker-compose-langserver = {
+        command = "${pkgs.docker-compose-language-service}/bin/docker-compose-langserver";
+      };
+
       golangci-lint = {
         command = lib.getExe pkgs.golangci-lint;
       };
@@ -139,6 +143,10 @@
 
       vscode-json-language-server = {
         command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
+      };
+
+      yaml-language-server = {
+        command = lib.getExe pkgs.yaml-language-server;
       };
     };
   };

@@ -61,6 +61,7 @@
       };
     in {
       "jellyfin.sndh.dev" = mkHost 8096;
+      "jellyseerr.sndh.dev" = mkHost config.services.jellyseerr.port;
       "prowlarr.sndh.dev" = mkHost config.services.prowlarr.settings.server.port;
       "sonarr.sndh.dev" = mkHost config.services.sonarr.settings.server.port;
       "radarr.sndh.dev" = mkHost config.services.radarr.settings.server.port;

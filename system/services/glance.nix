@@ -108,6 +108,7 @@
                     (mkSite "loxone" "https://loxone.sndh.dev" "di:home-assistant")
                     (mkSite "immich" "https://immich.sndh.dev" "di:immich")
                     (mkSite "jellyfin" "https://jellyfin.sndh.dev" "di:jellyfin")
+                    (mkSite "jellyseerr" "https://jellyseerr.sndh.dev" "di:jellyseerr")
                     (mkSite "sonarr" "https://sonarr.sndh.dev" "di:sonarr")
                     (mkSite "radarr" "https://radarr.sndh.dev" "di:radarr")
                     (mkSite "prowlarr" "https://prowlarr.sndh.dev" "di:prowlarr")

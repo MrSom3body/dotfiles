@@ -24,10 +24,14 @@
 
           include = [
             {template = "sonarr-quality-definition-anime";}
+
             {template = "sonarr-v4-quality-profile-anime";}
-            {template = "sonarr-v4-custom-formats-anime";}
             {template = "sonarr-v4-quality-profile-web-1080p";}
+            {template = "sonarr-v4-quality-profile-hd-bluray-web-german";}
+
+            {template = "sonarr-v4-custom-formats-anime";}
             {template = "sonarr-v4-custom-formats-web-1080p";}
+            {template = "sonarr-v4-custom-formats-hd-bluray-web-german";}
           ];
 
           custom_formats = [
@@ -79,10 +83,16 @@
 
           include = [
             {template = "radarr-quality-definition-movie";}
+
             {template = "radarr-quality-profile-anime";}
-            {template = "radarr-custom-formats-anime";}
+            {template = "radarr-quality-profile-hd-bluray-web";}
             {template = "radarr-quality-profile-remux-web-1080p";}
+            {template = "radarr-quality-profile-hd-bluray-web-german";}
+
+            {template = "radarr-custom-formats-anime";}
+            {template = "radarr-custom-formats-hd-bluray-web";}
             {template = "radarr-custom-formats-remux-web-1080p";}
+            {template = "radarr-custom-formats-hd-bluray-web-german";}
           ];
 
           custom_formats = [

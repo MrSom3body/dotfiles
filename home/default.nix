@@ -1,5 +1,6 @@
 {settings, ...}: {
   imports = [
+    ./sops.nix
     ./terminal
   ];
 

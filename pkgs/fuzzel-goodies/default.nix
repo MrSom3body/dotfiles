@@ -12,8 +12,7 @@
   wtype,
 }:
 stdenv.mkDerivation {
-  pname = "fuzzel-goodies";
-  version = "1.1.1";
+  name = "fuzzel-goodies";
 
   src = ./scripts;
 

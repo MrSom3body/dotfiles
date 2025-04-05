@@ -10,8 +10,7 @@
   wl-screenrec,
 }:
 stdenv.mkDerivation {
-  pname = "hyprcast";
-  version = "2.0.1";
+  name = "hyprcast";
 
   src = ./.;
 

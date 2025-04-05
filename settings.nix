@@ -2,11 +2,9 @@
   # This file contains settings for your system configuration.
   # It doesn't install anything but sets values that other parts of your system may use.
 
-  settings = hostname: rec {
+  settings = hostname: {
     # System settings
     inherit hostname;
-    user = "karun";
-    username = "Karun Sandhu";
     path = "/home/karun/dotfiles"; # Path to your dotfiles
     authorizedSshKeys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH+0M/HSOoGHHrAtVhObOUjWQpR0pvHmhd7PhRJifP01 karun@blackbox"
@@ -49,7 +47,7 @@
       fileManager = "nautilus"; # Default GUI file manager
       terminalFileManager = "yazi"; # Default terminal file manager
       git = {
-        username = user;
+        username = "Karun Sandhu";
         mail = "129101708+MrSom3body@users.noreply.github.com";
       };
     };

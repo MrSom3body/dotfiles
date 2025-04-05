@@ -1,7 +1,7 @@
 {
+  config,
   inputs,
   specialArgs,
-  settings,
   ...
 }: {
   imports = [
@@ -14,6 +14,6 @@
     useUserPackages = true;
     extraSpecialArgs = specialArgs;
 
-    users.${settings.user}.imports = [../../hosts/${settings.hostname}/home.nix];
+    users.karun.imports = [../../hosts/${config.networking.hostName}/home.nix];
   };
 }

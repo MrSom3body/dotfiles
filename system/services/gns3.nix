@@ -1,8 +1,4 @@
-{
-  pkgs,
-  settings,
-  ...
-}: {
+{pkgs, ...}: {
   # services.gns3-server = {
   #   enable = true;
   #   dynamips.enable = true;
@@ -13,7 +9,7 @@
   # systemd.services.gns3-server.path = [pkgs.vmware-workstation];
 
   users.groups.ubridge = {};
-  users.users.${settings.user}.extraGroups = ["ubridge"];
+  users.users.karun.extraGroups = ["ubridge"];
 
   security.wrappers.ubridge = {
     source = "/run/current-system/sw/bin/ubridge";

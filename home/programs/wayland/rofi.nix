@@ -72,7 +72,7 @@
       "// lol" = config.lib.formats.rasi.mkLiteral ''
 
           filebrowser {
-            directory: "/home/${settings.user}";
+            directory: ${config.home.homeDirectory};
           }
         // '';
     };

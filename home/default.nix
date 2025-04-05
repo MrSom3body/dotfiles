@@ -4,8 +4,8 @@
   ];
 
   home = {
-    username = settings.user;
-    homeDirectory = "/home/${settings.user}";
+    username = "karun";
+    homeDirectory = "/home/karun";
     stateVersion = "24.05";
 
     sessionVariables = {

@@ -1,8 +1,4 @@
-{
-  inputs,
-  settings,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -14,7 +10,7 @@
         defaultSopsFile = ../../secrets/global.yaml;
         defaultSopsFormat = "yaml";
         validateSopsFiles = true;
-        age.sshKeyPaths = ["/home/${settings.user}/.ssh/id_ed25519"];
+        age.sshKeyPaths = ["/home/karun/.ssh/id_ed25519"];
       };
     }
   ];

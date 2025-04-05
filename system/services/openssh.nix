@@ -10,6 +10,6 @@
 
   users.users = {
     root.openssh.authorizedKeys.keys = settings.authorizedSshKeys;
-    ${settings.user}.openssh.authorizedKeys.keys = settings.authorizedSshKeys;
+    karun.openssh.authorizedKeys.keys = settings.authorizedSshKeys;
   };
 }

@@ -1,14 +1,13 @@
 {
   config,
   pkgs,
-  settings,
   ...
 }: {
   users = {
     mutableUsers = false;
-    users.${settings.user} = {
+    users.karun = {
       isNormalUser = true;
-      description = settings.username;
+      description = "Karun Sandhu";
       shell = pkgs.fish;
       hashedPasswordFile = config.sops.secrets.karun-password.path;
       extraGroups = [

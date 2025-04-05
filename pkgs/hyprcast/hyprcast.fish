@@ -43,6 +43,7 @@ if test -e ~/.hyprcast
     exit
 end
 
+mkdir -p ~/Videos/Screencasts
 set file_name ~/Videos/Screencasts/$(date +%Y-%m-%d-%H%M%S).mp4
 echo $fish_pid >~/.hyprcast
 

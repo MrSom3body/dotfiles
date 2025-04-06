@@ -97,7 +97,7 @@
 
         # Special workspaces
         "$mainMod, A, Toggle special workspace, togglespecialworkspace, magic"
-        "$mainMod SHIFT, A, Move focused window to special workspace, movetoworkspace, magic"
+        "$mainMod SHIFT, A, Move focused window to special workspace, movetoworkspace, special:magic"
 
         "$mainMod, S, Toggle Spotify workspace, togglespecialworkspace, spotify"
         "$mainMod SHIFT, S, Move focused window to Spotify workspace, movetoworkspace, special:spotify"

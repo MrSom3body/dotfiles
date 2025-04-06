@@ -17,18 +17,11 @@ in {
     };
 
     protonDriveBackup = {
-      enable = lib.mkEnableOption "the rclone proton backup service";
-      directories = lib.mkOption {
-        default = [];
-        description = "The directories to back up.";
-        example = [
-          "Desktop"
-          "Documents"
-          "Music"
-          "Pictures"
-          "Templates"
-          "Videos"
-        ];
+      enable = lib.mkEnableOption "the rclone proton backup service to backup your ~";
+      filters = lib.mkOption {
+        type = lib.types.str;
+        default = "- *";
+        description = "filter files like described here: https://rclone.org/filtering";
       };
     };
   };
@@ -39,17 +32,7 @@ in {
     systemd.user = let
       unitName = "rclone-proton-drive-backup";
       mountpoint = "proton:Computers/${settings.hostname}";
-      rcloneSync = dir: ''
-        ${pkgs.rclone}/bin/rclone --config=.config/rclone/rclone.conf \
-          sync ${dir} ${mountpoint}/${dir} \
-          -vv \
-          --ignore-errors \
-          --protondrive-replace-existing-draft=true'';
-      rcloneMultiSync = dirs: builtins.concatStringsSep "\n" (map rcloneSync dirs);
-      rcloneProtonDriveBackupScript = dirs:
-        pkgs.writeShellScript "rcloneProtonDriveBackupScript" "${
-          rcloneMultiSync dirs
-        }";
+      filterFile = pkgs.writeText "rclone-filters" cfg.protonDriveBackup.filters;
     in
       lib.mkIf cfg.protonDriveBackup.enable {
         services.${unitName} = {
@@ -62,7 +45,14 @@ in {
                 sleep 1
               done
             '';
-            ExecStart = rcloneProtonDriveBackupScript cfg.protonDriveBackup.directories;
+            ExecStart = pkgs.writeShellScript "rcloneProtonDriveBackupScript" ''
+              ${pkgs.rclone}/bin/rclone --config=.config/rclone/rclone.conf \
+                sync ${config.home.homeDirectory} ${mountpoint}/ \
+                --filter-from ${filterFile}
+                -vv \
+                --ignore-errors \
+                --protondrive-replace-existing-draft=true
+            '';
           };
         };
 

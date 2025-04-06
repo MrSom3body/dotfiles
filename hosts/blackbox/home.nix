@@ -23,18 +23,21 @@
     enable = true;
     protonDriveBackup = {
       enable = true;
-      directories = [
-        "DataGripProjects"
-        "Desktop"
-        "Documents"
-        "dotfiles"
-        "Games/Saves"
-        "Music"
-        "Notes"
-        "Pictures"
-        "Templates"
-        "Videos"
-      ];
+      filters = ''
+        - {{\.?venv}}/**
+        - .devenv/**
+        - .direnv/**
+        + /Desktop/**
+        + /Documents/**
+        + /Games/Saves/**
+        + /Music/**
+        + /Notes/**
+        + /Pictures/**
+        + /Templates/**
+        + /Videos/**
+        - *
+        - *
+      '';
     };
   };
 

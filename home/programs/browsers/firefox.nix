@@ -27,6 +27,11 @@
         force = true;
         default = "ddg";
         engines = {
+          "amazon" = {
+            urls = [{template = "https://amazon.de/s?k={searchTerms}";}];
+            icon = "https://amazon.de/favicon.ico";
+            definedAliases = ["@a"];
+          };
           "protondb" = {
             urls = [{template = "https://protondb.com/search?q={searchTerms}";}];
             icon = "https://protondb.com/favicon.ico";

@@ -6,6 +6,7 @@
   imports = [
     ./common.nix
 
+    ../../system/services/fail2ban.nix
     ../../system/services/openssh.nix
   ];
 

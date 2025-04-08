@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ../../home/profiles/workstation.nix
+    ../../home/profiles/laptop.nix
 
     # programs
     ../../home/programs/games

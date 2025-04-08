@@ -46,7 +46,7 @@ while true
         if test "$prevProfile" != "$profile"
             echo "setting power profile to $profile"
             powerprofilesctl set $profile &&
-                notify-send -a power-monitor "Switched power-profiles mode" "Now on $profile"
+                notify-send -a power-monitor "Switched power-profiles mode" "Now on $profile mode"
         end
 
         set prevProfile $profile

@@ -33,7 +33,7 @@
       useRoutingFeatures = "server";
       extraUpFlags = [
         "--advertise-exit-node"
-        "--advertise-routes \"10.0.0.10/32\""
+        ''--advertise-routes "10.0.0.10/32,10.0.0.11/32,10.0.0.12/32"''
       ];
     };
 

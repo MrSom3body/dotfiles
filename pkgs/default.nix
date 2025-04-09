@@ -3,6 +3,7 @@
   pkgs,
   ...
 }: {
+  auto-kbd-bl = pkgs.callPackage ./auto-kbd-bl {};
   fuzzel-goodies = pkgs.callPackage ./fuzzel-goodies {};
   hyprcast = pkgs.callPackage ./hyprcast {};
   power-monitor = pkgs.callPackage ./power-monitor {};

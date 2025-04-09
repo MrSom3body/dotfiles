@@ -1,8 +1,12 @@
 {...}: {
   imports = [
+    # bundles
+    ./cli.nix
+    ./networking.nix
+
+    # programs
     ./bat.nix
     ./btop.nix
-    ./cli.nix
     ./direnv.nix
     ./eza.nix
     ./fd.nix

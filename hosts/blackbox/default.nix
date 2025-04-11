@@ -5,30 +5,29 @@
 }: {
   imports =
     [
-      ../../system/profiles/laptop.nix
       ./hardware-configuration.nix
+      ../common/profiles/laptop.nix
 
-      ../../system/core/lanzaboote.nix
+      ../common/optional/core/lanzaboote.nix
 
-      ../../system/hardware/opentabletdriver.nix
-      ../../system/hardware/logitech.nix
+      ../common/optional/hardware/opentabletdriver.nix
+      ../common/optional/hardware/logitech.nix
 
-      ../../system/network/kdeconnect.nix
-      ../../system/network/spotify.nix
+      ../common/optional/network/kdeconnect.nix
+      ../common/optional/network/spotify.nix
 
-      ../../system/programs/adb.nix
-      ../../system/programs/gamemode.nix
-      ../../system/programs/steam.nix
-      ../../system/programs/vmware.nix
-      ../../system/programs/wireshark.nix
+      ../common/optional/programs/adb.nix
+      ../common/optional/programs/gamemode.nix
+      ../common/optional/programs/steam.nix
+      ../common/optional/programs/vmware.nix
+      ../common/optional/programs/wireshark.nix
 
-      ../../system/services/fprintd.nix
-      ../../system/services/gns3.nix
-      ../../system/services/ollama.nix
-      ../../system/services/tailscale.nix
+      ../common/optional/services/fprintd.nix
+      ../common/optional/services/gns3.nix
+      ../common/optional/services/ollama.nix
 
-      ../../system/virtualisation/libvirtd.nix
-      ../../system/virtualisation/podman.nix
+      ../common/optional/virtualisation/libvirtd.nix
+      ../common/optional/virtualisation/podman.nix
     ]
     ++ (with inputs.nixos-hardware.nixosModules; [
       common-pc-laptop

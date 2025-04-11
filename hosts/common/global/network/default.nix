@@ -1,4 +1,8 @@
 {
+  imports = [
+    ./avahi.nix
+  ];
+
   networking = {
     domain = "sndh.dev";
     networkmanager = {

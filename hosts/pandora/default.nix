@@ -7,10 +7,8 @@
 }: {
   imports =
     [
-      ../../system/profiles/server.nix
       ./hardware-configuration.nix
-
-      ../../system/services/tailscale.nix
+      ../common/profiles/server.nix
 
       ./services/caddy.nix
       ./services/ddns-updater.nix
@@ -30,7 +28,7 @@
 
   services = {
     tailscale = {
-      useRoutingFeatures = "server";
+      useRoutingFeatures = "both";
       extraUpFlags = [
         "--advertise-exit-node"
         ''--advertise-routes "10.0.0.10/32,10.0.0.11/32,10.0.0.12/32"''

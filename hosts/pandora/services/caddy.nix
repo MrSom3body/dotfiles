@@ -1,6 +1,6 @@
 {config, ...}: {
   imports = [
-    ../../../system/services/caddy.nix
+    ../../common/optional/services/caddy.nix
   ];
 
   sops.secrets.caddy.sopsFile = ../../../secrets/pandora/secrets.yaml;

@@ -2,7 +2,7 @@
   cfg = config.services.immich;
 in {
   imports = [
-    ../../../system/services/immich.nix
+    ../../common/optional/services/immich.nix
   ];
 
   sops.secrets.immich-db-password.sopsFile = ../../../secrets/pandora/secrets.yaml;

@@ -1,5 +1,5 @@
 {config, ...}: {
-  sops.secrets.tailscale-key.sopsFile = ../../secrets/${config.networking.hostName}/secrets.yaml;
+  sops.secrets.tailscale-key.sopsFile = ../../../../secrets/${config.networking.hostName}/secrets.yaml;
 
   services = {
     tailscale = {

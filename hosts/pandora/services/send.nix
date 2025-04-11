@@ -2,7 +2,7 @@
   cfg = config.services.send;
 in {
   imports = [
-    ../../../system/services/send.nix
+    ../../common/optional/services/send.nix
   ];
 
   services.caddy.virtualHosts."send.sndh.dev" = {

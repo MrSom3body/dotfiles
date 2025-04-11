@@ -4,10 +4,10 @@
   ...
 }: {
   imports = [
-    ./common.nix
+    ../global
 
-    ../../system/services/fail2ban.nix
-    ../../system/services/openssh.nix
+    ../optional/services/fail2ban.nix
+    ../optional/services/openssh.nix
   ];
 
   networking.firewall.enable = lib.mkForce true;

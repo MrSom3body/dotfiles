@@ -2,7 +2,7 @@
   cfg = config.services.glance;
 in {
   imports = [
-    ../../../system/services/glance.nix
+    ../../common/optional/services/glance.nix
   ];
 
   services.caddy.virtualHosts."home.sndh.dev" = {

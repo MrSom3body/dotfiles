@@ -36,10 +36,7 @@
       asus-battery
     ]);
 
-  services.tailscale = {
-    useRoutingFeatures = "client";
-    extraUpFlags = ["--accept-routes"];
-  };
+  services.tailscale.extraSetFlags = ["--accept-routes"];
 
   hardware = {
     amdgpu.initrd.enable = true;

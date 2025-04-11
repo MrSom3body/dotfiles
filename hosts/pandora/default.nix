@@ -1,14 +1,10 @@
-{
-  lib,
-  inputs,
-  pkgs,
-  config,
-  ...
-}: {
+{inputs, ...}: {
   imports =
     [
       ./hardware-configuration.nix
       ../common/profiles/server.nix
+
+      ../common/optional/services/tailscale-exit-node.nix
 
       ./services/caddy.nix
       ./services/ddns-updater.nix
@@ -26,25 +22,10 @@
       (inputs.nixos-hardware + "/common/cpu/intel/haswell")
     ];
 
-  services = {
-    tailscale = {
-      useRoutingFeatures = "both";
-      extraUpFlags = [
-        "--advertise-exit-node"
-        ''--advertise-routes "10.0.0.10/32,10.0.0.11/32,10.0.0.12/32"''
-      ];
-    };
-
-    networkd-dispatcher = lib.optionalAttrs (config.services.tailscale.useRoutingFeatures == "server") {
-      enable = true;
-      rules."50-tailscale" = {
-        onState = ["routable"];
-        script = ''
-          ${lib.getExe pkgs.ethtool} -K eno1 rx-udp-gro-forwarding on rx-gro-list off
-        '';
-      };
-    };
-  };
+  services.tailscale.extraSetFlags = [
+    "--advertise-routes"
+    "10.0.0.10/32,10.0.0.11/32,10.0.0.12/32"
+  ];
 
   networking = {
     firewall.allowedTCPPorts = [80 443];

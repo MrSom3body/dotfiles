@@ -15,8 +15,10 @@
     # system services
     ../../home/services/system/kdeconnect.nix
     ../../home/services/system/tailray.nix
-    ../../home/services/system/rclone.nix
     ../../home/services/system/syncthing.nix
+
+    # modules
+    ../../modules/home/rclone.nix
   ];
 
   my.programs.rclone = {

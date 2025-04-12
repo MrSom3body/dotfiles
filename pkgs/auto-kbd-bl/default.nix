@@ -28,4 +28,6 @@ stdenv.mkDerivation rec {
       ]
     }
   '';
+
+  meta.mainProgram = name;
 }

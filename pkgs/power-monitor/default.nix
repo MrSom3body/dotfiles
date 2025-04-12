@@ -8,7 +8,7 @@
   libnotify,
   power-profiles-daemon,
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   name = "power-monitor";
 
   src = ./.;
@@ -16,11 +16,11 @@ stdenv.mkDerivation {
   nativeBuildInputs = [makeWrapper];
 
   installPhase = ''
-    install -Dm755 $src/power-monitor.fish $out/bin/power-monitor
+    install -Dm755 $src/${name}.fish $out/bin/${name}
   '';
 
   fixupPhase = ''
-    wrapProgram $out/bin/power-monitor --set PATH ${
+    wrapProgram $out/bin/${name} --set PATH ${
       lib.makeBinPath [
         coreutils
         fish
@@ -30,4 +30,6 @@ stdenv.mkDerivation {
       ]
     }
   '';
+
+  meta.mainProgram = name;
 }

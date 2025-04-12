@@ -9,7 +9,7 @@
   wireplumber,
   wl-screenrec,
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   name = "hyprcast";
 
   src = ./.;
@@ -17,11 +17,11 @@ stdenv.mkDerivation {
   nativeBuildInputs = [makeWrapper];
 
   installPhase = ''
-    install -Dm755 $src/hyprcast.fish $out/bin/hyprcast
+    install -Dm755 $src/${name}.fish $out/bin/${name}
   '';
 
   fixupPhase = ''
-    wrapProgram $out/bin/hyprcast --set PATH ${
+    wrapProgram $out/bin/${name} --set PATH ${
       lib.makeBinPath [
         coreutils
         fish
@@ -32,4 +32,6 @@ stdenv.mkDerivation {
       ]
     }
   '';
+
+  meta.mainProgram = name;
 }

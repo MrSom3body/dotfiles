@@ -48,7 +48,7 @@ in {
             ExecStart = pkgs.writeShellScript "rcloneProtonDriveBackupScript" ''
               ${pkgs.rclone}/bin/rclone --config=.config/rclone/rclone.conf \
                 sync ${config.home.homeDirectory} ${mountpoint}/ \
-                --filter-from ${filterFile}
+                --filter-from ${filterFile} \
                 -vv \
                 --ignore-errors \
                 --protondrive-replace-existing-draft=true

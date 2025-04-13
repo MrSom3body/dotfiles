@@ -29,6 +29,7 @@
         - {{\.?venv}}/**
         - .devenv/**
         - .direnv/**
+        - /Documents/Schule/2024-25/INSY/oracle-volume/**
         + /Desktop/**
         + /Documents/**
         + /Games/Saves/**
@@ -37,7 +38,6 @@
         + /Pictures/**
         + /Templates/**
         + /Videos/**
-        - *
         - *
       '';
     };

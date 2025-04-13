@@ -128,8 +128,6 @@
       disable_splash_rendering = true;
       vfr = true;
       vrr = 1;
-      mouse_move_enables_dpms = true;
-      key_press_enables_dpms = true;
       animate_manual_resizes = true;
       focus_on_activate = true;
     };

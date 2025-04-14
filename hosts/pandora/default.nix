@@ -22,11 +22,6 @@
       (inputs.nixos-hardware + "/common/cpu/intel/haswell")
     ];
 
-  services.tailscale.extraSetFlags = [
-    "--advertise-routes"
-    "10.0.0.10/32,10.0.0.11/32,10.0.0.12/32"
-  ];
-
   networking = {
     firewall.allowedTCPPorts = [80 443];
     interfaces.eno1.wakeOnLan.enable = true;

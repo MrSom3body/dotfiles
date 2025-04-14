@@ -4,6 +4,10 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ../../global/services/tailscale.nix
+  ];
+
   services = {
     tailscale = {
       extraSetFlags = ["--advertise-exit-node"];

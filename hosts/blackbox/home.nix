@@ -60,7 +60,7 @@
   home.packages = with pkgs; [
     # Communication & Social Media
     element-desktop # Matrix client
-    signal-desktop
+    signal-desktop-bin
 
     # Misc
     ente-auth

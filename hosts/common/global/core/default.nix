@@ -35,11 +35,20 @@
 
   time.timeZone = lib.mkDefault "Europe/Vienna";
 
-  services.localtimed.enable = config.services.geoclue2.enable or false; # automatic timezone switching
+  services = {
+    localtimed.enable = config.services.geoclue2.enable or false; # automatic timezone switching
+    xserver.xkb = {
+      layout = "at";
+      options = "caps:swapescape";
+    };
+  };
+
+  console = {
+    earlySetup = true;
+    useXkbConfig = true;
+  };
 
   networking.hostName = settings.hostname;
-
-  console.keyMap = "de";
 
   # compresses half the ram for use as swap
   zramSwap.enable = true;

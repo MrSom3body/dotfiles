@@ -31,8 +31,8 @@ switch:
 [group("local")]
 fix-lanzaboote:
     nh clean all -k 3 -K 4d
-    sudo rm /boot/EFI/nixos/ -r
-    just s
+    sudo rm /boot/EFI/nixos/ -rf
+    just boot
 
 [group("srv")]
 srv NAME MODE="switch":

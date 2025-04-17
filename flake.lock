@@ -338,11 +338,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1744733084,
-        "narHash": "sha256-oWMWfZvJ2lJosT/SUifzVeLSeRhFl0dGcEK/TStWaks=",
+        "lastModified": 1744748660,
+        "narHash": "sha256-XNP95Ng0hAO/7WE+A4CX/d21Q/QQlz8lDbw0vs74OlM=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "392aab2e4a877e197a04f4376c0fc69b971c8ece",
+        "rev": "2bcd76c3d9a61c277d5dcaef936ce62cab5adcee",
         "type": "github"
       },
       "original": {
@@ -466,11 +466,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1744723407,
-        "narHash": "sha256-uqEZxlROWYy2CQqPBihF0wVSXFEwUCKstb9Zwfm4esw=",
+        "lastModified": 1744808601,
+        "narHash": "sha256-2BNmtIXQ/c35h+uOFPC/ADDHaq9SatbOBkGrKGQD9zE=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "b1345b302d1504d286ca2e83c261efd7a727be00",
+        "rev": "37b5d8ba99d7d4867d25154daf214b7b9f1add9a",
         "type": "github"
       },
       "original": {
@@ -486,11 +486,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744735751,
-        "narHash": "sha256-OPpfgL3qUIbQdbmp1/ZwnlsuTLooHN4or0EABnZTFRY=",
+        "lastModified": 1744808429,
+        "narHash": "sha256-veWTW76HIWKRVWJMG5CDpAdD/zd0ViGeETFDG9dU4qQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "db7738e67a101ad945abbcb447e1310147afaf1b",
+        "rev": "401e7b544e7c8e8a59f4ec7f1745f7619bbfbde3",
         "type": "github"
       },
       "original": {
@@ -614,11 +614,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1744646317,
-        "narHash": "sha256-Vs5vKsYOtUBdUyHZ9zmKZxhcEnwm9KM8LUhww44JKtE=",
+        "lastModified": 1744807781,
+        "narHash": "sha256-zwLztVgpc0Txwvy662USwYVEKkNZiJd5GdqacnKyp18=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "8b7b169043de2a9d95f8505edb8b6576fac586fd",
+        "rev": "1ae7e2164c25ad4c22698b0ac12969f1e2a1b8ca",
         "type": "github"
       },
       "original": {
@@ -1032,11 +1032,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744682339,
-        "narHash": "sha256-EnfBeDSsqEku5gvudXWYdXoFghmXb4Vp9YY1vMNzebY=",
+        "lastModified": 1744768706,
+        "narHash": "sha256-7W63qdst98cXE4j/QDF1L3OHz5N5JjcfTVL17a4a3kw=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "deaa09e85d9288c27e0f76431dcdea21f32f96fa",
+        "rev": "46be353e058e970480a9c62ee94a0d1ad2f0c569",
         "type": "github"
       },
       "original": {
@@ -1188,11 +1188,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744742759,
-        "narHash": "sha256-vxuPyzfuz6muvG1g8e7BjJoYwRT3aC6G8Hjy2RZvhnE=",
+        "lastModified": 1744784244,
+        "narHash": "sha256-jei+Xm+DB43QnPf1tsW0AgYa/gXXYU7vMQYllC5WRs8=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "dafa151fe7ae1b46c475a69813b28694d5bcba74",
+        "rev": "5fc7c7502aa9ef471a36e8e7a35fcc43b7d85771",
         "type": "github"
       },
       "original": {
@@ -1217,11 +1217,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744665496,
-        "narHash": "sha256-nXnWAseJCk06WzOc70512jiRDbBZY/rQEuOUqLtdYes=",
+        "lastModified": 1744756635,
+        "narHash": "sha256-o48AFUgi91LejL2zNt9fY4xKqoZI2mZUPzpLwWQM6Rw=",
         "owner": "hyprland-community",
         "repo": "pyprland",
-        "rev": "154ec5a21dd927c77cfee6ef4166e014c26884c7",
+        "rev": "cc1be63ef4b998f4aebd5336a148b0aa267b54a7",
         "type": "github"
       },
       "original": {
@@ -1691,11 +1691,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1744526776,
-        "narHash": "sha256-H+RSj9U8tZ5jh5UzCjt2kBvpN0AsyELAv8ZOP42Kt74=",
+        "lastModified": 1744805292,
+        "narHash": "sha256-N8FIMhskRvkN+d4dFvNjOPyD0nS2HMFdV1epv4/INw4=",
         "owner": "sxyazi",
         "repo": "yazi",
-        "rev": "d2cc73c9277662f05be12e1cdd1c9659dd1d6268",
+        "rev": "510cb14ab6e348029763ec4c77a5b6a8c4b38caa",
         "type": "github"
       },
       "original": {

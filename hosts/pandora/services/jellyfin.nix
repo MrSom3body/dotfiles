@@ -29,6 +29,7 @@
   systemd = {
     tmpfiles.rules = [
       "d /media 2775 root arr -"
+      "d /media/animes 2775 root arr -"
       "d /media/movies 2775 root arr -"
       "d /media/shows 2775 root arr -"
       "d /media/torrents 2775 root arr -"

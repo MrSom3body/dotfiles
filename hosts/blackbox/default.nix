@@ -36,7 +36,10 @@
       asus-battery
     ]);
 
-  services.tailscale.extraSetFlags = ["--accept-routes"];
+  services = {
+    tailscale.extraSetFlags = ["--accept-routes"];
+    ollama.acceleration = "cuda";
+  };
 
   hardware = {
     amdgpu.initrd.enable = true;

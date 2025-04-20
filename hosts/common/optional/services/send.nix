@@ -22,6 +22,14 @@
         );
         DEFAULT_DOWNLOADS = 1;
         DEFAULT_EXPIRE_SECONDS = 3 * day;
+
+        CUSTOM_TITLE = "Karun's Send";
+
+        SEND_FOOTER_DMCA_URL = "mailto:send-dmca@sndh.dev";
+        SEND_FOOTER_DONATE_URL = "https://ko-fi.com/mrsom3body";
+
+        CUSTOM_FOOTER_TEXT = "Hosted by Karun | Not affiliated with Mozilla or Firefox.";
+        CUSTOM_FOOTER_URL = "https://karun.sndh.dev";
       };
     };
   };

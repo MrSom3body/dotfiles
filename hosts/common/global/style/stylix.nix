@@ -15,6 +15,14 @@ in {
     inputs.stylix.nixosModules.stylix
   ];
 
+  specialisation."${alternatePolarity}Mode".configuration = {
+    environment.etc."specialisation".text = "${alternatePolarity}Mode";
+    stylix = {
+      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/${settings.appearance."${alternatePolarity}-theme"}.yaml";
+      polarity = lib.mkForce alternatePolarity;
+    };
+  };
+
   stylix = {
     enable = true;
     image = settings.appearance.wallpaper;
@@ -57,13 +65,5 @@ in {
     #   popups = 0.75;
     #   terminal = 0.95;
     # };
-  };
-
-  specialisation."${alternatePolarity}Mode".configuration = {
-    environment.etc."specialisation".text = "${alternatePolarity}Mode";
-    stylix = {
-      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/${settings.appearance."${alternatePolarity}-theme"}.yaml";
-      polarity = lib.mkForce alternatePolarity;
-    };
   };
 }

@@ -5,6 +5,9 @@
 }: {
   home.packages = with pkgs;
     [
+      # nix
+      comma
+
       # archives
       zip
       unzip

@@ -53,6 +53,15 @@ while true
         set prevStatus $currentStatus
     end
 
+    switch $BAT_CAP
+        case 30
+            notify-send -a power-monitor -u critical "Battery Low" "Battery level is at 30%"
+        case 20
+            notify-send -a power-monitor -u critical "Battery Very Low" "Battery level is at 20%"
+        case 10
+            notify-send -a power-monitor -u critical "Battery Critical" "Battery level is at 10%! Plug in immediately!"
+    end
+
     # wait for the next power change event
     inotifywait -qq "$BAT_STATUS" "$BAT_CAP"
 end

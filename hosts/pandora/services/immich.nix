@@ -31,6 +31,5 @@ in {
   };
 
   # from https://wiki.nixos.org/wiki/Immich#Enabling_Hardware_Accelerated_Video_Transcoding
-  environment.sessionVariables.LIBVA_DRIVER_NAME = "i965";
   users.users.immich.extraGroups = ["video" "render"];
 }

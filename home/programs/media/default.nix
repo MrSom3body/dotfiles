@@ -18,5 +18,6 @@
 
     # videos
     celluloid
+    jellyfin-media-player
   ];
 }

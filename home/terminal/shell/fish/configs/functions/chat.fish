@@ -8,6 +8,7 @@ function chat -d "Wrapper for ollama"
         echo "-f, --from-clipboard   Use clipboard as input"
         echo "-c, --copy             Copy output to clipboard"
         echo "-s, --simple           Give a simple response"
+        echo "-v, --verbose          Run ollama with verbose mode"
     end
 
     set options h/help
@@ -19,6 +20,11 @@ function chat -d "Wrapper for ollama"
     argparse -s -x copy,notify $options -- $argv
     or return
 
+    if set -ql _flag_h
+        print_help
+        return
+    end
+
     set pre_prompt "The input will start with \"Prompt:\" followed by a prompt, and there may be a \"Text:\" section. If \"Text:\" is present, use it to guide your response, treating it as more reliable than your learned knowledge. Do not mention the existence of the \"Text:\" in your answer. Respond in the same language as the prompt. Furthermore only answer do not add \"Text:\" or \"Prompt:\"."
     set ollama_cmd ollama run --keepalive 1m
 
@@ -26,15 +32,14 @@ function chat -d "Wrapper for ollama"
         set pre_prompt "$pre_prompt Ensure that your answer is extremely concise—short, direct, and devoid of unnecessary details. Full sentences are not required."
     end
 
+    if set -ql _flag_v
+        set ollama_cmd $ollama_cmd --verbose
+    end
+
     if set -ql _flag_m
         set ollama_cmd $ollama_cmd $_flag_model
     else
         set ollama_cmd $ollama_cmd llama3.2:3b-instruct-q4_K_M
-    end
-
-    if set -ql _flag_h
-        print_help
-        return
     end
 
     if set -ql _flag_f

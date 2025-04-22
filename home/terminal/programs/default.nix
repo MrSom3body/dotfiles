@@ -7,6 +7,7 @@
     # programs
     ./bat.nix
     ./btop.nix
+    ./comma.nix
     ./direnv.nix
     ./eza.nix
     ./fd.nix

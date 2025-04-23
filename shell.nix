@@ -15,6 +15,8 @@
         git
         just
         sops
+
+        helix # a editor if I'm dumb and remove it somehow
       ]
       ++ [
         inputs.deploy-rs.packages.${pkgs.system}.default

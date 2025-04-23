@@ -178,7 +178,8 @@
     };
 
     stylix = {
-      url = "github:danth/stylix";
+      # TODO unpin when https://github.com/danth/stylix/issues/1161 gets resolved
+      url = "github:danth/stylix/8b0d9317edd57c5374adcf6957ae4775875c2a9d";
       inputs = {
         flake-compat.follows = "flake-compat";
         flake-utils.follows = "flake-utils";

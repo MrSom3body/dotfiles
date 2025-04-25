@@ -26,6 +26,7 @@
       ../common/optional/services/gns3.nix
       ../common/optional/services/ollama.nix
 
+      ../common/optional/virtualisation/containerlab.nix
       ../common/optional/virtualisation/libvirtd.nix
       ../common/optional/virtualisation/podman.nix
     ]

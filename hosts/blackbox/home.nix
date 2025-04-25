@@ -67,6 +67,7 @@
     fragments
     pika-backup
     proton-pass
-    protonvpn-gui
+    # TODO switch back to unstable when https://nixpk.gs/pr-tracker.html?pr=400949 gets merged into unstable
+    stable.protonvpn-gui
   ];
 }

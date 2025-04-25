@@ -23,6 +23,8 @@
     gns3-gui
     gns3-server
 
+    gns3-auto-conf
+
     dynamips
     inetutils
     ubridge

@@ -12,6 +12,7 @@
     temurin-bin
 
     # Other thingies
+    anki-bin
     ciscoPacketTracer8
     openfortivpn
     vpnc

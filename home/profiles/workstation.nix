@@ -19,6 +19,7 @@
 
     # system services
     ../../home/services/system/polkit.nix
+    ../../home/services/system/psd.nix
     ../../home/services/system/udiskie.nix
 
     # media services

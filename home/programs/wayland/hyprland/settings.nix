@@ -2,6 +2,7 @@
   lib,
   osConfig ? null,
   config,
+  inputs,
   pkgs,
   settings,
   ...
@@ -133,9 +134,10 @@
         then osConfig.programs.hyprland.portalPackage
         else config.wayland.windowManager.hyprland.portalPackage
       }/libexec/.xdg-desktop-portal-hyprland-wrapped, screencopy, allow"
+      # Allow to screenrecording & screenshots
       "${lib.getExe pkgs.grim}, screencopy, allow"
-      # Allow to screenrecord
       "${lib.getExe pkgs.wl-screenrec}, screencopy, allow"
+      "${lib.getExe inputs.hyprpicker.packages.${pkgs.system}.hyprpicker}, screencopy, allow"
     ];
 
     misc = {

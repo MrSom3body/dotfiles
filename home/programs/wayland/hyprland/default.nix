@@ -10,7 +10,9 @@
     ./pyprland.nix
   ];
 
-  home.packages =
+  home.packages = let
+    inherit (inputs.hyprpicker.packages.${pkgs.system}) hyprpicker;
+  in
     (with pkgs; [
       brightnessctl
       nautilus
@@ -20,16 +22,14 @@
       wl-clipboard
       wtype
     ])
-    ++ (
-      with pkgs; [
-        # my packages
-        wl-ocr
-        hyprcast
-      ]
-    )
+    ++ (with pkgs; [
+      # my packages
+      wl-ocr
+      hyprcast
+    ])
     ++ [
-      inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
-      inputs.hyprpicker.packages.${pkgs.system}.default
+      hyprpicker
+      (inputs.hyprland-contrib.packages.${pkgs.system}.grimblast.override {inherit hyprpicker;})
     ];
 
   home.file.".config/hypr/scripts" = {

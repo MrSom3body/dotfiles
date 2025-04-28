@@ -1,6 +1,8 @@
 {
   lib,
+  osConfig ? null,
   config,
+  pkgs,
   settings,
   ...
 }: {
@@ -122,6 +124,19 @@
           "col.locked_inactive" = cfg.group."col.border_locked_inactive";
         };
       };
+
+    ecosystem.enforce_permissions = true;
+    permission = [
+      # Allow xdph and grim
+      "${
+        if osConfig != null
+        then osConfig.programs.hyprland.portalPackage
+        else config.wayland.windowManager.hyprland.portalPackage
+      }/libexec/.xdg-desktop-portal-hyprland-wrapped, screencopy, allow"
+      "${lib.getExe pkgs.grim}, screencopy, allow"
+      # Allow to screenrecord
+      "${lib.getExe pkgs.wl-screenrec}, screencopy, allow"
+    ];
 
     misc = {
       disable_hyprland_logo = true;

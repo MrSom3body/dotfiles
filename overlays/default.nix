@@ -52,26 +52,6 @@
       };
     });
 
-    send = (prev.send.overrideAttrs
-      (_oldAttrs: rec {
-        pname = "send";
-        version = "3.4.25";
-        src = final.fetchFromGitHub {
-          owner = "timvisee";
-          repo = "send";
-          tag = "v${version}";
-          hash = "sha256-2XeChKJi57auIf9aSe2JlP55tiE8dmrCBtUfCkziYi8=";
-        };
-        npmDepsHash = "sha256-DY+4qOzoURx8xmemhutxcNxg0Tv2u6tyJHK5RhBjo8w=";
-        npmDeps = final.fetchNpmDeps {
-          inherit src;
-          name = "${pname}-${version}-npm-deps";
-          hash = npmDepsHash;
-        };
-      })).override {
-      nodejs = final.nodejs_20;
-    };
-
     # TODO delete when https://github.com/NixOS/nixpkgs/issues/400317 gets resolved
     inherit (nixpkgs-jetbrains) jetbrains;
   };

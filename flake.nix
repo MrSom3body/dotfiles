@@ -195,40 +195,21 @@
     };
 
     # programs
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-      inputs = {
-        flake-compat.follows = "flake-compat";
-        nixpkgs-unstable.follows = "nixpkgs";
-        nixpkgs-stable.follows = "nixpkgs-stable";
-      };
-    };
+    ghostty.url = "github:ghostty-org/ghostty"; # has cache
 
     gotcha = {
       url = "github:MrSom3body/gotcha";
-      inputs = {nixpkgs.follows = "nixpkgs";};
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    helix = {
-      url = "github:helix-editor/helix";
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    helix.url = "github:helix-editor/helix"; # has cache
 
     tailray = {
       url = "github:NotAShelf/tailray";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    yazi = {
-      url = "github:sxyazi/yazi";
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    yazi.url = "github:sxyazi/yazi"; # has cache
 
     # hyprland stuff
     hyprland.url = "github:hyprwm/hyprland";

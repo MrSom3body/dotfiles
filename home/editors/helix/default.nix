@@ -21,6 +21,7 @@
         rulers = [80];
         bufferline = "multiple";
         color-modes = true;
+        soft-wrap.enable = true;
 
         end-of-line-diagnostics = "hint";
         inline-diagnostics.cursor-line = "error";

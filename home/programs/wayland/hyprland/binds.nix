@@ -75,7 +75,8 @@
         "$mainMod SHIFT, PRINT, Take screenshot of window, exec, ${runOnce "grimblast"} --freeze save screen - | satty -f - --fullscreen -o ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png --early-exit --copy-command wl-copy --save-after-copy"
 
         # Screencast
-        "$mainMod, R, Start/stop screencast, exec, uwsm app -- hyprcast"
+        "$mainMod, R, Start/stop screencast (without audio), exec, uwsm app -- hyprcast"
+        "$mainMod SHIFT, R, Start/stop screencast (with audio), exec, uwsm app -- hyprcast -a"
 
         # Move window focus
         "$mainMod, H, Focus window to the left, movefocus, l"

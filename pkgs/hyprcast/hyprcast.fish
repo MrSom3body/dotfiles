@@ -7,6 +7,7 @@ function print_help
     echo
     echo "flags:"
     echo " -h, --help   Display this help message"
+    echo " -a, --audio  Record with audio"
     echo " -w, --waybar Print output for waybar"
 end
 
@@ -15,6 +16,7 @@ function notify
 end
 
 set options h/help
+set options $options a/audio
 set options $options w/waybar
 argparse $options -- $argv
 or return
@@ -55,9 +57,14 @@ for i in (seq 3 -1 1)
 end
 
 pkill -35 waybar
-wl-screenrec \
-    -f $file_name \
-    --audio --audio-device (wpctl inspect @DEFAULT_AUDIO_SINK@ | grep "node.name" | cut -d"\"" -f2).monitor
+if set -ql _flag_a
+    wl-screenrec \
+        -f $file_name \
+        --audio --audio-device (wpctl inspect @DEFAULT_AUDIO_SINK@ | grep "node.name" | cut -d \" -f2).monitor
+else
+    wl-screenrec \
+        -f $file_name
+end
 pkill -35 waybar
 
 notify -t 3000 -i $file_name "Screencast finished" "Saved to $file_name"

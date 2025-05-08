@@ -15,6 +15,7 @@
 
       ../common/optional/network/kdeconnect.nix
       ../common/optional/network/spotify.nix
+      ../common/optional/network/tuxshare.nix
 
       ../common/optional/programs/adb.nix
       ../common/optional/programs/gamemode.nix

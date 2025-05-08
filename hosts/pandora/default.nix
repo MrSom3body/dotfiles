@@ -10,6 +10,8 @@
 
       ../common/optional/services/tailscale-exit-node.nix
 
+      ../common/optional/network/tuxshare.nix
+
       ./services/caddy.nix
       ./services/ddns-updater.nix
       ./services/glance.nix

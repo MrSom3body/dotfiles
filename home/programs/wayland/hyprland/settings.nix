@@ -128,7 +128,7 @@
 
     ecosystem.enforce_permissions = true;
     permission = [
-      # Allow xdph and grim
+      # Allow xdph
       "${
         if osConfig != null
         then osConfig.programs.hyprland.portalPackage

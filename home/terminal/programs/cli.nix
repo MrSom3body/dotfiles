@@ -15,6 +15,7 @@
       # utils
       devenv
       glow
+      ripdrag
       speedtest-cli
       wget
 

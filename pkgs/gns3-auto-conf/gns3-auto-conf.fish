@@ -33,13 +33,12 @@ username $user priv 15
 line con 0
 login local
 logging sync
-exec timeout 0
-transport input telnet ssh
+exec-timeout 0
 
 line vty 0 1500
 login local
 logging sync
-exec timeout 0
+exec-timeout 0
 transport input telnet ssh
 " >$devicePath
 end

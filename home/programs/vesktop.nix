@@ -9,7 +9,6 @@
       enableMenu = true;
     };
     vencord = {
-      useSystem = true;
       settings = {
         autoUpdate = false;
         autoUpdateNotification = false;

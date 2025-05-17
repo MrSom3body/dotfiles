@@ -4,6 +4,9 @@
     "$pwvucontrol" = "com.saivert.pwvucontrol";
 
     windowrule = [
+      # inhibit idle when fullscreen
+      "idleinhibit focus, fullscreenstate:2 *"
+
       # Smart Gaps
       "noborder 1, floating:0, onworkspace:w[tv1] s[false]"
       "norounding 1, floating:0, onworkspace:w[tv1] s[false]"

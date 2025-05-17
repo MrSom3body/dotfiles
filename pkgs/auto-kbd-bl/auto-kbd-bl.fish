@@ -25,7 +25,7 @@ set_kbd_bl
 
 # event loop
 while true
-    set_kbd_bl
+    pgrep hyprlock || set_kbd_bl
 
     # wait for the next power change event
     inotifywait -qq --event modify "$MON"

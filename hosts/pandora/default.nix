@@ -6,11 +6,11 @@
   imports =
     [
       ./hardware-configuration.nix
-      ../common/profiles/server.nix
+      ../../system/profiles/server.nix
 
-      ../common/optional/services/tailscale-exit-node.nix
+      ../../system/optional/services/tailscale-exit-node.nix
 
-      ../common/optional/network/tuxshare.nix
+      ../../system/optional/network/tuxshare.nix
 
       ./services/caddy.nix
       ./services/ddns-updater.nix

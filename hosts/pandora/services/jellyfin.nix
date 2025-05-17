@@ -1,7 +1,7 @@
 {config, ...}: {
   imports = [
-    ../../common/optional/services/arr.nix
-    ../../common/optional/services/jellyfin.nix
+    ../../../system/optional/services/arr.nix
+    ../../../system/optional/services/jellyfin.nix
   ];
 
   sops = {

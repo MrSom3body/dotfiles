@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   import = [
-    ../../common/optional/services/minecraft.nix
+    ../../../system/optional/services/minecraft.nix
   ];
 
   services.minecraft-servers.servers = {

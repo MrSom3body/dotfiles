@@ -2,7 +2,7 @@
   cfg = config.services.ddns-updater;
 in {
   imports = [
-    ../../common/optional/services/ddns-updater.nix
+    ../../../system/optional/services/ddns-updater.nix
   ];
 
   services.caddy.virtualHosts."ddns.sndh.dev" = {

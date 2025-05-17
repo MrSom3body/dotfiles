@@ -5,14 +5,14 @@
 }: {
   imports = [
     (modulesPath + "/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
-    ../common/profiles/server.nix
+    ../../system/profiles/server.nix
 
-    ../common/optional/services/openssh.nix
+    ../../system/optional/services/openssh.nix
   ];
 
   disabledModules = [
-    ../common/global/core/boot.nix
-    ../common/global/services/tailscale.nix
+    ../../system/global/core/boot.nix
+    ../../system/global/services/tailscale.nix
   ];
 
   # Options to make my config override the iso one

@@ -51,7 +51,7 @@
         "$mainMod, W, Toggle floating, togglefloating"
         "$mainMod, I, Change split direction (dwindle), togglesplit"
         "$mainMod, O, Copy text from screen, exec, wl-ocr"
-        "$mainMod, ESCAPE, Lock screen, exec, ${runOnce "hyprlock"}"
+        "$mainMod, ESCAPE, Lock screen, exec, ${runOnce "hyprlock"} --immediate"
         "$mainMod, C, Open color picker, exec, ${runOnce "hyprpicker -a"}"
         "$mainMod SHIFT, O, Ask ollama something, exec, uwsm app -- fish -c \"chat -fcs\""
         "$mainMod, G, Toggle group, togglegroup"

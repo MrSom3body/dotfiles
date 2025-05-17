@@ -1,5 +1,4 @@
 {
-  lib,
   config,
   inputs,
   pkgs,
@@ -13,7 +12,7 @@
     settings = {
       general = {
         hide_cursor = true;
-        grace = 0;
+        grace = 3;
       };
 
       auth.fingerprint.enabled = true;

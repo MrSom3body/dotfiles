@@ -9,43 +9,63 @@
 
     package = inputs.hypridle.packages.${pkgs.system}.hypridle;
 
-    settings = {
-      general = let
-        beforeSleep = l: lib.concatStringsSep "; " l;
-      in {
-        ignore_dbus_inhibit = false;
+    settings = let
+      isLocked = command: "pgrep hyprlock && ${command}";
+      isDischarging = command: "grep Discharging /sys/class/power_supply/BAT*/status -q && ${command}";
+    in {
+      general = {
         lock_cmd = "uwsm app -- hyprlock";
         unlock_cmd = "pkill -SIGUSR1 hyprlock";
-        before_sleep_cmd = beforeSleep [
-          "loginctl lock-session"
-          "${lib.getExe pkgs.playerctl} pause"
-        ];
+        before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";
+        inhibit_sleep = 3;
       };
 
       listener = [
         {
+          timeout = 10;
+          on-timeout = "brightnessctl --save";
+          on-resume = "brightnessctl --restore";
+        }
+
+        {
           timeout = 30;
-          on-timeout = "brightnessctl -sd asus::kbd_backlight set 0";
-          on-resume = "brightnessctl -rd asus::kbd_backlight";
+          on-timeout = "brightnessctl --device *:kbd_backlight --save set 0";
+          on-resume = "brightnessctl --device *:kbd_backlight --restore";
         }
         {
-          timeout = 150;
-          on-timeout = "brightnessctl -s set 0";
-          on-resume = "brightnessctl -r";
+          timeout = 50;
+          on-timeout = "brightnessctl set 50%-";
         }
         {
-          timeout = 300;
+          timeout = 110;
+          on-timeout = "brightnessctl set 50%-";
+        }
+        {
+          timeout = 120;
           on-timeout = "loginctl lock-session";
         }
         {
-          timeout = 330;
+          timeout = 140;
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
+
+        # If already locked
+        {
+          timeout = 15;
+          on-timeout = isLocked "brightnessctl set 75%-";
+        }
+        {
+          timeout = 20;
+          on-timeout = isLocked "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+
+        # If discharging
         {
           timeout = 600;
-          on-timeout = "systemctl suspend";
+          on-timeout = isDischarging "systemctl suspend";
         }
       ];
     };

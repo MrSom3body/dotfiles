@@ -85,7 +85,7 @@
   inputs = {
     # global, so they can be `.follow`ed
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     systems.url = "github:nix-systems/default-linux";
 
     flake-compat = {

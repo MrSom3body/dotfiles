@@ -6,8 +6,9 @@
   imports = [
     ./settings.nix
     ./binds.nix
-    ./rules.nix
+    ./permissions.nix
     ./pyprland.nix
+    ./rules.nix
   ];
 
   home.packages = let

@@ -29,6 +29,7 @@
         - {{\.?venv}}/**
         - .devenv/**
         - .direnv/**
+        - /Documents/Codes/nixpkgs/**
         - /Documents/Schule/2024-25/INSY/oracle-volume/**
         + /Desktop/**
         + /Documents/**

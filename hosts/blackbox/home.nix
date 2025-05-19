@@ -21,6 +21,13 @@
     ../../modules/home/rclone.nix
   ];
 
+  wayland.windowManager.hyprland.settings.permission = [
+    ### Keyboards ###
+    "asus-wmi-hotkeys, keyboard, allow"
+    "at-translated-set-2-keyboard, keyboard, allow"
+    ".*, keyboard, deny"
+  ];
+
   my.programs.rclone = {
     enable = true;
     protonDriveBackup = {

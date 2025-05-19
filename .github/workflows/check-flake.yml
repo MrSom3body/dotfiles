@@ -1,0 +1,17 @@
+name: "Check Flake"
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  check-flake:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v26
+        with:
+          install_url: https://nixos.org/nix/install
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - run: nix flake check

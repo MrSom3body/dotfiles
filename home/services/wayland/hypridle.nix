@@ -27,7 +27,6 @@
           on-timeout = "brightnessctl --save";
           on-resume = "brightnessctl --restore";
         }
-
         {
           timeout = 30;
           on-timeout = "brightnessctl --device *:kbd_backlight --save set 0";

@@ -1,6 +1,17 @@
 name: "Check Flake"
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "**.nix"
+      - "**.lock"
+      - ".github/workflows/check-flake.yml"
+  pull_request:
+    paths:
+      - "**.nix"
+      - "**.lock"
+      - ".github/workflows/check-flake.yml"
 
 jobs:
   check-flake:

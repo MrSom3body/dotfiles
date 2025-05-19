@@ -23,8 +23,17 @@
 
   wayland.windowManager.hyprland.settings.permission = [
     ### Keyboards ###
+    "video-bus, keyboard, allow"
     "asus-wmi-hotkeys, keyboard, allow"
     "at-translated-set-2-keyboard, keyboard, allow"
+
+    # Mechanical Keyboard
+    "sonix-usb-device-system-control, keyboard, allow"
+    "sonix-usb-device, keyboard, allow"
+    "sonix-usb-device-keyboard, keyboard, allow"
+    "sonix-usb-device-consumer-control, keyboard, allow"
+
+    # Deny everything else
     ".*, keyboard, deny"
   ];
 

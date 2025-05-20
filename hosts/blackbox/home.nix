@@ -33,6 +33,9 @@
     "sonix-usb-device-keyboard, keyboard, allow"
     "sonix-usb-device-consumer-control, keyboard, allow"
 
+    # Wacom Tablet
+    "opentabletdriver-virtual-keyboard, keyboard, allow"
+
     # Deny everything else
     ".*, keyboard, deny"
   ];

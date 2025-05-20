@@ -18,9 +18,16 @@
     ];
 
     bindd = let
-      toggle = cmd: "pkill ${cmd} || uwsm app -- ${cmd}";
-      toggleScript = cmd: script: "pkill ${cmd} || uwsm app -- ${script}";
-      runOnce = cmd: "pgrep ${cmd} || uwsm app -- ${cmd}";
+      shorten = s: builtins.substring 0 14 s;
+      toggle = program: let
+        prog = shorten program;
+      in "pkill ${prog} || uwsm app -- ${program}";
+      toggleScript = program: script: let
+        prog = shorten program;
+      in "pkill ${prog} || uwsm app -- ${script}";
+      runOnce = program: let
+        prog = shorten program;
+      in "pgrep ${prog} || uwsm app -- ${program}";
     in
       [
         # Vesktop

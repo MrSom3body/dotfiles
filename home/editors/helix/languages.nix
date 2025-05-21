@@ -77,6 +77,11 @@
         name = "sql";
         language-servers = ["sqls"];
       }
+
+      {
+        name = "xml";
+        language-servers = ["lemminx"];
+      }
     ];
 
     language-server = {
@@ -99,6 +104,10 @@
 
       gopls = {
         command = lib.getExe pkgs.gopls;
+      };
+
+      lemminx = {
+        command = lib.getExe pkgs.lemminx;
       };
 
       ltex = {

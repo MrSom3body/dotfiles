@@ -5,7 +5,6 @@ if pgrep vpnc &>/dev/null
     switch $selection
         case yes
             pkexec vpnc-disconnect
-            notify-send -a vpnc "VPN disconnected"
         case no
             notify-send -a vpnc "Disconnecting cancelled"
     end
@@ -21,4 +20,7 @@ else
             notify-send -a vpnc "Connected successfully to $selection" ||
             notify-send -a vpnc "Could not connect to $selection"
     end
+
+    waitpid (pgrep vpnc) &&
+        notify-send -a vpnc "Disconnected from $selection"
 end

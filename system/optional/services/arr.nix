@@ -13,6 +13,7 @@
     jellyseerr.enable = true;
 
     prowlarr.enable = true;
+    flaresolverr.enable = true;
     recyclarr = {
       enable = true;
       configuration = {

@@ -64,6 +64,13 @@
       }
 
       {
+        name = "php";
+        auto-format = true;
+        formatter.command = lib.getExe pkgs.pretty-php;
+        language-servers = ["phpactor"];
+      }
+
+      {
         name = "python";
         language-servers = ["basedpyright" "ruff" "gpt"];
         auto-format = true;
@@ -124,6 +131,11 @@
           formatting.command = ["${lib.getExe pkgs.alejandra}"];
           options.nixos.expr = "(builtins.getFlake \"${settings.path}\").nixosConfigurations.${settings.hostname}.options";
         };
+      };
+
+      phpactor = {
+        command = lib.getExe pkgs.phpactor;
+        args = ["language-server"];
       };
 
       ruff = {

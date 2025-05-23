@@ -9,11 +9,13 @@
     ./btop.nix
     ./comma.nix
     ./direnv.nix
+    ./dust.nix
     ./eza.nix
     ./fd.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
+    ./gitui.nix
     ./ripgrep.nix
     ./ssh.nix
     ./tealdeer.nix

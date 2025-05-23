@@ -12,15 +12,16 @@
       # misc
       libnotify
 
+      # files
+      ripdrag
+      ripdrag
+      tokei
+
       # utils
       devenv
       glow
-      ripdrag
       speedtest-cli
       wget
-
-      # net
-      dig
     ]
     ++ [
       inputs.gotcha.packages.${pkgs.system}.default

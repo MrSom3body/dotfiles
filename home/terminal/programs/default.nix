@@ -4,24 +4,31 @@
     ./cli.nix
     ./networking.nix
 
-    # programs
-    ./bat.nix
-    ./btop.nix
-    ./comma.nix
+    # development
     ./direnv.nix
-    ./dust.nix
-    ./eza.nix
-    ./fd.nix
-    ./fzf.nix
     ./gh.nix
     ./git.nix
     ./gitui.nix
+    ./tokei.nix
+
+    # search
+    ./fd.nix
+    ./fzf.nix
     ./ripgrep.nix
+
+    # files
+    ./dust.nix
+    ./trash-cli.nix
+    ./yazi.nix
+
+    # utils
+    ./bat.nix
+    ./btop.nix
+    ./comma.nix
+    ./eza.nix
     ./ssh.nix
     ./tealdeer.nix
     ./thefuck.nix
-    ./trash-cli.nix
     ./xdg.nix
-    ./yazi.nix
   ];
 }

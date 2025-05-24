@@ -15,7 +15,6 @@
       # files
       ripdrag
       ripdrag
-      tokei
 
       # utils
       devenv

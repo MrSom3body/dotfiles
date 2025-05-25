@@ -3,6 +3,7 @@
     [
       ./command-not-found.nix
       ./fish.nix
+      ./helix.nix
     ]
     ++ (
       if isInstall

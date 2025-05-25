@@ -18,11 +18,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: cachix/install-nix-action@v26
+      - name: "Checkout"
+        uses: actions/checkout@v4
         with:
-          install_url: https://nixos.org/nix/install
-          extra_nix_config: |
-            auto-optimise-store = true
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-      - run: nix flake check
+          token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: "Install Lix"
+        uses: DeterminateSystems/nix-installer-action@v13
+        with:
+          source-url: "https://install.lix.systems/lix/lix-installer-x86_64-linux"
+          diagnostic-endpoint: "" # so eelco can have more personalized self-merges? no thank you
+          backtrace: "true"
+          extra-conf: |
+            experimental-features = nix-command flakes
+
+      - name: "Check Flake"
+        run: nix flake check

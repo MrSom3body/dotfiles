@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  isInstall,
+  ...
+}: {
   boot = {
     bootspec.enable = true;
 
@@ -17,7 +22,7 @@
       "preempt=full"
     ];
 
-    loader = {
+    loader = lib.mkIf isInstall {
       # systemd-boot on UEFI
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;

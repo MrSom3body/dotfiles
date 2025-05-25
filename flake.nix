@@ -22,18 +22,35 @@
     );
 
     specialArgs = {
+      inherit self;
       inherit inputs;
       inherit outputs;
     };
 
-    mkNixosConfig = hostname:
+    mkNixos = {
+      hostname,
+      isInstall ? true,
+    }:
       lib.nixosSystem {
-        specialArgs = specialArgs // {settings = settings hostname;};
-        modules = [
-          ./hosts/${hostname}
-          ./hosts/${hostname}/disko.nix
-          inputs.disko.nixosModules.disko
-        ];
+        specialArgs =
+          specialArgs
+          // {
+            settings = settings hostname;
+            inherit isInstall;
+          };
+
+        modules =
+          [
+            ./hosts/${hostname}
+          ]
+          ++ (
+            if isInstall
+            then [
+              ./hosts/${hostname}/disko.nix
+              inputs.disko.nixosModules.disko
+            ]
+            else []
+          );
       };
   in {
     overlays = import ./overlays {
@@ -48,12 +65,12 @@
     formatter = forEachSystem (pkgs: pkgs.alejandra);
 
     nixosConfigurations = {
-      blackbox = mkNixosConfig "blackbox";
-      pandora = mkNixosConfig "pandora";
+      blackbox = mkNixos {hostname = "blackbox";};
+      pandora = mkNixos {hostname = "pandora";};
 
-      nixos = lib.nixosSystem {
-        specialArgs = specialArgs // {settings = settings "nixos";};
-        modules = [./hosts/nixos];
+      sanctuary = mkNixos {
+        hostname = "sanctuary";
+        isInstall = false;
       };
     };
 

@@ -1,17 +1,19 @@
 {
+  lib,
   config,
   pkgs,
   settings,
+  isInstall,
   ...
 }: {
   users = {
-    mutableUsers = false;
+    mutableUsers = !isInstall;
     users = {
       karun = {
         isNormalUser = true;
         description = "Karun Sandhu";
         shell = pkgs.fish;
-        hashedPasswordFile = config.sops.secrets.karun-password.path;
+        hashedPasswordFile = lib.mkIf isInstall config.sops.secrets.karun-password.path;
         extraGroups = [
           "wheel"
           "input"
@@ -27,6 +29,4 @@
       };
     };
   };
-
-  sops.secrets.karun-password.neededForUsers = true;
 }

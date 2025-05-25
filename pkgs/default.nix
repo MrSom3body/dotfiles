@@ -9,5 +9,5 @@
   hyprcast = pkgs.callPackage ./hyprcast {};
   power-monitor = pkgs.callPackage ./power-monitor {};
   wl-ocr = pkgs.callPackage ./wl-ocr {};
-  default = outputs.nixosConfigurations.nixos.config.system.build.isoImage;
+  default = outputs.nixosConfigurations.sanctuary.config.system.build.isoImage;
 }

@@ -1,7 +1,11 @@
-{lib, ...}: {
+{
+  lib,
+  isInstall,
+  ...
+}: {
   services = {
     tailscale = {
-      enable = true;
+      enable = isInstall;
       useRoutingFeatures = lib.mkDefault "client";
     };
   };

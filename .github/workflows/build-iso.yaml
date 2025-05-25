@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        image: [nixos]
+        image: [sanctuary]
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
@@ -82,9 +82,9 @@ jobs:
 
             ## 📦 What’s inside
 
-            | Image     | Purpose                                      |
-            | --------- | -------------------------------------------- |
-            | **nixos** | ISO to install NixOS with my public SSH keys |
+            | Image         | Purpose                                      |
+            | ------------- | -------------------------------------------- |
+            | **sanctuary** | ISO to install NixOS with my public SSH keys |
 
             ## 🔒 Verify checksum
 

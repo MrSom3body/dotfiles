@@ -1,14 +1,16 @@
 {
+  lib,
   config,
   inputs,
   specialArgs,
+  isInstall,
   ...
 }: {
   imports = [
     inputs.home-manager.nixosModules.default
   ];
 
-  home-manager = {
+  home-manager = lib.mkIf isInstall {
     backupFileExtension = "backup";
     useGlobalPkgs = true;
     useUserPackages = true;

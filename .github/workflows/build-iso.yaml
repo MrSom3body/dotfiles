@@ -32,16 +32,19 @@ jobs:
           extra-conf: |
             experimental-features = nix-command flakes
 
+      - name: "Install nix-fast-build"
+        run: nix profile install nixpkgs#nix-fast-build
+
       - name: "Build ISO Images"
-        shell: bash
         run: |
-          nix build .#nixosConfigurations.${{ matrix.image }}.config.system.build.isoImage \
+          nix-fast-build --skip-cached --no-nom \
+            --flake .#nixosConfigurations.${{ matrix.image }}.config.system.build.isoImage \
             --out-link ${{ matrix.image }}
 
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.image }}-iso-image
-          path: ${{ matrix.image }}/iso/*.iso
+          path: ${{ matrix.image }}-/iso/*.iso
 
   publish-images:
     name: "Publish ISO Images"

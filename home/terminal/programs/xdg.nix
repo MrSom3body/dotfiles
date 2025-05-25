@@ -48,7 +48,7 @@ in {
       defaultApplications =
         {
           "application/pdf" = ["org.pwmt.zathura.desktop"]; # PDFs
-          "application/zip" = ["org.gnome.Nautilus.desktop" "org.gnome.FileRoller.desktop"]; # ZIPs
+          "application/zip" = ["yazi.desktop"]; # ZIPs
           "inode/directory" = ["yazi.desktop"]; # Files
           "text/html" = browser; # HTML files
           "text/plain" = ["Helix.desktop"]; # Plain text

@@ -65,7 +65,7 @@
     formatter = forEachSystem (pkgs: pkgs.alejandra);
 
     nixosConfigurations = {
-      blackbox = mkNixos {hostname = "blackbox";};
+      promethea = mkNixos {hostname = "promethea";};
       pandora = mkNixos {hostname = "pandora";};
 
       sanctuary = mkNixos {

@@ -7,7 +7,7 @@
     inherit hostname;
     path = "/home/karun/dotfiles"; # Path to your dotfiles
     authorizedSshKeys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH+0M/HSOoGHHrAtVhObOUjWQpR0pvHmhd7PhRJifP01 karun@blackbox"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH+0M/HSOoGHHrAtVhObOUjWQpR0pvHmhd7PhRJifP01 karun@promethea"
     ];
 
     # Appearance settings

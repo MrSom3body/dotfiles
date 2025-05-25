@@ -4,7 +4,7 @@ name: Build & Publish ISO Images
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 3 * * mon" # every monday at 3AM
+    - cron: "0 0 * * mon" # every monday at 0:0
 concurrency: build
 jobs:
   build-images:

@@ -47,7 +47,7 @@ in {
       enable = true;
       defaultApplications =
         {
-          "application/pdf" = ["org.gnome.Papers.desktop"]; # PDFs
+          "application/pdf" = ["org.pwmt.zathura.desktop"]; # PDFs
           "application/zip" = ["org.gnome.Nautilus.desktop" "org.gnome.FileRoller.desktop"]; # ZIPs
           "inode/directory" = ["yazi.desktop"]; # Files
           "text/html" = browser; # HTML files

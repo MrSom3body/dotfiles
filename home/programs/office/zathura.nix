@@ -1,0 +1,5 @@
+{
+  programs.zathura = {
+    enable = true;
+  };
+}

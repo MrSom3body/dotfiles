@@ -1,27 +1,13 @@
 {
-  lib,
   config,
   inputs,
   pkgs,
   settings,
   ...
-}: let
-  alternatePolarity =
-    if settings.appearance.polarity == "dark"
-    then "light"
-    else "dark";
-in {
+}: {
   imports = [
     inputs.stylix.nixosModules.stylix
   ];
-
-  specialisation."${alternatePolarity}Mode".configuration = {
-    environment.etc."specialisation".text = "${alternatePolarity}Mode";
-    stylix = {
-      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/${settings.appearance."${alternatePolarity}-theme"}.yaml";
-      polarity = lib.mkForce alternatePolarity;
-    };
-  };
 
   stylix = {
     enable = true;

@@ -10,6 +10,7 @@
   jq,
   wl-clipboard,
   wtype,
+  xdg-utils,
 }:
 stdenv.mkDerivation {
   name = "fuzzel-goodies";
@@ -37,6 +38,7 @@ stdenv.mkDerivation {
         jq
         wl-clipboard
         wtype
+        xdg-utils
       ]
     }
     done

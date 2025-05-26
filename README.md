@@ -39,6 +39,7 @@ Feel free to explore, adapt, and contribute!
 
 ## ⭐ Stargraph (because why not)
 
+<a href="https://www.star-history.com/#MrSom3body/dotfiles&Date">
 <picture>
   <source media="(prefers-color-scheme: dark)"
     srcset="https://api.star-history.com/svg?repos=MrSom3body/dotfiles&type=Date&theme=dark"/>
@@ -47,3 +48,4 @@ Feel free to explore, adapt, and contribute!
   <img alt="Star History Chart"
     src="https://api.star-history.com/svg?repos=MrSom3body/dotfiles&type=Date"/>
 </picture>
+</a>

@@ -1,7 +1,8 @@
 {
+  self,
   lib,
+  osConfig,
   pkgs,
-  settings,
   ...
 }: {
   imports = [
@@ -129,7 +130,12 @@
         command = lib.getExe pkgs.nixd;
         config.nixd = {
           formatting.command = ["${lib.getExe pkgs.alejandra}"];
-          options.nixos.expr = "(builtins.getFlake \"${settings.path}\").nixosConfigurations.${settings.hostname}.options";
+          options = let
+            flake = ''(builtins.getFlake "${self}")'';
+          in rec {
+            nixos.expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
+            home-manager.expr = "${nixos.expr}.home-manager.users.type.getSubOptions []";
+          };
         };
       };
 

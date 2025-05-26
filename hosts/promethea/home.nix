@@ -83,7 +83,7 @@
     signal-desktop-bin
 
     # Misc
-    ente-auth
+    stable.ente-auth # TODO make unstable when https://nixpk.gs/pr-tracker.html?pr=410933 gets merged
     fragments
     pika-backup
     proton-pass

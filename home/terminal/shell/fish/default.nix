@@ -67,10 +67,18 @@
       gp = "git push";
       gpf = "git push --force-with-lease";
       gpl = "git pull";
+      gpt = "git push --tags";
       gr = "git rebase";
+      grc = "git rebase --continue";
+      gra = "git rebase --abort";
+      gri = {
+        setCursor = "%";
+        expansion = "git rebase -i HEAD~%";
+      };
       gs = "git status --short";
       gss = "git status --short";
       gsw = "git switch";
+      gt = "git tag";
     };
   };
 

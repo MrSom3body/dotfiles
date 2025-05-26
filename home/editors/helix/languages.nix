@@ -87,6 +87,12 @@
       }
 
       {
+        name = "typst";
+        auto-format = true;
+        language-servers = ["tinymist"];
+      }
+
+      {
         name = "xml";
         language-servers = ["lemminx"];
       }
@@ -158,6 +164,15 @@
 
       taplo = {
         command = lib.getExe pkgs.taplo;
+      };
+
+      tinymist = {
+        command = lib.getExe pkgs.tinymist;
+        config = {
+          exportPdf = "onType";
+          outputPath = "$root/target/$dir/$name";
+          formatterPrintWidth = 80;
+        };
       };
 
       vscode-css-language-server = {

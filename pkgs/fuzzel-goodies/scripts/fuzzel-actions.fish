@@ -10,7 +10,7 @@ set choice (echo -en $choices | fuzzel --dmenu --prompt " " --placeholder "Se
 
 switch (string split -f 2 " " $choice)
     case Lock
-        uwsm app -- hyprlock --immediate
+        loginctl lock-session
     case Suspend
         systemctl suspend
     case Exit

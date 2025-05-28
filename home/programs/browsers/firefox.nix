@@ -16,6 +16,7 @@
       isDefault = true;
       settings = {
         "browser.download.start_downloads_in_tmp_dir" = true;
+        "browser.ml.linkPreview.enabled" = true;
         "browser.tabs.groups.enabled" = true;
         "browser.tabs.groups.smart.enabled" = true;
         "cookiebanners.service.mode" = 2;

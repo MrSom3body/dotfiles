@@ -51,6 +51,7 @@ in {
   ];
 
   # Options to make my config override the iso one
-  security.sudo.enable = lib.mkForce false;
+  boot.supportedFilesystems.zfs = lib.mkForce false;
   networking.wireless.enable = lib.mkForce false;
+  security.sudo.enable = lib.mkForce false;
 }

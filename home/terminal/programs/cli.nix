@@ -14,7 +14,7 @@
 
       # files
       ripdrag
-      ripdrag
+      sd
 
       # utils
       devenv

@@ -29,9 +29,10 @@ I’ve drawn inspiration from these fantastic projects, people and sources:
 
 - [fufexan/dotfiles](https://github.com/fufexan/dotfiles) (shamelessly copied
   most of the nix stuff from him)
-- [Misterio77/nix-config](https://github.com/Misterio77/nix-config)
-- [librephoenix/nixos-config](https://github.com/librephoenix/nixos-config)
 - [NixOS & Flakes Book](https://nixos-and-flakes.thiscute.world/)
+- [Misterio77/nix-config](https://github.com/Misterio77/nix-config)
+- [NotAShelf/nyx](https://github.com/NotAShelf/nyx) (mainly for the CI/CD stuff)
+- [librephoenix/nixos-config](https://github.com/librephoenix/nixos-config)
 - [Vimjoyer](https://www.youtube.com/@vimjoyer)
 - and many many more...
 

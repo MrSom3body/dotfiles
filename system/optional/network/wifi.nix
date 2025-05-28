@@ -1,6 +1,6 @@
 {
   networking.networkmanager.wifi = {
     macAddress = "random";
-    powersave = true;
+    powersave = false;
   };
 }

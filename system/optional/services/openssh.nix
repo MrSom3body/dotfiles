@@ -4,7 +4,7 @@
     settings = {
       UseDns = true;
       PasswordAuthentication = false;
-      ChallengeResponseAuthentication = false;
+      KbdInteractiveAuthentication = false;
     };
   };
 }

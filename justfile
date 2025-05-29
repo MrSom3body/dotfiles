@@ -2,6 +2,7 @@ alias b := boot
 alias s := switch
 alias t := test
 alias fl := fix-lanzaboote
+alias d := deploy
 
 default:
     @just --list
@@ -35,9 +36,9 @@ fix-lanzaboote:
     just boot
 
 [group("srv")]
-srv NAME MODE="switch":
+deploy NAME MODE="switch":
     nh os {{MODE}} -H {{NAME}} --target-host root@{{NAME}}
 
 [group("srv")]
-srv-verbose NAME MODE="switch":
+deploy-verbose NAME MODE="switch":
     nh os {{MODE}} -H {{NAME}} --target-host root@{{NAME}} -- --show-trace

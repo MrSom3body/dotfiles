@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; let
     plugins = ["github-copilot" "ideavim" "mermaid"];
   in [
@@ -17,4 +21,8 @@
     openfortivpn
     vpnc
   ];
+
+  home.file.".ideavimrc".text = ''
+    source ${inputs.helix-vim}/src/helix.idea.vim
+  '';
 }

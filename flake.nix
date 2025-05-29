@@ -305,5 +305,10 @@
       url = "github:Rolv-Apneseth/starship.yazi";
       flake = false;
     };
+
+    helix-vim = {
+      url = "github:chtenb/helix.vim";
+      flake = false;
+    };
   };
 }

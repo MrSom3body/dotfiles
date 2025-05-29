@@ -480,6 +480,22 @@
         "type": "github"
       }
     },
+    "helix-vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743759792,
+        "narHash": "sha256-iK3CCSFIWAzXFA4CWxEBxgjGZgyN9PKrSHJF8XYAFQg=",
+        "owner": "chtenb",
+        "repo": "helix.vim",
+        "rev": "548bd3bdc0bbd7e49d8fbb70cb045e9197ab09e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chtenb",
+        "repo": "helix.vim",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -1349,6 +1365,7 @@
         "git-hooks-nix": "git-hooks-nix",
         "gotcha": "gotcha",
         "helix": "helix",
+        "helix-vim": "helix-vim",
         "home-manager": "home-manager",
         "hypridle": "hypridle",
         "hyprland": "hyprland",

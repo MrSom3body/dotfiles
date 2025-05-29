@@ -147,15 +147,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
-      inputs = {
-        flake-compat.follows = "flake-compat";
-        flake-parts.follows = "flake-parts";
-        pre-commit-hooks-nix.follows = "git-hooks-nix";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    lanzaboote.url = "github:nix-community/lanzaboote";
 
     nh = {
       url = "github:nix-community/nh";

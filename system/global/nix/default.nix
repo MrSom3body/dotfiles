@@ -16,6 +16,7 @@
     package = pkgs.lix;
 
     settings = {
+      accept-flake-config = false;
       auto-optimise-store = !config.boot.isContainer;
       builders-use-substitutes = true;
       experimental-features = [

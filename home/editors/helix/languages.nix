@@ -171,7 +171,14 @@
         config = {
           exportPdf = "onType";
           outputPath = "$root/target/$dir/$name";
+
+          formatterMode = "typstyle";
           formatterPrintWidth = 80;
+
+          lint = {
+            enabled = true;
+            when = "onType";
+          };
         };
       };
 

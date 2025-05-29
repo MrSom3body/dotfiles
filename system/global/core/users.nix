@@ -23,6 +23,8 @@
         openssh.authorizedKeys.keys = settings.authorizedSshKeys;
       };
 
+      nixos = lib.mkIf (!isInstall) {shell = pkgs.fish;};
+
       root = {
         hashedPassword = null;
         openssh.authorizedKeys.keys = settings.authorizedSshKeys;

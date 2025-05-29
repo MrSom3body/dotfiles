@@ -1,7 +1,9 @@
 {
+  self,
   inputs,
   pkgs,
   settings,
+  isInstall,
   ...
 }: {
   programs.nh = {
@@ -11,6 +13,9 @@
       enable = true;
       extraArgs = "--keep-since 1w --keep 3";
     };
-    flake = settings.path;
+    flake =
+      if isInstall
+      then settings.path
+      else self.outPath;
   };
 }

@@ -2,6 +2,7 @@
   self,
   lib,
   config,
+  inputs,
   pkgs,
   modulesPath,
   settings,
@@ -43,6 +44,10 @@ in {
     isoName = mkImageMediaOverride (name + ".iso");
     volumeID = mkImageMediaOverride (shortHostname + fixedParts);
   };
+
+  environment.systemPackages = [
+    inputs.disko.packages.${pkgs.system}.default
+  ];
 
   nixpkgs.overlays = [
     (_final: super: {

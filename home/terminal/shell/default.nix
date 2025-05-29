@@ -3,7 +3,6 @@
     ./bash.nix
     ./fish
 
-    ./starship.nix
     ./zoxide.nix
   ];
 

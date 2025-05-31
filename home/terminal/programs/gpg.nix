@@ -1,0 +1,5 @@
+{
+  programs.gpg = {
+    enable = true;
+  };
+}

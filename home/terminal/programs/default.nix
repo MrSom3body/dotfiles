@@ -26,6 +26,7 @@
     ./btop.nix
     ./comma.nix
     ./eza.nix
+    ./gpg.nix
     ./ssh.nix
     ./tealdeer.nix
     ./thefuck.nix

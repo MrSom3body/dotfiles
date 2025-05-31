@@ -36,6 +36,9 @@
     # Wacom Tablet
     "opentabletdriver-virtual-keyboard, keyboard, allow"
 
+    # Bluetooth Periphery
+    "jbl-go-2-\(avrcp\), keyboard, allow"
+
     # Deny everything else
     ".*, keyboard, deny"
   ];

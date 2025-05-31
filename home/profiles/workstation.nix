@@ -3,34 +3,34 @@
     ./server.nix
 
     # terminals
-    ../../home/terminal/emulators/foot.nix
+    ../terminal/emulators/foot.nix
 
     # programs
-    ../../home/programs
-    ../../home/programs/browsers/firefox.nix
-    ../../home/programs/media
-    ../../home/programs/office
+    ../programs
+    ../programs/browsers/firefox.nix
+    ../programs/media
+    ../programs/office
 
     # wayland programs
-    ../../home/programs/wayland/fuzzel
-    ../../home/programs/wayland/hyprland
-    ../../home/programs/wayland/hyprlock.nix
-    ../../home/programs/wayland/waybar
+    ../programs/wayland/fuzzel
+    ../programs/wayland/hyprland
+    ../programs/wayland/hyprlock.nix
+    ../programs/wayland/waybar
 
     # system services
-    ../../home/services/system/polkit.nix
-    ../../home/services/system/psd.nix
-    ../../home/services/system/udiskie.nix
+    ../services/system/polkit.nix
+    ../services/system/psd.nix
+    ../services/system/udiskie.nix
 
     # media services
-    ../../home/services/media/playerctl.nix
+    ../services/media/playerctl.nix
 
     # wayland services
-    ../../home/services/wayland/cliphist.nix
-    ../../home/services/wayland/fnott
-    ../../home/services/wayland/gammastep.nix
-    ../../home/services/wayland/hypridle.nix
-    ../../home/services/wayland/hyprpaper.nix
-    ../../home/services/wayland/swayosd.nix
+    ../services/wayland/cliphist.nix
+    ../services/wayland/fnott
+    ../services/wayland/gammastep.nix
+    ../services/wayland/hypridle.nix
+    ../services/wayland/hyprpaper.nix
+    ../services/wayland/swayosd.nix
   ];
 }

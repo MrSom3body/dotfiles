@@ -13,9 +13,9 @@ in {
   imports = [
     (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
 
-    ../../system/global
+    ../global
 
-    ../../system/optional/services/openssh.nix
+    ../optional/services/openssh.nix
   ];
 
   isoImage = let

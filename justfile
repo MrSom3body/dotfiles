@@ -35,10 +35,16 @@ fix-lanzaboote:
     sudo rm /boot/EFI/nixos/ -rf
     just boot
 
-[group("srv")]
+[group("deploy")]
+install NAME HOST=NAME:
+    nix run github:nix-community/nixos-anywhere -- \
+        --flake .#{{NAME}} --target-host root@{{HOST}} \
+        --generate-hardware-config nixos-generate-config ./hosts/{{NAME}}/hardware-configuration.nix
+
+[group("deploy")]
 deploy NAME MODE="switch":
     nh os {{MODE}} -H {{NAME}} --target-host root@{{NAME}}
 
-[group("srv")]
+[group("deploy")]
 deploy-verbose NAME MODE="switch":
     nh os {{MODE}} -H {{NAME}} --target-host root@{{NAME}} -- --show-trace

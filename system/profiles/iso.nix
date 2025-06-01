@@ -9,6 +9,7 @@
   ...
 }: let
   inherit (lib) mkImageMediaOverride;
+  inherit (lib) mkForce;
 in {
   imports = [
     (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
@@ -55,8 +56,19 @@ in {
     })
   ];
 
+  services.getty = {
+    autologinUser = mkForce "karun";
+    helpLine = mkForce ''
+      The user "karun" has the fixed password "password". This
+      password cannot be changed. SSH is already enabled, and the
+      necessary keys have been added for remote login.
+    '';
+  };
+
+  users.users.karun.initialPassword = "password";
+
   # Options to make my config override the iso one
-  boot.supportedFilesystems.zfs = lib.mkForce false;
-  networking.wireless.enable = lib.mkForce false;
-  security.sudo.enable = lib.mkForce false;
+  boot.supportedFilesystems.zfs = mkForce false;
+  networking.wireless.enable = mkForce false;
+  security.sudo.enable = mkForce false;
 }

@@ -7,7 +7,7 @@
   ...
 }: {
   users = {
-    mutableUsers = !isInstall;
+    mutableUsers = true;
     users = {
       karun = {
         isNormalUser = true;
@@ -20,8 +20,6 @@
         ];
         openssh.authorizedKeys.keys = settings.authorizedSshKeys;
       };
-
-      nixos = lib.mkIf (!isInstall) {shell = pkgs.fish;};
 
       root = {
         hashedPassword = lib.mkIf isInstall null;

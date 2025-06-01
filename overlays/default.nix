@@ -52,6 +52,28 @@
       };
     });
 
+    # TODO delete when https://github.com/NixOS/nixpkgs/pull/411885 gets merged
+    linuxPackages_latest = prev.linuxPackages_latest.extend (_lpfinal: _lpprev: {
+      vmware = prev.linuxPackages_latest.vmware.overrideAttrs (oldAttrs: {
+        src = final.fetchFromGitHub {
+          owner = "philipl";
+          repo = "vmware-host-modules";
+          rev = "93d8bf38d7e705a862dcbfa721884638a817d476";
+          hash = "sha256-i2E3QAy5P3U+EqSaFaCQGuiU4vt/yYKv3oJBP1qK9Og=";
+        };
+
+        patches =
+          oldAttrs.patches or []
+          ++ [
+            (final.fetchpatch {
+              # https://github.com/philipl/vmware-host-modules/pull/1
+              url = "https://github.com/amadejkastelic/vmware-host-modules/commit/926cfc50c017a099c796662c8e2820d12f94d0bb.patch";
+              hash = "sha256-9XLhypr77Qy9Ty54Pm48DYYh3HT1WAmiwGOmBk3AfyI=";
+            })
+          ];
+      });
+    });
+
     # TODO delete when https://github.com/NixOS/nixpkgs/issues/400317 gets resolved
     inherit (nixpkgs-jetbrains) jetbrains;
   };

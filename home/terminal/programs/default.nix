@@ -29,7 +29,6 @@
     ./gpg.nix
     ./ssh.nix
     ./tealdeer.nix
-    ./thefuck.nix
     ./xdg.nix
   ];
 }

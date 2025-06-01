@@ -17,8 +17,6 @@
         extraGroups = [
           "wheel"
           "input"
-          "networkmanager"
-          "wireshark"
         ];
         openssh.authorizedKeys.keys = settings.authorizedSshKeys;
       };

@@ -17,6 +17,8 @@
     ];
   };
 
+  users.users.karun.extraGroups = ["networkmanager"];
+
   # DNS resolver
   services.resolved = {
     enable = true;

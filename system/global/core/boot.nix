@@ -5,9 +5,7 @@
   ...
 }: {
   boot = {
-    bootspec.enable = true;
-
-    initrd = {
+    initrd = lib.mkIf isInstall {
       systemd.enable = true;
     };
 

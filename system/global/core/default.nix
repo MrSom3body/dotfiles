@@ -10,8 +10,6 @@
       ./locale.nix
       ./security.nix
       ./users.nix
-
-      ../nix
     ]
     ++ (
       if isInstall

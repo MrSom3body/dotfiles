@@ -1,12 +1,12 @@
 {
   lib,
-  settings,
   isInstall,
   ...
 }: {
   imports =
     [
       ./boot.nix
+      ./console.nix
       ./locale.nix
       ./security.nix
       ./users.nix
@@ -18,14 +18,6 @@
     );
 
   documentation.dev.enable = true;
-
-  services.xserver.xkb.options = "caps:swapescape";
-
-  console = {
-    earlySetup = true;
-  };
-
-  networking.hostName = settings.hostname;
 
   # compresses half the ram for use as swap
   zramSwap.enable = true;

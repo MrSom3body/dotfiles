@@ -21,9 +21,7 @@
     };
   };
 
-  console.useXkbConfig = true;
   services = {
-    xserver.xkb.layout = "at";
     localtimed.enable = config.services.geoclue2.enable or false; # automatic timezone switching
   };
 

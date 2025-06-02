@@ -1,10 +1,12 @@
-{
+{settings, ...}: {
   imports = [
     ./avahi.nix
   ];
 
   networking = {
+    hostName = settings.hostname;
     domain = "sndh.dev";
+
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";

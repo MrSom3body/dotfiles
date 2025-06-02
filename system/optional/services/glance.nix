@@ -51,7 +51,7 @@
               widgets = [
                 {
                   type = "monitor";
-                  cache = "1m";
+                  cache = "15s";
                   title = "Services";
                   sites = let
                     mkSite = title: url: icon: {

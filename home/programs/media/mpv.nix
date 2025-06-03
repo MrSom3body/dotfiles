@@ -97,7 +97,7 @@
       # video
       hwdec = false;
       vo = "gpu-next";
-      gpu-api = "vulkan";
+      gpu-api = "opengl";
 
       # copied from https://kokomins.wordpress.com/2019/10/14/mpv-config-guide/#video-config
       deband = true;

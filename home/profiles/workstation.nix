@@ -19,7 +19,6 @@
 
     # system services
     ../services/system/polkit.nix
-    ../services/system/psd.nix
     ../services/system/udiskie.nix
 
     # media services

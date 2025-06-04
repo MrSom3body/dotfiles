@@ -50,6 +50,11 @@
       # GNS3
       "stayfocused, class:^(gns3)$, title:^(Change hostname)$"
 
+      # Anki
+      "float, class:^(Anki)$, title:^(Add)$"
+      "size 600 400, class:^(Anki)$, title:^(Add)$"
+      "center, class:^(Anki)$, title:^(Add)$"
+
       # Calculator
       "float, class:^(org.gnome.Calculator)$"
       "size > >, class:^(org.gnome.Calculator)$"

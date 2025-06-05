@@ -9,194 +9,198 @@
     ./ai
   ];
 
-  programs.helix.languages = {
-    language = [
-      {
-        name = "bash";
-        auto-format = true;
-        formatter = {
-          command = lib.getExe pkgs.shfmt;
-          args = ["-i" "2"];
+  home.packages = with pkgs; [
+    # docker
+    docker-compose-language-service
+
+    # go
+    golangci-lint
+    gopls
+
+    # html
+    superhtml
+
+    # nix
+    nixd
+
+    # markdown
+    marksman
+
+    # php
+    phpactor
+    pretty-php
+
+    # python
+    ruff
+    basedpyright
+
+    # shell
+    shfmt
+    bash-language-server
+
+    # sql
+    sqls
+
+    # toml
+    taplo
+
+    # typos
+    ltex-ls
+
+    # typst
+    tinymist
+
+    # xml
+    lemminx
+
+    # yaml
+    yaml-language-server
+
+    # others
+    nodePackages.prettier
+    nodePackages.vscode-langservers-extracted
+  ];
+
+  programs.helix = {
+    languages = {
+      language = [
+        {
+          name = "bash";
+          auto-format = true;
+          formatter = {
+            command = "shfmt";
+            args = ["-i" "2"];
+          };
+        }
+
+        {
+          name = "css";
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "css"];
+          };
+        }
+
+        {
+          name = "git-commit";
+          language-servers = ["ltex"];
+        }
+
+        {
+          name = "go";
+          auto-format = true;
+        }
+
+        {
+          name = "html";
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "html"];
+          };
+        }
+
+        {
+          name = "markdown";
+          auto-format = true;
+          soft-wrap.enable = true;
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "markdown"];
+          };
+          language-servers = ["marksman" "ltex"];
+        }
+
+        {
+          name = "nix";
+          auto-format = true;
+          language-servers = ["nixd"];
+        }
+
+        {
+          name = "php";
+          auto-format = true;
+          formatter.command = "pretty-php";
+          language-servers = ["phpactor"];
+        }
+
+        {
+          name = "python";
+          language-servers = ["basedpyright" "ruff" "gpt"];
+          auto-format = true;
+          formatter = {
+            command = "ruff";
+            args = ["format" "--line-length=80" "-"];
+          };
+        }
+
+        {
+          name = "sql";
+          language-servers = ["sqls"];
+        }
+
+        {
+          name = "typst";
+          auto-format = true;
+          language-servers = ["tinymist"];
+        }
+
+        {
+          name = "xml";
+          language-servers = ["lemminx"];
+        }
+      ];
+
+      language-server = {
+        basedpyright = {
+          command = "basedpyright-langserver";
+          args = ["--stdio"];
         };
-      }
 
-      {
-        name = "css";
-        auto-format = true;
-        formatter = {
-          command = lib.getExe pkgs.nodePackages.prettier;
-          args = ["--parser" "css"];
+        lemminx = {
+          command = "lemminx";
         };
-      }
 
-      {
-        name = "git-commit";
-        language-servers = ["ltex"];
-      }
-
-      {
-        name = "go";
-        auto-format = true;
-      }
-
-      {
-        name = "html";
-        formatter = {
-          command = lib.getExe pkgs.nodePackages.prettier;
-          args = ["--parser" "html"];
+        ltex = {
+          command = "ltex-ls";
         };
-      }
 
-      {
-        name = "markdown";
-        auto-format = true;
-        soft-wrap.enable = true;
-        formatter = {
-          command = lib.getExe pkgs.nodePackages.prettier;
-          args = ["--parser" "markdown"];
+        nixd = {
+          config.nixd = {
+            formatting.command = ["${lib.getExe pkgs.alejandra}"];
+            options = let
+              flake = ''(builtins.getFlake "${self}")'';
+            in rec {
+              nixos.expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
+              home-manager.expr = "${nixos.expr}.home-manager.users.type.getSubOptions []";
+            };
+          };
         };
-        language-servers = ["marksman" "ltex"];
-      }
 
-      {
-        name = "nix";
-        auto-format = true;
-        language-servers = ["nixd"];
-      }
-
-      {
-        name = "php";
-        auto-format = true;
-        formatter.command = lib.getExe pkgs.pretty-php;
-        language-servers = ["phpactor"];
-      }
-
-      {
-        name = "python";
-        language-servers = ["basedpyright" "ruff" "gpt"];
-        auto-format = true;
-        formatter = {
-          command = lib.getExe pkgs.ruff;
-          args = ["format" "--line-length=80" "-"];
+        phpactor = {
+          command = "phpactor";
+          args = ["language-server"];
         };
-      }
 
-      {
-        name = "sql";
-        language-servers = ["sqls"];
-      }
+        sqls = {
+          command = "sqls";
+        };
 
-      {
-        name = "typst";
-        auto-format = true;
-        language-servers = ["tinymist"];
-      }
+        tinymist = {
+          config = {
+            exportPdf = "onType";
+            outputPath = "$root/target/$dir/$name";
 
-      {
-        name = "xml";
-        language-servers = ["lemminx"];
-      }
-    ];
+            formatterMode = "typstyle";
+            formatterPrintWidth = 80;
 
-    language-server = {
-      basedpyright = {
-        command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
-        args = ["--stdio"];
-      };
-
-      bash-language-server = {
-        command = lib.getExe pkgs.bash-language-server;
-      };
-
-      docker-compose-langserver = {
-        command = "${pkgs.docker-compose-language-service}/bin/docker-compose-langserver";
-      };
-
-      golangci-lint = {
-        command = lib.getExe pkgs.golangci-lint;
-      };
-
-      gopls = {
-        command = lib.getExe pkgs.gopls;
-      };
-
-      lemminx = {
-        command = lib.getExe pkgs.lemminx;
-      };
-
-      ltex = {
-        command = "${pkgs.ltex-ls}/bin/ltex-ls";
-      };
-
-      marksman = {
-        command = lib.getExe pkgs.marksman;
-      };
-
-      nixd = {
-        command = lib.getExe pkgs.nixd;
-        config.nixd = {
-          formatting.command = ["${lib.getExe pkgs.alejandra}"];
-          options = let
-            flake = ''(builtins.getFlake "${self}")'';
-          in rec {
-            nixos.expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
-            home-manager.expr = "${nixos.expr}.home-manager.users.type.getSubOptions []";
+            lint = {
+              enabled = true;
+              when = "onType";
+            };
           };
         };
       };
-
-      phpactor = {
-        command = lib.getExe pkgs.phpactor;
-        args = ["language-server"];
-      };
-
-      ruff = {
-        command = lib.getExe pkgs.ruff;
-      };
-
-      superhtml = {
-        command = lib.getExe pkgs.superhtml;
-      };
-
-      sqls = {
-        command = pkgs.sqls;
-      };
-
-      taplo = {
-        command = lib.getExe pkgs.taplo;
-      };
-
-      tinymist = {
-        command = lib.getExe pkgs.tinymist;
-        config = {
-          exportPdf = "onType";
-          outputPath = "$root/target/$dir/$name";
-
-          formatterMode = "typstyle";
-          formatterPrintWidth = 80;
-
-          lint = {
-            enabled = true;
-            when = "onType";
-          };
-        };
-      };
-
-      vscode-css-language-server = {
-        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-language-server";
-      };
-
-      vscode-html-language-server = {
-        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-html-language-server";
-      };
-
-      vscode-json-language-server = {
-        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
-      };
-
-      yaml-language-server = {
-        command = lib.getExe pkgs.yaml-language-server;
-      };
-    };
+    }; #
   };
 }

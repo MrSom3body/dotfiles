@@ -22,9 +22,7 @@
     );
 
     specialArgs = {
-      inherit self;
-      inherit inputs;
-      inherit outputs;
+      inherit self inputs outputs;
     };
 
     mkNixos = {
@@ -54,8 +52,7 @@
       };
   in {
     overlays = import ./overlays {
-      inherit inputs;
-      inherit outputs;
+      inherit outputs inputs;
     };
     packages = forEachSystem (pkgs:
       import ./pkgs {
@@ -85,16 +82,13 @@
 
     devShells = forEachSystem (pkgs:
       import ./shell.nix {
-        inherit self;
-        inherit inputs;
-        inherit pkgs;
+        inherit self inputs pkgs;
       });
     checks =
       builtins.mapAttrs (_system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib
       // forEachSystem (pkgs:
         import ./checks.nix {
-          inherit inputs;
-          inherit pkgs;
+          inherit inputs pkgs;
         });
   };
 

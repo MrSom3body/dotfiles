@@ -5,7 +5,7 @@
 }: {
   additions = final: _prev:
     import ../pkgs {
-      inherit outputs;
+      inherit outputs inputs;
       inherit (final) pkgs;
     };
 

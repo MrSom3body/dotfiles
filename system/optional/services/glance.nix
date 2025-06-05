@@ -55,9 +55,7 @@
                   title = "Services";
                   sites = let
                     mkSite = title: url: icon: {
-                      inherit title;
-                      inherit url;
-                      inherit icon;
+                      inherit title url icon;
                     };
                   in [
                     (mkSite "loxone" "https://loxone.sndh.dev" "di:loxone")

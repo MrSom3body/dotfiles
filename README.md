@@ -19,9 +19,9 @@ My repository also provides some packages that may be useful for you:
 
 ## 🖼️ Showcase
 
-![Desktop Preview](assets/desktop.png)
-![Windows Preview](assets/windows.png)
-![Launcher Preview](assets/launcher.png)
+![Desktop Preview](.github/assets/desktop.png)
+![Windows Preview](.github/assets/windows.png)
+![Launcher Preview](.github/assets/launcher.png)
 
 ## 💾 Credits & Resources
 

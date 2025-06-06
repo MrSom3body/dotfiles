@@ -19,15 +19,15 @@
         set fish_cursor_external line # in commands
       '';
 
-    plugins = with pkgs.fishPlugins; let
+    plugins = let
       fishPlugin = name: {
         name = name.pname;
         inherit (name) src;
       };
     in [
-      (fishPlugin autopair)
-      (fishPlugin done)
-      (fishPlugin fzf-fish)
+      (fishPlugin pkgs.fishPlugins.autopair)
+      (fishPlugin pkgs.fishPlugins.done)
+      (fishPlugin pkgs.fishPlugins.fzf-fish)
     ];
 
     functions = {

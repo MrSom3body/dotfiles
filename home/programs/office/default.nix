@@ -3,17 +3,18 @@
     ./zathura.nix
   ];
 
-  home.packages = with pkgs; [
-    # Documents
-    libreoffice-fresh
-    simple-scan
-
-    # Notes & Tasks
-    obsidian
-    todoist-electron
-
-    # Communication
-    protonmail-desktop
-    slack
-  ];
+  home.packages = builtins.attrValues {
+    inherit
+      (pkgs)
+      # Documents
+      libreoffice-fresh
+      simple-scan
+      # Notes & Tasks
+      obsidian
+      todoist-electron
+      # Communication
+      protonmail-desktop
+      slack
+      ;
+  };
 }

@@ -18,8 +18,11 @@
 
   programs.virt-manager.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    gnome-connections
-    gnome-boxes
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit
+      (pkgs)
+      gnome-connections
+      gnome-boxes
+      ;
+  };
 }

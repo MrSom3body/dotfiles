@@ -9,16 +9,18 @@
 
     buildInputs = self.checks.${pkgs.system}.pre-commit-check.enabledPackages;
 
-    packages = with pkgs;
-      [
-        alejandra
-        git
-        just
-        sops
-
-        inputs.helix.packages.${pkgs.system}.default # a editor if I'm dumb and remove it somehow
-      ]
+    packages =
+      builtins.attrValues {
+        inherit
+          (pkgs)
+          alejandra
+          git
+          just
+          sops
+          ;
+      }
       ++ [
+        inputs.helix.packages.${pkgs.system}.default # a editor if I'm dumb and remove it somehow
         inputs.deploy-rs.packages.${pkgs.system}.default
       ];
 

@@ -31,12 +31,15 @@
       ../../system/optional/virtualisation/libvirtd.nix
       ../../system/optional/virtualisation/podman.nix
     ]
-    ++ (with inputs.nixos-hardware.nixosModules; [
-      common-pc-laptop
-      common-cpu-amd-pstate
-      common-gpu-nvidia
-      asus-battery
-    ]);
+    ++ builtins.attrValues {
+      inherit
+        (inputs.nixos-hardware.nixosModules)
+        common-pc-laptop
+        common-cpu-amd-pstate
+        common-gpu-nvidia
+        asus-battery
+        ;
+    };
 
   services = {
     tailscale.extraSetFlags = ["--accept-routes"];

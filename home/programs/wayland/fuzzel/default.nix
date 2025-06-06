@@ -3,9 +3,7 @@
   settings,
   ...
 }: {
-  home.packages = with pkgs; [
-    fuzzel-goodies
-  ];
+  home.packages = [pkgs.fuzzel-goodies];
 
   programs.fuzzel = {
     enable = true;

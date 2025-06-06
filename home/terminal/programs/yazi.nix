@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [ripdrag];
+  home.packages = [pkgs.ripdrag];
 
   programs.yazi = {
     enable = true;

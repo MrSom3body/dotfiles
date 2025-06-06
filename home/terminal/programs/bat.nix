@@ -2,10 +2,13 @@
   programs = {
     bat = {
       enable = true;
-      extraPackages = with pkgs.bat-extras; [
-        batman
-        prettybat
-      ];
+      extraPackages = builtins.attrValues {
+        inherit
+          (pkgs.bat-extras)
+          batman
+          prettybat
+          ;
+      };
     };
 
     fish.functions = {

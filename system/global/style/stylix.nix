@@ -15,21 +15,23 @@
     inherit (settings.appearance) polarity;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${settings.appearance."${settings.appearance.polarity}-theme"}.yaml";
 
-    fonts = with settings.appearance.fonts; {
+    fonts = let
+      my-fonts = settings.appearance.fonts;
+    in {
       sizes = {
-        applications = sans.size;
-        desktop = sans.size;
-        popups = sans.size;
-        terminal = mono.size;
+        applications = my-fonts.sans.size;
+        desktop = my-fonts.sans.size;
+        popups = my-fonts.sans.size;
+        terminal = my-fonts.mono.size;
       };
       sansSerif = {
-        package = pkgs.nerd-fonts.${sans.pkgName};
-        inherit (sans) name;
+        package = pkgs.nerd-fonts.${my-fonts.sans.pkgName};
+        inherit (my-fonts.sans) name;
       };
       serif = config.stylix.fonts.sansSerif;
       monospace = {
-        package = pkgs.nerd-fonts.${mono.pkgName};
-        inherit (mono) name;
+        package = pkgs.nerd-fonts.${my-fonts.mono.pkgName};
+        inherit (my-fonts.mono) name;
       };
       emoji = {
         package = pkgs.noto-fonts-emoji;

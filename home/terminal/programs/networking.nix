@@ -1,7 +1,10 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
-    dig
-    iputils
-    nmap
-  ];
+  home.packages = builtins.attrValues {
+    inherit
+      (pkgs)
+      dig
+      iputils
+      nmap
+      ;
+  };
 }

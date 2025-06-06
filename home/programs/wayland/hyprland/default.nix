@@ -14,20 +14,27 @@
   home.packages = let
     inherit (inputs.hyprpicker.packages.${pkgs.system}) hyprpicker;
   in
-    (with pkgs; [
-      brightnessctl
-      nautilus
-      networkmanagerapplet
-      nwg-displays
-      satty
-      wl-clipboard
-      wtype
-    ])
-    ++ (with pkgs; [
-      # my packages
-      wl-ocr
-      hyprcast
-    ])
+    builtins.attrValues {
+      inherit
+        (pkgs)
+        brightnessctl
+        nautilus
+        networkmanagerapplet
+        nwg-displays
+        satty
+        wl-clipboard
+        wtype
+        ;
+    }
+    ++
+    # my packages
+    builtins.attrValues {
+      inherit
+        (pkgs)
+        wl-ocr
+        hyprcast
+        ;
+    }
     ++ [
       hyprpicker
       (inputs.hyprland-contrib.packages.${pkgs.system}.grimblast.override {inherit hyprpicker;})

@@ -9,57 +9,52 @@
     ./ai
   ];
 
-  home.packages = with pkgs; [
-    # docker
-    docker-compose-language-service
-
-    # go
-    golangci-lint
-    gopls
-
-    # html
-    superhtml
-
-    # nix
-    nixd
-
-    # markdown
-    marksman
-
-    # php
-    phpactor
-    pretty-php
-
-    # python
-    ruff
-    basedpyright
-
-    # shell
-    shfmt
-    bash-language-server
-
-    # sql
-    sqls
-
-    # toml
-    taplo
-
-    # typos
-    ltex-ls
-
-    # typst
-    tinymist
-
-    # xml
-    lemminx
-
-    # yaml
-    yaml-language-server
-
-    # others
-    nodePackages.prettier
-    nodePackages.vscode-langservers-extracted
-  ];
+  home.packages =
+    builtins.attrValues {
+      inherit
+        (pkgs)
+        # docker
+        docker-compose-language-service
+        # go
+        golangci-lint
+        gopls
+        # html
+        superhtml
+        # nix
+        nixd
+        # markdown
+        marksman
+        # php
+        phpactor
+        pretty-php
+        # python
+        ruff
+        basedpyright
+        # shell
+        shfmt
+        bash-language-server
+        # sql
+        sqls
+        # toml
+        taplo
+        # typos
+        ltex-ls
+        # typst
+        tinymist
+        # xml
+        lemminx
+        # yaml
+        yaml-language-server
+        ;
+    }
+    ++ builtins.attrValues {
+      inherit
+        (pkgs.nodePackages)
+        # others
+        prettier
+        vscode-langservers-extracted
+        ;
+    };
 
   programs.helix = {
     languages = {

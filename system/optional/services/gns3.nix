@@ -19,15 +19,16 @@
     permissions = "u+rx,g+rx,o+rx";
   };
 
-  environment.systemPackages = with pkgs; [
-    gns3-gui
-    gns3-server
-
-    gns3-auto-conf
-
-    dynamips
-    inetutils
-    ubridge
-    vpcs
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit
+      (pkgs)
+      gns3-gui
+      gns3-server
+      gns3-auto-conf
+      dynamips
+      inetutils
+      ubridge
+      vpcs
+      ;
+  };
 }

@@ -1,7 +1,5 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
-    solaar
-  ];
+  home.packages = [pkgs.solaar];
   home.file.".config/solaar/rules.yaml" = {
     text = ''
       %YAML 1.3

@@ -1,7 +1,5 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
-    trash-cli
-  ];
+  home.packages = [pkgs.trash-cli];
 
   programs = {
     fish.functions.rm = {

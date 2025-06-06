@@ -14,12 +14,15 @@
     requires = requiredServices;
     after = requiredServices;
     wantedBy = ["multi-user.target"];
-    path = with pkgs; [
-      iptables
-      libnatpmp
-      ripgrep
-      transmission_4
-    ];
+    path = builtins.attrValues {
+      inherit
+        (pkgs)
+        iptables
+        libnatpmp
+        ripgrep
+        transmission_4
+        ;
+    };
     serviceConfig = {
       Restart = "on-failure";
       RestartSec = 5;

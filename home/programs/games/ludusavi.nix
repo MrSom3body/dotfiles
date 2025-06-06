@@ -3,9 +3,7 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [
-    ludusavi
-  ];
+  home.packages = [pkgs.ludusavi];
 
   systemd.user = {
     services.ludusavi-backup = {

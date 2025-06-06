@@ -99,16 +99,18 @@
       use_cpu_buffer = true;
     };
 
-    group = with config.lib.stylix.colors;
+    group = let
+      inherit (config.lib.stylix) colors;
+    in
       lib.mkForce {
-        "col.border_active" = rgb base0D;
-        "col.border_inactive" = rgb base03;
-        "col.border_locked_active" = rgb base0C;
-        "col.border_locked_inactive" = rgb base0B;
+        "col.border_active" = rgb colors.base0D;
+        "col.border_inactive" = rgb colors.base03;
+        "col.border_locked_active" = rgb colors.base0C;
+        "col.border_locked_inactive" = rgb colors.base0B;
         groupbar = let
           rounding = settings.appearance.border.radius;
         in {
-          text_color = rgb base00;
+          text_color = rgb colors.base00;
           font_size = config.stylix.fonts.sizes.desktop;
           height = builtins.floor (config.stylix.fonts.sizes.desktop * 1.5 + 0.5);
           indicator_height = 0;

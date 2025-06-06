@@ -3,30 +3,26 @@
   pkgs,
   ...
 }: {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ../../system/profiles/server.nix
+  imports = [
+    ./hardware-configuration.nix
+    ../../system/profiles/server.nix
 
-      ../../system/optional/services/tailscale-exit-node.nix
+    ../../system/optional/services/tailscale-exit-node.nix
 
-      ../../system/optional/network/tuxshare.nix
+    ../../system/optional/network/tuxshare.nix
 
-      ./services/caddy.nix
-      ./services/ddns-updater.nix
-      ./services/glance.nix
-      ./services/immich.nix
-      ./services/jellyfin.nix
-      ./services/send.nix
+    ./services/caddy.nix
+    ./services/ddns-updater.nix
+    ./services/glance.nix
+    ./services/immich.nix
+    ./services/jellyfin.nix
+    ./services/send.nix
 
-      ./vpn/proton.nix
-    ]
-    ++ (with inputs.nixos-hardware.nixosModules; [
-      common-pc
-    ])
-    ++ [
-      (inputs.nixos-hardware + "/common/cpu/intel/haswell")
-    ];
+    ./vpn/proton.nix
+
+    inputs.nixos-hardware.nixosModules.common-pc
+    (inputs.nixos-hardware + "/common/cpu/intel/haswell")
+  ];
 
   networking = {
     firewall.allowedTCPPorts = [80 443];
@@ -38,11 +34,14 @@
       enableHybridCodec = true;
     };
 
-    graphics.extraPackages = with pkgs; [
-      intel-compute-runtime-legacy1
-      intel-media-sdk
-      libva-vdpau-driver
-    ];
+    graphics.extraPackages = builtins.attrValues {
+      inherit
+        (pkgs)
+        intel-compute-runtime-legacy1
+        intel-media-sdk
+        libva-vdpau-driver
+        ;
+    };
   };
   environment.sessionVariables.LIBVA_DRIVER_NAME = "i965";
   systemd.services.jellyfin.environment.LIBVA_DRIVER_NAME = "i965";

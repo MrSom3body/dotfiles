@@ -4,12 +4,14 @@
   pkgs,
   settings,
   ...
-}: {
+}: let
+  colors = config.lib.stylix.colors.withHashtag;
+in {
   home = {
-    packages = with pkgs; [bemoji];
+    packages = [pkgs.bemoji];
 
     file.".config/rofi/scripts/powermenu.fish" = {
-      text = with config.lib.stylix.colors.withHashtag; ''
+      text = ''
         #!/usr/bin/env fish
 
         if not test -z $argv
@@ -28,11 +30,11 @@
             exit 0
         end
 
-        echo -e "Lock\0icon\x1f<span color='${base05}'></span>\x1fmeta\x1flock"
-        echo -e "Suspend\0icon\x1f<span color='${base05}'></span>\x1fmeta\x1fsuspend"
-        echo -e "Exit\0icon\x1f<span color='${base05}'>󰿅</span>\x1fmeta\x1flogout"
-        echo -e "Reboot\0icon\x1f<span color='${base05}'></span>\x1fmeta\x1frestart"
-        echo -e "Poweroff\0icon\x1f<span color='${base05}'></span>\x1fmeta\x1fshutdown"
+        echo -e "Lock\0icon\x1f<span color='${colors.base05}'></span>\x1fmeta\x1flock"
+        echo -e "Suspend\0icon\x1f<span color='${colors.base05}'></span>\x1fmeta\x1fsuspend"
+        echo -e "Exit\0icon\x1f<span color='${colors.base05}'>󰿅</span>\x1fmeta\x1flogout"
+        echo -e "Reboot\0icon\x1f<span color='${colors.base05}'></span>\x1fmeta\x1frestart"
+        echo -e "Poweroff\0icon\x1f<span color='${colors.base05}'></span>\x1fmeta\x1fshutdown"
       '';
       executable = true;
     };
@@ -77,7 +79,7 @@
         // '';
     };
 
-    theme = with config.lib.stylix.colors.withHashtag; let
+    theme = let
       # Use `mkLiteral` for string-like values that should show without
       # quotes
       inherit (config.lib.formats.rasi) mkLiteral;
@@ -88,7 +90,7 @@
         margin = mkLiteral "0";
         padding = mkLiteral "0";
 
-        text-color = mkLiteral base05;
+        text-color = mkLiteral colors.base05;
         background-color = mkLiteral "transparent";
       };
 
@@ -97,18 +99,18 @@
 
         transparency = "real";
 
-        background-color = mkLiteral (base00 + opacity);
-        border-color = mkLiteral base0D;
+        background-color = mkLiteral (colors.base00 + opacity);
+        border-color = mkLiteral colors.base0D;
         inherit border-radius;
       };
 
       "mainbox" = {
         padding = mkLiteral "10px";
 
-        # background-color = mkLiteral (base00 + opacity);
+        # background-color = mkLiteral (colors.base00 + opacity);
 
         border = mkLiteral "3px";
-        border-color = mkLiteral base0D;
+        border-color = mkLiteral colors.base0D;
         inherit border-radius;
       };
 
@@ -121,7 +123,7 @@
           "entry"
         ];
 
-        background-color = mkLiteral (base01 + opacity);
+        background-color = mkLiteral (colors.base01 + opacity);
         inherit border-radius;
       };
 
@@ -130,8 +132,8 @@
 
         vertical-align = mkLiteral "0.5";
 
-        text-color = mkLiteral base00;
-        background-color = mkLiteral (base0B + opacity);
+        text-color = mkLiteral colors.base00;
+        background-color = mkLiteral (colors.base0B + opacity);
 
         inherit border-radius;
       };
@@ -146,7 +148,7 @@
         margin = mkLiteral "2.5px";
         padding = mkLiteral "10px";
 
-        background-color = mkLiteral (base01 + opacity);
+        background-color = mkLiteral (colors.base01 + opacity);
         inherit border-radius;
       };
 
@@ -158,7 +160,7 @@
         fixed-height = false;
         lines = 5;
 
-        background-color = mkLiteral (base01 + opacity);
+        background-color = mkLiteral (colors.base01 + opacity);
 
         inherit border-radius;
       };
@@ -188,15 +190,15 @@
       };
 
       "element selected" = {
-        background-color = mkLiteral (base02 + opacity);
+        background-color = mkLiteral (colors.base02 + opacity);
       };
 
       "element selected.active active" = {
-        text-color = mkLiteral base0B;
+        text-color = mkLiteral colors.base0B;
       };
 
       "element selected.urgent urgent" = {
-        text-color = mkLiteral base08;
+        text-color = mkLiteral colors.base08;
       };
 
       "mode-switcher" = {
@@ -213,8 +215,8 @@
       };
 
       "button selected" = {
-        text-color = mkLiteral base01;
-        background-color = mkLiteral (base0B + opacity);
+        text-color = mkLiteral colors.base01;
+        background-color = mkLiteral (colors.base0B + opacity);
 
         inherit border-radius;
       };

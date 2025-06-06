@@ -1,7 +1,5 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
-    macchina
-  ];
+  home.packages = [pkgs.macchina];
 
   imports = [
     ./theme.nix

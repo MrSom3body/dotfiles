@@ -91,12 +91,14 @@
             mode = "month";
             weeks-pos = "left";
             mode-mon-col = 3;
-            format = with config.lib.stylix.colors.withHashtag; {
-              months = "<span color='${base06}'><b>{}</b></span>";
-              days = "<span color='${base05}'><b>{}</b></span>";
-              weeks = "<span color='${base0E}'><b>W{}</b></span>";
-              weekdays = "<span color='${base0A}'><b>{}</b></span>";
-              today = "<span color='${base0B}'><b><u>{}</u></b></span>";
+            format = let
+              colors = config.lib.stylix.colors.withHashtag;
+            in {
+              months = "<span color='${colors.base06}'><b>{}</b></span>";
+              days = "<span color='${colors.base05}'><b>{}</b></span>";
+              weeks = "<span color='${colors.base0E}'><b>W{}</b></span>";
+              weekdays = "<span color='${colors.base0A}'><b>{}</b></span>";
+              today = "<span color='${colors.base0B}'><b><u>{}</u></b></span>";
             };
           };
 

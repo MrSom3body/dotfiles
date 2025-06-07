@@ -21,7 +21,6 @@
 
       # Applications
       "uwsm app -- solaar -w hide"
-      "uwsm app -- rog-control-center"
       "uwsm app -- kdeconnect-indicator"
       "[workspace 1 silent] uwsm app -- ${settings.programs.browser}"
     ];

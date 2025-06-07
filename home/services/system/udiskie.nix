@@ -7,11 +7,11 @@
     settings = {
       device_config = [
         {
-          id_uuid = "2451-4927";
+          id_uuid = "0FA4-0BB5";
           automount = true;
         }
         {
-          id_uuid = "f7680595-9723-4caa-856f-2f5bc54f65bf";
+          id_uuid = "4e30e281-8d9b-43a7-a0c2-d0fb7f1e9cc2";
           automount = true;
           keyfile = "~/.face";
         }

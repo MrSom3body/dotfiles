@@ -1,4 +1,4 @@
-# 🖥️ MrSom3body/dotfiles
+# 🖥️ dotfiles
 
 Welcome to my dotfiles repository! These configurations are tailored to me and
 my system only (for now), so if you really want to copy my configs don't just

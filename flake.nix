@@ -64,10 +64,19 @@
       promethea = mkNixos {hostname = "promethea";};
       pandora = mkNixos {hostname = "pandora";};
 
+      athenas = mkNixos {
+        hostname = "athenas";
+        isInstall = false;
+      };
       sanctuary = mkNixos {
         hostname = "sanctuary";
         isInstall = false;
       };
+    };
+
+    images = {
+      sanctuary = outputs.nixosConfigurations.sanctuary.config.system.build.isoImage;
+      athenas = outputs.nixosConfigurations.athenas.config.system.build.isoImage;
     };
 
     deploy.nodes = {

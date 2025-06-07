@@ -1,5 +1,4 @@
 {
-  outputs,
   inputs,
   pkgs,
   ...
@@ -11,5 +10,4 @@
   power-monitor = pkgs.callPackage ./power-monitor {};
   wl-ocr = pkgs.callPackage ./wl-ocr {};
   zer0-ui = pkgs.callPackage ./zer0-ui {inherit inputs;};
-  default = outputs.nixosConfigurations.sanctuary.config.system.build.isoImage;
 }

@@ -38,7 +38,7 @@ jobs:
       - name: "Build ISO Images"
         run: |
           nix-fast-build --skip-cached --no-nom \
-            --flake .#nixosConfigurations.${{ matrix.image }}.config.system.build.isoImage \
+            --flake .#images.${{ matrix.image }} \
             --out-link ${{ matrix.image }}
 
       - uses: actions/upload-artifact@v4

@@ -1417,29 +1417,6 @@
         "type": "github"
       }
     },
-    "programsdb": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "utils": [
-          "flake-utils"
-        ]
-      },
-      "locked": {
-        "lastModified": 1749105230,
-        "narHash": "sha256-Ptn5GScA3Rz6SovPCFzXI0mpVQbdHrs9tB66YC7BL1Q=",
-        "owner": "wamserma",
-        "repo": "flake-programs-sqlite",
-        "rev": "edce1b3bdcc187cd870e565eda510c8270e621df",
-        "type": "github"
-      },
-      "original": {
-        "owner": "wamserma",
-        "repo": "flake-programs-sqlite",
-        "type": "github"
-      }
-    },
     "pyprland": {
       "inputs": {
         "flake-compat": [
@@ -1498,7 +1475,6 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-stable": "nixpkgs-stable",
-        "programsdb": "programsdb",
         "pyprland": "pyprland",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",

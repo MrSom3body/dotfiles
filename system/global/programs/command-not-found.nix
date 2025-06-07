@@ -1,8 +1,10 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
-  environment.etc."programs.sqlite".source = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
-  programs.command-not-found.dbPath = "/etc/programs.sqlite";
+{inputs, ...}: {
+  imports = [
+    inputs.nix-index-database.nixosModules.nix-index
+  ];
+
+  programs = {
+    command-not-found.enable = false;
+    nix-index.enable = true;
+  };
 }

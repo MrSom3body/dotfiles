@@ -163,14 +163,6 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    programsdb = {
-      url = "github:wamserma/flake-programs-sqlite";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        utils.follows = "flake-utils";
-      };
-    };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";

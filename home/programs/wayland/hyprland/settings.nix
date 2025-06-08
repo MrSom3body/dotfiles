@@ -16,8 +16,6 @@
     exec-once = [
       "uwsm finalize"
       "wpctl set-mute @DEFAULT_AUDIO_SINK@ 1"
-      "uwsm app -- nm-applet"
-      "uwsm app -- blueman-applet"
 
       # Applications
       "uwsm app -- solaar -w hide"

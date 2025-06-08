@@ -11,6 +11,22 @@
     ./rules.nix
   ];
 
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemd.enable = false;
+
+    package = null;
+    portalPackage = null;
+    # plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
+    #   hyprbars
+    # ];
+  };
+
+  services = {
+    network-manager-applet.enable = true;
+    blueman-applet.enable = true;
+  };
+
   home.packages = let
     inherit (inputs.hyprpicker.packages.${pkgs.system}) hyprpicker;
   in
@@ -19,7 +35,6 @@
         (pkgs)
         brightnessctl
         nautilus
-        networkmanagerapplet
         nwg-displays
         satty
         wl-clipboard
@@ -42,16 +57,5 @@
 
   home.file.".config/hypr/scripts" = {
     source = ./scripts;
-  };
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemd.enable = false;
-
-    package = null;
-    portalPackage = null;
-    # plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
-    #   hyprbars
-    # ];
   };
 }

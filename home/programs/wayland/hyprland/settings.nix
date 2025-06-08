@@ -19,6 +19,7 @@
 
       # Applications
       "[workspace 1 silent] uwsm app -- ${settings.programs.browser}"
+      "[workspace special:todoist silent] uwsm app -- todoist-electron"
     ];
 
     general = {

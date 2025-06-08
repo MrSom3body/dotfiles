@@ -8,9 +8,9 @@
   inherit (lib) mkEnableOption;
   inherit (lib) mkOption;
   inherit (lib) types;
-  cfg = config.my.programs.solaar;
+  cfg = config.my.services.solaar;
 in {
-  options.my.programs.solaar = {
+  options.my.services.solaar = {
     enable = mkEnableOption "Solaar support";
 
     package = mkOption {
@@ -44,12 +44,6 @@ in {
       default = "";
       description = "The solaar rules you want to add";
     };
-
-    service.enable =
-      mkEnableOption "Enable the Solaar service"
-      // {
-        default = true;
-      };
   };
 
   config = mkIf cfg.enable {

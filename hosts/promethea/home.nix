@@ -43,8 +43,8 @@
     ".*, keyboard, deny"
   ];
 
-  my.programs = {
-    rclone = {
+  my = {
+    programs.rclone = {
       enable = true;
       protonDriveBackup = {
         enable = true;
@@ -67,7 +67,7 @@
       };
     };
 
-    solaar = {
+    services.solaar = {
       enable = true;
       rules = ''
         ---

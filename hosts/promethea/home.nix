@@ -9,7 +9,6 @@
     # programs
     ../../home/programs/games
     ../../home/programs/school
-    ../../home/programs/solaar.nix # Logitech Mouse
     ../../home/programs/vesktop.nix # Discord
 
     # system services
@@ -19,6 +18,7 @@
 
     # modules
     ../../modules/home/rclone.nix
+    ../../modules/home/solaar.nix
   ];
 
   wayland.windowManager.hyprland.settings.permission = [
@@ -43,25 +43,41 @@
     ".*, keyboard, deny"
   ];
 
-  my.programs.rclone = {
-    enable = true;
-    protonDriveBackup = {
+  my.programs = {
+    rclone = {
       enable = true;
-      filters = ''
-        - {{\.?venv}}/**
-        - .devenv/**
-        - .direnv/**
-        - /Documents/Codes/nixpkgs/**
-        - /Documents/Schule/2024-25/INSY/oracle-volume/**
-        + /Desktop/**
-        + /Documents/**
-        + /Games/Saves/**
-        + /Music/**
-        + /Notes/**
-        + /Pictures/**
-        + /Templates/**
-        + /Videos/**
-        - *
+      protonDriveBackup = {
+        enable = true;
+        filters = ''
+          - {{\.?venv}}/**
+          - .devenv/**
+          - .direnv/**
+          - /Documents/Codes/nixpkgs/**
+          - /Documents/Schule/2024-25/INSY/oracle-volume/**
+          + /Desktop/**
+          + /Documents/**
+          + /Games/Saves/**
+          + /Music/**
+          + /Notes/**
+          + /Pictures/**
+          + /Templates/**
+          + /Videos/**
+          - *
+        '';
+      };
+    };
+
+    solaar = {
+      enable = true;
+      rules = ''
+        ---
+        - MouseGesture: Mouse Right
+        - Execute: [hyprctl, dispatch, workspace, r+1]
+        ...
+        ---
+        - MouseGesture: Mouse Left
+        - Execute: [hyprctl, dispatch, workspace, r-1]
+        ...
       '';
     };
   };

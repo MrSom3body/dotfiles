@@ -17,9 +17,12 @@
 
     package = null;
     portalPackage = null;
-    # plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
-    #   hyprbars
-    # ];
+    plugins = builtins.attrValues {
+      inherit
+        (inputs.hyprland-plugins.packages.${pkgs.system})
+        hyprbars
+        ;
+    };
   };
 
   services = {

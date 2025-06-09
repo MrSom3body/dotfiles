@@ -61,4 +61,10 @@
   home.file.".config/hypr/scripts" = {
     source = ./scripts;
   };
+
+  dconf.settings = {
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = "':'";
+    };
+  };
 }

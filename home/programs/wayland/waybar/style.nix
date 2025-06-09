@@ -4,8 +4,8 @@
   ...
 }: {
   programs.waybar.style = let
-    radius = builtins.toString settings.appearance.border.radius;
-    border-size = builtins.toString settings.appearance.border.size;
+    borderRadius = builtins.toString settings.appearance.border.radius;
+    borderSize = builtins.toString settings.appearance.border.size;
   in
     # css
     ''
@@ -21,7 +21,7 @@
       .module {
         color: @base05;
         background: @base01;
-        border-radius: ${radius}px;
+        border-radius: ${borderRadius}px;
 
         padding: 0.2rem 0.5rem;
         margin: 0.4rem 0.2rem;
@@ -37,8 +37,8 @@
 
       tooltip {
         background: @base00;
-        border: ${border-size}px solid @base0D;
-        border-radius: ${radius}px;
+        border: ${borderSize}px solid @base0D;
+        border-radius: ${borderRadius}px;
       }
 
       tooltip label {
@@ -127,7 +127,7 @@
         /* Because waybar does not set the module class */
         color: @base05;
         background: transparent;
-        border-radius: ${radius}px;
+        border-radius: ${borderRadius}px;
 
         padding: 0.2rem 0.5rem;
         margin: 0.4rem 0.2rem;

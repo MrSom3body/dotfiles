@@ -53,9 +53,11 @@ in {
     };
 
     systemd.user.services.solaar = {
+      Install.WantedBy = ["graphical-session.target"];
+
       Unit = {
         Description = "Linux devices manager for the Logitech Unifying Receiver";
-        After = "graphical-session.target";
+        After = ["graphical-session.target"];
       };
 
       Service = {

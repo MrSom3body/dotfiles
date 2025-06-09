@@ -1,4 +1,9 @@
-{settings, ...}: {
+{
+  lib,
+  config,
+  settings,
+  ...
+}: {
   wayland.windowManager.hyprland.settings = {
     "$floatingSize" = "600 400";
     "$pwvucontrol" = "com.saivert.pwvucontrol";
@@ -80,34 +85,45 @@
       "immediate, class:^(hl2_linux)$" # Left 4 Dead 2
     ];
 
-    layerrule = [
-      # Sway notification Center
-      "animation slide right, swaync-control-center"
-      "dimaround, swaync-control-center"
-      "blur, swaync-control-center"
-      "ignorezero, swaync-control-center"
+    layerrule =
+      [
+        # Sway notification Center
+        "animation slide right, swaync-control-center"
+        "dimaround, swaync-control-center"
 
-      # waybar
-      "blur, waybar"
-      "ignorezero, waybar"
+        # Rofi
+        "animation slide, rofi"
+        "dimaround, rofi"
 
-      # Rofi
-      "animation slide, rofi"
-      "dimaround, rofi"
-      "blur, rofi"
-      "ignorezero, rofi"
+        # fuzzel
+        "animation slide, launcher"
+        "dimaround, launcher"
 
-      # fuzzel
-      "animation slide, launcher"
-      "dimaround, launcher"
-      "blur, launcher"
-      "ignorezero, launcher"
+        # fnott
+        "animation slide, notifications"
+      ]
+      # only blur if not fully opaque
+      ++ lib.optional (config.stylix.opacity.desktop != 1.0) [
+        # waybar
+        "blur, waybar"
+        "ignorezero, waybar"
 
-      # fnott
-      "animation slide, notifications"
-      "blur, notifications"
-      "ignorezero, notifications"
-    ];
+        # swaync
+        "blur, swaync-control-center"
+        "ignorezero, swaync-control-center"
+
+        # rofi
+        "blur, rofi"
+        "ignorezero, rofi"
+
+        # fuzzel
+        "blur, launcher"
+        "ignorezero, launcher"
+
+        # fnott
+        "blur, notifications"
+        "ignorezero, notifications"
+      ];
 
     workspace = [
       # Smart Gaps

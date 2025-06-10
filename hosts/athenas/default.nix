@@ -1,7 +1,6 @@
 {
   imports = [
     ../../system/profiles/iso.nix
-    ../../system/global/programs/home-manager.nix
 
     ../../system/profiles/laptop.nix
   ];

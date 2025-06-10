@@ -34,7 +34,6 @@
           specialArgs
           // {
             settings = settings hostname;
-            inherit isInstall;
           };
 
         modules =

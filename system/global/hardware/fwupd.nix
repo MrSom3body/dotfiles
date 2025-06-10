@@ -1,3 +1,3 @@
-{isInstall, ...}: {
-  services.fwupd.enable = isInstall;
+{lib, ...}: {
+  services.fwupd.enable = lib.mkDefault true;
 }

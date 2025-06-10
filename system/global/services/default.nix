@@ -1,11 +1,6 @@
-{isInstall, ...}: {
-  imports =
-    [
-      ./dbus.nix
-    ]
-    ++ (
-      if isInstall
-      then [./tailscale.nix]
-      else []
-    );
+{
+  imports = [
+    ./dbus.nix
+    ./tailscale.nix
+  ];
 }

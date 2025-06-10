@@ -1,34 +1,59 @@
 {
   lib,
+  config,
   pkgs,
-  isInstall,
   ...
-}: {
-  boot = {
-    initrd = lib.mkIf isInstall {
-      systemd.enable = true;
-    };
-
-    # use latest kernel
-    kernelPackages = pkgs.linuxPackages_latest;
-
-    consoleLogLevel = 3;
-    kernelParams = [
-      "quiet"
-      "systemd.show_status=auto"
-      "rd.udev.log_level=3"
-      "preempt=full"
-    ];
-
-    loader = lib.mkIf isInstall {
-      # systemd-boot on UEFI
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 10;
+}: let
+  inherit (lib) mkIf;
+  inherit (lib) mkOption;
+  inherit (lib) mkEnableOption;
+  cfg = config.my.boot;
+in {
+  options.my.boot = {
+    enable =
+      mkEnableOption "my boot things"
+      // {
+        default = true;
       };
-      efi.canTouchEfiVariables = true;
+    isInstall =
+      mkEnableOption "setting options appropriate for installs"
+      // {
+        default = true;
+      };
+    kernel = mkOption {
+      type = lib.types.attrs;
+      default = pkgs.linuxPackages_latest;
+      defaultText = lib.literalExpression "pkgs.linuxPackages_latest";
+      description = "kernel package to use";
     };
+  };
 
-    plymouth.enable = true;
+  config = mkIf cfg.enable {
+    boot = {
+      initrd = mkIf cfg.isInstall {
+        systemd.enable = true;
+      };
+
+      kernelPackages = cfg.kernel;
+
+      consoleLogLevel = 3;
+      kernelParams = [
+        "quiet"
+        "systemd.show_status=auto"
+        "rd.udev.log_level=3"
+        "preempt=full"
+      ];
+
+      # systemd-boot on UEFI
+      loader = mkIf cfg.isInstall {
+        systemd-boot = {
+          enable = true;
+          configurationLimit = 10;
+        };
+        efi.canTouchEfiVariables = true;
+      };
+
+      plymouth.enable = true;
+    };
   };
 }

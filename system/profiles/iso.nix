@@ -9,6 +9,7 @@
   ...
 }: let
   inherit (lib) mkImageMediaOverride;
+  inherit (lib) mkDefault;
   inherit (lib) mkForce;
 in {
   imports = [
@@ -18,6 +19,13 @@ in {
 
     ../optional/services/openssh.nix
   ];
+
+  my = {
+    users.isInstall = mkDefault false;
+    boot.isInstall = mkDefault false;
+    sops.enable = mkDefault false;
+    home-manager.enable = mkDefault false;
+  };
 
   isoImage = let
     inherit (settings) hostname;
@@ -56,19 +64,35 @@ in {
     })
   ];
 
-  services.getty = {
-    autologinUser = mkForce "karun";
-    helpLine = mkForce ''
-      The user "karun" has the fixed password "password". This
-      password cannot be changed. SSH is already enabled, and the
-      necessary keys have been added for remote login.
-    '';
-  };
+  services = {
+    fwupd.enable = false;
+    tailscale.enable = false;
+    getty = {
+      autologinUser = mkForce "karun";
+      helpLine = mkForce (''
+          The "karun" and "root" accounts have empty passwords.
 
-  users.users.karun.initialPassword = "password";
+          To log in over ssh you must set a password for either "karun" or "root"
+          with `passwd` (prefix with `sudo` for "root"), or add your public key to
+          /home/nixos/.ssh/authorized_keys or /root/.ssh/authorized_keys.
+
+          If you need a wireless connection, type
+          `sudo systemctl start wpa_supplicant` and configure a
+          network using `wpa_cli`. See the NixOS manual for details.
+        ''
+        + lib.optionalString config.services.xserver.enable ''
+
+          Type `sudo systemctl start display-manager' to
+          start the graphical user interface.
+        '');
+    };
+  };
 
   # Options to make my config override the iso one
   boot.supportedFilesystems.zfs = mkForce false;
   networking.wireless.enable = mkForce false;
-  security.sudo.enable = mkForce false;
+  security = {
+    sudo.enable = false;
+    sudo-rs.wheelNeedsPassword = false;
+  };
 }

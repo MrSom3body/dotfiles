@@ -1,21 +1,12 @@
-{
-  lib,
-  isInstall,
-  ...
-}: {
-  imports =
-    [
-      ./boot.nix
-      ./console.nix
-      ./locale.nix
-      ./security.nix
-      ./users.nix
-    ]
-    ++ (
-      if isInstall
-      then [./sops.nix]
-      else []
-    );
+{lib, ...}: {
+  imports = [
+    ./boot.nix
+    ./console.nix
+    ./locale.nix
+    ./security.nix
+    ./users.nix
+    ./sops.nix
+  ];
 
   documentation.dev.enable = true;
 

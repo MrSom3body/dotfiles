@@ -11,7 +11,7 @@
     ./rules.nix
   ];
 
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = rec {
     enable = true;
     systemd.enable = false;
 
@@ -23,6 +23,8 @@
         hyprbars
         ;
     };
+
+    settings.permission = builtins.map (plugin: plugin + "/lib/lib${plugin.pname}.so, plugin, allow") plugins;
   };
 
   services = {

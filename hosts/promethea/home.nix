@@ -38,6 +38,7 @@
 
     # Bluetooth Periphery
     "jbl-go-2-\(avrcp\), keyboard, allow"
+    "nothing-ear-\(avrcp\), keyboard, allow"
 
     # Deny everything else
     ".*, keyboard, deny"

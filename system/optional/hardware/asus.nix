@@ -1,6 +1,6 @@
 {
-  services.asusd = {
-    enable = true;
+  services = {
+    asusd.enable = true;
+    supergfxd.enable = true;
   };
-  services.supergfxd.enable = true;
 }

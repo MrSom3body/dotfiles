@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./thunderbird.nix
     ./zathura.nix
   ];
 

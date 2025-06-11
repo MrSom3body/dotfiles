@@ -1,29 +1,49 @@
 {
   lib,
   config,
+  inputs,
   pkgs,
   ...
 }: let
   inherit (lib) mkIf;
+  inherit (lib) types;
+  inherit (lib) literalExpression;
+
   inherit (lib) mkOption;
   inherit (lib) mkEnableOption;
+
   cfg = config.my.boot;
 in {
+  imports = [
+    inputs.lanzaboote.nixosModules.lanzaboote
+  ];
+
   options.my.boot = {
     enable =
       mkEnableOption "my boot things"
       // {
         default = true;
       };
+    lanzaboote = {
+      enable = mkEnableOption "lanzaboote";
+      pkiBundle = mkOption {
+        type = types.path;
+        default = "/etc/secureboot";
+        defaultText = literalExpression ''"/etc/secureboot"'';
+        description = "Path to a PKI bundle for Secure Boot.";
+      };
+    };
+
     isInstall =
       mkEnableOption "setting options appropriate for installs"
       // {
         default = true;
       };
+
     kernel = mkOption {
-      type = lib.types.attrs;
+      type = types.attrs;
       default = pkgs.linuxPackages_latest;
-      defaultText = lib.literalExpression "pkgs.linuxPackages_latest";
+      defaultText = literalExpression "pkgs.linuxPackages_latest";
       description = "kernel package to use";
     };
   };
@@ -47,13 +67,24 @@ in {
       # systemd-boot on UEFI
       loader = mkIf cfg.isInstall {
         systemd-boot = {
-          enable = true;
+          # Lanzaboote currently replaces the systemd-boot module.
+          # This setting is usually set to true in configuration.nix
+          # generated at installation time. So we force it to false
+          # for now.
+          enable = !cfg.lanzaboote.enable;
           configurationLimit = 10;
         };
         efi.canTouchEfiVariables = true;
       };
 
+      lanzaboote = mkIf cfg.lanzaboote.enable {
+        enable = true;
+        inherit (cfg.lanzaboote) pkiBundle;
+      };
+
       plymouth.enable = true;
     };
+
+    environment.systemPackages = mkIf cfg.lanzaboote.enable [pkgs.sbctl];
   };
 }

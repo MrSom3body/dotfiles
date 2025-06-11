@@ -8,8 +8,6 @@
       ./hardware-configuration.nix
       ../../system/profiles/laptop.nix
 
-      ../../system/optional/core/lanzaboote.nix
-
       ../../system/optional/hardware/opentabletdriver.nix
       ../../system/optional/hardware/logitech.nix
 
@@ -40,6 +38,10 @@
         asus-battery
         ;
     };
+
+  my = {
+    boot.lanzaboote.enable = true;
+  };
 
   services = {
     tailscale.extraSetFlags = ["--accept-routes"];

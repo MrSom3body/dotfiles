@@ -11,6 +11,9 @@
     ../../home/programs/school
     ../../home/programs/vesktop.nix # Discord
 
+    # browsers
+    ../../home/programs/browsers/zen-browser.nix
+
     # system services
     ../../home/services/system/kdeconnect.nix
     ../../home/services/system/tailray.nix

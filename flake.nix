@@ -226,6 +226,11 @@
 
     yazi.url = "github:sxyazi/yazi"; # has cache
 
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # hyprland stuff
     hyprland.url = "github:hyprwm/hyprland";
     hypridle = {

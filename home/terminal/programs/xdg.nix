@@ -4,7 +4,7 @@
   settings,
   ...
 }: let
-  browser = ["firefox.desktop"];
+  browser = ["zen.desktop"];
   imageViewer = ["org.gnome.Loupe.desktop"];
   videoPlayer = ["mpv.desktop"];
   audioPlayer = ["io.bassi.Amberol.desktop"];

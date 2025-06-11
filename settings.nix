@@ -43,7 +43,7 @@
     programs = {
       editor = "hx"; # Default text editor
       terminal = "foot"; # Default terminal
-      browser = "firefox-beta"; # Default web browser
+      browser = "zen"; # Default web browser
       fileManager = "nautilus"; # Default GUI file manager
       terminalFileManager = "yazi"; # Default terminal file manager
       git = {

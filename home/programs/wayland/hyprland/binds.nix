@@ -30,10 +30,6 @@
       in "pgrep ${prog} || uwsm app -- ${program}";
     in
       [
-        # Vesktop
-        "CTRL SHIFT, M, Mute on vesktop, pass, class:^(vesktop)$"
-        "CTRL SHIFT, D, Deaf on vesktop, pass, class:^(vesktop)$"
-
         # Open applications
         "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${settings.programs.terminal}"
         "$mainMod, B, Open browser, exec, uwsm app -- ${settings.programs.browser}"
@@ -41,6 +37,10 @@
         "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- ${settings.programs.terminal} --app-id ${settings.programs.terminalFileManager} ${settings.programs.terminalFileManager}"
         "$mainMod SHIFT, E, Open file manager, exec, uwsm app -- ${settings.programs.fileManager}"
         ", XF86Calculator, Open calculator, exec, ${runOnce "gnome-calculator"}"
+
+        # Vesktop
+        "CTRL SHIFT, M, Mute on vesktop, pass, class:^(vesktop)$"
+        "CTRL SHIFT, D, Deafen on vesktop, pass, class:^(vesktop)$"
 
         # Launcher
         "$mainMod, D, Open application launcher, exec, ${toggle "fuzzel"}"
@@ -51,16 +51,20 @@
         "$mainMod, PERIOD, Open symbols search, exec, ${toggleScript "fuzzel" "fuzzel-icons"}"
         "$mainMod, odiaeresis, Connect/disconnect from a vpnc VPN, exec, ${toggleScript "fuzzel" "fuzzel-vpnc"}"
 
-        # Actions
+        # Window actions
         "$mainMod, Q, Close focused window, killactive"
         "$mainMod, F, Fullscreen focused window, fullscreen"
         "$mainMod, P, Pseudotile focused window (dwindle), pseudo"
         "$mainMod, W, Toggle floating, togglefloating"
         "$mainMod, I, Change split direction (dwindle), togglesplit"
+
+        # Other actions
         "$mainMod, O, Copy text from screen, exec, wl-ocr"
         "$mainMod, ESCAPE, Lock screen, exec, loginctl lock-session"
         "$mainMod, C, Open color picker, exec, ${runOnce "hyprpicker -a"}"
-        "$mainMod SHIFT, O, Ask ollama something, exec, uwsm app -- fish -c \"chat -fcs\""
+        # "$mainMod SHIFT, O, Ask ollama something, exec, uwsm app -- fish -c \"chat -fcs\""
+
+        # Window grouping
         "$mainMod, G, Toggle group, togglegroup"
         "$mainMod SHIFT, G, Lock or unlock active group, lockactivegroup, toggle"
         "$mainMod SHIFT, N, Change active window in group right, changegroupactive, f"

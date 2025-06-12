@@ -78,6 +78,13 @@
       athenas = outputs.nixosConfigurations.athenas.config.system.build.isoImage;
     };
 
+    templates = {
+      default = {
+        path = ./templates/default;
+        description = "my default dev template";
+      };
+    };
+
     deploy.nodes = {
       pandora = {
         hostname = "pandora";

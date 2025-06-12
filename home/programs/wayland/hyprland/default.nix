@@ -1,30 +1,28 @@
 {
+  config,
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  cfg = config.wayland.windowManager.hyprland;
+in {
   imports = [
     ./settings.nix
     ./binds.nix
     ./permissions.nix
     ./pyprland.nix
     ./rules.nix
+    ./plugins/hyprbars.nix
   ];
 
-  wayland.windowManager.hyprland = rec {
+  wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
 
     package = null;
     portalPackage = null;
-    plugins = builtins.attrValues {
-      inherit
-        (inputs.hyprland-plugins.packages.${pkgs.system})
-        hyprbars
-        ;
-    };
 
-    settings.permission = builtins.map (plugin: plugin + "/lib/lib${plugin.pname}.so, plugin, allow") plugins;
+    settings.permission = builtins.map (plugin: plugin + "/lib/lib${plugin.pname}.so, plugin, allow") cfg.plugins;
   };
 
   services = {

@@ -47,6 +47,11 @@
       ll = "ls -l";
       lla = "ls -la";
 
+      mkdev = {
+        setCursor = "%";
+        expansion = "nix flake new --template $NH_FLAKE#%";
+      };
+
       # Git Stuff
       gti = "git"; # because I can't type
       g = "git";

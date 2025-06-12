@@ -63,11 +63,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749559749,
-        "narHash": "sha256-TM95tg1G7S6rVBBoMwurXMz8Il4xlnuZ2TI4h6lfZzg=",
+        "lastModified": 1749729210,
+        "narHash": "sha256-CwlWtY52bYH/5EiX9ZClfPwITQSTq9c2mJdRrDAMWGc=",
         "owner": "aylur",
         "repo": "astal",
-        "rev": "dd8a4662f2f17fb4326a7bd0fb2d054f5d477ba3",
+        "rev": "822c0d649f39d7c71ab8a9915ddf5779a8a08d11",
         "type": "github"
       },
       "original": {
@@ -549,11 +549,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749678780,
-        "narHash": "sha256-w0tckelv+U9wueCs5vEOsF14J2Lz+Bm3yfWXgpa1b2g=",
+        "lastModified": 1749719774,
+        "narHash": "sha256-YKIBtnR2p0RNElShoydvdDaVw9q9nSPGXth+XRGdfzQ=",
         "owner": "MrSom3body",
         "repo": "gotcha",
-        "rev": "6ccdf75152f5580a938341b99e6500be2b7854d8",
+        "rev": "e0cf609c098b21a8b6f48c3494801641051daf87",
         "type": "github"
       },
       "original": {
@@ -732,11 +732,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1749657143,
-        "narHash": "sha256-3MiuAUQBo9Luk0lNzNSuomx1WMMBua2feVjXNfg9Dws=",
+        "lastModified": 1749728455,
+        "narHash": "sha256-2QJwB0+KEpqTSfIdaHmnhK4uHHV5TBqDS5aKQPC3sYM=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "412c7dc7f79cb6b04af41692504e82d4417e6e13",
+        "rev": "748419faa558940dca03a41d09fcc9bb2e1f2106",
         "type": "github"
       },
       "original": {
@@ -1181,11 +1181,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749607590,
-        "narHash": "sha256-vvu9zoaYuuPIGG9YKRBMNqOELGN+x2qHbEK6PrZ/Ky0=",
+        "lastModified": 1749693896,
+        "narHash": "sha256-uQETCN7a1oB4moN78r9mnVp2nSu4D0pRBidpwLTaJK0=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "83aaf9c7e3caa39608992e723cfb997624920a35",
+        "rev": "4ce3cdd54fb3dab07225b9cc49a429acc0d20338",
         "type": "github"
       },
       "original": {
@@ -1938,11 +1938,11 @@
     "yazi-plugins": {
       "flake": false,
       "locked": {
-        "lastModified": 1749628455,
-        "narHash": "sha256-+V34p+obyezSL3uq8OT+LA1i3TjUKt9J4OyJus0knB0=",
+        "lastModified": 1749688931,
+        "narHash": "sha256-QkjXl8lGeqFgL2FGTs63xW0/hbZEpIyBCWnkdCgcv5s=",
         "owner": "yazi-rs",
         "repo": "plugins",
-        "rev": "c648526665f6fb466150e9ee41aa0431b87cb041",
+        "rev": "aeca767ec27bfbea66873d667a729791de18f364",
         "type": "github"
       },
       "original": {

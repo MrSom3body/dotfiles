@@ -83,6 +83,11 @@
         path = ./templates/default;
         description = "my default dev template";
       };
+
+      python-uv = {
+        path = ./templates/python-uv;
+        description = "a python uv dev template";
+      };
     };
 
     deploy.nodes = {

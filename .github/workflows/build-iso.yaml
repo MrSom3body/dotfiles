@@ -18,7 +18,7 @@ jobs:
       matrix:
         image: [sanctuary]
     steps:
-      - name: "Checkout"
+      - name: "Checkout code"
         uses: actions/checkout@v4
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
@@ -41,7 +41,8 @@ jobs:
             --flake .#images.${{ matrix.image }} \
             --out-link ${{ matrix.image }}
 
-      - uses: actions/upload-artifact@v4
+      - name: "Upload artifacts"
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.image }}-iso-image
           path: ${{ matrix.image }}-/iso/*.iso

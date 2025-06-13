@@ -27,6 +27,7 @@
     ./comma.nix
     ./eza.nix
     ./gpg.nix
+    ./less.nix
     ./pay-respects.nix
     ./ssh.nix
     ./tealdeer.nix

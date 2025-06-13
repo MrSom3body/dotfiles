@@ -18,4 +18,6 @@
       };
     };
   };
+
+  users.users.karun.extraGroups = ["gamemode"];
 }

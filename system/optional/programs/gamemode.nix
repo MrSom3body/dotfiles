@@ -7,7 +7,7 @@
     enable = true;
     settings = {
       general = {
-        renice = 10;
+        renice = 15;
         softrealtime = "auto";
       };
       custom = let

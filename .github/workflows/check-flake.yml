@@ -32,5 +32,10 @@ jobs:
           extra-conf: |
             experimental-features = nix-command flakes
 
+      - name: Setup Nix magic cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+        with:
+          diagnostic-endpoint: ""
+
       - name: "Check Flake"
         run: nix flake check

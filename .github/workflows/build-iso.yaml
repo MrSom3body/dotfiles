@@ -1,11 +1,13 @@
 # copied from https://github.com/NotAShelf/nyx/blob/main/.github/workflows/iso.yml with some minor tweaks
 # thanks raf <3
 name: Build & Publish ISO Images
+concurrency: build
+
 on:
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * mon" # every monday at 0:0
-concurrency: build
+
 jobs:
   build-images:
     name: "Build ISO Images"
@@ -17,6 +19,7 @@ jobs:
     strategy:
       matrix:
         image: [sanctuary]
+
     steps:
       - name: "Checkout code"
         uses: actions/checkout@v4
@@ -31,6 +34,11 @@ jobs:
           backtrace: "true"
           extra-conf: |
             experimental-features = nix-command flakes
+
+      - name: Setup Nix magic cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+        with:
+          diagnostic-endpoint: ""
 
       - name: "Install nix-fast-build"
         run: nix profile install nixpkgs#nix-fast-build

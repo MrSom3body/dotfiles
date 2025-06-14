@@ -38,10 +38,6 @@
         '';
     });
 
-    vesktop = prev.vesktop.overrideAttrs (oldAttrs: {
-      patches = oldAttrs.patches ++ [./vesktop-disable-auto-gain.patch];
-    });
-
     vpnc = prev.vpnc.overrideAttrs (_oldAttrs: {
       version = "unstable-2024-12-20";
       src = final.fetchFromGitHub {

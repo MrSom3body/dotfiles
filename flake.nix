@@ -1,5 +1,5 @@
 {
-  description = "MrSom3body's flake";
+  description = "MrSom3body's dotfiles";
 
   outputs = {
     self,

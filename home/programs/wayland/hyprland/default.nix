@@ -9,6 +9,7 @@ in {
   imports = [
     ./settings.nix
     ./binds.nix
+    ./animations.nix
     ./permissions.nix
     ./pyprland.nix
     ./rules.nix

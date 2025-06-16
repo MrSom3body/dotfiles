@@ -26,7 +26,7 @@
       border_size = settings.appearance.border.size;
       gaps_in = 5;
       gaps_out = 10;
-      layout = "dwindle";
+      inherit (config.my.wm.hyprland) layout;
 
       # Set to true enable resizing windows by clicking and dragging on borders and gaps
       resize_on_border = false;

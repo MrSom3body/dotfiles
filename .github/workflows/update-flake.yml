@@ -1,0 +1,35 @@
+name: "Update flake.lock"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * *" # every day at 08:00
+
+jobs:
+  update-flake:
+    name: "Update flake.lock"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v4
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: "Install Lix"
+        uses: DeterminateSystems/nix-installer-action@v13
+        with:
+          source-url: "https://install.lix.systems/lix/lix-installer-x86_64-linux"
+          diagnostic-endpoint: "" # so eelco can have more personalized self-merges? no thank you
+          backtrace: "true"
+          extra-conf: |
+            experimental-features = nix-command flakes
+
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@v25
+        with:
+          token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
+          pr-title: "flake.lock: update"
+          pr-labels: |
+            dependencies
+            automated

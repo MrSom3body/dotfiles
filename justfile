@@ -1,3 +1,5 @@
+machine_hostname := shell("hostname -s")
+
 alias b := boot
 alias s := switch
 alias t := test
@@ -7,44 +9,68 @@ alias d := deploy
 default:
     @just --list
 
-up INPUT="":
-    nix flake update {{INPUT}}
 
-iso:
-    nix run nixpkgs#nix-fast-build -- --skip-cached --flake .#packages.x86_64-linux.default
+# ---------- local ---------- #
 
 [group("local")]
-test:
-    nh os test
-
-[group("local")]
-boot:
-    nh os boot
+up *inputs:
+    nix flake update {{inputs}}
 
 [group("local")]
 build:
-    nh os build
+    @just build-machine
+
+[group("local")]
+test:
+    @just test-machine
+
+[group("local")]
+boot:
+    @just boot-machine
 
 [group("local")]
 switch:
-    nh os switch
+    @just switch-machine
 
 [group("local")]
-fix-lanzaboote:
+fix-lanzaboote: && boot
     nh clean all -k 3 -K 4d
     sudo rm /boot/EFI/nixos/ -rf
-    just boot
+
+
+# ---------- deploy ---------- #
 
 [group("deploy")]
-install NAME HOST=NAME:
+install hostname ip=hostname:
     nix run github:nix-community/nixos-anywhere -- \
-        --flake .#{{NAME}} --target-host root@{{HOST}} \
-        --generate-hardware-config nixos-generate-config ./hosts/{{NAME}}/hardware-configuration.nix
+        --flake ".#{{hostname}}" --target-host "root@{{ip}}" \
+        --generate-hardware-config nixos-generate-config "./hosts/{{hostname}}/hardware-configuration.nix"
+
 
 [group("deploy")]
-deploy NAME MODE="switch":
-    nh os {{MODE}} -H {{NAME}} --target-host root@{{NAME}}
+deploy hostname mode="switch" *extra_flags:
+    nh os {{mode}} -H "{{hostname}}" --target-host "root@{{hostname}}" -- {{extra_flags}}
 
-[group("deploy")]
-deploy-verbose NAME MODE="switch":
-    nh os {{MODE}} -H {{NAME}} --target-host root@{{NAME}} -- --show-trace
+
+# ---------- others ---------- #
+
+[group("others")]
+build-machine hostname=machine_hostname:
+    nh os build . --hostname "{{hostname}}"
+
+[group("others")]
+test-machine hostname=machine_hostname:
+    nh os test . --hostname "{{hostname}}"
+
+[group("others")]
+boot-machine hostname=machine_hostname:
+    nh os boot . --hostname "{{hostname}}"
+
+[group("others")]
+switch-machine hostname=machine_hostname:
+    nh os switch . --hostname "{{hostname}}"
+ 
+[group("iso")]
+build-iso iso_name="sanctuary":
+    nix run nixpkgs#nix-fast-build -- --skip-cached --flake ".#images.{{iso_name}}"
+

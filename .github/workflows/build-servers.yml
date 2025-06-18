@@ -29,10 +29,24 @@ jobs:
           - pandora
 
     steps:
-      - name: Setup nix environment
-        uses: MrSom3body/dotfiles/.github/workflows/setup-nix.yml@main
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          build: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Purge non-nix stuff
+        uses: wimpysworld/nothing-but-nix@main
+        with:
+          hatchet-protocol: rampage
+
+      - name: Install Lix
+        uses: DeterminateSystems/nix-installer-action@v13
+        with:
+          source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux
+          diagnostic-endpoint: "" # so eelco can have more personalized self-merges? no thank you
+          backtrace: true
+          extra-conf: |
+            experimental-features = nix-command flakes
 
       - name: Disable packages with prefetch
         run: |

@@ -7,21 +7,21 @@ on:
 
 jobs:
   update-flake:
-    name: "Update flake.lock"
+    name: Update flake.lock
     runs-on: ubuntu-latest
 
     steps:
-      - name: "Checkout code"
+      - name: Checkout code
         uses: actions/checkout@v4
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: "Install Lix"
+      - name: Install Lix
         uses: DeterminateSystems/nix-installer-action@v13
         with:
-          source-url: "https://install.lix.systems/lix/lix-installer-x86_64-linux"
+          source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux
           diagnostic-endpoint: "" # so eelco can have more personalized self-merges? no thank you
-          backtrace: "true"
+          backtrace: true
           extra-conf: |
             experimental-features = nix-command flakes
 

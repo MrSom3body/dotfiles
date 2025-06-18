@@ -10,9 +10,9 @@ on:
 
 jobs:
   build-images:
-    name: "Build ISO Images"
+    name: Build ISO Images
     runs-on: ubuntu-latest
-    if: github.repository == 'MrSom3body/dotfiles'
+    if: github.repository == "MrSom3body/dotfiles"
     permissions:
       contents: write
 
@@ -21,17 +21,22 @@ jobs:
         image: [sanctuary]
 
     steps:
-      - name: "Checkout code"
+      - name: Checkout code
         uses: actions/checkout@v4
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: "Install Lix"
+      - name: Purge non-nix stuff
+        uses: wimpysworld/nothing-but-nix@main
+        with:
+          hatchet-protocol: cleave
+
+      - name: Install Lix
         uses: DeterminateSystems/nix-installer-action@v13
         with:
-          source-url: "https://install.lix.systems/lix/lix-installer-x86_64-linux"
+          source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux
           diagnostic-endpoint: "" # so eelco can have more personalized self-merges? no thank you
-          backtrace: "true"
+          backtrace: true
           extra-conf: |
             experimental-features = nix-command flakes
 
@@ -40,23 +45,23 @@ jobs:
         with:
           diagnostic-endpoint: ""
 
-      - name: "Install nix-fast-build"
+      - name: Install nix-fast-build
         run: nix profile install nixpkgs#nix-fast-build
 
-      - name: "Build ISO Images"
+      - name: Build ISO Images
         run: |
           nix-fast-build --skip-cached --no-nom \
             --flake .#images.${{ matrix.image }} \
             --out-link ${{ matrix.image }}
 
-      - name: "Upload artifacts"
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.image }}-iso-image
           path: ${{ matrix.image }}-/iso/*.iso
 
   publish-images:
-    name: "Publish ISO Images"
+    name: Publish ISO Images
     runs-on: ubuntu-latest
     needs: build-images
     permissions:
@@ -64,25 +69,25 @@ jobs:
     env:
       GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     steps:
-      - name: "Download ISO Artifacts"
+      - name: Download ISO Artifacts
         uses: actions/download-artifact@v4
         with:
           merge-multiple: true
 
-      - name: "Get current date"
+      - name: Get current date
         id: get-date
         # output format: 2023-12-30-234559
         run: echo "date=$(date +'%Y-%m-%d-%H%M%S')" >> "${GITHUB_OUTPUT}"
 
-      - name: "Calculate Checksums"
+      - name: Calculate Checksums
         run: sha256sum *.iso > checksums.txt
 
-      - name: "Create Release"
+      - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
-          name: "🛠  Weekly ISO Release — ${{ steps.get-date.outputs.date }}"
-          tag_name: "iso-${{ steps.get-date.outputs.date }}"
+          name: 🛠  Weekly ISO Release — ${{ steps.get-date.outputs.date }}
+          tag_name: iso-${{ steps.get-date.outputs.date }}
           files: |
             *.iso
             checksums.txt

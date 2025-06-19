@@ -1,0 +1,8 @@
+builds:
+  exclude:
+    - "nixosConfigurations.promethea"
+  include:
+    - "packages.x86_64-linux.*"
+    - "homeConfigurations.*"
+    - "nixosConfigurations.*"
+  branch: update_flake_lock_action

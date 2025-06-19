@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  preFetch,
   ...
 }: {
   home.packages = let
@@ -15,7 +16,6 @@
         temurin-bin
         # Other thingies
         anki-bin
-        ciscoPacketTracer8
         openfortivpn
         vpnc
         ;
@@ -24,7 +24,12 @@
       (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.datagrip plugins)
       (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea-ultimate plugins)
       (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.phpstorm plugins)
-    ];
+    ]
+    ++ (
+      if preFetch
+      then [pkgs.ciscoPacketTracer8]
+      else []
+    );
 
   home.file.".ideavimrc".text = ''
     source ${inputs.helix-vim}/src/helix.idea.vim

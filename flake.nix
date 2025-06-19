@@ -28,12 +28,14 @@
     mkNixos = {
       hostname,
       isInstall ? true,
+      preFetch ? true,
     }:
       lib.nixosSystem {
         specialArgs =
           specialArgs
           // {
             settings = settings hostname;
+            inherit preFetch;
           };
 
         modules =
@@ -70,6 +72,12 @@
       sanctuary = mkNixos {
         hostname = "sanctuary";
         isInstall = false;
+      };
+
+      # hosts only for garnix
+      promethea_garnix = mkNixos {
+        hostname = "promethea";
+        preFetch = false;
       };
     };
 

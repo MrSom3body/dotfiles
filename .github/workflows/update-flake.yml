@@ -27,9 +27,19 @@ jobs:
 
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v25
+        id: update
         with:
           token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
+          commit-msg: "flake.lock: update"
           pr-title: "flake.lock: update"
           pr-labels: |
             dependencies
             automated
+
+      - name: Auto merge
+        run: |
+          if [ -n "${{ steps.update.outputs.pull-request-number }}" ]; then
+            gh pr merge --auto --rebase ${{ steps.update.outputs.pull-request-number }}
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}

@@ -6,6 +6,7 @@
   imports = [
     ../global
 
+    ../optional/services/autoUpgrade.nix
     ../optional/services/fail2ban.nix
     ../optional/services/openssh.nix
   ];

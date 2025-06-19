@@ -34,6 +34,7 @@ I’ve drawn inspiration from these fantastic projects, people and sources:
 - [NotAShelf/nyx](https://github.com/NotAShelf/nyx) (mainly for the CI/CD stuff)
 - [librephoenix/nixos-config](https://github.com/librephoenix/nixos-config)
 - [Vimjoyer](https://www.youtube.com/@vimjoyer)
+- [Automatic Flake Updates](https://xyven.dev/articles/automatic-flake-updates-with-garnix)
 - and many many more...
 
 Feel free to explore, adapt, and contribute!

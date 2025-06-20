@@ -11,6 +11,15 @@
     ../optional/services/openssh.nix
   ];
 
+  system.autoUpgrade = {
+    allowReboot = true;
+    dates = "04:00";
+    rebootWindow = {
+      lower = "04:00";
+      upper = "05:00";
+    };
+  };
+
   networking.firewall.enable = lib.mkForce true;
 
   # Given that our systems are headless, emergency mode is useless.

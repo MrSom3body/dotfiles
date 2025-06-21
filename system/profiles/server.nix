@@ -13,9 +13,8 @@
 
   system.autoUpgrade = {
     allowReboot = true;
-    dates = "04:00";
     rebootWindow = {
-      lower = "04:00";
+      lower = "01:00";
       upper = "05:00";
     };
   };

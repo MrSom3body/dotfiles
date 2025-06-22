@@ -1,59 +1,86 @@
 {
+  lib,
+  config,
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  inherit (lib) mkIf;
+
+  inherit (lib) types;
+  inherit (lib) literalExpression;
+
+  inherit (lib) mkEnableOption;
+  inherit (lib) mkOption;
+  cfg = config.my.editors.helix;
+in {
   imports = [
     ./languages.nix
   ];
 
-  programs.helix = {
-    enable = true;
+  options.my.editors.helix = {
+    enable =
+      mkEnableOption "the helix editor"
+      // {
+        default = true;
+      };
+    package = mkOption {
+      type = types.package;
+      inherit (inputs.helix.packages.${pkgs.system}) default;
+      defaultText = literalExpression "inputs.helix.packages.${pkgs.system}.default";
+      description = "helix package to use";
+    };
+  };
 
-    package = inputs.helix.packages.${pkgs.system}.default;
+  config = mkIf cfg.enable {
+    programs.helix = {
+      enable = true;
 
-    settings = {
-      editor = {
-        line-number = "relative";
-        cursorline = true;
-        auto-format = true;
-        completion-replace = false;
-        rulers = [80];
-        bufferline = "multiple";
-        color-modes = true;
-        soft-wrap.enable = true;
+      inherit (cfg) package;
 
-        end-of-line-diagnostics = "hint";
-        inline-diagnostics.cursor-line = "error";
+      settings = {
+        editor = {
+          line-number = "relative";
+          cursorline = true;
+          auto-format = true;
+          completion-replace = false;
+          rulers = [80];
+          bufferline = "multiple";
+          color-modes = true;
+          soft-wrap.enable = true;
 
-        lsp.display-inlay-hints = true;
+          end-of-line-diagnostics = "hint";
+          inline-diagnostics.cursor-line = "error";
 
-        cursor-shape = {
-          normal = "block";
-          insert = "bar";
-          select = "underline";
+          lsp.display-inlay-hints = true;
+
+          cursor-shape = {
+            normal = "block";
+            insert = "bar";
+            select = "underline";
+          };
+
+          indent-guides.render = true;
         };
 
-        indent-guides.render = true;
+        # keys.normal.space = {
+        #   e = [
+        #     ":sh rm -f /tmp/helix-yazi"
+        #     ":insert-output yazi %{buffer_name} --chooser-file=/tmp/helix-yazi"
+        #     ":insert-output echo '\\x1b[?1049h\\x1b[?2004h' > /dev/tty"
+        #     ":open %sh{cat /tmp/helix-yazi}"
+        #     ":redraw"
+        #     ":set mouse false"
+        #     ":set mouse true"
+        #   ];
+        # };
       };
 
-      # keys.normal.space = {
-      #   e = [
-      #     ":sh rm -f /tmp/helix-yazi"
-      #     ":insert-output yazi %{buffer_name} --chooser-file=/tmp/helix-yazi"
-      #     ":insert-output echo '\\x1b[?1049h\\x1b[?2004h' > /dev/tty"
-      #     ":open %sh{cat /tmp/helix-yazi}"
-      #     ":redraw"
-      #     ":set mouse false"
-      #     ":set mouse true"
-      #   ];
-      # };
+      ignores = [
+        "!.github/"
+        "!.gitignore"
+        "!.gitattributes"
+      ];
     };
-
-    ignores = [
-      "!.github/"
-      "!.gitignore"
-      "!.gitattributes"
-    ];
   };
 }

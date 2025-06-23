@@ -1,6 +1,8 @@
 {settings, ...}: {
   imports = [
     ./sops.nix
+    ./editors
+    ./browsers
     ./terminal
   ];
 

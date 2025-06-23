@@ -1,0 +1,128 @@
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  inherit (lib) mkIf;
+
+  inherit (lib) types;
+  inherit (lib) literalExpression;
+
+  inherit (lib) mkEnableOption;
+  inherit (lib) mkOption;
+  cfg = config.my.browsers.firefox;
+in {
+  options.my.browsers.firefox = {
+    enable = mkEnableOption "the firefox browser";
+    package = mkOption {
+      type = types.package;
+      default = pkgs.firefox-beta-bin;
+      defaultText = literalExpression "pkgs.firefox-beta-bin";
+      description = "firefox package to use";
+    };
+    default = lib.mkOption {
+      type = types.bool;
+      default = false;
+      description = "set firefox as the default browser";
+    };
+  };
+
+  config = mkIf cfg.enable {
+    home.sessionVariables = {
+      BROWSER = cfg.package.meta.mainProgram;
+    };
+
+    programs.firefox = {
+      enable = true;
+      inherit (cfg) package;
+
+      profiles.default = {
+        id = 0;
+        name = "default";
+        isDefault = true;
+        settings = {
+          "browser.download.start_downloads_in_tmp_dir" = true;
+          "browser.ml.linkPreview.enabled" = true;
+          "browser.tabs.groups.enabled" = true;
+          "browser.tabs.groups.smart.enabled" = true;
+          "cookiebanners.service.mode" = 2;
+          "cookiebanners.service.mode.privateBrowsing" = 2;
+          "cookiebanners.ui.desktop.enabled" = 2;
+          "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = true;
+          "sidebar.verticalTabs" = true;
+        };
+
+        search = {
+          force = true;
+          default = "ddg";
+          engines = {
+            "amazon" = {
+              urls = [{template = "https://amazon.de/s?k={searchTerms}";}];
+              icon = "https://amazon.de/favicon.ico";
+              definedAliases = ["@a"];
+            };
+            "protondb" = {
+              urls = [{template = "https://protondb.com/search?q={searchTerms}";}];
+              icon = "https://protondb.com/favicon.ico";
+              definedAliases = ["@pdb"];
+            };
+            "github" = {
+              urls = [{template = "https://github.com/search?q={searchTerms}";}];
+              icon = "https://github.com/favicon.ico";
+              definedAliases = ["@gh"];
+            };
+            "alternativeto" = {
+              urls = [{template = "https://alternativeto.net/browse/search/?q={searchTerms}";}];
+              icon = "https://alternativeto.net/favicon.ico";
+              definedAliases = ["@alt"];
+            };
+            "youtube" = {
+              urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
+              icon = "https://www.youtube.com/favicon.ico";
+              definedAliases = ["@yt"];
+            };
+            "nixos-wiki" = {
+              urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
+              icon = "https://wiki.nixos.org/favicon.png";
+              definedAliases = ["@nw"];
+            };
+            "mynixos" = {
+              urls = [{template = "https://mynixos.com/search?q={searchTerms}";}];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = ["@no"];
+            };
+            "nix-packages" = {
+              urls = [
+                {
+                  template = "https://search.nixos.org/packages";
+                  params = [
+                    {
+                      name = "channel";
+                      value = "unstable";
+                    }
+                    {
+                      name = "type";
+                      value = "packages";
+                    }
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = ["@np"];
+            };
+            "subreddit" = {
+              urls = [{template = "https://reddit.com/r/{searchTerms}";}];
+              icon = "https://reddit.com/favicon.png";
+              definedAliases = ["r/"];
+            };
+          };
+        };
+      };
+    };
+  };
+}

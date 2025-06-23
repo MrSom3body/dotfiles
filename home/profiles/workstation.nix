@@ -7,7 +7,6 @@
 
     # programs
     ../programs
-    ../programs/browsers/zen-browser.nix
     ../programs/media
     ../programs/office
 

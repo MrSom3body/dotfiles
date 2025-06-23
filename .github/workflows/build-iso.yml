@@ -12,7 +12,7 @@ jobs:
   build-images:
     name: Build ISO Images
     runs-on: ubuntu-latest
-    if: github.repository == "MrSom3body/dotfiles"
+    if: github.repository == 'MrSom3body/dotfiles'
     permissions:
       contents: write
 

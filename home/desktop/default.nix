@@ -6,6 +6,8 @@
   inherit (lib) mkIf;
   inherit (lib) types;
 
+  inherit (lib) mkDefault;
+
   inherit (lib) mkEnableOption;
   inherit (lib) mkOption;
 
@@ -25,7 +27,27 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.services.gammastep.enable = true;
+    my = {
+      browsers.zen-browser = {
+        enable = true;
+        default = true;
+      };
+      media.enable = true;
+      office.enable = true;
+      utils.enable = true;
+
+      programs = {
+        fuzzel.enable = mkDefault true;
+        waybar.enable = mkDefault true;
+      };
+
+      services = {
+        cliphist.enable = mkDefault true;
+        fnott.enable = mkDefault true;
+        gammastep.enable = mkDefault true;
+        swayosd.enable = mkDefault true;
+      };
+    };
 
     my.desktop.hyprland.enable = mkIf (cfg.type == "Hyprland") true;
   };

@@ -1,14 +1,25 @@
 {
-  inputs,
   lib,
+  config,
+  inputs,
   pkgs,
   ...
-}: {
-  services.hyprpaper = {
-    enable = true;
-
-    package = inputs.hyprpaper.packages.${pkgs.system}.default;
+}: let
+  inherit (lib) mkIf;
+  inherit (lib) mkEnableOption;
+  cfg = config.my.services.hyprpaper;
+in {
+  options.my.services.hyprpaper = {
+    enable = mkEnableOption "the hyprpaper service";
   };
 
-  systemd.user.services.hyprpaper.Unit.After = lib.mkForce "graphical-session.target";
+  config = mkIf cfg.enable {
+    services.hyprpaper = {
+      enable = true;
+
+      package = inputs.hyprpaper.packages.${pkgs.system}.default;
+    };
+
+    systemd.user.services.hyprpaper.Unit.After = lib.mkForce "graphical-session.target";
+  };
 }

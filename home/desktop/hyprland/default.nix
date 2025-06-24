@@ -36,10 +36,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.programs = {
-      fuzzel.enable = mkDefault true;
-      hyprlock.enable = mkDefault true;
-      waybar.enable = mkDefault true;
+    my = {
+      programs = {
+        hyprlock.enable = mkDefault true;
+      };
+
+      services = {
+        hypridle.enable = true;
+        hyprpaper.enable = true;
+      };
     };
 
     wayland.windowManager.hyprland = {

@@ -1,7 +1,7 @@
 {
-  pkgs,
   lib,
   config,
+  pkgs,
   settings,
   ...
 }
@@ -160,7 +160,7 @@
         wireplumber = {
           format = "{icon}  {volume}%";
           format-muted = "󰝟";
-          on-click = "pwvucontrol";
+          on-click = lib.getExe pkgs.pwvucontrol;
           format-icons = [
             "󰕿"
             "󰖀"

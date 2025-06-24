@@ -7,7 +7,6 @@
 
     # programs
     ../programs
-    ../programs/media
     ../programs/office
 
     # wayland programs
@@ -20,9 +19,6 @@
     ../services/system/polkit.nix
     ../services/system/udiskie.nix
 
-    # media services
-    ../services/media/playerctl.nix
-
     # wayland services
     ../services/wayland/cliphist.nix
     ../services/wayland/fnott
@@ -33,6 +29,8 @@
   ];
 
   my = {
+    media.enable = true;
+
     browsers.zen-browser = {
       enable = true;
       default = true;

@@ -100,16 +100,19 @@
     "dotfiles"
   ];
 
-  home.packages = [
-    # Communication & Social Media
-    pkgs.element-desktop # Matrix client
-    pkgs.signal-desktop-bin
-
-    # Misc
-    pkgs.ente-auth
-    pkgs.fragments
-    pkgs.pika-backup
-    pkgs.proton-pass
-    pkgs.protonvpn-gui
-  ];
+  home.packages = builtins.attrValues {
+    inherit
+      (pkgs)
+      # Communication & Social Media
+      element-desktop # Matrix client
+      signal-desktop-bin
+      # Misc
+      ente-auth
+      fragments
+      pika-backup
+      proton-pass
+      protonvpn-gui
+      jellyfin-media-player
+      ;
+  };
 }

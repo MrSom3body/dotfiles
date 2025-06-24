@@ -7,7 +7,6 @@
 
     # programs
     ../programs
-    ../programs/office
 
     # wayland programs
     ../programs/wayland/fuzzel
@@ -29,11 +28,11 @@
   ];
 
   my = {
-    media.enable = true;
-
     browsers.zen-browser = {
       enable = true;
       default = true;
     };
+    media.enable = true;
+    office.enable = true;
   };
 }

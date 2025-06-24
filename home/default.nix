@@ -5,6 +5,7 @@
     ./editors
     ./games
     ./media
+    ./office
     ./terminal
   ];
 

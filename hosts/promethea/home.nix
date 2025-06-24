@@ -46,6 +46,8 @@
   my = {
     games.enable = true;
 
+    office.mail.enable = true;
+
     programs.rclone = {
       enable = true;
       protonDriveBackup = {

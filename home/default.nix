@@ -1,12 +1,13 @@
 {settings, ...}: {
   imports = [
-    ./sops.nix
     ./browsers
     ./editors
     ./games
     ./media
     ./office
+    ./sops.nix
     ./terminal
+    ./utilities.nix
   ];
 
   home = {

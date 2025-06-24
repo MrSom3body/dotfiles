@@ -5,9 +5,6 @@
     # terminals
     ../terminal/emulators/foot.nix
 
-    # programs
-    ../programs
-
     # wayland programs
     ../programs/wayland/fuzzel
     ../programs/wayland/hyprland
@@ -34,5 +31,6 @@
     };
     media.enable = true;
     office.enable = true;
+    utils.enable = true;
   };
 }

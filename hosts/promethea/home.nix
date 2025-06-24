@@ -6,9 +6,6 @@
   imports = [
     ../../home/profiles/laptop.nix
 
-    # programs
-    ../../home/programs/school
-
     # system services
     ../../home/services/system/kdeconnect.nix
     ../../home/services/system/tailray.nix

@@ -6,6 +6,7 @@
     ./media
     ./office
     ./programs
+    ./school.nix
     ./sops.nix
     ./terminal
     ./utilities.nix

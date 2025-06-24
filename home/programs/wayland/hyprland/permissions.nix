@@ -10,6 +10,9 @@
     ecosystem.enforce_permissions = true;
 
     permission = [
+      # Allow hyprlock
+      "${lib.getExe config.programs.hyprlock.package}, screencopy, allow"
+
       # Allow xdph
       "${
         if osConfig != null

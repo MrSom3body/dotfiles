@@ -7,7 +7,6 @@
     ../../home/profiles/laptop.nix
 
     # programs
-    ../../home/programs/games
     ../../home/programs/school
     ../../home/programs/vesktop.nix # Discord
 
@@ -49,6 +48,8 @@
       enable = true;
       default = true;
     };
+
+    games.enable = true;
 
     programs.rclone = {
       enable = true;

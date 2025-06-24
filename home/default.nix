@@ -3,6 +3,7 @@
     ./sops.nix
     ./editors
     ./browsers
+    ./games
     ./terminal
   ];
 

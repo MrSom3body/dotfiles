@@ -8,7 +8,6 @@
 
     # programs
     ../../home/programs/school
-    ../../home/programs/vesktop.nix # Discord
 
     # system services
     ../../home/services/system/kdeconnect.nix
@@ -48,26 +47,30 @@
 
     office.mail.enable = true;
 
-    programs.rclone = {
-      enable = true;
-      protonDriveBackup = {
+    programs = {
+      discord.enable = true;
+
+      rclone = {
         enable = true;
-        filters = ''
-          - {{\.?venv}}/**
-          - .devenv/**
-          - .direnv/**
-          - /Documents/Codes/nixpkgs/**
-          - /Documents/Schule/2024-25/INSY/oracle-volume/**
-          + /Desktop/**
-          + /Documents/**
-          + /Games/Saves/**
-          + /Music/**
-          + /Notes/**
-          + /Pictures/**
-          + /Templates/**
-          + /Videos/**
-          - *
-        '';
+        protonDriveBackup = {
+          enable = true;
+          filters = ''
+            - {{\.?venv}}/**
+            - .devenv/**
+            - .direnv/**
+            - /Documents/Codes/nixpkgs/**
+            - /Documents/Schule/2024-25/INSY/oracle-volume/**
+            + /Desktop/**
+            + /Documents/**
+            + /Games/Saves/**
+            + /Music/**
+            + /Notes/**
+            + /Pictures/**
+            + /Templates/**
+            + /Videos/**
+            - *
+          '';
+        };
       };
     };
 

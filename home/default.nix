@@ -5,6 +5,7 @@
     ./games
     ./media
     ./office
+    ./programs
     ./sops.nix
     ./terminal
     ./utilities.nix

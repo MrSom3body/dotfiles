@@ -1,6 +1,7 @@
 {settings, ...}: {
   imports = [
     ./browsers
+    ./desktop
     ./editors
     ./games
     ./media

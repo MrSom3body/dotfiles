@@ -5,9 +5,15 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkOption;
+  inherit (lib) mkIf;
+  inherit (lib) mkDefault;
   inherit (lib) types;
-  cfg = config.wayland.windowManager.hyprland;
+
+  inherit (lib) mkOption;
+  inherit (lib) mkEnableOption;
+
+  cfg = config.my.desktop.hyprland;
+  cfg' = config.wayland.windowManager.hyprland;
 in {
   imports = [
     ./settings.nix
@@ -20,7 +26,8 @@ in {
     ./plugins/hyprbars.nix
   ];
 
-  options.my.wm.hyprland = {
+  options.my.desktop.hyprland = {
+    enable = mkEnableOption "the Hyprland WM";
     layout = mkOption {
       type = types.enum ["dwindle" "master" "scrolling"];
       default = "dwindle";
@@ -28,7 +35,13 @@ in {
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
+    my.programs = {
+      fuzzel.enable = mkDefault true;
+      hyprlock.enable = mkDefault true;
+      waybar.enable = mkDefault true;
+    };
+
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = false;
@@ -36,7 +49,7 @@ in {
       package = null;
       portalPackage = null;
 
-      settings.permission = builtins.map (plugin: plugin + "/lib/lib${plugin.pname}.so, plugin, allow") cfg.plugins;
+      settings.permission = builtins.map (plugin: plugin + "/lib/lib${plugin.pname}.so, plugin, allow") cfg'.plugins;
     };
 
     services = {

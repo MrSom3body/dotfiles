@@ -5,26 +5,21 @@
     # terminals
     ../terminal/emulators/foot.nix
 
-    # wayland programs
-    ../programs/wayland/fuzzel
-    ../programs/wayland/hyprland
-    ../programs/wayland/hyprlock.nix
-    ../programs/wayland/waybar
-
     # system services
     ../services/system/polkit.nix
     ../services/system/udiskie.nix
 
     # wayland services
-    ../services/wayland/cliphist.nix
-    ../services/wayland/fnott
-    ../services/wayland/gammastep.nix
-    ../services/wayland/hypridle.nix
-    ../services/wayland/hyprpaper.nix
-    ../services/wayland/swayosd.nix
+    ../services/cliphist.nix
+    ../services/fnott
+    ../services/gammastep.nix
+    ../services/hypridle.nix
+    ../services/hyprpaper.nix
+    ../services/swayosd.nix
   ];
 
   my = {
+    desktop.enable = true;
     browsers.zen-browser = {
       enable = true;
       default = true;

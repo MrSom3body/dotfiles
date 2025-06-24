@@ -85,7 +85,7 @@
       '';
     };
 
-    wm.hyprland.layout = "dwindle";
+    desktop.hyprland.layout = "dwindle";
   };
 
   gtk.gtk3.bookmarks = map (dir: "file://${config.home.homeDirectory}/" + dir) [

@@ -31,4 +31,11 @@
     ../services/wayland/hyprpaper.nix
     ../services/wayland/swayosd.nix
   ];
+
+  my = {
+    browsers.zen-browser = {
+      enable = true;
+      default = true;
+    };
+  };
 }

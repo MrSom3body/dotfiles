@@ -44,11 +44,6 @@
   ];
 
   my = {
-    browsers.zen-browser = {
-      enable = true;
-      default = true;
-    };
-
     games.enable = true;
 
     programs.rclone = {

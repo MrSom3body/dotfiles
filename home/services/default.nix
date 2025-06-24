@@ -1,11 +1,20 @@
 {
   imports = [
+    ./auto-kbd-bl.nix
     ./cliphist.nix
     ./fnott
     ./gammastep.nix
+    ./gpg-agent.nix
     ./hypridle.nix
     ./hyprpaper.nix
+    ./kdeconnect.nix
+    ./polkit.nix
+    ./power-monitor.nix
+    ./psd.nix
     ./swaync
     ./swayosd.nix
+    ./syncthing.nix
+    ./tailray.nix
+    ./udiskie.nix
   ];
 }

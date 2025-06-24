@@ -30,6 +30,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [cfg.package];
+    home = {
+      sessionVariables = mkIf cfg.default {
+        BROWSER = cfg.package.meta.mainProgram;
+      };
+      packages = [cfg.package];
+    };
   };
 }

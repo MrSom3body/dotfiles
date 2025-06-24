@@ -4,13 +4,6 @@
   ...
 }: {
   imports = [
-    ../../home/profiles/laptop.nix
-
-    # system services
-    ../../home/services/system/kdeconnect.nix
-    ../../home/services/system/tailray.nix
-    ../../home/services/system/syncthing.nix
-
     # modules
     ../../modules/home/rclone.nix
     ../../modules/home/solaar.nix
@@ -40,6 +33,8 @@
   ];
 
   my = {
+    systemType = 3;
+
     games.enable = true;
 
     office.mail.enable = true;
@@ -71,21 +66,24 @@
       };
     };
 
-    services.solaar = {
-      enable = true;
-      rules = ''
-        ---
-        - MouseGesture: Mouse Right
-        - Execute: [hyprctl, dispatch, workspace, r+1]
-        ...
-        ---
-        - MouseGesture: Mouse Left
-        - Execute: [hyprctl, dispatch, workspace, r-1]
-        ...
-      '';
+    services = {
+      solaar = {
+        enable = true;
+        rules = ''
+          ---
+          - MouseGesture: Mouse Right
+          - Execute: [hyprctl, dispatch, workspace, r+1]
+          ...
+          ---
+          - MouseGesture: Mouse Left
+          - Execute: [hyprctl, dispatch, workspace, r-1]
+          ...
+        '';
+      };
+      syncthing.enable = true;
     };
 
-    desktop.hyprland.layout = "dwindle";
+    school.enable = true;
   };
 
   gtk.gtk3.bookmarks = map (dir: "file://${config.home.homeDirectory}/" + dir) [

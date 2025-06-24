@@ -1,19 +1,34 @@
-{config, ...}: {
-  programs.kitty = {
-    enable = true;
+{
+  lib,
+  config,
+  ...
+}: let
+  inherit (lib) mkIf;
 
-    font = {
-      inherit (config.stylix.fonts.monospace) name;
-      size = config.stylix.fonts.sizes.terminal;
-    };
+  inherit (lib) mkEnableOption;
+  cfg = config.my.programs.kitty;
+in {
+  options.my.programs.kitty = {
+    enable = mkEnableOption "the kitty terminal emulator";
+  };
 
-    settings = {
-      touch_scroll_multiplier = "5.0";
-      window_padding_width = 20;
-    };
+  config = mkIf cfg.enable {
+    programs.kitty = {
+      enable = true;
 
-    keybindings = {
-      "ctrl+shift+t" = "new_tab_with_cwd";
+      font = {
+        inherit (config.stylix.fonts.monospace) name;
+        size = config.stylix.fonts.sizes.terminal;
+      };
+
+      settings = {
+        touch_scroll_multiplier = "5.0";
+        window_padding_width = 20;
+      };
+
+      keybindings = {
+        "ctrl+shift+t" = "new_tab_with_cwd";
+      };
     };
   };
 }

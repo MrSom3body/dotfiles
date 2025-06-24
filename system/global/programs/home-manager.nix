@@ -28,7 +28,10 @@ in {
       useUserPackages = true;
       extraSpecialArgs = specialArgs;
 
-      users.karun.imports = [../../../hosts/${config.networking.hostName}/home.nix];
+      users.karun.imports = [
+        ../../../home
+        ../../../hosts/${config.networking.hostName}/home.nix
+      ];
     };
   };
 }

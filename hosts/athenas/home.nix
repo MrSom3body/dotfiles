@@ -1,5 +1,3 @@
 {
-  imports = [
-    ../../home/profiles/laptop.nix
-  ];
+  my.systemType = 3;
 }

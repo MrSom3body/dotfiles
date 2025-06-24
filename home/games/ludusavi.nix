@@ -7,17 +7,17 @@
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
-  cfg = config.my.games.backup;
+  cfg = config.my.games;
 in {
   options.my.games.backup = {
     enable =
       mkEnableOption "backing up game saves"
       // {
-        default = true;
+        default = cfg.enable;
       };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.backup.enable {
     home.packages = [pkgs.ludusavi];
 
     systemd.user = {

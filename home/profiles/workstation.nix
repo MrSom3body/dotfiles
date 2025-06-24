@@ -12,7 +12,6 @@
     # wayland services
     ../services/cliphist.nix
     ../services/fnott
-    ../services/gammastep.nix
     ../services/hypridle.nix
     ../services/hyprpaper.nix
     ../services/swayosd.nix

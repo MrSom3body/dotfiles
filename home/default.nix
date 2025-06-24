@@ -8,6 +8,7 @@
     ./office
     ./programs
     ./school.nix
+    ./services
     ./sops.nix
     ./terminal
     ./utilities.nix

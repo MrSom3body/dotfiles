@@ -24,7 +24,9 @@ in {
     };
   };
 
-  config = mkIf (cfg.enable && cfg.type == "Hyprland") {
-    my.desktop.hyprland.enable = true;
+  config = mkIf cfg.enable {
+    my.services.gammastep.enable = true;
+
+    my.desktop.hyprland.enable = mkIf (cfg.type == "Hyprland") true;
   };
 }

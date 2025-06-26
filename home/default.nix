@@ -21,6 +21,7 @@ in {
     ./programs
     ./school.nix
     ./services
+    ./shell
     ./sops.nix
     ./stylix.nix
     ./terminal
@@ -52,6 +53,10 @@ in {
     };
 
     my = {
+      shell = {
+        fish.enable = true;
+        bash.enable = true;
+      };
       desktop = {
         enable = mkIf (cfg.systemType >= 2) true;
       };

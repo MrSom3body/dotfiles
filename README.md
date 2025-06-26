@@ -11,6 +11,7 @@ My repository also provides some packages that may be useful for you:
 | Package           | Use                                                                                                                          |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | `auto-kbd-bl`     | Automatically turn the keyboard backlight on when the screen brightness falls under a threshold                              |
+| `fnott-dnd`       | Toggle `fnott`'s DND status (because it doesn't provide a way to toggle it :( )                                              |
 | `fuzzel-goodies`  | Fuzzel scripts for a bunch of functionality like: emoji picker, file picker, hyprland window picker, ...                     |
 | `gns3-auto-confg` | Automatically create basic configuration files for cisco devices                                                             |
 | `hyprcast`        | Record your screen with wl-screenrec with notification support (most useful when run with a key bind)                        |

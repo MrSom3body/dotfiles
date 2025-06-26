@@ -43,6 +43,4 @@ in {
       };
     };
   };
-
-  home.sessionPath = ["$HOME/bin"];
 }

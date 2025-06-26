@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   settings,
   ...
 }: let
@@ -54,9 +55,6 @@ in {
       };
     };
 
-    home.file."bin/fnott-dnd" = {
-      source = ./scripts/fnott-dnd.fish;
-      executable = true;
-    };
+    home.packages = [pkgs.fnott-dnd];
   };
 }

@@ -3,12 +3,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    # modules
-    ../../modules/home/rclone.nix
-    ../../modules/home/solaar.nix
-  ];
-
   wayland.windowManager.hyprland.settings.permission = [
     ### Keyboards ###
     "video-bus, keyboard, allow"

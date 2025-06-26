@@ -11,6 +11,7 @@
     ./polkit.nix
     ./power-monitor.nix
     ./psd.nix
+    ./solaar.nix
     ./swaync
     ./swayosd.nix
     ./syncthing.nix

@@ -32,5 +32,6 @@
     ./ssh.nix
     ./tealdeer.nix
     ./xdg.nix
+    ./zoxide.nix
   ];
 }

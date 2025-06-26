@@ -2,8 +2,6 @@
   imports = [
     ./bash.nix
     ./fish
-
-    ./zoxide.nix
   ];
 
   programs = {

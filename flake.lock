@@ -1,28 +1,5 @@
 {
   "nodes": {
-    "ags": {
-      "inputs": {
-        "astal": [
-          "astal"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1744557573,
-        "narHash": "sha256-XAyj0iDuI51BytJ1PwN53uLpzTDdznPDQFG4RwihlTQ=",
-        "owner": "aylur",
-        "repo": "ags",
-        "rev": "3ed9737bdbc8fc7a7c7ceef2165c9109f336bff6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aylur",
-        "repo": "ags",
-        "type": "github"
-      }
-    },
     "aquamarine": {
       "inputs": {
         "hyprutils": [
@@ -53,26 +30,6 @@
       "original": {
         "owner": "hyprwm",
         "repo": "aquamarine",
-        "type": "github"
-      }
-    },
-    "astal": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1750698959,
-        "narHash": "sha256-8P21Czb4goeBIyo3U/kpRNerDZ+VxE8J2jiGYOPlGmk=",
-        "owner": "aylur",
-        "repo": "astal",
-        "rev": "36f1dafe8f298a275c20032c37bd135aa955e4ba",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aylur",
-        "repo": "astal",
         "type": "github"
       }
     },
@@ -1448,8 +1405,6 @@
     },
     "root": {
       "inputs": {
-        "ags": "ags",
-        "astal": "astal",
         "deploy-rs": "deploy-rs",
         "disko": "disko",
         "flake-compat": "flake-compat",

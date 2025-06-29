@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ../../system/profiles/server.nix
 
+    ../../system/optional/services/searx.nix
     ../../system/optional/services/tailscale-exit-node.nix
 
     ../../system/optional/network/tuxshare.nix

@@ -30,7 +30,11 @@ in {
           secret_key = "@SEARX_SECRET_KEY@";
         };
 
-        search.autocomplete = "duckduckgo";
+        search = {
+          autocomplete = "duckduckgo";
+          favicon_resolver = "duckduckgo";
+        };
+
         engines = [
           {
             name = "annas archive";
@@ -45,6 +49,24 @@ in {
             disabled = false;
           }
         ];
+      };
+
+      faviconsSettings = {
+        favicons = {
+          cfg_schema = 1;
+          cache = {
+            db_url = "/run/searx/faviconcache.db";
+            LIMIT_TOTAL_BYTES = 2147483648;
+            HOLD_TIME = 5184000;
+            BLOB_MAX_BYTES = 40960;
+            MAINTENANCE_MODE = "auto";
+            MAINTENANCE_PERIOD = 600;
+          };
+
+          proxy = {
+            max_age = 5184000;
+          };
+        };
       };
     };
   };

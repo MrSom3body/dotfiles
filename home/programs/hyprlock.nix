@@ -21,10 +21,7 @@ in {
       package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
 
       settings = {
-        general = {
-          hide_cursor = true;
-          grace = 3;
-        };
+        general.hide_cursor = true;
 
         auth.fingerprint.enabled = true;
 

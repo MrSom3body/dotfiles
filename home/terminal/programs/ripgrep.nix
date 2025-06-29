@@ -1,13 +1,27 @@
 {
-  programs.ripgrep = {
-    enable = true;
-    arguments = [
-      "--max-columns=150"
-      "--max-columns-preview"
+  lib,
+  config,
+  ...
+}: let
+  inherit (lib) mkIf;
+  inherit (lib) mkEnableOption;
+  cfg = config.my.programs.ripgrep;
+in {
+  options.my.programs.ripgrep = {
+    enable = mkEnableOption "ripgrep";
+  };
 
-      "--hidden"
+  config = mkIf cfg.enable {
+    programs.ripgrep = {
+      enable = true;
+      arguments = [
+        "--max-columns=150"
+        "--max-columns-preview"
 
-      "--smart-case"
-    ];
+        "--hidden"
+
+        "--smart-case"
+      ];
+    };
   };
 }

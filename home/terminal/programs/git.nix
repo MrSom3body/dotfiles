@@ -1,52 +1,63 @@
 {
+  lib,
   config,
   settings,
   ...
-}: {
-  programs.git = {
-    enable = true;
+}: let
+  inherit (lib) mkIf;
+  inherit (lib) mkEnableOption;
+  cfg = config.my.programs.git;
+in {
+  options.my.programs.git = {
+    enable = mkEnableOption "my git config";
+  };
 
-    delta = {
+  config = mkIf cfg.enable {
+    programs.git = {
       enable = true;
-    };
 
-    aliases = {
-      a = "add";
-      b = "branch";
-      c = "commit";
-      ca = "commit --amend";
-      cm = "commit -m";
-      co = "checkout";
-      d = "diff";
-      ds = "diff --staged";
-      l = "log --oneline";
-      ll = "log";
-      p = "push";
-      pf = "push --force-with-lease";
-      pl = "pull";
-      r = "rebase";
-      s = "status --short";
-      ss = "status";
-      sw = "switch";
-      forgor = "commit --amend --no-edit";
-      graph = "log --all --decorate --graph --oneline";
-      oops = "checkout --";
-    };
+      delta = {
+        enable = true;
+      };
 
-    signing = {
-      format = "ssh";
-      key = "${config.home.homeDirectory}/.ssh/id_ed25519";
-      signByDefault = true;
-    };
+      aliases = {
+        a = "add";
+        b = "branch";
+        c = "commit";
+        ca = "commit --amend";
+        cm = "commit -m";
+        co = "checkout";
+        d = "diff";
+        ds = "diff --staged";
+        l = "log --oneline";
+        ll = "log";
+        p = "push";
+        pf = "push --force-with-lease";
+        pl = "pull";
+        r = "rebase";
+        s = "status --short";
+        ss = "status";
+        sw = "switch";
+        forgor = "commit --amend --no-edit";
+        graph = "log --all --decorate --graph --oneline";
+        oops = "checkout --";
+      };
 
-    extraConfig = {
-      init.defaultBranch = "main";
-      pull.rebase = true;
-      push.autoSetupRemote = true;
-      rebase.autoStash = true;
-    };
+      signing = {
+        format = "ssh";
+        key = "${config.home.homeDirectory}/.ssh/id_ed25519";
+        signByDefault = true;
+      };
 
-    userName = settings.programs.git.username;
-    userEmail = settings.programs.git.mail;
+      extraConfig = {
+        init.defaultBranch = "main";
+        pull.rebase = true;
+        push.autoSetupRemote = true;
+        rebase.autoStash = true;
+      };
+
+      userName = settings.programs.git.username;
+      userEmail = settings.programs.git.mail;
+    };
   };
 }

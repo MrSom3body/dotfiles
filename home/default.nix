@@ -57,6 +57,15 @@ in {
         enable = true;
       };
 
+      programs = {
+        btop.enable = true;
+        dust.enable = true;
+        git.enable = true;
+        gpg.enable = true;
+        ssh.enable = true;
+        yazi.enable = true;
+      };
+
       desktop = {
         enable = mkIf (cfg.systemType >= 2) true;
       };

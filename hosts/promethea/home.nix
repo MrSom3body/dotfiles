@@ -59,6 +59,14 @@
           '';
         };
       };
+
+      # cli
+      comma.enable = true;
+      direnv.enable = true;
+      gh.enable = true;
+      gitui.enable = true;
+      tealdeer.enable = true;
+      tokei.enable = true;
     };
 
     services = {

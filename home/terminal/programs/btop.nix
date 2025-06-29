@@ -1,9 +1,23 @@
 {
-  programs.btop = {
-    enable = true;
+  lib,
+  config,
+  ...
+}: let
+  inherit (lib) mkIf;
+  inherit (lib) mkEnableOption;
+  cfg = config.my.programs.btop;
+in {
+  options.my.programs.btop = {
+    enable = mkEnableOption "the btop monitor";
+  };
 
-    settings = {
-      vim_keys = true;
+  config = mkIf cfg.enable {
+    programs.btop = {
+      enable = true;
+
+      settings = {
+        vim_keys = true;
+      };
     };
   };
 }

@@ -26,6 +26,12 @@ in {
       };
 
       programs = {
+        bat.enable = true;
+        eza.enable = true;
+        fd.enable = true;
+        fzf.enable = true;
+        ripgrep.enable = true;
+        trash-cli.enable = true;
         zoxide.enable = true;
       };
     };

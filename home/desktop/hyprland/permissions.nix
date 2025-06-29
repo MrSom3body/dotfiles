@@ -7,7 +7,14 @@
   ...
 }: let
   inherit (lib) mkIf;
+  inherit (lib) getExe;
+  inherit (lib) escapeRegex;
+
   cfg = config.my.desktop.hyprland;
+  portalPackage =
+    if osConfig != null
+    then osConfig.programs.hyprland.portalPackage
+    else config.wayland.windowManager.hyprland.portalPackage;
 in {
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland.settings = {
@@ -15,19 +22,15 @@ in {
 
       permission = [
         # Allow hyprlock
-        "${lib.getExe config.programs.hyprlock.package}, screencopy, allow"
+        "${escapeRegex (getExe config.programs.hyprlock.package)}, screencopy, allow"
 
         # Allow xdph
-        "${
-          if osConfig != null
-          then osConfig.programs.hyprland.portalPackage
-          else config.wayland.windowManager.hyprland.portalPackage
-        }/libexec/.xdg-desktop-portal-hyprland-wrapped, screencopy, allow"
+        "${escapeRegex ((builtins.toString portalPackage) + "/libexec/.xdg-desktop-portal-hyprland-wrapped")}, screencopy, allow"
 
         # Allow to screenrecording & screenshots
-        "${lib.getExe pkgs.grim}, screencopy, allow"
-        "${lib.getExe pkgs.wl-screenrec}, screencopy, allow"
-        "${lib.getExe inputs.hyprpicker.packages.${pkgs.system}.hyprpicker}, screencopy, allow"
+        "${escapeRegex (getExe pkgs.grim)}, screencopy, allow"
+        "${escapeRegex (getExe pkgs.wl-screenrec)}, screencopy, allow"
+        "${escapeRegex (getExe inputs.hyprpicker.packages.${pkgs.system}.hyprpicker)}, screencopy, allow"
       ];
     };
   };

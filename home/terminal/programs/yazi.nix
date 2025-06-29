@@ -1,10 +1,9 @@
 {
+  lib,
   inputs,
   pkgs,
   ...
 }: {
-  home.packages = [pkgs.ripdrag];
-
   programs.yazi = {
     enable = true;
     package = inputs.yazi.packages.${pkgs.system}.default;
@@ -67,7 +66,7 @@
         }
         {
           on = "<C-n>";
-          run = "shell --confirm 'ripdrag \"$@\" -x 2>/dev/null &'";
+          run = "shell --confirm '${lib.getExe pkgs.ripdrag} \"$@\" -x 2>/dev/null &'";
         }
       ];
     };

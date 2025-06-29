@@ -54,12 +54,13 @@ in {
 
     my = {
       shell = {
-        fish.enable = true;
-        bash.enable = true;
+        enable = true;
       };
+
       desktop = {
         enable = mkIf (cfg.systemType >= 2) true;
       };
+
       services.power-monitor.enable = mkIf (cfg.systemType >= 3) true;
     };
 

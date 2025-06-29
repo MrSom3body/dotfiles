@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (lib) mkIf;
+  inherit (lib) mkEnableOption;
   cfg = config.my.shell;
 in {
   imports = [
@@ -13,33 +14,50 @@ in {
     ./nushell.nix
   ];
 
-  programs = {
-    fish = mkIf cfg.fish.enable {
-      functions = {
-        ip = {
-          body = "command ip -c $argv";
-          wraps = "ip";
-        };
-        icat = {
-          body = "${pkgs.timg}/bin/timg $argv";
-          wraps = "${pkgs.timg}/bin/timg";
-        };
-        run = {
-          body = "nix run --impure nixpkgs#$argv[1] -- $argv[2..-1]";
-          wraps = "nix run";
-        };
-        shell = {
-          body = "nix shell --impure nixpkgs#$argv[1] -- $argv[2..-1]";
-          wraps = "nix shell";
-        };
+  options.my.shell = {
+    enable = mkEnableOption "the fish & bash shells and some essential terminal programs";
+  };
+
+  config = mkIf cfg.enable {
+    my = {
+      shell = {
+        fish.enable = true;
+        bash.enable = true;
+      };
+
+      programs = {
+        zoxide.enable = true;
       };
     };
 
-    bash = mkIf cfg.bash.enable {
-      shellAliases = {
-        ip = "ip -c";
-        l = "ls";
-        icat = "${pkgs.timg}/bin/timg";
+    programs = {
+      fish = {
+        functions = {
+          ip = {
+            body = "command ip -c $argv";
+            wraps = "ip";
+          };
+          icat = {
+            body = "${pkgs.timg}/bin/timg $argv";
+            wraps = "${pkgs.timg}/bin/timg";
+          };
+          run = {
+            body = "nix run --impure nixpkgs#$argv[1] -- $argv[2..-1]";
+            wraps = "nix run";
+          };
+          shell = {
+            body = "nix shell --impure nixpkgs#$argv[1] -- $argv[2..-1]";
+            wraps = "nix shell";
+          };
+        };
+      };
+
+      bash = {
+        shellAliases = {
+          ip = "ip -c";
+          l = "ls";
+          icat = "${pkgs.timg}/bin/timg";
+        };
       };
     };
   };

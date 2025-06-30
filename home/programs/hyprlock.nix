@@ -3,10 +3,13 @@
   config,
   inputs,
   pkgs,
+  settings,
   ...
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
+  inherit (config.lib.stylix) colors;
+  rgb = color: "rgb(${color})";
 
   cfg = config.my.programs.hyprlock;
 in {
@@ -21,7 +24,7 @@ in {
       package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
 
       settings = {
-        general.hide_cursor = true;
+        general.hide_cursor = false;
 
         auth.fingerprint.enabled = true;
 
@@ -39,11 +42,11 @@ in {
           dots_rounding = -1;
           fade_on_empty = false;
           fade_timeout = 1000;
-          placeholder_text = "<span foreground=\"##${config.lib.stylix.colors.base05}\">󰌾  Logged in as <span foreground=\"##${config.lib.stylix.colors.base0D}\"><i>$USER</i></span></span>";
+          placeholder_text = "<span foreground=\"##${colors.base05}\">󰌾  Logged in as <span foreground=\"##${colors.base0D}\"><i>$USER</i></span></span>";
           hide_input = false;
           rounding = -1;
           fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
-          capslock_color = "rgb(${config.lib.stylix.colors.base0A})";
+          capslock_color = rgb colors.base0A;
 
           position = "0, -70";
           halign = "center";
@@ -53,7 +56,7 @@ in {
         image = {
           path = "~/.face";
           size = 150;
-          border_color = "rgb(${config.lib.stylix.colors.base0D})";
+          border_color = rgb colors.base0D;
 
           position = "0, 75";
           halign = "center";
@@ -63,7 +66,7 @@ in {
         label = [
           {
             text = "$TIME";
-            color = "rgb(${config.lib.stylix.colors.base05})";
+            color = rgb colors.base05;
             font_size = 90;
             font_family = config.stylix.fonts.sansSerif.name;
             position = "-30, 0";
@@ -72,7 +75,7 @@ in {
           }
           {
             text = "cmd[update:43200000] echo \"$(date +\"%A, %d %B %Y\")\"";
-            color = "rgb(${config.lib.stylix.colors.base05})";
+            color = rgb colors.base05;
             font_size = 25;
             font_family = config.stylix.fonts.sansSerif.name;
             position = "-30, -150";
@@ -81,7 +84,7 @@ in {
           }
           {
             text = "cmd[update:1000] ~/.config/hypr/scripts/get_battery_info.fish";
-            color = "rgb(${config.lib.stylix.colors.base05})";
+            color = rgb colors.base05;
             font_size = 18;
             font_family = config.stylix.fonts.sansSerif.name;
             position = "-30, -210";
@@ -90,12 +93,31 @@ in {
           }
           {
             text = "cmd[update:1000] ~/.config/hypr/scripts/get_media_info.fish";
-            color = "rgb(${config.lib.stylix.colors.base05})";
+            color = rgb colors.base05;
             font_size = 18;
             font_family = config.stylix.fonts.sansSerif.name;
             position = "-30, -253";
             halign = "right";
             valign = "top";
+          }
+          {
+            text = "Suspend";
+            color = rgb colors.base05;
+            position = "0, 10";
+            halign = "center";
+            valign = "bottom";
+          }
+        ];
+
+        shape = [
+          {
+            color = rgb colors.base00;
+            onclick = "systemctl suspend";
+            size = "120, 36"; # 10 (not visible) + 10 (from bottom) + 20 (arround text) + 16 (font)
+            rounding = settings.appearance.border.radius;
+            position = "0, 4";
+            halign = "center";
+            valign = "bottom";
           }
         ];
       };

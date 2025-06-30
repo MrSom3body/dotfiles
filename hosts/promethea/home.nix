@@ -106,6 +106,8 @@
   home.packages = builtins.attrValues {
     inherit
       (pkgs)
+      # cli
+      glow
       # Communication & Social Media
       element-desktop # Matrix client
       signal-desktop-bin

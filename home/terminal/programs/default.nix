@@ -1,8 +1,8 @@
 {...}: {
   imports = [
     # bundles
+    ./bundles
     ./cli.nix
-    ./networking.nix
 
     # development
     ./direnv.nix
@@ -32,5 +32,8 @@
     ./ssh.nix
     ./tealdeer.nix
     ./zoxide.nix
+
+    # fetches
+    ./gotcha.nix
   ];
 }

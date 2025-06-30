@@ -59,11 +59,17 @@ in {
 
       programs = {
         btop.enable = true;
-        dust.enable = true;
         git.enable = true;
+        gotcha.enable = true;
         gpg.enable = true;
         ssh.enable = true;
         yazi.enable = true;
+
+        bundles = {
+          desktop-cli-utils.enable = mkIf (cfg.systemType >= 2) true;
+          disk-utils.enable = true;
+          networking-utils.enable = true;
+        };
       };
 
       desktop = {

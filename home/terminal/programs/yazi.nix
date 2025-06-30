@@ -20,7 +20,7 @@ in {
       shellWrapperName = "y";
 
       settings = {
-        manager = {
+        mgr = {
           show_hidden = false;
         };
         preview = {
@@ -58,7 +58,7 @@ in {
       '';
 
       keymap = {
-        manager.prepend_keymap = [
+        mgr.prepend_keymap = [
           {
             on = "M";
             run = "plugin mount";
@@ -76,7 +76,7 @@ in {
           }
           {
             on = "<C-n>";
-            run = "shell --confirm '${lib.getExe pkgs.ripdrag} \"$@\" -x 2>/dev/null &'";
+            run = ''shell '${lib.getExe pkgs.ripdrag} "$@" -x 2>/dev/null &' --confirm'';
           }
         ];
       };

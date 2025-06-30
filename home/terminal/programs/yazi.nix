@@ -14,6 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.packages = [pkgs.exiftool];
     programs.yazi = {
       enable = true;
       package = inputs.yazi.packages.${pkgs.system}.default;

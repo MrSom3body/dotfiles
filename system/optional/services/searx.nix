@@ -48,6 +48,15 @@ in {
             name = "geizhals";
             disabled = false;
           }
+
+          {
+            name = "google";
+            disabled = true;
+          }
+          {
+            name = "startpage";
+            disabled = true;
+          }
         ];
       };
 

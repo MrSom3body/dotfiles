@@ -5,9 +5,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.gh;
+  cfg = config.my.terminal.programs.gh;
 in {
-  options.my.programs.gh = {
+  options.my.terminal.programs.gh = {
     enable = mkEnableOption "the github cli program";
   };
 

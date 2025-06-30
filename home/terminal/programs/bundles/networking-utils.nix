@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.bundles.networking-utils;
+  cfg = config.my.terminal.programs.bundles.networking-utils;
 in {
-  options.my.programs.bundles.networking-utils = {
+  options.my.terminal.programs.bundles.networking-utils = {
     enable = mkEnableOption "networking related programs";
   };
 

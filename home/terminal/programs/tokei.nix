@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.tokei;
+  cfg = config.my.terminal.programs.tokei;
 in {
-  options.my.programs.tokei = {
+  options.my.terminal.programs.tokei = {
     enable = mkEnableOption "tokei";
   };
 

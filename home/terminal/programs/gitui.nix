@@ -5,9 +5,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.gitui;
+  cfg = config.my.terminal.programs.gitui;
 in {
-  options.my.programs.gitui = {
+  options.my.terminal.programs.gitui = {
     enable = mkEnableOption "gitui, a blazingly fast git TUI";
   };
 

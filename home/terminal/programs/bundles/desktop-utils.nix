@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.bundles.desktop-cli-utils;
+  cfg = config.my.terminal.programs.bundles.desktop-utils;
 in {
-  options.my.programs.bundles.desktop-cli-utils = {
+  options.my.terminal.programs.bundles.desktop-utils = {
     enable = mkEnableOption "desktop cli utilities";
   };
 

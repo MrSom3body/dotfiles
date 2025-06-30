@@ -5,9 +5,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.ssh;
+  cfg = config.my.terminal.programs.ssh;
 in {
-  options.my.programs.ssh = {
+  options.my.terminal.programs.ssh = {
     enable = mkEnableOption "the ssh program";
   };
 

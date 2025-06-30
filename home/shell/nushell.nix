@@ -32,7 +32,7 @@ in {
         PROMPT_INDICATOR_VI_NORMAL = "";
       };
 
-      extraConfig = mkIf config.my.programs.gotcha.enable ''
+      extraConfig = mkIf config.my.terminal.programs.gotcha.enable ''
         if $nu.is-interactive {
           gotcha
         }

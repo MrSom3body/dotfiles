@@ -5,9 +5,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.direnv;
+  cfg = config.my.terminal.programs.direnv;
 in {
-  options.my.programs.direnv = {
+  options.my.terminal.programs.direnv = {
     enable = mkEnableOption "the direnv program";
   };
 

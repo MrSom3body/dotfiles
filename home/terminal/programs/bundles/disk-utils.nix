@@ -6,14 +6,14 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.bundles.disk-utils;
+  cfg = config.my.terminal.programs.bundles.disk-utils;
 in {
-  options.my.programs.bundles.disk-utils = {
+  options.my.terminal.programs.bundles.disk-utils = {
     enable = mkEnableOption "disk related utilities";
   };
 
   config = mkIf cfg.enable {
-    my.programs = {
+    my.terminal.programs = {
       dust.enable = true;
       fd.enable = true;
     };

@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.bat;
+  cfg = config.my.terminal.programs.bat;
 in {
-  options.my.programs.bat = {
+  options.my.terminal.programs.bat = {
     enable = mkEnableOption "bat a cat alternative";
   };
 

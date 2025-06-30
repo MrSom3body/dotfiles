@@ -5,9 +5,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.fd;
+  cfg = config.my.terminal.programs.fd;
 in {
-  options.my.programs.fd = {
+  options.my.terminal.programs.fd = {
     enable = mkEnableOption "the fd program";
   };
 

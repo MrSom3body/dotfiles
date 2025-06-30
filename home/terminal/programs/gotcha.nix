@@ -7,9 +7,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.gotcha;
+  cfg = config.my.terminal.programs.gotcha;
 in {
-  options.my.programs.gotcha = {
+  options.my.terminal.programs.gotcha = {
     enable = mkEnableOption "the objectively best fetch on the world";
   };
 

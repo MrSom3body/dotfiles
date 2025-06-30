@@ -6,9 +6,9 @@
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.kitty;
+  cfg = config.my.terminal.emulators.kitty;
 in {
-  options.my.programs.kitty = {
+  options.my.terminal.emulators.kitty = {
     enable = mkEnableOption "the kitty terminal emulator";
   };
 

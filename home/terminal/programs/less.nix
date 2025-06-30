@@ -5,9 +5,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.less;
+  cfg = config.my.terminal.programs.less;
 in {
-  options.my.programs.less = {
+  options.my.terminal.programs.less = {
     enable = mkEnableOption "the less program";
   };
 

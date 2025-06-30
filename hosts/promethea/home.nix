@@ -59,8 +59,9 @@
           '';
         };
       };
+    };
 
-      # cli
+    terminal.programs = {
       comma.enable = true;
       direnv.enable = true;
       gh.enable = true;

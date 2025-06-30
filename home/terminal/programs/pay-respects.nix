@@ -5,9 +5,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.pay-respects;
+  cfg = config.my.terminal.programs.pay-respects;
 in {
-  options.my.programs.pay-respects = {
+  options.my.terminal.programs.pay-respects = {
     enable = mkEnableOption "pay-respects";
   };
 

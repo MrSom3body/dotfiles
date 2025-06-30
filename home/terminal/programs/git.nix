@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.git;
+  cfg = config.my.terminal.programs.git;
 in {
-  options.my.programs.git = {
+  options.my.terminal.programs.git = {
     enable = mkEnableOption "my git config";
   };
 

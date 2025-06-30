@@ -7,9 +7,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.yazi;
+  cfg = config.my.terminal.programs.yazi;
 in {
-  options.my.programs.yazi = {
+  options.my.terminal.programs.yazi = {
     enable = mkEnableOption "yazi";
   };
 

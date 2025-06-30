@@ -6,9 +6,9 @@
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.alacritty;
+  cfg = config.my.terminal.emulators.alacritty;
 in {
-  options.my.programs.alacritty = {
+  options.my.terminal.emulators.alacritty = {
     enable = mkEnableOption "the alacritty terminal emulator";
   };
 

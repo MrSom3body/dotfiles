@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.dust;
+  cfg = config.my.terminal.programs.dust;
 in {
-  options.my.programs.dust = {
+  options.my.terminal.programs.dust = {
     enable = mkEnableOption "dust, a disk usage tool";
   };
 

@@ -8,7 +8,7 @@
   inherit (lib) mkEnableOption;
   inherit (lib) mkIf;
 
-  cfg = config.my.programs.foot;
+  cfg = config.my.terminal.emulators.foot;
 
   foot-pipe = pkgs.writeScript "foot-pipe" ''
     #!${pkgs.fish}/bin/fish
@@ -18,7 +18,7 @@
     rm -f -- $tmp
   '';
 in {
-  options.my.programs.foot = {
+  options.my.terminal.emulators.foot = {
     enable = mkEnableOption "the foot terminal emulator";
   };
 

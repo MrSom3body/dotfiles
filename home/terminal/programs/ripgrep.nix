@@ -5,9 +5,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.ripgrep;
+  cfg = config.my.terminal.programs.ripgrep;
 in {
-  options.my.programs.ripgrep = {
+  options.my.terminal.programs.ripgrep = {
     enable = mkEnableOption "ripgrep";
   };
 

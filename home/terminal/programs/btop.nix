@@ -5,9 +5,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.btop;
+  cfg = config.my.terminal.programs.btop;
 in {
-  options.my.programs.btop = {
+  options.my.terminal.programs.btop = {
     enable = mkEnableOption "the btop monitor";
   };
 

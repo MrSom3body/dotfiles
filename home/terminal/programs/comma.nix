@@ -6,13 +6,13 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.comma;
+  cfg = config.my.terminal.programs.comma;
 in {
   imports = [
     inputs.nix-index-database.hmModules.nix-index
   ];
 
-  options.my.programs.comma = {
+  options.my.terminal.programs.comma = {
     enable = mkEnableOption "the comma program";
   };
 

@@ -5,9 +5,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.zoxide;
+  cfg = config.my.terminal.programs.zoxide;
 in {
-  options.my.programs.zoxide = {
+  options.my.terminal.programs.zoxide = {
     enable = mkEnableOption "the zoxide program";
   };
 

@@ -8,10 +8,10 @@
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.ghostty;
+  cfg = config.my.terminal.emulators.ghostty;
   cfg' = config.programs.ghostty;
 in {
-  options.my.programs.ghostty = {
+  options.my.terminal.emulators.ghostty = {
     enable = mkEnableOption "the ghostty terminal emulator";
   };
 

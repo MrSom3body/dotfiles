@@ -5,9 +5,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.tealdeer;
+  cfg = config.my.terminal.programs.tealdeer;
 in {
-  options.my.programs.tealdeer = {
+  options.my.terminal.programs.tealdeer = {
     enable = mkEnableOption "tealdeer";
   };
 

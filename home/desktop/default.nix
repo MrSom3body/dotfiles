@@ -41,10 +41,11 @@ in {
 
       styling.enable = true;
 
+      terminal.emulators.foot.enable = mkDefault true;
+
       programs = {
         fuzzel.enable = mkDefault true;
         waybar.enable = mkDefault true;
-        foot.enable = mkDefault true;
       };
 
       services = {

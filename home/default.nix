@@ -57,7 +57,7 @@ in {
         enable = true;
       };
 
-      programs = {
+      terminal.programs = {
         btop.enable = true;
         git.enable = true;
         gotcha.enable = true;
@@ -66,7 +66,7 @@ in {
         yazi.enable = true;
 
         bundles = {
-          desktop-cli-utils.enable = mkIf (cfg.systemType >= 2) true;
+          desktop-utils.enable = mkIf (cfg.systemType >= 2) true;
           disk-utils.enable = true;
           networking-utils.enable = true;
         };

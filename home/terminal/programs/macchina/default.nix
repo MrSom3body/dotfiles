@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.macchina;
+  cfg = config.my.terminal.programs.macchina;
 in {
-  options.my.programs.macchina = {
+  options.my.terminal.programs.macchina = {
     enable = mkEnableOption "macchina";
   };
 

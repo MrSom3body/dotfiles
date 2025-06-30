@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.programs.trash-cli;
+  cfg = config.my.terminal.programs.trash-cli;
 in {
-  options.my.programs.trash-cli = {
+  options.my.terminal.programs.trash-cli = {
     enable = mkEnableOption "trash-cli";
   };
 

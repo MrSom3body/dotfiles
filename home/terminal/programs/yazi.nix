@@ -21,12 +21,22 @@ in {
 
       settings = {
         mgr = {
+          sort_by = "natural";
+          sort_dir_first = true;
           show_hidden = false;
+          show_symlink = true;
         };
+
         preview = {
-          max_width = 1000;
-          max_height = 1000;
+          wrap = "no";
+          tab_size = 2;
+          max_width = 600;
+          max_height = 900;
+          image_filter = "triangle";
+          image_quality = 75;
+          cache_dir = config.xdg.cacheHome;
         };
+
         # for git plugin
         plugin.prepend_fetchers = [
           {

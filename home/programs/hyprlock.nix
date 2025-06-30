@@ -31,6 +31,7 @@ in {
         background = {
           blur_size = 4;
           blur_passes = 2;
+          brightness = 0.75;
         };
 
         input-field = {

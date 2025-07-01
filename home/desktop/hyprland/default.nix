@@ -24,6 +24,7 @@ in {
     ./pyprland.nix
     ./rules.nix
     ./plugins/hyprbars.nix
+    ./plugins/hyprexpo.nix
   ];
 
   options.my.desktop.hyprland = {

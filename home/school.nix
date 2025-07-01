@@ -39,8 +39,7 @@ in {
       ]
       ++ (
         if preFetch
-        # TODO switch back to unstable after https://github.com/NixOS/nixpkgs/pull/418679 gets merged
-        then [pkgs.stable.ciscoPacketTracer8]
+        then [pkgs.ciscoPacketTracer8]
         else []
       );
 

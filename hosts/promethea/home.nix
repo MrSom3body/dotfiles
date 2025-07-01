@@ -82,6 +82,10 @@
           - MouseGesture: Mouse Left
           - Execute: [hyprctl, dispatch, workspace, r-1]
           ...
+          ---
+          - MouseGesture: Mouse Up
+          - Execute: [hyprctl, dispatch, hyprexpo:expo, toggle]
+          ...
         '';
       };
       syncthing.enable = true;

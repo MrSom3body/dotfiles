@@ -27,7 +27,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Purge non-nix stuff
-        uses: wimpysworld/nothing-but-nix@main
+        uses: wimpysworld/nothing-but-nix@v6
         with:
           hatchet-protocol: cleave
 
@@ -41,7 +41,7 @@ jobs:
             experimental-features = nix-command flakes
 
       - name: Setup Nix magic cache
-        uses: DeterminateSystems/magic-nix-cache-action@main
+        uses: DeterminateSystems/magic-nix-cache-action@v12
         with:
           diagnostic-endpoint: ""
 

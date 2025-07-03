@@ -60,6 +60,7 @@
                   in [
                     (mkSite "loxone" "https://loxone.sndh.dev" "di:loxone")
                     (mkSite "searxng" "https://search.sndh.dev" "di:searxng")
+                    (mkSite "miniflux" "https://read.sndh.dev" "di:miniflux")
                     (mkSite "immich" "https://immich.sndh.dev" "di:immich")
                     (mkSite "jellyfin" "https://jellyfin.sndh.dev" "di:jellyfin")
                     (mkSite "jellyseerr" "https://jellyseerr.sndh.dev" "di:jellyseerr")

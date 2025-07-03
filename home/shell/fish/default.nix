@@ -44,11 +44,6 @@ in {
 
       functions = {
         fish_greeting = mkIf config.my.terminal.programs.gotcha.enable "gotcha";
-
-        highscore = {
-          body = "history | awk '{print $1}' | sort | uniq -c | sort -rn | head -n 10";
-          description = "See your most used fish commands";
-        };
       };
 
       shellAbbrs = {

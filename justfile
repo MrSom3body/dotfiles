@@ -6,6 +6,7 @@ alias t := test
 alias fl := fix-lanzaboote
 alias d := deploy
 
+[private]
 default:
     @just --list
 

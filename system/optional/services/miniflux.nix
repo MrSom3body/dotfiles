@@ -17,6 +17,7 @@ in {
       config = {
         CREATE_ADMIN = 1;
         LISTEN_ADDR = "localhost:7070";
+        BASE_URL = "https://read.sndh.dev";
       };
     };
   };

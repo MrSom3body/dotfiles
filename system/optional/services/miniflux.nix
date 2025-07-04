@@ -1,7 +1,10 @@
 {config, ...}: let
   cfg = config.services.miniflux.config;
 in {
-  sops.secrets.miniflux-password.sopsFile = ../../../secrets/pandora/secrets.yaml;
+  sops.secrets.miniflux = {
+    sopsFile = ../../../secrets/pandora/miniflux.env;
+    format = "dotenv";
+  };
 
   services = {
     caddy.virtualHosts."read.sndh.dev" = {
@@ -13,7 +16,7 @@ in {
 
     miniflux = {
       enable = true;
-      adminCredentialsFile = config.sops.secrets.miniflux-password.path;
+      adminCredentialsFile = config.sops.secrets.miniflux.path;
       config = {
         CREATE_ADMIN = 1;
         LISTEN_ADDR = "localhost:7070";

@@ -3,7 +3,10 @@
     ../../../system/optional/services/caddy.nix
   ];
 
-  sops.secrets.caddy.sopsFile = ../../../secrets/pandora/secrets.yaml;
+  sops.secrets.caddy = {
+    sopsFile = ../../../secrets/pandora/caddy.env;
+    format = "dotenv";
+  };
 
   services.caddy = {
     environmentFile = config.sops.secrets.caddy.path;

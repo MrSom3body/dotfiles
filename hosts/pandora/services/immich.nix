@@ -5,11 +5,14 @@ in {
     ../../../system/optional/services/immich.nix
   ];
 
-  sops.secrets.immich-db-password.sopsFile = ../../../secrets/pandora/secrets.yaml;
+  sops.secrets.immich = {
+    sopsFile = ../../../secrets/pandora/immich.env;
+    format = "dotenv";
+  };
 
   services = {
     immich = {
-      secretsFile = config.sops.secrets.immich-db-password.path;
+      secretsFile = config.sops.secrets.immich.path;
       accelerationDevices = ["/dev/dri/renderD128"];
     };
 

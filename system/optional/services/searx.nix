@@ -1,7 +1,10 @@
 {config, ...}: let
   cfg = config.services.searx;
 in {
-  sops.secrets.searx-key.sopsFile = ../../../secrets/pandora/secrets.yaml;
+  sops.secrets.searx = {
+    sopsFile = ../../../secrets/pandora/searx.env;
+    format = "dotenv";
+  };
 
   services = {
     caddy.virtualHosts = {
@@ -15,7 +18,7 @@ in {
 
     searx = {
       enable = true;
-      environmentFile = config.sops.secrets.searx-key.path;
+      environmentFile = config.sops.secrets.searx.path;
       settings = {
         use_default_settings = true;
 

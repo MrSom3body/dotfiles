@@ -8,6 +8,7 @@
     ../../system/profiles/server.nix
 
     ../../system/optional/services/miniflux.nix
+    ../../system/optional/services/ntfy.nix
     ../../system/optional/services/searx.nix
     ../../system/optional/services/tailscale-exit-node.nix
 

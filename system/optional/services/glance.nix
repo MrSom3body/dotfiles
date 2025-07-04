@@ -62,6 +62,7 @@
                     (mkSite "searxng" "https://search.sndh.dev" "di:searxng")
                     (mkSite "miniflux" "https://read.sndh.dev" "di:miniflux")
                     (mkSite "immich" "https://immich.sndh.dev" "di:immich")
+                    (mkSite "ntfy" "https://ntfy.sndh.dev" "di:ntfy")
                     (mkSite "jellyfin" "https://jellyfin.sndh.dev" "di:jellyfin")
                     (mkSite "jellyseerr" "https://jellyseerr.sndh.dev" "di:jellyseerr")
                     (mkSite "sonarr" "https://sonarr.sndh.dev" "di:sonarr")

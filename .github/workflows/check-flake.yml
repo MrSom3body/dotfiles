@@ -10,10 +10,6 @@ on:
       - "**.lock"
       - ".github/workflows/check-flake.yml"
   pull_request:
-    paths:
-      - "**.nix"
-      - "**.lock"
-      - ".github/workflows/check-flake.yml"
 
 jobs:
   check-flake:

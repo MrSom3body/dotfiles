@@ -22,10 +22,11 @@ in {
         splashTheming = true;
         enableMenu = true;
       };
+
       vencord = {
         settings = {
-          autoUpdate = false;
-          autoUpdateNotification = false;
+          autoUpdate = true;
+          autoUpdateNotification = true;
           notifyAboutUpdates = false;
           useQuickCss = true;
           eagerPatches = false;

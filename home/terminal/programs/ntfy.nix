@@ -14,11 +14,32 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [pkgs.ntfy-sh];
-    xdg.configFile."ntfy/client.yml".text =
-      # yaml
-      ''
-        default-host: https://ntfy.sndh.dev
-      '';
+    sops = {
+      secrets.karun-password.sopsFile = ../../../secrets/promethea/ntfy.yaml;
+      templates."ntfy-client-config.yml" = {
+        content = ''
+          default-host: https://ntfy.sndh.dev
+          default-user: karun
+          default-password: ${config.sops.placeholder.karun-password}
+
+          subscribe:
+            - topic: sonarr
+              command: ${lib.getExe pkgs.libnotify} -a "ntfy - $topic" "$t" "$m"
+            - topic: radarr
+              command: ${lib.getExe pkgs.libnotify} -a "ntfy - $topic" "$t" "$m"
+            - topic: prowlarr
+              command: ${lib.getExe pkgs.libnotify} -a "ntfy - $topic" "$t" "$m"
+            - topic: jellyseer
+              command: ${lib.getExe pkgs.libnotify} -a "ntfy - $topic" "$t" "$m"
+            - topic: miniflux
+              command: ${lib.getExe pkgs.libnotify} -a "ntfy - $topic" "$t" "$m"
+        '';
+      };
+    };
+
+    home = {
+      packages = [pkgs.ntfy-sh];
+      file.".config/ntfy/client.yml".source = config.lib.file.mkOutOfStoreSymlink config.sops.templates."ntfy-client-config.yml".path;
+    };
   };
 }

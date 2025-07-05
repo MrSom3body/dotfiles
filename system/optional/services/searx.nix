@@ -51,6 +51,10 @@ in {
             name = "geizhals";
             disabled = false;
           }
+          {
+            name = "duden";
+            disabled = false;
+          }
 
           {
             name = "google";

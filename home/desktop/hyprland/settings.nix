@@ -129,7 +129,6 @@ in {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         vfr = true;
-        vrr = 1;
         animate_manual_resizes = true;
         focus_on_activate = true;
       };

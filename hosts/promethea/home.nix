@@ -66,6 +66,7 @@
       direnv.enable = true;
       gh.enable = true;
       gitui.enable = true;
+      ntfy.enable = true;
       tealdeer.enable = true;
       tokei.enable = true;
     };

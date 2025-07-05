@@ -28,6 +28,7 @@
     ./eza.nix
     ./gpg.nix
     ./less.nix
+    ./ntfy.nix
     ./pay-respects.nix
     ./ssh.nix
     ./tealdeer.nix

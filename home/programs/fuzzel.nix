@@ -23,7 +23,6 @@ in {
         main = {
           placeholder = "Type to search...";
           prompt = "'❯ '";
-          icon-theme = "Papirus";
           launch-prefix = "uwsm app --";
           match-counter = true;
           terminal = "${settings.programs.terminal} -e";

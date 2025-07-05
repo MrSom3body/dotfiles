@@ -41,5 +41,23 @@ in {
       packages = [pkgs.ntfy-sh];
       file.".config/ntfy/client.yml".source = config.lib.file.mkOutOfStoreSymlink config.sops.templates."ntfy-client-config.yml".path;
     };
+
+    systemd.user.services = {
+      ntfy-client = {
+        Unit = {
+          Description = "ntfy client";
+          After = "network.target";
+        };
+
+        Service = {
+          ExecStart = ''${pkgs.ntfy-sh}/bin/ntfy subscribe --config "%h/.config/ntfy/client.yml" --from-config'';
+          Restart = "on-failure";
+        };
+
+        Install = {
+          WantedBy = ["default.target"];
+        };
+      };
+    };
   };
 }

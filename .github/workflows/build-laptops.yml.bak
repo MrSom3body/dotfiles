@@ -34,10 +34,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Purge non-nix stuff
-        uses: wimpysworld/nothing-but-nix@v6
-        with:
-          hatchet-protocol: rampage
+      # - name: Purge non-nix stuff
+      #   uses: wimpysworld/nothing-but-nix@v6
+      #   with:
+      #     hatchet-protocol: rampage
 
       - name: Install Lix
         uses: DeterminateSystems/nix-installer-action@v17

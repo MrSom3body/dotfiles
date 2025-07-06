@@ -7,19 +7,20 @@
     ./hardware-configuration.nix
     ../../system/profiles/server.nix
 
+    ../../system/optional/services/caddy.nix
+    ../../system/optional/services/ddns-updater.nix
+    ../../system/optional/services/glance.nix
     ../../system/optional/services/miniflux.nix
     ../../system/optional/services/ntfy.nix
     ../../system/optional/services/searx.nix
+    ../../system/optional/services/send.nix
     ../../system/optional/services/tailscale-exit-node.nix
 
     ../../system/optional/network/tuxshare.nix
 
     ./services/caddy.nix
-    ./services/ddns-updater.nix
-    ./services/glance.nix
     ./services/immich.nix
     ./services/jellyfin.nix
-    ./services/send.nix
 
     ./vpn/proton.nix
 

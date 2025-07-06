@@ -1,5 +1,14 @@
-{
+{config, ...}: let
+  cfg = config.services.send;
+in {
   services = {
+    caddy.virtualHosts."send.sndh.dev" = {
+      extraConfig = ''
+        reverse_proxy http://${cfg.host}:${toString cfg.port}
+        tls internal
+      '';
+    };
+
     send = {
       enable = true;
       host = "127.0.0.1";

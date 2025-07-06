@@ -1,23 +1,5 @@
-{config, ...}: {
-  imports = [
-    ../../../system/optional/services/caddy.nix
-  ];
-
-  sops.secrets.caddy = {
-    sopsFile = ../../../secrets/pandora/caddy.env;
-    format = "dotenv";
-  };
-
+{
   services.caddy = {
-    environmentFile = config.sops.secrets.caddy.path;
-    extraConfig = ''
-      (cloudflare) {
-        tls {
-          dns cloudflare {$CF_TOKEN}
-        }
-      }
-    '';
-
     virtualHosts = {
       "loxone.sndh.dev" = {
         extraConfig = ''

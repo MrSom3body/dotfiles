@@ -1,10 +1,22 @@
 {config, ...}: let
   cfg = config.services.send;
+  anubis = config.services.anubis.instances.firefox-send;
 in {
   services = {
+    anubis.instances.firefox-send = {
+      enable = true;
+      group = "caddy";
+      settings = {
+        TARGET = "http://${cfg.host}:${toString cfg.port}";
+      };
+    };
+
     caddy.virtualHosts."send.sndh.dev" = {
       extraConfig = ''
-        reverse_proxy http://${cfg.host}:${toString cfg.port}
+        reverse_proxy unix/${anubis.settings.BIND} {
+          header_up X-Real-Ip {remote_host}
+          header_up X-Http-Version {http.request.proto}
+        }
         tls internal
       '';
     };

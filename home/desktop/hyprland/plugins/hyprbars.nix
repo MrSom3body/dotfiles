@@ -37,6 +37,8 @@ in {
         windowrule = [
           # don't render hyprbars on tiling windows
           "plugin:hyprbars:nobar, floating:0"
+          # don't reneder hyprbars on pinned floating windows (firefox PiP)
+          "plugin:hyprbars:nobar, floating:1, pinned:1"
         ];
       };
     };

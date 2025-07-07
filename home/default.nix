@@ -76,7 +76,10 @@ in {
         enable = mkIf (cfg.systemType >= 2) true;
       };
 
-      services.power-monitor.enable = mkIf (cfg.systemType >= 3) true;
+      services = {
+        mpris-proxy.enable = mkIf (cfg.systemType >= 2) true;
+        power-monitor.enable = mkIf (cfg.systemType >= 3) true;
+      };
     };
 
     programs.home-manager.enable = true;

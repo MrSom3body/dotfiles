@@ -8,6 +8,7 @@
     ./hypridle.nix
     ./hyprpaper.nix
     ./kdeconnect.nix
+    ./mpris-proxy.nix
     ./polkit.nix
     ./power-monitor.nix
     ./psd.nix

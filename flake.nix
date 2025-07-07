@@ -207,10 +207,7 @@
     stylix = {
       url = "github:nix-community/stylix";
       inputs = {
-        flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
-        git-hooks.follows = "git-hooks-nix";
-        home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
       };

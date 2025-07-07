@@ -39,7 +39,9 @@ in {
       ]
       ++ (
         if preFetch
-        then [pkgs.ciscoPacketTracer8]
+        then [
+          # pkgs.ciscoPacketTracer8
+        ]
         else []
       );
 

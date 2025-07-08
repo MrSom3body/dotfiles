@@ -1,4 +1,4 @@
-name: "Update flake.lock"
+name: Update Flake
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   update-flake:
-    name: Update flake.lock
+    name: Update Flake
     runs-on: ubuntu-latest
 
     permissions:

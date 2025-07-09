@@ -61,7 +61,7 @@ in {
           "$mainMod, W, Toggle floating, togglefloating"
 
           # Other actions
-          "$mainMod, O, Copy text from screen, exec, wl-ocr"
+          "$mainMod, O, Copy text from screen, exec, wl-ocr -nc"
           "$mainMod, ESCAPE, Lock screen, exec, loginctl lock-session"
           "$mainMod, C, Open color picker, exec, ${runOnce "hyprpicker -a"}"
           # "$mainMod SHIFT, O, Ask ollama something, exec, uwsm app -- fish -c \"chat -fcs\""

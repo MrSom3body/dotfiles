@@ -1,17 +1,38 @@
 # copied from @fufexan
 {
   lib,
-  writeShellScriptBin,
+  stdenv,
+  makeWrapper,
+  fish,
   grim,
+  libnotify,
   slurp,
   tesseract,
   wl-clipboard,
-  libnotify,
-}: let
-  _ = lib.getExe;
-in
-  writeShellScriptBin "wl-ocr" ''
-    ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract} -l eng+deu - - | ${wl-clipboard}/bin/wl-copy
-    echo "$(${wl-clipboard}/bin/wl-paste)"
-    ${_ libnotify} -t 3000 -i ocrfeeder -- "wl-ocr" "$(${wl-clipboard}/bin/wl-paste)"
-  ''
+}:
+stdenv.mkDerivation rec {
+  name = "wl-ocr";
+
+  src = ./.;
+
+  nativeBuildInputs = [makeWrapper];
+
+  installPhase = ''
+    install -Dm755 $src/${name}.fish $out/bin/${name}
+  '';
+
+  fixupPhase = ''
+    wrapProgram $out/bin/${name} --set PATH ${
+      lib.makeBinPath [
+        fish
+        grim
+        libnotify
+        slurp
+        tesseract
+        wl-clipboard
+      ]
+    }
+  '';
+
+  meta.mainProgram = name;
+}

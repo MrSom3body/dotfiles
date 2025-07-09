@@ -39,6 +39,8 @@ in {
         allow_tearing = true;
       };
 
+      render.new_render_scheduling = true;
+
       decoration = {
         rounding = settings.appearance.border.radius;
 

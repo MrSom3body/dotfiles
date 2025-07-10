@@ -46,6 +46,7 @@ in {
           ltex-ls
           # typst
           tinymist
+          typstyle
           # xml
           lemminx
           # yaml

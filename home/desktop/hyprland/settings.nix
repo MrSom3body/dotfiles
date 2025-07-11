@@ -18,12 +18,7 @@ in {
       ];
 
       exec-once = [
-        "uwsm finalize"
         "wpctl set-mute @DEFAULT_AUDIO_SINK@ 1"
-
-        # Applications
-        "[workspace 1 silent] uwsm app -- ${settings.programs.browser}"
-        "[workspace special:todoist silent] uwsm app -- todoist-electron"
       ];
 
       general = {

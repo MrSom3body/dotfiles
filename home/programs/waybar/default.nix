@@ -198,6 +198,7 @@ in {
               critical = 20;
             };
             format = "{icon}  {capacity}%";
+            format-time = "{H}h {M}min";
             format-charging = "󱐋  {capacity}%";
             format-plugged = "  {capacity}%";
             format-alt = "{icon}  {time}";
@@ -208,6 +209,8 @@ in {
               " "
               " "
             ];
+
+            tooltip-format = "{timeTo}\nPower: {power}W";
           };
 
           idle_inhibitor = {

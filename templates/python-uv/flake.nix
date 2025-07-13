@@ -3,6 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/default-linux";
+
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     pyproject-nix = {
       url = "github:pyproject-nix/pyproject.nix";
@@ -27,8 +33,21 @@
     };
   };
 
-  outputs = {nixpkgs, ...} @ inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     inherit (nixpkgs) lib;
+
+    forEachSystem = f: lib.genAttrs (import inputs.systems) (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs (import inputs.systems) (
+      system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+    );
 
     workspace = inputs.uv2nix.lib.workspace.loadWorkspace {workspaceRoot = ./.;};
 
@@ -64,28 +83,19 @@
         ]
       );
   in {
-    packages.x86_64-linux.default = pythonSet.mkVirtualEnv "python-env" workspace.deps.default;
+    packages = forEachSystem (_pkgs: {
+      default = pythonSet.mkVirtualEnv "python-env" workspace.deps.default;
+    });
 
-    devShells.x86_64-linux.default = pkgs.mkShell {
-      packages = [
-        python
-        pkgs.uv
-      ];
-      env =
-        {
-          # Prevent uv from managing Python downloads
-          UV_PYTHON_DOWNLOADS = "never";
-          # Force uv to use nixpkgs Python interpreter
-          UV_PYTHON = python.interpreter;
-        }
-        // lib.optionalAttrs pkgs.stdenv.isLinux {
-          # Python libraries often load native shared objects using dlopen(3).
-          # Setting LD_LIBRARY_PATH makes the dynamic library loader aware of libraries without using RPATH for lookup.
-          LD_LIBRARY_PATH = lib.makeLibraryPath pkgs.pythonManylinuxPackages.manylinux1;
-        };
-      shellHook = ''
-        unset PYTHONPATH
-      '';
-    };
+    devShells = forEachSystem (pkgs:
+      import ./nix/shell.nix {
+        inherit self lib pkgs python;
+      });
+
+    checks = forEachSystem (pkgs:
+      import ./nix/checks.nix {
+        inherit inputs;
+        inherit pkgs;
+      });
   };
 }

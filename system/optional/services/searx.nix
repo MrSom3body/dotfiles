@@ -22,15 +22,19 @@ in {
       settings = {
         use_default_settings = true;
 
-        general = {
-          instance_name = "Karun's SearXNG";
-        };
-
         server = {
           base_url = "https://search.sndh.dev";
           port = 8888;
           bind_address = "127.0.0.1";
           secret_key = "@SEARX_SECRET_KEY@";
+        };
+
+        general = {
+          instance_name = "Karun's SearXNG";
+        };
+
+        hostnames = {
+          remove = ["(.*\.)?nixos.wiki$"];
         };
 
         search = {

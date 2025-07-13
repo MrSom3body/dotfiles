@@ -11,5 +11,7 @@ in {
     home.packages = [pkgs.playerctl];
 
     services.playerctld.enable = true;
+
+    systemd.user.services.playerctld.Service.Restart = lib.mkForce "on-failure";
   };
 }

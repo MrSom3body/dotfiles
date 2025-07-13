@@ -43,7 +43,7 @@ in {
           # toml
           taplo
           # typos
-          ltex-ls
+          ltex-ls-plus
           # typst
           tinymist
           typstyle
@@ -163,7 +163,7 @@ in {
           };
 
           ltex = {
-            command = "ltex-ls";
+            command = "ltex-ls-plus";
           };
 
           nixd = {

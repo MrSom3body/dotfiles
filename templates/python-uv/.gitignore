@@ -1,0 +1,12 @@
+### nix ###
+.direnv
+/.pre-commit-config.yaml
+result
+/*-
+
+### Jetbrains IDEs ###
+.idea/
+
+### Python ###
+__pycache__/
+*.py[cod]

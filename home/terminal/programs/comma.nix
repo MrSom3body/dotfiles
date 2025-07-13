@@ -9,7 +9,7 @@
   cfg = config.my.terminal.programs.comma;
 in {
   imports = [
-    inputs.nix-index-database.hmModules.nix-index
+    inputs.nix-index-database.homeModules.nix-index
   ];
 
   options.my.terminal.programs.comma = {

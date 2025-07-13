@@ -107,7 +107,7 @@ in {
             soft-wrap.enable = true;
             formatter = {
               command = "prettier";
-              args = ["--parser" "markdown"];
+              args = ["--parser" "markdown" "--prose-wrap" "always"];
             };
             language-servers = ["marksman" "ltex"];
           }

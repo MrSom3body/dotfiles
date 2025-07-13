@@ -16,11 +16,11 @@
           alejandra
           git
           just
+          neovim # a editor if I'm dumb and remove it somehow
           sops
           ;
       }
       ++ [
-        inputs.helix.packages.${pkgs.system}.default # a editor if I'm dumb and remove it somehow
         inputs.deploy-rs.packages.${pkgs.system}.default
       ];
 

@@ -55,8 +55,13 @@ in {
 
         search = {
           force = true;
-          default = "ddg";
+          default = "searxng";
           engines = {
+            "searxng" = {
+              urls = [{template = "https://search.sndh.dev/search?q={searchTerms}";}];
+              icon = "https://search.sndh.dev/favicon.ico";
+              definedAliases = ["@sx"];
+            };
             "amazon" = {
               urls = [{template = "https://amazon.de/s?k={searchTerms}";}];
               icon = "https://amazon.de/favicon.ico";

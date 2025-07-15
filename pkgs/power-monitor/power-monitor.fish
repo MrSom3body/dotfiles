@@ -20,6 +20,7 @@ set prevProfile $AC_PROFILE
 set prevStatus Charging
 
 # initial run
+echo >~/.battery
 if test "$currentStatus" = Discharging
     set profile $BAT_PROFILE
 else
@@ -53,13 +54,23 @@ while true
         set prevStatus $currentStatus
     end
 
-    switch $BAT_CAP
-        case 30
-            notify-send -a power-monitor -u critical "Battery Low" "Battery level is at 30%"
-        case 20
-            notify-send -a power-monitor -u critical "Battery Very Low" "Battery level is at 20%"
-        case 10
-            notify-send -a power-monitor -u critical "Battery Critical" "Battery level is at 10%! Plug in immediately!"
+    set currentCapacity (cat "$BAT_CAP")
+    if test $currentCapacity -gt 30
+        echo >~/.battery
+    else
+        if test $currentCapacity -le 10
+            test (cat ~/.battery) != 10 &&
+                notify-send -a power-monitor -u critical "Battery Critical" "Battery level is at 10%! Plug in immediately!"
+            echo 10 >~/.battery
+        else if test $currentCapacity -le 20
+            test (cat ~/.battery) != 20 &&
+                notify-send -a power-monitor -u critical "Battery Very Low" "Battery level is at 20%"
+            echo 20 >~/.battery
+        else if test $currentCapacity -le 30
+            test (cat ~/.battery) != 30 &&
+                notify-send -a power-monitor -u critical "Battery Low" "Battery level is at 30%"
+            echo 30 >~/.battery
+        end
     end
 
     # wait for the next power change event

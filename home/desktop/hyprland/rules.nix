@@ -55,6 +55,7 @@ in {
 
         # Proton Pass
         "float, class:^(Proton Pass)$"
+        "noscreenshare, class:^(Proton Pass)$"
 
         # GNS3
         "stayfocused, class:^(gns3)$, title:^(Change hostname)$"

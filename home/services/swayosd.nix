@@ -25,6 +25,7 @@ in {
         
         ''
           window#osd {
+            padding: 12px 20px;
             border-radius: ${toString border.radius}px;
             border: solid ${colors.base0D} ${toString border.size}px;
             background: alpha(${colors.base00}, ${toString config.stylix.opacity.popups});

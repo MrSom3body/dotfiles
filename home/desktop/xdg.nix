@@ -27,12 +27,22 @@
 
   browserTypes =
     (xdgAssociations "application" [
+        "application/x-extension-htm"
+        "application/x-extension-html"
+        "application/x-extension-shtml"
+        "application/x-extension-xht"
+        "application/x-extension-xhtml"
+        "application/xhtml+xml"
         "json"
+        "text/html"
         "x-extension-htm"
         "x-extension-html"
         "x-extension-shtml"
         "x-extension-xht"
         "x-extension-xhtml"
+        "x-scheme-handler/chrome"
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
         "xhtml+xml"
       ]
       browser)

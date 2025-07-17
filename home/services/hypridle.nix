@@ -24,7 +24,7 @@ in {
         isDischarging = command: "grep Discharging /sys/class/power_supply/BAT*/status -q && ${command}";
       in {
         general = {
-          lock_cmd = "uwsm app -- hyprlock";
+          lock_cmd = "pgrep hyprlock || uwsm app -- hyprlock";
           unlock_cmd = "pkill -SIGUSR1 hyprlock";
           before_sleep_cmd = "loginctl lock-session";
           after_sleep_cmd = "hyprctl dispatch dpms on";

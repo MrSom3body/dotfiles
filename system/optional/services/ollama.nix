@@ -5,8 +5,7 @@
       enable = true;
       loadModels = [
         "deepseek-r1:14b"
-        "llama3.2:3b-instruct-q4_K_M"
-        "llava"
+        "llama3.2:3b-instruct-q8_0"
       ];
     };
   };

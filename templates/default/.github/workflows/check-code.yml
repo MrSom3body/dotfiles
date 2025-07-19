@@ -1,0 +1,30 @@
+name: Check Code
+
+on:
+  push:
+
+jobs:
+  check-code:
+    name: Check code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Lix
+        uses: DeterminateSystems/nix-installer-action@v18
+        with:
+          source-url: "https://install.lix.systems/lix/lix-installer-x86_64-linux"
+          diagnostic-endpoint: "" # so eelco can have more personalized self-merges? no thank you
+          backtrace: "true"
+          extra-conf: |
+            experimental-features = nix-command flakes
+
+      - name: Setup Nix magic cache
+        uses: DeterminateSystems/magic-nix-cache-action@v12
+        with:
+          diagnostic-endpoint: ""
+
+      - name: Run checks
+        run: |
+          nix flake check

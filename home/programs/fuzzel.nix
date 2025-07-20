@@ -29,6 +29,7 @@ in {
           horizontal-pad = 40;
           vertical-pad = 20;
           inner-pad = 15;
+          image-size-ratio = 0.3;
         };
 
         border = {

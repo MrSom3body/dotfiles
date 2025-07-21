@@ -95,6 +95,7 @@ in {
 
           {
             name = "html";
+            auto-format = true;
             formatter = {
               command = "prettier";
               args = ["--parser" "html"];

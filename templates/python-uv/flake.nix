@@ -83,6 +83,8 @@
         ]
       );
   in {
+    formatter = forEachSystem (pkgs: pkgs.alejandra);
+
     packages = forEachSystem (_pkgs: {
       default = pythonSet.mkVirtualEnv "python-env" workspace.deps.default;
     });

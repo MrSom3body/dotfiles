@@ -26,6 +26,8 @@
         }
     );
   in {
+    formatter = forEachSystem (pkgs: pkgs.alejandra);
+
     packages = forEachSystem (pkgs: {
       packageName = pkgs.callPackage ./nix/package.nix {};
       default = self.packages.${pkgs.system}.packageName;

@@ -63,8 +63,8 @@
 
       dynamicBoost.enable = true;
       prime = {
-        amdgpuBusId = "PCI:01:00:0";
-        nvidiaBusId = "PCI:101:00:0";
+        amdgpuBusId = "PCI:1:0:0";
+        nvidiaBusId = "PCI:101:0:0";
       };
     };
   };

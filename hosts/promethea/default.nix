@@ -34,6 +34,7 @@
         common-pc-laptop
         common-cpu-amd-pstate
         common-gpu-nvidia
+        common-gpu-amd
         asus-battery
         ;
     };
@@ -48,8 +49,6 @@
   };
 
   hardware = {
-    amdgpu.initrd.enable = true;
-
     asus.battery.chargeUpto = 75;
 
     nvidia = {

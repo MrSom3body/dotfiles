@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   # services.gns3-server = {
   #   enable = true;
   #   dynamips.enable = true;
@@ -19,16 +23,19 @@
     permissions = "u+rx,g+rx,o+rx";
   };
 
-  environment.systemPackages = builtins.attrValues {
-    inherit
-      (pkgs)
-      gns3-gui
-      gns3-server
-      gns3-auto-conf
-      dynamips
-      inetutils
-      ubridge
-      vpcs
-      ;
-  };
+  environment.systemPackages =
+    builtins.attrValues {
+      inherit
+        (pkgs)
+        gns3-gui
+        gns3-server
+        dynamips
+        inetutils
+        ubridge
+        vpcs
+        ;
+    }
+    ++ [
+      inputs.som3pkgs.packages.${pkgs.system}.gns3-auto-conf
+    ];
 }

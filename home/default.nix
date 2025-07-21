@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   settings,
   ...
 }: let
@@ -26,6 +27,8 @@ in {
     ./stylix.nix
     ./terminal
     ./utilities.nix
+
+    inputs.som3pkgs.homeManagerModules.power-monitor
   ];
 
   options.my.systemType = mkOption {
@@ -76,12 +79,10 @@ in {
         enable = mkIf (cfg.systemType >= 2) true;
       };
 
-      services = {
-        mpris-proxy.enable = mkIf (cfg.systemType >= 2) true;
-        power-monitor.enable = mkIf (cfg.systemType >= 3) true;
-      };
+      services.mpris-proxy.enable = mkIf (cfg.systemType >= 2) true;
     };
 
     programs.home-manager.enable = true;
+    services.power-monitor.enable = mkIf (cfg.systemType >= 3) true;
   };
 }

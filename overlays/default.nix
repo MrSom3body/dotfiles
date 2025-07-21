@@ -1,14 +1,4 @@
-{
-  inputs,
-  outputs,
-  ...
-}: {
-  additions = final: _prev:
-    import ../pkgs {
-      inherit outputs inputs;
-      inherit (final) pkgs;
-    };
-
+{inputs, ...}: {
   modifications = final: prev: let
     nixpkgs-jetbrains =
       import (builtins.fetchTarball {

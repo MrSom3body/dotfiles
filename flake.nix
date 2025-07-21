@@ -55,10 +55,7 @@
     overlays = import ./overlays {
       inherit outputs inputs;
     };
-    packages = forEachSystem (pkgs:
-      import ./pkgs {
-        inherit outputs inputs pkgs;
-      });
+
     formatter = forEachSystem (pkgs: pkgs.alejandra);
 
     nixosConfigurations = {
@@ -138,6 +135,16 @@
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    # my packages
+    som3pkgs = {
+      url = "github:MrSom3body/som3pkgs";
+      inputs = {
+        git-hooks-nix.follows = "git-hooks-nix";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
 
     # nix ecosystem

@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   pkgs,
   settings,
   ...
@@ -55,6 +56,6 @@ in {
       };
     };
 
-    home.packages = [pkgs.fnott-dnd];
+    home.packages = [inputs.som3pkgs.packages.${pkgs.system}.fnott-dnd];
   };
 }

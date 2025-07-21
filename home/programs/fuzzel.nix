@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   pkgs,
   settings,
   ...
@@ -15,7 +16,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [pkgs.fuzzel-goodies];
+    home.packages = [inputs.som3pkgs.packages.${pkgs.system}.fuzzel-goodies];
 
     programs.fuzzel = {
       enable = true;

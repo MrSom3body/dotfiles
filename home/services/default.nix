@@ -1,6 +1,5 @@
 {
   imports = [
-    ./auto-kbd-bl.nix
     ./cliphist.nix
     ./fnott
     ./gammastep.nix
@@ -10,7 +9,6 @@
     ./kdeconnect.nix
     ./mpris-proxy.nix
     ./polkit.nix
-    ./power-monitor.nix
     ./psd.nix
     ./solaar.nix
     ./swaync

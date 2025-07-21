@@ -81,7 +81,7 @@ in {
       # my packages
       builtins.attrValues {
         inherit
-          (pkgs)
+          (inputs.som3pkgs.packages.${pkgs.system})
           wl-ocr
           hyprcast
           ;

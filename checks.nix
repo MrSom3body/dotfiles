@@ -6,8 +6,13 @@
   pre-commit-check = inputs.git-hooks-nix.lib.${pkgs.system}.run {
     src = ./.;
     hooks = {
+      # nix
       alejandra.enable = true;
       deadnix.enable = true;
+      nil.enable = true;
+      statix.enable = true;
+
+      # markdown
       markdownlint = {
         enable = true;
         settings.configuration = {
@@ -15,8 +20,6 @@
           no-inline-html = false;
         };
       };
-      nil.enable = true;
-      statix.enable = true;
     };
   };
 }

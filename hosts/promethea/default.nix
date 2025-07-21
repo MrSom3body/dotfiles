@@ -1,8 +1,4 @@
-{
-  inputs,
-  config,
-  ...
-}: {
+{inputs, ...}: {
   imports =
     [
       ./hardware-configuration.nix
@@ -28,16 +24,9 @@
       ../../system/optional/virtualisation/libvirtd.nix
       ../../system/optional/virtualisation/podman.nix
     ]
-    ++ builtins.attrValues {
-      inherit
-        (inputs.nixos-hardware.nixosModules)
-        common-pc-laptop
-        common-cpu-amd-pstate
-        common-gpu-nvidia
-        common-gpu-amd
-        asus-battery
-        ;
-    };
+    ++ [
+      inputs.nixos-hardware.nixosModules.asus-zenbook-um6702
+    ];
 
   my = {
     boot.lanzaboote.enable = true;
@@ -50,22 +39,6 @@
 
   hardware = {
     asus.battery.chargeUpto = 75;
-
-    nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      open = true;
-
-      powerManagement = {
-        enable = true;
-        finegrained = true;
-      };
-
-      dynamicBoost.enable = true;
-      prime = {
-        amdgpuBusId = "PCI:1:0:0";
-        nvidiaBusId = "PCI:101:0:0";
-      };
-    };
   };
 
   security.tpm2.enable = true;

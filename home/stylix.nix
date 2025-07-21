@@ -27,6 +27,7 @@ in {
 
       targets = {
         firefox.profileNames = ["default"];
+        zen-browser.profileNames = ["default"];
         fish.enable = false;
         kitty.variant256Colors = true;
         rofi.enable = false;

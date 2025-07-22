@@ -39,7 +39,7 @@ function chat -d "Wrapper for ollama"
     if set -ql _flag_m
         set ollama_cmd $ollama_cmd $_flag_model
     else
-        set ollama_cmd $ollama_cmd llama3.2:3b-instruct-q4_K_M
+        set ollama_cmd $ollama_cmd llama3.2:3b-instruct-q8_0
     end
 
     if set -ql _flag_f

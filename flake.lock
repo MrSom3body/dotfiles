@@ -1151,15 +1151,16 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1753134880,
-        "narHash": "sha256-ErG/uAhpnq+QJ8/xYjkFLDbxdofPKMQEd6jW7sFzOvY=",
+        "lastModified": 1753204960,
+        "narHash": "sha256-ecwB1is5LCWkySfLB+6a75E+oLkD+PbdAsI0/46l6H0=",
         "owner": "MrSom3body",
         "repo": "nixos-hardware",
-        "rev": "4e3a21496f0c4e5492168934c200bba42b5dc732",
+        "rev": "b4cb57f5e877564c8eb053ca8d847458a72f0139",
         "type": "github"
       },
       "original": {
         "owner": "MrSom3body",
+        "ref": "add-asus-um6702",
         "repo": "nixos-hardware",
         "type": "github"
       }

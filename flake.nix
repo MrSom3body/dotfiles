@@ -196,7 +196,7 @@
       };
     };
 
-    nixos-hardware.url = "github:MrSom3body/nixos-hardware";
+    nixos-hardware.url = "github:MrSom3body/nixos-hardware/add-asus-um6702";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";

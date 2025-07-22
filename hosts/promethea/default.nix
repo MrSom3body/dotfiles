@@ -1,4 +1,10 @@
-{inputs, ...}: {
+{
+  lib,
+  inputs,
+  ...
+}: let
+  inherit (lib) mkForce;
+in {
   imports =
     [
       ./hardware-configuration.nix
@@ -39,6 +45,17 @@
 
   hardware = {
     asus.battery.chargeUpto = 75;
+    nvidia.primeBatterySaverSpecialisation = true;
+  };
+
+  specialisation = {
+    # extend the specialisation provided by primeBatterySaverSpecialisation
+    battery-saver.configuration = {
+      environment.etc."specialisation".text = "battery-saver"; # for nh
+
+      # disable ollama
+      services.ollama.enable = mkForce false;
+    };
   };
 
   security.tpm2.enable = true;

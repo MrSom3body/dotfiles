@@ -4,6 +4,7 @@ alias b := boot
 alias s := switch
 alias t := test
 alias fl := fix-lanzaboote
+alias fh := fix-hyprlock
 alias d := deploy
 
 [private]
@@ -37,6 +38,12 @@ switch:
 fix-lanzaboote: && boot
     nh clean all -k 3 -K 4d
     sudo rm /boot/EFI/nixos/ -rf
+
+[group("local")]
+fix-hyprlock:
+    hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
+    hyprctl --instance 0 'dispatch exec hyprlock'
+    hyprctl --instance 0 'keyword misc:allow_session_lock_restore 0'
 
 
 # ---------- deploy ---------- #

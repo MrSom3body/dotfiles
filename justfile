@@ -11,6 +11,10 @@ alias d := deploy
 default:
     @just --list
 
+todo:
+    @echo TO-DOs in:
+    @rg --files-with-matches TODO || echo "Everything's done!"
+
 
 # ---------- local ---------- #
 
@@ -43,6 +47,7 @@ fix-lanzaboote: && boot
 fix-hyprlock:
     hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
     hyprctl --instance 0 'dispatch exec hyprlock'
+    pidwait -n hyprlock
     hyprctl --instance 0 'keyword misc:allow_session_lock_restore 0'
 
 

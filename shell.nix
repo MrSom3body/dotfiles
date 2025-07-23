@@ -17,6 +17,7 @@
           git
           just
           neovim # a editor if I'm dumb and remove it somehow
+          ripgrep
           sops
           ;
       }

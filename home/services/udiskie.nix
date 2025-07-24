@@ -20,11 +20,11 @@ in {
       settings = {
         device_config = [
           {
-            id_uuid = "0FA4-0BB5";
+            id_uuid = "2F3D-94F4";
             automount = true;
           }
           {
-            id_uuid = "4e30e281-8d9b-43a7-a0c2-d0fb7f1e9cc2";
+            id_uuid = "5f771662-6cb4-4bb9-b3ec-e08af519402f";
             automount = true;
             keyfile = "~/.face";
           }

@@ -88,7 +88,7 @@ in {
           expansion = "git rebase -i HEAD~%";
         };
         gs = "git status --short";
-        gss = "git status --short";
+        gss = "git status";
         gsw = "git switch";
         gt = "git tag";
       };

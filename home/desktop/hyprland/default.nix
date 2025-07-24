@@ -82,8 +82,9 @@ in {
       builtins.attrValues {
         inherit
           (inputs.som3pkgs.packages.${pkgs.system})
-          wl-ocr
           hyprcast
+          touchpad-toggle
+          wl-ocr
           ;
       }
       ++ [

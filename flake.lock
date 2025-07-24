@@ -1516,11 +1516,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753133275,
-        "narHash": "sha256-39zlVqzCQNxEEvGKLdzKr734Z7wSv/NCzLiMaDQ9/Bk=",
+        "lastModified": 1753389976,
+        "narHash": "sha256-/4lsdE/waqd1ml3dzjgrXSzgAk3872akzVsrzitzhI8=",
         "owner": "MrSom3body",
         "repo": "som3pkgs",
-        "rev": "56bc21e29addf0062a7ea73e5ceb767de0bac543",
+        "rev": "7b64bbabaed193a553a915503ec421b2e8a6ea6b",
         "type": "github"
       },
       "original": {

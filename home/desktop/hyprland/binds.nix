@@ -147,6 +147,9 @@ in {
         ", XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
         ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
 
+        # Touchpad toggle
+        ", XF86TouchpadToggle, exec, touchpad-toggle"
+
         # Caps Lock
         ", Caps_Lock, exec, sleep 0.07; swayosd-client --caps-lock"
 

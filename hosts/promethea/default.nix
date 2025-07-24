@@ -44,7 +44,7 @@ in {
   };
 
   hardware = {
-    asus.battery.chargeUpto = 75;
+    asus.battery.chargeUpto = 80;
     nvidia.primeBatterySaverSpecialisation = true;
   };
 

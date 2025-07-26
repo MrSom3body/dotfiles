@@ -172,9 +172,10 @@ in {
               formatting.command = ["${lib.getExe pkgs.alejandra}"];
               options = let
                 flake = ''(builtins.getFlake "${self}")'';
-              in rec {
-                nixos.expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
-                home-manager.expr = "${nixos.expr}.home-manager.users.type.getSubOptions []";
+                nixos-expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
+              in {
+                nixos.expr = nixos-expr;
+                home-manager.expr = "${nixos-expr}.home-manager.users.type.getSubOptions []";
               };
             };
           };

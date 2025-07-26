@@ -4,22 +4,20 @@
   pkgs,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption;
   inherit (lib) mkIf;
   cfg = config.my.users;
-in {
+in
+{
   options.my.users = {
-    enable =
-      mkEnableOption "my users"
-      // {
-        default = true;
-      };
-    isInstall =
-      mkEnableOption "setting options appropriate for installs"
-      // {
-        default = true;
-      };
+    enable = mkEnableOption "my users" // {
+      default = true;
+    };
+    isInstall = mkEnableOption "setting options appropriate for installs" // {
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {

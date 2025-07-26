@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   virtualisation = {
     libvirtd = {
       allowedBridges = [
@@ -19,8 +20,7 @@
   programs.virt-manager.enable = true;
 
   environment.systemPackages = builtins.attrValues {
-    inherit
-      (pkgs)
+    inherit (pkgs)
       gnome-connections
       gnome-boxes
       ;

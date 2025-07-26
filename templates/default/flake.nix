@@ -10,39 +10,46 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    inherit (nixpkgs) lib;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
+    let
+      inherit (nixpkgs) lib;
 
-    forEachSystem = f: lib.genAttrs (import inputs.systems) (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs (import inputs.systems) (
-      system:
+      forEachSystem = f: lib.genAttrs (import inputs.systems) (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs (import inputs.systems) (
+        system:
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
         }
-    );
-  in {
-    formatter = forEachSystem (pkgs: pkgs.alejandra);
+      );
+    in
+    {
+      formatter = forEachSystem (pkgs: pkgs.nixfmt-tree);
 
-    packages = forEachSystem (pkgs: {
-      packageName = pkgs.callPackage ./nix/package.nix {};
-      default = self.packages.${pkgs.system}.packageName;
-    });
-
-    devShells = forEachSystem (pkgs:
-      import ./nix/shell.nix {
-        inherit self;
-        inherit pkgs;
+      packages = forEachSystem (pkgs: {
+        packageName = pkgs.callPackage ./nix/package.nix { };
+        default = self.packages.${pkgs.system}.packageName;
       });
 
-    checks = forEachSystem (pkgs:
-      import ./nix/checks.nix {
-        inherit inputs;
-        inherit pkgs;
-      });
-  };
+      devShells = forEachSystem (
+        pkgs:
+        import ./nix/shell.nix {
+          inherit self;
+          inherit pkgs;
+        }
+      );
+
+      checks = forEachSystem (
+        pkgs:
+        import ./nix/checks.nix {
+          inherit inputs;
+          inherit pkgs;
+        }
+      );
+    };
 }

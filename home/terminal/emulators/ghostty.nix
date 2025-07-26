@@ -4,13 +4,15 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.emulators.ghostty;
   cfg' = config.programs.ghostty;
-in {
+in
+{
   options.my.terminal.emulators.ghostty = {
     enable = mkEnableOption "the ghostty terminal emulator";
   };
@@ -20,7 +22,7 @@ in {
       enable = true;
       package = inputs.ghostty.packages.${pkgs.system}.default;
       settings = {
-        font-feature = ["ss06"];
+        font-feature = [ "ss06" ];
         gtk-single-instance = true;
         mouse-hide-while-typing = true;
         window-decoration = false;
@@ -34,8 +36,8 @@ in {
       Unit = {
         Description = "Fast, native, feature-rich terminal emulator pushing modern features.";
         Documentation = "man:ghostty(1)";
-        PartOf = ["graphical-session.target"];
-        After = ["graphical-session.target"];
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
       };
 
       Service = {
@@ -43,7 +45,9 @@ in {
         Restart = "on-failure";
       };
 
-      Install = {WantedBy = ["graphical-session.target"];};
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
     };
   };
 }

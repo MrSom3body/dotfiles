@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.gitui;
-in {
+in
+{
   options.my.terminal.programs.gitui = {
     enable = mkEnableOption "gitui, a blazingly fast git TUI";
   };

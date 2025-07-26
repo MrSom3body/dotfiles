@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   wayland.windowManager.hyprland.settings.permission = [
     ### Keyboards ###
     "video-bus, keyboard, allow"
@@ -105,8 +106,7 @@
   ];
 
   home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
+    inherit (pkgs)
       # cli
       glow
       # Communication & Social Media

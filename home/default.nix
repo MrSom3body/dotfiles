@@ -4,14 +4,16 @@
   inputs,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) types;
 
   inherit (lib) mkOption;
 
   cfg = config.my;
-in {
+in
+{
   imports = [
     ./browsers
     ./desktop

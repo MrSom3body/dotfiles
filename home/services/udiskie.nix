@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.services.udiskie;
-in {
+in
+{
   options.my.services.udiskie = {
     enable = mkEnableOption "a storage management service";
   };

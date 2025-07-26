@@ -1,4 +1,4 @@
 {
   programs.adb.enable = true;
-  users.users.karun.extraGroups = ["adbusers"];
+  users.users.karun.extraGroups = [ "adbusers" ];
 }

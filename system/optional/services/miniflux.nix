@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   cfg = config.services.miniflux.config;
-in {
+in
+{
   sops.secrets.miniflux = {
     sopsFile = ../../../secrets/pandora/miniflux.env;
     format = "dotenv";

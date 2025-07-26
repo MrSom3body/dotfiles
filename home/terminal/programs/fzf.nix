@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.fzf;
-in {
+in
+{
   options.my.terminal.programs.fzf = {
     enable = mkEnableOption "the fzf program";
   };

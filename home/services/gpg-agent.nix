@@ -3,17 +3,17 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.services.gpg-agent;
-in {
+in
+{
   options.my.services.gpg-agent = {
-    enable =
-      mkEnableOption "the gpg-agent service"
-      // {
-        default = true;
-      };
+    enable = mkEnableOption "the gpg-agent service" // {
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {

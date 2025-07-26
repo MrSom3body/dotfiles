@@ -16,7 +16,7 @@
     };
 
     services = {
-      xserver.drivers = ["virtio"];
+      xserver.drivers = [ "virtio" ];
       qemuGuest.enable = true;
       spice-vdagentd.enable = true;
       spice-autorandr.enable = true;

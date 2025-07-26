@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) types;
@@ -12,7 +13,8 @@
   inherit (lib) mkEnableOption;
   inherit (lib) mkOption;
   cfg = config.my.browsers.zen-browser;
-in {
+in
+{
   imports = [
     inputs.zen-browser.homeModules.beta
   ];
@@ -55,44 +57,44 @@ in {
           default = "searxng";
           engines = {
             "searxng" = {
-              urls = [{template = "https://search.sndh.dev/search?q={searchTerms}";}];
+              urls = [ { template = "https://search.sndh.dev/search?q={searchTerms}"; } ];
               icon = "https://search.sndh.dev/favicon.ico";
-              definedAliases = ["@sx"];
+              definedAliases = [ "@sx" ];
             };
             "amazon" = {
-              urls = [{template = "https://amazon.de/s?k={searchTerms}";}];
+              urls = [ { template = "https://amazon.de/s?k={searchTerms}"; } ];
               icon = "https://amazon.de/favicon.ico";
-              definedAliases = ["@a"];
+              definedAliases = [ "@a" ];
             };
             "protondb" = {
-              urls = [{template = "https://protondb.com/search?q={searchTerms}";}];
+              urls = [ { template = "https://protondb.com/search?q={searchTerms}"; } ];
               icon = "https://protondb.com/favicon.ico";
-              definedAliases = ["@pdb"];
+              definedAliases = [ "@pdb" ];
             };
             "github" = {
-              urls = [{template = "https://github.com/search?q={searchTerms}";}];
+              urls = [ { template = "https://github.com/search?q={searchTerms}"; } ];
               icon = "https://github.com/favicon.ico";
-              definedAliases = ["@gh"];
+              definedAliases = [ "@gh" ];
             };
             "alternativeto" = {
-              urls = [{template = "https://alternativeto.net/browse/search/?q={searchTerms}";}];
+              urls = [ { template = "https://alternativeto.net/browse/search/?q={searchTerms}"; } ];
               icon = "https://alternativeto.net/favicon.ico";
-              definedAliases = ["@alt"];
+              definedAliases = [ "@alt" ];
             };
             "youtube" = {
-              urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
+              urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
               icon = "https://www.youtube.com/favicon.ico";
-              definedAliases = ["@yt"];
+              definedAliases = [ "@yt" ];
             };
             "nixos-wiki" = {
-              urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
+              urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
               icon = "https://wiki.nixos.org/favicon.png";
-              definedAliases = ["@nw"];
+              definedAliases = [ "@nw" ];
             };
             "mynixos" = {
-              urls = [{template = "https://mynixos.com/search?q={searchTerms}";}];
+              urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["@no"];
+              definedAliases = [ "@no" ];
             };
             "nix-packages" = {
               urls = [
@@ -115,12 +117,12 @@ in {
                 }
               ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["@np"];
+              definedAliases = [ "@np" ];
             };
             "subreddit" = {
-              urls = [{template = "https://reddit.com/r/{searchTerms}";}];
+              urls = [ { template = "https://reddit.com/r/{searchTerms}"; } ];
               icon = "https://reddit.com/favicon.png";
-              definedAliases = ["r/"];
+              definedAliases = [ "r/" ];
             };
           };
         };

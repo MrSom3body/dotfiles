@@ -3,22 +3,22 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
   cfg = config.my.games;
-in {
+in
+{
   options.my.games.backup = {
-    enable =
-      mkEnableOption "backing up game saves"
-      // {
-        default = cfg.enable;
-      };
+    enable = mkEnableOption "backing up game saves" // {
+      default = cfg.enable;
+    };
   };
 
   config = mkIf cfg.backup.enable {
-    home.packages = [pkgs.ludusavi];
+    home.packages = [ pkgs.ludusavi ];
 
     systemd.user = {
       services.ludusavi-backup = {
@@ -39,7 +39,7 @@ in {
           Unit = "ludusavi-backup.service";
           Persistent = true;
         };
-        Install.WantedBy = ["timers.target"];
+        Install.WantedBy = [ "timers.target" ];
       };
     };
   };

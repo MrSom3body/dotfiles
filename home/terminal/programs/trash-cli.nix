@@ -3,17 +3,19 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.trash-cli;
-in {
+in
+{
   options.my.terminal.programs.trash-cli = {
     enable = mkEnableOption "trash-cli";
   };
 
   config = mkIf cfg.enable {
-    home.packages = [pkgs.trash-cli];
+    home.packages = [ pkgs.trash-cli ];
 
     programs = {
       fish.functions.rm = {

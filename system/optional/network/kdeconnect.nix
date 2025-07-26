@@ -5,7 +5,8 @@ let
       to = 1764;
     }
   ];
-in {
+in
+{
   networking.firewall = {
     allowedTCPPortRanges = portRanges;
     allowedUDPPortRanges = portRanges;

@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.eza;
-in {
+in
+{
   options.my.terminal.programs.eza = {
     enable = mkEnableOption "the eza program";
   };

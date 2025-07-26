@@ -4,11 +4,13 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.services.hyprpaper;
-in {
+in
+{
   options.my.services.hyprpaper = {
     enable = mkEnableOption "the hyprpaper service";
   };

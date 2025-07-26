@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   cfg = config.services.searx;
-in {
+in
+{
   sops.secrets.searx = {
     sopsFile = ../../../secrets/pandora/searx.env;
     format = "dotenv";
@@ -34,7 +36,7 @@ in {
         };
 
         hostnames = {
-          remove = ["(.*\.)?nixos.wiki$"];
+          remove = [ "(.*\.)?nixos.wiki$" ];
         };
 
         search = {

@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   # services.gns3-server = {
   #   enable = true;
   #   dynamips.enable = true;
@@ -12,8 +13,8 @@
 
   # systemd.services.gns3-server.path = [pkgs.vmware-workstation];
 
-  users.groups.ubridge = {};
-  users.users.karun.extraGroups = ["ubridge"];
+  users.groups.ubridge = { };
+  users.users.karun.extraGroups = [ "ubridge" ];
 
   security.wrappers.ubridge = {
     source = "/run/current-system/sw/bin/ubridge";
@@ -25,8 +26,7 @@
 
   environment.systemPackages =
     builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         gns3-gui
         gns3-server
         dynamips

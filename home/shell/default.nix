@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.shell;
-in {
+in
+{
   imports = [
     ./bash.nix
     ./fish

@@ -3,20 +3,21 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
   cfg = config.my.utils;
-in {
+in
+{
   options.my.utils = {
     enable = mkEnableOption "various utils from disk usage analyzer to weather app";
   };
 
   config = mkIf cfg.enable {
     home.packages = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         # GNOME utilities
         baobab # Disk Usage Analyzer
         gnome-calculator

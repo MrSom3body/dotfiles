@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.macchina;
-in {
+in
+{
   options.my.terminal.programs.macchina = {
     enable = mkEnableOption "macchina";
   };
@@ -17,7 +19,7 @@ in {
   ];
 
   config = mkIf cfg.enable {
-    home.packages = [pkgs.macchina];
+    home.packages = [ pkgs.macchina ];
 
     home.file.".config/macchina/macchina.toml".text =
       # toml

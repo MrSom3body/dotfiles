@@ -5,18 +5,20 @@
   pkgs,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
 
   cfg = config.my.programs.fuzzel;
-in {
+in
+{
   options.my.programs.fuzzel = {
     enable = mkEnableOption "the fuzzel launcher";
   };
 
   config = mkIf cfg.enable {
-    home.packages = [inputs.som3pkgs.packages.${pkgs.system}.fuzzel-goodies];
+    home.packages = [ inputs.som3pkgs.packages.${pkgs.system}.fuzzel-goodies ];
 
     programs.fuzzel = {
       enable = true;

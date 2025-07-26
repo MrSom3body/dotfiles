@@ -2,9 +2,11 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.services.ntfy-sh.settings;
-in {
+in
+{
   sops.secrets.ntfy-env = {
     sopsFile = ../../../secrets/pandora/ntfy.env;
     format = "dotenv";
@@ -45,8 +47,8 @@ in {
       "network-online.target"
       "ntfy-sh.service"
     ];
-    wantedBy = ["multi-user.target"];
-    path = [pkgs.ntfy-sh];
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.ntfy-sh ];
     script =
       # bash
       ''

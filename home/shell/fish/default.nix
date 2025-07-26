@@ -4,12 +4,14 @@
   pkgs,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
   cfg = config.my.shell.fish;
-in {
+in
+{
   options.my.shell.fish = {
     enable = mkEnableOption "my fish shell";
   };
@@ -31,16 +33,18 @@ in {
           set fish_cursor_external line # in commands
         '';
 
-      plugins = let
-        fishPlugin = name: {
-          name = name.pname;
-          inherit (name) src;
-        };
-      in [
-        (fishPlugin pkgs.fishPlugins.autopair)
-        (fishPlugin pkgs.fishPlugins.done)
-        (fishPlugin pkgs.fishPlugins.fzf-fish)
-      ];
+      plugins =
+        let
+          fishPlugin = name: {
+            name = name.pname;
+            inherit (name) src;
+          };
+        in
+        [
+          (fishPlugin pkgs.fishPlugins.autopair)
+          (fishPlugin pkgs.fishPlugins.done)
+          (fishPlugin pkgs.fishPlugins.fzf-fish)
+        ];
 
       functions = {
         fish_greeting = mkIf config.my.terminal.programs.gotcha.enable "gotcha";

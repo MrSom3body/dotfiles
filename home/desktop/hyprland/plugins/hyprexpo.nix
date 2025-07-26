@@ -4,14 +4,16 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   cfg = config.my.desktop.hyprland;
   rgb = color: "rgb(${color})";
-in {
+in
+{
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
-      plugins = [inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo];
+      plugins = [ inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo ];
       settings = {
         plugin.hyprexpo = {
           columns = 3;

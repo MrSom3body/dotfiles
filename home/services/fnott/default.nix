@@ -5,11 +5,13 @@
   pkgs,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.services.fnott;
-in {
+in
+{
   options.my.services.fnott = {
     enable = mkEnableOption "the fnott notification service";
   };
@@ -56,6 +58,6 @@ in {
       };
     };
 
-    home.packages = [inputs.som3pkgs.packages.${pkgs.system}.fnott-dnd];
+    home.packages = [ inputs.som3pkgs.packages.${pkgs.system}.fnott-dnd ];
   };
 }

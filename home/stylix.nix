@@ -4,21 +4,18 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
   cfg = config.my.styling;
-in {
+in
+{
   options.my.styling = {
-    enable =
-      mkEnableOption "stylix"
-      // {
-        default =
-          if osConfig != null
-          then osConfig.stylix.enable
-          else false;
-      };
+    enable = mkEnableOption "stylix" // {
+      default = if osConfig != null then osConfig.stylix.enable else false;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -26,8 +23,8 @@ in {
       overlays.enable = false;
 
       targets = {
-        firefox.profileNames = ["default"];
-        zen-browser.profileNames = ["default"];
+        firefox.profileNames = [ "default" ];
+        zen-browser.profileNames = [ "default" ];
         fish.enable = false;
         kitty.variant256Colors = true;
         rofi.enable = false;

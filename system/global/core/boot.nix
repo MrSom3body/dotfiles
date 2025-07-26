@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) types;
   inherit (lib) literalExpression;
@@ -13,17 +14,16 @@
   inherit (lib) mkEnableOption;
 
   cfg = config.my.boot;
-in {
+in
+{
   imports = [
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
   options.my.boot = {
-    enable =
-      mkEnableOption "my boot things"
-      // {
-        default = true;
-      };
+    enable = mkEnableOption "my boot things" // {
+      default = true;
+    };
     lanzaboote = {
       enable = mkEnableOption "lanzaboote";
       pkiBundle = mkOption {
@@ -34,11 +34,9 @@ in {
       };
     };
 
-    isInstall =
-      mkEnableOption "setting options appropriate for installs"
-      // {
-        default = true;
-      };
+    isInstall = mkEnableOption "setting options appropriate for installs" // {
+      default = true;
+    };
 
     kernel = mkOption {
       type = types.attrs;
@@ -85,6 +83,6 @@ in {
       plymouth.enable = true;
     };
 
-    environment.systemPackages = mkIf cfg.lanzaboote.enable [pkgs.sbctl];
+    environment.systemPackages = mkIf cfg.lanzaboote.enable [ pkgs.sbctl ];
   };
 }

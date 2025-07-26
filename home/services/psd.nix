@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.services.psd;
-in {
+in
+{
   options.my.services.psd = {
     enable = mkEnableOption "the profile-sync-daemon service";
   };

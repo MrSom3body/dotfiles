@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.pay-respects;
-in {
+in
+{
   options.my.terminal.programs.pay-respects = {
     enable = mkEnableOption "pay-respects";
   };

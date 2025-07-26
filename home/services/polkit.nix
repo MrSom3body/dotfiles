@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.services.polkit;
-in {
+in
+{
   options.my.services.polkit = {
     enable = mkEnableOption "a gui polkit service";
   };
@@ -16,12 +18,12 @@ in {
     systemd.user.services.polkit-gnome-authentication-agent-1 = {
       Unit = {
         Description = "polkit-gnome-authentication-agent-1";
-        Wants = ["graphical-session.target"];
-        After = ["graphical-session.target"];
+        Wants = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
       };
 
       Install = {
-        WantedBy = ["graphical-session.target"];
+        WantedBy = [ "graphical-session.target" ];
       };
 
       Service = {

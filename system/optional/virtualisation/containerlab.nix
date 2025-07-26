@@ -1,10 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./podman.nix
   ];
 
   environment = {
-    systemPackages = [pkgs.containerlab];
+    systemPackages = [ pkgs.containerlab ];
     shellAliases = {
       clab = "containerlab";
     };

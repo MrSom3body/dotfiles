@@ -2,12 +2,14 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
   cfg = config.my.shell.nushell;
-in {
+in
+{
   options.my.shell.nushell = {
     enable = mkEnableOption "my nushell shell";
   };

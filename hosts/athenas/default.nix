@@ -7,7 +7,7 @@
 
   my.home-manager.enable = true;
 
-  boot.supportedFilesystems = ["ntfs"]; # allow mounting windows
+  boot.supportedFilesystems = [ "ntfs" ]; # allow mounting windows
 
   nixpkgs.hostPlatform = "x86_64-linux";
 }

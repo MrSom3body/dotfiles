@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   import = [
     ../../../system/optional/services/minecraft.nix
   ];

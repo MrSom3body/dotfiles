@@ -4,7 +4,8 @@
   pkgs,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption;
   inherit (lib) mkIf;
 
@@ -17,7 +18,8 @@
     ${settings.programs.terminal} ${settings.programs.editor} -- $tmp
     rm -f -- $tmp
   '';
-in {
+in
+{
   options.my.terminal.emulators.foot = {
     enable = mkEnableOption "the foot terminal emulator";
   };
@@ -26,10 +28,7 @@ in {
     programs.foot = {
       enable = true;
 
-      server.enable =
-        if settings.programs.terminal == "footclient"
-        then true
-        else false;
+      server.enable = if settings.programs.terminal == "footclient" then true else false;
 
       settings = {
         main = {

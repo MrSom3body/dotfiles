@@ -4,13 +4,15 @@
   pkgs,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
 
   cfg = config.my.programs.waybar;
-in {
-  imports = [./style.nix];
+in
+{
+  imports = [ ./style.nix ];
 
   options.my.programs.waybar = {
     enable = mkEnableOption "the waybar bar";
@@ -100,15 +102,17 @@ in {
               mode = "month";
               weeks-pos = "left";
               mode-mon-col = 3;
-              format = let
-                colors = config.lib.stylix.colors.withHashtag;
-              in {
-                months = "<span color='${colors.base06}'><b>{}</b></span>";
-                days = "<span color='${colors.base05}'><b>{}</b></span>";
-                weeks = "<span color='${colors.base0E}'><b>W{}</b></span>";
-                weekdays = "<span color='${colors.base0A}'><b>{}</b></span>";
-                today = "<span color='${colors.base0B}'><b><u>{}</u></b></span>";
-              };
+              format =
+                let
+                  colors = config.lib.stylix.colors.withHashtag;
+                in
+                {
+                  months = "<span color='${colors.base06}'><b>{}</b></span>";
+                  days = "<span color='${colors.base05}'><b>{}</b></span>";
+                  weeks = "<span color='${colors.base0E}'><b>W{}</b></span>";
+                  weekdays = "<span color='${colors.base0A}'><b>{}</b></span>";
+                  today = "<span color='${colors.base0B}'><b><u>{}</u></b></span>";
+                };
             };
 
             actions = {
@@ -119,26 +123,28 @@ in {
             };
           };
 
-          mpris = let
-            playerctl = lib.getExe pkgs.playerctl;
-          in {
-            player = "spotify";
-            format = "{player_icon} {status_icon} <b>{title}</b> by <i>{artist}</i>";
-            tooltip-format = "Album: {album}";
-            artist-len = 12;
-            title-len = 22;
-            ellipsis = "...";
-            player-icons = {
-              default = "";
-              spotify = "󰓇";
-              kdeconnect = "";
+          mpris =
+            let
+              playerctl = lib.getExe pkgs.playerctl;
+            in
+            {
+              player = "spotify";
+              format = "{player_icon} {status_icon} <b>{title}</b> by <i>{artist}</i>";
+              tooltip-format = "Album: {album}";
+              artist-len = 12;
+              title-len = 22;
+              ellipsis = "...";
+              player-icons = {
+                default = "";
+                spotify = "󰓇";
+                kdeconnect = "";
+              };
+              status-icons = {
+                paused = "󰏤";
+              };
+              on-scroll-up = "${playerctl} volume 0.1+";
+              on-scroll-down = "${playerctl} volume 0.1-";
             };
-            status-icons = {
-              paused = "󰏤";
-            };
-            on-scroll-up = "${playerctl} volume 0.1+";
-            on-scroll-down = "${playerctl} volume 0.1-";
-          };
 
           "custom/hyprcast" = {
             exec = "hyprcast -w";

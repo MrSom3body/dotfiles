@@ -1,4 +1,5 @@
-{settings, ...}: {
+{ settings, ... }:
+{
   imports = [
     ./avahi.nix
   ];
@@ -19,7 +20,7 @@
     ];
   };
 
-  users.users.karun.extraGroups = ["networkmanager"];
+  users.users.karun.extraGroups = [ "networkmanager" ];
 
   # DNS resolver
   services.resolved = {

@@ -3,26 +3,25 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   cfg = config.my.media;
-in {
+in
+{
   config = mkIf cfg.enable {
     programs.mpv = {
       enable = true;
-      scripts =
-        [
-          pkgs.mpvScripts.builtins.autoload
-        ]
-        ++ builtins.attrValues
-        {
-          inherit
-            (pkgs.mpvScripts)
-            modernz
-            mpris
-            thumbfast
-            ;
-        };
+      scripts = [
+        pkgs.mpvScripts.builtins.autoload
+      ]
+      ++ builtins.attrValues {
+        inherit (pkgs.mpvScripts)
+          modernz
+          mpris
+          thumbfast
+          ;
+      };
 
       bindings = {
         # vim bindings
@@ -61,7 +60,8 @@ in {
 
         "Ctrl++" = "add video-zoom 0.1";
         "Ctrl+-" = "add video-zoom -0.1";
-        "Ctrl+0" = "set video-zoom 0; no-osd set panscan 0; no-osd set video-pan-x 0; no-osd set video-pan-y 0; no-osd set video-align-x 0; no-osd set video-align-y 0";
+        "Ctrl+0" =
+          "set video-zoom 0; no-osd set panscan 0; no-osd set video-pan-x 0; no-osd set video-pan-y 0; no-osd set video-align-x 0; no-osd set video-align-y 0";
 
         "Ctrl+o" = "cycle-values loop-file \"inf\" \"no\"";
         "Ctrl+p" = "script-binding select/select-playlist";

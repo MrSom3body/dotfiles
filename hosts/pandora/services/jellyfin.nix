@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   imports = [
     ../../../system/optional/services/arr.nix
     ../../../system/optional/services/jellyfin.nix
@@ -53,20 +54,22 @@
       credentialsFile = config.sops.templates."transmission.json".path;
     };
 
-    caddy.virtualHosts = let
-      mkHost = port: {
-        extraConfig = ''
-          reverse_proxy http://localhost:${builtins.toString port}
-          import cloudflare
-        '';
+    caddy.virtualHosts =
+      let
+        mkHost = port: {
+          extraConfig = ''
+            reverse_proxy http://localhost:${builtins.toString port}
+            import cloudflare
+          '';
+        };
+      in
+      {
+        "jellyfin.sndh.dev" = mkHost 8096;
+        "jellyseerr.sndh.dev" = mkHost config.services.jellyseerr.port;
+        "prowlarr.sndh.dev" = mkHost config.services.prowlarr.settings.server.port;
+        "sonarr.sndh.dev" = mkHost config.services.sonarr.settings.server.port;
+        "radarr.sndh.dev" = mkHost config.services.radarr.settings.server.port;
+        "transmission.sndh.dev" = mkHost config.services.transmission.settings.rpc-port;
       };
-    in {
-      "jellyfin.sndh.dev" = mkHost 8096;
-      "jellyseerr.sndh.dev" = mkHost config.services.jellyseerr.port;
-      "prowlarr.sndh.dev" = mkHost config.services.prowlarr.settings.server.port;
-      "sonarr.sndh.dev" = mkHost config.services.sonarr.settings.server.port;
-      "radarr.sndh.dev" = mkHost config.services.radarr.settings.server.port;
-      "transmission.sndh.dev" = mkHost config.services.transmission.settings.rpc-port;
-    };
   };
 }

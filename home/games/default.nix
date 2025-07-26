@@ -3,12 +3,14 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
   cfg = config.my.games;
-in {
+in
+{
   imports = [
     ./ludusavi.nix
     ./mangohud.nix
@@ -20,8 +22,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         goverlay
         heroic
         mindustry-wayland
@@ -33,13 +34,21 @@ in {
     # TODO remove when modrinth works normally again on wayland
     xdg.desktopEntries = {
       "Modrinth App" = {
-        categories = ["Game" "ActionGame" "AdventureGame" "Simulation"];
+        categories = [
+          "Game"
+          "ActionGame"
+          "AdventureGame"
+          "Simulation"
+        ];
         exec = ''sh -c "GDK_BACKEND=x11 ModrinthApp"'';
         icon = "ModrinthApp";
         name = "Modrinth App";
         terminal = false;
         type = "Application";
-        mimeType = ["application/x-modrinth-modpack+zip" "x-scheme-handler/modrinth"];
+        mimeType = [
+          "application/x-modrinth-modpack+zip"
+          "x-scheme-handler/modrinth"
+        ];
         comment = "Modrinth's game launcher";
         startupNotify = true;
       };

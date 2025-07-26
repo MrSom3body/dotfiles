@@ -4,10 +4,12 @@
   pkgs,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   cfg = config.my.desktop.hyprland;
-in {
+in
+{
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland.settings = {
       "$mainMod" = "SUPER";
@@ -21,18 +23,28 @@ in {
         } and right click, resizewindow"
       ];
 
-      bindd = let
-        shorten = s: builtins.substring 0 14 s;
-        toggle = program: let
-          prog = shorten program;
-        in "pkill ${prog} || uwsm app -- ${program}";
-        toggleScript = program: script: let
-          prog = shorten program;
-        in "pkill ${prog} || uwsm app -- ${script}";
-        runOnce = program: let
-          prog = shorten program;
-        in "pgrep ${prog} || uwsm app -- ${program}";
-      in
+      bindd =
+        let
+          shorten = s: builtins.substring 0 14 s;
+          toggle =
+            program:
+            let
+              prog = shorten program;
+            in
+            "pkill ${prog} || uwsm app -- ${program}";
+          toggleScript =
+            program: script:
+            let
+              prog = shorten program;
+            in
+            "pkill ${prog} || uwsm app -- ${script}";
+          runOnce =
+            program:
+            let
+              prog = shorten program;
+            in
+            "pgrep ${prog} || uwsm app -- ${program}";
+        in
         [
           # Open applications
           "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${settings.programs.terminal}"
@@ -113,28 +125,32 @@ in {
         ]
         ++ (builtins.concatLists (
           builtins.genList (
-            x: let
-              ws = let
-                c = (x + 1) / 10;
-              in
+            x:
+            let
+              ws =
+                let
+                  c = (x + 1) / 10;
+                in
                 builtins.toString (x + 1 - (c * 10));
-            in [
+            in
+            [
               "$mainMod, ${ws}, Switch to workspace ${ws}, workspace, ${toString (x + 1)}"
               "$mainMod SHIFT, ${ws}, Move focused window to workspace ${ws}, movetoworkspace, ${toString (x + 1)}"
             ]
-          )
-          10
+          ) 10
         ));
 
       # Player control
-      bindl = let
-        playerctl = lib.getExe pkgs.playerctl;
-      in [
-        ", XF86AudioPlay, exec, ${playerctl} play-pause"
-        ", XF86AudioPause, exec, ${playerctl} pause"
-        ", XF86AudioNext, exec, ${playerctl} next"
-        ", XF86AudioPrev, exec, ${playerctl} previous"
-      ];
+      bindl =
+        let
+          playerctl = lib.getExe pkgs.playerctl;
+        in
+        [
+          ", XF86AudioPlay, exec, ${playerctl} play-pause"
+          ", XF86AudioPause, exec, ${playerctl} pause"
+          ", XF86AudioNext, exec, ${playerctl} next"
+          ", XF86AudioPrev, exec, ${playerctl} previous"
+        ];
 
       bindel = [
         # Volume control

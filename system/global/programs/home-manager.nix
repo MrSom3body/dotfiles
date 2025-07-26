@@ -4,21 +4,21 @@
   inputs,
   specialArgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.home-manager;
-in {
+in
+{
   imports = [
     inputs.home-manager.nixosModules.default
   ];
 
   options.my.home-manager = {
-    enable =
-      mkEnableOption "home-manager"
-      // {
-        default = true;
-      };
+    enable = mkEnableOption "home-manager" // {
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {

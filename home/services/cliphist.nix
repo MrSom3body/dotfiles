@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.services.cliphist;
-in {
+in
+{
   options.my.services.cliphist = {
     enable = mkEnableOption "the cliphist service";
   };
@@ -18,8 +20,8 @@ in {
     };
 
     systemd.user.services = {
-      cliphist.Unit.After = lib.mkForce ["graphical-session.target"];
-      cliphist-images.Unit.After = lib.mkForce ["graphical-session.target"];
+      cliphist.Unit.After = lib.mkForce [ "graphical-session.target" ];
+      cliphist-images.Unit.After = lib.mkForce [ "graphical-session.target" ];
     };
   };
 }

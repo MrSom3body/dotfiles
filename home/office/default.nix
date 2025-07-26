@@ -3,12 +3,14 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
   cfg = config.my.office;
-in {
+in
+{
   imports = [
     ./thunderbird.nix
     ./zathura.nix
@@ -20,8 +22,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         # Documents
         libreoffice-fresh
         simple-scan

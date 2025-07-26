@@ -3,12 +3,14 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   cfg = config.my.media;
-in {
+in
+{
   config = mkIf cfg.enable {
-    home.packages = [pkgs.playerctl];
+    home.packages = [ pkgs.playerctl ];
 
     services.playerctld.enable = true;
 

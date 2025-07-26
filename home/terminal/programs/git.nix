@@ -3,11 +3,13 @@
   config,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.git;
-in {
+in
+{
   options.my.terminal.programs.git = {
     enable = mkEnableOption "my git config";
   };

@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.services.swaync;
-in {
+in
+{
   imports = [
     ./style.nix
   ];
@@ -155,7 +157,7 @@ in {
       };
     };
 
-    home.activation.reloadSwaync = lib.hm.dag.entryAfter ["installPackages"] ''
+    home.activation.reloadSwaync = lib.hm.dag.entryAfter [ "installPackages" ] ''
       if ${lib.getExe' pkgs.procps "pgrep"} swaync > /dev/null; then
         ${lib.getExe' pkgs.swaynotificationcenter "swaync-client"} --reload-config --reload-css
       fi

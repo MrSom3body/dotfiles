@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.fd;
-in {
+in
+{
   options.my.terminal.programs.fd = {
     enable = mkEnableOption "the fd program";
   };
@@ -15,7 +17,10 @@ in {
     programs.fd = {
       enable = true;
       hidden = false;
-      ignores = [".git/" "venv/"];
+      ignores = [
+        ".git/"
+        "venv/"
+      ];
     };
   };
 }

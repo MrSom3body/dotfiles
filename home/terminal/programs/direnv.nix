@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.direnv;
-in {
+in
+{
   options.my.terminal.programs.direnv = {
     enable = mkEnableOption "the direnv program";
   };

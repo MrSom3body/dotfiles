@@ -3,12 +3,14 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   cfg = config.my.editors.helix;
-in {
+in
+{
   config = mkIf cfg.enable {
-    sops.secrets.copilot-api-key = {};
+    sops.secrets.copilot-api-key = { };
 
     programs = {
       helix.languages.language-server.gpt = {

@@ -3,7 +3,10 @@
     enable = true;
   };
 
-  users.users.jellyfin.extraGroups = ["video" "render"];
+  users.users.jellyfin.extraGroups = [
+    "video"
+    "render"
+  ];
 
   networking.firewall = {
     allowedTCPPorts = [

@@ -1,9 +1,10 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.bind = {
     enable = true;
     ipv4Only = true;
     zones."sndh.dev" = {
-      allowQuery = ["100.0.0.0/8"];
+      allowQuery = [ "100.0.0.0/8" ];
       master = true;
       file = pkgs.writeText "sndh.dev" ''
         $ORIGIN   sndh.dev.

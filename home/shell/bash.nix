@@ -2,12 +2,14 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
   cfg = config.my.shell.bash;
-in {
+in
+{
   options.my.shell.bash = {
     enable = mkEnableOption "my bash shell";
   };

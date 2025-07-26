@@ -2,10 +2,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   cfg = config.my.desktop.hyprland;
-in {
+in
+{
   imports = [
     ./scrolling.nix
   ];

@@ -4,13 +4,15 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   cfg = config.my.desktop.hyprland;
-in {
+in
+{
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = lib.mkIf (cfg.layout == "scrolling") {
-      plugins = [inputs.hyprland-plugins.packages.${pkgs.system}.hyprscrolling];
+      plugins = [ inputs.hyprland-plugins.packages.${pkgs.system}.hyprscrolling ];
 
       settings = {
         plugin.hyprscrolling = {

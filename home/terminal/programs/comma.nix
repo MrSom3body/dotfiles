@@ -3,11 +3,13 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.comma;
-in {
+in
+{
   imports = [
     inputs.nix-index-database.homeModules.nix-index
   ];

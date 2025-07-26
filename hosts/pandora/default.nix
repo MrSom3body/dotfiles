@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ../../system/profiles/server.nix
@@ -29,7 +30,10 @@
   ];
 
   networking = {
-    firewall.allowedTCPPorts = [80 443];
+    firewall.allowedTCPPorts = [
+      80
+      443
+    ];
     interfaces.eno1.wakeOnLan.enable = true;
   };
 
@@ -39,8 +43,7 @@
     };
 
     graphics.extraPackages = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         intel-compute-runtime-legacy1
         intel-media-sdk
         libva-vdpau-driver

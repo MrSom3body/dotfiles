@@ -4,17 +4,19 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.yazi;
-in {
+in
+{
   options.my.terminal.programs.yazi = {
     enable = mkEnableOption "yazi";
   };
 
   config = mkIf cfg.enable {
-    home.packages = [pkgs.exiftool];
+    home.packages = [ pkgs.exiftool ];
     programs.yazi = {
       enable = true;
       package = inputs.yazi.packages.${pkgs.system}.default;
@@ -81,7 +83,10 @@ in {
             desc = "Maximize or restore the preview pane";
           }
           {
-            on = ["c" "m"];
+            on = [
+              "c"
+              "m"
+            ];
             run = "plugin chmod";
             desc = "Chmod on selected files";
           }

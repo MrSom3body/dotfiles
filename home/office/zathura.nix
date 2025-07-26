@@ -2,10 +2,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   cfg = config.my.office;
-in {
+in
+{
   config = mkIf cfg.enable {
     programs.zathura = {
       enable = true;

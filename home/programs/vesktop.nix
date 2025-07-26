@@ -2,12 +2,14 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
 
   cfg = config.my.programs.discord;
-in {
+in
+{
   options.my.programs.discord = {
     enable = mkEnableOption "a discord client";
   };
@@ -37,10 +39,18 @@ in {
           disableMinSize = false;
           winNativeTitleBar = false;
           plugins = {
-            AlwaysAnimate = {enabled = true;};
-            AlwaysExpandRoles = {enabled = true;};
-            AlwaysTrust = {enabled = false;};
-            BadgeAPI = {enabled = true;};
+            AlwaysAnimate = {
+              enabled = true;
+            };
+            AlwaysExpandRoles = {
+              enabled = true;
+            };
+            AlwaysTrust = {
+              enabled = false;
+            };
+            BadgeAPI = {
+              enabled = true;
+            };
             BetterFolders = {
               enabled = true;
               sidebar = true;
@@ -52,8 +62,12 @@ in {
               keepIcons = true;
               showFolderIcon = 1;
             };
-            BetterGifAltText = {enabled = true;};
-            BetterGifPicker = {enabled = true;};
+            BetterGifAltText = {
+              enabled = true;
+            };
+            BetterGifPicker = {
+              enabled = true;
+            };
             BetterRoleContext = {
               enabled = true;
               roleIconFileFormat = "png";
@@ -74,15 +88,25 @@ in {
               organizeMenu = true;
               eagerLoad = true;
             };
-            BetterUploadButton = {enabled = true;};
-            BiggerStreamPreview = {enabled = true;};
-            BlurNSFW = {enabled = false;};
+            BetterUploadButton = {
+              enabled = true;
+            };
+            BiggerStreamPreview = {
+              enabled = true;
+            };
+            BlurNSFW = {
+              enabled = false;
+            };
             CallTimer = {
               enabled = true;
               format = "human";
             };
-            ClearURLs = {enabled = true;};
-            CommandsAPI = {enabled = true;};
+            ClearURLs = {
+              enabled = true;
+            };
+            CommandsAPI = {
+              enabled = true;
+            };
             ConsoleJanitor = {
               enabled = true;
               disableLoggers = false;
@@ -97,21 +121,39 @@ in {
                 debug = false;
               };
             };
-            ConsoleShortcuts = {enabled = true;};
-            CopyFileContents = {enabled = true;};
-            CopyUserURLs = {enabled = true;};
-            CrashHandler = {enabled = true;};
+            ConsoleShortcuts = {
+              enabled = true;
+            };
+            CopyFileContents = {
+              enabled = true;
+            };
+            CopyUserURLs = {
+              enabled = true;
+            };
+            CrashHandler = {
+              enabled = true;
+            };
             Dearrow = {
               enabled = true;
               hideButton = false;
               replaceElements = 0;
               dearrowByDefault = true;
             };
-            DisableCallIdle = {enabled = true;};
-            DisableDeepLinks = {enabled = true;};
-            DontRoundMyTimestamps = {enabled = true;};
-            DynamicImageModalAPI = {enabled = true;};
-            EmoteCloner = {enabled = true;};
+            DisableCallIdle = {
+              enabled = true;
+            };
+            DisableDeepLinks = {
+              enabled = true;
+            };
+            DontRoundMyTimestamps = {
+              enabled = true;
+            };
+            DynamicImageModalAPI = {
+              enabled = true;
+            };
+            EmoteCloner = {
+              enabled = true;
+            };
             Experiments = {
               enabled = true;
               toolbarDevMenu = false;
@@ -130,26 +172,50 @@ in {
               hyperLinkText = "{{NAME}}";
               disableEmbedPermissionCheck = false;
             };
-            FavoriteEmojiFirst = {enabled = true;};
+            FavoriteEmojiFirst = {
+              enabled = true;
+            };
             FavoriteGifSearch = {
               enabled = true;
               searchOption = "hostandpath";
             };
-            FixCodeblockGap = {enabled = true;};
-            FixImagesQuality = {enabled = true;};
+            FixCodeblockGap = {
+              enabled = true;
+            };
+            FixImagesQuality = {
+              enabled = true;
+            };
             FixSpotifyEmbeds = {
               enabled = true;
               volume = 50;
             };
-            FixYoutubeEmbeds = {enabled = true;};
-            ForceOwnerCrown = {enabled = true;};
-            FriendInvites = {enabled = true;};
-            FriendsSince = {enabled = true;};
-            FullSearchContext = {enabled = true;};
-            FullUserInChatbox = {enabled = true;};
-            GifPaste = {enabled = true;};
-            GreetStickerPicker = {enabled = true;};
-            HideMedia = {enabled = true;};
+            FixYoutubeEmbeds = {
+              enabled = true;
+            };
+            ForceOwnerCrown = {
+              enabled = true;
+            };
+            FriendInvites = {
+              enabled = true;
+            };
+            FriendsSince = {
+              enabled = true;
+            };
+            FullSearchContext = {
+              enabled = true;
+            };
+            FullUserInChatbox = {
+              enabled = true;
+            };
+            GifPaste = {
+              enabled = true;
+            };
+            GreetStickerPicker = {
+              enabled = true;
+            };
+            HideMedia = {
+              enabled = true;
+            };
             ImageZoom = {
               enabled = true;
               saveZoomValues = true;
@@ -158,7 +224,7 @@ in {
               square = false;
               zoom = 2;
               size = 100;
-              zoomSpeed = {};
+              zoomSpeed = { };
             };
             ImplicitRelationships = {
               enabled = true;
@@ -177,12 +243,16 @@ in {
               toolTip = true;
               memberList = true;
             };
-            MemberListDecoratorsAPI = {enabled = true;};
+            MemberListDecoratorsAPI = {
+              enabled = true;
+            };
             MentionAvatars = {
               enabled = true;
               showAtSymbol = true;
             };
-            MessageAccessoriesAPI = {enabled = true;};
+            MessageAccessoriesAPI = {
+              enabled = true;
+            };
             MessageClickActions = {
               enabled = true;
               enableDeleteOnClick = true;
@@ -190,8 +260,12 @@ in {
               enableDoubleClickToReply = true;
               requireModifier = false;
             };
-            MessageDecorationsAPI = {enabled = true;};
-            MessageEventsAPI = {enabled = true;};
+            MessageDecorationsAPI = {
+              enabled = true;
+            };
+            MessageEventsAPI = {
+              enabled = true;
+            };
             MessageLinkEmbeds = {
               enabled = true;
               automodEmbeds = "never";
@@ -211,18 +285,34 @@ in {
               ignoreChannels = "";
               ignoreGuilds = "";
             };
-            MessageUpdaterAPI = {enabled = true;};
-            MoreCommands = {enabled = true;};
-            MoreKaomoji = {enabled = true;};
-            MutualGroupDMs = {enabled = true;};
-            NoDevtoolsWarning = {enabled = true;};
-            NoMaskedUrlPaste = {enabled = true;};
+            MessageUpdaterAPI = {
+              enabled = true;
+            };
+            MoreCommands = {
+              enabled = true;
+            };
+            MoreKaomoji = {
+              enabled = true;
+            };
+            MutualGroupDMs = {
+              enabled = true;
+            };
+            NoDevtoolsWarning = {
+              enabled = true;
+            };
+            NoMaskedUrlPaste = {
+              enabled = true;
+            };
             NoTrack = {
               enabled = true;
               disableAnalytics = true;
             };
-            NormalizeMessageLinks = {enabled = true;};
-            OnePingPerDM = {enabled = true;};
+            NormalizeMessageLinks = {
+              enabled = true;
+            };
+            OnePingPerDM = {
+              enabled = true;
+            };
             OpenInApp = {
               enabled = true;
               spotify = true;
@@ -235,7 +325,9 @@ in {
               enabled = true;
               permissionsSortOrder = 0;
             };
-            PictureInPicture = {enabled = true;};
+            PictureInPicture = {
+              enabled = true;
+            };
             PinDMs = {
               enabled = true;
               pinOrder = 0;
@@ -248,14 +340,22 @@ in {
               messages = true;
               colorMobileIndicator = true;
             };
-            PreviewMessage = {enabled = true;};
-            QuickMention = {enabled = true;};
+            PreviewMessage = {
+              enabled = true;
+            };
+            QuickMention = {
+              enabled = true;
+            };
             QuickReply = {
               enabled = true;
               shouldMention = 2;
             };
-            ReactErrorDecoder = {enabled = true;};
-            ReadAllNotificationsButton = {enabled = true;};
+            ReactErrorDecoder = {
+              enabled = true;
+            };
+            ReadAllNotificationsButton = {
+              enabled = true;
+            };
             RelationshipNotifier = {
               enabled = true;
               notices = true;
@@ -270,20 +370,40 @@ in {
               customEngineName = "DuckDuckGo";
               customEngineURL = "https://duckduckgo.com/q=";
             };
-            ReplyTimestamp = {enabled = true;};
-            RevealAllSpoilers = {enabled = true;};
-            ReverseImageSearch = {enabled = true;};
-            SecretRingToneEnabler = {enabled = true;};
-            SendTimestamps = {enabled = true;};
-            ServerInfo = {enabled = true;};
-            ServerListAPI = {enabled = true;};
-            ServerListIndicators = {enabled = true;};
+            ReplyTimestamp = {
+              enabled = true;
+            };
+            RevealAllSpoilers = {
+              enabled = true;
+            };
+            ReverseImageSearch = {
+              enabled = true;
+            };
+            SecretRingToneEnabler = {
+              enabled = true;
+            };
+            SendTimestamps = {
+              enabled = true;
+            };
+            ServerInfo = {
+              enabled = true;
+            };
+            ServerListAPI = {
+              enabled = true;
+            };
+            ServerListIndicators = {
+              enabled = true;
+            };
             Settings = {
               enabled = true;
               settingsLocation = "aboveNitro";
             };
-            ShikiCodeblocks = {enabled = true;};
-            ShowAllMessageButtons = {enabled = true;};
+            ShikiCodeblocks = {
+              enabled = true;
+            };
+            ShowAllMessageButtons = {
+              enabled = true;
+            };
             ShowConnections = {
               enabled = true;
               iconSize = 32;
@@ -305,7 +425,9 @@ in {
               enabled = true;
               displayStyle = "ssalggnikool";
             };
-            SilentMessageToggle = {enabled = true;};
+            SilentMessageToggle = {
+              enabled = true;
+            };
             SilentTyping = {
               enabled = true;
               showIcon = true;
@@ -322,11 +444,21 @@ in {
               useSpotifyUris = true;
               previousButtonRestartsTrack = true;
             };
-            SpotifyCrack = {enabled = true;};
-            SpotifyShareCommands = {enabled = true;};
-            StartupTimings = {enabled = true;};
-            StickerPaste = {enabled = true;};
-            SupportHelper = {enabled = true;};
+            SpotifyCrack = {
+              enabled = true;
+            };
+            SpotifyShareCommands = {
+              enabled = true;
+            };
+            StartupTimings = {
+              enabled = true;
+            };
+            StickerPaste = {
+              enabled = true;
+            };
+            SupportHelper = {
+              enabled = true;
+            };
             Translate = {
               enabled = true;
               showChatBarButton = true;
@@ -339,31 +471,61 @@ in {
               sentInput = "";
               sentOutput = "en-us";
             };
-            Unindent = {enabled = true;};
-            UserSettingsAPI = {enabled = true;};
+            Unindent = {
+              enabled = true;
+            };
+            UserSettingsAPI = {
+              enabled = true;
+            };
             UserVoiceShow = {
               enabled = true;
               showInUserProfileModal = true;
               showInMemberList = true;
               showInMessages = true;
             };
-            ValidReply = {enabled = true;};
-            ValidUser = {enabled = true;};
-            ViewIcons = {enabled = true;};
-            VoiceChatDoubleClick = {enabled = true;};
-            VoiceDownload = {enabled = true;};
-            VoiceMessages = {enabled = true;};
+            ValidReply = {
+              enabled = true;
+            };
+            ValidUser = {
+              enabled = true;
+            };
+            ViewIcons = {
+              enabled = true;
+            };
+            VoiceChatDoubleClick = {
+              enabled = true;
+            };
+            VoiceDownload = {
+              enabled = true;
+            };
+            VoiceMessages = {
+              enabled = true;
+            };
             VolumeBooster = {
               enabled = true;
               multiplier = 2;
             };
-            WebContextMenus = {enabled = true;};
-            WebKeybinds = {enabled = true;};
-            WebScreenShareFixes = {enabled = true;};
-            YoutubeAdblock = {enabled = true;};
-            iLoveSpam = {enabled = true;};
-            oneko = {enabled = true;};
-            petpet = {enabled = true;};
+            WebContextMenus = {
+              enabled = true;
+            };
+            WebKeybinds = {
+              enabled = true;
+            };
+            WebScreenShareFixes = {
+              enabled = true;
+            };
+            YoutubeAdblock = {
+              enabled = true;
+            };
+            iLoveSpam = {
+              enabled = true;
+            };
+            oneko = {
+              enabled = true;
+            };
+            petpet = {
+              enabled = true;
+            };
           };
           notifications = {
             timeout = 5000;

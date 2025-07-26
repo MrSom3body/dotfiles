@@ -1,4 +1,5 @@
-{preFetch, ...}: {
+{ preFetch, ... }:
+{
   virtualisation.vmware.host = {
     enable = preFetch;
     extraConfig = ''

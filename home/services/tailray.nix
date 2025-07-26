@@ -3,11 +3,13 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.services.tailray;
-in {
+in
+{
   imports = [
     inputs.tailray.homeManagerModules.default
   ];

@@ -7,11 +7,13 @@
   modulesPath,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkImageMediaOverride;
   inherit (lib) mkDefault;
   inherit (lib) mkForce;
-in {
+in
+{
   imports = [
     (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
 
@@ -27,32 +29,32 @@ in {
     home-manager.enable = mkDefault false;
   };
 
-  isoImage = let
-    inherit (settings) hostname;
-    rev = self.shortRev or "${builtins.substring 0 8 self.lastModifiedDate}";
-    inherit (config.system.nixos) release;
-    arch = pkgs.stdenv.hostPlatform.uname.processor;
+  isoImage =
+    let
+      inherit (settings) hostname;
+      rev = self.shortRev or "${builtins.substring 0 8 self.lastModifiedDate}";
+      inherit (config.system.nixos) release;
+      arch = pkgs.stdenv.hostPlatform.uname.processor;
 
-    fixedParts = "-${release}-${rev}-${arch}";
-    fixedLen = builtins.stringLength fixedParts;
+      fixedParts = "-${release}-${rev}-${arch}";
+      fixedLen = builtins.stringLength fixedParts;
 
-    # Max length for hostname to keep volumeID < 32
-    maxHostnameLen =
-      if fixedLen < 32
-      then 32 - fixedLen
-      else 0;
+      # Max length for hostname to keep volumeID < 32
+      maxHostnameLen = if fixedLen < 32 then 32 - fixedLen else 0;
 
-    shortHostname =
-      if builtins.stringLength hostname > maxHostnameLen
-      then builtins.substring 0 maxHostnameLen hostname
-      else hostname;
+      shortHostname =
+        if builtins.stringLength hostname > maxHostnameLen then
+          builtins.substring 0 maxHostnameLen hostname
+        else
+          hostname;
 
-    name = hostname + fixedParts;
-  in {
-    isoBaseName = mkImageMediaOverride name;
-    isoName = mkImageMediaOverride (name + ".iso");
-    volumeID = mkImageMediaOverride (shortHostname + fixedParts);
-  };
+      name = hostname + fixedParts;
+    in
+    {
+      isoBaseName = mkImageMediaOverride name;
+      isoName = mkImageMediaOverride (name + ".iso");
+      volumeID = mkImageMediaOverride (shortHostname + fixedParts);
+    };
 
   environment.systemPackages = [
     inputs.disko.packages.${pkgs.system}.default
@@ -60,7 +62,7 @@ in {
 
   nixpkgs.overlays = [
     (_final: super: {
-      espeak = super.espeak.override {mbrolaSupport = false;};
+      espeak = super.espeak.override { mbrolaSupport = false; };
     })
   ];
 
@@ -69,7 +71,8 @@ in {
     tailscale.enable = false;
     getty = {
       autologinUser = mkForce "karun";
-      helpLine = mkForce (''
+      helpLine = mkForce (
+        ''
           The "karun" and "root" accounts have empty passwords.
 
           To log in over ssh you must set a password for either "karun" or "root"
@@ -84,7 +87,8 @@ in {
 
           Type `sudo systemctl start display-manager' to
           start the graphical user interface.
-        '');
+        ''
+      );
     };
   };
 

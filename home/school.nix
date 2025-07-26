@@ -5,23 +5,29 @@
   pkgs,
   preFetch,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
 
   cfg = config.my.school;
-in {
+in
+{
   options.my.school = {
     enable = mkEnableOption "school related programs";
   };
 
   config = mkIf cfg.enable {
-    home.packages = let
-      plugins = ["github-copilot" "ideavim" "mermaid"];
-    in
+    home.packages =
+      let
+        plugins = [
+          "github-copilot"
+          "ideavim"
+          "mermaid"
+        ];
+      in
       builtins.attrValues {
-        inherit
-          (pkgs)
+        inherit (pkgs)
           # IDEs
           jetbrains-toolbox
           # JDKs
@@ -38,11 +44,12 @@ in {
         (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.phpstorm plugins)
       ]
       ++ (
-        if preFetch
-        then [
-          # pkgs.ciscoPacketTracer8
-        ]
-        else []
+        if preFetch then
+          [
+            # pkgs.ciscoPacketTracer8
+          ]
+        else
+          [ ]
       );
 
     home.file.".ideavimrc".text = ''

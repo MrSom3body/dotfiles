@@ -2,12 +2,14 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.emulators.kitty;
-in {
+in
+{
   options.my.terminal.emulators.kitty = {
     enable = mkEnableOption "the kitty terminal emulator";
   };

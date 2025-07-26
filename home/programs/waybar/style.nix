@@ -4,16 +4,19 @@
   pkgs,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   cfg = config.my.programs.waybar;
-in {
+in
+{
   config = mkIf cfg.enable {
-    programs.waybar.style = let
-      borderRadius = builtins.toString settings.appearance.border.radius;
-      borderSize = builtins.toString settings.appearance.border.size;
-    in
+    programs.waybar.style =
+      let
+        borderRadius = builtins.toString settings.appearance.border.radius;
+        borderSize = builtins.toString settings.appearance.border.size;
+      in
       # css
       ''
         * {

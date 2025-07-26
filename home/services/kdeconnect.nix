@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.services.kdeconnect;
-in {
+in
+{
   options.my.services.kdeconnect = {
     enable = mkEnableOption "the kdeconnect service";
   };
@@ -20,8 +22,8 @@ in {
     };
 
     systemd.user.services = {
-      kdeconnect.Unit.After = lib.mkForce ["graphical-session.target"];
-      kdeconnect-indicator.Unit.After = lib.mkForce ["graphical-session.target"];
+      kdeconnect.Unit.After = lib.mkForce [ "graphical-session.target" ];
+      kdeconnect-indicator.Unit.After = lib.mkForce [ "graphical-session.target" ];
     };
   };
 }

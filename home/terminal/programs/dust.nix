@@ -3,17 +3,19 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.dust;
-in {
+in
+{
   options.my.terminal.programs.dust = {
     enable = mkEnableOption "dust, a disk usage tool";
   };
 
   config = mkIf cfg.enable {
-    home.packages = [pkgs.dust];
+    home.packages = [ pkgs.dust ];
     xdg.configFile."dust/config.toml".text =
       # toml
       ''

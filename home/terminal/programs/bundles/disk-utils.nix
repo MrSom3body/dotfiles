@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.bundles.disk-utils;
-in {
+in
+{
   options.my.terminal.programs.bundles.disk-utils = {
     enable = mkEnableOption "disk related utilities";
   };
@@ -19,8 +21,7 @@ in {
     };
 
     home.packages = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         sd
         ;
     };

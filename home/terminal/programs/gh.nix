@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.gh;
-in {
+in
+{
   options.my.terminal.programs.gh = {
     enable = mkEnableOption "the github cli program";
   };

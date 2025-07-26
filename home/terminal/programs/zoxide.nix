@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.zoxide;
-in {
+in
+{
   options.my.terminal.programs.zoxide = {
     enable = mkEnableOption "the zoxide program";
   };
@@ -14,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     programs.zoxide = {
       enable = true;
-      options = ["--cmd cd"];
+      options = [ "--cmd cd" ];
     };
   };
 }

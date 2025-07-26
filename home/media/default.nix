@@ -3,12 +3,14 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
   cfg = config.my.media;
-in {
+in
+{
   imports = [
     ./programs
     ./services
@@ -20,8 +22,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         # audio control
         pwvucontrol
         # images

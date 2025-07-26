@@ -2,12 +2,14 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) mkEnableOption;
   cfg = config.my.office.mail;
-in {
+in
+{
   options.my.office.mail = {
     enable = mkEnableOption "the thunderbird program";
   };

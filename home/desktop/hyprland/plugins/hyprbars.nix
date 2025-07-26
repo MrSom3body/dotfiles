@@ -4,14 +4,16 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   cfg = config.my.desktop.hyprland;
   rgb = color: "rgb(${color})";
-in {
+in
+{
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
-      plugins = [inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars];
+      plugins = [ inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars ];
       settings = {
         plugin.hyprbars = {
           bar_height = config.stylix.fonts.sizes.desktop * 2;
@@ -26,12 +28,14 @@ in {
 
           icon_on_hover = true;
           bar_button_padding = config.stylix.fonts.sizes.desktop / 2;
-          hyprbars-button = let
-            buttonSize = builtins.toString (config.stylix.fonts.sizes.desktop * 1.5);
-          in [
-            "rgb(${config.lib.stylix.colors.base08}), ${buttonSize}, 󰖭, hyprctl dispatch killactive"
-            "rgb(${config.lib.stylix.colors.base0B}), ${buttonSize}, , hyprctl dispatch fullscreen 1"
-          ];
+          hyprbars-button =
+            let
+              buttonSize = builtins.toString (config.stylix.fonts.sizes.desktop * 1.5);
+            in
+            [
+              "rgb(${config.lib.stylix.colors.base08}), ${buttonSize}, 󰖭, hyprctl dispatch killactive"
+              "rgb(${config.lib.stylix.colors.base0B}), ${buttonSize}, , hyprctl dispatch fullscreen 1"
+            ];
         };
 
         windowrule = [

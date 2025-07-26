@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
 
   inherit (lib) types;
@@ -13,17 +14,16 @@
   inherit (lib) mkEnableOption;
   inherit (lib) mkOption;
   cfg = config.my.editors.helix;
-in {
+in
+{
   imports = [
     ./languages.nix
   ];
 
   options.my.editors.helix = {
-    enable =
-      mkEnableOption "the helix editor"
-      // {
-        default = true;
-      };
+    enable = mkEnableOption "the helix editor" // {
+      default = true;
+    };
     package = mkOption {
       type = types.package;
       inherit (inputs.helix.packages.${pkgs.system}) default;
@@ -44,7 +44,7 @@ in {
           cursorline = true;
           auto-format = true;
           completion-replace = false;
-          rulers = [80];
+          rulers = [ 80 ];
           bufferline = "multiple";
           color-modes = true;
           soft-wrap.enable = true;

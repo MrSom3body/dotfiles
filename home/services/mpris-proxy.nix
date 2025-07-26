@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.services.mpris-proxy;
-in {
+in
+{
   options.my.services.mpris-proxy = {
     enable = mkEnableOption "the mpris-proxy service to enable bluetooth device to play/pause";
   };

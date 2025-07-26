@@ -1,8 +1,10 @@
-{settings, ...}: {
-  services.swaync.style = let
-    radius = builtins.toString settings.appearance.border.radius;
-    border-size = builtins.toString settings.appearance.border.size;
-  in
+{ settings, ... }:
+{
+  services.swaync.style =
+    let
+      radius = builtins.toString settings.appearance.border.radius;
+      border-size = builtins.toString settings.appearance.border.size;
+    in
     # css
     ''
       .notification-row {

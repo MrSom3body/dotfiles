@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   config = lib.mkIf config.my.games.enable {
     programs.mangohud = {
       enable = true;

@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.bat;
-in {
+in
+{
   options.my.terminal.programs.bat = {
     enable = mkEnableOption "bat a cat alternative";
   };
@@ -17,8 +19,7 @@ in {
       bat = {
         enable = true;
         extraPackages = builtins.attrValues {
-          inherit
-            (pkgs.bat-extras)
+          inherit (pkgs.bat-extras)
             batman
             prettybat
             ;

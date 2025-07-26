@@ -1,121 +1,127 @@
 {
   description = "MrSom3body's dotfiles";
 
-  outputs = {
-    self,
-    nixpkgs,
-    systems,
-    deploy-rs,
-    ...
-  } @ inputs: let
-    inherit (import ./settings.nix) settings;
-    inherit (nixpkgs) lib;
-    inherit (self) outputs;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      systems,
+      deploy-rs,
+      ...
+    }@inputs:
+    let
+      inherit (import ./settings.nix) settings;
+      inherit (nixpkgs) lib;
+      inherit (self) outputs;
 
-    forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs (import systems) (
-      system:
+      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs (import systems) (
+        system:
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
         }
-    );
+      );
 
-    specialArgs = {
-      inherit self inputs outputs;
-    };
+      specialArgs = {
+        inherit self inputs outputs;
+      };
 
-    mkNixos = {
-      hostname,
-      isInstall ? true,
-      preFetch ? true,
-    }:
-      lib.nixosSystem {
-        specialArgs =
-          specialArgs
-          // {
+      mkNixos =
+        {
+          hostname,
+          isInstall ? true,
+          preFetch ? true,
+        }:
+        lib.nixosSystem {
+          specialArgs = specialArgs // {
             settings = settings hostname;
             inherit preFetch;
           };
 
-        modules =
-          [
+          modules = [
             ./hosts/${hostname}
           ]
           ++ (
-            if isInstall
-            then [
-              ./hosts/${hostname}/disko.nix
-              inputs.disko.nixosModules.disko
-            ]
-            else []
+            if isInstall then
+              [
+                ./hosts/${hostname}/disko.nix
+                inputs.disko.nixosModules.disko
+              ]
+            else
+              [ ]
           );
-      };
-  in {
-    overlays = import ./overlays {
-      inherit outputs inputs;
-    };
-
-    formatter = forEachSystem (pkgs: pkgs.alejandra);
-
-    nixosConfigurations = {
-      promethea = mkNixos {hostname = "promethea";};
-      pandora = mkNixos {hostname = "pandora";};
-
-      athenas = mkNixos {
-        hostname = "athenas";
-        isInstall = false;
-      };
-      sanctuary = mkNixos {
-        hostname = "sanctuary";
-        isInstall = false;
+        };
+    in
+    {
+      overlays = import ./overlays {
+        inherit outputs inputs;
       };
 
-      # hosts only for garnix
-      promethea_garnix = mkNixos {
-        hostname = "promethea";
-        preFetch = false;
-      };
-    };
+      formatter = forEachSystem (pkgs: pkgs.nixfmt-tree);
 
-    images = {
-      sanctuary = outputs.nixosConfigurations.sanctuary.config.system.build.isoImage;
-      athenas = outputs.nixosConfigurations.athenas.config.system.build.isoImage;
-    };
+      nixosConfigurations = {
+        promethea = mkNixos { hostname = "promethea"; };
+        pandora = mkNixos { hostname = "pandora"; };
 
-    templates = {
-      default = {
-        path = ./templates/default;
-        description = "my default dev template";
-      };
+        athenas = mkNixos {
+          hostname = "athenas";
+          isInstall = false;
+        };
+        sanctuary = mkNixos {
+          hostname = "sanctuary";
+          isInstall = false;
+        };
 
-      python-uv = {
-        path = ./templates/python-uv;
-        description = "a python uv dev template";
-      };
-    };
-
-    deploy.nodes = {
-      pandora = {
-        hostname = "pandora";
-        profiles.system = {
-          sshUser = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos outputs.nixosConfigurations.pandora;
+        # hosts only for garnix
+        promethea_garnix = mkNixos {
+          hostname = "promethea";
+          preFetch = false;
         };
       };
-    };
 
-    devShells = forEachSystem (pkgs:
-      import ./shell.nix {
-        inherit self inputs pkgs;
-      });
-    checks =
-      builtins.mapAttrs (_system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib
-      // forEachSystem (pkgs:
-        import ./checks.nix {
-          inherit inputs pkgs;
-        });
-  };
+      images = {
+        sanctuary = outputs.nixosConfigurations.sanctuary.config.system.build.isoImage;
+        athenas = outputs.nixosConfigurations.athenas.config.system.build.isoImage;
+      };
+
+      templates = {
+        default = {
+          path = ./templates/default;
+          description = "my default dev template";
+        };
+
+        python-uv = {
+          path = ./templates/python-uv;
+          description = "a python uv dev template";
+        };
+      };
+
+      deploy.nodes = {
+        pandora = {
+          hostname = "pandora";
+          profiles.system = {
+            sshUser = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos outputs.nixosConfigurations.pandora;
+          };
+        };
+      };
+
+      devShells = forEachSystem (
+        pkgs:
+        import ./shell.nix {
+          inherit self inputs pkgs;
+        }
+      );
+      checks =
+        builtins.mapAttrs (_system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib
+        // forEachSystem (
+          pkgs:
+          import ./checks.nix {
+            inherit inputs pkgs;
+          }
+        );
+    };
 
   inputs = {
     # global, so they can be `.follow`ed

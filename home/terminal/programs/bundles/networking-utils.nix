@@ -3,19 +3,20 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.bundles.networking-utils;
-in {
+in
+{
   options.my.terminal.programs.bundles.networking-utils = {
     enable = mkEnableOption "networking related programs";
   };
 
   config = mkIf cfg.enable {
     home.packages = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         dig
         iputils
         nmap

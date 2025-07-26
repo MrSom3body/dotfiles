@@ -2,10 +2,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   cfg = config.my.programs.macchina;
-in {
+in
+{
   config = mkIf cfg.enable {
     home.file.".config/macchina/themes/default.toml".text =
       # toml

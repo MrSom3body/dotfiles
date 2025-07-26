@@ -3,10 +3,12 @@
   config,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   cfg = config.my.desktop.hyprland;
-in {
+in
+{
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland.settings = {
       "$floatingSize" = "600 400";
@@ -87,45 +89,44 @@ in {
         "immediate, class:^(hl2_linux)$" # Left 4 Dead 2
       ];
 
-      layerrule =
-        [
-          # Sway notification Center
-          "animation slide right, swaync-control-center"
-          "dimaround, swaync-control-center"
+      layerrule = [
+        # Sway notification Center
+        "animation slide right, swaync-control-center"
+        "dimaround, swaync-control-center"
 
-          # Rofi
-          "animation slide, rofi"
-          "dimaround, rofi"
+        # Rofi
+        "animation slide, rofi"
+        "dimaround, rofi"
 
-          # fuzzel
-          "animation slide, launcher"
-          "dimaround, launcher"
+        # fuzzel
+        "animation slide, launcher"
+        "dimaround, launcher"
 
-          # fnott
-          "animation slide, notifications"
-        ]
-        # only blur if not fully opaque
-        ++ lib.optional (config.stylix.opacity.desktop != 1.0) [
-          # waybar
-          "blur, waybar"
-          "ignorezero, waybar"
+        # fnott
+        "animation slide, notifications"
+      ]
+      # only blur if not fully opaque
+      ++ lib.optional (config.stylix.opacity.desktop != 1.0) [
+        # waybar
+        "blur, waybar"
+        "ignorezero, waybar"
 
-          # swaync
-          "blur, swaync-control-center"
-          "ignorezero, swaync-control-center"
+        # swaync
+        "blur, swaync-control-center"
+        "ignorezero, swaync-control-center"
 
-          # rofi
-          "blur, rofi"
-          "ignorezero, rofi"
+        # rofi
+        "blur, rofi"
+        "ignorezero, rofi"
 
-          # fuzzel
-          "blur, launcher"
-          "ignorezero, launcher"
+        # fuzzel
+        "blur, launcher"
+        "ignorezero, launcher"
 
-          # fnott
-          "blur, notifications"
-          "ignorezero, notifications"
-        ];
+        # fnott
+        "blur, notifications"
+        "ignorezero, notifications"
+      ];
 
       workspace = [
         # Smart Gaps

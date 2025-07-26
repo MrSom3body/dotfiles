@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkDefault;
   inherit (lib) types;
@@ -14,7 +15,8 @@
 
   cfg = config.my.desktop.hyprland;
   cfg' = config.wayland.windowManager.hyprland;
-in {
+in
+{
   imports = [
     ./settings.nix
     ./layouts
@@ -30,7 +32,11 @@ in {
   options.my.desktop.hyprland = {
     enable = mkEnableOption "the Hyprland WM";
     layout = mkOption {
-      type = types.enum ["dwindle" "master" "scrolling"];
+      type = types.enum [
+        "dwindle"
+        "master"
+        "scrolling"
+      ];
       default = "dwindle";
       description = "Switch between dwindle, master and scrolling layout";
     };
@@ -55,7 +61,9 @@ in {
       package = null;
       portalPackage = null;
 
-      settings.permission = builtins.map (plugin: plugin + "/lib/lib${plugin.pname}.so, plugin, allow") cfg'.plugins;
+      settings.permission = builtins.map (
+        plugin: plugin + "/lib/lib${plugin.pname}.so, plugin, allow"
+      ) cfg'.plugins;
     };
 
     services = {
@@ -63,12 +71,12 @@ in {
       blueman-applet.enable = true;
     };
 
-    home.packages = let
-      inherit (inputs.hyprpicker.packages.${pkgs.system}) hyprpicker;
-    in
+    home.packages =
+      let
+        inherit (inputs.hyprpicker.packages.${pkgs.system}) hyprpicker;
+      in
       builtins.attrValues {
-        inherit
-          (pkgs)
+        inherit (pkgs)
           brightnessctl
           nautilus
           nwg-displays
@@ -78,18 +86,17 @@ in {
           ;
       }
       ++
-      # my packages
-      builtins.attrValues {
-        inherit
-          (inputs.som3pkgs.packages.${pkgs.system})
-          hyprcast
-          touchpad-toggle
-          wl-ocr
-          ;
-      }
+        # my packages
+        builtins.attrValues {
+          inherit (inputs.som3pkgs.packages.${pkgs.system})
+            hyprcast
+            touchpad-toggle
+            wl-ocr
+            ;
+        }
       ++ [
         hyprpicker
-        (inputs.hyprland-contrib.packages.${pkgs.system}.grimblast.override {inherit hyprpicker;})
+        (inputs.hyprland-contrib.packages.${pkgs.system}.grimblast.override { inherit hyprpicker; })
       ];
 
     home.file.".config/hypr/scripts" = {

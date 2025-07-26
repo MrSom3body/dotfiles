@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   cfg = config.services.ddns-updater;
-in {
+in
+{
   services = {
     caddy.virtualHosts."ddns.sndh.dev" = {
       extraConfig = ''

@@ -14,7 +14,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["umask=0077"];
+                mountOptions = [ "umask=0077" ];
               };
             };
             luks = {
@@ -23,29 +23,31 @@
                 type = "luks";
                 name = "crypted";
                 settings.allowDiscards = true;
-                content = let
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
-                in {
-                  type = "btrfs";
-                  extraArgs = ["-f"];
-                  subvolumes = {
-                    "/root" = {
-                      mountpoint = "/";
-                      inherit mountOptions;
-                    };
-                    "/home" = {
-                      mountpoint = "/home";
-                      inherit mountOptions;
-                    };
-                    "/nix" = {
-                      mountpoint = "/nix";
-                      inherit mountOptions;
+                content =
+                  let
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  in
+                  {
+                    type = "btrfs";
+                    extraArgs = [ "-f" ];
+                    subvolumes = {
+                      "/root" = {
+                        mountpoint = "/";
+                        inherit mountOptions;
+                      };
+                      "/home" = {
+                        mountpoint = "/home";
+                        inherit mountOptions;
+                      };
+                      "/nix" = {
+                        mountpoint = "/nix";
+                        inherit mountOptions;
+                      };
                     };
                   };
-                };
               };
             };
           };

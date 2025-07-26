@@ -4,9 +4,11 @@
   pkgs,
   settings,
   ...
-}: let
+}:
+let
   cfg = config.my.programs.rclone;
-in {
+in
+{
   options.my.programs.rclone = {
     enable = lib.mkEnableOption "the rclone program";
     package = lib.mkOption {
@@ -27,13 +29,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [cfg.package];
+    home.packages = [ cfg.package ];
 
-    systemd.user = let
-      unitName = "rclone-proton-drive-backup";
-      mountpoint = "proton:Computers/${settings.hostname}";
-      filterFile = pkgs.writeText "rclone-filters" cfg.protonDriveBackup.filters;
-    in
+    systemd.user =
+      let
+        unitName = "rclone-proton-drive-backup";
+        mountpoint = "proton:Computers/${settings.hostname}";
+        filterFile = pkgs.writeText "rclone-filters" cfg.protonDriveBackup.filters;
+      in
       lib.mkIf cfg.protonDriveBackup.enable {
         services.${unitName} = {
           Unit.Description = "Sync some folders to Proton Drive automatically";
@@ -67,7 +70,7 @@ in {
             Persistent = true;
           };
 
-          Install.WantedBy = ["timers.target"];
+          Install.WantedBy = [ "timers.target" ];
         };
       };
   };

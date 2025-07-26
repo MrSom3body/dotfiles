@@ -4,8 +4,11 @@
   ];
 
   services = {
-    immich.accelerationDevices = ["/dev/dri/renderD128"];
+    immich.accelerationDevices = [ "/dev/dri/renderD128" ];
   };
 
-  users.users.immich.extraGroups = ["video" "render"];
+  users.users.immich.extraGroups = [
+    "video"
+    "render"
+  ];
 }

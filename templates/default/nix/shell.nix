@@ -1,16 +1,16 @@
 {
   self,
   pkgs,
-}: {
+}:
+{
   default = pkgs.mkShell {
     packages = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         git
         ;
     };
 
-    buildInputs = [];
+    buildInputs = [ ];
 
     shellHook = ''
       ${self.checks.${pkgs.system}.pre-commit-check.shellHook}

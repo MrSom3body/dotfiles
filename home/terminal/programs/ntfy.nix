@@ -3,12 +3,14 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
 
   cfg = config.my.terminal.programs.ntfy;
-in {
+in
+{
   options.my.terminal.programs.ntfy = {
     enable = mkEnableOption "my ntfy config";
   };
@@ -38,8 +40,10 @@ in {
     };
 
     home = {
-      packages = [pkgs.ntfy-sh];
-      file.".config/ntfy/client.yml".source = config.lib.file.mkOutOfStoreSymlink config.sops.templates."ntfy-client-config.yml".path;
+      packages = [ pkgs.ntfy-sh ];
+      file.".config/ntfy/client.yml".source =
+        config.lib.file.mkOutOfStoreSymlink
+          config.sops.templates."ntfy-client-config.yml".path;
     };
 
     systemd.user.services = {
@@ -55,7 +59,7 @@ in {
         };
 
         Install = {
-          WantedBy = ["default.target"];
+          WantedBy = [ "default.target" ];
         };
       };
     };

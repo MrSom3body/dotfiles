@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   cfg = config.services.immich;
-in {
+in
+{
   sops.secrets.immich = {
     sopsFile = ../../../secrets/immich.env;
     format = "dotenv";
@@ -31,5 +33,8 @@ in {
     };
   };
 
-  users.users.immich.extraGroups = ["video" "render"];
+  users.users.immich.extraGroups = [
+    "video"
+    "render"
+  ];
 }

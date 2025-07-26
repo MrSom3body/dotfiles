@@ -3,7 +3,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   default = pkgs.mkShell {
     name = "dotfiles";
 
@@ -11,12 +12,11 @@
 
     packages =
       builtins.attrValues {
-        inherit
-          (pkgs)
-          alejandra
+        inherit (pkgs)
           git
           just
           neovim # a editor if I'm dumb and remove it somehow
+          nixfmt-tree
           ripgrep
           sops
           ;

@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.my.terminal.programs.less;
-in {
+in
+{
   options.my.terminal.programs.less = {
     enable = mkEnableOption "the less program";
   };

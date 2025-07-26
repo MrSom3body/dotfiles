@@ -5,14 +5,16 @@
   pkgs,
   settings,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   inherit (config.lib.stylix) colors;
   rgb = color: "rgb(${color})";
 
   cfg = config.my.programs.hyprlock;
-in {
+in
+{
   options.my.programs.hyprlock = {
     enable = mkEnableOption "the hyprlock program";
   };

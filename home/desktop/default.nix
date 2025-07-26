@@ -3,7 +3,8 @@
   config,
   osConfig ? null,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) types;
 
@@ -13,7 +14,8 @@
   inherit (lib) mkOption;
 
   cfg = config.my.desktop;
-in {
+in
+{
   imports = [
     ./hyprland
     ./xdg.nix
@@ -22,7 +24,7 @@ in {
   options.my.desktop = {
     enable = mkEnableOption "a customized desktop";
     type = mkOption {
-      type = types.enum ["Hyprland"];
+      type = types.enum [ "Hyprland" ];
       default = "Hyprland";
       description = "The desktop type you want to use";
     };
@@ -55,11 +57,7 @@ in {
         kdeconnect.enable = mkDefault true;
         polkit.enable = mkDefault true;
         swayosd.enable = mkDefault true;
-        tailray.enable = mkDefault (
-          if osConfig != null
-          then osConfig.services.tailscale.enable
-          else false
-        );
+        tailray.enable = mkDefault (if osConfig != null then osConfig.services.tailscale.enable else false);
         udiskie.enable = mkDefault true;
       };
     };

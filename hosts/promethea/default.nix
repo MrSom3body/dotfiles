@@ -1,11 +1,4 @@
-{
-  lib,
-  inputs,
-  ...
-}:
-let
-  inherit (lib) mkForce;
-in
+{ inputs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -26,7 +19,6 @@ in
 
     ../../system/optional/services/fprintd.nix
     ../../system/optional/services/gns3.nix
-    ../../system/optional/services/ollama.nix
 
     ../../system/optional/virtualisation/libvirtd.nix
     ../../system/optional/virtualisation/podman.nix
@@ -46,17 +38,14 @@ in
 
   hardware = {
     asus.battery.chargeUpto = 80;
-    nvidia.primeBatterySaverSpecialisation = true;
   };
 
-  specialisation = {
-    # extend the specialisation provided by primeBatterySaverSpecialisation
-    battery-saver.configuration = {
-      environment.etc."specialisation".text = "battery-saver"; # for nh
-
-      # disable ollama
-      services.ollama.enable = mkForce false;
-    };
+  specialisation.enable-ollama.configuration = {
+    environment.etc."specialisation".text = "enable-ollama"; # for nh
+    system.nixos.tags = [ "enable-ollama" ]; # to display it in the boot loader
+    imports = [
+      ../../system/optional/services/ollama.nix
+    ];
   };
 
   security.tpm2.enable = true;

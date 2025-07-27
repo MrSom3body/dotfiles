@@ -28,7 +28,7 @@ in
           {
             id_uuid = "5f771662-6cb4-4bb9-b3ec-e08af519402f";
             automount = true;
-            keyfile = "~/.face";
+            keyfile = "~/Pictures/butter_chicken.jpg";
           }
 
           # Default

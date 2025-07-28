@@ -65,6 +65,7 @@
       ntfy.enable = true;
       tealdeer.enable = true;
       tokei.enable = true;
+      zellij.enable = true;
     };
 
     services = {

@@ -11,6 +11,7 @@
     ./git.nix
     ./gitui.nix
     ./tokei.nix
+    ./zellij.nix
 
     # search
     ./fd.nix

@@ -47,6 +47,7 @@ in
           rulers = [ 80 ];
           bufferline = "multiple";
           color-modes = true;
+          rainbow-brackets = true;
           soft-wrap.enable = true;
 
           end-of-line-diagnostics = "hint";
@@ -66,7 +67,7 @@ in
         # keys.normal.space = {
         #   e = [
         #     ":sh rm -f /tmp/helix-yazi"
-        #     ":insert-output yazi %{buffer_name} --chooser-file=/tmp/helix-yazi"
+        #     '':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/helix-yazi''
         #     ":insert-output echo '\\x1b[?1049h\\x1b[?2004h' > /dev/tty"
         #     ":open %sh{cat /tmp/helix-yazi}"
         #     ":redraw"

@@ -45,6 +45,7 @@ in
           # toml
           taplo
           # typos
+          codebook
           ltex-ls-plus
           # typst
           tinymist
@@ -88,6 +89,10 @@ in
                 "css"
               ];
             };
+            language-servers = [
+              "vscode-css-language-server"
+              "codebook"
+            ];
           }
 
           {
@@ -98,6 +103,11 @@ in
           {
             name = "go";
             auto-format = true;
+            language-servers = [
+              "gopls"
+              "golangci-lint-langserver"
+              "codebook"
+            ];
           }
 
           {
@@ -109,7 +119,13 @@ in
                 "--parser"
                 "html"
               ];
+
             };
+            language-servers = [
+              "vscode-html-language-server"
+              "superhtml"
+              "codebook"
+            ];
           }
 
           {
@@ -144,11 +160,6 @@ in
 
           {
             name = "python";
-            language-servers = [
-              "basedpyright"
-              "ruff"
-              "gpt"
-            ];
             auto-format = true;
             formatter = {
               command = "ruff";
@@ -158,6 +169,12 @@ in
                 "-"
               ];
             };
+            language-servers = [
+              "basedpyright"
+              "ruff"
+              "gpt"
+              "codebook"
+            ];
           }
 
           {
@@ -168,7 +185,10 @@ in
           {
             name = "typst";
             auto-format = true;
-            language-servers = [ "tinymist" ];
+            language-servers = [
+              "tinymist"
+              "ltex"
+            ];
           }
 
           {
@@ -181,6 +201,11 @@ in
           basedpyright = {
             command = "basedpyright-langserver";
             args = [ "--stdio" ];
+          };
+
+          codebook = {
+            command = "codebook-lsp";
+            args = [ "serve" ];
           };
 
           lemminx = {

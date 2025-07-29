@@ -15,7 +15,6 @@
         inherit (pkgs)
           git
           just
-          neovim # a editor if I'm dumb and remove it somehow
           nixfmt-tree
           ripgrep
           sops
@@ -23,6 +22,7 @@
       }
       ++ [
         inputs.deploy-rs.packages.${pkgs.system}.default
+        inputs.helix.packages.${pkgs.system}.default # a editor if I'm dumb and remove it somehow
       ];
 
     shellHook = ''

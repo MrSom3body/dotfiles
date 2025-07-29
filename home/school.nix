@@ -52,7 +52,7 @@ in
           [ ]
       );
 
-    home.file.".ideavimrc".text = ''
+    xdg.configFile."ideavim/ideavimrc".text = ''
       source ${inputs.helix-vim}/src/helix.idea.vim
     '';
   };

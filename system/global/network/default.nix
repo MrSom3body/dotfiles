@@ -30,7 +30,7 @@
   # DNS resolver
   services.resolved = {
     enable = true;
-    dnsovertls = "true";
+    dnsovertls = "opportunistic";
   };
 
   # slows down boot time

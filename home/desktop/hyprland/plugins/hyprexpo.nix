@@ -17,7 +17,7 @@ in
       settings = {
         plugin.hyprexpo = {
           columns = 3;
-          gap_size = 5;
+          gap_size = 10;
           bg_col = rgb config.lib.stylix.colors.base00;
           workspace_method = "first 1";
 

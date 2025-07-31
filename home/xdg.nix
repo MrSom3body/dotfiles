@@ -8,7 +8,7 @@
 let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
-  cfg = config.my.desktop.xdg;
+  cfg = config.my.xdg;
 
   browser = [ "zen.desktop" ];
   imageViewer = [ "org.gnome.Loupe.desktop" ];
@@ -59,7 +59,7 @@ let
     ] browser);
 in
 {
-  options.my.desktop.xdg = {
+  options.my.xdg = {
     enable = mkEnableOption "xdg stuff";
   };
 
@@ -91,10 +91,12 @@ in
 
     home.packages = [
       # used by `gio open` and xdp-gtk
-      (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
-        ${settings.programs.terminal} "$@"
-      '')
       pkgs.xdg-utils
-    ];
+    ]
+    ++ lib.optional (config.my.systemType >= 2) (
+      pkgs.writeShellScriptBin "xdg-terminal-exec" ''
+        ${settings.programs.terminal} "$@"
+      ''
+    );
   };
 }

@@ -18,7 +18,6 @@ in
 {
   imports = [
     ./hyprland
-    ./xdg.nix
   ];
 
   options.my.desktop = {
@@ -32,7 +31,7 @@ in
 
   config = mkIf cfg.enable {
     my = {
-      desktop.xdg.enable = true;
+      xdg.enable = true;
       browsers.zen-browser = {
         enable = true;
         default = true;

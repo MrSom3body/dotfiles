@@ -29,6 +29,7 @@ in
     ./stylix.nix
     ./terminal
     ./utilities.nix
+    ./xdg.nix
 
     inputs.som3pkgs.homeManagerModules.power-monitor
   ];

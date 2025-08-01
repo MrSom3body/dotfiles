@@ -39,7 +39,6 @@ jobs:
           pr-labels: |
             dependencies
             automated
-          pr-reviewers: MrSom3body
 
       - name: Auto merge
         run: |

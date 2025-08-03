@@ -39,9 +39,6 @@
 
       # TODO delete when https://github.com/NixOS/nixpkgs/issues/400317 gets resolved
       inherit (nixpkgs-jetbrains) jetbrains;
-
-      # TODO delete when https://github.com/NixOS/nixpkgs/issues/425323 gets resolved
-      jdk8 = final.temurin-bin-8;
     };
 
   stable-packages = final: _prev: {

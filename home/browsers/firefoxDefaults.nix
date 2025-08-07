@@ -78,6 +78,11 @@
         icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = [ "@np" ];
       };
+      "nixpkgs-pr" = {
+        urls = [ { template = "https://nixpk.gs/pr-tracker.html?pr={searchTerms}"; } ];
+        icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        definedAliases = [ "@npr" ];
+      };
       "subreddit" = {
         urls = [ { template = "https://reddit.com/r/{searchTerms}"; } ];
         icon = "https://reddit.com/favicon.png";

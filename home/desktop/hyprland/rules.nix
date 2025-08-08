@@ -86,6 +86,7 @@ in
         # Games
         "immediate, class:^(Minecraft.*)$"
         "immediate, class:^(steam_app_.*)$"
+        "renderunfocused, class:^(steam_app_960090)$" # don't kick me out of bloons
         "immediate, class:^(hl2_linux)$" # Left 4 Dead 2
       ];
 

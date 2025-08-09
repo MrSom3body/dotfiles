@@ -48,10 +48,6 @@ in
             body = "${pkgs.timg}/bin/timg $argv";
             wraps = "${pkgs.timg}/bin/timg";
           };
-          run = {
-            body = "nix run --impure nixpkgs#$argv[1] -- $argv[2..-1]";
-            wraps = "nix run";
-          };
           shell = {
             body = "nix shell --impure nixpkgs#$argv[1] -- $argv[2..-1]";
             wraps = "nix shell";

@@ -8,6 +8,7 @@
     hostName = settings.hostname;
     domain = "sndh.dev";
 
+    useNetworkd = true;
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";
@@ -35,5 +36,13 @@
   };
 
   # slows down boot time
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.network.wait-online.enable = false;
+  systemd.services = {
+    NetworkManager-wait-online.enable = false;
+
+    # use systemctl restart instead of a stop and a delayed start
+    systemd-networkd.stopIfChanged = false;
+    systemd-resolved.stopIfChanged = false;
+  };
+
 }

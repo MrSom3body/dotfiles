@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   outputs,
   inputs,
@@ -16,9 +17,15 @@
   nix = {
     package = pkgs.lix;
 
+    # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    registry.nixpkgs.flake = inputs.nixpkgs;
+    channel.enable = false; # remove nix-channel related tools & configs, we use flakes instead.
+
     settings = {
-      accept-flake-config = false;
-      auto-optimise-store = !config.boot.isContainer;
+      accept-flake-config = lib.mkForce false;
+      log-lines = lib.mkDefault 25; # more log lines
+
       builders-use-substitutes = true;
       experimental-features = [
         "nix-command"
@@ -35,10 +42,7 @@
       ];
     };
 
-    # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-    registry.nixpkgs.flake = inputs.nixpkgs;
-    channel.enable = false; # remove nix-channel related tools & configs, we use flakes instead.
+    optimise.automatic = !config.boot.isContainer;
   };
 
   nixpkgs = {

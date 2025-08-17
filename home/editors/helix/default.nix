@@ -47,6 +47,7 @@ in
           rulers = [ 80 ];
           bufferline = "multiple";
           color-modes = true;
+          trim-trailing-whitespace = true;
           rainbow-brackets = true;
           soft-wrap.enable = true;
 

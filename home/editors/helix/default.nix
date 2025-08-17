@@ -48,6 +48,7 @@ in
           bufferline = "multiple";
           color-modes = true;
           trim-trailing-whitespace = true;
+          trim-final-newlines = true;
           rainbow-brackets = true;
           soft-wrap.enable = true;
 

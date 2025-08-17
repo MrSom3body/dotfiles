@@ -129,6 +129,17 @@ in
           }
 
           {
+            name = "htmldjango";
+            auto-format = true;
+            language-servers = [
+              "djlsp"
+              "vscode-html-language-server"
+              "superhtml"
+              "codebook"
+            ];
+          }
+
+          {
             name = "markdown";
             auto-format = true;
             soft-wrap.enable = true;

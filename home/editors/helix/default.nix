@@ -61,6 +61,8 @@ in
             select = "underline";
           };
 
+          word-completion.trigger-length = 4;
+
           indent-guides.render = true;
         };
 

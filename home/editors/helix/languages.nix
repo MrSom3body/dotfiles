@@ -16,53 +16,7 @@ in
   ];
 
   config = mkIf cfg.enable {
-    home.packages =
-      builtins.attrValues {
-        inherit (pkgs)
-          # docker
-          docker-compose-language-service
-          # go
-          golangci-lint
-          gopls
-          # html
-          superhtml
-          # nix
-          nixd
-          nixfmt-tree
-          # markdown
-          marksman
-          # php
-          phpactor
-          pretty-php
-          # python
-          ruff
-          basedpyright
-          # shell
-          shfmt
-          bash-language-server
-          # sql
-          sqls
-          # toml
-          taplo
-          # typos
-          codebook
-          ltex-ls-plus
-          # typst
-          tinymist
-          typstyle
-          # xml
-          lemminx
-          # yaml
-          yaml-language-server
-          ;
-      }
-      ++ builtins.attrValues {
-        inherit (pkgs.nodePackages)
-          # others
-          prettier
-          vscode-langservers-extracted
-          ;
-      };
+    home.packages = [ pkgs.typstyle ];
 
     programs.helix = {
       languages = {
@@ -71,7 +25,7 @@ in
             name = "bash";
             auto-format = true;
             formatter = {
-              command = "shfmt";
+              command = lib.getExe pkgs.shfmt;
               args = [
                 "-i"
                 "2"
@@ -83,7 +37,7 @@ in
             name = "css";
             auto-format = true;
             formatter = {
-              command = "prettier";
+              command = lib.getExe pkgs.prettier;
               args = [
                 "--parser"
                 "css"
@@ -114,7 +68,7 @@ in
             name = "html";
             auto-format = true;
             formatter = {
-              command = "prettier";
+              command = lib.getExe pkgs.prettier;
               args = [
                 "--parser"
                 "html"
@@ -144,7 +98,7 @@ in
             auto-format = true;
             soft-wrap.enable = true;
             formatter = {
-              command = "prettier";
+              command = lib.getExe pkgs.prettier;
               args = [
                 "--parser"
                 "markdown"
@@ -165,7 +119,7 @@ in
           {
             name = "php";
             auto-format = true;
-            formatter.command = "pretty-php";
+            formatter.command = lib.getExe pkgs.pretty-php;
             language-servers = [ "phpactor" ];
           }
 
@@ -209,27 +163,22 @@ in
         ];
 
         language-server = {
-          basedpyright = {
-            command = "basedpyright-langserver";
-            args = [ "--stdio" ];
-          };
-
+          basedpyright.command = lib.getExe pkgs.basedpyright;
+          bash-language-server.command = lib.getExe pkgs.bash-language-server;
           codebook = {
-            command = "codebook-lsp";
+            command = lib.getExe pkgs.codebook;
             args = [ "serve" ];
           };
-
-          lemminx = {
-            command = "lemminx";
-          };
-
-          ltex = {
-            command = "ltex-ls-plus";
-          };
-
+          docker-compose-langserver.command = lib.getExe pkgs.docker-compose-language-service;
+          golangci-lint-lsp.command = lib.getExe pkgs.golangci-lint-langserver;
+          gopls.command = lib.getExe pkgs.gopls;
+          lemminx.command = lib.getExe pkgs.lemminx;
+          ltex.command = lib.getExe pkgs.ltex-ls-plus;
+          marksman.command = lib.getExe pkgs.marksman;
           nixd = {
+            command = lib.getExe pkgs.nixd;
             config.nixd = {
-              formatting.command = [ "nixfmt" ];
+              formatting.command = [ (lib.getExe pkgs.nixfmt-tree) ];
               options =
                 let
                   flake = ''(builtins.getFlake "${self}")'';
@@ -241,30 +190,31 @@ in
                 };
             };
           };
-
           phpactor = {
-            command = "phpactor";
+            command = lib.getExe pkgs.phpactor;
             args = [ "language-server" ];
           };
-
-          sqls = {
-            command = "sqls";
-          };
-
+          ruff.command = lib.getExe pkgs.ruff;
+          sqls.command = lib.getExe pkgs.sqls;
+          superhtml.command = lib.getExe pkgs.superhtml;
+          taplo.command = lib.getExe pkgs.taplo;
           tinymist = {
+            command = lib.getExe pkgs.tinymist;
             config = {
               exportPdf = "onType";
               outputPath = "$root/target/$dir/$name";
-
               formatterMode = "typstyle";
               formatterPrintWidth = 80;
-
               lint = {
                 enabled = true;
                 when = "onType";
               };
             };
           };
+          vscode-css-language-server.command = lib.getExe' pkgs.vscode-langservers-extracted "vscode-css-language-server";
+          vscode-html-language-server.command = lib.getExe' pkgs.vscode-langservers-extracted "vscode-html-language-server";
+          vscode-json-language-server.command = lib.getExe' pkgs.vscode-langservers-extracted "vscode-json-language-server";
+          yaml-language-server.command = lib.getExe pkgs.yaml-language-server;
         };
       };
     };

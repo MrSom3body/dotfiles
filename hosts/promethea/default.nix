@@ -31,6 +31,8 @@
     boot.lanzaboote.enable = true;
   };
 
+  boot.kernelParams = [ "amdgpu.dcdebugmask=0x40000" ];
+
   services = {
     tailscale.extraSetFlags = [ "--accept-routes" ];
     ollama.acceleration = "cuda";

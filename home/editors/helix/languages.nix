@@ -174,6 +174,7 @@ in
             args = [ "serve" ];
           };
           docker-compose-langserver.command = lib.getExe pkgs.docker-compose-language-service;
+          fish-lsp.command = lib.getExe pkgs.fish-lsp;
           golangci-lint-lsp.command = lib.getExe pkgs.golangci-lint-langserver;
           gopls.command = lib.getExe pkgs.gopls;
           lemminx.command = lib.getExe pkgs.lemminx;

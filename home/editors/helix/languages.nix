@@ -178,7 +178,7 @@ in
           nixd = {
             command = lib.getExe pkgs.nixd;
             config.nixd = {
-              formatting.command = [ (lib.getExe pkgs.nixfmt-tree) ];
+              formatting.command = [ (lib.getExe pkgs.nixfmt) ];
               options =
                 let
                   flake = ''(builtins.getFlake "${self}")'';

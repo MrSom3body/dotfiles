@@ -9,6 +9,13 @@
 let
   inherit (lib) mkIf;
   cfg = config.my.editors.helix;
+  prettier = lang: {
+    command = lib.getExe pkgs.prettier;
+    args = [
+      "--parser"
+      lang
+    ];
+  };
 in
 {
   imports = [
@@ -36,13 +43,7 @@ in
           {
             name = "css";
             auto-format = true;
-            formatter = {
-              command = lib.getExe pkgs.prettier;
-              args = [
-                "--parser"
-                "css"
-              ];
-            };
+            formatter = prettier "css";
             language-servers = [
               "vscode-css-language-server"
               "codebook"
@@ -67,14 +68,7 @@ in
           {
             name = "html";
             auto-format = true;
-            formatter = {
-              command = lib.getExe pkgs.prettier;
-              args = [
-                "--parser"
-                "html"
-              ];
-
-            };
+            formatter = prettier "html";
             language-servers = [
               "vscode-html-language-server"
               "superhtml"
@@ -98,13 +92,7 @@ in
             name = "markdown";
             auto-format = true;
             soft-wrap.enable = true;
-            formatter = {
-              command = lib.getExe pkgs.prettier;
-              args = [
-                "--parser"
-                "markdown"
-              ];
-            };
+            formatter = prettier "markdown";
             language-servers = [
               "marksman"
               "ltex"
@@ -164,13 +152,8 @@ in
 
           {
             name = "yaml";
-            formatter = {
-              command = "prettier";
-              args = [
-                "--parser"
-                "yaml"
-              ];
-            };
+            auto-format = true;
+            formatter = prettier "yaml";
           }
         ];
 

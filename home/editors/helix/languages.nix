@@ -161,6 +161,17 @@ in
             name = "xml";
             language-servers = [ "lemminx" ];
           }
+
+          {
+            name = "yaml";
+            formatter = {
+              command = "prettier";
+              args = [
+                "--parser"
+                "yaml"
+              ];
+            };
+          }
         ];
 
         language-server = {

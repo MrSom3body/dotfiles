@@ -164,7 +164,7 @@ in
         ];
 
         language-server = {
-          basedpyright.command = lib.getExe pkgs.basedpyright;
+          basedpyright.command = lib.getExe' pkgs.basedpyright "basedpyright-langserver";
           bash-language-server.command = lib.getExe pkgs.bash-language-server;
           codebook = {
             command = lib.getExe pkgs.codebook;

@@ -89,6 +89,18 @@ in
           }
 
           {
+            name = "json";
+            auto-format = true;
+            formatter = prettier "json";
+          }
+
+          {
+            name = "jsonc";
+            auto-format = true;
+            formatter = prettier "jsonc";
+          }
+
+          {
             name = "markdown";
             auto-format = true;
             soft-wrap.enable = true;

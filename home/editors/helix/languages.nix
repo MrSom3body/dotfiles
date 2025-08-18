@@ -85,6 +85,7 @@ in
           {
             name = "htmldjango";
             auto-format = true;
+            file-types = [ { glob = "**/templates/**/*.html"; } ];
             language-servers = [
               "djlsp"
               "vscode-html-language-server"

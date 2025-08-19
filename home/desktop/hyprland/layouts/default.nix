@@ -14,7 +14,6 @@ in
 
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland.settings.bindd = lib.mkIf (cfg.layout != "scrolling") [
-      "$mainMod, P, Pseudotile focused window (dwindle), pseudo"
       "$mainMod, I, Change split direction (dwindle), togglesplit"
 
       # Move window focus

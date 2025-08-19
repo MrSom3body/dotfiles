@@ -71,6 +71,7 @@ in
           "$mainMod, Q, Close focused window, killactive"
           "$mainMod, F, Fullscreen focused window, fullscreen"
           "$mainMod, W, Toggle floating, togglefloating"
+          "$mainMod, P, Pin focused window, pin"
 
           # Other actions
           "$mainMod, O, Copy text from screen, exec, wl-ocr -nc"

@@ -89,6 +89,12 @@ in
           }
 
           {
+            name = "javascript";
+            auto-format = true;
+            formatter = prettier "typescript";
+          }
+
+          {
             name = "json";
             auto-format = true;
             formatter = prettier "json";
@@ -146,6 +152,18 @@ in
           {
             name = "sql";
             language-servers = [ "sqls" ];
+          }
+
+          {
+            name = "typescript";
+            auto-format = true;
+            formatter = prettier "typescript";
+          }
+
+          {
+            name = "tsx";
+            auto-format = true;
+            formatter = prettier "typescript";
           }
 
           {
@@ -222,6 +240,7 @@ in
               };
             };
           };
+          typescript-language-server.command = lib.getExe pkgs.typescript-language-server;
           vscode-css-language-server.command = lib.getExe' pkgs.vscode-langservers-extracted "vscode-css-language-server";
           vscode-html-language-server.command = lib.getExe' pkgs.vscode-langservers-extracted "vscode-html-language-server";
           vscode-json-language-server.command = lib.getExe' pkgs.vscode-langservers-extracted "vscode-json-language-server";

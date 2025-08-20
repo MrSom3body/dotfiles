@@ -114,12 +114,12 @@
       element-desktop # Matrix client
       signal-desktop-bin
       # Misc
-      ente-auth
       fragments
+      jellyfin-media-player
       pika-backup
+      proton-authenticator
       proton-pass
       protonvpn-gui
-      jellyfin-media-player
       ;
   };
 }

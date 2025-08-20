@@ -23,6 +23,17 @@
           };
           base_url = "https://sonarr.sndh.dev";
 
+          media_naming = {
+            series = "default";
+            season = "default";
+            episodes = {
+              rename = true;
+              standard = "default";
+              daily = "default";
+              anime = "default";
+            };
+          };
+
           include = [
             { template = "sonarr-quality-definition-anime"; }
 
@@ -89,6 +100,14 @@
             _secret = "/run/credentials/recyclarr.service/radarr-api-key";
           };
           base_url = "https://radarr.sndh.dev";
+
+          media_naming = {
+            folder = "default";
+            movie = {
+              rename = true;
+              standard = "default";
+            };
+          };
 
           include = [
             { template = "radarr-quality-definition-movie"; }

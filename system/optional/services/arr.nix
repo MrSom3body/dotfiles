@@ -23,6 +23,9 @@
           };
           base_url = "https://sonarr.sndh.dev";
 
+          delete_old_custom_formats = true;
+          replace_existing_custom_formats = true;
+
           media_naming = {
             series = "default";
             season = "default";
@@ -100,6 +103,9 @@
             _secret = "/run/credentials/recyclarr.service/radarr-api-key";
           };
           base_url = "https://radarr.sndh.dev";
+
+          delete_old_custom_formats = true;
+          replace_existing_custom_formats = true;
 
           media_naming = {
             folder = "default";

@@ -28,7 +28,7 @@ in
           prompt = "'❯ '";
           launch-prefix = "uwsm app --";
           match-counter = true;
-          terminal = "${settings.programs.terminal} -e";
+          terminal = "xdg-terminal-exec";
           horizontal-pad = 40;
           vertical-pad = 20;
           inner-pad = 15;

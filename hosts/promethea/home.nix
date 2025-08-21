@@ -57,15 +57,17 @@
       };
     };
 
-    terminal.programs = {
-      comma.enable = true;
-      direnv.enable = true;
-      gh.enable = true;
-      gitui.enable = true;
-      ntfy.enable = true;
-      tealdeer.enable = true;
-      tokei.enable = true;
-      zellij.enable = true;
+    terminal = {
+      programs = {
+        comma.enable = true;
+        direnv.enable = true;
+        gh.enable = true;
+        gitui.enable = true;
+        ntfy.enable = true;
+        tealdeer.enable = true;
+        tokei.enable = true;
+        zellij.enable = true;
+      };
     };
 
     services = {

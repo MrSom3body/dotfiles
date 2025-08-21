@@ -95,7 +95,7 @@ in
     ]
     ++ lib.optional (config.my.systemType >= 2) (
       pkgs.writeShellScriptBin "xdg-terminal-exec" ''
-        ${settings.programs.terminal} "$@"
+        ${settings.programs.terminal} -e "$@"
       ''
     );
   };

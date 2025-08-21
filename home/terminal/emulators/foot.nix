@@ -15,7 +15,7 @@ let
     #!${pkgs.fish}/bin/fish
     set tmp (mktemp)
     cat > $tmp
-    ${settings.programs.terminal} ${settings.programs.editor} -- $tmp
+    xdg-terminal-exec ${settings.programs.editor} -- $tmp
     rm -f -- $tmp
   '';
 in

@@ -141,7 +141,7 @@ in
         "special:spotify, on-created-empty:uwsm app -- spotify"
         "special:spotify, gapsout:75"
 
-        "special:monitor, on-created-empty:uwsm app -- ${settings.programs.terminal} --title btop --app-id btop -- btop"
+        "special:monitor, on-created-empty:uwsm app -- xdg-terminal-exec btop"
         "special:monitor, gapsout:50"
 
         "special:discord, on-created-empty:uwsm app -- vesktop"

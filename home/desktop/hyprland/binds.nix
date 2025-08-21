@@ -44,13 +44,19 @@ in
               prog = shorten program;
             in
             "pgrep ${prog} || uwsm app -- ${program}";
+
+          terminal =
+            if settings.programs.terminal == "ghostty" then
+              "ghostty +new-window"
+            else
+              settings.programs.terminal;
         in
         [
           # Open applications
-          "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${settings.programs.terminal}"
+          "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${terminal}"
           "$mainMod, B, Open browser, exec, uwsm app -- ${settings.programs.browser}"
           "$mainMod SHIFT, O, Open Obsidian, exec, uwsm app -- obsidian"
-          "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- ${settings.programs.terminal} --app-id ${settings.programs.terminalFileManager} ${settings.programs.terminalFileManager}"
+          "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- xdg-terminal-exec ${settings.programs.terminalFileManager}"
           "$mainMod SHIFT, E, Open file manager, exec, uwsm app -- ${settings.programs.fileManager}"
           ", XF86Calculator, Open calculator, exec, ${runOnce "gnome-calculator"}"
 

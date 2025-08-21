@@ -227,7 +227,14 @@
     };
 
     # programs
-    ghostty.url = "github:ghostty-org/ghostty"; # has cache
+    ghostty = {
+      url = "github:ghostty-org/ghostty"; # has cache, but can't use it because of drivers :(
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
 
     gotcha = {
       url = "github:MrSom3body/gotcha";

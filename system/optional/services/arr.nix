@@ -1,15 +1,34 @@
+{ config, ... }:
 {
   imports = [
+    ./jellyfin.nix
     ./transmission.nix
   ];
 
   users.groups.arr.members = [
-    "transmission"
+    "jellyfin"
     "sonarr"
     "radarr"
+    "transmission"
   ];
 
   services = {
+    caddy.virtualHosts =
+      let
+        mkHost = port: {
+          extraConfig = ''
+            reverse_proxy http://localhost:${builtins.toString port}
+            import cloudflare
+          '';
+        };
+      in
+      {
+        "jellyseerr.sndh.dev" = mkHost config.services.jellyseerr.port;
+        "prowlarr.sndh.dev" = mkHost config.services.prowlarr.settings.server.port;
+        "sonarr.sndh.dev" = mkHost config.services.sonarr.settings.server.port;
+        "radarr.sndh.dev" = mkHost config.services.radarr.settings.server.port;
+      };
+
     jellyseerr.enable = true;
 
     prowlarr.enable = true;

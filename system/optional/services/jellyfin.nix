@@ -1,6 +1,15 @@
 {
-  services.jellyfin = {
-    enable = true;
+  services = {
+    caddy.virtualHosts."jellyfin.sndh.dev" = {
+      extraConfig = ''
+        reverse_proxy http://localhost:8096
+        import cloudflare
+      '';
+    };
+
+    jellyfin = {
+      enable = true;
+    };
   };
 
   users.users.jellyfin.extraGroups = [

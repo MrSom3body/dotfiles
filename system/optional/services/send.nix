@@ -34,15 +34,16 @@ in
           day = hour * 24;
         in
         {
-          MAX_EXPIRE_SECONDS = 3 * day;
-          MAX_DOWNLOADS = 50;
-          DOWNLOAD_COUNTS = "1,2,3,5,10,25,50";
+          MAX_EXPIRE_SECONDS = 30 * day;
+          MAX_DOWNLOADS = 100;
+          DOWNLOAD_COUNTS = "1,2,3,5,10,25,50,100";
           EXPIRE_TIMES_SECONDS = builtins.concatStringsSep "," (
             builtins.map builtins.toString [
               (5 * min)
               (1 * hour)
               (1 * day)
               (3 * day)
+              (30 * day)
             ]
           );
           DEFAULT_DOWNLOADS = 1;

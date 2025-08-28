@@ -50,6 +50,11 @@
         ;
     };
   };
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+  };
+
   environment.sessionVariables.LIBVA_DRIVER_NAME = "i965";
   systemd.services.jellyfin.environment.LIBVA_DRIVER_NAME = "i965";
   systemd.services.immich.environment.LIBVA_DRIVER_NAME = "i965";

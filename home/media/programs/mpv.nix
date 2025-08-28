@@ -12,15 +12,22 @@ in
   config = mkIf cfg.enable {
     programs.mpv = {
       enable = true;
-      scripts = [
-        pkgs.mpvScripts.builtins.autoload
-      ]
-      ++ builtins.attrValues {
-        inherit (pkgs.mpvScripts)
-          modernz
-          mpris
-          thumbfast
-          ;
+
+      package = pkgs.mpv-unwrapped.wrapper {
+        scripts = [
+          pkgs.mpvScripts.builtins.autoload
+        ]
+        ++ builtins.attrValues {
+          inherit (pkgs.mpvScripts)
+            modernz
+            mpris
+            thumbfast
+            ;
+        };
+
+        mpv = pkgs.mpv-unwrapped.override {
+          ffmpeg = pkgs.ffmpeg-full;
+        };
       };
 
       bindings = {

@@ -112,16 +112,18 @@
     inherit (pkgs)
       # cli
       glow
-      # Communication & Social Media
+      # communication & social media
       element-desktop # Matrix client
       signal-desktop-bin
-      # Misc
-      fragments
+      # media
       jellyfin-media-player
-      pika-backup
+      # proton
       proton-authenticator
       proton-pass
       protonvpn-gui
+      # misc
+      fragments
+      pika-backup
       ;
   };
 }

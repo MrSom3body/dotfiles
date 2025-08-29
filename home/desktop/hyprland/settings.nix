@@ -85,6 +85,7 @@ in
 
         gesture = [
           "3, horizontal, workspace"
+          "4, down, dispatcher, exec, loginctl lock-session"
         ];
 
         dwindle = {

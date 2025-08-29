@@ -162,37 +162,44 @@ in
               }
               {
                 size = "full";
-                widgets = lib.singleton {
-                  type = "monitor";
-                  cache = "15s";
-                  title = "Services";
-                  sites =
-                    let
-                      mkSite = title: url: icon: {
-                        inherit title url icon;
-                      };
-                    in
-                    [
-                      (mkSite "loxone" "https://loxone.sndh.dev" "di:loxone")
-                      (mkSite "searxng" "https://search.sndh.dev" "di:searxng")
-                      (mkSite "miniflux" "https://read.sndh.dev" "di:miniflux")
-                      (mkSite "immich" "https://immich.sndh.dev" "di:immich")
-                      (mkSite "ntfy" "https://ntfy.sndh.dev" "di:ntfy")
-                      (mkSite "jellyfin" "https://jellyfin.sndh.dev" "di:jellyfin")
-                      (mkSite "jellyseerr" "https://jellyseerr.sndh.dev" "di:jellyseerr")
-                      (mkSite "sonarr" "https://sonarr.sndh.dev" "di:sonarr")
-                      (mkSite "radarr" "https://radarr.sndh.dev" "di:radarr")
-                      (mkSite "prowlarr" "https://prowlarr.sndh.dev" "di:prowlarr")
-                      (
-                        mkSite "transmission" "https://transmission.sndh.dev" "di:transmission"
-                        // {
-                          alt-status-codes = [ 401 ];
-                        }
-                      )
-                      (mkSite "ddns updater" "https://ddns.sndh.dev" "di:ddns-updater")
-                      (mkSite "firefox send" "https://send.sndh.dev" "di:firefox-send")
-                    ];
-                };
+                widgets =
+                  let
+                    mkSite = title: url: icon: { inherit title url icon; };
+                  in
+                  [
+                    {
+                      type = "monitor";
+                      cache = "15s";
+                      title = "Private Services";
+                      sites = [
+                        (mkSite "loxone" "https://loxone.sndh.dev" "di:loxone")
+                        (mkSite "searxng" "https://search.sndh.dev" "di:searxng")
+                        (mkSite "miniflux" "https://read.sndh.dev" "di:miniflux")
+                        (mkSite "immich" "https://immich.sndh.dev" "di:immich")
+                        (mkSite "ntfy" "https://ntfy.sndh.dev" "di:ntfy")
+                        (mkSite "jellyfin" "https://jellyfin.sndh.dev" "di:jellyfin")
+                        (mkSite "jellyseerr" "https://jellyseerr.sndh.dev" "di:jellyseerr")
+                        (mkSite "sonarr" "https://sonarr.sndh.dev" "di:sonarr")
+                        (mkSite "radarr" "https://radarr.sndh.dev" "di:radarr")
+                        (mkSite "prowlarr" "https://prowlarr.sndh.dev" "di:prowlarr")
+                        (
+                          mkSite "transmission" "https://transmission.sndh.dev" "di:transmission"
+                          // {
+                            alt-status-codes = [ 401 ];
+                          }
+                        )
+                        (mkSite "ddns updater" "https://ddns.sndh.dev" "di:ddns-updater")
+                      ];
+                    }
+                    {
+                      type = "monitor";
+                      cache = "15s";
+                      title = "Public Services";
+                      sites = [
+                        (mkSite "firefox send" "https://send.sndh.dev" "di:firefox-send")
+                      ];
+                    }
+                  ];
               }
             ];
           }

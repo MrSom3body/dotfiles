@@ -25,6 +25,12 @@ in
           }
         ];
 
+        workspace = [
+          "1, monitor:eDP-1, default:true"
+          "2, monitor:eDP-1, default:true"
+          "3, monitor:eDP-1, default:true"
+        ];
+
         exec-once = [
           "wpctl set-mute @DEFAULT_AUDIO_SINK@ 1"
         ];

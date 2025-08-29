@@ -31,6 +31,7 @@ in
 
   options.my.desktop.hyprland = {
     enable = mkEnableOption "the Hyprland WM";
+
     layout = mkOption {
       type = types.enum [
         "dwindle"
@@ -39,6 +40,16 @@ in
       ];
       default = "dwindle";
       description = "Switch between dwindle, master and scrolling layout";
+    };
+
+    monitors = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      example = [
+        "HDMI-A-1,1920x1080@60,0x0,1"
+        "DP-1,2560x1440@144,1920x0,1"
+      ];
+      description = "Additional monitors to configure";
     };
   };
 
@@ -79,7 +90,6 @@ in
         inherit (pkgs)
           brightnessctl
           nautilus
-          nwg-displays
           satty
           wl-clipboard
           wtype

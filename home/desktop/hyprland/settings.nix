@@ -16,9 +16,8 @@ in
         rgb = color: "rgb(${color})";
       in
       {
-        source = [
-          "~/.config/hypr/monitors.conf"
-          "~/.config/hypr/workspaces.conf"
+        monitor = cfg.monitors ++ [
+          ", preferred, auto, auto"
         ];
 
         exec-once = [

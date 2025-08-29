@@ -30,7 +30,6 @@
       experimental-features = [
         "nix-command"
         "flakes"
-        "repl-flake"
       ];
 
       keep-derivations = true;

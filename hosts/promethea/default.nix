@@ -18,7 +18,7 @@
     ../../system/optional/programs/wireshark.nix
 
     ../../system/optional/services/fprintd.nix
-    ../../system/optional/services/gns3.nix
+    # ../../system/optional/services/gns3.nix # disable until https://github.com/NixOS/nixpkgs/issues/438260 gets resolved
 
     ../../system/optional/virtualisation/libvirtd.nix
     ../../system/optional/virtualisation/podman.nix
@@ -30,6 +30,8 @@
   my = {
     boot.lanzaboote.enable = true;
   };
+
+  nixpkgs.config.permittedInsecurePackages = [ "qtwebengine-5.15.19" ]; # for jellyfin see https://github.com/NixOS/nixpkgs/issues/437865
 
   boot.kernelParams = [ "amdgpu.dcdebugmask=0x40000" ];
 

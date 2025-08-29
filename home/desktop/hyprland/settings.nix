@@ -77,13 +77,15 @@ in
         };
 
         gestures = {
-          workspace_swipe = true;
-          workspace_swipe_fingers = 3;
           workspace_swipe_create_new = true;
           workspace_swipe_direction_lock = false;
           workspace_swipe_forever = true;
           workspace_swipe_use_r = true;
         };
+
+        gesture = [
+          "3, horizontal, workspace"
+        ];
 
         dwindle = {
           pseudotile = true;

@@ -32,6 +32,9 @@ in
         ];
 
         exec-once = [
+          # finalize startup
+          "uwsm finalize"
+          # mute volume on login
           "wpctl set-mute @DEFAULT_AUDIO_SINK@ 1"
         ];
 

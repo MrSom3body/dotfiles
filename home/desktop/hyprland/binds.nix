@@ -132,19 +132,15 @@ in
         ]
         ++ (builtins.concatLists (
           builtins.genList (
-            x:
+            i:
             let
-              ws =
-                let
-                  c = (x + 1) / 10;
-                in
-                builtins.toString (x + 1 - (c * 10));
+              ws = i + 1;
             in
             [
-              "$mainMod, ${ws}, Switch to workspace ${ws}, workspace, ${toString (x + 1)}"
-              "$mainMod SHIFT, ${ws}, Move focused window to workspace ${ws}, movetoworkspace, ${toString (x + 1)}"
+              "$mainMod, code:1${toString i}, Switch to workspace ${toString ws}, workspace, ${toString ws}"
+              "$mainMod SHIFT, code:1${toString i}, Move focused window to workspace ${toString ws}, movetoworkspace, ${toString ws}"
             ]
-          ) 10
+          ) 9
         ));
 
       # Player control

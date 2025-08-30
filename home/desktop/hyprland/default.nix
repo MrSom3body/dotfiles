@@ -25,7 +25,7 @@ in
     ./permissions.nix
     ./pyprland.nix
     ./rules.nix
-    ./plugins/hyprbars.nix
+    # ./plugins/hyprbars.nix
     ./plugins/hyprexpo.nix
   ];
 

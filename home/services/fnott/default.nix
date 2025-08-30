@@ -40,6 +40,8 @@ in
           summary-format = "<b>%s</b>";
           body-format = "%b";
 
+          progress-style = "background";
+
           max-timeout = 30;
           default-timeout = 8;
           idle-timeout = 60;

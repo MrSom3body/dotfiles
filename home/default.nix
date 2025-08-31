@@ -68,6 +68,7 @@ in
         git.enable = true;
         gotcha.enable = true;
         gpg.enable = true;
+        less.enable = true;
         ssh.enable = true;
         yazi.enable = true;
 

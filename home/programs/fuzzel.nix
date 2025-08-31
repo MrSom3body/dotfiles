@@ -35,10 +35,15 @@ in
           image-size-ratio = 0.3;
         };
 
-        border = {
-          width = settings.appearance.border.size;
-          inherit (settings.appearance.border) radius;
-        };
+        border =
+          let
+            borderCfg = settings.appearance.border;
+          in
+          {
+            width = borderCfg.size;
+            inherit (borderCfg) radius;
+            selection-radius = borderCfg.radius;
+          };
       };
     };
   };

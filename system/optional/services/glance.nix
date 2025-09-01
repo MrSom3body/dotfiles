@@ -175,6 +175,7 @@ in
                         (mkSite "loxone" "https://loxone.sndh.dev" "di:loxone")
                         (mkSite "searxng" "https://search.sndh.dev" "di:searxng")
                         (mkSite "miniflux" "https://read.sndh.dev" "di:miniflux")
+                        (mkSite "karakeep" "https://karakeep.sndh.dev" "di:karakeep")
                         (mkSite "immich" "https://immich.sndh.dev" "di:immich")
                         (mkSite "ntfy" "https://ntfy.sndh.dev" "di:ntfy")
                         (mkSite "jellyfin" "https://jellyfin.sndh.dev" "di:jellyfin")

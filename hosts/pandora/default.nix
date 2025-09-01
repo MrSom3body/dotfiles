@@ -11,6 +11,7 @@
     ../../system/optional/services/caddy.nix
     ../../system/optional/services/ddns-updater.nix
     ../../system/optional/services/glance.nix
+    ../../system/optional/services/karakeep.nix
     ../../system/optional/services/miniflux.nix
     ../../system/optional/services/ntfy.nix
     ../../system/optional/services/searx.nix

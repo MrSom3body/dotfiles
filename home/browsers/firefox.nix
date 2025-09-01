@@ -46,6 +46,8 @@ in
         name = "default";
         isDefault = true;
         settings = defaults.settings // {
+          "browser.tabs.groups.enabled" = true;
+          "browser.tabs.groups.smart.enabled" = true;
           "sidebar.verticalTabs" = true;
         };
 

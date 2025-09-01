@@ -1,6 +1,11 @@
-{ config, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.karakeep;
+  ollamaCfg = config.services.ollama;
 in
 {
   services = {
@@ -13,12 +18,25 @@ in
       };
     };
 
+    ollama = {
+      enable = true;
+      loadModels = [ "gemma3:latest" ];
+    };
+
+    meilisearch.package = pkgs.meilisearch;
+
     karakeep = {
       enable = true;
       extraEnvironment = {
         NEXTAUTH_URL = "http://localhost:3000";
         DISABLE_SIGNUPS = "true";
         DISABLE_NEW_RELEASE_CHECK = "true";
+        DB_WAL_MODE = "true";
+
+        # ai
+        OLLAMA_BASE_URL = "http://${ollamaCfg.host}:${builtins.toString ollamaCfg.port}";
+        INFERENCE_TEXT_MODEL = "gemma3:latest";
+        INFERENCE_IMAGE_MODEL = "gemma3:latest";
       };
     };
   };

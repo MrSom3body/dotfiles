@@ -31,7 +31,6 @@ in
         todoist-electron
         # Communication
         protonmail-desktop
-        slack
         ;
     };
   };

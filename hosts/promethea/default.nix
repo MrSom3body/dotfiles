@@ -18,7 +18,7 @@
     ../../system/optional/programs/wireshark.nix
 
     ../../system/optional/services/fprintd.nix
-    # ../../system/optional/services/gns3.nix # disable until https://github.com/NixOS/nixpkgs/issues/438260 gets resolved
+    ../../system/optional/services/gns3.nix
 
     ../../system/optional/virtualisation/libvirtd.nix
     ../../system/optional/virtualisation/podman.nix

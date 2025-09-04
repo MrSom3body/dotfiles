@@ -43,6 +43,10 @@
                       mountpoint = "/nix";
                       inherit mountOptions;
                     };
+                    "/swap" = {
+                      mountpoint = "/swap";
+                      swap.swapfile.size = "8G";
+                    };
                   };
                 };
             };

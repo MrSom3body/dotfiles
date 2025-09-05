@@ -78,7 +78,7 @@ in
             # If discharging
             {
               timeout = 600;
-              on-timeout = isDischarging "systemctl suspend";
+              on-timeout = isDischarging "systemctl suspend-then-hibernate || systemctl suspend";
             }
           ];
         };

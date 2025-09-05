@@ -26,7 +26,7 @@
 
   environment.systemPackages =
     builtins.attrValues {
-      inherit (pkgs.stable) # TODO switch back to unstable when https://github.com/NixOS/nixpkgs/issues/438260 gets resolved
+      inherit (pkgs)
         gns3-gui
         gns3-server
         dynamips

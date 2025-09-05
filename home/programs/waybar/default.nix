@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  settings,
   ...
 }:
 let
@@ -169,6 +168,7 @@ in
               "󱩖 "
               "󰛨 "
             ];
+            reverse-scrolling = true;
             tooltip = false;
           };
 
@@ -181,6 +181,7 @@ in
               "󰖀"
               "󰕾"
             ];
+            reverse-scrolling = true;
           };
 
           "group/power" = {

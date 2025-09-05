@@ -42,6 +42,7 @@ in
         (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.datagrip plugins)
         (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea-ultimate plugins)
         (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.phpstorm plugins)
+        (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.pycharm-professional plugins)
       ]
       ++ (
         if preFetch then

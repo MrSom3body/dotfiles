@@ -11,6 +11,25 @@ let
   inherit (lib) mkImageMediaOverride;
   inherit (lib) mkDefault;
   inherit (lib) mkForce;
+
+  inherit (settings) hostname;
+  rev = inputs.self.shortRev or "${builtins.substring 0 8 inputs.self.lastModifiedDate}";
+  inherit (config.system.nixos) release;
+  arch = pkgs.stdenv.hostPlatform.uname.processor;
+
+  fixedParts = "-${release}-${rev}-${arch}";
+  fixedLen = builtins.stringLength fixedParts;
+
+  # Max length for hostname to keep volumeID < 32
+  maxHostnameLen = if fixedLen < 32 then 32 - fixedLen else 0;
+
+  shortHostname =
+    if builtins.stringLength hostname > maxHostnameLen then
+      builtins.substring 0 maxHostnameLen hostname
+    else
+      hostname;
+
+  name = hostname + fixedParts;
 in
 {
   imports = [
@@ -28,32 +47,11 @@ in
     home-manager.enable = mkDefault false;
   };
 
-  isoImage =
-    let
-      inherit (settings) hostname;
-      rev = inputs.self.shortRev or "${builtins.substring 0 8 inputs.self.lastModifiedDate}";
-      inherit (config.system.nixos) release;
-      arch = pkgs.stdenv.hostPlatform.uname.processor;
-
-      fixedParts = "-${release}-${rev}-${arch}";
-      fixedLen = builtins.stringLength fixedParts;
-
-      # Max length for hostname to keep volumeID < 32
-      maxHostnameLen = if fixedLen < 32 then 32 - fixedLen else 0;
-
-      shortHostname =
-        if builtins.stringLength hostname > maxHostnameLen then
-          builtins.substring 0 maxHostnameLen hostname
-        else
-          hostname;
-
-      name = hostname + fixedParts;
-    in
-    {
-      isoBaseName = mkImageMediaOverride name;
-      isoName = mkImageMediaOverride (name + ".iso");
-      volumeID = mkImageMediaOverride (shortHostname + fixedParts);
-    };
+  image = {
+    baseName = mkImageMediaOverride name;
+    fileName = mkImageMediaOverride (name + ".iso");
+  };
+  isoImage.volumeID = mkImageMediaOverride (shortHostname + fixedParts);
 
   environment.systemPackages = [
     inputs.disko.packages.${pkgs.system}.default

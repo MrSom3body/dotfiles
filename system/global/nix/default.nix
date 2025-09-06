@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  outputs,
   inputs,
   pkgs,
   ...
@@ -46,6 +45,6 @@
 
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = builtins.attrValues outputs.overlays;
+    overlays = builtins.attrValues inputs.self.overlays;
   };
 }

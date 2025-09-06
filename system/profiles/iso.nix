@@ -1,5 +1,4 @@
 {
-  self,
   lib,
   config,
   inputs,
@@ -32,7 +31,7 @@ in
   isoImage =
     let
       inherit (settings) hostname;
-      rev = self.shortRev or "${builtins.substring 0 8 self.lastModifiedDate}";
+      rev = inputs.self.shortRev or "${builtins.substring 0 8 inputs.self.lastModifiedDate}";
       inherit (config.system.nixos) release;
       arch = pkgs.stdenv.hostPlatform.uname.processor;
 

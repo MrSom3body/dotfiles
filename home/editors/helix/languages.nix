@@ -1,8 +1,8 @@
 {
-  self,
   lib,
   config,
   osConfig,
+  inputs,
   pkgs,
   ...
 }:
@@ -210,7 +210,7 @@ in
               formatting.command = [ (lib.getExe pkgs.nixfmt) ];
               options =
                 let
-                  flake = ''(builtins.getFlake "${self}")'';
+                  flake = ''(builtins.getFlake "${inputs.self}")'';
                   nixos-expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
                 in
                 {

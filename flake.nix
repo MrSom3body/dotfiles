@@ -12,7 +12,6 @@
     let
       inherit (import ./settings.nix) settings;
       inherit (nixpkgs) lib;
-      inherit (self) outputs;
 
       forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (
@@ -24,7 +23,7 @@
       );
 
       specialArgs = {
-        inherit self inputs outputs;
+        inherit inputs;
       };
 
       mkNixos =
@@ -55,7 +54,7 @@
     in
     {
       overlays = import ./overlays {
-        inherit outputs inputs;
+        inherit inputs;
       };
 
       formatter = forEachSystem (pkgs: pkgs.nixfmt-tree);
@@ -81,8 +80,8 @@
       };
 
       images = {
-        sanctuary = outputs.nixosConfigurations.sanctuary.config.system.build.isoImage;
-        athenas = outputs.nixosConfigurations.athenas.config.system.build.isoImage;
+        sanctuary = self.nixosConfigurations.sanctuary.config.system.build.isoImage;
+        athenas = self.nixosConfigurations.athenas.config.system.build.isoImage;
       };
 
       templates = {
@@ -102,7 +101,7 @@
           hostname = "pandora";
           profiles.system = {
             sshUser = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos outputs.nixosConfigurations.pandora;
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.pandora;
           };
         };
       };
@@ -110,7 +109,7 @@
       devShells = forEachSystem (
         pkgs:
         import ./shell.nix {
-          inherit self inputs pkgs;
+          inherit inputs pkgs;
         }
       );
       checks =

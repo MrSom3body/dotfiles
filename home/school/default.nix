@@ -3,7 +3,6 @@
   config,
   inputs,
   pkgs,
-  preFetch,
   ...
 }:
 let
@@ -13,6 +12,8 @@ let
   cfg = config.my.school;
 in
 {
+  imports = [ ./ciscopt.nix ];
+
   options.my.school = {
     enable = mkEnableOption "school related programs";
   };
@@ -43,15 +44,7 @@ in
         (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea-ultimate plugins)
         (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.phpstorm plugins)
         (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.pycharm-professional plugins)
-      ]
-      ++ (
-        if preFetch then
-          [
-            # pkgs.ciscoPacketTracer8
-          ]
-        else
-          [ ]
-      );
+      ];
 
     xdg.configFile."ideavim/ideavimrc".text = ''
       source ${inputs.helix-vim}/src/helix.idea.vim

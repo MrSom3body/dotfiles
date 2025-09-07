@@ -22,7 +22,7 @@ in
     ./media
     ./office
     ./programs
-    ./school.nix
+    ./school
     ./services
     ./shell
     ./sops.nix

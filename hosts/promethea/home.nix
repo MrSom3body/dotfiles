@@ -97,15 +97,14 @@
   gtk.gtk3.bookmarks = map (dir: "file://${config.home.homeDirectory}/" + dir) [
     "Desktop"
     "Documents"
-    "Documents/Codes"
-    "Documents/Schule/2024-25"
     "Downloads"
     "Games"
     "Music"
-    "Notes"
-    "Sync"
     "Videos"
     "dotfiles"
+    "Documents/Codes"
+    "Documents/Notes"
+    "Documents/Schule/2025-26"
   ];
 
   home.packages = builtins.attrValues {

@@ -7,7 +7,7 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.my.school;
+  cfg = config.my.school.cisco;
 in
 {
   config = mkIf cfg.enable {

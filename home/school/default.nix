@@ -12,10 +12,11 @@ let
   cfg = config.my.school;
 in
 {
-  imports = [ ./ciscopt.nix ];
+  imports = [ ./cisco.nix ];
 
   options.my.school = {
     enable = mkEnableOption "school related programs";
+    cisco.enable = mkEnableOption "cisco stuff";
   };
 
   config = mkIf cfg.enable {

@@ -87,6 +87,7 @@
           - Execute: [hyprctl, dispatch, hyprexpo:expo, toggle]
           ...
         '';
+        extraArgs = [ "--restart-on-wake-up" ];
       };
       syncthing.enable = true;
     };

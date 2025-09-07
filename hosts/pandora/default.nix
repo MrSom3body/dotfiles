@@ -6,6 +6,8 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./disko.nix
+
     ../../system/profiles/server.nix
 
     ../../system/optional/services/caddy.nix

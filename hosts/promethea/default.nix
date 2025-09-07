@@ -7,6 +7,8 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./disko.nix
+
     ../../system/profiles/laptop.nix
 
     ../../system/optional/hardware/opentabletdriver.nix

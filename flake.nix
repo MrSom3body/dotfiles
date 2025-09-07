@@ -27,27 +27,12 @@
       };
 
       mkNixos =
-        {
-          hostname,
-          isInstall ? true,
-        }:
+        hostname:
         lib.nixosSystem {
           specialArgs = specialArgs // {
             settings = settings hostname;
           };
-
-          modules = [
-            ./hosts/${hostname}
-          ]
-          ++ (
-            if isInstall then
-              [
-                ./hosts/${hostname}/disko.nix
-                inputs.disko.nixosModules.disko
-              ]
-            else
-              [ ]
-          );
+          modules = [ ./hosts/${hostname} ];
         };
     in
     {
@@ -58,22 +43,14 @@
       formatter = forEachSystem (pkgs: pkgs.nixfmt-tree);
 
       nixosConfigurations = {
-        promethea = mkNixos { hostname = "promethea"; };
-        pandora = mkNixos { hostname = "pandora"; };
+        promethea = mkNixos "promethea";
+        pandora = mkNixos "pandora";
 
-        athenas = mkNixos {
-          hostname = "athenas";
-          isInstall = false;
-        };
-        sanctuary = mkNixos {
-          hostname = "sanctuary";
-          isInstall = false;
-        };
+        athenas = mkNixos "athenas";
+        sanctuary = mkNixos "sanctuary";
 
         # hosts only for garnix
-        promethea_garnix = mkNixos {
-          hostname = "promethea_garnix";
-        };
+        promethea_garnix = mkNixos "promethea_garnix";
       };
 
       images = {

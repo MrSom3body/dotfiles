@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  settings,
   ...
 }:
 let

@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   ...
 }:
 let
@@ -8,6 +7,10 @@ let
   ollamaCfg = config.services.ollama;
 in
 {
+  imports = [
+    ./meilisearch.nix
+  ];
+
   services = {
     caddy.virtualHosts = {
       "karakeep.sndh.dev" = {
@@ -22,8 +25,6 @@ in
       enable = true;
       loadModels = [ "gemma3:latest" ];
     };
-
-    meilisearch.package = pkgs.meilisearch;
 
     karakeep = {
       enable = true;

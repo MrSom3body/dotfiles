@@ -21,6 +21,7 @@ in
         default = {
           isDefault = true;
           search = {
+            force = true;
             default = "ddg";
             privateDefault = "ddg";
           };

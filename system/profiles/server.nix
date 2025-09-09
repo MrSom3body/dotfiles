@@ -12,7 +12,7 @@
   ];
 
   system.autoUpgrade = {
-    allowReboot = true;
+    allowReboot = lib.mkDefault true;
     rebootWindow = {
       lower = "02:00";
       upper = "04:00";

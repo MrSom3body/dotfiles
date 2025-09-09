@@ -32,6 +32,10 @@
     (inputs.nixos-hardware + "/common/cpu/intel/haswell")
   ];
 
+  system.autoUpgrade = {
+    allowReboot = false;
+  };
+
   networking = {
     firewall.allowedTCPPorts = [
       80

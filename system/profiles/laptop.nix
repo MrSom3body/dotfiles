@@ -8,4 +8,6 @@
     ../optional/services/location.nix
     ../optional/services/power.nix
   ];
+
+  system.autoUpgrade.operation = "boot";
 }

@@ -14,6 +14,24 @@
         "tests/controller/test_project.py"
       ];
     });
+
+    # TODO remove when https://github.com/NixOS/nixpkgs/pull/440668 lands in nixos-unstable
+    ollama = prev.ollama.overrideAttrs (
+      _oldAttrs:
+      let
+        version = "0.11.10";
+      in
+      {
+        inherit version;
+
+        src = final.fetchFromGitHub {
+          owner = "ollama";
+          repo = "ollama";
+          tag = "v${version}";
+          hash = "sha256-F5Us1w+QCnWK32noi8vfRwgMofHP9vGiRFfN2UAf1vw=";
+        };
+      }
+    );
   };
 
   stable-packages = final: _prev: {

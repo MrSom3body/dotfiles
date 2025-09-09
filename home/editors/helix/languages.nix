@@ -52,7 +52,7 @@ in
 
           {
             name = "git-commit";
-            language-servers = [ "ltex" ];
+            language-servers = [ "ltex-ls-plus" ];
           }
 
           {
@@ -113,7 +113,7 @@ in
             formatter = prettier "markdown";
             language-servers = [
               "marksman"
-              "ltex"
+              "ltex-ls-plus"
             ];
           }
 
@@ -171,7 +171,7 @@ in
             auto-format = true;
             language-servers = [
               "tinymist"
-              "ltex"
+              "ltex-ls-plus"
             ];
           }
 
@@ -202,7 +202,8 @@ in
           golangci-lint-lsp.command = lib.getExe pkgs.golangci-lint-langserver;
           gopls.command = lib.getExe pkgs.gopls;
           lemminx.command = lib.getExe pkgs.lemminx;
-          ltex.command = lib.getExe pkgs.ltex-ls-plus;
+          ltex-ls-plus.command = lib.getExe' pkgs.ltex-ls-plus "ltex-ls-plus";
+
           marksman.command = lib.getExe pkgs.marksman;
           nixd = {
             command = lib.getExe pkgs.nixd;

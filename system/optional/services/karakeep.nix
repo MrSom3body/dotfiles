@@ -8,7 +8,7 @@ let
 in
 {
   imports = [
-    ./meilisearch.nix
+    # ./meilisearch.nix
   ];
 
   services = {
@@ -28,6 +28,7 @@ in
 
     karakeep = {
       enable = true;
+      meilisearch.enable = false;
       extraEnvironment = {
         NEXTAUTH_URL = "http://localhost:3000";
         DISABLE_SIGNUPS = "true";

@@ -142,6 +142,7 @@ in
               ];
             };
             language-servers = [
+              "ty"
               "basedpyright"
               "ruff"
               "gpt"
@@ -241,6 +242,7 @@ in
               };
             };
           };
+          ty.command = lib.getExe pkgs.ty;
           typescript-language-server.command = lib.getExe pkgs.typescript-language-server;
           vscode-css-language-server.command = lib.getExe' pkgs.vscode-langservers-extracted "vscode-css-language-server";
           vscode-html-language-server.command = lib.getExe' pkgs.vscode-langservers-extracted "vscode-html-language-server";

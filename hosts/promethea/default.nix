@@ -61,7 +61,7 @@
     boot.lanzaboote.enable = true;
   };
 
-  nixpkgs.config.permittedInsecurePackages = [ "qtwebengine-5.15.19" ]; # for jellyfin see https://github.com/NixOS/nixpkgs/issues/437865
+  nixpkgs.config.permittedInsecurePackages = [ "qtwebengine-5.15.19" ]; # TODO remove https://github.com/NixOS/nixpkgs/issues/437865
 
   boot.kernelParams = [ "amdgpu.dcdebugmask=0x40000" ];
 

@@ -7,7 +7,10 @@
         "virbr0"
       ];
       enable = true;
-      qemu.runAsRoot = false;
+      qemu = {
+        runAsRoot = false;
+        vhostUserPackages = [ pkgs.virtiofsd ];
+      };
     };
     spiceUSBRedirection.enable = true;
   };

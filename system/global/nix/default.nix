@@ -18,7 +18,7 @@
       flakeInputs = lib.filterAttrs (_: v: lib.isType "flake" v) inputs;
     in
     {
-      package = pkgs.lix;
+      package = pkgs.lixPackageSets.latest.lix;
 
       # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
       registry = lib.mapAttrs (_: v: { flake = v; }) flakeInputs;

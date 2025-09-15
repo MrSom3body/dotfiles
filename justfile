@@ -64,6 +64,11 @@ install hostname ip=hostname:
 deploy hostname mode="switch" *extra_flags:
     nh os {{mode}} -H "{{hostname}}" --target-host "root@{{hostname}}" -- {{extra_flags}}
 
+# ---------- others ---------- #
+
+[group("iso")]
+build-iso iso_name="sanctuary":
+    nix run nixpkgs#nix-fast-build -- --skip-cached --flake ".#images.{{iso_name}}"
 
 # ---------- others ---------- #
 
@@ -82,8 +87,3 @@ boot-machine hostname=machine_hostname:
 [group("others")]
 switch-machine hostname=machine_hostname:
     nh os switch . --hostname "{{hostname}}"
- 
-[group("iso")]
-build-iso iso_name="sanctuary":
-    nix run nixpkgs#nix-fast-build -- --skip-cached --flake ".#images.{{iso_name}}"
-

@@ -1551,11 +1551,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1757024478,
-        "narHash": "sha256-922/AK3XariQnXZgVOG8SC3sPHX+Ia1WMDd9yAVk2uM=",
+        "lastModified": 1757951462,
+        "narHash": "sha256-+xBvndsqCwILGHceKyr3EpnN5Kok+K1oH8SHR991Hbw=",
         "owner": "MrSom3body",
         "repo": "som3pkgs",
-        "rev": "c5854e61885949b8aae5ab628feb89f711f484bd",
+        "rev": "8d3b9d6f30c618219e1201c649931cb1f71c6cd6",
         "type": "github"
       },
       "original": {

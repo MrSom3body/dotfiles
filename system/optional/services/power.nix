@@ -5,8 +5,8 @@
 
   services = {
     logind.settings.Login = {
-      HandlePowerKey = "suspend-then-hibernate";
-      HandleLidSwitch = "suspend-then-hibernate";
+      HandlePowerKey = "suspend";
+      HandleLidSwitch = "suspend";
     };
 
     power-profiles-daemon.enable = true;

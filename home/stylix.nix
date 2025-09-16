@@ -28,7 +28,6 @@ in
         fish.enable = false;
         kitty.variant256Colors = true;
         rofi.enable = false;
-        spicetify.enable = false;
         waybar = {
           addCss = false;
           font = "sansSerif";

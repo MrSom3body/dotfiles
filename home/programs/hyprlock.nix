@@ -115,7 +115,7 @@ in
         shape = [
           {
             color = rgb colors.base00;
-            onclick = "systemctl suspend";
+            onclick = "systemctl suspend-then-hibernate";
             size = "120, 36"; # 10 (not visible) + 10 (from bottom) + 20 (arround text) + 16 (font)
             rounding = settings.appearance.border.radius;
             position = "0, 4";

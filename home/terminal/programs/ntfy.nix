@@ -54,6 +54,11 @@ in
         };
 
         Service = {
+          ExecStartPre = pkgs.writeShellScript "waitForNetwork" ''
+            while ! ${pkgs.inetutils}/bin/ping -c 1 9.9.9.9; do
+              sleep 1
+            done
+          '';
           ExecStart = ''${pkgs.ntfy-sh}/bin/ntfy subscribe --config "%h/.config/ntfy/client.yml" --from-config'';
           Restart = "on-failure";
         };

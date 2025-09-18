@@ -49,11 +49,11 @@ in
             if settings.programs.terminal == "ghostty" then
               "ghostty +new-window"
             else
-              settings.programs.terminal;
+              "uwsm app -- ${settings.programs.terminal}";
         in
         [
           # Open applications
-          "$mainMod, RETURN, Open terminal, exec, uwsm app -- ${terminal}"
+          "$mainMod, RETURN, Open terminal, exec, ${terminal}"
           "$mainMod, B, Open browser, exec, uwsm app -- ${settings.programs.browser}"
           "$mainMod SHIFT, O, Open Obsidian, exec, uwsm app -- obsidian"
           "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- xdg-terminal-exec ${settings.programs.terminalFileManager}"

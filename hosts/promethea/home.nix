@@ -122,6 +122,7 @@
       proton-pass
       protonvpn-gui
       # misc
+      exercism
       fragments
       pika-backup
       ;

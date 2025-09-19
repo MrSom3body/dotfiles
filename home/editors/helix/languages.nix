@@ -23,6 +23,11 @@ in
   ];
 
   config = mkIf cfg.enable {
+    sops.secrets = {
+      "language-tool/username" = { };
+      "language-tool/api-key" = { };
+    };
+
     home.packages = [ pkgs.typstyle ];
 
     programs.helix = {
@@ -204,7 +209,6 @@ in
           gopls.command = lib.getExe pkgs.gopls;
           lemminx.command = lib.getExe pkgs.lemminx;
           ltex-ls-plus.command = lib.getExe' pkgs.ltex-ls-plus "ltex-ls-plus";
-
           marksman.command = lib.getExe pkgs.marksman;
           nixd = {
             command = lib.getExe pkgs.nixd;

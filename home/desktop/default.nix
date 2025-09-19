@@ -42,7 +42,7 @@ in
 
       styling.enable = true;
 
-      terminal.emulators.foot.enable = mkDefault true;
+      terminal.emulators.ghostty.enable = mkDefault true;
 
       programs = {
         fuzzel.enable = mkDefault true;

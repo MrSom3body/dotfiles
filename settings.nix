@@ -42,7 +42,7 @@
     # Program options
     programs = {
       editor = "hx"; # Default text editor
-      terminal = "foot"; # Default terminal
+      terminal = "ghostty"; # Default terminal
       browser = "zen"; # Default web browser
       fileManager = "nautilus"; # Default GUI file manager
       terminalFileManager = "yazi"; # Default terminal file manager

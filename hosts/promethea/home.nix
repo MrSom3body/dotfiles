@@ -116,6 +116,7 @@
       element-desktop # Matrix client
       signal-desktop-bin
       # media
+      grayjay
       jellyfin-media-player
       # proton
       proton-authenticator

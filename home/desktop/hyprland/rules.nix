@@ -25,11 +25,19 @@ in
         "norounding 1, floating:0, onworkspace:f[1] s[false]"
         "noshadow 1, floating:0, onworkspace:f[f1] s[false]"
 
+        # Fix some dragging issues with XWayland
+        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+
         # Ignore maximize requests from apps
         "suppressevent maximize, class:.*"
 
-        # Fix some dragging issues with XWayland
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        # Move apps to workspaces
+        "workspace special:discord, class:^(vesktop)$"
+        "workspace special:todoist, class:^(todoist)$"
+
+        # Dim some programs
+        "dimaround, class:^(xdg-desktop-portal-gtk)$"
+        "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
 
         # NetworkManager applet
         "float, class:^(nm-connection-editor)$"
@@ -51,8 +59,8 @@ in
         "center, class:^(udiskie)$"
 
         # make some windows floating and sticky
-        "float, title:^(Picture-in-Picture)$" # firefox
-        "pin, title:^(Picture-in-Picture)$" # firefox
+        "float, title:^(Picture-in-Picture)$"
+        "pin, title:^(Picture-in-Picture)$"
 
         # Proton Pass
         "float, class:^(Proton Pass)$"
@@ -74,13 +82,8 @@ in
         "float, class:^(org.gnome.clocks)$"
         "size 800 600, class:^(org.gnome.clocks)$"
 
-        # Move apps to workspaces
-        "workspace special:discord, class:^(vesktop)$"
-        "workspace special:todoist, class:^(todoist)$"
-
-        # Dim some programs
-        "dimaround, class:^(xdg-desktop-portal-gtk)$"
-        "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
+        # Grayjay
+        "tile, title:^(Grayjay)$"
 
         # Games
         "immediate, class:^(Minecraft.*)$"

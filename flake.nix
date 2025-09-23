@@ -200,6 +200,14 @@
     };
 
     # programs
+    crillios-ls = {
+      url = "github:Crill-IOS/Crill-IOS-Scripting";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        git-hooks-nix.follows = "git-hooks-nix";
+      };
+    };
+
     ghostty = {
       url = "github:ghostty-org/ghostty"; # has cache, but can't use it because of drivers :(
       inputs = {

@@ -115,6 +115,30 @@
         "type": "github"
       }
     },
+    "crillios-ls": {
+      "inputs": {
+        "git-hooks-nix": [
+          "git-hooks-nix"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1758629361,
+        "narHash": "sha256-Viyuvfndd92eEwd89JrKo/b+0iu/+Shr2YU4tLc4faQ=",
+        "owner": "Crill-IOS",
+        "repo": "Crill-IOS-Scripting",
+        "rev": "0a97469f0fabb519ca0725551b4454b7dcc6837f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Crill-IOS",
+        "repo": "Crill-IOS-Scripting",
+        "type": "github"
+      }
+    },
     "deploy-rs": {
       "inputs": {
         "flake-compat": [
@@ -303,7 +327,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_3"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1710146030,
@@ -321,7 +345,7 @@
     },
     "flake-utils_3": {
       "inputs": {
-        "systems": "systems_6"
+        "systems": "systems_7"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -538,7 +562,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems"
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1758417389,
@@ -720,7 +744,7 @@
         "hyprwayland-scanner": "hyprwayland-scanner",
         "nixpkgs": "nixpkgs_3",
         "pre-commit-hooks": "pre-commit-hooks",
-        "systems": "systems_2",
+        "systems": "systems_3",
         "xdph": "xdph"
       },
       "locked": {
@@ -1340,7 +1364,7 @@
           "pyprland",
           "nixpkgs"
         ],
-        "systems": "systems_4",
+        "systems": "systems_5",
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
@@ -1437,6 +1461,7 @@
     },
     "root": {
       "inputs": {
+        "crillios-ls": "crillios-ls",
         "deploy-rs": "deploy-rs",
         "disko": "disko",
         "flake-compat": "flake-compat",
@@ -1467,7 +1492,7 @@
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
-        "systems": "systems_5",
+        "systems": "systems_6",
         "tailray": "tailray",
         "yazi": "yazi",
         "yazi-plugins": "yazi-plugins",
@@ -1677,16 +1702,16 @@
     },
     "systems_3": {
       "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
         "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
         "type": "github"
       },
       "original": {
         "owner": "nix-systems",
-        "repo": "default",
+        "repo": "default-linux",
         "type": "github"
       }
     },
@@ -1700,11 +1725,26 @@
         "type": "github"
       },
       "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_5": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
         "id": "systems",
         "type": "indirect"
       }
     },
-    "systems_5": {
+    "systems_6": {
       "locked": {
         "lastModified": 1689347949,
         "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
@@ -1719,7 +1759,7 @@
         "type": "github"
       }
     },
-    "systems_6": {
+    "systems_7": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

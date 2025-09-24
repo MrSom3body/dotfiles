@@ -39,14 +39,10 @@ jobs:
       #   with:
       #     hatchet-protocol: rampage
 
-      - name: Install Lix
-        uses: DeterminateSystems/nix-installer-action@v17
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
         with:
-          source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux
-          diagnostic-endpoint: "" # so eelco can have more personalized self-merges? no thank you
-          backtrace: true
-          extra-conf: |
-            experimental-features = nix-command flakes
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Disable packages with prefetch
         run: |

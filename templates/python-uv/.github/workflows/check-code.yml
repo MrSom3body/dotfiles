@@ -11,19 +11,22 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install Lix
-        uses: DeterminateSystems/nix-installer-action@v18
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
         with:
-          source-url: "https://install.lix.systems/lix/lix-installer-x86_64-linux"
-          diagnostic-endpoint: "" # so eelco can have more personalized self-merges? no thank you
-          backtrace: "true"
-          extra-conf: |
-            experimental-features = nix-command flakes
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Nix magic cache
-        uses: DeterminateSystems/magic-nix-cache-action@v12
+      - name: Cache Nix store
+        uses: nix-community/cache-nix-action@v6
         with:
-          diagnostic-endpoint: ""
+          primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          restore-prefixes-first-match: nix-${{ runner.os }}-
+          gc-max-store-size-linux: 5G
+          purge: true
+          purge-prefixes: nix-${{ runner.os }}-
+          purge-created: 0
+          purge-last-accessed: 0
+          purge-primary-key: never
 
       - name: Run checks
         run: |

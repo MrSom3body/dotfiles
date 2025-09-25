@@ -27,6 +27,10 @@ in
           gesture_positive = false;
         };
 
+        hyprexpo-gesture = [
+          "3, vertical, expo"
+        ];
+
         bindd = [
           "$mainMod, U, Open expose, hyprexpo:expo, toggle"
         ];

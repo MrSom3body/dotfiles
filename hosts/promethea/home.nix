@@ -122,6 +122,8 @@
       proton-authenticator
       proton-pass
       protonvpn-gui
+      # deployment
+      terraform
       # misc
       exercism
       fragments

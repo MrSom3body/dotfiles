@@ -23,6 +23,7 @@
     ../../system/optional/programs/steam.nix
     ../../system/optional/programs/vmware.nix
     ../../system/optional/programs/wireshark.nix
+    ../../system/optional/programs/ydotool.nix
 
     ../../system/optional/services/fprintd.nix
     ../../system/optional/services/gns3.nix

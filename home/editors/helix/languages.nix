@@ -233,6 +233,7 @@ in
           sqls.command = lib.getExe pkgs.sqls;
           superhtml.command = lib.getExe pkgs.superhtml;
           taplo.command = lib.getExe pkgs.taplo;
+          terraform-ls.command = lib.getExe pkgs.terraform-ls;
           tinymist = {
             command = lib.getExe pkgs.tinymist;
             config = {

@@ -143,37 +143,39 @@ in
           ) 9
         ));
 
-      # Player control
       bindl =
         let
           playerctl = lib.getExe pkgs.playerctl;
         in
         [
+          # Audio control
           ", XF86AudioPlay, exec, ${playerctl} play-pause"
           ", XF86AudioPause, exec, ${playerctl} pause"
           ", XF86AudioNext, exec, ${playerctl} next"
           ", XF86AudioPrev, exec, ${playerctl} previous"
+          ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
+          ", XF86AudioMicMute, exec, swayosd-client --output-input mute-toggle"
         ];
+
+      bindlr = [
+        # Touchpad toggle
+        ", XF86TouchpadToggle, exec, touchpad-toggle"
+
+        # Caps Lock
+        ", Caps_Lock, exec, swayosd-client --caps-lock"
+
+        # Num Lock
+        ", Num_Lock, exec, swayosd-client --num-lock"
+      ];
 
       bindel = [
         # Volume control
         ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise"
         ", XF86AudioLowerVolume, exec, swayosd-client --output-volume lower"
-        ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
-        ", XF86AudioMicMute, exec, swayosd-client --output-input mute-toggle"
 
         # Brightness control
         ", XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
         ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
-
-        # Touchpad toggle
-        ", XF86TouchpadToggle, exec, touchpad-toggle"
-
-        # Caps Lock
-        ", Caps_Lock, exec, sleep 0.07; swayosd-client --caps-lock"
-
-        # Num Lock
-        ", Num_Lock, exec, sleep 0.07; swayosd-client --num-lock"
       ];
     };
   };

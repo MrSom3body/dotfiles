@@ -21,7 +21,5 @@ in
 
       package = inputs.hyprpaper.packages.${pkgs.system}.default;
     };
-
-    systemd.user.services.hyprpaper.Unit.After = lib.mkForce "graphical-session.target";
   };
 }

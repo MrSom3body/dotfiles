@@ -326,8 +326,6 @@ in
       };
     };
 
-    systemd.user.services.waybar.Unit.After = lib.mkForce "graphical-session.target";
-
     xdg.configFile."waybar/config" = {
       onChange = ''
         ${pkgs.procps}/bin/pkill -u $USER waybar || true

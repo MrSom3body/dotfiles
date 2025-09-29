@@ -4,10 +4,13 @@ let
   anubis = config.services.anubis.instances.firefox-send;
 in
 {
+  imports = [
+    ./anubis.nix
+  ];
+
   services = {
     anubis.instances.firefox-send = {
       enable = true;
-      group = "caddy";
       settings = {
         TARGET = "http://${cfg.host}:${toString cfg.port}";
       };

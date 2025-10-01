@@ -201,7 +201,7 @@
 
     # programs
     crillios-ls = {
-      url = "github:Crill-IOS/Crill-IOS-Scripting";
+      url = "github:Crill-IOS/Crill-IOS-Scripting/dev";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         git-hooks-nix.follows = "git-hooks-nix";

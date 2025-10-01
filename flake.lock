@@ -126,15 +126,16 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1758629361,
-        "narHash": "sha256-Viyuvfndd92eEwd89JrKo/b+0iu/+Shr2YU4tLc4faQ=",
+        "lastModified": 1759306632,
+        "narHash": "sha256-aX4TZFehITzCF1LsswVtU6AuTHKa0n6pwxWN05lSYOs=",
         "owner": "Crill-IOS",
         "repo": "Crill-IOS-Scripting",
-        "rev": "0a97469f0fabb519ca0725551b4454b7dcc6837f",
+        "rev": "d2a31964b4c0ae878ec7d8ae66e572e11af08020",
         "type": "github"
       },
       "original": {
         "owner": "Crill-IOS",
+        "ref": "dev",
         "repo": "Crill-IOS-Scripting",
         "type": "github"
       }

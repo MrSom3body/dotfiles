@@ -23,20 +23,20 @@ up *inputs:
     nix flake update {{inputs}}
 
 [group("local")]
-build:
-    @just build-machine
+build *args:
+    @just build-machine {{machine_hostname}} {{args}}
 
 [group("local")]
-test:
-    @just test-machine
+test *args:
+    @just test-machine {{machine_hostname}} {{args}}
 
 [group("local")]
-boot:
-    @just boot-machine
+boot *args:
+    @just boot-machine {{machine_hostname}} {{args}}
 
 [group("local")]
-switch:
-    @just switch-machine
+switch *args:
+    @just switch-machine {{machine_hostname}} {{args}}
 
 [group("local")]
 fix-lanzaboote: && boot
@@ -74,17 +74,17 @@ build-iso iso_name="sanctuary":
 # ---------- others ---------- #
 
 [group("others")]
-build-machine hostname=machine_hostname:
-    nh os build . --hostname "{{hostname}}"
+build-machine hostname=machine_hostname *args:
+    nh os build . --hostname "{{hostname}}" {{args}}
 
 [group("others")]
-test-machine hostname=machine_hostname:
-    nh os test . --hostname "{{hostname}}"
+test-machine hostname=machine_hostname *args:
+    nh os test . --hostname "{{hostname}}" {{args}}
 
 [group("others")]
-boot-machine hostname=machine_hostname:
-    nh os boot . --hostname "{{hostname}}"
+boot-machine hostname=machine_hostname *args:
+    nh os boot . --hostname "{{hostname}}" {{args}}
 
 [group("others")]
-switch-machine hostname=machine_hostname:
-    nh os switch . --hostname "{{hostname}}"
+switch-machine hostname=machine_hostname *args:
+    nh os switch . --hostname "{{hostname}}" {{args}}

@@ -90,6 +90,7 @@ in
           systemd-failed-units = {
             format = "✗ {nr_failed}";
             on-click = "xdg-terminal-exec fish -c \"bat --paging always -f (systemctl list-units --user --failed | psub -s -user-units) (systemctl list-units --failed | psub -s -system-units)\"";
+            hide-on-ok = true;
           };
 
           clock = {

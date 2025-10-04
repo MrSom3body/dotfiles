@@ -169,7 +169,6 @@ in
               "󱩖 "
               "󰛨 "
             ];
-            reverse-scrolling = true;
             tooltip = false;
           };
 
@@ -182,7 +181,6 @@ in
               "󰖀"
               "󰕾"
             ];
-            reverse-scrolling = true;
           };
 
           "group/power" = {

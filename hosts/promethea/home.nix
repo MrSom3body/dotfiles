@@ -47,7 +47,6 @@
             + /Documents/**
             + /Games/Saves/**
             + /Music/**
-            + /Notes/**
             + /Pictures/**
             + /Templates/**
             + /Videos/**

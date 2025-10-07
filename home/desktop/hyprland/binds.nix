@@ -65,6 +65,7 @@ in
           "CTRL SHIFT, D, Deafen on vesktop, pass, class:^(vesktop)$"
 
           # Launcher
+          "CTRL, SPACE, Open application launcher, exec, ${toggle "anyrun"}"
           "$mainMod, D, Open application launcher, exec, ${toggle "anyrun"}"
           "$mainMod CTRL, Q, Open power menu, exec, ${toggleScript "dmenu" "dmenu-actions"}"
           "$mainMod, odiaeresis, Connect/disconnect from a vpnc VPN, exec, ${toggleScript "dmenu" "dmenu-vpnc"}"

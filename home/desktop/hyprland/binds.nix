@@ -66,6 +66,7 @@ in
           # Launcher
           "CTRL, SPACE, Open application launcher, exec, ${toggle "fuzzel"}"
           "$mainMod, D, Open application launcher, exec, ${toggle "fuzzel"}"
+          "$mainMod, MINUS, Open display manager, exec, ${toggleScript "fuzzel" "fuzzel-displays"}"
           "$mainMod, SPACE, Open file/directory picker, exec, ${toggleScript "fuzzel" "fuzzel-files"}"
           "$mainMod, TAB, Open window switcher, exec, ${toggleScript "fuzzel" "fuzzel-windows"}"
           "ALT, TAB, Open window switcher, exec, ${toggleScript "fuzzel" "fuzzel-windows"}"

@@ -44,9 +44,20 @@ in
 
       terminal.emulators.ghostty.enable = mkDefault true;
 
+      programs = {
+        fuzzel.enable = mkDefault true;
+        waybar.enable = mkDefault true;
+      };
+
       services = {
+        cliphist.enable = mkDefault true;
+        fnott.enable = mkDefault true;
+        gammastep.enable = mkDefault true;
         kdeconnect.enable = mkDefault true;
+        polkit.enable = mkDefault true;
+        swayosd.enable = mkDefault true;
         tailray.enable = mkDefault (if osConfig != null then osConfig.services.tailscale.enable else false);
+        udiskie.enable = mkDefault true;
       };
     };
 

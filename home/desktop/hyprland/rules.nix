@@ -101,11 +101,9 @@ in
         "animation slide, rofi"
         "dimaround, rofi"
 
-        # launchers
+        # fuzzel
         "animation slide, launcher"
         "dimaround, launcher"
-        "animation slide, anyrun"
-        "dimaround, anyrun"
 
         # fnott
         "animation slide, notifications"

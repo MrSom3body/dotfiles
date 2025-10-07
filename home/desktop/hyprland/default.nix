@@ -7,6 +7,7 @@
 }:
 let
   inherit (lib) mkIf;
+  inherit (lib) mkDefault;
   inherit (lib) types;
 
   inherit (lib) mkOption;
@@ -65,23 +66,12 @@ in
   config = mkIf cfg.enable {
     my = {
       programs = {
-        anyrun = {
-          enable = true;
-          dmenu.enable = true;
-        };
-        hyprlock.enable = true;
-        waybar.enable = true;
+        hyprlock.enable = mkDefault true;
       };
 
       services = {
-        cliphist.enable = true;
-        fnott.enable = true;
-        gammastep.enable = true;
         hypridle.enable = true;
         hyprpaper.enable = true;
-        polkit.enable = true;
-        swayosd.enable = true;
-        udiskie.enable = true;
       };
     };
 

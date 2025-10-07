@@ -15,16 +15,10 @@ in
 {
   options.my.programs.fuzzel = {
     enable = mkEnableOption "the fuzzel launcher";
-    dmenu = {
-      enable = mkEnableOption "a dmenu binary that uses fuzzel";
-    };
   };
 
   config = mkIf cfg.enable {
-    home.packages = lib.optionals cfg.dmenu.enable [
-      inputs.som3pkgs.packages.${pkgs.system}.dmenu-goodies
-      (pkgs.writeShellScriptBin "dmenu" ''fuzzel --dmenu'')
-    ];
+    home.packages = [ inputs.som3pkgs.packages.${pkgs.system}.fuzzel-goodies ];
 
     programs.fuzzel = {
       enable = true;

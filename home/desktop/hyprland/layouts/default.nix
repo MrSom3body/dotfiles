@@ -23,10 +23,14 @@ in
       "$mainMod, L, Focus window to the right, movefocus, r"
 
       # Move window
-      "$mainMod SHIFT, H, Move window left, swapwindow, l"
-      "$mainMod SHIFT, J, Move window down, swapwindow, d"
-      "$mainMod SHIFT, K, Move window up, swapwindow, u"
-      "$mainMod SHIFT, L, Move window right, swapwindow, r"
+      "$mainMod SHIFT, H, Move window left (tiling), swapwindow, l"
+      "$mainMod SHIFT, J, Move window down (tiling), swapwindow, d"
+      "$mainMod SHIFT, K, Move window up (tiling), swapwindow, u"
+      "$mainMod SHIFT, L, Move window right (tiling), swapwindow, r"
+      "$mainMod SHIFT, H, Move window left (floating), moveactive, -100 0"
+      "$mainMod SHIFT, J, Move window down (floating), moveactive, 0 100"
+      "$mainMod SHIFT, K, Move window up (floating), moveactive, 0 -100"
+      "$mainMod SHIFT, L, Move window right (floating), moveactive, 100 0"
 
       # Resize window
       "$mainMod CTRL, H, Increase window size to the left, resizeactive, -100 0"

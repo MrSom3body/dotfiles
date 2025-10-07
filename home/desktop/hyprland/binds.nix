@@ -55,7 +55,6 @@ in
           # Open applications
           "$mainMod, RETURN, Open terminal, exec, ${terminal}"
           "$mainMod, B, Open browser, exec, uwsm app -- ${settings.programs.browser}"
-          "$mainMod SHIFT, O, Open Obsidian, exec, uwsm app -- obsidian"
           "$mainMod, E, Open terminal terminal file manager, exec, uwsm app -- xdg-terminal-exec ${settings.programs.terminalFileManager}"
           "$mainMod SHIFT, E, Open file manager, exec, uwsm app -- ${settings.programs.fileManager}"
           ", XF86Calculator, Open calculator, exec, ${runOnce "gnome-calculator"}"

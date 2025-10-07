@@ -16,13 +16,8 @@ in
         rgb = color: "rgb(${color})";
       in
       {
-        monitorv2 = cfg.monitors ++ [
-          {
-            output = "";
-            mode = "preferred";
-            position = "auto";
-            scale = "auto";
-          }
+        monitor = cfg.monitors ++ [
+          ",preferred,auto,auto"
         ];
 
         workspace = [

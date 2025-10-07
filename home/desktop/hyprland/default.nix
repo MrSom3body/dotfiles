@@ -43,23 +43,13 @@ in
     };
 
     monitors = mkOption {
-      type = types.listOf (types.attrsOf types.anything);
+      type = types.listOf types.str;
       default = [ ];
       example = [
-        {
-          output = "HDMI-A-1";
-          mode = "1920x1080@60";
-          position = "0x0";
-          scale = "1";
-        }
-        {
-          output = "DP-1";
-          mode = "2560x1440@144";
-          position = "1920x0";
-          scale = "auto";
-        }
+        "HDMI-A-1,1920x1080@60,0x0,1"
+        "DP-1,2560x1440@144,1920x0,auto"
       ];
-      description = "Additional monitors to configure (use the monitorv2 syntax)";
+      description = "Additional monitors to configure (uses the monitor syntax)";
     };
   };
 

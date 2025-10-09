@@ -58,6 +58,19 @@
     };
   };
 
+  # TODO remove when https://github.com/NixOS/nixos-hardware/pull/1634 gets merged
+  systemd.services.battery-charge-threshold = {
+    wantedBy = [
+      "suspend-then-hibernate.target"
+      "hibernate.target"
+    ];
+
+    after = [
+      "suspend-then-hibernate.target"
+      "hibernate.target"
+    ];
+  };
+
   my = {
     boot.lanzaboote.enable = true;
   };

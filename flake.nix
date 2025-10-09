@@ -2,98 +2,23 @@
   description = "MrSom3body's dotfiles";
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      systems,
-      deploy-rs,
-      ...
-    }@inputs:
-    let
-      inherit (import ./settings.nix) settings;
-      inherit (nixpkgs) lib;
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
 
-      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs (import systems) (
-        system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        }
-      );
+      imports = [
+        ./overlays
+        ./checks.nix
+        ./shell.nix
+        ./hosts
+        ./templates
+      ];
 
-      specialArgs = {
-        inherit inputs;
-      };
-
-      mkNixos =
-        hostname:
-        lib.nixosSystem {
-          specialArgs = specialArgs // {
-            settings = settings hostname;
-          };
-          modules = [ ./hosts/${hostname} ];
+      perSystem =
+        { pkgs, ... }:
+        {
+          formatter = pkgs.nixfmt-tree;
         };
-    in
-    {
-      overlays = import ./overlays {
-        inherit inputs;
-      };
-
-      formatter = forEachSystem (pkgs: pkgs.nixfmt-tree);
-
-      nixosConfigurations = {
-        promethea = mkNixos "promethea";
-        pandora = mkNixos "pandora";
-
-        athenas = mkNixos "athenas";
-        sanctuary = mkNixos "sanctuary";
-
-        # hosts only for garnix
-        promethea_garnix = mkNixos "promethea_garnix";
-      };
-
-      images = {
-        sanctuary = self.nixosConfigurations.sanctuary.config.system.build.isoImage;
-        athenas = self.nixosConfigurations.athenas.config.system.build.isoImage;
-      };
-
-      templates = {
-        default = {
-          path = ./templates/default;
-          description = "my default dev template";
-        };
-
-        python-uv = {
-          path = ./templates/python-uv;
-          description = "a python uv dev template";
-        };
-      };
-
-      deploy.nodes = {
-        pandora = {
-          hostname = "pandora";
-          profiles.system = {
-            sshUser = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.pandora;
-          };
-        };
-      };
-
-      devShells = forEachSystem (
-        pkgs:
-        import ./shell.nix {
-          inherit inputs pkgs;
-        }
-      );
-      checks =
-        builtins.mapAttrs (_system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib
-        // forEachSystem (
-          pkgs:
-          import ./checks.nix {
-            inherit inputs pkgs;
-          }
-        );
     };
 
   inputs = {

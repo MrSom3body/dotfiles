@@ -1,37 +1,41 @@
 {
-  inputs,
-  pkgs,
-  ...
-}:
-{
-  default = pkgs.mkShell {
-    name = "dotfiles";
+  perSystem =
+    {
+      config,
+      inputs',
+      pkgs,
+      ...
+    }:
+    {
+      devShells.default = pkgs.mkShell {
+        name = "dotfiles";
 
-    buildInputs = inputs.self.checks.${pkgs.system}.pre-commit-check.enabledPackages;
+        buildInputs = config.checks.pre-commit-check.enabledPackages;
 
-    packages =
-      builtins.attrValues {
-        inherit (pkgs)
-          git
-          just
-          nixfmt-tree
-          ripgrep
-          sops
-          ;
-      }
-      ++ [
-        inputs.deploy-rs.packages.${pkgs.system}.default
-        inputs.helix.packages.${pkgs.system}.default # a editor if I'm dumb and remove it somehow
-      ];
+        packages =
+          builtins.attrValues {
+            inherit (pkgs)
+              git
+              just
+              nixfmt-tree
+              ripgrep
+              sops
+              ;
+          }
+          ++ [
+            inputs'.deploy-rs.packages.default
+            inputs'.helix.packages.default # a editor if I'm dumb and remove it somehow
+          ];
 
-    shellHook = ''
-      ${inputs.self.checks.${pkgs.system}.pre-commit-check.shellHook}
+        shellHook = ''
+          ${config.checks.pre-commit-check.shellHook}
 
-      tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "last 5 commits"
-      git log --all --decorate --graph --oneline -5
-      echo
-      tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "status"
-      git status --short
-    '';
-  };
+          tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "last 5 commits"
+          git log --all --decorate --graph --oneline -5
+          echo
+          tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "status"
+          git status --short
+        '';
+      };
+    };
 }

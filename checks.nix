@@ -20,7 +20,7 @@
           markdownlint = {
             enable = true;
             settings.configuration = {
-              line-length.tables = false;
+              MD013 = false;
               no-inline-html = false;
             };
           };

@@ -12,13 +12,9 @@
         ./shell.nix
         ./hosts
         ./templates
-      ];
 
-      perSystem =
-        { pkgs, ... }:
-        {
-          formatter = pkgs.nixfmt-tree;
-        };
+        ./treefmt.nix
+      ];
     };
 
   inputs = {
@@ -122,6 +118,11 @@
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
       };
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # programs

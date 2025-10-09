@@ -10,7 +10,7 @@
       devShells.default = pkgs.mkShell {
         name = "dotfiles";
 
-        buildInputs = config.checks.pre-commit-check.enabledPackages;
+        buildInputs = config.pre-commit.settings.enabledPackages;
 
         packages =
           builtins.attrValues {
@@ -28,7 +28,7 @@
           ];
 
         shellHook = ''
-          ${config.checks.pre-commit-check.shellHook}
+          ${config.pre-commit.installationScript}
 
           tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "last 5 commits"
           git log --all --decorate --graph --oneline -5

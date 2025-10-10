@@ -7,12 +7,12 @@
       systems = [ "x86_64-linux" ];
 
       imports = [
-        ./overlays
         ./checks.nix
-        ./shell.nix
+        ./deploy.nix
         ./hosts
+        ./overlays
+        ./shell.nix
         ./templates
-
         ./treefmt.nix
       ];
     };

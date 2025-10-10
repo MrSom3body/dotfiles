@@ -36,15 +36,5 @@ in
       sanctuary = inputs.self.nixosConfigurations.sanctuary.config.system.build.isoImage;
       athenas = inputs.self.nixosConfigurations.athenas.config.system.build.isoImage;
     };
-
-    deploy.nodes = {
-      pandora = {
-        hostname = "pandora";
-        profiles.system = {
-          sshUser = "root";
-          path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.pandora;
-        };
-      };
-    };
   };
 }

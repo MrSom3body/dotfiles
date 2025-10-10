@@ -96,7 +96,7 @@
       };
     };
 
-    nixos-hardware.url = "github:MrSom3body/nixos-hardware/add-asus-um6702";
+    nixos-hardware.url = "github:MrSom3body/nixos-hardware/fix/asus-battery-threshold";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";

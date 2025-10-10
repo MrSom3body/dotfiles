@@ -1211,16 +1211,15 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1760086267,
-        "narHash": "sha256-2t6mYaUE5uZGga+ewkXwN2lsnuLJY1lJhPtJCagT43o=",
-        "owner": "MrSom3body",
+        "lastModified": 1760106635,
+        "narHash": "sha256-2GoxVaKWTHBxRoeUYSjv0AfSOx4qw5CWSFz2b+VolKU=",
+        "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "c52ea609012ae1b3259a5ece08d192bf38dc167e",
+        "rev": "9ed85f8afebf2b7478f25db0a98d0e782c0ed903",
         "type": "github"
       },
       "original": {
-        "owner": "MrSom3body",
-        "ref": "fix/asus-battery-threshold",
+        "owner": "NixOS",
         "repo": "nixos-hardware",
         "type": "github"
       }

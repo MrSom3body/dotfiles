@@ -96,7 +96,7 @@
       };
     };
 
-    nixos-hardware.url = "github:MrSom3body/nixos-hardware/fix/asus-battery-threshold";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";

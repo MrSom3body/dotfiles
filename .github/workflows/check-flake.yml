@@ -40,5 +40,8 @@ jobs:
           purge-last-accessed: 0
           purge-primary-key: never
 
+      - name: Remove deploy import
+        run: sed -i '/.\/deploy.nix/d' flake.nix
+
       - name: Check Flake
         run: nix flake check

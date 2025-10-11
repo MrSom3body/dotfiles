@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 {
   services = {
     caddy.virtualHosts."transmission.sndh.dev" = {
@@ -10,6 +10,7 @@
 
     transmission = {
       enable = true;
+      package = pkgs.transmission_4;
       settings = {
         speed-limit-up = 2000;
         speed-limit-up-enabled = true;

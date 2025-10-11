@@ -64,7 +64,6 @@ in
           "CTRL SHIFT, D, Deafen on vesktop, pass, class:^(vesktop)$"
 
           # Launcher
-          "CTRL, SPACE, Open application launcher, exec, ${toggle "fuzzel"}"
           "$mainMod, D, Open application launcher, exec, ${toggle "fuzzel"}"
           "$mainMod, MINUS, Open display manager, exec, ${toggleScript "fuzzel" "fuzzel-displays"}"
           "$mainMod, SPACE, Open file/directory picker, exec, ${toggleScript "fuzzel" "fuzzel-files"}"

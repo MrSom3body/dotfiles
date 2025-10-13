@@ -1,5 +1,0 @@
-{
-  services.zerotierone = {
-    enable = true;
-  };
-}

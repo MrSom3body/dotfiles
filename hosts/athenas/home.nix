@@ -1,3 +1,0 @@
-{
-  my.systemType = 3;
-}

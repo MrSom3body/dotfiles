@@ -1,23 +1,17 @@
 {
   description = "MrSom3body's dotfiles";
 
-  outputs =
-    inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-
-      imports = [
-        ./checks.nix
-        ./deploy.nix
-        ./hosts
-        ./overlays
-        ./shell.nix
-        ./templates
-        ./treefmt.nix
-      ];
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
+    # for my config
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    import-tree.url = "github:vic/import-tree";
+
     # global, so they can be `.follow`ed
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-25.05";
@@ -30,11 +24,6 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
-    };
-
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
     # my packages

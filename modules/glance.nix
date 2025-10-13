@@ -1,0 +1,211 @@
+{ lib, ... }:
+{
+  flake.modules.nixos.glance =
+    { config, ... }:
+    let
+      cfg = config.services.glance;
+    in
+    {
+      services = {
+        caddy.virtualHosts."home.${config.networking.domain}" = {
+          extraConfig = ''
+            reverse_proxy http://${cfg.settings.server.host}:${toString cfg.settings.server.port}
+            import cloudflare
+          '';
+        };
+
+        glance = {
+          enable = true;
+          settings = {
+            server = {
+              host = "127.0.0.1";
+              port = 8080;
+            };
+
+            pages = [
+              {
+                name = "Startpage";
+                hide-desktop-navigation = false;
+                center-vertically = true;
+                width = "slim";
+                columns = [
+                  {
+                    size = "small";
+                    widgets = [
+                      {
+                        type = "clock";
+                        hour-format = "24h";
+                        timezones = [
+                          {
+                            timezone = "Asia/Kolkata";
+                            label = "Kolkata";
+                          }
+                          {
+                            timezone = "America/New_York";
+                            label = "New York";
+                          }
+                        ];
+                      }
+                      {
+                        type = "weather";
+                        untis = "metric";
+                        hour-format = "24h";
+                        location = "Vienna, Austria";
+                      }
+                    ];
+                  }
+                  {
+                    size = "full";
+                    widgets = lib.singleton {
+                      type = "bookmarks";
+                      groups = [
+                        {
+                          title = "general";
+                          links = [
+                            {
+                              title = "mail";
+                              url = "https://mail.proton.me";
+                            }
+                            {
+                              title = "calendar";
+                              url = "https://calendar.proton.me";
+                            }
+                            {
+                              title = "drive";
+                              url = "https://drive.proton.me";
+                            }
+                          ];
+                        }
+                        {
+                          title = "management";
+                          links = [
+                            {
+                              title = "cloudflare";
+                              url = "https://dash.cloudflare.com";
+                            }
+                            {
+                              title = "nextdns";
+                              url = "https://my.nextdns.io";
+                            }
+                            {
+                              title = "tailscale";
+                              url = "https://login.tailscale.com";
+                            }
+                          ];
+                        }
+                        {
+                          title = "entertainment";
+                          links = [
+                            {
+                              title = "netflix";
+                              url = "https://netflix.com";
+                            }
+                            {
+                              title = "prime video";
+                              url = "https://primevideo.com";
+                            }
+                            {
+                              title = "youtube";
+                              url = "https://youtube.com";
+                            }
+                          ];
+                        }
+                        {
+                          title = "socials";
+                          links = [
+                            {
+                              title = "instagram";
+                              url = "https://instagram.com";
+                            }
+                            {
+                              title = "mastodon";
+                              url = "https://mastodon.social";
+                            }
+                            {
+                              title = "reddit";
+                              url = "https://reddit.com";
+                            }
+                          ];
+                        }
+                      ];
+                    };
+                  }
+
+                ];
+              }
+
+              {
+                name = "Homelab";
+                hide-desktop-navigation = false;
+                center-vertically = true;
+                width = "slim";
+                columns = [
+                  {
+                    size = "small";
+                    widgets = [
+                      {
+                        type = "server-stats";
+                        servers = lib.singleton {
+                          type = "local";
+                          name = config.networking.hostName;
+                        };
+                      }
+                      {
+                        type = "repository";
+                        repository = "MrSom3body/dotfiles";
+                        pull-requests-limit = 5;
+                        issues-limit = 5;
+                        commits-limit = 5;
+                      }
+                    ];
+                  }
+                  {
+                    size = "full";
+                    widgets =
+                      let
+                        mkSite = title: url: icon: { inherit title url icon; };
+                      in
+                      [
+                        {
+                          type = "monitor";
+                          cache = "15s";
+                          title = "Private Services";
+                          sites = [
+                            (mkSite "loxone" "https://loxone.sndh.dev" "di:loxone")
+                            (mkSite "searxng" "https://search.sndh.dev" "di:searxng")
+                            (mkSite "miniflux" "https://read.sndh.dev" "di:miniflux")
+                            (mkSite "karakeep" "https://karakeep.sndh.dev" "di:karakeep")
+                            (mkSite "immich" "https://immich.sndh.dev" "di:immich")
+                            (mkSite "ntfy" "https://ntfy.sndh.dev" "di:ntfy")
+                            (mkSite "jellyfin" "https://jellyfin.sndh.dev" "di:jellyfin")
+                            (mkSite "jellyseerr" "https://jellyseerr.sndh.dev" "di:jellyseerr")
+                            (mkSite "sonarr" "https://sonarr.sndh.dev" "di:sonarr")
+                            (mkSite "radarr" "https://radarr.sndh.dev" "di:radarr")
+                            (mkSite "prowlarr" "https://prowlarr.sndh.dev" "di:prowlarr")
+                            (
+                              mkSite "transmission" "https://transmission.sndh.dev" "di:transmission"
+                              // {
+                                alt-status-codes = [ 401 ];
+                              }
+                            )
+                            (mkSite "ddns updater" "https://ddns.sndh.dev" "di:ddns-updater")
+                          ];
+                        }
+                        {
+                          type = "monitor";
+                          cache = "15s";
+                          title = "Public Services";
+                          sites = [
+                            (mkSite "firefox send" "https://send.sndh.dev" "di:firefox-send")
+                          ];
+                        }
+                      ];
+                  }
+                ];
+              }
+            ];
+          };
+        };
+      };
+    };
+}

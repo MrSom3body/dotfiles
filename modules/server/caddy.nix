@@ -1,0 +1,28 @@
+{
+  flake.modules.nixos.server =
+    { config, pkgs, ... }:
+    {
+      sops.secrets.caddy = {
+        sopsFile = ../../secrets/pandora/caddy.env;
+        format = "dotenv";
+      };
+
+      services = {
+        caddy = {
+          enable = true;
+          environmentFile = config.sops.secrets.caddy.path;
+          extraConfig = ''
+            (cloudflare) {
+              tls {
+                dns cloudflare {$CF_TOKEN}
+              }
+            }
+          '';
+          package = pkgs.caddy.withPlugins {
+            plugins = [ "github.com/caddy-dns/cloudflare@v0.2.1" ];
+            hash = "sha256-XwZ0Hkeh2FpQL/fInaSq+/3rCLmQRVvwBM0Y1G1FZNU=";
+          };
+        };
+      };
+    };
+}

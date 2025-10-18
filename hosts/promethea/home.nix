@@ -10,6 +10,11 @@
     "asus-wmi-hotkeys, keyboard, allow"
     "at-translated-set-2-keyboard, keyboard, allow"
 
+    # Logitech
+    "logitech-usb-receiver, keyboard, allow"
+    "logitech-usb-receiver-consumer-control, keyboard, allow"
+    "logitech-usb-receiver-system-control, keyboard, allow"
+
     # Mechanical Keyboard
     "sonix-usb-device-system-control, keyboard, allow"
     "sonix-usb-device, keyboard, allow"

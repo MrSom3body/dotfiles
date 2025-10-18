@@ -6,38 +6,6 @@
     # System settings
     inherit hostname;
     path = "/home/karun/dotfiles"; # Path to your dotfiles
-    authorizedSshKeys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH+0M/HSOoGHHrAtVhObOUjWQpR0pvHmhd7PhRJifP01 karun@promethea"
-    ];
-
-    # Appearance settings
-    appearance = {
-      dark-theme = "gruvbox-material-dark-medium"; # Dark theme for your system (find more themes at https://github.com/tinted-theming/schemes)
-      light-theme = "gruvbox-material-light-medium"; # Light theme for your system (find more themes at https://github.com/tinted-theming/schemes)
-      polarity = "dark"; # Default mode
-      wallpaper = ./walls/gruvbox/secluded-grove.png; # Wallpaper for WMs
-
-      border = {
-        size = 2;
-        radius = 7;
-      };
-
-      fonts = {
-        # fonts must be Nerd Fonts
-        mono = {
-          # Monospace font
-          name = "FiraCode Nerd Font";
-          pkgName = "fira-code";
-          size = 13;
-        };
-        sans = {
-          # Sans-serif font
-          name = "Ubuntu Nerd Font";
-          pkgName = "ubuntu";
-          size = 14;
-        };
-      };
-    };
 
     # Program options
     programs = {

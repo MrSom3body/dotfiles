@@ -11,6 +11,7 @@
     "at-translated-set-2-keyboard, keyboard, allow"
 
     # Logitech
+    "mx-mchncl-m-keyboard, keyboard, allow"
     "logitech-usb-receiver, keyboard, allow"
     "logitech-usb-receiver-consumer-control, keyboard, allow"
     "logitech-usb-receiver-system-control, keyboard, allow"

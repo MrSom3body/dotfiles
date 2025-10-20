@@ -1,6 +1,8 @@
 # 🖥️ dotfiles
 
-Welcome to my dotfiles repository! These configurations are tailored to me and my system only (for now), so if you really want to copy my configs don't just blindly use them but rather use them as a starting point.
+Welcome to my dotfiles repository!
+
+These configurations are built primarily for _my workflow_ and systems, but thanks to the incredibly modular [Dendritic Pattern](https://github.com/mightiam/dendritic), you can easily mix, match, and adapt whatever you like for your own environment.
 
 ## 🖼️ Showcase
 
@@ -12,8 +14,9 @@ Welcome to my dotfiles repository! These configurations are tailored to me and m
 
 I’ve drawn inspiration from these fantastic projects, people and sources:
 
-- [fufexan/dotfiles](https://github.com/fufexan/dotfiles) (shamelessly copied
-  most of the nix stuff from him)
+- [The Dendritic Pattern](https://github.com/mightiam/dendritic)
+- [drupol/infra](https://github.com/drupol/infra) and his [article](https://not-a-number.io/2025/refactoring-my-infrastructure-as-code-configurations/)
+- [fufexan/dotfiles](https://github.com/fufexan/dotfiles) (shamelessly copied most of the nix stuff from him)
 - [NixOS & Flakes Book](https://nixos-and-flakes.thiscute.world/)
 - [Misterio77/nix-config](https://github.com/Misterio77/nix-config)
 - [NotAShelf/nyx](https://github.com/NotAShelf/nyx) (mainly for the CI/CD stuff)

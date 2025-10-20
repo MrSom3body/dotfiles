@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.gpg-agent =
     { pkgs, ... }:
     {
       programs.gpg.enable = true;

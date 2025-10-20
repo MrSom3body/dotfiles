@@ -80,6 +80,12 @@
         enable = true;
         rules = ''
           ---
+          - Key: [Snipping Tool, pressed]
+          - KeyPress:
+            - Print
+            - click
+          ...
+          ---
           - MouseGesture: Mouse Right
           - Execute: [hyprctl, dispatch, workspace, r+1]
           ...
@@ -89,7 +95,7 @@
           ...
           ---
           - MouseGesture: Mouse Up
-          - Execute: [hyprctl, dispatch, hyprexpo:expo, toggle]
+          - Execute: [hyprctl, dispatch, 'hyprexpo:expo', toggle]
           ...
         '';
         extraArgs = [ "--restart-on-wake-up" ];

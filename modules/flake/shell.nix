@@ -28,7 +28,7 @@
           ];
 
         shellHook = ''
-          ${config.pre-commit.installationScript}
+          ${config.pre-commit.settings.shellHook}
 
           tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "last 5 commits"
           git log --all --decorate --graph --oneline -5

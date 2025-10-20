@@ -4,12 +4,12 @@
     { config, pkgs, ... }:
     {
       sops = {
-        secrets.karun-password.sopsFile = ../secrets/promethea/ntfy.yaml;
+        secrets.ntfy-karun-password.sopsFile = ../secrets/ntfy.yaml;
         templates."ntfy-client-config.yml" = {
           content = ''
             default-host: https://ntfy.sndh.dev
             default-user: karun
-            default-password: ${config.sops.placeholder.karun-password}
+            default-password: ${config.sops.placeholder.ntfy-karun-password}
 
             subscribe:
               - topic: sonarr

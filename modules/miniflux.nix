@@ -6,7 +6,7 @@
     in
     {
       sops.secrets.miniflux = {
-        sopsFile = ../secrets/pandora/miniflux.env;
+        sopsFile = ../secrets/miniflux.env;
         format = "dotenv";
       };
 

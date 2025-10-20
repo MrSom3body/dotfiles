@@ -4,7 +4,7 @@
     {
       networking.wg-quick.interfaces.protonvpn.configFile = "/etc/nixos/files/wireguard/protonvpn.conf";
 
-      sops.secrets.transmission-password.sopsFile = ../../secrets/pandora/secrets.yaml;
+      sops.secrets.transmission-password.sopsFile = ../../secrets/transmission.yaml;
 
       systemd.services.proton-transmission =
         let

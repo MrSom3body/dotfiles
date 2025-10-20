@@ -6,7 +6,7 @@
     in
     {
       sops.secrets.searx = {
-        sopsFile = ../secrets/pandora/searx.env;
+        sopsFile = ../secrets/searx.env;
         format = "dotenv";
       };
 

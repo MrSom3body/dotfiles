@@ -3,7 +3,7 @@
     { config, ... }:
     {
       sops = {
-        secrets.transmission-password.sopsFile = ../../secrets/pandora/secrets.yaml;
+        secrets.transmission-password.sopsFile = ../../secrets/transmission.yaml;
 
         templates."transmission.json" = {
           owner = "transmission";

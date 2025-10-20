@@ -4,8 +4,8 @@
     {
 
       sops.secrets = {
-        sonarr-api-key.sopsFile = ../../secrets/pandora/secrets.yaml;
-        radarr-api-key.sopsFile = ../../secrets/pandora/secrets.yaml;
+        sonarr-api-key.sopsFile = ../../secrets/arr.yaml;
+        radarr-api-key.sopsFile = ../../secrets/arr.yaml;
       };
 
       systemd.services.recyclarr.serviceConfig.LoadCredential = [

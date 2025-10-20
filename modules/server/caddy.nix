@@ -3,7 +3,7 @@
     { config, pkgs, ... }:
     {
       sops.secrets.caddy = {
-        sopsFile = ../../secrets/pandora/caddy.env;
+        sopsFile = ../../secrets/caddy.env;
         format = "dotenv";
       };
 

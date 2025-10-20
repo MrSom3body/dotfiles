@@ -1,7 +1,6 @@
 {
   flake.modules.nixos.desktop = {
     services = {
-      seatd.enable = true;
       greetd = {
         enable = true;
         settings = {
@@ -13,8 +12,5 @@
     programs.regreet = {
       enable = true;
     };
-
-    # unlock GPG keyring on login
-    security.pam.services.greetd.enableGnomeKeyring = true;
   };
 }

@@ -6,7 +6,7 @@ let
   ];
 in
 {
-  flake.modules.nixos."hosts/sanctuary-iso" =
+  flake.modules.nixos."iso/sanctuary" =
     config.flake.lib.loadNixosAndHmModuleForUser config modules
       "karun";
 }

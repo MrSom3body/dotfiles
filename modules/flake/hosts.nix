@@ -5,9 +5,21 @@
   ...
 }:
 let
-  prefix = "hosts/";
-  suffix = "-iso";
-  collectHostsModules = modules: lib.filterAttrs (name: _: lib.hasPrefix prefix name) modules;
+  hostPrefix = "hosts/";
+  isoPrefix = "iso/";
+
+  removeAnyPrefix =
+    name:
+    if lib.hasPrefix hostPrefix name then
+      lib.removePrefix hostPrefix name
+    else if lib.hasPrefix isoPrefix name then
+      lib.removePrefix isoPrefix name
+    else
+      name;
+
+  isConfiguration = name: lib.hasPrefix hostPrefix name || lib.hasPrefix isoPrefix name;
+
+  collectHostsModules = modules: lib.filterAttrs (name: _: isConfiguration name) modules;
 in
 {
   flake = {
@@ -34,15 +46,17 @@ in
       (lib.mapAttrs' (
         name: module:
         let
+          cleanedName = removeAnyPrefix name;
+          isInstall = lib.hasPrefix hostPrefix name;
           specialArgs = {
             hostConfig = module // {
-              name = lib.removeSuffix suffix (lib.removePrefix prefix name);
-              isInstall = !(lib.hasSuffix suffix name);
+              name = cleanedName;
+              inherit isInstall;
             };
           };
         in
         {
-          name = lib.removeSuffix suffix (lib.removePrefix prefix name);
+          name = cleanedName;
           value = inputs.nixpkgs.lib.nixosSystem {
             inherit specialArgs;
             modules = module.imports ++ [

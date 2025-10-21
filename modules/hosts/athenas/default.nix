@@ -16,7 +16,7 @@ let
   ];
 in
 {
-  flake.modules.nixos."hosts/athenas-iso" =
+  flake.modules.nixos."iso/athenas" =
     config.flake.lib.loadNixosAndHmModuleForUser config modules
       "karun";
 }

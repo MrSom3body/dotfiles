@@ -14,7 +14,7 @@ let
 
     "adb"
     "bluetooth"
-    "design"
+    # "design"
     "fingerprint"
     "flatpak"
     "gns3"

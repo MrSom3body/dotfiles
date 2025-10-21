@@ -4,7 +4,6 @@ let
     "base"
     "desktop"
     "dev"
-    "iso"
     "laptop"
     "office"
     "shell"

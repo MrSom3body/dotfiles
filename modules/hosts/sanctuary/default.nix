@@ -1,9 +1,6 @@
 { config, ... }:
 let
-  modules = [
-    "base"
-    "iso"
-  ];
+  modules = [ "base" ];
 in
 {
   flake.modules.nixos."iso/sanctuary" =

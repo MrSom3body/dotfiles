@@ -59,10 +59,13 @@ in
           name = cleanedName;
           value = inputs.nixpkgs.lib.nixosSystem {
             inherit specialArgs;
-            modules = module.imports ++ [
-              inputs.home-manager.nixosModules.home-manager
-              { home-manager.extraSpecialArgs = specialArgs; }
-            ];
+            modules =
+              module.imports
+              ++ [
+                inputs.home-manager.nixosModules.home-manager
+                { home-manager.extraSpecialArgs = specialArgs; }
+              ]
+              ++ lib.optional (!isInstall) config.flake.modules.nixos.iso;
           };
         }
       ))

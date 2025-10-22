@@ -3,7 +3,7 @@
   flake.modules.homeManager.desktop =
     { pkgs, ... }:
     {
-      home.packages = [ inputs.som3pkgs.packages.${pkgs.system}.fuzzel-goodies ];
+      home.packages = [ inputs.self.packages.${pkgs.system}.fuzzel-goodies ];
 
       programs.fuzzel = {
         enable = true;

@@ -49,6 +49,6 @@ in
         };
       };
 
-      home.packages = [ inputs.som3pkgs.packages.${pkgs.system}.fnott-dnd ];
+      home.packages = [ inputs.self.packages.${pkgs.system}.fnott-dnd ];
     };
 }

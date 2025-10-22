@@ -35,7 +35,7 @@
             ;
         }
         ++ [
-          inputs.som3pkgs.packages.${pkgs.system}.gns3-auto-conf
+          inputs.self.packages.${pkgs.system}.gns3-auto-conf
         ];
     };
 }

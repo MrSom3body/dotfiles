@@ -54,7 +54,7 @@
           ++
             # my packages
             builtins.attrValues {
-              inherit (inputs.som3pkgs.packages.${pkgs.system})
+              inherit (inputs.self.packages.${pkgs.system})
                 hyprcast
                 touchpad-toggle
                 wl-ocr

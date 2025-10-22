@@ -68,47 +68,11 @@ in
             "$mainMod, PERIOD, Open symbols search, exec, ${toggleScript "fuzzel" "fuzzel-icons"}"
             "$mainMod, odiaeresis, Connect/disconnect from a vpnc VPN, exec, ${toggleScript "fuzzel" "fuzzel-vpnc"}"
 
-            # Window actions
-            "$mainMod, Q, Close focused window, killactive"
-            "$mainMod, F, Fullscreen focused window, fullscreen"
-            "$mainMod, W, Toggle floating, togglefloating"
-            "$mainMod, P, Pin focused window, pin"
-
             # Other actions
             "$mainMod, O, Copy text from screen, exec, wl-ocr -nc"
             "$mainMod, ESCAPE, Lock screen, exec, loginctl lock-session"
             "$mainMod, C, Open color picker, exec, ${runOnce "hyprpicker -a"}"
             # "$mainMod SHIFT, O, Ask ollama something, exec, uwsm app -- fish -c \"chat -fcs\""
-
-            "$mainMod, I, Change split direction (dwindle), togglesplit"
-
-            # Move window focus
-            "$mainMod, H, Focus window to the left, movefocus, l"
-            "$mainMod, J, Focus window to the bottom, movefocus, d"
-            "$mainMod, K, Focus window to the top, movefocus, u"
-            "$mainMod, L, Focus window to the right, movefocus, r"
-
-            # Move window
-            "$mainMod SHIFT, H, Move window left (tiling), swapwindow, l"
-            "$mainMod SHIFT, J, Move window down (tiling), swapwindow, d"
-            "$mainMod SHIFT, K, Move window up (tiling), swapwindow, u"
-            "$mainMod SHIFT, L, Move window right (tiling), swapwindow, r"
-            "$mainMod SHIFT, H, Move window left (floating), moveactive, -100 0"
-            "$mainMod SHIFT, J, Move window down (floating), moveactive, 0 100"
-            "$mainMod SHIFT, K, Move window up (floating), moveactive, 0 -100"
-            "$mainMod SHIFT, L, Move window right (floating), moveactive, 100 0"
-
-            # Resize window
-            "$mainMod CTRL, H, Increase window size to the left, resizeactive, -100 0"
-            "$mainMod CTRL, J, Increase window size to the bottom, resizeactive, 0 100"
-            "$mainMod CTRL, K, Increase window size to the top, resizeactive, 0 -100"
-            "$mainMod CTRL, L, Increase window size to the right, resizeactive, 100 0"
-
-            # Window grouping
-            "$mainMod, G, Toggle group, togglegroup"
-            "$mainMod SHIFT, G, Lock or unlock active group, lockactivegroup, toggle"
-            "$mainMod SHIFT, N, Change active window in group right, changegroupactive, f"
-            "$mainMod SHIFT, P, Change active window in group left, changegroupactive, b"
 
             # Notifications
             "$mainMod, N, Open notification action, exec, fnottctl actions"

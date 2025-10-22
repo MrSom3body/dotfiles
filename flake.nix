@@ -26,16 +26,6 @@
       inputs.systems.follows = "systems";
     };
 
-    # my packages
-    som3pkgs = {
-      url = "github:MrSom3body/som3pkgs";
-      inputs = {
-        git-hooks-nix.follows = "git-hooks-nix";
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-
     # nix ecosystem
     deploy-rs = {
       url = "github:serokell/deploy-rs";

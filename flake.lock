@@ -1505,7 +1505,6 @@
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-stable": "nixpkgs-stable",
         "pyprland": "pyprland",
-        "som3pkgs": "som3pkgs",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
@@ -1578,32 +1577,6 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "som3pkgs": {
-      "inputs": {
-        "git-hooks-nix": [
-          "git-hooks-nix"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": [
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1759986980,
-        "narHash": "sha256-yFA/THj0upIcLGUiQ1sixL5AYVNR8Hry4pYBq/I0XXo=",
-        "owner": "MrSom3body",
-        "repo": "som3pkgs",
-        "rev": "0bc59a39ff1d8d09a9dd7533c15eaf00a45e1529",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MrSom3body",
-        "repo": "som3pkgs",
         "type": "github"
       }
     },

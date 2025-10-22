@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 {
   flake.modules = {
     nixos.desktop =
@@ -54,7 +54,7 @@
           ++
             # my packages
             builtins.attrValues {
-              inherit (inputs.self.packages.${pkgs.system})
+              inherit (self.packages.${pkgs.system})
                 hyprcast
                 touchpad-toggle
                 wl-ocr

@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 let
   inherit (inputs) deploy-rs;
 in
@@ -9,7 +9,7 @@ in
         hostname = "pandora";
         profiles.system = {
           sshUser = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.pandora;
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.pandora;
         };
       };
     };
@@ -18,6 +18,6 @@ in
   perSystem =
     { system, ... }:
     {
-      checks = deploy-rs.lib.${system}.deployChecks inputs.self.deploy;
+      checks = deploy-rs.lib.${system}.deployChecks self.deploy;
     };
 }

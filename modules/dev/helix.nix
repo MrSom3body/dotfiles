@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ self, lib, ... }:
 {
   flake.modules.homeManager.dev =
     {
@@ -211,7 +211,7 @@
                 formatting.command = [ (lib.getExe pkgs.nixfmt) ];
                 options =
                   let
-                    flake = ''(builtins.getFlake "${inputs.self}")'';
+                    flake = ''(builtins.getFlake "${self}")'';
                     nixos-expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
                   in
                   {

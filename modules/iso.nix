@@ -1,4 +1,9 @@
-{ lib, inputs, ... }:
+{
+  self,
+  lib,
+  inputs,
+  ...
+}:
 {
   flake.modules.nixos.iso =
     {
@@ -12,7 +17,7 @@
       inherit (lib) mkForce;
 
       inherit (config.networking) hostName;
-      rev = inputs.self.shortRev or "${builtins.substring 0 8 inputs.self.lastModifiedDate}";
+      rev = self.shortRev or "${builtins.substring 0 8 self.lastModifiedDate}";
       inherit (config.system.nixos) release;
       arch = pkgs.stdenv.hostPlatform.uname.processor;
 

@@ -1,4 +1,9 @@
-{ lib, inputs, ... }:
+{
+  self,
+  lib,
+  inputs,
+  ...
+}:
 {
   flake.modules.nixos.base =
     { config, pkgs, ... }:
@@ -49,7 +54,7 @@
 
       nixpkgs = {
         config.allowUnfree = true;
-        overlays = builtins.attrValues inputs.self.overlays;
+        overlays = builtins.attrValues self.overlays;
       };
     };
 }

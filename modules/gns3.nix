@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, ... }:
 {
   flake.modules.nixos.gns3 =
     { pkgs, ... }:
@@ -35,7 +35,7 @@
             ;
         }
         ++ [
-          inputs.self.packages.${pkgs.system}.gns3-auto-conf
+          self.packages.${pkgs.system}.gns3-auto-conf
         ];
     };
 }

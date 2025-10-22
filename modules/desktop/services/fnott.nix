@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ self, config, ... }:
 let
   inherit (config.flake) meta;
 in
@@ -49,6 +49,6 @@ in
         };
       };
 
-      home.packages = [ inputs.self.packages.${pkgs.system}.fnott-dnd ];
+      home.packages = [ self.packages.${pkgs.system}.fnott-dnd ];
     };
 }

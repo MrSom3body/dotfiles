@@ -1,11 +1,5 @@
-{ inputs, ... }:
 {
   flake.modules = {
-    homeManager.laptop = {
-      imports = [ inputs.som3pkgs.homeManagerModules.power-monitor ];
-      services.power-monitor.enable = true;
-    };
-
     nixos.laptop = {
       services.logind.settings.Login = {
         HandlePowerKey = "supend-then-hibernate";

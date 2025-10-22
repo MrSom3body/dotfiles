@@ -75,16 +75,16 @@ build-iso iso_name="sanctuary":
 
 [group("others")]
 build-machine hostname=machine_hostname *args:
-    nh os build . --hostname "{{hostname}}" {{args}}
+    nh os build . --hostname "{{hostname}}" --diff always {{args}}
 
 [group("others")]
 test-machine hostname=machine_hostname *args:
-    nh os test . --hostname "{{hostname}}" {{args}}
+    nh os test . --hostname "{{hostname}}" --diff always {{args}}
 
 [group("others")]
 boot-machine hostname=machine_hostname *args:
-    nh os boot . --hostname "{{hostname}}" {{args}}
+    nh os boot . --hostname "{{hostname}}" --diff always {{args}}
 
 [group("others")]
 switch-machine hostname=machine_hostname *args:
-    nh os switch . --hostname "{{hostname}}" {{args}}
+    nh os switch . --hostname "{{hostname}}" --diff always {{args}}

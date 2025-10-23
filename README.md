@@ -2,7 +2,7 @@
 
 Welcome to my dotfiles repository!
 
-These configurations are built primarily for _my workflow_ and systems, but thanks to the incredibly modular [Dendritic Pattern](https://github.com/mightiam/dendritic), you can easily mix, match, and adapt whatever you like for your own environment.
+These configurations are built primarily for _my workflow_ and systems, but thanks to the incredibly modular [Dendritic Pattern](https://github.com/mightyiam/dendritic), you can easily mix, match, and adapt whatever you like for your own environment.
 
 ## 📦 Packages
 

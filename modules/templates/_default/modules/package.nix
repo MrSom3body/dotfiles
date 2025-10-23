@@ -1,0 +1,5 @@
+{
+  perSystem = _: {
+    packages = { };
+  };
+}

@@ -1,7 +1,14 @@
 {
-  description = "a dev template to use nix";
+  description = "a basic dev template";
 
   inputs = {
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    import-tree.url = "github:vic/import-tree";
+
     nixpkgs.url = "nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
     git-hooks-nix = {
@@ -10,46 +17,5 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      ...
-    }@inputs:
-    let
-      inherit (nixpkgs) lib;
-
-      forEachSystem = f: lib.genAttrs (import inputs.systems) (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs (import inputs.systems) (
-        system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        }
-      );
-    in
-    {
-      formatter = forEachSystem (pkgs: pkgs.nixfmt-tree);
-
-      packages = forEachSystem (pkgs: {
-        packageName = pkgs.callPackage ./nix/package.nix { };
-        default = self.packages.${pkgs.system}.packageName;
-      });
-
-      devShells = forEachSystem (
-        pkgs:
-        import ./nix/shell.nix {
-          inherit self;
-          inherit pkgs;
-        }
-      );
-
-      checks = forEachSystem (
-        pkgs:
-        import ./nix/checks.nix {
-          inherit inputs;
-          inherit pkgs;
-        }
-      );
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

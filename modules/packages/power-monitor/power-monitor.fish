@@ -55,9 +55,8 @@ while true
     end
 
     set currentCapacity (cat "$BAT_CAP")
-    if test $currentCapacity -gt 30
-        echo >$XDG_RUNTIME_DIR/battery
-    else
+
+    if test $currentStatus = Discharging
         if test $currentCapacity -le 10
             test (cat $XDG_RUNTIME_DIR/battery) != 10 &&
                 notify-send -a power-monitor -u critical "Battery Critical" "Battery level is at 10%! Plug in immediately!"
@@ -71,6 +70,8 @@ while true
                 notify-send -a power-monitor -u critical "Battery Low" "Battery level is at 30%"
             echo 30 >$XDG_RUNTIME_DIR/battery
         end
+    else
+        echo >$XDG_RUNTIME_DIR/battery
     end
 
     # wait for the next power change event

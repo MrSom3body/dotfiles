@@ -30,6 +30,17 @@ in
         "transmission"
       ];
 
+      my.services.glance.services =
+        let
+          mkSite = title: url: icon: { inherit title url icon; };
+        in
+        [
+          (mkSite "jellyseerr" "https://jellyseerr.sndh.dev" "di:jellyseerr")
+          (mkSite "sonarr" "https://sonarr.sndh.dev" "di:sonarr")
+          (mkSite "radarr" "https://radarr.sndh.dev" "di:radarr")
+          (mkSite "prowlarr" "https://prowlarr.sndh.dev" "di:prowlarr")
+        ];
+
       services = {
         caddy.virtualHosts =
           let

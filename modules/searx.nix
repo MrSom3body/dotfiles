@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   flake.modules.nixos.searx =
     { config, ... }:
@@ -8,6 +9,12 @@
       sops.secrets.searx = {
         sopsFile = ../secrets/searx.env;
         format = "dotenv";
+      };
+
+      my.services.glance.services = lib.singleton {
+        title = "searxng";
+        url = "https://search.sndh.dev";
+        icon = "di:searxng";
       };
 
       services = {

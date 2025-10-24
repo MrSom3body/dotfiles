@@ -2,6 +2,7 @@
 # let
 #   flakeModules = config.flake.modules;
 # in
+{ lib, ... }:
 {
   flake.modules.nixos.karakeep =
     { config, ... }:
@@ -11,6 +12,12 @@
     in
     {
       # import = [ flakeModules.nixos.meilisearch ];
+
+      my.services.glance.services = lib.singleton {
+        title = "karakeep";
+        url = "https://karakeep.sndh.dev";
+        icon = "di:karakeep";
+      };
 
       services = {
         caddy.virtualHosts = {

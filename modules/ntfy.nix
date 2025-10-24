@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   flake.modules.nixos.ntfy =
     { config, ... }:
@@ -5,6 +6,12 @@
       cfg = config.services.ntfy-sh.settings;
     in
     {
+      my.services.glance.services = lib.singleton {
+        title = "ntfy";
+        url = "https://ntfy.sndh.dev";
+        icon = "di:ntfy";
+      };
+
       services = {
         caddy.virtualHosts."ntfy.sndh.dev" = {
           extraConfig = ''

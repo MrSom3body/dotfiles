@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   flake.modules.nixos.immich =
     { config, ... }:
@@ -8,6 +9,12 @@
       sops.secrets.immich = {
         sopsFile = ../secrets/immich.env;
         format = "dotenv";
+      };
+
+      my.services.glance.services = lib.singleton {
+        title = "immich";
+        url = "https://immich.sndh.dev";
+        icon = "di:immich";
       };
 
       services = {

@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   flake.modules.nixos.ddns-updater =
     { config, ... }:
@@ -5,6 +6,12 @@
       cfg = config.services.ddns-updater;
     in
     {
+      my.services.glance.services = lib.singleton {
+        title = "ddns updater";
+        url = "https://ddns.sndh.dev";
+        icon = "di:ddns-updater";
+      };
+
       services = {
         caddy.virtualHosts."ddns.sndh.dev" = {
           extraConfig = ''

@@ -1,7 +1,15 @@
+{ lib, ... }:
 {
   flake.modules.nixos.transmission =
     { pkgs, config, ... }:
     {
+      my.services.glance.services = lib.singleton {
+        title = "transmission";
+        url = "https://transmission.sndh.dev";
+        icon = "di:transmission";
+        alt-status-codes = [ 401 ];
+      };
+
       services = {
         caddy.virtualHosts."transmission.sndh.dev" = {
           extraConfig = ''

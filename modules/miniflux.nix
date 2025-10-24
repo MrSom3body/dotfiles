@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   flake.modules.nixos.miniflux =
     { config, ... }:
@@ -8,6 +9,12 @@
       sops.secrets.miniflux = {
         sopsFile = ../secrets/miniflux.env;
         format = "dotenv";
+      };
+
+      my.services.glance.services = lib.singleton {
+        title = "miniflux";
+        url = "https://read.sndh.dev";
+        icon = "di:miniflux";
       };
 
       services = {

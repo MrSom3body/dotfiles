@@ -1,7 +1,14 @@
+{ lib, ... }:
 {
   flake.modules.nixos.jellyfin =
     { config, ... }:
     {
+      my.services.glance.services = lib.singleton {
+        title = "jellyfin";
+        url = "https://jellyfin.sndh.dev";
+        icon = "di:jellyfin";
+      };
+
       services = {
         caddy.virtualHosts."jellyfin.${config.networking.domain}" = {
           extraConfig = ''

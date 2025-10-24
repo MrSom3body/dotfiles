@@ -6,6 +6,11 @@ in
   flake.modules.homeManager.desktop =
     { config, pkgs, ... }:
     {
+      xdg.configFile."swayosd/config.toml".text = # toml
+        ''
+          [server]
+          show_percentage = true
+        '';
       services.swayosd = {
         enable = true;
         topMargin = 0.5;

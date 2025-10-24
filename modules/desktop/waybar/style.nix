@@ -126,8 +126,8 @@
 
           #privacy {
             /* Because waybar does not set the module class */
-            color: @base05;
-            background: transparent;
+            color: @base00;
+            background: @base0A;
             border-radius: ${borderRadius}px;
 
             padding: 0.2rem 0.5rem;

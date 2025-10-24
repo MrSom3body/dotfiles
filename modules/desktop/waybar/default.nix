@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ self, lib, ... }:
 {
   flake.modules.homeManager.desktop =
     { config, pkgs, ... }:
@@ -16,19 +16,19 @@
 
             modules-left = [
               "custom/actions"
+              "systemd-failed-units"
               "hyprland/workspaces"
               "hyprland/window"
             ];
 
             modules-center = [
-              "systemd-failed-units"
+              "privacy"
               "clock"
               "mpris"
             ];
 
             modules-right = [
               "custom/hyprcast"
-              "privacy"
               "backlight"
               "wireplumber"
               "group/power"
@@ -40,7 +40,7 @@
             "custom/actions" = {
               format = "";
               tooltip-format = "System Actions";
-              on-click = "fuzzel-actions";
+              on-click = lib.getExe' self.packages.${pkgs.system}.fuzzel-goodies "fuzzel-actions";
             };
 
             "hyprland/workspaces" = {
@@ -55,10 +55,17 @@
                 "obsidian" = "";
                 "spotify" = "";
 
-                "default" = "";
-                "empty" = "";
-                "persistent" = "";
-                "urgent" = "";
+                "default" = "";
+                "1" = "1";
+                "2" = "2";
+                "3" = "3";
+                "4" = "4";
+                "5" = "5";
+                "6" = "6";
+                "7" = "7";
+                "8" = "8";
+                "9" = "9";
+                "active" = "󱓻";
               };
 
               persistent-workspaces = {
@@ -72,15 +79,19 @@
               icon = true;
             };
 
-            systemd-failed-units = {
-              format = "✗ {nr_failed}";
-              on-click = "xdg-terminal-exec fish -c \"bat --paging always -f (systemctl list-units --user --failed | psub -s -user-units) (systemctl list-units --failed | psub -s -system-units)\"";
-              hide-on-ok = true;
-            };
+            systemd-failed-units =
+              let
+                fish = lib.getExe pkgs.fish;
+                bat = lib.getExe pkgs.bat;
+              in
+              {
+                format = "✗ {nr_failed}";
+                on-click = "xdg-terminal-exec ${fish} -c \"${bat} --paging always -f (systemctl list-units --user --failed | psub -s -user-units) (systemctl list-units --failed | psub -s -system-units)\"";
+                hide-on-ok = true;
+              };
 
             clock = {
-              format = "  {:%H:%M}";
-              format-alt = "  {:%a, %d %b}";
+              format = " {:%A %H:%M}";
 
               tooltip-format = "<tt><small>{calendar}</small></tt>";
               calendar = {
@@ -110,7 +121,7 @@
 
             mpris =
               let
-                playerctl = lib.getExe pkgs.playerctl;
+                playerctl = lib.getExe config.services.playerctld.package;
               in
               {
                 player = "spotify";
@@ -131,48 +142,54 @@
                 on-scroll-down = "${playerctl} volume 0.1-";
               };
 
-            "custom/hyprcast" = {
-              exec = "hyprcast -w";
-              return-type = "json";
-              hide-empty-text = true;
-              on-click = "hyprcast";
-              interval = "once";
-              signal = 1;
-            };
+            "custom/hyprcast" =
+              let
+                hyprcast = lib.getExe self.packages.${pkgs.system}.hyprcast;
+              in
+              {
+                exec = "${hyprcast} -w";
+                return-type = "json";
+                hide-empty-text = true;
+                on-click = hyprcast;
+                interval = "once";
+                signal = 1;
+              };
 
             backlight = {
-              format = "{icon}  {percent}%";
+              format = "{icon}";
               format-icons = [
-                "󱩎 "
-                "󱩏 "
-                "󱩐 "
-                "󱩑 "
-                "󱩒 "
-                "󱩓 "
-                "󱩔 "
-                "󱩕 "
-                "󱩖 "
-                "󰛨 "
+                "󱩎"
+                "󱩏"
+                "󱩐"
+                "󱩑"
+                "󱩒"
+                "󱩓"
+                "󱩔"
+                "󱩕"
+                "󱩖"
+                "󰛨"
               ];
-              tooltip = false;
+              tooltip-format = "{percent}%";
             };
 
             wireplumber = {
-              format = "{icon}  {volume}%";
+              format = "{icon}";
               format-muted = "󰝟";
-              on-click = lib.getExe pkgs.pwvucontrol;
               format-icons = [
                 "󰕿"
                 "󰖀"
                 "󰕾"
               ];
+              tooltip-format = "{volume}% on {node_name}";
+              on-click = lib.getExe pkgs.pwvucontrol;
+              on-click-right = "${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle";
             };
 
             "group/power" = {
               orientation = "inherit";
 
               drawer = {
-                transition-duration = 300;
+                transition-duration = 600;
                 transition-left-to-right = false;
               };
 
@@ -184,32 +201,53 @@
             };
 
             battery = {
-              states = {
-                warning = 30;
-                critical = 20;
+              format = "{icon} {capacity}%";
+              format-discharging = "{icon}";
+              format-charging = "{icon}";
+              format-plugged = "";
+              format-icons = {
+                charging = [
+                  "󰢜"
+                  "󰂆"
+                  "󰂇"
+                  "󰂈"
+                  "󰢝"
+                  "󰂉"
+                  "󰢞"
+                  "󰂊"
+                  "󰂋"
+                  "󰂅"
+                ];
+                default = [
+                  "󰁺"
+                  "󰁻"
+                  "󰁼"
+                  "󰁽"
+                  "󰁾"
+                  "󰁿"
+                  "󰂀"
+                  "󰂁"
+                  "󰂂"
+                  "󰁹"
+                ];
               };
-              format = "{icon}  {capacity}%";
-              format-time = "{H}h {M}min";
-              format-charging = "󱐋  {capacity}%";
-              format-plugged = "  {capacity}%";
-              format-alt = "{icon}  {time}";
-              format-icons = [
-                " "
-                " "
-                " "
-                " "
-                " "
-              ];
+              format-full = "󰂅";
+              tooltip-format-discharging = "{power:>1.2f}W↓ {capacity}%";
+              tooltip-format-charging = "{power:>1.2f}W↑ {capacity}%";
 
-              tooltip-format = "{timeTo}\nPower: {power}W";
+              interval = 5;
+              states = {
+                warning = 20;
+                critical = 10;
+              };
             };
 
             idle_inhibitor = {
               format = "{icon}";
 
               format-icons = {
-                activated = " ";
-                deactivated = " ";
+                activated = "";
+                deactivated = "";
               };
             };
 
@@ -229,7 +267,7 @@
               orientation = "inherit";
 
               drawer = {
-                transition-duration = 300;
+                transition-duration = 600;
                 transition-left-to-right = false;
               };
 
@@ -253,36 +291,39 @@
             };
 
             cpu = {
-              format = "  {usage}%";
-              interval = 2;
+              format = " {usage}%";
+              interval = 5;
             };
 
             temperature = {
-              format = "  {temperatureC}°C";
-              interval = 2;
+              format = " {temperatureC}°C";
+              interval = 5;
               critical-format = "󰸁 {temperatureC}°C";
               critical-threshold = 90;
             };
 
             memory = {
-              format = "  {used}/{total}GiB";
-              interval = 2;
+              format = " {used}/{total}GiB";
+              interval = 5;
             };
 
             tray = {
               spacing = 5;
             };
 
-            "custom/fnott" = {
-              return-type = "json";
-              exec = "fnott-dnd -w";
-              exec-if = "which fnott-dnd";
-              interval = "once";
-              signal = 2;
+            "custom/fnott" =
+              let
+                fnott-dnd = lib.getExe self.packages.${pkgs.system}.fnott-dnd;
+              in
+              {
+                return-type = "json";
+                exec = "${fnott-dnd} -w";
+                interval = "once";
+                signal = 2;
 
-              on-click = "fnottctl dismiss";
-              on-click-right = "fnott-dnd";
-            };
+                on-click = "${lib.getExe' pkgs.fnott "fnottctl"} dismiss";
+                on-click-right = fnott-dnd;
+              };
 
             "custom/swaync" = {
               tooltip = false;
@@ -312,7 +353,7 @@
 
       xdg.configFile."waybar/config" = {
         onChange = ''
-          ${pkgs.procps}/bin/pkill -u $USER waybar || true
+          ${lib.getExe' pkgs.procps "pkill"} -u $USER waybar || true
         '';
       };
     };

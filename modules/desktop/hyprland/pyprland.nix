@@ -22,8 +22,8 @@
         ];
 
         bindd = [
-          "$mainMod, plus, Zoom in, exec, pypr zoom ++${zoomFactor}"
-          "$mainMod, minus, Zoom out, exec, pypr zoom --${zoomFactor}"
+          "SUPER, plus, Zoom in, exec, pypr zoom ++${zoomFactor}"
+          "SUPER, minus, Zoom out, exec, pypr zoom --${zoomFactor}"
         ];
       };
   };

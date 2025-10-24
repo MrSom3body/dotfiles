@@ -26,7 +26,7 @@ in
           ];
 
           bindd = [
-            "$mainMod, U, Open expose, hyprexpo:expo, toggle"
+            "SUPER, U, Open expose, hyprexpo:expo, toggle"
           ];
         };
       };

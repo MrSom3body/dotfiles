@@ -1,10 +1,10 @@
-{ lib, config, ... }:
+{ config, ... }:
 let
   inherit (config.flake) meta;
 in
 {
   flake.modules.homeManager.desktop =
-    { config, pkgs, ... }:
+    { config, ... }:
     {
       wayland.windowManager.hyprland.settings = {
         "$mainMod" = "SUPER";
@@ -125,41 +125,6 @@ in
               ]
             ) 9
           ));
-
-        bindl =
-          let
-            playerctl = lib.getExe pkgs.playerctl;
-          in
-          [
-            # Audio control
-            ", XF86AudioPlay, exec, ${playerctl} play-pause"
-            ", XF86AudioPause, exec, ${playerctl} pause"
-            ", XF86AudioNext, exec, ${playerctl} next"
-            ", XF86AudioPrev, exec, ${playerctl} previous"
-            ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
-            ", XF86AudioMicMute, exec, swayosd-client --output-input mute-toggle"
-          ];
-
-        bindlr = [
-          # Touchpad toggle
-          ", XF86TouchpadToggle, exec, touchpad-toggle"
-
-          # Caps Lock
-          ", Caps_Lock, exec, swayosd-client --caps-lock"
-
-          # Num Lock
-          ", Num_Lock, exec, swayosd-client --num-lock"
-        ];
-
-        bindel = [
-          # Volume control
-          ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise"
-          ", XF86AudioLowerVolume, exec, swayosd-client --output-volume lower"
-
-          # Brightness control
-          ", XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
-          ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
-        ];
       };
     };
 }

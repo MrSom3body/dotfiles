@@ -11,7 +11,7 @@
         home.packages = [ pkgs.solaar ];
         home.file.".config/solaar/rules.yaml".text = ''
           ---
-          - Key: [Snipping Tool, pressed]
+          - Key: [Screen Capture, pressed]
           - KeyPress:
             - Print
             - click

@@ -7,6 +7,7 @@ let
     "shell"
 
     "anubis"
+    "beszel"
     "ddns-updater"
     "firefox-send"
     "glance"

@@ -12,11 +12,9 @@
           UseDns = true;
           # https://infosec.mozilla.org/guidelines/openssh.html
           KexAlgorithms = [
-            "curve25519-sha256@libssh.org"
-            "ecdh-sha2-nistp521"
-            "ecdh-sha2-nistp384"
-            "ecdh-sha2-nistp256"
-            "diffie-hellman-group-exchange-sha256"
+            "sntrup761x25519-sha512"
+            "sntrup761x25519-sha512@openssh.com"
+            "mlkem768x25519-sha256"
           ];
           Ciphers = [
             "chacha20-poly1305@openssh.com"

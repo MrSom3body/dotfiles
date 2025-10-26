@@ -189,7 +189,7 @@
               orientation = "inherit";
 
               drawer = {
-                transition-duration = 600;
+                transition-duration = 300;
                 transition-left-to-right = false;
               };
 
@@ -267,7 +267,7 @@
               orientation = "inherit";
 
               drawer = {
-                transition-duration = 600;
+                transition-duration = 300;
                 transition-left-to-right = false;
               };
 

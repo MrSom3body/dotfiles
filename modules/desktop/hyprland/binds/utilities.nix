@@ -27,7 +27,6 @@ _: {
         "SUPER, D, Open application launcher, exec, ${toggle "fuzzel"}"
         "SUPER, MINUS, Open display manager, exec, ${toggleScript "fuzzel" "fuzzel-displays"}"
         "SUPER, SPACE, Open file/directory picker, exec, ${toggleScript "fuzzel" "fuzzel-files"}"
-        "SUPER, TAB, Open window switcher, exec, ${toggleScript "fuzzel" "fuzzel-windows"}"
         "ALT, TAB, Open window switcher, exec, ${toggleScript "fuzzel" "fuzzel-windows"}"
         "SUPER CTRL, Q, Open power menu, exec, ${toggleScript "fuzzel" "fuzzel-actions"}"
         "SUPER, PERIOD, Open symbols search, exec, ${toggleScript "fuzzel" "fuzzel-icons"}"

@@ -40,8 +40,8 @@
       "SUPER ALT, K, Move window to group on top, moveintogroup, u"
       "SUPER ALT, L, Move window to group on right, moveintogroup, r"
 
-      "SUPER ALT, N, Change active window in group right, changegroupactive, f"
-      "SUPER ALT, P, Change active window in group left, changegroupactive, b"
+      "SUPER, TAB, Change active window in group right, changegroupactive, f"
+      "SUPER SHIFT, TAB, Change active window in group left, changegroupactive, b"
     ];
   };
 }

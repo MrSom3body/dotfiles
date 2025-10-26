@@ -1,23 +1,26 @@
 keys:
   - &users:
-    - &karun age1lyuaecsdgp06yx0uwrutlr80y9352hzcxfnu35efpz3ym2utsyeqegy30l
+    - &karun 1D0BCFCA23E3D1D714D4AC301743F5EEBFA41DA9
   - &hosts:
     - &promethea age1dqafwvry0efcwagplqp8ez0ul9tmlduqhpnsx5wgz36z57d635zszg5k8z
     - &pandora age15jgs3y0uqrxu8027jnrvfc6vsryd6uuyfmtudxspjpfl6y2gqgeqqhj623
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
-      - age:
+      - pgp:
           - *karun
+        age:
           - *promethea
           - *pandora
   - path_regex: secrets/promethea/[^/]+\.(yaml|json|env|ini)$
     key_groups:
-      - age:
+      - pgp:
           - *karun
+        age:
           - *promethea
   - path_regex: secrets/pandora/[^/]+\.(yaml|json|env|ini)$
     key_groups:
-      - age:
+      - pgp:
           - *karun
+        age:
           - *pandora

@@ -21,12 +21,12 @@ in
       };
 
     homeManager.base =
-      { config, hostConfig, ... }:
+      { hostConfig, ... }:
       {
         imports = [ inputs.sops-nix.homeManagerModules.sops ];
         config = lib.mkIf hostConfig.isInstall {
           sops = sopsDefaults // {
-            age.sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
+            gnupg.home = "~/.gnupg";
           };
         };
       };

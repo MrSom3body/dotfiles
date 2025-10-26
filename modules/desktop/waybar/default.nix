@@ -232,8 +232,8 @@
                 ];
               };
               format-full = "󰂅";
-              tooltip-format-discharging = "{power:>1.2f}W↓ {capacity}%";
-              tooltip-format-charging = "{power:>1.2f}W↑ {capacity}%";
+              tooltip-format-discharging = "{power:>1.2f}W↓ {capacity}%\n{timeTo}";
+              tooltip-format-charging = "{power:>1.2f}W↑ {capacity}%\n{timeTo}";
 
               interval = 5;
               states = {

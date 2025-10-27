@@ -1,8 +1,12 @@
 {
   flake.modules.nixos.desktop = {
     services.gnome.gnome-keyring.enable = true;
+    programs.seahorse.enable = true;
 
-    # unlock GPG keyring on login
-    security.pam.services.greetd.enableGnomeKeyring = true;
+    security.pam.services = {
+      greetd.enableGnomeKeyring = true;
+      greetd-password.enableGnomeKeyring = true;
+      login.enableGnomeKeyring = true;
+    };
   };
 }

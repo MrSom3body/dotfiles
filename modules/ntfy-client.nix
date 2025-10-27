@@ -37,7 +37,10 @@
         ntfy-client = {
           Unit = {
             Description = "ntfy client";
-            After = "network.target";
+            After = [
+              "network.target"
+              "sops-nix.service"
+            ];
           };
 
           Service = {

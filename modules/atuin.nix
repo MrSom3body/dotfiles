@@ -5,20 +5,18 @@
       programs = {
         atuin = {
           enable = true;
+          flags = [ "--disable-up-arrow" ];
           settings = {
+            # binds
             keymap_mode = "auto";
+
+            # appearance
             style = "auto";
             inline_height = 20;
+
             # sync
             sync_address = "https://atuin.${osConfig.networking.domain}";
             sync_frequency = "5m";
-          };
-        };
-
-        fish.binds = {
-          "k" = {
-            command = "_atuin_bind_up";
-            mode = "default";
           };
         };
       };

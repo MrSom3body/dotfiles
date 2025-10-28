@@ -7,6 +7,8 @@
           enable = true;
           flags = [ "--disable-up-arrow" ];
           settings = {
+            workspaces = true;
+
             # binds
             keymap_mode = "auto";
 

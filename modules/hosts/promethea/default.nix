@@ -13,6 +13,7 @@ let
     "shell"
 
     "adb"
+    "atuin"
     "bluetooth"
     # "design"
     "fingerprint"

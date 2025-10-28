@@ -7,6 +7,8 @@ let
     "shell"
 
     "anubis"
+    "atuin"
+    "atuin-server"
     "beszel"
     "ddns-updater"
     "firefox-send"

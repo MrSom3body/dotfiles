@@ -11,7 +11,7 @@
             keymap_mode = "auto";
 
             # appearance
-            style = "auto";
+            style = "compact";
             inline_height = 20;
 
             # sync

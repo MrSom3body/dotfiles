@@ -18,7 +18,7 @@
 
             # sync
             sync_address = "https://atuin.${osConfig.networking.domain}";
-            sync_frequency = "5m";
+            sync_frequency = "0";
           };
         };
       };

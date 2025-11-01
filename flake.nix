@@ -129,11 +129,6 @@
 
     helix.url = "github:helix-editor/helix"; # has cache
 
-    tailray = {
-      url = "github:NotAShelf/tailray";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     yazi.url = "github:sxyazi/yazi"; # has cache
 
     zen-browser = {

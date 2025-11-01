@@ -1509,7 +1509,6 @@
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "systems": "systems_6",
-        "tailray": "tailray",
         "treefmt-nix": "treefmt-nix_2",
         "yazi": "yazi",
         "yazi-plugins": "yazi-plugins",
@@ -1762,26 +1761,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "tailray": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1754322522,
-        "narHash": "sha256-HTsqTMSScDCPW2PENbRysPth6bvlUciIvrjGzy9itts=",
-        "owner": "NotAShelf",
-        "repo": "tailray",
-        "rev": "ee5bef27364ad745dd179fb016cbcf00f4167758",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NotAShelf",
-        "repo": "tailray",
         "type": "github"
       }
     },

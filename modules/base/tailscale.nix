@@ -9,6 +9,7 @@
           extraSetFlags = [
             # automatically disable exit node
             "--exit-node="
+            "--operator=karun"
           ];
         };
       };

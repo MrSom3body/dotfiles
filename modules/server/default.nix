@@ -3,13 +3,7 @@
   flake.modules.nixos.server =
     { config, ... }:
     {
-      system.autoUpgrade = {
-        allowReboot = lib.mkDefault true;
-        rebootWindow = {
-          lower = "02:00";
-          upper = "04:00";
-        };
-      };
+      system.autoUpgrade.allowReboot = lib.mkDefault true;
 
       networking = {
         firewall = {

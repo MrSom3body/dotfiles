@@ -16,6 +16,7 @@ let
     "immich"
     "jellyfin"
     "karakeep"
+    "minecraft-server/kn-server"
     "miniflux"
     "ntfy"
     "searx"

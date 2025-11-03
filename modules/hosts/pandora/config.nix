@@ -8,10 +8,6 @@
         (inputs.nixos-hardware + "/common/cpu/intel/haswell")
       ];
 
-      system.autoUpgrade = {
-        allowReboot = false;
-      };
-
       networking.interfaces.eno1.wakeOnLan.enable = true;
 
       hardware = {

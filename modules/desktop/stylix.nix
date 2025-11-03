@@ -35,7 +35,7 @@
                 package = pkgs.nerd-fonts.fira-code;
               };
               emoji = {
-                package = pkgs.noto-fonts-emoji;
+                package = pkgs.noto-fonts-color-emoji;
                 name = "Noto Color Emoji";
               };
             };

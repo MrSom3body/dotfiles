@@ -7,6 +7,7 @@
           # Documents
           libreoffice-fresh
           simple-scan
+          xournalpp
           # Notes & Tasks
           obsidian
           todoist-electron

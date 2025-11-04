@@ -265,7 +265,7 @@
               logEdits = true;
               inlineEdits = true;
               ignoreBots = false;
-              ignoreSelf = false;
+              ignoreSelf = true;
               ignoreUsers = "";
               ignoreChannels = "";
               ignoreGuilds = "";

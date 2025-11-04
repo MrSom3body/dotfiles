@@ -9,8 +9,9 @@
           xwayland.enable = true;
           withUWSM = true;
 
-          package = inputs.hyprland.packages.${pkgs.system}.default;
-          portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+          package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
+          portalPackage =
+            inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
         };
 
         # tell Electron/Chromium to run on Wayland
@@ -39,7 +40,7 @@
 
         home.packages =
           let
-            inherit (inputs.hyprpicker.packages.${pkgs.system}) hyprpicker;
+            inherit (inputs.hyprpicker.packages.${pkgs.stdenv.hostPlatform.system}) hyprpicker;
           in
           builtins.attrValues {
             inherit (pkgs)
@@ -54,7 +55,7 @@
           ++
             # my packages
             builtins.attrValues {
-              inherit (self.packages.${pkgs.system})
+              inherit (self.packages.${pkgs.stdenv.hostPlatform.system})
                 hyprcast
                 touchpad-toggle
                 wl-ocr
@@ -62,7 +63,9 @@
             }
           ++ [
             hyprpicker
-            (inputs.hyprland-contrib.packages.${pkgs.system}.grimblast.override { inherit hyprpicker; })
+            (inputs.hyprland-contrib.packages.${pkgs.stdenv.hostPlatform.system}.grimblast.override {
+              inherit hyprpicker;
+            })
           ];
 
         home.file.".config/hypr/scripts" = {

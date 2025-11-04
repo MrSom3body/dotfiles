@@ -24,7 +24,9 @@
 
           bindlr = [
             # Touchpad toggle
-            ", XF86TouchpadToggle, exec, ${lib.getExe self.packages.${pkgs.system}.touchpad-toggle}"
+            ", XF86TouchpadToggle, exec, ${
+              lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.touchpad-toggle
+            }"
 
             # Caps Lock
             ", Caps_Lock, exec, ${swayosd} --caps-lock"

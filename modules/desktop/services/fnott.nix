@@ -49,6 +49,6 @@ in
         };
       };
 
-      home.packages = [ self.packages.${pkgs.system}.fnott-dnd ];
+      home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.fnott-dnd ];
     };
 }

@@ -47,7 +47,7 @@
       isoImage.volumeID = mkImageMediaOverride (shortHostname + fixedParts);
 
       environment.systemPackages = [
-        inputs.disko.packages.${pkgs.system}.default
+        inputs.disko.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
 
       nixpkgs.overlays = [

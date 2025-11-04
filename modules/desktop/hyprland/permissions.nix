@@ -34,7 +34,9 @@ in
           # Allow to screenrecording & screenshots
           "${escapeRegex (getExe pkgs.grim)}, screencopy, allow"
           "${escapeRegex (getExe pkgs.wl-screenrec)}, screencopy, allow"
-          "${escapeRegex (getExe inputs.hyprpicker.packages.${pkgs.system}.hyprpicker)}, screencopy, allow"
+          "${
+            escapeRegex (getExe inputs.hyprpicker.packages.${pkgs.stdenv.hostPlatform.system}.hyprpicker)
+          }, screencopy, allow"
         ];
       };
     };

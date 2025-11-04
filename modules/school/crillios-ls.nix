@@ -11,7 +11,9 @@
           language-servers = [ "crillios-ls" ];
         };
 
-        language-server.crillios-ls.command = lib.getExe inputs.crillios-ls.packages.${pkgs.system}.default;
+        language-server.crillios-ls.command =
+          lib.getExe
+            inputs.crillios-ls.packages.${pkgs.stdenv.hostPlatform.system}.default;
       };
     };
 }

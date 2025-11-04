@@ -40,7 +40,9 @@
             "custom/actions" = {
               format = "";
               tooltip-format = "System Actions";
-              on-click = lib.getExe' self.packages.${pkgs.system}.fuzzel-goodies "fuzzel-actions";
+              on-click =
+                lib.getExe' self.packages.${pkgs.stdenv.hostPlatform.system}.fuzzel-goodies
+                  "fuzzel-actions";
             };
 
             "hyprland/workspaces" = {
@@ -143,7 +145,7 @@
 
             "custom/hyprcast" =
               let
-                hyprcast = lib.getExe self.packages.${pkgs.system}.hyprcast;
+                hyprcast = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.hyprcast;
               in
               {
                 exec = "${hyprcast} -w";
@@ -312,7 +314,7 @@
 
             "custom/fnott" =
               let
-                fnott-dnd = lib.getExe self.packages.${pkgs.system}.fnott-dnd;
+                fnott-dnd = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.fnott-dnd;
               in
               {
                 return-type = "json";

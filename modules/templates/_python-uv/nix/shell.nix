@@ -29,7 +29,7 @@
 
     shellHook = ''
       unset PYTHONPATH
-      ${self.checks.${pkgs.system}.pre-commit-check.shellHook}
+      ${self.checks.${pkgs.stdenv.hostPlatform.system}.pre-commit-check.shellHook}
     '';
   };
 }

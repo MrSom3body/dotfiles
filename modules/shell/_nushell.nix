@@ -24,7 +24,7 @@
 
         extraConfig = ''
           if $nu.is-interactive {
-            ${lib.getExe inputs.gotcha.packages.${pkgs.system}.default}
+            ${lib.getExe inputs.gotcha.packages.${pkgs.stdenv.hostPlatform.system}.default}
           }
         '';
       };

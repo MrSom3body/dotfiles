@@ -16,7 +16,7 @@
 
           Service = {
             Type = "simple";
-            ExecStart = "${self.packages.${pkgs.system}.power-monitor}/bin/power-monitor";
+            ExecStart = "${self.packages.${pkgs.stdenv.hostPlatform.system}.power-monitor}/bin/power-monitor";
             Restart = "on-failure";
           };
 

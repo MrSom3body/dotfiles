@@ -10,7 +10,7 @@
 
         Service = {
           Type = "simple";
-          ExecStart = "${self.packages.${pkgs.system}.auto-kbd-bl}/bin/auto-kbd-bl";
+          ExecStart = "${self.packages.${pkgs.stdenv.hostPlatform.system}.auto-kbd-bl}/bin/auto-kbd-bl";
           Restart = "on-failure";
         };
 

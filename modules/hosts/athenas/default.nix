@@ -1,9 +1,9 @@
 { config, ... }:
 let
   modules = [
-    "base"
     "desktop"
     "dev"
+    "iso"
     "laptop"
     "office"
     "shell"
@@ -15,7 +15,13 @@ let
   ];
 in
 {
-  flake.modules.nixos."iso/athenas" =
-    config.flake.lib.loadNixosAndHmModuleForUser config modules
-      "karun";
+  flake = {
+    images.athenas = config.flake.nixosConfigurations.athenas.config.system.build.isoImage;
+    nixosConfigurations.athenas = config.flake.lib.mkSystems.linux "athenas";
+    modules.nixos."hosts/athenas" = {
+      imports = config.flake.lib.loadNixosAndHmModuleForUser config modules;
+
+      boot.supportedFilesystems = [ "ntfs" ]; # allow mounting windows
+    };
+  };
 }

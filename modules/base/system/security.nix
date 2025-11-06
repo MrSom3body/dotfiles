@@ -1,7 +1,7 @@
 # security tweaks borrowed from @hlissner
 { lib, ... }:
 {
-  flake.modules.nixos.base =
+  flake.modules.nixos.nixos =
     { config, ... }:
     {
       boot = {

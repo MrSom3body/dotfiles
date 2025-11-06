@@ -1,18 +1,15 @@
-{ lib, ... }:
+{ lib, config, ... }:
 let
+
+  inherit (config) flake;
   inherit (lib) mkIf;
 in
 {
-  flake.modules.nixos.base =
-    {
-      config,
-      pkgs,
-      hostConfig,
-      ...
-    }:
+  flake.modules.nixos.nixos =
+    { config, pkgs, ... }:
     {
       boot = {
-        initrd = mkIf hostConfig.isInstall {
+        initrd = mkIf (flake.lib.isInstall config) {
           systemd.enable = true;
         };
 
@@ -27,7 +24,7 @@ in
         ];
 
         # systemd-boot on UEFI
-        loader = mkIf hostConfig.isInstall {
+        loader = mkIf (flake.lib.isInstall config) {
           systemd-boot = {
             # Lanzaboote currently replaces the systemd-boot module.
             # This setting is usually set to true in configuration.nix

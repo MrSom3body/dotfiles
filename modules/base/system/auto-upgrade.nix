@@ -1,6 +1,6 @@
 { self, config, ... }:
 {
-  flake.modules.nixos.base = {
+  flake.modules.nixos.nixos = {
     system.autoUpgrade = {
       enable = self ? rev;
       flake = config.flake.meta.uri;

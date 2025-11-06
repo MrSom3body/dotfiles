@@ -36,7 +36,10 @@ let
   ];
 in
 {
-  flake.modules.nixos."hosts/promethea" =
-    config.flake.lib.loadNixosAndHmModuleForUser config modules
-      "karun";
+  flake = {
+    nixosConfigurations.promethea = config.flake.lib.mkSystems.linux "promethea";
+    modules.nixos."hosts/promethea" = {
+      imports = config.flake.lib.loadNixosAndHmModuleForUser config modules;
+    };
+  };
 }

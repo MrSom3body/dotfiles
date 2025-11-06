@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.base = {
+  flake.modules.nixos.nixos = {
     services.dbus.implementation = "broker";
   };
 }

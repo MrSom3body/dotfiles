@@ -1,14 +1,14 @@
 { inputs, ... }:
 {
   flake.modules = {
-    nixos.base =
+    nixos.nixos =
       { pkgs, ... }:
       {
         environment.systemPackages = [ pkgs.helix ];
         programs.nano.enable = false; # eww
       };
 
-    homeManager.base =
+    homeManager.homeManager =
       { pkgs, ... }:
       {
         programs.helix = {

@@ -1,14 +1,21 @@
-{ self, lib, ... }:
+{
+  self,
+  config,
+  lib,
+  ...
+}:
+let
+  inherit (config) flake;
+in
 {
   flake.modules.homeManager.dev =
     {
       osConfig,
+      config,
       pkgs,
-      hostConfig,
       ...
     }:
     let
-      inherit (hostConfig) isInstall;
       prettier = lang: {
         command = lib.getExe pkgs.prettier;
         args = [
@@ -18,7 +25,7 @@
       };
     in
     {
-      sops.secrets = lib.mkIf isInstall {
+      sops.secrets = lib.mkIf (flake.lib.isInstall config) {
         "language-tool/username" = { };
         "language-tool/api-key" = { };
       };

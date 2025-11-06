@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.base = {
+  flake.modules.nixos.nixos = {
     boot.kernel.sysfs.module.zswap.parameters = {
       enabled = 1;
       compressor = "lz4";

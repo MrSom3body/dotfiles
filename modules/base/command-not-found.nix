@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules = {
-    nixos.base = {
+    nixos.nixos = {
       imports = [
         inputs.nix-index-database.nixosModules.nix-index
       ];
@@ -12,7 +12,7 @@
       };
     };
 
-    homeManager.base = {
+    homeManager.homeManager = {
       programs.command-not-found.enable = false;
     };
   };

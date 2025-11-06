@@ -26,7 +26,10 @@ let
   ];
 in
 {
-  flake.modules.nixos."hosts/pandora" =
-    config.flake.lib.loadNixosAndHmModuleForUser config modules
-      "karun";
+  flake = {
+    nixosConfigurations.pandora = config.flake.lib.mkSystems.linux "pandora";
+    modules.nixos."hosts/pandora" = {
+      imports = config.flake.lib.loadNixosAndHmModuleForUser config modules;
+    };
+  };
 }

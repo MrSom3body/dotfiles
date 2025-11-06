@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    nixos.base = {
+    nixos.nixos = {
       home-manager = {
         backupFileExtension = "backup";
         useGlobalPkgs = true;
@@ -8,13 +8,16 @@
       };
     };
 
-    homeManager.base = {
-      home = {
-        username = "karun";
-        homeDirectory = "/home/karun";
-      };
+    homeManager.homeManager =
+      { osConfig, ... }:
+      {
+        home = {
+          username = "karun";
+          homeDirectory = "/home/karun";
+          inherit (osConfig.system) stateVersion;
+        };
 
-      programs.home-manager.enable = true;
-    };
+        programs.home-manager.enable = true;
+      };
   };
 }

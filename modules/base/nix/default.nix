@@ -5,7 +5,7 @@
   ...
 }:
 {
-  flake.modules.nixos.base =
+  flake.modules.nixos.nixos =
     { config, pkgs, ... }:
     {
       environment.systemPackages = [ pkgs.git ];

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.base = {
+  flake.modules.nixos.nixos = {
     nix.settings = {
       substituters = [
         "https://cache.nixos.org?priority=10"

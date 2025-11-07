@@ -17,6 +17,7 @@ You can find all my custom packages in this repo to import them into your flake.
 | `hyprcast`        | Record your screen with wl-screenrec with notification support (most useful when run with a key bind)                        |
 | `power-monitor`   | Automatically switch between power-saver and performance mode when plugging or unplugging your laptop (copied from @fufexan) |
 | `touchpad-toggle` | Toggle your touchpad on Hyprland                                                                                             |
+| `waybar-update`   | Waybar module to display an icon if there is a new generation available (e. g. after an update)                              |
 | `wl-ocr`          | OCR your screen on wayland                                                                                                   |
 
 ## 🖼️ Showcase

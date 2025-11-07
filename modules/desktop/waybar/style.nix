@@ -103,6 +103,10 @@
             background: @base08;
           }
 
+          #custom-update {
+            background: @base02;
+          }
+
           #mpris {
             color: @base00;
             background: @base0C;

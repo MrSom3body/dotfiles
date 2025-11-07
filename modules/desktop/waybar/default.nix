@@ -22,6 +22,7 @@
             ];
 
             modules-center = [
+              "custom/update"
               "privacy"
               "clock"
               "mpris"
@@ -90,6 +91,13 @@
                 on-click = "xdg-terminal-exec ${fish} -c \"${bat} --paging always -f (systemctl list-units --user --failed | psub -s -user-units) (systemctl list-units --failed | psub -s -system-units)\"";
                 hide-on-ok = true;
               };
+
+            "custom/update" = {
+              exec = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.waybar-update;
+              return-type = "json";
+              hide-empty-text = true;
+              interval = 60;
+            };
 
             clock = {
               format = " {:%A %H:%M}";

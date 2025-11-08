@@ -22,7 +22,7 @@ let
     "searx"
     "stylix"
     # "transmission" # commented out because already imported in arr
-    "ts-exit-node"
+    "tailscale-exit-node"
   ];
 in
 {

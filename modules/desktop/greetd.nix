@@ -9,6 +9,8 @@
       };
     };
 
+    security.pam.services.greetd.fprintAuth = false;
+
     programs.regreet = {
       enable = true;
     };

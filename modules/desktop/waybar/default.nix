@@ -243,6 +243,7 @@
               format-full = "󰂅";
               tooltip-format-discharging = "{power:>1.2f}W↓ {capacity}%\n{timeTo}";
               tooltip-format-charging = "{power:>1.2f}W↑ {capacity}%\n{timeTo}";
+              tooltip-format-plugged = "{capacity}%";
 
               interval = 5;
               states = {

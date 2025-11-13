@@ -139,6 +139,7 @@ in
             };
 
           misc = {
+            allow_session_lock_restore = true; # TODO disable when https://github.com/hyprwm/hyprlock/issues/793 gets resolved
             disable_hyprland_logo = true;
             disable_splash_rendering = true;
             vfr = true;

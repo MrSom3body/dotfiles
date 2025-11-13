@@ -2,7 +2,7 @@
   flake.modules = {
     nixos.laptop = {
       services.logind.settings.Login = {
-        HandlePowerKey = "supend-then-hibernate";
+        HandlePowerKey = "suspend-then-hibernate";
         HandleLidSwitch = "suspend-then-hibernate";
       };
 

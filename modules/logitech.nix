@@ -45,7 +45,7 @@
               "hide"
               "--battery-icons"
               "regular"
-              "--restart-on-wake-up"
+              # "--restart-on-wake-up"
             ];
             Restart = "on-failure";
           };

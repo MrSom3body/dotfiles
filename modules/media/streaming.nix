@@ -4,7 +4,7 @@
     {
       home.packages = with pkgs; [
         grayjay
-        jellyfin-media-player
+        tsukimi
       ];
     };
 }

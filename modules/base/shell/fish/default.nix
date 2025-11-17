@@ -33,7 +33,6 @@
             in
             [
               (fishPlugin pkgs.fishPlugins.autopair)
-              (fishPlugin pkgs.fishPlugins.done)
               (fishPlugin pkgs.fishPlugins.fzf-fish)
             ];
 

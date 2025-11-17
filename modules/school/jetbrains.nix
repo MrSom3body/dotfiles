@@ -6,7 +6,7 @@
       home.packages =
         let
           plugins = [
-            "github-copilot"
+            "github-copilot--your-ai-pair-programmer"
             "ideavim"
             "mermaid"
           ];

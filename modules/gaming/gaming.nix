@@ -4,15 +4,17 @@
     homeManager.gaming =
       { pkgs, ... }:
       {
-        home.packages = builtins.attrValues {
-          inherit (pkgs)
+        home.packages =
+          (with pkgs; [
             goverlay
             heroic
             mindustry-wayland
-            modrinth-app
             r2modman
-            ;
-        };
+          ])
+          ++ [
+            # TODO move back to stable after https://github.com/NixOS/nixpkgs/issues/460140 gets resolved
+            pkgs.stable.modrinth-app
+          ];
 
         # TODO remove when modrinth works normally again on wayland
         xdg.desktopEntries = {

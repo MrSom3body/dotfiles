@@ -5,124 +5,99 @@
     {
       wayland.windowManager.hyprland.settings = {
         "$floatingSize" = "600 400";
-        "$pwvucontrol" = "com.saivert.pwvucontrol";
 
         windowrule = [
           # inhibit idle when fullscreen
-          "idleinhibit focus, fullscreenstate:2 *"
+          "match:fullscreen true, idle_inhibit always"
 
           # Smart Gaps
-          "noborder 1, floating:0, onworkspace:w[tv1] s[false]"
-          "norounding 1, floating:0, onworkspace:w[tv1] s[false]"
-          "noshadow 1, floating:0, onworkspace:w[tv1] s[false]"
-          "noborder 1, floating:0, onworkspace:f[1] s[false]"
-          "norounding 1, floating:0, onworkspace:f[1] s[false]"
-          "noshadow 1, floating:0, onworkspace:f[f1] s[false]"
+          "match:workspace w[tv1] s[false], match:float false, border_size 0, rounding 0, no_shadow true"
+          "match:workspace f[1] s[false], match:float false, border_size 0, rounding 0"
+          "match:workspace f[f1] s[false], match:float false, no_shadow true"
 
           # Fix some dragging issues with XWayland
-          "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+          "match:class ^$, match:title ^$, match:xwayland true, match:float true, match:fullscreen false, match:pin false, no_focus true"
 
           # Ignore maximize requests from apps
-          "suppressevent maximize, class:.*"
+          "match:class .*, suppress_event maximize"
 
           # Move apps to workspaces
-          "workspace special:discord, class:^(vesktop)$"
-          "workspace special:todoist, class:^(todoist)$"
+          "match:class ^(vesktop)$, workspace special:discord"
+          "match:class ^(todoist)$, workspace special:todoist"
 
           # Dim some programs
-          "dimaround, class:^(xdg-desktop-portal-gtk)$"
-          "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
+          "match:class ^(xdg-desktop-portal-gtk)$, dim_around true"
+          "match:class ^(polkit-gnome-authentication-agent-1)$, dim_around true"
 
           # NetworkManager applet
-          "float, class:^(nm-connection-editor)$"
-          "size $floatingSize, class:^(nm-connection-editor)$"
-          "center, class:^(nm-connection-editor)$"
+          "match:class ^(nm-connection-editor)$, float true, size $floatingSize, move center center"
 
           # Blueman
-          "float, class:^(.blueman-manager-wrapped)$"
-          "size $floatingSize, class:^(.blueman-manager-wrapped)$"
-          "center, class:^(.blueman-manager-wrapped)$"
+          "match:class ^(.blueman-manager-wrapped)$, float true, size $floatingSize, move center center"
 
           # Audio control
-          "float, class:^($pwvucontrol)$"
-          "size $floatingSize, class:^($pwvucontrol)$"
-          "center, class:^($pwvucontrol)$"
+          "match:class ^(com.saivert.pwvucontrol)$, float true, size $floatingSize, move center center"
 
           # Udiskie
-          "float, class:^(udiskie)$"
-          "center, class:^(udiskie)$"
+          "match:class ^(udiskie)$, float true, move center center"
 
           # make some windows floating and sticky
-          "float, title:^(Picture-in-Picture)$"
-          "pin, title:^(Picture-in-Picture)$"
+          "match:title ^(Picture-in-Picture)$, float true, pin true"
 
           # Proton Pass
-          "float, class:^(Proton Pass)$"
-          "noscreenshare, class:^(Proton Pass)$"
+          "match:class ^(Proton Pass)$, float true, no_screen_share true"
 
           # GNS3
-          "stayfocused, class:^(gns3)$, title:^(Change hostname)$"
+          "match:class ^(gns3)$, match:title ^(Change hostname)$, stay_focused false"
 
           # Anki
-          "float, class:^(Anki)$, title:^(Add)$"
-          "size 600 400, class:^(Anki)$, title:^(Add)$"
-          "center, class:^(Anki)$, title:^(Add)$"
+          "match:class ^(Anki)$, match:title ^(Add)$, float true, size 600 400, move center center"
 
           # Calculator
-          "float, class:^(org.gnome.Calculator)$"
-          "size > >, class:^(org.gnome.Calculator)$"
+          "match:class ^(org.gnome.Calculator)$, float true, size > >"
 
           # Clock
-          "float, class:^(org.gnome.clocks)$"
-          "size 800 600, class:^(org.gnome.clocks)$"
+          "match:class ^(org.gnome.clocks)$, float true, size 800 600"
 
           # Grayjay
-          "tile, title:^(Grayjay)$"
+          "match:title ^(Grayjay)$, tile true"
 
           # Games
-          "immediate, class:^(Minecraft.*)$"
-          "immediate, class:^(steam_app_.*)$"
-          "renderunfocused, class:^(steam_app_960090)$" # don't kick me out of bloons
-          "immediate, class:^(hl2_linux)$" # Left 4 Dead 2
+          "match:class ^(Minecraft.*)$, immediate true"
+          "match:class ^(steam_app_.*)$, immediate true"
+          "match:class ^(steam_app_960090)$, render_unfocused true" # don't kick me out of bloons
+          "match:class ^(hl2_linux)$, immediate true" # Left 4 Dead 2
         ];
 
         layerrule = [
           # Sway notification Center
-          "animation slide right, swaync-control-center"
-          "dimaround, swaync-control-center"
+          "match:namespace swaync-control-center, animation slide right, dim_around true"
 
           # Rofi
-          "animation slide, rofi"
-          "dimaround, rofi"
+          "match:namespace rofi, animation slide, dim_around true"
 
           # fuzzel
-          "animation slide, launcher"
-          "dimaround, launcher"
+          "match:namespace launcher, animation slide, dim_around true"
 
           # fnott
-          "animation slide, notifications"
+          "match:namespace notifications, animation slide "
         ]
         # only blur if not fully opaque
         ++ lib.optional (config.stylix.opacity.desktop != 1.0) [
           # waybar
-          "blur, waybar"
-          "ignorezero, waybar"
+          "match:namespace waybar, blur true, ignore_alpha 0"
 
           # swaync
-          "blur, swaync-control-center"
-          "ignorezero, swaync-control-center"
+          "match:namespace swaync-control-center, blur true, ignore_alpha 0"
 
           # rofi
-          "blur, rofi"
-          "ignorezero, rofi"
+          "match:namespace rofi, blur true, ignore_alpha 0"
 
           # fuzzel
-          "blur, launcher"
-          "ignorezero, launcher"
+          "match:namespace launcher, blur true, ignore_alpha 0"
 
           # fnott
-          "blur, notifications"
-          "ignorezero, notifications"
+          "match:namespace notifications, blur true, ignore_alpha 0"
         ];
 
         workspace = [

@@ -9,7 +9,6 @@
           simple-scan
           xournalpp
           # Notes & Tasks
-          obsidian
           todoist-electron
           # Communication
           protonmail-desktop

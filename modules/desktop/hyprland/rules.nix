@@ -30,16 +30,16 @@
           "match:class ^(polkit-gnome-authentication-agent-1)$, dim_around true"
 
           # NetworkManager applet
-          "match:class ^(nm-connection-editor)$, float true, size $floatingSize, move center center"
+          "match:class ^(nm-connection-editor)$, float true, size $floatingSize, center true"
 
           # Blueman
-          "match:class ^(.blueman-manager-wrapped)$, float true, size $floatingSize, move center center"
+          "match:class ^(.blueman-manager-wrapped)$, float true, size $floatingSize, center true"
 
           # Audio control
-          "match:class ^(com.saivert.pwvucontrol)$, float true, size $floatingSize, move center center"
+          "match:class ^(com.saivert.pwvucontrol)$, float true, size $floatingSize, center true"
 
           # Udiskie
-          "match:class ^(udiskie)$, float true, move center center"
+          "match:class ^(udiskie)$, float true, center true"
 
           # make some windows floating and sticky
           "match:title ^(Picture-in-Picture)$, float true, pin true"
@@ -51,7 +51,7 @@
           "match:class ^(gns3)$, match:title ^(Change hostname)$, stay_focused false"
 
           # Anki
-          "match:class ^(Anki)$, match:title ^(Add)$, float true, size 600 400, move center center"
+          "match:class ^(Anki)$, match:title ^(Add)$, float true, size 600 400, center true"
 
           # Calculator
           "match:class ^(org.gnome.Calculator)$, float true, size > >"

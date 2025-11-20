@@ -10,6 +10,11 @@
       services.gammastep = {
         enable = true;
 
+        temperature = {
+          day = 6500;
+          night = 3700;
+        };
+
         provider = if useGeoclue then "geoclue2" else "manual";
         # don't bother with it it isn't my real location
         latitude = mkIf (!useGeoclue) 48.2083537;

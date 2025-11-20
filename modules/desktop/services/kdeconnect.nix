@@ -19,6 +19,7 @@
     homeManager.desktop =
       { pkgs, ... }:
       {
+        home.packages = [ pkgs.systemd ];
         services.kdeconnect = {
           enable = true;
           package = pkgs.kdePackages.kdeconnect-kde;

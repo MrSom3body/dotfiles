@@ -6,7 +6,7 @@
     };
 
     homeManager.homeManager =
-      { pkgs, ... }:
+      { config, pkgs, ... }:
       {
         programs.fish = {
           enable = true;
@@ -14,6 +14,9 @@
           interactiveShellInit =
             # fish
             ''
+              # TODO remove when https://github.com/NixOS/nixpkgs/issues/462025 gets resolved
+              set -p fish_complete_path ${config.programs.fish.package}/share/fish/completions
+
               fish_vi_key_bindings
               set fish_cursor_default block blink # normal mode
               set fish_cursor_insert line blink # insert mode

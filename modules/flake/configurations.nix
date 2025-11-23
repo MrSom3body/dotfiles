@@ -15,6 +15,7 @@ let
         {
           home-manager.users.karun.imports = [
             config.flake.modules.homeManager.homeManager
+            (config.flake.modules.homeManager."hosts/${name}" or { })
           ];
 
           networking.hostName = lib.mkDefault name;

@@ -1,5 +1,6 @@
-{ config, ... }:
+{ config, inputs, ... }:
 let
+  flakeConfig = config;
   modules = [
     "base"
     "desktop"
@@ -37,9 +38,81 @@ let
 in
 {
   flake = {
-    nixosConfigurations.promethea = config.flake.lib.mkSystems.linux "promethea";
-    modules.nixos."hosts/promethea" = {
-      imports = config.flake.lib.loadNixosAndHmModuleForUser config modules;
+    nixosConfigurations.promethea = flakeConfig.flake.lib.mkSystems.linux "promethea";
+    modules = {
+      nixos."hosts/promethea" =
+        { config, pkgs, ... }:
+        {
+          imports = (flakeConfig.flake.lib.loadNixosAndHmModuleForUser flakeConfig modules) ++ [
+            inputs.nixos-hardware.nixosModules.asus-zenbook-um6702
+          ];
+
+          # TODO remove when https://github.com/NixOS/nixpkgs/pull/440422 gets merged
+          systemd.services = {
+            nvidia-suspend-then-hibernate =
+              let
+                state = "suspend-then-hibernate";
+              in
+              {
+                description = "NVIDIA system ${state} actions";
+                path = [ pkgs.kbd ];
+                serviceConfig = {
+                  Type = "oneshot";
+                  ExecStart = ''${config.hardware.nvidia.package.out}/bin/nvidia-sleep.sh "suspend"'';
+                };
+                before = [ "systemd-${state}.service" ];
+                requiredBy = [ "systemd-${state}.service" ];
+              };
+
+            nvidia-resume = {
+              after = [ "systemd-suspend-then-hibernate.service" ];
+              requiredBy = [ "systemd-suspend-then-hibernate.service" ];
+            };
+          };
+
+          boot.kernelParams = [ "amdgpu.dcdebugmask=0x40000" ];
+          hardware.asus.battery.chargeUpto = 80;
+          security.tpm2.enable = true;
+
+          specialisation.enable-ollama.configuration = {
+            environment.etc."specialisation".text = "enable-ollama"; # for nh
+            system.nixos.tags = [ "enable-ollama" ]; # to display it in the boot loader
+            imports = [ flakeConfig.flake.modules.nixos.ollama ];
+            services.ollama.acceleration = "cuda";
+          };
+
+          services.tailscale.extraSetFlags = [ "--accept-routes" ];
+        };
+
+      homeManager."hosts/promethea" =
+        { pkgs, ... }:
+        {
+          home.packages = [ pkgs.logseq ];
+          wayland.windowManager.hyprland.settings.permission = [
+            ### Keyboards ###
+            "video-bus, keyboard, allow"
+            "asus-wmi-hotkeys, keyboard, allow"
+            "at-translated-set-2-keyboard, keyboard, allow"
+
+            # Logitech
+            "mx-mchncl-m-keyboard, keyboard, allow"
+            "logitech-usb-receiver, keyboard, allow"
+            "logitech-usb-receiver-consumer-control, keyboard, allow"
+            "logitech-usb-receiver-system-control, keyboard, allow"
+
+            # Mechanical Keyboard
+            "sonix-usb-device-system-control, keyboard, allow"
+            "sonix-usb-device, keyboard, allow"
+            "sonix-usb-device-keyboard, keyboard, allow"
+            "sonix-usb-device-consumer-control, keyboard, allow"
+
+            # Wacom Tablet
+            "opentabletdriver-virtual-keyboard, keyboard, allow"
+
+            # Deny everything else
+            ".*, keyboard, deny"
+          ];
+        };
     };
   };
 }

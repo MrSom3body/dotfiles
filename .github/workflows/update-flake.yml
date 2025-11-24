@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        # TODO update when https://github.com/DeterminateSystems/update-flake-lock/issues/223 gets resolved
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: false
 
       - name: Install Nix
         uses: cachix/install-nix-action@v31

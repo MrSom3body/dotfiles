@@ -16,7 +16,8 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        # TODO update when https://github.com/DeterminateSystems/update-flake-lock/issues/223 gets resolved
+        uses: actions/checkout@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 

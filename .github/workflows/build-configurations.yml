@@ -1,0 +1,49 @@
+name: Build Configurations
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-configurations:
+    name: Build Configurations
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        hostname:
+          # ISOs
+          - athenas
+          - sanctuary
+          # servers
+          - pandora
+          # laptops
+          - promethea
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Purge non-nix stuff
+        uses: wimpysworld/nothing-but-nix@main
+        with:
+          hatchet-protocol: cleave
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build ${{ matrix.hostname }}
+        run: |
+          nix build .#nixosConfigurations.${{ matrix.hostname }}.config.system.build.toplevel -L

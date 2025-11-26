@@ -39,7 +39,7 @@ _: {
 
           # Notifcations
           "SUPER, COMMA, Open notification action, exec, fnottctl actions"
-          "SUPER SHIFT, COMMA, Dismiss notification, exec, fnottctl dismiss"
+          "SUPER SHIFT, COMMA, Dismiss oldest notification, exec, fnottctl dismiss"
           "SUPER CTRL, COMMA, Toggle do not disturb mode, exec, fnott-dnd"
 
           # Screenshots
@@ -57,6 +57,10 @@ _: {
           "SUPER, C, Open color picker, exec, ${runOnce "hyprpicker -a"}"
           # "SUPER SHIFT, O, Ask ollama something, exec, uwsm app -- fish -c \"chat -fcs\""
         ];
+
+      binddo = [
+        "SUPER SHIFT, COMMA, Dismiss all notifications, exec, fnottctl dismiss all"
+      ];
 
       binddl = [
         # TODO move back to bindd when https://github.com/hyprwm/hyprlock/issues/793 gets resolved

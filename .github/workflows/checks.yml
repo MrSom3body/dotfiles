@@ -51,7 +51,7 @@ jobs:
         run: nix flake check
 
   build-configurations:
-    name: Build Configurations
+    name: Build Configuration
     if: github.event_name == 'pull_request' # only run in pull requests
     runs-on: ubuntu-latest
     needs: [check-flake]
@@ -97,7 +97,7 @@ jobs:
             --flake .#nixosConfigurations.${{ matrix.hostname }}.config.system.build.toplevel
 
   build-configurations-failure:
-    name: Fail Build Configurations Check
+    name: Build Configurations Failure
     runs-on: ubuntu-latest
     needs: [build-configurations]
     if: ${{ cancelled() || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'failure') }}

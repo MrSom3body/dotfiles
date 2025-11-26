@@ -59,4 +59,3 @@ jobs:
         run: |
           nix-fast-build --skip-cached --no-nom \
             --flake .#nixosConfigurations.${{ matrix.hostname }}.config.system.build.toplevel
-          nix build  -L

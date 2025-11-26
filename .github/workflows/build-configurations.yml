@@ -2,8 +2,10 @@ name: Build Configurations
 
 on:
   push:
-  pull_request:
-  workflow_dispatch:
+    paths:
+      - "flake.lock"
+      - "**.nix"
+      - ".github/workflows/build-configurations.yml"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

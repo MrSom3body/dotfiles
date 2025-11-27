@@ -88,13 +88,9 @@ jobs:
             modules/vmware.nix \
             modules/school/cisco.nix
 
-      - name: Install nix-fast-build
-        run: nix profile install nixpkgs#nix-fast-build
-
       - name: Build ${{ matrix.hostname }}
         run: |
-          nix-fast-build --skip-cached --no-nom \
-            --flake .#nixosConfigurations.${{ matrix.hostname }}.config.system.build.toplevel
+          nix build .#nixosConfigurations.${{ matrix.hostname }}.config.system.build.toplevel -L
 
   build-configurations-failure:
     name: Build Configurations Failure

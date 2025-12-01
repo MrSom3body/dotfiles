@@ -54,7 +54,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lanzaboote.url = "github:nix-community/lanzaboote";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nh = {
       url = "github:nix-community/nh";
@@ -129,7 +132,10 @@
 
     helix.url = "github:helix-editor/helix"; # has cache
 
-    yazi.url = "github:sxyazi/yazi"; # has cache
+    yazi = {
+      url = "github:sxyazi/yazi"; # has cache
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";

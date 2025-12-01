@@ -54,7 +54,6 @@ jobs:
     name: Build Configuration
     if: github.event_name == 'pull_request' # only run in pull requests
     runs-on: ubuntu-latest
-    needs: [check-flake]
     strategy:
       matrix:
         hostname:

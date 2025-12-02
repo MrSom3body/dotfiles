@@ -29,6 +29,8 @@ in
           "SUPER SHIFT, E, Open file manager, exec, uwsm app -- ${meta.programs.fileManager}"
           ", XF86Calculator, Open calculator, exec, ${runOnce "gnome-calculator"}"
 
+          "SUPER, N, Open notes, exec, uwsm app -- logseq"
+
           # Vesktop
           "CTRL SHIFT, M, Mute on vesktop, pass, class:^(vesktop)$"
           "CTRL SHIFT, D, Deafen on vesktop, pass, class:^(vesktop)$"

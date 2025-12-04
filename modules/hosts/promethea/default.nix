@@ -58,7 +58,10 @@ in
                 path = [ pkgs.kbd ];
                 serviceConfig = {
                   Type = "oneshot";
-                  ExecStart = ''${config.hardware.nvidia.package.out}/bin/nvidia-sleep.sh "suspend"'';
+                  ExecStart = [
+                    ''${config.hardware.nvidia.package.out}/bin/nvidia-sleep.sh "is-suspend-then-hibernate-supported"''
+                    ''${config.hardware.nvidia.package.out}/bin/nvidia-sleep.sh "suspend"''
+                  ];
                 };
                 before = [ "systemd-${state}.service" ];
                 requiredBy = [ "systemd-${state}.service" ];

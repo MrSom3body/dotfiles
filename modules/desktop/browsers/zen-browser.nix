@@ -8,10 +8,6 @@
     {
       imports = [ inputs.zen-browser.homeModules.beta ];
 
-      home.sessionVariables = {
-        BROWSER = "zen";
-      };
-
       programs.zen-browser = {
         enable = true;
         profiles.default = {

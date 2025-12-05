@@ -10,7 +10,7 @@
     programs = {
       editor = "hx";
       terminal = "ghostty";
-      browser = "zen";
+      browser = "zen-beta";
       fileManager = "nautilus";
       terminalFileManager = "yazi";
     };

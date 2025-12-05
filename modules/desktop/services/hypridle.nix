@@ -42,7 +42,7 @@
               }
               {
                 timeout = 120;
-                on-timeout = "pgrep hyprlock && uwsm app --hyprlock --grace 3";
+                on-timeout = "pgrep hyprlock || uwsm app -- hyprlock --grace 3";
               }
               {
                 timeout = 140;

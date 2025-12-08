@@ -53,7 +53,7 @@
 
               format-icons = {
                 "discord" = "";
-                "todoist" = "";
+                "todo" = "";
                 "monitor" = "󰍹";
                 "obsidian" = "";
                 "spotify" = "";

@@ -11,8 +11,8 @@
       "SUPER SHIFT, M, Move focused window to Monitor workspace, movetoworkspace, special:monitor"
       "SUPER, X, Toggle Discord workspace, togglespecialworkspace, discord"
       "SUPER SHIFT, X, Move focused window to Discord workspace, movetoworkspace, special:discord"
-      "SUPER, T, Toggle todoist workspace, togglespecialworkspace, todoist"
-      "SUPER SHIFT, T, Move focused window to todoist workspace, movetoworkspace, special:todoist"
+      "SUPER, T, Toggle todo workspace, togglespecialworkspace, todo"
+      "SUPER SHIFT, T, Move focused window to todo workspace, movetoworkspace, special:todo"
 
       # Switch workspaces
       "SUPER, Prior, Switch to next workspace, workspace, r-1"

@@ -1,10 +1,15 @@
-{ lib, ... }:
+{ config, lib, ... }:
+let
+  inherit (lib) mkIf;
+  inherit (lib) mkDefault;
+
+  inherit (config.flake.meta) location;
+in
 {
   flake.modules.homeManager.desktop =
-    { osConfig, ... }:
+    { config, ... }:
     let
-      inherit (lib) mkIf;
-      useGeoclue = osConfig.services.geoclue2.enable;
+      cfg = config.services.gammastep;
     in
     {
       services.gammastep = {
@@ -15,10 +20,8 @@
           night = 3700;
         };
 
-        provider = if useGeoclue then "geoclue2" else "manual";
-        # don't bother with it it isn't my real location
-        latitude = mkIf (!useGeoclue) 48.2083537;
-        longitude = mkIf (!useGeoclue) 16.3725042;
+        latitude = mkIf (cfg.provider == "manual") (mkDefault location.latitude);
+        longitude = mkIf (cfg.provider == "manual") (mkDefault location.longitude);
 
         settings.general.adjustment-method = "wayland";
       };

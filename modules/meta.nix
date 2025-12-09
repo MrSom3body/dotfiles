@@ -7,6 +7,11 @@
       };
     };
 
+    location = {
+      latitude = 48.2083537;
+      longitude = 16.3725042;
+    };
+
     programs = {
       editor = "hx";
       terminal = "ghostty";

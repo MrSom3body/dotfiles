@@ -22,8 +22,8 @@
           "match:class .*, suppress_event maximize"
 
           # Move apps to workspaces
-          "match:class ^(vesktop)$, workspace special:discord"
-          "match:class ^(Todoist)$, workspace special:todo"
+          "match:class ^(vesktop)$, workspace special:discord silent"
+          "match:class ^(Todoist)$, workspace special:todo silent"
 
           # Dim some programs
           "match:class ^(xdg-desktop-portal-gtk)$, dim_around true"

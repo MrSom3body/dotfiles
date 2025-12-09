@@ -4,6 +4,8 @@
     {
       home.packages = [ pkgs.todoist-electron ];
 
-      wayland.windowManager.hyprland.settings.exec-once = [ "[silent] uwsm app -- todoist-electron" ];
+      xdg.autostart.entries = [
+        "${pkgs.todoist-electron}/share/applications/todoist.desktop"
+      ];
     };
 }

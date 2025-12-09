@@ -91,30 +91,41 @@ in
         { pkgs, ... }:
         {
           home.packages = [ pkgs.logseq ];
-          wayland.windowManager.hyprland.settings.permission = [
-            ### Keyboards ###
-            "video-bus, keyboard, allow"
-            "asus-wmi-hotkeys, keyboard, allow"
-            "at-translated-set-2-keyboard, keyboard, allow"
+          wayland.windowManager.hyprland.settings = {
+            monitorv2 = [
+              {
+                output = "eDP-1";
+                mode = "1920x1080@60.08Hz";
+                position = "auto";
+                scale = "1";
+              }
+            ];
 
-            # Logitech
-            "mx-mchncl-m-keyboard, keyboard, allow"
-            "logitech-usb-receiver, keyboard, allow"
-            "logitech-usb-receiver-consumer-control, keyboard, allow"
-            "logitech-usb-receiver-system-control, keyboard, allow"
+            permission = [
+              ### Keyboards ###
+              "video-bus, keyboard, allow"
+              "asus-wmi-hotkeys, keyboard, allow"
+              "at-translated-set-2-keyboard, keyboard, allow"
 
-            # Mechanical Keyboard
-            "sonix-usb-device-system-control, keyboard, allow"
-            "sonix-usb-device, keyboard, allow"
-            "sonix-usb-device-keyboard, keyboard, allow"
-            "sonix-usb-device-consumer-control, keyboard, allow"
+              # Logitech
+              "mx-mchncl-m-keyboard, keyboard, allow"
+              "logitech-usb-receiver, keyboard, allow"
+              "logitech-usb-receiver-consumer-control, keyboard, allow"
+              "logitech-usb-receiver-system-control, keyboard, allow"
 
-            # Wacom Tablet
-            "opentabletdriver-virtual-keyboard, keyboard, allow"
+              # Mechanical Keyboard
+              "sonix-usb-device-system-control, keyboard, allow"
+              "sonix-usb-device, keyboard, allow"
+              "sonix-usb-device-keyboard, keyboard, allow"
+              "sonix-usb-device-consumer-control, keyboard, allow"
 
-            # Deny everything else
-            ".*, keyboard, deny"
-          ];
+              # Wacom Tablet
+              "opentabletdriver-virtual-keyboard, keyboard, allow"
+
+              # Deny everything else
+              ".*, keyboard, deny"
+            ];
+          };
         };
     };
   };

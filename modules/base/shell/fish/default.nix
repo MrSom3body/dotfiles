@@ -2,10 +2,7 @@
 {
   flake.modules = {
     nixos.nixos = {
-      programs.fish = {
-        enable = true;
-        generateCompletions = false;
-      };
+      programs.fish.enable = true;
     };
 
     homeManager.homeManager =
@@ -13,7 +10,6 @@
       {
         programs.fish = {
           enable = true;
-          generateCompletions = false;
 
           interactiveShellInit =
             # fish

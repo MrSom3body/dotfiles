@@ -6,10 +6,14 @@ end
 
 set displays (query_monitors '.[] | select(.focused != true) | .name')
 
+if not set -q $displays
+    exit 1
+end
+
 while true
     set selected_display (printf "%s\n" $displays | fuzzel --dmenu --placeholder "Select a display to transform")
 
-    if test -z "$selected_display"
+    if test -z "$selected_display" || ! contains $selected_display $displays
         exit 1
     end
 

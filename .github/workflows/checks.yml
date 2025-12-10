@@ -55,6 +55,7 @@ jobs:
     if: github.event_name == 'pull_request' # only run in pull requests
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         hostname:
           # ISOs

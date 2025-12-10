@@ -21,6 +21,7 @@ let
     "ntfy"
     "searx"
     "stylix"
+    "syncthing"
     # "transmission" # commented out because already imported in arr
     "tailscale-exit-node"
   ];

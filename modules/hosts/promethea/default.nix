@@ -85,7 +85,7 @@ in
             environment.etc."specialisation".text = "enable-ollama"; # for nh
             system.nixos.tags = [ "enable-ollama" ]; # to display it in the boot loader
             imports = [ flakeConfig.flake.modules.nixos.ollama ];
-            services.ollama.acceleration = "cuda";
+            services.ollama.package = pkgs.ollama-cuda;
           };
 
           services.tailscale.extraSetFlags = [ "--accept-routes" ];

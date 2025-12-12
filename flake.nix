@@ -207,15 +207,6 @@
       };
     };
 
-    pyprland = {
-      url = "github:hyprland-community/pyprland";
-      inputs = {
-        flake-compat.follows = "flake-compat";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-      };
-    };
-
     # non flakes
     yazi-plugins = {
       url = "github:yazi-rs/plugins";

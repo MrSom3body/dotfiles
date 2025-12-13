@@ -52,7 +52,7 @@ jobs:
 
   build-configurations:
     name: Build Configuration
-    if: github.event_name == 'pull_request' # only run in pull requests
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' # only run in pull requests and on manual runs
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -92,8 +92,8 @@ jobs:
         run: |
           nix build .#nixosConfigurations.${{ matrix.hostname }}.config.system.build.toplevel -L
 
-  build-configurations-failure:
-    name: Build Configurations Failure
+  build-configurations-success:
+    name: Build Configurations Success
     runs-on: ubuntu-latest
     needs: [build-configurations]
     if: ${{ cancelled() || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'failure') }}

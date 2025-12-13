@@ -56,7 +56,10 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        pre-commit.follows = "git-hooks-nix";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
     nh = {
@@ -117,7 +120,7 @@
     };
 
     ghostty = {
-      url = "github:ghostty-org/ghostty"; # has cache, but can't use it because of drivers :(
+      url = "github:ghostty-org/ghostty";
       inputs = {
         flake-compat.follows = "flake-compat";
         flake-utils.follows = "flake-utils";
@@ -127,13 +130,18 @@
 
     gotcha = {
       url = "github:MrSom3body/gotcha";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        git-hooks-nix.follows = "git-hooks-nix";
+      };
     };
 
-    helix.url = "github:helix-editor/helix"; # has cache
+    helix = {
+      url = "github:helix-editor/helix";
+    };
 
     yazi = {
-      url = "github:sxyazi/yazi"; # has cache
+      url = "github:sxyazi/yazi";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -146,7 +154,14 @@
     };
 
     # hyprland stuff
-    hyprland.url = "github:hyprwm/hyprland";
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs = {
+        pre-commit-hooks.follows = "git-hooks-nix";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs = {
@@ -192,6 +207,7 @@
         hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
+        hyprwire.follows = "hyprland/hyprwire";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
       };

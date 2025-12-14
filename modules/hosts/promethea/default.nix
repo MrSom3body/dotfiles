@@ -26,7 +26,6 @@ let
     "logitech"
     "ntfy-client"
     "opentabletdriver"
-    "syncthing"
     "podman"
     "printing"
     "proton"

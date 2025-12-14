@@ -20,7 +20,7 @@ let
     "ntfy"
     "searx"
     "stylix"
-    "syncthing"
+    "syncthing-server"
     # "transmission" # commented out because already imported in arr
     "tailscale-exit-node"
   ];

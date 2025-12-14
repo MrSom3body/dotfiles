@@ -1,11 +1,10 @@
-{ lib, ... }:
 {
   flake.modules = {
     nixos.base = {
       services = {
         tailscale = {
           enable = true;
-          useRoutingFeatures = lib.mkDefault "client";
+          useRoutingFeatures = "both";
           extraSetFlags = [
             # automatically disable exit node
             "--exit-node="

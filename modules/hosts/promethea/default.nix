@@ -5,7 +5,7 @@ let
     "base"
     "desktop"
     "dev"
-    # "gaming"
+    "gaming"
     "laptop"
     "media"
     "messaging"

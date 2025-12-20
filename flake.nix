@@ -124,6 +124,7 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         flake-utils.follows = "flake-utils";
+        home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -138,6 +139,7 @@
 
     helix = {
       url = "github:helix-editor/helix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     yazi = {
@@ -148,8 +150,8 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
       };
     };
 
@@ -203,6 +205,7 @@
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs = {
+        aquamarine.follows = "hyprland/aquamarine";
         hyprgraphics.follows = "hyprland/hyprgraphics";
         hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";

@@ -47,7 +47,6 @@ in
             inputs.nixos-hardware.nixosModules.asus-zenbook-um6702
           ];
 
-          # TODO remove when https://github.com/NixOS/nixpkgs/issues/467814 gets resolved
           hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 
           # TODO remove when https://github.com/NixOS/nixpkgs/pull/440422 gets merged

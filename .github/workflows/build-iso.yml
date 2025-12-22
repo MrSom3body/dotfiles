@@ -29,7 +29,7 @@ jobs:
       - name: Purge non-nix stuff
         uses: wimpysworld/nothing-but-nix@main
         with:
-          hatchet-protocol: cleave
+          hatchet-protocol: rampage
 
       - name: Install Nix
         uses: cachix/install-nix-action@v31

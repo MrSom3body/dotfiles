@@ -5,12 +5,10 @@ let
     "dev"
     "iso"
     "laptop"
-    "office"
     "shell"
 
     "bluetooth"
     "opentabletdriver"
-    "podman"
     "printing"
   ];
 in

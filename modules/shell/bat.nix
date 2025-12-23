@@ -8,7 +8,6 @@
           extraPackages = builtins.attrValues {
             inherit (pkgs.bat-extras)
               batman
-              prettybat
               ;
           };
         };

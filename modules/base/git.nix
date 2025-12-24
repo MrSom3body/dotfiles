@@ -3,7 +3,7 @@ let
   inherit (config.flake) meta;
 in
 {
-  flake.modules.homeManager.dev = {
+  flake.modules.homeManager.homeManager = {
     programs = {
       git = {
         enable = true;

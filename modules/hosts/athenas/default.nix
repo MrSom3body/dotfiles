@@ -2,7 +2,6 @@
 let
   modules = [
     "desktop"
-    "dev"
     "iso"
     "laptop"
     "shell"

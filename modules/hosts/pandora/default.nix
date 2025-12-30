@@ -14,7 +14,6 @@ let
     "firefox-send"
     "glance"
     "immich"
-    "karakeep"
     "minecraft-server/kn-server"
     "miniflux"
     "ntfy"

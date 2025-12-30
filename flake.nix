@@ -72,6 +72,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-jetbrains-plugins = {
+      url = "github:nix-community/nix-jetbrains-plugins";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs = {

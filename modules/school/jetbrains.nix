@@ -2,30 +2,28 @@
 {
   flake.modules.homeManager.school =
     { pkgs, ... }:
+    let
+      inherit (inputs.nix-jetbrains-plugins.lib."${pkgs.stdenv.hostPlatform.system}") buildIdeWithPlugins;
+      pluginList = [
+        "IdeaVIM"
+        "com.almightyalpaca.intellij.plugins.discord"
+        "com.github.copilot"
+        "com.github.lonre.gruvbox-intellij-theme"
+        # "com.intellij.mermaid"
+      ];
+    in
     {
       home.packages =
-        let
-          plugins = [
-            "github-copilot--your-ai-pair-programmer"
-            "ideavim"
-            "mermaid"
-          ];
-        in
         builtins.attrValues {
           inherit (pkgs)
-            # IDEs
             jetbrains-toolbox
             # JDKs
             temurin-bin
-            # Other thingies
-            anki-bin
-            openfortivpn
-            vpnc
             ;
         }
         ++ [
-          (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.datagrip plugins)
-          (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea plugins)
+          (buildIdeWithPlugins pkgs.jetbrains "datagrip" pluginList)
+          (buildIdeWithPlugins pkgs.jetbrains "idea" pluginList)
           # (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.phpstorm plugins)
           # (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.pycharm-professional plugins)
         ];

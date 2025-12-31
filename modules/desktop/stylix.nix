@@ -31,8 +31,8 @@
               sansSerif = sans;
               serif = sans;
               monospace = {
-                name = "FiraCode Nerd Font";
-                package = pkgs.nerd-fonts.fira-code;
+                name = "Iosevka Nerd Font";
+                package = pkgs.nerd-fonts.iosevka;
               };
               emoji = {
                 package = pkgs.noto-fonts-color-emoji;

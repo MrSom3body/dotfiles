@@ -5,11 +5,9 @@
       home.packages = builtins.attrValues {
         inherit (pkgs)
           # gui
-          baobab # Disk Usage Analyzer
           gnome-calculator
           gnome-clocks
           gnome-disk-utility
-          gnome-weather
           snapshot # Camera App
           # cli
           libnotify # notification

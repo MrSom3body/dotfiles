@@ -8,6 +8,11 @@
             --prefix PATH : ${final.lib.makeBinPath [ final.pandoc ]}
         '';
       });
+
+      # TODO remove when https://github.com/nixos/nixpkgs/pull/476229 lands in unstable
+      readline70 = prev.readline70.overrideAttrs (_oldAttrs: {
+        env.NIX_CFLAGS_COMPILE = final.lib.optionalString final.stdenv.cc.isGNU "-std=gnu17";
+      });
     };
 
     stable-packages = final: _prev: {

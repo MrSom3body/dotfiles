@@ -1,20 +1,15 @@
-{
-  self,
-  lib,
-  inputs,
-  ...
-}:
+{ inputs, ... }:
 {
   flake.modules = {
     nixos.nixos =
       { pkgs, ... }:
       {
-        environment.systemPackages = [ pkgs.helix ];
+        environment.systemPackages = [ inputs.helix.packages.${pkgs.stdenv.hostPlatform.system}.helix ];
         programs.nano.enable = false; # eww
       };
 
     homeManager.homeManager =
-      { osConfig, pkgs, ... }:
+      { pkgs, ... }:
       {
         programs.helix = {
           enable = true;
@@ -61,49 +56,6 @@
             #     ":set mouse true"
             #   ];
             # };
-          };
-
-          languages = {
-            language-server = {
-              bash-language-server.command = lib.getExe pkgs.bash-language-server;
-              fish-lsp.command = lib.getExe pkgs.fish-lsp;
-              nixd = {
-                command = lib.getExe pkgs.nixd;
-                config.nixd = {
-                  formatting.command = [ (lib.getExe pkgs.nixfmt) ];
-                  options =
-                    let
-                      flake = ''(builtins.getFlake "${self}")'';
-                      nixos-expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
-                    in
-                    {
-                      nixos.expr = nixos-expr;
-                      home-manager.expr = "${nixos-expr}.home-manager.users.type.getSubOptions []";
-                    };
-                };
-              };
-            };
-
-            language = [
-              {
-                name = "bash";
-                auto-format = true;
-                formatter = {
-                  command = lib.getExe pkgs.shfmt;
-                  args = [
-                    "-i"
-                    "2"
-                  ];
-                };
-              }
-
-              {
-                name = "nix";
-                auto-format = true;
-                language-servers = [ "nixd" ];
-              }
-
-            ];
           };
 
           ignores = [

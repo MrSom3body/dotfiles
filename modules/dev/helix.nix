@@ -1,10 +1,20 @@
-{ config, lib, ... }:
+{
+  self,
+  config,
+  lib,
+  ...
+}:
 let
   inherit (config) flake;
 in
 {
   flake.modules.homeManager.dev =
-    { config, pkgs, ... }:
+    {
+      osConfig,
+      config,
+      pkgs,
+      ...
+    }:
     let
       prettier = lang: {
         command = lib.getExe pkgs.prettier;
@@ -25,6 +35,18 @@ in
       programs.helix = {
         languages = {
           language = [
+            {
+              name = "bash";
+              auto-format = true;
+              formatter = {
+                command = lib.getExe pkgs.shfmt;
+                args = [
+                  "-i"
+                  "2"
+                ];
+              };
+            }
+
             {
               name = "css";
               auto-format = true;
@@ -103,6 +125,12 @@ in
             }
 
             {
+              name = "nix";
+              auto-format = true;
+              language-servers = [ "nixd" ];
+            }
+
+            {
               name = "php";
               auto-format = true;
               formatter.command = lib.getExe pkgs.pretty-php;
@@ -172,16 +200,33 @@ in
               command = lib.getExe' pkgs.basedpyright "basedpyright-langserver";
               config.python.analysis.typeCheckingMode = "basic";
             };
+            bash-language-server.command = lib.getExe pkgs.bash-language-server;
             codebook = {
               command = lib.getExe pkgs.codebook;
               args = [ "serve" ];
             };
             docker-compose-langserver.command = lib.getExe pkgs.docker-compose-language-service;
+            fish-lsp.command = lib.getExe pkgs.fish-lsp;
             golangci-lint-lsp.command = lib.getExe pkgs.golangci-lint-langserver;
             gopls.command = lib.getExe pkgs.gopls;
             lemminx.command = lib.getExe pkgs.lemminx;
             ltex-ls-plus.command = lib.getExe' pkgs.ltex-ls-plus "ltex-ls-plus";
             marksman.command = lib.getExe pkgs.marksman;
+            nixd = {
+              command = lib.getExe pkgs.nixd;
+              config.nixd = {
+                formatting.command = [ (lib.getExe pkgs.nixfmt) ];
+                options =
+                  let
+                    flake = ''(builtins.getFlake "${self}")'';
+                    nixos-expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
+                  in
+                  {
+                    nixos.expr = nixos-expr;
+                    home-manager.expr = "${nixos-expr}.home-manager.users.type.getSubOptions []";
+                  };
+              };
+            };
             phpactor = {
               command = lib.getExe pkgs.phpactor;
               args = [ "language-server" ];

@@ -92,7 +92,10 @@ in
       homeManager."hosts/promethea" =
         { pkgs, ... }:
         {
-          home.packages = [ pkgs.logseq ];
+          home.packages = [
+            pkgs.calibre
+            pkgs.logseq
+          ];
           wayland.windowManager.hyprland.settings = {
             monitorv2 = [
               {

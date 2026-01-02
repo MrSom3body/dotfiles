@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.firefox-send =
-    { config, ... }:
+    { config, pkgs, ... }:
     let
       cfg = config.services.send;
     in
@@ -15,6 +15,8 @@
 
         send = {
           enable = true;
+          # TODO remove when https://github.com/nixos/nixpkgs/pull/476247 lands in unstable
+          package = pkgs.stable.send;
           host = "127.0.0.1";
           port = 1443;
           environment =

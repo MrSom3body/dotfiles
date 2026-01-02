@@ -1,12 +1,10 @@
-{ lib, inputs, ... }:
+{ lib, ... }:
 {
   flake.modules.homeManager.desktop =
-    { config, pkgs, ... }:
+    { config, ... }:
     {
       services.hypridle = {
         enable = true;
-
-        package = inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
 
         settings =
           let

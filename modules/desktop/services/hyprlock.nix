@@ -1,10 +1,10 @@
-{ config, inputs, ... }:
+{ config, ... }:
 let
   inherit (config.flake) meta;
 in
 {
   flake.modules.homeManager.desktop =
-    { config, pkgs, ... }:
+    { config, ... }:
     let
       inherit (config.lib.stylix) colors;
       rgb = color: "rgb(${color})";
@@ -12,8 +12,6 @@ in
     {
       programs.hyprlock = {
         enable = true;
-
-        package = inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock;
 
         settings = {
           general.hide_cursor = false;

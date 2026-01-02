@@ -1,12 +1,10 @@
-{ lib, inputs, ... }:
+{ lib, ... }:
 {
   flake.modules.homeManager.desktop =
-    { config, pkgs, ... }:
+    { config, ... }:
     {
       services.hyprpaper = {
         enable = true;
-
-        package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
         # TODO remove when https://github.com/nix-community/stylix/pull/2087 gets merged
         settings.wallpaper = lib.mkForce (

@@ -1,22 +1,16 @@
-{ self, inputs, ... }:
+{ self, ... }:
 {
   flake.modules = {
-    nixos.desktop =
-      { pkgs, ... }:
-      {
-        programs.hyprland = {
-          enable = true;
-          xwayland.enable = true;
-          withUWSM = true;
-
-          package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
-          portalPackage =
-            inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-        };
-
-        # tell Electron/Chromium to run on Wayland
-        environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    nixos.desktop = {
+      programs.hyprland = {
+        enable = true;
+        xwayland.enable = true;
+        withUWSM = true;
       };
+
+      # tell Electron/Chromium to run on Wayland
+      environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    };
 
     homeManager.desktop =
       { config, pkgs, ... }:
@@ -39,9 +33,6 @@
         services.network-manager-applet.enable = true;
 
         home.packages =
-          let
-            inherit (inputs.hyprpicker.packages.${pkgs.stdenv.hostPlatform.system}) hyprpicker;
-          in
           builtins.attrValues {
             inherit (pkgs)
               brightnessctl
@@ -50,6 +41,8 @@
               satty
               wl-clipboard
               wtype
+              hyprpicker
+              grimblast
               ;
           }
           ++
@@ -60,13 +53,7 @@
                 touchpad-toggle
                 wl-ocr
                 ;
-            }
-          ++ [
-            hyprpicker
-            (inputs.hyprland-contrib.packages.${pkgs.stdenv.hostPlatform.system}.grimblast.override {
-              inherit hyprpicker;
-            })
-          ];
+            };
 
         home.file.".config/hypr/scripts" = {
           source = ./scripts;

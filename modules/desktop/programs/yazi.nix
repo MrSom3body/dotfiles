@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ lib, ... }:
 {
   flake.modules.homeManager.desktop =
     { config, pkgs, ... }:
@@ -18,7 +18,6 @@
 
         yazi = {
           enable = true;
-          package = inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default;
           shellWrapperName = "y";
 
           settings = {
@@ -55,12 +54,14 @@
           };
 
           plugins = {
-            chmod = "${inputs.yazi-plugins}/chmod.yazi";
-            full-border = "${inputs.yazi-plugins}/full-border.yazi";
-            git = "${inputs.yazi-plugins}/git.yazi";
-            toggle-pane = "${inputs.yazi-plugins}/toggle-pane.yazi";
-            mount = "${inputs.yazi-plugins}/mount.yazi";
-            starship = "${inputs.yazi-starship-plugin}";
+            inherit (pkgs.yaziPlugins)
+              chmod
+              full-border
+              git
+              toggle-pane
+              mount
+              starship
+              ;
           };
 
           initLua = ''

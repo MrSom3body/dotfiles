@@ -1,7 +1,9 @@
+{ lib, ... }:
 {
   flake.modules.nixos.desktop = {
     services = {
-      power-profiles-daemon.enable = true;
+      tuned.enable = true;
+      tlp.enable = lib.mkForce false;
 
       upower.enable = true;
     };

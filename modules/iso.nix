@@ -44,7 +44,11 @@
         baseName = mkImageMediaOverride name;
         fileName = mkImageMediaOverride (name + ".iso");
       };
-      isoImage.volumeID = mkImageMediaOverride (shortHostname + fixedParts);
+      isoImage = {
+        # more smol less speedy
+        squashfsCompression = "zstd -Xcompression-level 19";
+        volumeID = mkImageMediaOverride (shortHostname + fixedParts);
+      };
 
       environment.systemPackages = [
         inputs.disko.packages.${pkgs.stdenv.hostPlatform.system}.default

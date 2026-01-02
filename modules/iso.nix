@@ -1,9 +1,4 @@
-{
-  self,
-  lib,
-  inputs,
-  ...
-}:
+{ self, lib, ... }:
 {
   flake.modules.nixos.iso =
     {
@@ -49,10 +44,6 @@
         squashfsCompression = "zstd -Xcompression-level 19";
         volumeID = mkImageMediaOverride (shortHostname + fixedParts);
       };
-
-      environment.systemPackages = [
-        inputs.disko.packages.${pkgs.stdenv.hostPlatform.system}.default
-      ];
 
       nixpkgs.overlays = [
         (_final: super: {

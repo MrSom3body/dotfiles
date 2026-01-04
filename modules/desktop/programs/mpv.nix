@@ -5,7 +5,7 @@
       programs.mpv = {
         enable = true;
 
-        package = pkgs.mpv-unwrapped.wrapper {
+        package = pkgs.mpv.override {
           scripts = [
             pkgs.mpvScripts.builtins.autoload
           ]
@@ -15,10 +15,6 @@
               mpris
               thumbfast
               ;
-          };
-
-          mpv = pkgs.mpv-unwrapped.override {
-            ffmpeg = pkgs.ffmpeg-full;
           };
         };
 

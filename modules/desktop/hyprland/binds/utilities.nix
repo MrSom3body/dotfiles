@@ -43,10 +43,10 @@
           "SUPER CTRL, COMMA, Toggle do not disturb mode, exec, fnott-dnd"
 
           # Screenshots
-          ", PRINT, Take screenshot of screen, exec, ${runOnce "grimblast"} --freeze --notify copysave area ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"
-          "SHIFT, PRINT, Take screenshot of screen, exec, ${runOnce "grimblast"} --freeze save area - | satty -f - --fullscreen -o ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png --early-exit --copy-command wl-copy --save-after-copy"
-          "SUPER, PRINT, Take screenshot of window, exec, ${runOnce "grimblast"} --freeze --notify copysave screen ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"
-          "SUPER SHIFT, PRINT, Take screenshot of window, exec, ${runOnce "grimblast"} --freeze save screen - | satty -f - --fullscreen -o ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png --early-exit --copy-command wl-copy --save-after-copy"
+          ", PRINT, Take screenshot of screen, exec, ${runOnce "grimblast"} --freeze --notify copysave area"
+          "SHIFT, PRINT, Take and edit screenshot of screen, exec, ${runOnce "grimblast"} --freeze edit area"
+          "SUPER, PRINT, Take screenshot of window, exec, ${runOnce "grimblast"} --freeze --notify copysave screen"
+          "SUPER SHIFT, PRINT, Take and edit screenshot of window, exec, ${runOnce "grimblast"} --freeze edit screen"
 
           # Screencast
           "SUPER, R, Start/stop screencast (without audio), exec, uwsm app -- hyprcast"

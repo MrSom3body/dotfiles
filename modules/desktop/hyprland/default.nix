@@ -42,7 +42,6 @@
               wl-clipboard
               wtype
               hyprpicker
-              grimblast
               ;
           }
           ++

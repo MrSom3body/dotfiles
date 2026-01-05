@@ -50,6 +50,10 @@
             Restart = "on-failure";
           };
         };
+
+        wayland.windowManager.hyprland.settings.permissions = [
+          "solaar-keyboard, keyboard, allow"
+        ];
       };
   };
 }

@@ -51,7 +51,7 @@
           };
         };
 
-        wayland.windowManager.hyprland.settings.permissions = [
+        wayland.windowManager.hyprland.settings.permission = lib.mkBefore [
           "solaar-keyboard, keyboard, allow"
         ];
       };

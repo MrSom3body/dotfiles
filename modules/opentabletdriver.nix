@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   flake.modules = {
     nixos.opentabletdriver = {
@@ -8,7 +9,7 @@
     };
 
     homeManager.opentabletdriver = {
-      wayland.windowManager.hyprland.settings.permissions = [
+      wayland.windowManager.hyprland.settings.permission = lib.mkBefore [
         "opentabletdriver-virtual-keyboard, keyboard, allow"
       ];
     };

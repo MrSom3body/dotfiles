@@ -100,27 +100,29 @@
           "match:namespace notifications, blur true, ignore_alpha 0"
         ];
 
-        workspace = [
-          # Smart Gaps
-          "w[tv1], gapsout:0, gapsin:0"
-          "f[1], gapsout:0, gapsin:0"
+        workspace =
+          let
+            gaps = "50";
+          in
+          [
+            # Smart Gaps
+            "w[tv1], gapsout:0, gapsin:0"
+            "f[1], gapsout:0, gapsin:0"
 
-          "special:magic, gapsout:75"
+            "special:magic, gapsout:${gaps}"
 
-          "special:obsidian, on-created-empty:uwsm app -- obsidian"
+            "special:spotify, on-created-empty:uwsm app -- spotify"
+            "special:spotify, gapsout:${gaps}"
 
-          "special:spotify, on-created-empty:uwsm app -- spotify"
-          "special:spotify, gapsout:75"
+            "special:monitor, on-created-empty:uwsm app -- xdg-terminal-exec btop"
+            "special:monitor, gapsout:${gaps}"
 
-          "special:monitor, on-created-empty:uwsm app -- xdg-terminal-exec btop"
-          "special:monitor, gapsout:50"
+            "special:discord, on-created-empty:uwsm app -- vesktop"
+            "special:discord, gapsout:${gaps}"
 
-          "special:discord, on-created-empty:uwsm app -- vesktop"
-          "special:discord, gapsout:75"
-
-          "special:todo, on-created-empty:uwsm app -- todoist-electron"
-          "special:todo, gapsout:75"
-        ];
+            "special:todo, on-created-empty:uwsm app -- todoist-electron"
+            "special:todo, gapsout:${gaps}"
+          ];
       };
     };
 }

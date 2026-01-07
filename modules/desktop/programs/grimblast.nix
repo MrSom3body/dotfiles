@@ -3,13 +3,18 @@
     { pkgs, ... }:
     {
       home = {
-        packages = [
-          pkgs.grimblast
-          pkgs.satty
-        ];
+        packages = [ pkgs.grimblast ];
 
         sessionVariables = {
           GRIMBLAST_EDITOR = "satty --filename";
+        };
+      };
+
+      programs.satty = {
+        enable = true;
+        settings.general = {
+          fullscreen = true;
+          early-exit = true;
         };
       };
     };

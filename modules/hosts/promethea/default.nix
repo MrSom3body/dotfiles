@@ -95,6 +95,7 @@ in
           home.packages = [
             pkgs.calibre
             pkgs.logseq
+            pkgs.lunatask
           ];
           wayland.windowManager.hyprland.settings = {
             monitorv2 = [

@@ -360,11 +360,5 @@
           };
         };
       };
-
-      xdg.configFile."waybar/config" = {
-        onChange = ''
-          ${lib.getExe' pkgs.procps "pkill"} -u $USER waybar || true
-        '';
-      };
     };
 }

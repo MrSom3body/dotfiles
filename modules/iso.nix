@@ -51,6 +51,8 @@
         })
       ];
 
+      documentation.enable = false;
+
       services = {
         fwupd.enable = lib.mkForce false;
         getty = {

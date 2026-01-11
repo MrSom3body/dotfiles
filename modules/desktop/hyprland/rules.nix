@@ -23,7 +23,7 @@
 
           # Move apps to workspaces
           "match:class ^(vesktop)$, workspace special:discord silent"
-          "match:class ^(Todoist)$, workspace special:todo silent"
+          "match:class ^(Todoist|@lunatask/electron)$, workspace special:todo silent"
 
           # Dim some programs
           "match:class ^(xdg-desktop-portal-gtk)$, dim_around true"
@@ -120,7 +120,7 @@
             "special:discord, on-created-empty:uwsm app -- vesktop"
             "special:discord, gapsout:${gaps}"
 
-            "special:todo, on-created-empty:uwsm app -- todoist-electron"
+            "special:todo, on-created-empty:uwsm app -- lunatask"
             "special:todo, gapsout:${gaps}"
           ];
       };

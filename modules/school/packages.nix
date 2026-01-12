@@ -4,7 +4,6 @@
     {
       home.packages = builtins.attrValues {
         inherit (pkgs)
-          anki-bin
           openfortivpn
           vpnc
           ;

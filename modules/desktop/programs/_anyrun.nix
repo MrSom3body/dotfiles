@@ -10,7 +10,7 @@
     {
       home.packages = [
         inputs.som3pkgs.packages.${pkgs.stdenv.hostPlatform.system}.dmenu-goodies
-        (pkgs.writeShellScriptBin "dmenu" ''anyrun --plugins stdin --show-results-immediately true'')
+        (pkgs.writeShellScriptBin "dmenu" "anyrun --plugins stdin --show-results-immediately true")
       ];
 
       programs.anyrun = {

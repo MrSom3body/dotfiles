@@ -4,12 +4,6 @@
       bindd =
         let
           shorten = s: builtins.substring 0 14 s;
-          toggle =
-            program:
-            let
-              prog = shorten program;
-            in
-            "pkill ${prog} || uwsm app -- ${program}";
           toggleScript =
             program: script:
             let
@@ -25,17 +19,16 @@
         in
         [
           # Launcher
-          "SUPER, D, Open application launcher, exec, ${toggle "fuzzel"}"
-          "SUPER, MINUS, Open display manager, exec, ${toggleScript "fuzzel" "fuzzel-displays"}"
-          "SUPER, SPACE, Open file/directory picker, exec, ${toggleScript "fuzzel" "fuzzel-files"}"
-          "ALT, TAB, Open window switcher, exec, ${toggleScript "fuzzel" "fuzzel-windows"}"
-          "SUPER CTRL, Q, Open power menu, exec, ${toggleScript "fuzzel" "fuzzel-actions"}"
-          "SUPER, PERIOD, Open symbols search, exec, ${toggleScript "fuzzel" "fuzzel-icons"}"
-          "SUPER, odiaeresis, Connect/disconnect from a vpnc VPN, exec, ${toggleScript "fuzzel" "fuzzel-vpnc"}"
+          "SUPER, D, Open application launcher, exec, vicinae toggle"
+          "SUPER, MINUS, Open display manager, exec, ${toggleScript "fuzzel" "fuzzel-displays"}" # TODO replace with vicinae
+          "SUPER, SPACE, Open file/directory picker, exec, vicinae vicinae://extensions/vicinae/files/search"
+          "ALT, TAB, Open window switcher, exec, vicinae vicinae://extensions/vicinae/wm/switch-windows"
+          "SUPER, PERIOD, Open symbols search, exec, vicinae vicinae://extensions/vicinae/core/search-emojis"
+          "SUPER, odiaeresis, Connect/disconnect from a vpnc VPN, exec, ${toggleScript "fuzzel" "fuzzel-vpnc"}" # TODO replace with vicinae
 
           # Clipboard
-          "SUPER, V, Show clipboard history, exec, ${toggleScript "fuzzel" "fuzzel-clipboard"}"
-          "SUPER CTRL, V, Clear clipboard history, exec, uwsm app -- rm $XDG_CACHE_HOME/cliphist/db"
+          "SUPER, V, Show clipboard history, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
+          "SUPER CTRL, V, Clear clipboard history, exec, vicinae vicinae://extensions/vicinae/clipboard/clear"
 
           # Notifcations
           "SUPER, COMMA, Open notification action, exec, fnottctl actions"

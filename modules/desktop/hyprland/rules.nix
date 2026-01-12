@@ -79,6 +79,9 @@
           # fuzzel
           "match:namespace launcher, animation slide, dim_around true"
 
+          # fuzzel
+          "match:namespace vicinae, animation slide, dim_around true"
+
           # fnott
           "match:namespace notifications, animation slide "
         ]

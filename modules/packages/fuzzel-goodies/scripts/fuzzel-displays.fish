@@ -6,7 +6,7 @@ end
 
 set displays (query_monitors '.[] | select(.focused != true) | .name')
 
-if not set -q $displays
+if not set -q displays
     exit 1
 end
 

@@ -3,9 +3,11 @@
     { config, pkgs, ... }:
     {
       default = pkgs.mkShell {
-        packages = with pkgs; [
-          git
-        ];
+        packages = builtins.attrValues {
+          inherit (pkgs)
+            git
+            ;
+        };
 
         buildInputs = [ ];
 

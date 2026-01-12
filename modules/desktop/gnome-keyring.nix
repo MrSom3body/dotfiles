@@ -11,10 +11,12 @@
     homeManager.desktop =
       { pkgs, ... }:
       {
-        home.packages = with pkgs; [
-          gcr
-          seahorse
-        ];
+        home.packages = builtins.attrValues {
+          inherit (pkgs)
+            gcr
+            seahorse
+            ;
+        };
 
         services.gnome-keyring = {
           enable = true;

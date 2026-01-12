@@ -8,12 +8,14 @@
     { config, pkgs, ... }:
     {
       devShells.default = pkgs.mkShellNoCC {
-        packages = with pkgs; [
-          go
-          gopls
-          gotools
-          go-tools
-        ];
+        packages = builtins.attrValues {
+          inherit (pkgs)
+            go
+            gopls
+            gotools
+            go-tools
+            ;
+        };
 
         shellHook = ''
           ${config.pre-commit.settings.shellHook}

@@ -2,9 +2,11 @@
   flake.modules.homeManager.media =
     { pkgs, ... }:
     {
-      home.packages = with pkgs; [
-        grayjay
-        tsukimi
-      ];
+      home.packages = builtins.attrValues {
+        inherit (pkgs)
+          grayjay
+          tsukimi
+          ;
+      };
     };
 }

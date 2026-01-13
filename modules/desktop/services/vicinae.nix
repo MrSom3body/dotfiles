@@ -3,9 +3,7 @@
   flake.modules.homeManager.desktop =
     { pkgs, ... }:
     {
-      imports = [ inputs.vicinae.homeManagerModules.default ];
-
-      services.vicinae = {
+      programs.vicinae = {
         enable = true;
         systemd.enable = true;
 
@@ -17,6 +15,8 @@
         extensions = builtins.attrValues {
           inherit (inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system})
             nix
+            process-manager
+            # systemd # TODO doesn't build due to node-gyp see https://github.com/vicinaehq/extensions/blob/e01fe274f037e4d2b7436718258fa898f80dc4b2/flake.nix#L57
             ;
         };
       };

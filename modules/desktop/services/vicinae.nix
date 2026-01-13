@@ -12,9 +12,26 @@
           close_on_focus_loss = false;
 
           providers = {
+            # core
+            "applications".preferences = {
+              defaultAction = "launch";
+              launchPrefix = "uwsm app --";
+            };
             "clipboard".preferences = {
               eraseOnStartup = true;
             };
+            "files".preferences = {
+              excludedPaths = ".venv;.git;.direnv";
+            };
+            "power".entrypoints = {
+              logout.preferences.confirm = false;
+              power-off.preferences.confirm = false;
+              reboot.preferences.confirm = false;
+              sleep.preferences.confirm = false;
+              soft-reboot.preferences.confirm = false;
+              suspend.preferences.confirm = false;
+            };
+            # plugins
             "@Gelei/bluetooth-0".preferences = {
               connectionToggleable = true;
             };

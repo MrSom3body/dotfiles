@@ -9,7 +9,13 @@
 
         settings = {
           pop_to_root_on_close = true;
-          close_on_focus_loss = true;
+          close_on_focus_loss = false;
+
+          providers = {
+            "clipboard".preferences = {
+              eraseOnStartup = true;
+            };
+          };
         };
 
         extensions = builtins.attrValues {

@@ -15,13 +15,17 @@
             "clipboard".preferences = {
               eraseOnStartup = true;
             };
+            "@Gelei/bluetooth-0".preferences = {
+              connectionToggleable = true;
+            };
           };
         };
 
         extensions = builtins.attrValues {
           inherit (inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system})
+            bluetooth
             nix
-            process-manager
+            wifi-commander
             # systemd # TODO doesn't build due to node-gyp see https://github.com/vicinaehq/extensions/blob/e01fe274f037e4d2b7436718258fa898f80dc4b2/flake.nix#L57
             ;
         };

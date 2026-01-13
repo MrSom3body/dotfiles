@@ -3,7 +3,7 @@
   flake.modules.homeManager.school =
     { pkgs, ... }:
     let
-      inherit (inputs.nix-jetbrains-plugins.lib."${pkgs.stdenv.hostPlatform.system}") buildIdeWithPlugins;
+      inherit (inputs.nix-jetbrains-plugins.lib) buildIdeWithPlugins;
       pluginList = [
         "IdeaVIM"
         "com.almightyalpaca.intellij.plugins.discord"
@@ -22,8 +22,8 @@
             ;
         }
         ++ [
-          (buildIdeWithPlugins pkgs.jetbrains "datagrip" pluginList)
-          (buildIdeWithPlugins pkgs.jetbrains "idea" pluginList)
+          (buildIdeWithPlugins pkgs "datagrip" pluginList)
+          (buildIdeWithPlugins pkgs "idea" pluginList)
           # (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.phpstorm plugins)
           # (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.pycharm-professional plugins)
         ];

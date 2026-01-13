@@ -39,8 +39,8 @@
         icon = "https://wiki.nixos.org/favicon.png";
         definedAliases = [ "@nw" ];
       };
-      "mynixos" = {
-        urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
+      "nüschtos-search" = {
+        urls = [ { template = "https://search.nüschtos.de/?query={searchTerms}"; } ];
         icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = [ "@no" ];
       };

@@ -1,4 +1,3 @@
-{ self, ... }:
 {
   flake.modules = {
     nixos.desktop = {
@@ -13,7 +12,7 @@
     };
 
     homeManager.desktop =
-      { config, pkgs, ... }:
+      { config, ... }:
       let
         cfg = config.wayland.windowManager.hyprland;
       in
@@ -31,28 +30,6 @@
         };
 
         services.network-manager-applet.enable = true;
-
-        home.packages =
-          builtins.attrValues {
-            inherit (pkgs)
-              brightnessctl
-              nautilus
-              pwvucontrol
-              satty
-              wl-clipboard
-              wtype
-              hyprpicker
-              ;
-          }
-          ++
-            # my packages
-            builtins.attrValues {
-              inherit (self.packages.${pkgs.stdenv.hostPlatform.system})
-                hyprcast
-                touchpad-toggle
-                wl-ocr
-                ;
-            };
 
         home.file.".config/hypr/scripts" = {
           source = ./scripts;

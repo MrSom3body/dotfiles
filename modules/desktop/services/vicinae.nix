@@ -24,6 +24,7 @@
               excludedPaths = ".venv;.git;.direnv";
             };
             "power".entrypoints = {
+              hibernate.preferences.confirm = false;
               logout.preferences.confirm = false;
               power-off.preferences.confirm = false;
               reboot.preferences.confirm = false;

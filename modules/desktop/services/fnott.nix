@@ -15,8 +15,8 @@ in
 
             icon-theme = config.gtk.iconTheme.name;
 
-            selection-helper = "fuzzel --dmenu0 --prompt \"󰛰 \" --placeholder \"Search for notification action...\"";
-            selection-helper-uses-null-separator = true;
+            selection-helper = "vicinae dmenu -n fnott -s \"Actions ({count})\" --placeholder \"Select for notification action...\"";
+            selection-helper-uses-null-separator = false;
 
             edge-margin-vertical = 10;
             edge-margin-horizontal = 10;

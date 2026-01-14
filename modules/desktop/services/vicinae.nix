@@ -1,8 +1,10 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 {
   flake.modules.homeManager.desktop =
     { pkgs, ... }:
     {
+      home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.vicinae-goodies ];
+
       programs.vicinae = {
         enable = true;
         systemd.enable = true;

@@ -41,9 +41,7 @@
             "custom/actions" = {
               format = "";
               tooltip-format = "System Actions";
-              on-click =
-                lib.getExe' self.packages.${pkgs.stdenv.hostPlatform.system}.fuzzel-goodies
-                  "fuzzel-actions";
+              on-click = "vicinae toggle";
             };
 
             "hyprland/workspaces" = {

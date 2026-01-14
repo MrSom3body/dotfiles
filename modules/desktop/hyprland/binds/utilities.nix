@@ -4,12 +4,6 @@
       bindd =
         let
           shorten = s: builtins.substring 0 14 s;
-          toggleScript =
-            program: script:
-            let
-              prog = shorten program;
-            in
-            "pkill ${prog} || uwsm app -- ${script}";
           runOnce =
             program:
             let
@@ -20,11 +14,11 @@
         [
           # Launcher
           "SUPER, D, Open application launcher, exec, vicinae toggle"
-          "SUPER, MINUS, Open display manager, exec, ${toggleScript "fuzzel" "fuzzel-displays"}" # TODO replace with vicinae
+          "SUPER, MINUS, Open display manager, exec, vicinae-monitors"
           "SUPER, SPACE, Open file/directory picker, exec, vicinae vicinae://extensions/vicinae/files/search"
           "ALT, TAB, Open window switcher, exec, vicinae vicinae://extensions/vicinae/wm/switch-windows"
           "SUPER, PERIOD, Open symbols search, exec, vicinae vicinae://extensions/vicinae/core/search-emojis"
-          "SUPER, odiaeresis, Connect/disconnect from a vpnc VPN, exec, ${toggleScript "fuzzel" "fuzzel-vpnc"}" # TODO replace with vicinae
+          "SUPER, odiaeresis, Connect/disconnect from a vpnc VPN, exec, vicinae-vpnc"
 
           # Clipboard
           "SUPER, V, Show clipboard history, exec, vicinae vicinae://extensions/vicinae/clipboard/history"

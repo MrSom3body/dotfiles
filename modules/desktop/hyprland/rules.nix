@@ -69,39 +69,44 @@
           "match:class ^(hl2_linux)$, immediate true" # Left 4 Dead 2
         ];
 
-        layerrule = [
-          # Sway notification Center
-          "match:namespace swaync-control-center, animation slide right, dim_around true"
+        layerrule =
+          let
+            toRegex =
+              list:
+              let
+                elements = lib.concatStringsSep "|" list;
+              in
+              "match:namespace ^(${elements})$";
 
-          # Rofi
-          "match:namespace rofi, animation slide, dim_around true"
+            bars = [
+              "waybar"
+            ];
 
-          # fuzzel
-          "match:namespace launcher, animation slide, dim_around true"
+            menus = [
+              "rofi"
+              "launcher"
+              "vicinae"
+            ];
 
-          # fuzzel
-          "match:namespace vicinae, animation slide, dim_around true"
+            notifications = [
+              "swaync-control-center"
+              "notifications"
+            ];
 
-          # fnott
-          "match:namespace notifications, animation slide "
-        ]
-        # only blur if not fully opaque
-        ++ lib.optional (config.stylix.opacity.desktop != 1.0) [
-          # waybar
-          "match:namespace waybar, blur true, ignore_alpha 0"
-
-          # swaync
-          "match:namespace swaync-control-center, blur true, ignore_alpha 0"
-
-          # rofi
-          "match:namespace rofi, blur true, ignore_alpha 0"
-
-          # fuzzel
-          "match:namespace launcher, blur true, ignore_alpha 0"
-
-          # fnott
-          "match:namespace notifications, blur true, ignore_alpha 0"
-        ];
+            blurred = lib.concatLists [
+              bars
+              menus
+              notifications
+            ];
+          in
+          [
+            "${toRegex menus}, animation slide, dim_around true"
+            "${toRegex notifications}, animation slide right"
+          ]
+          # only blur if not fully opaque
+          ++ lib.optional (config.stylix.opacity.desktop != 1.0) [
+            "${toRegex blurred}, blur true, ignore_alpha 0"
+          ];
 
         workspace =
           let

@@ -11,6 +11,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Cache Nix store
         uses: nix-community/cache-nix-action@v6
         with:
@@ -22,11 +27,6 @@ jobs:
           purge-created: 0
           purge-last-accessed: 0
           purge-primary-key: never
-
-      - name: Setup Nix magic cache
-        uses: DeterminateSystems/magic-nix-cache-action@v12
-        with:
-          diagnostic-endpoint: ""
 
       - name: Run checks
         run: |

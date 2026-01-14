@@ -2,7 +2,7 @@
   perSystem =
     { config, pkgs, ... }:
     {
-      default = pkgs.mkShell {
+      devShells.default = pkgs.mkShell {
         packages = builtins.attrValues {
           inherit (pkgs)
             git

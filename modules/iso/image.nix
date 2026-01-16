@@ -45,14 +45,6 @@
         volumeID = mkImageMediaOverride (shortHostname + fixedParts);
       };
 
-      nixpkgs.overlays = [
-        (_final: super: {
-          espeak = super.espeak.override { mbrolaSupport = false; };
-        })
-      ];
-
-      documentation.enable = false;
-
       services = {
         fwupd.enable = lib.mkForce false;
         getty = {
@@ -76,14 +68,6 @@
             ''
           );
         };
-      };
-
-      # Options to make my config override the iso one
-      boot.supportedFilesystems.zfs = mkForce false;
-      networking.wireless.enable = mkForce false;
-      security = {
-        sudo.enable = false;
-        sudo-rs.wheelNeedsPassword = false;
       };
     };
 }

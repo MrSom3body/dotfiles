@@ -14,7 +14,7 @@
         enable = true;
         clean = {
           enable = true;
-          extraArgs = "--keep-since 1w --keep 3";
+          extraArgs = "--keep-since 3d --keep 3";
         };
         flake = "/home/karun/dotfiles";
       };

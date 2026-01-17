@@ -12,13 +12,13 @@
           forwardAgent = false;
           addKeysToAgent = "no";
           compression = false;
-          serverAliveInterval = 0;
+          serverAliveInterval = 60;
           serverAliveCountMax = 3;
-          hashKnownHosts = false;
+          hashKnownHosts = true;
           userKnownHostsFile = "~/.ssh/known_hosts";
-          controlMaster = "no";
+          controlMaster = "auto";
           controlPath = "~/.ssh/master-%r@%n:%p";
-          controlPersist = "no";
+          controlPersist = "30m";
           setEnv = {
             TERM = "xterm-256color";
           };

@@ -1,3 +1,4 @@
+flake := env("NH_FLAKE", justfile_directory())
 machine_hostname := shell("hostname -s")
 
 alias b := boot
@@ -16,27 +17,33 @@ todo:
     @rg --files-with-matches TODO || echo "Everything's done!"
 
 
+# ---------- dev ---------- #
+
+[group("dev")]
+up *inputs:
+    nix flake update {{inputs}} \
+        --flake {{flake}} \
+        --refresh \
+        --commit-lock-file \
+        --commit-lockfile-summary "flake.lock: update {{ if inputs != "" { inputs } else { "" } }}"
+
+[group("dev")]
+check *args:
+    nix flake check {{args}}
+
 # ---------- local ---------- #
 
 [group("local")]
-up *inputs:
-    nix flake update {{inputs}}
+build *args: (builder "build" args)
 
 [group("local")]
-build *args:
-    @just build-machine {{machine_hostname}} {{args}}
+test *args: (builder "test" args)
 
 [group("local")]
-test *args:
-    @just test-machine {{machine_hostname}} {{args}}
+boot *args: (builder "boot" args)
 
 [group("local")]
-boot *args:
-    @just boot-machine {{machine_hostname}} {{args}}
-
-[group("local")]
-switch *args:
-    @just switch-machine {{machine_hostname}} {{args}}
+switch *args: (builder "switch" args)
 
 [group("local")]
 fix-lanzaboote: && boot
@@ -57,34 +64,31 @@ fix-hyprlock:
 [group("deploy")]
 install hostname ip=hostname:
     nix run github:nix-community/nixos-anywhere -- \
-        --flake ".#{{hostname}}" --target-host "root@{{ip}}" \
-        --generate-hardware-config nixos-generate-config "./hosts/{{hostname}}/hardware-configuration.nix"
+        --flake "{{flake}}#{{hostname}}" --target-host "root@{{ip}}" \
+        --generate-hardware-config nixos-generate-config "{{flake}}/hosts/{{hostname}}/hardware-configuration.nix"
 
 
 [group("deploy")]
-deploy hostname mode="switch" *extra_flags:
-    nh os {{mode}} -H "{{hostname}}" --target-host "root@{{hostname}}" -- {{extra_flags}}
+deploy hostname *args:
+    just builder switch \
+        --hostname "{{hostname}}" \
+        --target-host "{{hostname}}" \
+        {{args}}
 
-# ---------- others ---------- #
+[group("deploy")]
+deploy-all *args:
+    just deploy pandora {{args}}
+
+
+# ---------- iso ---------- #
 
 [group("iso")]
 build-iso iso_name="sanctuary":
-    nix run nixpkgs#nix-fast-build -- --skip-cached --flake ".#images.{{iso_name}}"
+    nix run nixpkgs#nix-fast-build -- --skip-cached --flake "{{flake}}#images.{{iso_name}}"
+
 
 # ---------- others ---------- #
 
 [group("others")]
-build-machine hostname=machine_hostname *args:
-    nh os build . --hostname "{{hostname}}" --diff always {{args}}
-
-[group("others")]
-test-machine hostname=machine_hostname *args:
-    nh os test . --hostname "{{hostname}}" --diff always {{args}}
-
-[group("others")]
-boot-machine hostname=machine_hostname *args:
-    nh os boot . --hostname "{{hostname}}" --diff always {{args}}
-
-[group("others")]
-switch-machine hostname=machine_hostname *args:
-    nh os switch . --hostname "{{hostname}}" --diff always {{args}}
+builder mode *args:
+    nh os {{mode}} {{args}}

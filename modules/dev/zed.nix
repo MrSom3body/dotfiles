@@ -1,9 +1,4 @@
-{
-
-  self,
-  lib,
-  ...
-}:
+{ self, lib, ... }:
 {
   flake.modules.homeManager.dev =
     { osConfig, pkgs, ... }:
@@ -12,27 +7,37 @@
         enable = true;
         extensions = [
           "django"
+          "html"
           "nix"
         ];
         userSettings = {
+          # appearance
+          relative_line_numbers = "enabled";
+          buffer_line_height = "standard";
+          inlay_hints.enabled = true;
+          diagnostics.inline.enabled = true;
+
+          # behaviour
+          use_smartcase_search = true;
+          load_direnv = "shell_hook";
+
+          # bindings
+          base_keymap = "Atom";
+          vim_mode = true;
+
+          # ai
           agent = {
             default_model = {
               provider = "copilot_chat";
               model = "claude-opus-4.5";
             };
           };
-          vim_mode = true;
-          telemetry = {
-            diagnostics = false;
-            metrics = false;
-          };
-          base_keymap = "Atom";
-          load_direnv = "shell_hook";
 
+          # languages
           lsp = {
             nixd = {
               binary.path = lib.getExe pkgs.nixd;
-              settings = {
+              settings.nixd = {
                 formatting.command = [ (lib.getExe pkgs.nixfmt) ];
                 options =
                   let
@@ -45,6 +50,11 @@
                   };
               };
             };
+          };
+
+          telemetry = {
+            diagnostics = false;
+            metrics = false;
           };
         };
       };

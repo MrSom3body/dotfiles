@@ -21,7 +21,7 @@
               model = "claude-opus-4.5";
             };
           };
-          helix_mode = true;
+          vim_mode = true;
           telemetry = {
             diagnostics = false;
             metrics = false;

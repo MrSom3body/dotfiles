@@ -71,7 +71,6 @@
       url = "github:nix-community/nix-jetbrains-plugins";
       inputs = {
         flake-compat.follows = "flake-compat";
-        flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
     };

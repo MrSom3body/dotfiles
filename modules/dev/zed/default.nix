@@ -5,6 +5,10 @@
         enable = true;
         userSettings = {
           # appearance
+          tabs = {
+            file_icons = true;
+            git_status = true;
+          };
           relative_line_numbers = "enabled";
           buffer_line_height = "standard";
           inlay_hints.enabled = true;
@@ -17,12 +21,23 @@
           # bindings
           base_keymap = "Atom";
           vim_mode = true;
+          which_key = {
+            enabled = true;
+            delay_ms = 0;
+          };
+
+          # multiplayer
+          calls = {
+            mute_on_join = true;
+          };
 
           # ai
+          show_edit_predictions = true;
+          edit_predictions.mode = "subtle";
           agent = {
             default_model = {
               provider = "copilot_chat";
-              model = "claude-opus-4.5";
+              model = "gpt-5.2-codex";
             };
           };
 

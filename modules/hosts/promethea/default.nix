@@ -107,6 +107,11 @@ in
               }
             ];
 
+            workspace = [
+              "4, monitor:HDMI-A-1"
+              "5, monitor:HDMI-A-1"
+            ];
+
             permission = [
               ### Keyboards ###
               "video-bus, keyboard, allow"

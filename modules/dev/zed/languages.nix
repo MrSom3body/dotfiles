@@ -6,8 +6,11 @@
       programs.zed-editor = {
         extensions = [
           "django"
+          "git-firefly"
           "html"
+          "ltex"
           "nix"
+          "typst"
         ];
 
         userSettings = {

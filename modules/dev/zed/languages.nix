@@ -15,12 +15,14 @@
 
         userSettings = {
           languages = {
-            nix.languages-servers = [
+            Nix.language_servers = [
               "!nil"
+              "..."
             ];
             Django.language_servers = [
               "django-template-lsp"
               "!django-language-server"
+              "..."
             ];
           };
 
@@ -38,6 +40,16 @@
                     nixos.expr = nixos-expr;
                     home-manager.expr = "${nixos-expr}.home-manager.users.type.getSubOptions []";
                   };
+              };
+            };
+            tinymist = {
+              settings = {
+                exportPdf = "onType";
+                outputPath = "$root/$name";
+                lint = {
+                  enabled = true;
+                  when = "onType";
+                };
               };
             };
           };

@@ -94,6 +94,7 @@ in
         {
           home.packages = [
             pkgs.calibre
+            pkgs.gemini-cli
             pkgs.logseq
             pkgs.todoist-electron
           ];

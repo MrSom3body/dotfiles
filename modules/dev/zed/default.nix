@@ -35,7 +35,7 @@
 
       fish.functions = {
         z = {
-          body = "zeditor";
+          body = "zeditor $argv";
           wraps = "zeditor";
         };
       };

@@ -12,6 +12,9 @@
 
         userSettings = {
           languages = {
+            nix.languages-servers = [
+              "!nil"
+            ];
             Django.language_servers = [
               "django-template-lsp"
               "!django-language-server"

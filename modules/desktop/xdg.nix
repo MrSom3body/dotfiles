@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
   inherit (config.flake) meta;
 in
@@ -90,6 +90,27 @@ in
             // audios
             // videos
             // browserTypes;
+            associations.removed =
+              let
+                noCalibre =
+                  let
+                    mimeTypes = [
+                      "application/pdf"
+                      "application/vnd.oasis.opendocument.text"
+                      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                      "text/html"
+                      "text/plain"
+                      "text/x-markdown"
+                    ];
+                    desktopFiles = [
+                      "calibre-ebook-edit.desktop"
+                      "calibre-ebook-viewer.desktop"
+                      "calibre-gui.desktop"
+                    ];
+                  in
+                  lib.zipAttrs (map (d: lib.genAttrs mimeTypes (_: d)) desktopFiles);
+              in
+              noCalibre;
           };
 
           userDirs = {

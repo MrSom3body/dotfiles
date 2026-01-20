@@ -28,9 +28,9 @@
 
           lsp = {
             nixd = {
+              initialization_options.formatting.command = [ (lib.getExe pkgs.nixfmt) ];
               binary.path = lib.getExe pkgs.nixd;
               settings.nixd = {
-                formatting.command = [ (lib.getExe pkgs.nixfmt) ];
                 options =
                   let
                     flake = ''(builtins.getFlake "${self}")'';

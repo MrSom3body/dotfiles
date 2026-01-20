@@ -3,6 +3,7 @@
     programs = {
       zed-editor = {
         enable = true;
+        mutableUserKeymaps = false;
         userSettings = {
           # appearance
           tabs = {
@@ -46,6 +47,14 @@
             metrics = false;
           };
         };
+        userKeymaps = [
+          {
+            context = "Workspace";
+            bindings = {
+              "shift shift" = "file_finder::Toggle";
+            };
+          }
+        ];
       };
 
       fish.functions = {

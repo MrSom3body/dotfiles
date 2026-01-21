@@ -43,8 +43,8 @@
           };
 
           telemetry = {
-            diagnostics = false;
-            metrics = false;
+            diagnostics = true;
+            metrics = true;
           };
         };
         userKeymaps = [

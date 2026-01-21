@@ -20,7 +20,7 @@
           load_direnv = "shell_hook";
 
           # bindings
-          base_keymap = "Atom";
+          base_keymap = "VSCode";
           vim_mode = true;
           which_key = {
             enabled = true;
@@ -34,7 +34,7 @@
 
           # ai
           show_edit_predictions = true;
-          edit_predictions.mode = "subtle";
+          edit_predictions.mode = "eager";
           agent = {
             default_model = {
               provider = "copilot_chat";

@@ -27,8 +27,10 @@
       # DNS resolver
       resolved = {
         enable = true;
-        dnsovertls = "true";
-        dnssec = "true";
+        settings.Resolve = {
+          DNSOverTLS = "true";
+          DNSSEC = "true";
+        };
       };
 
       # network discovery, mDNS

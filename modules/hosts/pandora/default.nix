@@ -14,7 +14,7 @@ let
     "firefox-send"
     "glance"
     "immich"
-    "minecraft-server/kn-server"
+    # "minecraft-server/kn-server"
     "miniflux"
     "ntfy"
     "searx"

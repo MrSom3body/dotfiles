@@ -1,27 +1,21 @@
-{ lib, ... }:
+{ config, ... }:
+let
+  inherit (config.flake) meta;
+in
 {
   flake.modules.nixos.searx =
     { config, ... }:
-    let
-      cfg = config.services.searx;
-    in
     {
       sops.secrets.searx = {
         sopsFile = ../secrets/searx.env;
         format = "dotenv";
       };
 
-      my.services.glance.services = lib.singleton {
-        title = "searxng";
-        url = "https://search.sndh.dev";
-        icon = "di:searxng";
-      };
-
       services = {
         caddy.virtualHosts = {
-          "search.${config.networking.domain}" = {
+          "${meta.services.searx.domain}" = {
             extraConfig = ''
-              reverse_proxy http://${cfg.settings.server.bind_address}:${toString cfg.settings.server.port}
+              reverse_proxy http://localhost:${toString meta.services.searx.port}
               import cloudflare
             '';
           };
@@ -34,8 +28,8 @@
             use_default_settings = true;
 
             server = {
-              base_url = "https://search.sndh.dev";
-              port = 8888;
+              base_url = "https://${meta.services.searx.domain}";
+              inherit (meta.services.searx) port;
               bind_address = "127.0.0.1";
               secret_key = "@SEARX_SECRET_KEY@";
             };

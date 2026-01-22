@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  inherit (config.flake) meta;
+in
 {
   flake.modules.nixos.syncthing-server =
     { config, ... }:
@@ -7,7 +11,7 @@
         caddy.virtualHosts = {
           "syncthing.${config.networking.hostName}.${config.networking.domain}" = {
             extraConfig = ''
-              reverse_proxy http://127.0.0.1:8384 {
+              reverse_proxy http://127.0.0.1:${toString meta.services.syncthing.port} {
                 header_up Host {upstream_hostport}
               }
               import cloudflare

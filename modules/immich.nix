@@ -1,42 +1,29 @@
-{ lib, ... }:
+{ config, ... }:
+let
+  inherit (config.flake) meta;
+in
 {
   flake.modules.nixos.immich =
     { config, ... }:
-    let
-      cfg = config.services.immich;
-    in
     {
       sops.secrets.immich = {
         sopsFile = ../secrets/immich.env;
         format = "dotenv";
       };
 
-      my.services.glance.services = lib.singleton {
-        title = "immich";
-        url = "https://immich.sndh.dev";
-        icon = "di:immich";
-      };
-
       services = {
         immich = {
           enable = true;
           host = "127.0.0.1";
-          port = 2283;
+          inherit (meta.services.immich) port;
           secretsFile = config.sops.secrets.immich.path;
         };
 
         caddy.virtualHosts = {
-          "immich.${config.networking.domain}" = {
+          "${meta.services.immich.domain}" = {
             extraConfig = ''
-              reverse_proxy http://${cfg.host}:${toString cfg.port}
+              reverse_proxy http://localhost:${toString meta.services.immich.port}
               import cloudflare
-            '';
-          };
-
-          "media.${config.networking.domain}" = {
-            extraConfig = ''
-              reverse_proxy http://${cfg.host}:${toString cfg.port}
-              tls internal
             '';
           };
         };

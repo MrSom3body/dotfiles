@@ -1,19 +1,15 @@
-{ lib, ... }:
+{ config, ... }:
+let
+  inherit (config.flake) meta;
+in
 {
   flake.modules.nixos.transmission =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     {
-      my.services.glance.services = lib.singleton {
-        title = "transmission";
-        url = "https://transmission.sndh.dev";
-        icon = "di:transmission";
-        alt-status-codes = [ 401 ];
-      };
-
       services = {
-        caddy.virtualHosts."transmission.sndh.dev" = {
+        caddy.virtualHosts."${meta.services.transmission.domain}" = {
           extraConfig = ''
-            reverse_proxy http://localhost:${builtins.toString config.services.transmission.settings.rpc-port}
+            reverse_proxy http://localhost:${toString meta.services.transmission.port}
             import cloudflare
           '';
         };
@@ -21,7 +17,10 @@
         transmission = {
           enable = true;
           package = pkgs.transmission_4;
+
           settings = {
+            rpc-port = meta.services.transmission.port;
+
             speed-limit-up = 2000;
             speed-limit-up-enabled = true;
 

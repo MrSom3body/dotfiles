@@ -1,26 +1,16 @@
-{ lib, ... }:
+{ config, lib, ... }:
 let
-  inherit (lib) mkOption types;
+  inherit (config.flake) meta;
 in
 {
   flake.modules.nixos.glance =
     { config, ... }:
-    let
-      cfg = config.my.services.glance;
-      cfg' = config.services.glance;
-    in
     {
-      options.my.services.glance.services = mkOption {
-        description = "A list of services";
-        example = [ ];
-        type = types.listOf types.attrs;
-      };
-
       config = {
         services = {
-          caddy.virtualHosts."home.${config.networking.domain}" = {
+          caddy.virtualHosts."${meta.services.glance.domain}" = {
             extraConfig = ''
-              reverse_proxy http://${cfg'.settings.server.host}:${toString cfg'.settings.server.port}
+              reverse_proxy http://localhost:${toString meta.services.glance.port}
               import cloudflare
             '';
           };
@@ -30,7 +20,7 @@ in
             settings = {
               server = {
                 host = "127.0.0.1";
-                port = 8080;
+                inherit (meta.services.glance) port;
               };
 
               pages = [
@@ -174,22 +164,28 @@ in
                       size = "full";
                       widgets =
                         let
-                          mkSite = title: url: icon: { inherit title url icon; };
+                          allServices = meta.services;
+                          servicesToShow = lib.filterAttrs (
+                            _name: service: (service.show or false) && (service ? "domain")
+                          ) allServices;
+                          formattedServices = lib.mapAttrsToList (
+                            name: service:
+                            {
+                              title = name;
+                              url = "https://" + service.domain;
+                            }
+                            // lib.optionalAttrs (service ? "icon") { inherit (service) icon; }
+                            // lib.optionalAttrs (service ? "alt-status-codes") {
+                              "alt-status-codes" = service."alt-status-codes";
+                            }
+                          ) servicesToShow;
                         in
                         [
                           {
                             type = "monitor";
                             cache = "15s";
-                            title = "Private Services";
-                            sites = cfg.services;
-                          }
-                          {
-                            type = "monitor";
-                            cache = "15s";
-                            title = "Public Services";
-                            sites = [
-                              (mkSite "firefox send" "https://send.sndh.dev" "di:firefox-send")
-                            ];
+                            title = "Services";
+                            sites = formattedServices;
                           }
                         ];
                     }

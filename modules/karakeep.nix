@@ -2,28 +2,24 @@
 # let
 #   flakeModules = config.flake.modules;
 # in
-{ lib, ... }:
+{ config, ... }:
+let
+  inherit (config.flake) meta;
+in
 {
   flake.modules.nixos.karakeep =
     { config, ... }:
     let
-      cfg = config.services.karakeep;
       ollamaCfg = config.services.ollama;
     in
     {
       # import = [ flakeModules.nixos.meilisearch ];
 
-      my.services.glance.services = lib.singleton {
-        title = "karakeep";
-        url = "https://karakeep.sndh.dev";
-        icon = "di:karakeep";
-      };
-
       services = {
         caddy.virtualHosts = {
-          "karakeep.sndh.dev" = {
+          "${meta.services.karakeep.domain}" = {
             extraConfig = ''
-              reverse_proxy ${cfg.extraEnvironment.NEXTAUTH_URL}
+              reverse_proxy http://localhost:${meta.services.karakeep.port}
               import cloudflare
             '';
           };
@@ -38,13 +34,13 @@
           enable = true;
           meilisearch.enable = false;
           extraEnvironment = {
-            NEXTAUTH_URL = "http://localhost:3000";
+            NEXTAUTH_URL = "http://localhost:${ollamaCfg.port}";
             DISABLE_SIGNUPS = "true";
             DISABLE_NEW_RELEASE_CHECK = "true";
             DB_WAL_MODE = "true";
 
             # ai
-            OLLAMA_BASE_URL = "http://${ollamaCfg.host}:${builtins.toString ollamaCfg.port}";
+            OLLAMA_BASE_URL = "http://localhost:${ollamaCfg.port}";
             INFERENCE_TEXT_MODEL = "gemma3:latest";
             INFERENCE_IMAGE_MODEL = "gemma3:latest";
           };

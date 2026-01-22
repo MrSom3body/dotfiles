@@ -1,28 +1,23 @@
-{ lib, ... }:
+{ config, ... }:
+let
+  inherit (config.flake) meta;
+in
 {
-  flake.modules.nixos.beszel =
-    { config, ... }:
-    let
-      cfg = config.services.beszel.hub;
-    in
-    {
-      my.services.glance.services = lib.singleton {
-        title = "beszel";
-        url = "https://beszel.sndh.dev";
-        icon = "di:beszel";
+  flake.modules.nixos.beszel = {
+    services = {
+      beszel.hub = {
+        enable = true;
+        inherit (meta.services.beszel) port;
       };
 
-      services = {
-        beszel.hub.enable = true;
-
-        caddy.virtualHosts = {
-          "beszel.${config.networking.domain}" = {
-            extraConfig = ''
-              reverse_proxy http://${cfg.host}:${toString cfg.port}
-              import cloudflare
-            '';
-          };
+      caddy.virtualHosts = {
+        ${meta.services.beszel.domain} = {
+          extraConfig = ''
+            reverse_proxy http://localhost:${toString meta.services.beszel.port}
+            import cloudflare
+          '';
         };
       };
     };
+  };
 }

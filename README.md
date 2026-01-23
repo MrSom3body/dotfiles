@@ -1,5 +1,7 @@
 # 🖥️ dotfiles
 
+[![wakatime](https://wakatime.com/badge/user/b436660b-33a8-4abf-8f88-2b5d0fccc130/project/eb28a44c-aecf-4adf-8892-3b338e020447.svg)](https://wakatime.com/badge/user/b436660b-33a8-4abf-8f88-2b5d0fccc130/project/eb28a44c-aecf-4adf-8892-3b338e020447) <sup>(wow I <s>wasted</s> invested so much time?)</sup>
+
 Welcome to my dotfiles repository!
 
 These configurations are built primarily for _my workflow_ and systems, but thanks to the incredibly modular [Dendritic Pattern](https://github.com/mightyiam/dendritic), you can easily mix, match, and adapt whatever you like for your own environment.

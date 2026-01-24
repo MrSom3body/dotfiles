@@ -8,7 +8,7 @@
           inherit (pkgs)
             goverlay
             heroic
-            mindustry-wayland
+            # mindustry-wayland
             modrinth-app
             r2modman
             ;

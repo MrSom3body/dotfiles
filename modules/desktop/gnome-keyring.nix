@@ -1,6 +1,7 @@
 {
   flake.modules = {
     nixos.desktop = {
+      services.gnome.gnome-keyring.enable = true;
       security.pam.services = {
         greetd.enableGnomeKeyring = true;
         greetd-password.enableGnomeKeyring = true;
@@ -13,17 +14,8 @@
       {
         home.packages = builtins.attrValues {
           inherit (pkgs)
-            gcr
             seahorse
             ;
-        };
-
-        services.gnome-keyring = {
-          enable = true;
-          components = [
-            "pkcs11"
-            "secrets"
-          ];
         };
       };
   };

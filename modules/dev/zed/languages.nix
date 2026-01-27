@@ -35,7 +35,10 @@
 
           lsp = {
             nixd = {
-              initialization_options.formatting.command = [ (lib.getExe pkgs.nixfmt) ];
+              initialization_options.nixd.formatting.command = [
+                (lib.getExe pkgs.nixfmt)
+                "--strict"
+              ];
               binary.path = lib.getExe pkgs.nixd;
               settings.nixd = {
                 options =

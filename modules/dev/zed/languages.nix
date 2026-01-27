@@ -15,6 +15,13 @@
 
         userSettings = {
           languages = {
+            CSS = {
+              language_servers = [
+                "!tailwindcss-language-server"
+                "..."
+              ];
+              tab_size = 2;
+            };
             Nix.language_servers = [
               "!nil"
               "..."

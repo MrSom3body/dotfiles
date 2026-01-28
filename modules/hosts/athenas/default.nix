@@ -2,6 +2,7 @@
 let
   modules = [
     "desktop"
+    "hyprland"
     "iso"
     "laptop"
     "shell"

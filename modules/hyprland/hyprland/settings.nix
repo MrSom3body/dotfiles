@@ -3,7 +3,7 @@ let
   inherit (config.flake) meta;
 in
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.hyprland =
     { config, ... }:
     let
       cfg = config.wayland.windowManager.hyprland.settings;

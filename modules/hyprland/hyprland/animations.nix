@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.desktop = {
+  flake.modules.homeManager.hyprland = {
     wayland.windowManager.hyprland.settings = {
       animation = [
         "fade, 1, 4, default"

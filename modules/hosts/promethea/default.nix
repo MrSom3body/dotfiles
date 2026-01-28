@@ -6,6 +6,7 @@ let
     "desktop"
     "dev"
     "gaming"
+    "hyprland"
     "laptop"
     "media"
     "messaging"

@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.desktop = {
+  flake.modules.homeManager.hyprland = {
     wayland.windowManager.hyprland.settings = {
       binddm = [
         "SUPER, mouse:272, Move window with Super and left click, movewindow"

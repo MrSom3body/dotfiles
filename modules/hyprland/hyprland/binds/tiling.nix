@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.desktop = {
+  flake.modules.homeManager.hyprland = {
     wayland.windowManager.hyprland.settings.bindd = [
       # Controls
       "SUPER, Q, Close focused window, killactive"

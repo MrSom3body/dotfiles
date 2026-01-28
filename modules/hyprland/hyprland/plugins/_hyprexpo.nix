@@ -3,7 +3,7 @@ let
   rgb = color: "rgb(${color})";
 in
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.hyprland =
     { config, pkgs, ... }:
     {
       wayland.windowManager.hyprland = {

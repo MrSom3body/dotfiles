@@ -4,7 +4,7 @@ let
   inherit (lib) escapeRegex;
 in
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.hyprland =
     {
       osConfig ? null,
       config,

@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.hyprland =
     { pkgs, ... }:
     {
       wayland.windowManager.hyprland.settings = {

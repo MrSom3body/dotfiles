@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.desktop = {
+  flake.modules.homeManager.hyprland = {
     wayland.windowManager.hyprland.settings.bindd = [
       # Special workspaces
       "SUPER, A, Toggle special workspace, togglespecialworkspace, magic"

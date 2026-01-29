@@ -1,13 +1,12 @@
-{ inputs, ... }:
-let
-  rgb = color: "rgb(${color})";
-in
 {
   flake.modules.homeManager.hyprland =
     { config, pkgs, ... }:
+    let
+      rgb = color: "rgb(${color})";
+    in
     {
       wayland.windowManager.hyprland = {
-        plugins = [ inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo ];
+        plugins = [ pkgs.hyprlandPlugins.hyprexpo ];
         settings = {
           plugin.hyprexpo = {
             columns = 3;

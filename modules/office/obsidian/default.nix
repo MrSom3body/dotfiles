@@ -15,9 +15,19 @@
 
       defaultSettings = {
         app = {
+          pdfExportSettings = {
+            includeName = true;
+            pageSize = "A4";
+            landscape = false;
+            margin = 0;
+            downscalePercent = 100;
+          };
           vimMode = true;
           spellcheck = false;
           attachmentFolderPath = "./attachments";
+          alwaysUpdateLinks = true;
+          newFileLocation = "current";
+          showLineNumber = true;
         };
 
         extraFiles = {
@@ -33,7 +43,7 @@
           "editor-status"
           "file-explorer"
           "file-recovery"
-          # "footnotes"
+          "footnotes"
           "global-search"
           "graph"
           "note-composer"
@@ -47,24 +57,24 @@
           "word-count"
         ];
 
-        communityPlugins = [
-          "cm-editor-syntax-highlight-obsidian"
-          "code-block-copy"
-          "folder-notes"
-          "obsidian-auto-link-title"
-          "obsidian-completr"
-          "obsidian-discordrpc"
-          "obsidian-excalidraw-plugin"
-          "obsidian-excel-to-markdown-table"
-          "obsidian-languagetool-plugin"
-          "obsidian-latex-suite"
-          "obsidian-linter"
-          "obsidian-regex-replace"
-          "obsidian-smart-typography"
-          "update-time-on-edit"
-          # "obsidian-desmos"
-          # "obsidian-functionplot"
-        ];
+        # communityPlugins = [
+        #   "cm-editor-syntax-highlight-obsidian"
+        #   "code-block-copy"
+        #   "folder-notes"
+        #   "obsidian-auto-link-title"
+        #   "obsidian-completr"
+        #   "obsidian-discordrpc"
+        #   "obsidian-excalidraw-plugin"
+        #   "obsidian-excel-to-markdown-table"
+        #   "obsidian-languagetool-plugin"
+        #   "obsidian-latex-suite"
+        #   "obsidian-linter"
+        #   "obsidian-regex-replace"
+        #   "obsidian-smart-typography"
+        #   "update-time-on-edit"
+        #   # "obsidian-desmos"
+        #   # "obsidian-functionplot"
+        # ];
       };
     };
   };

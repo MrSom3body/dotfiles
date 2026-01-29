@@ -10,6 +10,7 @@ let
     "laptop"
     "media"
     "messaging"
+    "niri"
     "office"
     "shell"
 

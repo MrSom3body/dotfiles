@@ -169,6 +169,14 @@
       };
     };
 
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+      inputs = {
+        nixpkgs-stable.follows = "nixpkgs-stable";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     vicinae = {
       url = "github:vicinaehq/vicinae";
       inputs.nixpkgs.follows = "nixpkgs";

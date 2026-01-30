@@ -27,6 +27,13 @@
             delay_ms = 0;
           };
 
+          # terminal
+          terminal = {
+            env = {
+              EDITOR = "zeditor --wait";
+            };
+          };
+
           # multiplayer
           calls = {
             mute_on_join = true;
@@ -34,7 +41,7 @@
 
           # ai
           show_edit_predictions = true;
-          edit_predictions.mode = "eager";
+          edit_predictions.mode = "subtle";
           agent = {
             default_model = {
               provider = "copilot_chat";

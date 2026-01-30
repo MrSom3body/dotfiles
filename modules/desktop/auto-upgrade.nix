@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.laptop = {
+  flake.modules.nixos.desktop = {
     system.autoUpgrade.operation = "boot";
   };
 }

@@ -7,7 +7,12 @@
 
       boot.lanzaboote = {
         enable = true;
-        pkiBundle = "/etc/secureboot";
+        pkiBundle = "/var/lib/secureboot";
+        autoGenerateKeys.enable = true;
+        autoEnrollKeys = {
+          enable = true;
+          autoReboot = true;
+        };
       };
 
       environment.systemPackages = [ pkgs.sbctl ];

@@ -35,15 +35,6 @@
       };
     };
 
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs = {
-        flake-compat.follows = "flake-compat";
-        utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

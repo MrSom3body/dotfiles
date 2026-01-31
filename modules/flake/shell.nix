@@ -1,29 +1,20 @@
 {
   perSystem =
-    {
-      config,
-      inputs',
-      pkgs,
-      ...
-    }:
+    { config, pkgs, ... }:
     {
       devShells.default = pkgs.mkShell {
         name = "dotfiles";
 
         buildInputs = config.pre-commit.settings.enabledPackages;
 
-        packages =
-          builtins.attrValues {
-            inherit (pkgs)
-              git
-              just
-              ripgrep
-              sops
-              ;
-          }
-          ++ [
-            inputs'.deploy-rs.packages.default
-          ];
+        packages = builtins.attrValues {
+          inherit (pkgs)
+            git
+            just
+            ripgrep
+            sops
+            ;
+        };
 
         shellHook = ''
           ${config.pre-commit.settings.shellHook}

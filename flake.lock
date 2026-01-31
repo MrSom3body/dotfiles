@@ -130,32 +130,6 @@
         "type": "github"
       }
     },
-    "deploy-rs": {
-      "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "utils": [
-          "flake-utils"
-        ]
-      },
-      "locked": {
-        "lastModified": 1766051518,
-        "narHash": "sha256-znKOwPXQnt3o7lDb3hdf19oDo0BLP4MfBOYiWkEHoik=",
-        "owner": "serokell",
-        "repo": "deploy-rs",
-        "rev": "d5eff7f948535b9c723d60cd8239f8f11ddc90fa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "serokell",
-        "repo": "deploy-rs",
-        "type": "github"
-      }
-    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -623,7 +597,6 @@
       "inputs": {
         "comin": "comin",
         "crillios-ls": "crillios-ls",
-        "deploy-rs": "deploy-rs",
         "disko": "disko",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",

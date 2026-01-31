@@ -115,7 +115,7 @@
 
     # programs
     crillios-ls = {
-      url = "github:MrSom3body-contrib/Crill-IOS-Scripting/fix/package-overrides-for-nix";
+      url = "github:Crill-IOS/Crill-IOS-Scripting";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         git-hooks-nix.follows = "git-hooks-nix";

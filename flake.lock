@@ -94,16 +94,15 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1768699797,
+        "lastModified": 1769766721,
         "narHash": "sha256-KkaWhlcQB0tdLtk69O7UxBDvZYYrEPPLINTmFEUHWUQ=",
-        "owner": "MrSom3body-contrib",
+        "owner": "Crill-IOS",
         "repo": "Crill-IOS-Scripting",
-        "rev": "c2c2214698dd9952588ae05f415aed5114b85b03",
+        "rev": "85ad1c46554fed4f8698e36f58d6d7adea49f013",
         "type": "github"
       },
       "original": {
-        "owner": "MrSom3body-contrib",
-        "ref": "fix/package-overrides-for-nix",
+        "owner": "Crill-IOS",
         "repo": "Crill-IOS-Scripting",
         "type": "github"
       }

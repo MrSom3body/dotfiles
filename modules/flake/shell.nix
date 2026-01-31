@@ -17,7 +17,6 @@
             inherit (pkgs)
               git
               just
-              nixfmt-tree
               ripgrep
               sops
               ;

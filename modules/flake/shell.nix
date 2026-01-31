@@ -24,7 +24,6 @@
           }
           ++ [
             inputs'.deploy-rs.packages.default
-            inputs'.helix.packages.default # a editor if I'm dumb and remove it somehow
           ];
 
         shellHook = ''

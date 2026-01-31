@@ -3,8 +3,6 @@
   flake.modules.nixos.server =
     { config, ... }:
     {
-      system.autoUpgrade.allowReboot = lib.mkDefault true;
-
       networking = {
         firewall = {
           enable = lib.mkForce true;

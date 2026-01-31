@@ -27,6 +27,14 @@
     };
 
     # nix ecosystem
+    comin = {
+      url = "github:nlewo/comin";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs = {

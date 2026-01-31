@@ -4,10 +4,6 @@
       enable = true;
       enableDefaultConfig = false;
       matchBlocks = {
-        "lbt" = {
-          hostname = "lbt.tail7807a4.ts.net";
-        };
-
         "*" = {
           forwardAgent = false;
           addKeysToAgent = "no";

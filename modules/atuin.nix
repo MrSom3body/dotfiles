@@ -5,7 +5,6 @@
       programs = {
         atuin = {
           enable = true;
-          flags = [ "--disable-up-arrow" ];
           settings = {
             workspaces = true;
 
@@ -21,6 +20,11 @@
             sync_frequency = "0";
           };
         };
+      };
+
+      programs.fish.binds."k" = {
+        mode = "default";
+        command = "_atuin_bind_up";
       };
     };
 }

@@ -6,6 +6,7 @@ let
 
     "base"
     "server"
+    "shell"
 
     "atuin"
     "beszel"

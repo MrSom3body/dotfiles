@@ -17,6 +17,7 @@ let
     "syncthing-server"
     # "transmission" # commented out because already imported in arr
     "tailscale-exit-node"
+    "topology"
   ];
 in
 {

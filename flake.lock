@@ -542,6 +542,29 @@
         "type": "github"
       }
     },
+    "nix-topology": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769942169,
+        "narHash": "sha256-zf7ZT+T//VttebAuOjAHfoV74F7OtQRgXCfOYXH1u+A=",
+        "owner": "oddlama",
+        "repo": "nix-topology",
+        "rev": "7d8a305b353844ce0c7dd3196593aa2387b21361",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oddlama",
+        "repo": "nix-topology",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1769302137,
@@ -631,6 +654,7 @@
         "nix-index-database": "nix-index-database",
         "nix-jetbrains-plugins": "nix-jetbrains-plugins",
         "nix-minecraft": "nix-minecraft",
+        "nix-topology": "nix-topology",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",

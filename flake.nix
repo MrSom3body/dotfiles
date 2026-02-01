@@ -82,6 +82,14 @@
       };
     };
 
+    nix-topology = {
+      url = "github:oddlama/nix-topology";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     sops-nix = {

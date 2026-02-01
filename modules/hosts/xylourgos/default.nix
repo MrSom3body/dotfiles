@@ -18,6 +18,7 @@ let
     "stylix"
     "syncthing-server"
     "tailscale-exit-node"
+    "topology"
   ];
 in
 {

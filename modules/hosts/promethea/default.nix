@@ -33,6 +33,7 @@ let
     "proton"
     "rclone"
     "terraform"
+    "topology"
     "vmware"
     "wireshark"
     "ydotool"

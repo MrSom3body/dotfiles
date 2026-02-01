@@ -8,7 +8,6 @@ let
     "server"
 
     "atuin"
-    "atuin-server"
     "beszel"
     "glance"
     "minecraft-server/kn-server"

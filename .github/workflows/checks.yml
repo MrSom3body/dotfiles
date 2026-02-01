@@ -63,6 +63,7 @@ jobs:
           - sanctuary
           # servers
           - pandora
+          - xylourgos
           # laptops
           - promethea
 

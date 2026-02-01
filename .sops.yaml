@@ -13,6 +13,7 @@ creation_rules:
         age:
           - *promethea
           - *pandora
+          - *xylourgos
   - path_regex: secrets/promethea/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - pgp:
@@ -25,3 +26,9 @@ creation_rules:
           - *karun
         age:
           - *pandora
+  - path_regex: secrets/xylourgos/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - pgp:
+          - *karun
+        age:
+          - *xylourgos

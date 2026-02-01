@@ -11,11 +11,8 @@ let
     "atuin-server"
     "ddns-updater"
     "firefox-send"
-    "glance"
     "immich"
-    # "minecraft-server/kn-server"
     "miniflux"
-    "searx"
     "stylix"
     "syncthing-server"
     # "transmission" # commented out because already imported in arr

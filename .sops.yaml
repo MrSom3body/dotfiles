@@ -4,6 +4,7 @@ keys:
   - &hosts:
     - &promethea age1dqafwvry0efcwagplqp8ez0ul9tmlduqhpnsx5wgz36z57d635zszg5k8z
     - &pandora age15jgs3y0uqrxu8027jnrvfc6vsryd6uuyfmtudxspjpfl6y2gqgeqqhj623
+    - &xylourgos age1d4r0qx4dtlsc64sp98fdcu85s6a3tfmsdf549hn6jteyhy76naasmqat57
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:

@@ -11,7 +11,6 @@ let
     "atuin"
     "beszel"
     "glance"
-    "minecraft-server/kn-server"
     "ntfy"
     "open-webui"
     "qemu-guest"

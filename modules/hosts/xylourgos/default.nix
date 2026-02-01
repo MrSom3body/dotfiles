@@ -2,6 +2,8 @@
 let
   hostName = "xylourgos";
   modules = [
+    "oracle-keep-alive" # DO NOT REMOVE
+
     "base"
     "server"
 

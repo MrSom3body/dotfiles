@@ -18,6 +18,7 @@ let
     "atuin"
     "bluetooth"
     # "design"
+    "emulation"
     "fingerprint"
     "flatpak"
     "gns3"

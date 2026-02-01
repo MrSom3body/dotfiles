@@ -15,7 +15,6 @@ let
     "immich"
     # "minecraft-server/kn-server"
     "miniflux"
-    "ntfy"
     "searx"
     "stylix"
     "syncthing-server"

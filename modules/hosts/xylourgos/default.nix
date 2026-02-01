@@ -8,6 +8,7 @@ let
     "atuin"
     "atuin-server"
     "beszel"
+    "ntfy"
     "qemu-guest"
     "stylix"
     "syncthing-server"

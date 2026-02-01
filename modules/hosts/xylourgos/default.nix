@@ -6,8 +6,9 @@ let
     "server"
 
     "atuin"
-    "qemu-guest"
     "atuin-server"
+    "beszel"
+    "qemu-guest"
     "stylix"
     "syncthing-server"
     "tailscale-exit-node"

@@ -9,7 +9,6 @@ let
     "anubis"
     "atuin"
     "atuin-server"
-    "beszel"
     "ddns-updater"
     "firefox-send"
     "glance"

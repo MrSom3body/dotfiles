@@ -13,6 +13,7 @@ let
     "glance"
     "minecraft-server/kn-server"
     "ntfy"
+    "open-webui"
     "qemu-guest"
     "searx"
     "stylix"

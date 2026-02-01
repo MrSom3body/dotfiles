@@ -81,6 +81,12 @@
       "ollama" = {
         port = 11434;
       };
+      "open-webui" = {
+        port = 3000;
+        domain = "ai.sndh.dev";
+        icon = "di:open-webui";
+        show = true;
+      };
       "prowlarr" = {
         port = 9696;
         domain = "prowlarr.sndh.dev";

@@ -29,6 +29,10 @@ You can find all my custom packages in this repo to import them into your flake.
 ![Windows Preview](.github/assets/windows.png)
 ![Launcher Preview](.github/assets/launcher.png)
 
+## 🌐 Topology
+
+![Topology Preview](.github/assets/topology.webp)
+
 ## 💾 Credits & Resources
 
 I’ve drawn inspiration from these fantastic projects, people and sources:

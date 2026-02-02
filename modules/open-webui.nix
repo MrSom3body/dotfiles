@@ -13,11 +13,6 @@ in
       ollama = {
         enable = true;
         syncModels = true;
-        loadModels = [
-          "gemma3:27b"
-          "qwen2.5-coder:32b"
-          "gpt-oss:20b"
-        ];
       };
 
       caddy.virtualHosts = {

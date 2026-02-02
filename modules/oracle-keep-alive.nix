@@ -15,8 +15,6 @@
           # and lock 25% of RAM
           ExecStart = ''
             ${pkgs.stress-ng}/bin/stress-ng \
-              --cpu 0 \
-              --cpu-load 25 \
               --vm 1 \
               --vm-bytes 25% \
               --vm-keep

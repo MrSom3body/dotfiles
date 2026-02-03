@@ -4,7 +4,7 @@ let
 in
 {
   flake.modules.nixos.nixos = {
-    home.sessionVariables = {
+    environment.sessionVariables = {
       EDITOR = lib.mkDefault programs.editor;
       BROWSER = lib.mkDefault "echo";
     };

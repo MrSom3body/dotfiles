@@ -24,6 +24,7 @@
         domain = "send.sndh.dev";
         icon = "di:firefox-send";
         show = true;
+        public = true;
       };
       "flaresolverr" = {
         port = 8191;

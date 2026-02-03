@@ -10,10 +10,7 @@ in
     };
 
     homeManager.desktop = {
-      home.sessionVariables = {
-        EDITOR = programs.editor;
-        BROWSER = programs.browser;
-      };
+      home.sessionVariables.BROWSER = programs.browser;
     };
   };
 }

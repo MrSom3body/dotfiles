@@ -164,28 +164,37 @@ in
                       size = "full";
                       widgets =
                         let
-                          allServices = meta.services;
-                          servicesToShow = lib.filterAttrs (
+                          allServices = lib.filterAttrs (
                             _name: service: (service.show or false) && (service ? "domain")
-                          ) allServices;
-                          formattedServices = lib.mapAttrsToList (
-                            name: service:
-                            {
-                              title = name;
-                              url = "https://" + service.domain;
-                            }
-                            // lib.optionalAttrs (service ? "icon") { inherit (service) icon; }
-                            // lib.optionalAttrs (service ? "alt-status-codes") {
-                              "alt-status-codes" = service."alt-status-codes";
-                            }
-                          ) servicesToShow;
+                          ) meta.services;
+                          privateServices = lib.filterAttrs (_name: service: (!service.public or false)) allServices;
+                          publicServices = lib.filterAttrs (_name: service: (service.public or false)) allServices;
+                          formatServices =
+                            services:
+                            lib.mapAttrsToList (
+                              name: service:
+                              {
+                                title = name;
+                                url = "https://" + service.domain;
+                              }
+                              // lib.optionalAttrs (service ? "icon") { inherit (service) icon; }
+                              // lib.optionalAttrs (service ? "alt-status-codes") {
+                                "alt-status-codes" = service."alt-status-codes";
+                              }
+                            ) services;
                         in
                         [
                           {
                             type = "monitor";
                             cache = "15s";
-                            title = "Services";
-                            sites = formattedServices;
+                            title = "Public Services";
+                            sites = formatServices publicServices;
+                          }
+                          {
+                            type = "monitor";
+                            cache = "15s";
+                            title = "Private Services";
+                            sites = formatServices privateServices;
                           }
                         ];
                     }

@@ -1,10 +1,7 @@
-name: Checks
+name: Build Configurations
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
   pull_request:
 
 jobs:
@@ -12,14 +9,13 @@ jobs:
     uses: ./.github/workflows/generate-matrix.yml
     secrets: inherit
 
-  check-flake:
-    name: Check Flake (${{ matrix.arch }})
+  build-configurations:
+    name: Build Configuration (${{ matrix.hostname }})
     needs: matrix
     runs-on: ${{ matrix.runs-on }}
     strategy:
       fail-fast: false
-      matrix:
-        include: ${{ fromJson(needs.matrix.outputs.os_matrix) }}
+      matrix: ${{ fromJson(needs.matrix.outputs.matrix) }}
 
     steps:
       - name: Checkout code
@@ -49,11 +45,23 @@ jobs:
           purge-last-accessed: 0
           purge-primary-key: never
 
-      - name: Remove modules
+      - name: Remove modules with requireFile
         run: |
           rm -f \
             modules/vmware.nix \
             modules/school/cisco.nix
 
-      - name: Check Flake
-        run: nix flake check
+      - name: Build ${{ matrix.hostname }}
+        run: |
+          nix build .#${{ matrix.output }}.${{ matrix.hostname }}.config.system.build.toplevel -L
+
+  build-configurations-success:
+    name: Build Configurations Success
+    runs-on: ubuntu-latest
+    needs: [build-configurations]
+    if: ${{ cancelled() || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'failure') }}
+    steps:
+      - name: Conditionally Fail Required Check
+        run: |
+          echo "::error::Building a configuration has failed!"
+          exit 1

@@ -26,6 +26,17 @@
             --replace-fail getfacl "${final.lib.getExe' final.acl "getfacl"}"
         '';
       });
+
+      # TODO remove when https://github.com/NixOS/nixpkgs/issues/486937 gets resolved
+      gns3-server = prev.gns3-server.overrideAttrs (_oldAttrs: rec {
+        version = "2.2.55";
+        src = final.fetchFromGitHub {
+          owner = "GNS3";
+          repo = "gns3-server";
+          tag = "v${version}";
+          hash = "sha256-o04RrHYsa5sWYUBDLJ5xgcK4iJK8CfZ4YdAiZ4eV/o4=";
+        };
+      });
     };
 
     stable-packages = final: _prev: {

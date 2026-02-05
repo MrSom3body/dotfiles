@@ -8,18 +8,39 @@ on:
   pull_request:
 
 jobs:
-  matrix:
-    uses: ./.github/workflows/generate-matrix.yml
-    secrets: inherit
+  generate-matrix:
+    name: Generate Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      os_matrix: ${{ steps.set-matrix.outputs.os_matrix }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate Matrix
+        id: set-matrix
+        run: |
+          matrix="$(nix eval --json --impure -f .github/matrix.nix)"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          os_matrix="$(echo "$matrix" | jq -c '[.include[] | { "runs-on": .["runs-on"], "arch": .arch }] | unique')"
+          echo "os_matrix=$os_matrix" >> "$GITHUB_OUTPUT"
 
   check-flake:
     name: Check Flake (${{ matrix.arch }})
-    needs: matrix
+    needs: generate-matrix
     runs-on: ${{ matrix.runs-on }}
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJson(needs.matrix.outputs.os_matrix) }}
+        include: ${{ fromJson(needs.generate-matrix.outputs.os_matrix) }}
 
     steps:
       - name: Checkout code
@@ -30,7 +51,7 @@ jobs:
       - name: Purge non-nix stuff
         uses: wimpysworld/nothing-but-nix@main
         with:
-          hatchet-protocol: cleave
+          hatchet-protocol: rampage
 
       - name: Install Nix
         uses: cachix/install-nix-action@v31
@@ -57,3 +78,61 @@ jobs:
 
       - name: Check Flake
         run: nix flake check
+
+  build-configurations:
+    name: Build Configuration (${{ matrix.hostname }})
+    needs: generate-matrix
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' # only run in pull requests and on manual runs
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Purge non-nix stuff
+        uses: wimpysworld/nothing-but-nix@main
+        with:
+          hatchet-protocol: rampage
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cache Nix store
+        uses: nix-community/cache-nix-action@v7
+        with:
+          primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          restore-prefixes-first-match: nix-${{ runner.os }}-
+          gc-max-store-size-linux: 5G
+          purge: true
+          purge-prefixes: nix-${{ runner.os }}-
+          purge-created: 0
+          purge-last-accessed: 0
+          purge-primary-key: never
+
+      - name: Remove modules with requireFile
+        run: |
+          rm -f \
+            modules/vmware.nix \
+            modules/school/cisco.nix
+
+      - name: Build ${{ matrix.hostname }}
+        run: |
+          nix build .#${{ matrix.output }}.${{ matrix.hostname }}.config.system.build.toplevel -L
+
+  build-configurations-success:
+    name: Build Configurations Success
+    runs-on: ubuntu-latest
+    needs: [build-configurations]
+    if: ${{ cancelled() || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'failure') }}
+    steps:
+      - name: Conditionally Fail Required Check
+        run: |
+          echo "::error::Building a configuration has failed!"
+          exit 1

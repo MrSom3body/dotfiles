@@ -12,11 +12,11 @@
 
     import-tree.url = "github:vic/import-tree";
 
-    # global, so they can be `.follow`ed
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     systems.url = "github:nix-systems/default-linux";
 
+    # deduplication
     flake-compat = {
       url = "github:edolstra/flake-compat";
     };
@@ -24,6 +24,16 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
+    };
+
+    gitignore = {
+      url = "github:hercules-ci/gitignore.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # nix ecosystem
@@ -44,6 +54,7 @@
       url = "github:cachix/git-hooks.nix";
       inputs = {
         flake-compat.follows = "flake-compat";
+        gitignore.follows = "gitignore";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -58,6 +69,7 @@
       inputs = {
         pre-commit.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
+        rust-overlay.follows = "rust-overlay";
       };
     };
 
@@ -148,7 +160,10 @@
 
     helix = {
       url = "github:helix-editor/helix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rust-overlay.follows = "rust-overlay";
+      };
     };
 
     vicinae = {
@@ -166,7 +181,11 @@
 
     wakatime-ls = {
       url = "github:mrnossiom/wakatime-ls";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        gitignore.follows = "gitignore";
+        nixpkgs.follows = "nixpkgs";
+        rust-overlay.follows = "rust-overlay";
+      };
     };
 
     zen-browser = {

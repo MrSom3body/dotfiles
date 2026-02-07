@@ -21,6 +21,7 @@ let
     "emulation"
     "fingerprint"
     "flatpak"
+    "gemini-cli"
     "gns3"
     "helix-gpt"
     "lanzaboote"
@@ -71,7 +72,6 @@ in
         {
           home.packages = [
             pkgs.calibre
-            pkgs.gemini-cli
             pkgs.logseq
             pkgs.todoist-electron
           ];

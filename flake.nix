@@ -73,6 +73,14 @@
       };
     };
 
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs = {
+        treefmt-nix.follows = "treefmt-nix";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";

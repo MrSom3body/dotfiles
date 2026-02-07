@@ -51,3 +51,11 @@ jobs:
           delete-branch: true
           labels: |
             automated
+
+      - name: Auto merge
+        run: |
+          if [ -n "${{ steps.update.outputs.pull-request-number }}" ]; then
+            gh pr merge --auto --rebase ${{ steps.update.outputs.pull-request-number }}
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}

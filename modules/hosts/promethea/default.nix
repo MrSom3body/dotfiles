@@ -23,7 +23,6 @@ let
     "flatpak"
     "gemini-cli"
     "gns3"
-    "helix-gpt"
     "lanzaboote"
     "libvirtd"
     "logitech"

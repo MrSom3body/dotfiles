@@ -2,7 +2,7 @@ name: Update Topology
 
 on:
   schedule:
-    - cron: "0 0 * * 5" # Weekly on Friday at 00:00
+    - cron: "0 0 1,15 * *" # Bi-weekly on the 1st and 15th at 00:00
   workflow_dispatch:
 
 jobs:

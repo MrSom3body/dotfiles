@@ -1,6 +1,6 @@
 # 🖥️ dotfiles
 
-[![wakatime](https://wakatime.com/badge/user/b436660b-33a8-4abf-8f88-2b5d0fccc130/project/eb28a44c-aecf-4adf-8892-3b338e020447.svg)](https://wakatime.com/badge/user/b436660b-33a8-4abf-8f88-2b5d0fccc130/project/eb28a44c-aecf-4adf-8892-3b338e020447) <sup>(wow I <s>wasted</s> invested so much time?)</sup>
+![time spent last month](https://waka.sndh.dev/api/badge/MrSom3body/interval:last_30_days/project:dotfiles) <sup>(wow I <s>wasted</s> invested so much time?)</sup>
 
 Welcome to my dotfiles repository!
 

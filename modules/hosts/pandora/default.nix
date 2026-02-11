@@ -9,8 +9,6 @@ let
     "anubis"
     "atuin"
     "atuin-server"
-    "ddns-updater"
-    "firefox-send"
     "immich"
     "miniflux"
     "stylix"

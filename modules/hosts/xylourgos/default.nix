@@ -10,6 +10,8 @@ let
 
     "atuin"
     "beszel"
+    "ddns-updater"
+    "firefox-send"
     "glance"
     "ntfy"
     "open-webui"

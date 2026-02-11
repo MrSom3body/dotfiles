@@ -39,7 +39,7 @@ in
         gopls.command = lib.getExe pkgs.gopls;
         lemminx.command = lib.getExe pkgs.lemminx;
         ltex-ls-plus.command = lib.getExe' pkgs.ltex-ls-plus "ltex-ls-plus";
-        marksman.command = lib.getExe pkgs.marksman;
+        markdown-oxide.command = lib.getExe pkgs.markdown-oxide;
         nixd = {
           command = lib.getExe pkgs.nixd;
           config.nixd = {
@@ -60,6 +60,7 @@ in
           args = [ "language-server" ];
         };
         ruff.command = lib.getExe pkgs.ruff;
+        rumdl.command = lib.getExe pkgs.rumdl;
         sqls.command = lib.getExe pkgs.sqls;
         superhtml.command = lib.getExe pkgs.superhtml;
         taplo.command = lib.getExe pkgs.taplo;

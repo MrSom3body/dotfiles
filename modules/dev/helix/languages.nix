@@ -106,7 +106,8 @@ in
           soft-wrap.enable = true;
           formatter = prettier "markdown";
           language-servers = [
-            "marksman"
+            "markdown-oxide"
+            "rumdl"
             "ltex-ls-plus"
           ];
         }

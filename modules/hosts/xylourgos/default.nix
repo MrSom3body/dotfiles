@@ -21,6 +21,7 @@ let
     "syncthing-server"
     "tailscale-exit-node"
     "topology"
+    "wakapi"
   ];
 in
 {

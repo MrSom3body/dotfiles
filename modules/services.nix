@@ -122,6 +122,12 @@
         alt-status-codes = [ 401 ];
         show = true;
       };
+      "wakapi" = {
+        port = 3001;
+        domain = "waka.sndh.dev";
+        icon = "di:wakapi";
+        show = true;
+      };
     };
   };
 }

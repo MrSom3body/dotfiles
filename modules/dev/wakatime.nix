@@ -9,6 +9,7 @@
         secrets.wakatime-api-key.sopsFile = ../../secrets/wakatime.yaml;
         templates."wakatime.cfg".content = ''
           [settings]
+          api_url = https://waka.sndh.dev/api
           api_key = ${config.sops.placeholder.wakatime-api-key}
         '';
       };

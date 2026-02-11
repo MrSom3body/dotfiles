@@ -45,7 +45,7 @@ in
             ${meta.services.wakapi.domain} = {
               extraConfig = ''
                 reverse_proxy http://localhost:${toString meta.services.wakapi.port}
-                import cloudflare
+                tls internal
               '';
             };
           };

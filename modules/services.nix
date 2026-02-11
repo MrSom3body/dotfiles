@@ -127,6 +127,7 @@
         domain = "waka.sndh.dev";
         icon = "di:wakapi";
         show = true;
+        public = true;
       };
     };
   };

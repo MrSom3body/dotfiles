@@ -76,8 +76,7 @@ in
           file-types = [ { glob = "**/templates/**/*.html"; } ];
           language-servers = [
             "djlsp"
-            "vscode-html-language-server"
-            "superhtml"
+            "djlint"
             "codebook"
           ];
         }

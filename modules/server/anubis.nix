@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.anubis =
+  flake.modules.nixos.server =
     { config, ... }:
     let
       cfg = config.services.anubis.defaultOptions;

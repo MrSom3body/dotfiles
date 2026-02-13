@@ -22,7 +22,7 @@
 
           # Clipboard
           "SUPER, V, Show clipboard history, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
-          "SUPER CTRL, V, Clear clipboard history, exec, vicinae vicinae://extensions/vicinae/clipboard/clear"
+          "SUPER CTRL, V, Clear clipboard history, exec, vicinae vicinae://extensions/vicinae/clipboard/clear-history"
 
           # Notifcations
           "SUPER, COMMA, Open notification action, exec, fnottctl actions"

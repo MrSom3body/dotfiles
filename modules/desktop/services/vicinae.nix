@@ -21,6 +21,7 @@
             };
             "clipboard".preferences = {
               eraseOnStartup = true;
+              encryption = true;
             };
             "files".preferences = {
               excludedPaths = ".venv;.git;.direnv";

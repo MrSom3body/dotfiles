@@ -1,18 +1,21 @@
-name: Update Topology
+name: Flake Update
 
 on:
-  schedule:
-    - cron: "0 0 1,15 * *" # Bi-weekly on the 1st and 15th at 00:00
   workflow_dispatch:
+  schedule:
+    - cron: "0 22 */2 * *" # every other day at 22:00
 
 jobs:
-  update-topology:
+  update-flake:
+    name: Update Flake
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
       pull-requests: write
+
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -22,7 +25,7 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Cache Nix store
+      - name: Setup Nix cache
         uses: nix-community/cache-nix-action@v7
         with:
           primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
@@ -34,22 +37,15 @@ jobs:
           purge-last-accessed: 0
           purge-primary-key: never
 
-      - name: Build Topology
-        run: nix build .#topology.x86_64-linux.config.output
-
-      - name: Generate WebP
-        run: nix run nixpkgs#librsvg -- -o .github/assets/topology.webp ./result/main.svg
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v8
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@v28
+        id: update
         with:
           token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
-          commit-message: "assets: update topology image"
-          title: "assets: update topology image"
-          body: "This PR updates the network topology image generated from the latest Nix configuration."
-          branch: "update-topology"
-          delete-branch: true
-          labels: |
+          commit-msg: "flake.lock: update"
+          pr-title: "flake.lock: update"
+          pr-labels: |
+            dependencies
             automated
 
       - name: Auto merge

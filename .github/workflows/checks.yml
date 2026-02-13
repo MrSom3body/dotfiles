@@ -9,7 +9,7 @@ on:
 
 jobs:
   generate-matrix:
-    uses: ./.github/workflows/matrix.yml
+    uses: ./.github/workflows/_matrix.yml
 
   check-flake:
     name: Check Flake (${{ matrix.arch }})
@@ -21,12 +21,12 @@ jobs:
         include: ${{ fromJson(needs.generate-matrix.outputs.os_matrix) }}
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Purge non-nix stuff
+      - name: Purge non-Nix files
         uses: wimpysworld/nothing-but-nix@main
         with:
           hatchet-protocol: rampage
@@ -36,7 +36,7 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Cache Nix store
+      - name: Setup Nix cache
         uses: nix-community/cache-nix-action@v7
         with:
           primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
@@ -48,7 +48,7 @@ jobs:
           purge-last-accessed: 0
           purge-primary-key: never
 
-      - name: Remove modules
+      - name: Remove unbuildable modules
         run: |
           rm -f \
             modules/vmware.nix \
@@ -67,12 +67,12 @@ jobs:
       matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Purge non-nix stuff
+      - name: Purge non-Nix files
         uses: wimpysworld/nothing-but-nix@main
         with:
           hatchet-protocol: rampage
@@ -82,7 +82,7 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Cache Nix store
+      - name: Setup Nix cache
         uses: nix-community/cache-nix-action@v7
         with:
           primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
@@ -94,7 +94,7 @@ jobs:
           purge-last-accessed: 0
           purge-primary-key: never
 
-      - name: Remove modules with requireFile
+      - name: Remove unbuildable modules
         run: |
           rm -f \
             modules/vmware.nix \

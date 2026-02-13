@@ -18,7 +18,7 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       os_matrix: ${{ steps.set-matrix.outputs.os_matrix }}
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -28,7 +28,7 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate Matrix
+      - name: Generate matrix
         id: set-matrix
         run: |
           matrix="$(nix eval --json --impure -f .github/matrix.nix)"

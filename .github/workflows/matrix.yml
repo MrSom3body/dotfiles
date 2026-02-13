@@ -1,0 +1,37 @@
+name: Matrix
+
+on:
+  workflow_call:
+    outputs:
+      matrix:
+        description: "The full configuration matrix"
+        value: ${{ jobs.generate.outputs.matrix }}
+      os_matrix:
+        description: "The unique OS and architecture matrix"
+        value: ${{ jobs.generate.outputs.os_matrix }}
+
+jobs:
+  generate:
+    name: Generate Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      os_matrix: ${{ steps.set-matrix.outputs.os_matrix }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate Matrix
+        id: set-matrix
+        run: |
+          matrix="$(nix eval --json --impure -f .github/matrix.nix)"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          os_matrix="$(echo "$matrix" | jq -c '[.include[] | { "runs-on": .["runs-on"], "arch": .arch }] | unique')"
+          echo "os_matrix=$os_matrix" >> "$GITHUB_OUTPUT"

@@ -1,24 +1,20 @@
-name: Checks
+name: Configurations
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
   pull_request:
 
 jobs:
   generate-matrix:
     uses: ./.github/workflows/_matrix.yml
 
-  check-flake:
-    name: Check Flake (${{ matrix.arch }})
+  build:
+    name: Build (${{ matrix.hostname }})
     needs: generate-matrix
     runs-on: ${{ matrix.runs-on }}
     strategy:
       fail-fast: false
-      matrix:
-        include: ${{ fromJson(needs.generate-matrix.outputs.os_matrix) }}
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
 
     steps:
       - name: Checkout
@@ -54,5 +50,21 @@ jobs:
             modules/vmware.nix \
             modules/school/cisco.nix
 
-      - name: Check Flake
-        run: nix flake check
+      - name: Install nix-fast-build
+        run: nix profile install nixpkgs#nix-fast-build
+
+      - name: Build
+        run: |
+          nix-fast-build --skip-cached --no-nom \
+            --flake ".#${{ matrix.output }}.${{ matrix.hostname }}.config.system.build.toplevel"
+
+  success:
+    name: Configurations Success
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: ${{ cancelled() || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'failure') }}
+    steps:
+      - name: Conditionally Fail Required Check
+        run: |
+          echo "::error::Building a configuration has failed!"
+          exit 1

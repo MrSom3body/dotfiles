@@ -1,6 +1,7 @@
 { config, lib, ... }:
 let
-  inherit (config.flake) meta;
+  inherit (config) flake;
+  inherit (flake) meta;
 in
 {
   flake.modules.nixos.glance =
@@ -53,8 +54,12 @@ in
                       size = "full";
                       widgets =
                         let
+                          allVirtualHosts = lib.concatMapAttrs (
+                            _name: conf: conf.config.services.caddy.virtualHosts
+                          ) flake.nixosConfigurations;
                           allServices = lib.filterAttrs (
-                            _name: service: (service.show or false) && (service ? "domain")
+                            _name: service:
+                            (service.show or false) && (service ? "domain") && (allVirtualHosts ? "${service.domain}")
                           ) meta.services;
                           privateServices = lib.filterAttrs (_name: service: (!service.public or false)) allServices;
                           publicServices = lib.filterAttrs (_name: service: (service.public or false)) allServices;

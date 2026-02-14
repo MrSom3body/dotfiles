@@ -47,6 +47,7 @@
           inherit (inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system})
             bluetooth
             nix
+            ssh
             wifi-commander
             # systemd # TODO doesn't build due to node-gyp see https://github.com/vicinaehq/extensions/blob/e01fe274f037e4d2b7436718258fa898f80dc4b2/flake.nix#L57
             ;

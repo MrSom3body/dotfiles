@@ -20,7 +20,6 @@ in
           "${meta.services.karakeep.domain}" = {
             extraConfig = ''
               reverse_proxy http://localhost:${meta.services.karakeep.port}
-              import cloudflare
             '';
           };
         };

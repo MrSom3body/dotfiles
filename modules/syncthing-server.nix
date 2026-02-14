@@ -14,7 +14,6 @@ in
               reverse_proxy http://127.0.0.1:${toString meta.services.syncthing.port} {
                 header_up Host {upstream_hostport}
               }
-              import cloudflare
             '';
           };
         };

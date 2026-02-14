@@ -19,7 +19,6 @@ in
         ${meta.services.open-webui.domain} = {
           extraConfig = ''
             reverse_proxy http://localhost:${toString meta.services.open-webui.port}
-            import cloudflare
           '';
         };
       };

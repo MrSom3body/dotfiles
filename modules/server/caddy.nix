@@ -12,19 +12,13 @@
           enable = true;
           environmentFile = config.sops.secrets.caddy.path;
           globalConfig = ''
+            acme_dns cloudflare {$CF_TOKEN}
             servers {
               trusted_proxies cloudflare {
                 interval 1h
                 timeout 15s
               }
               trusted_proxies_strict
-            }
-          '';
-          extraConfig = ''
-            (cloudflare) {
-              tls {
-                dns cloudflare {$CF_TOKEN}
-              }
             }
           '';
           package = pkgs.caddy.withPlugins {

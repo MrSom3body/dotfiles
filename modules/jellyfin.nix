@@ -8,7 +8,6 @@ in
       caddy.virtualHosts."${meta.services.jellyfin.domain}" = {
         extraConfig = ''
           reverse_proxy http://localhost:${toString meta.services.jellyfin.port}
-          import cloudflare
         '';
       };
 

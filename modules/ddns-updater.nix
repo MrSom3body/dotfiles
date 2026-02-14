@@ -8,7 +8,6 @@ in
       caddy.virtualHosts."${meta.services.ddns-updater.domain}" = {
         extraConfig = ''
           reverse_proxy http://localhost:${toString meta.services.ddns-updater.port}
-          import cloudflare
         '';
       };
 

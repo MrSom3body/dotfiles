@@ -16,7 +16,6 @@ in
           ${meta.services.atuin.domain} = {
             extraConfig = ''
               reverse_proxy http://localhost:${toString meta.services.atuin.port}
-              import cloudflare
             '';
           };
         };

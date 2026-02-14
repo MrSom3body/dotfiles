@@ -10,7 +10,6 @@ in
         caddy.virtualHosts."${meta.services.transmission.domain}" = {
           extraConfig = ''
             reverse_proxy http://localhost:${toString meta.services.transmission.port}
-            import cloudflare
           '';
         };
 

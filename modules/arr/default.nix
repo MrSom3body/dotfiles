@@ -35,7 +35,6 @@ in
           mkHost = port: {
             extraConfig = ''
               reverse_proxy http://localhost:${toString port}
-              import cloudflare
             '';
           };
         in

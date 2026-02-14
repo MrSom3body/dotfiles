@@ -23,7 +23,6 @@ in
           "${meta.services.immich.domain}" = {
             extraConfig = ''
               reverse_proxy http://localhost:${toString meta.services.immich.port}
-              import cloudflare
             '';
           };
         };

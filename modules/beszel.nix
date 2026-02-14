@@ -14,7 +14,6 @@ in
         ${meta.services.beszel.domain} = {
           extraConfig = ''
             reverse_proxy http://localhost:${toString meta.services.beszel.port}
-            import cloudflare
           '';
         };
       };

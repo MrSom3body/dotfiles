@@ -8,7 +8,6 @@ in
       caddy.virtualHosts."${meta.services.ntfy.domain}" = {
         extraConfig = ''
           reverse_proxy http://localhost:${toString meta.services.ntfy.port}
-          import cloudflare
         '';
       };
 

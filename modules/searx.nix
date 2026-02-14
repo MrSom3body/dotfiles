@@ -36,6 +36,11 @@ in
 
             general = {
               instance_name = "Karun's SearXNG";
+              donation_url = "https://ko-fi.com/mrsom3body";
+            };
+
+            ui = {
+              hotkeys = "vim";
             };
 
             hostnames = {

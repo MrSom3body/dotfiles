@@ -16,7 +16,7 @@ in
           "${meta.services.searx.domain}" = {
             extraConfig = ''
               reverse_proxy http://localhost:${toString meta.services.searx.port}
-              import cloudflare
+              tls internal
             '';
           };
         };

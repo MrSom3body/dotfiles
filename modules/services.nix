@@ -105,6 +105,7 @@
         domain = "search.sndh.dev";
         icon = "di:searxng";
         show = true;
+        public = true;
       };
       "sonarr" = {
         port = 8989;

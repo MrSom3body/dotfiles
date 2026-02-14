@@ -32,6 +32,7 @@ in
               inherit (meta.services.searx) port;
               bind_address = "127.0.0.1";
               secret_key = "@SEARX_SECRET_KEY@";
+              method = "GET";
             };
 
             general = {

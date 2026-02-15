@@ -13,7 +13,7 @@ in
           systemd.enable = true;
         };
 
-        kernelPackages = pkgs.linuxPackages_latest;
+        kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
         consoleLogLevel = 3;
         kernelParams = [

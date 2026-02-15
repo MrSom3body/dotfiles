@@ -7,7 +7,10 @@
   perSystem = {
     treefmt = {
       settings = {
-        excludes = [ "**/hardware-configuration.nix" ];
+        excludes = [
+          "**/hardware-configuration.nix"
+          ".github/workflows/*"
+        ];
       };
 
       programs = {

@@ -37,6 +37,15 @@
     };
 
     # nix ecosystem
+    actions-nix = {
+      url = "github:nialov/actions.nix";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     comin = {
       url = "github:nlewo/comin";
       inputs = {

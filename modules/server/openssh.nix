@@ -9,7 +9,6 @@
       services.openssh = {
         enable = true;
         settings = {
-          UseDns = true;
           # https://infosec.mozilla.org/guidelines/openssh.html
           KexAlgorithms = [
             "sntrup761x25519-sha512"

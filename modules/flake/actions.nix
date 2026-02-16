@@ -34,7 +34,7 @@ let
     cache-nix-action = "nix-community/cache-nix-action@7df957e333c1e5da7721f60227dbba6d06080569"; # v7
     nix-diff-action = "natsukium/nix-diff-action@374bf5037dc84fc520da2002beef2f2bd96f4e9b"; # v1.0.2
     alls-green = "re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe"; # v1.2.2
-    automerge = "peter-evans/enable-pull-request-automerge@a660677d5469627102a1c1e11409dd063606628d"; # v3.0.0
+    create-pull-request = "peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0"; # v8.1.0
     create-github-app-token = "actions/create-github-app-token@7e473efe3cb98aa54f8d4bac15400b15fad77d94"; # v2.2.0
   };
 
@@ -52,17 +52,25 @@ let
     installNix = {
       name = "Install Nix";
       uses = actions.install-nix-action;
-      "with".github_access_token = "\${{ secrets.GITHUB_TOKEN }}";
+      "with" = {
+        github_access_token = "\${{ secrets.GITHUB_TOKEN }}";
+        extra_nix_config = ''
+          accept-flake-config = true
+          always-allow-substitutes = true
+          builders-use-substitutes = true
+          max-jobs = auto
+        '';
+      };
     };
     nixCache = {
       name = "Setup Nix cache";
       uses = actions.cache-nix-action;
       "with" = {
-        primary-key = "nix-\${{ runner.os }}-\${{ hashFiles('**/*.nix', '**/flake.lock') }}";
-        restore-prefixes-first-match = "nix-\${{ runner.os }}-";
+        primary-key = "nix-\${{ runner.os }}-\${{ runner.arch }}-\${{ hashFiles('**/*.nix', '**/flake.lock') }}";
+        restore-prefixes-first-match = "nix-\${{ runner.os }}-\${{ runner.arch }}-";
         gc-max-store-size-linux = "5G";
         purge = true;
-        purge-prefixes = "nix-\${{ runner.os }}-";
+        purge-prefixes = "nix-\${{ runner.os }}-\${{ runner.arch }}-";
         purge-created = 0;
         purge-last-accessed = 0;
         purge-primary-key = "never";
@@ -91,6 +99,25 @@ let
         private-key = "\${{ secrets.APP_PRIVATE_KEY }}";
       };
     };
+    createPullRequest = data: {
+      name = "Create PR";
+      uses = actions.create-pull-request;
+      id = "create-pr";
+      "with" = {
+        token = "\${{ steps.app-token.outputs.token }}";
+        delete-branch = true;
+      }
+      // data;
+    };
+    automerge = pr: {
+      name = "Auto Merge PR (\${{ ${pr} }})";
+      env.GH_TOKEN = "\${{ steps.app-token.outputs.token }}";
+      run = ''
+        if [ -n "''${{ ${pr} }}" ]; then
+          gh pr merge --auto --rebase ''${{ ${pr} }}
+        fi
+      '';
+    };
   };
 
   commonSteps = [
@@ -107,8 +134,7 @@ in
     pre-commit.enable = true;
     defaultValues = {
       jobs = {
-        timeout-minutes = 60;
-        runs-on = "ubuntu-latest";
+        runs-on = runners.x86_64-linux;
       };
     };
     workflows = {
@@ -130,8 +156,11 @@ in
 
         jobs = {
           flake-check = {
-            name = "Flake check \${{ matrix.systems.hostPlatform }}";
-            strategy.matrix.systems = checkPlatforms;
+            name = "Flake check (\${{ matrix.systems.hostPlatform }})";
+            strategy = {
+              fail-fast = false;
+              matrix.systems = checkPlatforms;
+            };
             runs-on = "\${{ matrix.systems.runsOn }}";
             steps = commonSteps ++ [
               {
@@ -152,12 +181,11 @@ in
               matrix.attrs = nixosHosts;
             };
             runs-on = "\${{ matrix.attrs.runsOn }}";
-            steps = commonSteps ++ [ (steps.nixFastBuild "\${{ matrix.attrs.attr }}") ];
+            steps = commonSteps ++ [ (steps.nixFastBuild "\${{ matrix.attrs.output }}") ];
           };
 
           check = {
             name = "All checks";
-            runs-on = "ubuntu-latest";
             needs = [
               "flake-check"
               "build"
@@ -212,7 +240,6 @@ in
           };
           post-diff-comment = {
             name = "Post comment";
-            runs-on = "ubuntu-latest";
             needs = [ "generate-diffs" ];
             permissions = {
               actions = "read";
@@ -228,6 +255,7 @@ in
           };
         };
       };
+
       ".github/workflows/regenerate-workflows.yaml" = {
         name = "Regenerate workflows";
         on = {
@@ -244,7 +272,6 @@ in
         };
 
         jobs.regenerate = {
-          runs-on = "ubuntu-latest";
           # Only run for Renovate PRs or manual dispatch
           "if" = "github.actor == 'renovate[bot]' || github.event_name == 'workflow_dispatch'";
           steps = [
@@ -266,10 +293,6 @@ in
               run = "nix run .#render-workflows";
             }
             {
-              name = "Format code";
-              run = "nix fmt";
-            }
-            {
               name = "Amend commit with regenerated workflows";
               run = ''
                 git config user.name "mrsom3body-bot[bot]"
@@ -279,15 +302,41 @@ in
                 git push --force-with-lease
               '';
             }
-            {
-              uses = actions.automerge;
-              "with" = {
-                token = "\${{ steps.app-token.outputs.token }}";
-                pull-request-number = "\${{ github.event.pull_request.number }}";
-                merge-method = "rebase";
-              };
-            }
+            (steps.automerge "github.event.pull_request.number")
           ];
+        };
+      };
+
+      ".github/workflows/topology-update.yaml" = {
+        name = "Topology Update";
+        on = {
+          schedule = [ { cron = "0 0 1,15 * *"; } ];
+          workflow_dispatch = { };
+        };
+
+        jobs = {
+          update-topology = {
+            steps = commonSteps ++ [
+              steps.generateAppToken
+              {
+                name = "Build topology";
+                run = "nix build .#topology.x86_64-linux.config.output";
+              }
+              {
+                name = "Generate WebP";
+                run = "nix run nixpkgs#librsvg -- -o .github/assets/topology.webp ./result/main.svg";
+              }
+              (steps.createPullRequest {
+                commit-message = "assets: update topology image";
+                title = "assets: update topology image";
+                body = "This PR updates the network topology image generated from the latest Nix configuration.";
+                labels = ''
+                  automated
+                '';
+              })
+              (steps.automerge "steps.create-pr.outputs.pull-request-number")
+            ];
+          };
         };
       };
     };

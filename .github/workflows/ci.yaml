@@ -22,19 +22,24 @@ jobs:
     - name: Install Nix
       uses: cachix/install-nix-action@2126ae7fc54c9df00dd18f7f18754393182c73cd
       with:
+        extra_nix_config: |-
+          accept-flake-config = true
+          always-allow-substitutes = true
+          builders-use-substitutes = true
+          max-jobs = auto
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup Nix cache
       uses: nix-community/cache-nix-action@7df957e333c1e5da7721f60227dbba6d06080569
       with:
         gc-max-store-size-linux: 5G
-        primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock')
-          }}
+        primary-key: nix-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('**/*.nix',
+          '**/flake.lock') }}
         purge: true
         purge-created: 0
         purge-last-accessed: 0
-        purge-prefixes: nix-${{ runner.os }}-
+        purge-prefixes: nix-${{ runner.os }}-${{ runner.arch }}-
         purge-primary-key: never
-        restore-prefixes-first-match: nix-${{ runner.os }}-
+        restore-prefixes-first-match: nix-${{ runner.os }}-${{ runner.arch }}-
     - name: Remove unbuildable modules
       run: |-
         rm -f \
@@ -42,7 +47,7 @@ jobs:
           modules/school/cisco.nix
     - name: Fast nix build
       run: nix run nixpkgs#nix-fast-build -- --no-nom --skip-cached --retries=3 --option
-        accept-flake-config true --flake="git+file:.#${{ matrix.attrs.attr }}"
+        accept-flake-config true --flake="git+file:.#${{ matrix.attrs.output }}"
     strategy:
       fail-fast: false
       matrix:
@@ -67,7 +72,6 @@ jobs:
           hostname: xylourgos
           output: nixosConfigurations.xylourgos.config.system.build.toplevel
           runsOn: ubuntu-24.04-arm
-    timeout-minutes: 60
   check:
     if: always()
     name: All checks
@@ -79,9 +83,8 @@ jobs:
     - uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe
       with:
         jobs: ${{ toJSON(needs) }}
-    timeout-minutes: 60
   flake-check:
-    name: Flake check ${{ matrix.systems.hostPlatform }}
+    name: Flake check (${{ matrix.systems.hostPlatform }})
     runs-on: ${{ matrix.systems.runsOn }}
     steps:
     - name: Checkout
@@ -95,19 +98,24 @@ jobs:
     - name: Install Nix
       uses: cachix/install-nix-action@2126ae7fc54c9df00dd18f7f18754393182c73cd
       with:
+        extra_nix_config: |-
+          accept-flake-config = true
+          always-allow-substitutes = true
+          builders-use-substitutes = true
+          max-jobs = auto
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup Nix cache
       uses: nix-community/cache-nix-action@7df957e333c1e5da7721f60227dbba6d06080569
       with:
         gc-max-store-size-linux: 5G
-        primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock')
-          }}
+        primary-key: nix-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('**/*.nix',
+          '**/flake.lock') }}
         purge: true
         purge-created: 0
         purge-last-accessed: 0
-        purge-prefixes: nix-${{ runner.os }}-
+        purge-prefixes: nix-${{ runner.os }}-${{ runner.arch }}-
         purge-primary-key: never
-        restore-prefixes-first-match: nix-${{ runner.os }}-
+        restore-prefixes-first-match: nix-${{ runner.os }}-${{ runner.arch }}-
     - name: Remove unbuildable modules
       run: |-
         rm -f \
@@ -118,13 +126,13 @@ jobs:
     - name: nix flake show
       run: nix flake show 'git+file:.'
     strategy:
+      fail-fast: false
       matrix:
         systems:
         - hostPlatform: x86_64-linux
           runsOn: ubuntu-latest
         - hostPlatform: aarch64-linux
           runsOn: ubuntu-24.04-arm
-    timeout-minutes: 60
 name: CI
 'on':
   pull_request: {}

@@ -248,6 +248,10 @@ in
           # Only run for Renovate PRs or manual dispatch
           "if" = "github.actor == 'renovate[bot]' || github.event_name == 'workflow_dispatch'";
           steps = [
+            {
+              name = "hello";
+              run = "echo hello";
+            }
             steps.generateAppToken
             (
               steps.checkout
@@ -278,14 +282,6 @@ in
                 git diff --staged --quiet || git commit --amend --no-edit
                 git push --force-with-lease
               '';
-            }
-            {
-              uses = actions.automerge;
-              "with" = {
-                token = "\${{ steps.app-token.outputs.token }}";
-                pull-request-number = "\${{ github.event.pull_request.number }}";
-                merge-method = "rebase";
-              };
             }
           ];
         };

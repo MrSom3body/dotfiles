@@ -8,6 +8,8 @@ jobs:
     if: github.actor == 'renovate[bot]' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
+    - name: hello
+      run: echo hello
     - id: app-token
       name: Generate App Token
       uses: actions/create-github-app-token@7e473efe3cb98aa54f8d4bac15400b15fad77d94
@@ -47,11 +49,6 @@ jobs:
         git add .github/workflows/
         git diff --staged --quiet || git commit --amend --no-edit
         git push --force-with-lease
-    - uses: peter-evans/enable-pull-request-automerge@a660677d5469627102a1c1e11409dd063606628d
-      with:
-        merge-method: rebase
-        pull-request-number: ${{ github.event.pull_request.number }}
-        token: ${{ steps.app-token.outputs.token }}
     timeout-minutes: 60
 name: Regenerate workflows
 'on':

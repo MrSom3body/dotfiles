@@ -1,2 +1,2 @@
 builds:
-  branch: update_flake_lock_action
+  branch: renovate/lock-file-maintenance

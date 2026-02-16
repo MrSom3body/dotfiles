@@ -1,5 +1,31 @@
 {
   "nodes": {
+    "actions-nix": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "git-hooks": [
+          "git-hooks-nix"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769595617,
+        "narHash": "sha256-IPWJKsWDNZnElPuWcL1pF+9M0BJx7bGZI2/rJiqOpBs=",
+        "owner": "nialov",
+        "repo": "actions.nix",
+        "rev": "9c69acded275f52aefa58ce78efc61fa5c11d94c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nialov",
+        "repo": "actions.nix",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -667,6 +693,7 @@
     },
     "root": {
       "inputs": {
+        "actions-nix": "actions-nix",
         "comin": "comin",
         "crillios-ls": "crillios-ls",
         "disko": "disko",

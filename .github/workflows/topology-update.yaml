@@ -36,11 +36,6 @@ jobs:
         purge-prefixes: nix-${{ runner.os }}-${{ runner.arch }}-
         purge-primary-key: never
         restore-prefixes-first-match: nix-${{ runner.os }}-${{ runner.arch }}-
-    - name: Remove unbuildable modules
-      run: |-
-        rm -f \
-          modules/vmware.nix \
-          modules/school/cisco.nix
     - id: app-token
       name: Generate App Token
       uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf

@@ -40,11 +40,6 @@ jobs:
         purge-prefixes: nix-${{ runner.os }}-${{ runner.arch }}-
         purge-primary-key: never
         restore-prefixes-first-match: nix-${{ runner.os }}-${{ runner.arch }}-
-    - name: Remove unbuildable modules
-      run: |-
-        rm -f \
-          modules/vmware.nix \
-          modules/school/cisco.nix
     - name: Fast nix build
       run: nix run nixpkgs#nix-fast-build -- --no-nom --skip-cached --retries=3 --option
         accept-flake-config true --flake="git+file:.#${{ matrix.attrs.output }}"
@@ -116,11 +111,6 @@ jobs:
         purge-prefixes: nix-${{ runner.os }}-${{ runner.arch }}-
         purge-primary-key: never
         restore-prefixes-first-match: nix-${{ runner.os }}-${{ runner.arch }}-
-    - name: Remove unbuildable modules
-      run: |-
-        rm -f \
-          modules/vmware.nix \
-          modules/school/cisco.nix
     - name: nix flake check
       run: nix flake check 'git+file:.'
     - name: nix flake show

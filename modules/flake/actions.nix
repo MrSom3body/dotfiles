@@ -76,14 +76,6 @@ let
         purge-primary-key = "never";
       };
     };
-    removeUnbuildable = {
-      name = "Remove unbuildable modules";
-      run = ''
-        rm -f \
-          modules/vmware.nix \
-          modules/school/cisco.nix
-      '';
-    };
     nixFastBuild = flakeAttr: {
       name = "Fast nix build";
       run = ''
@@ -125,7 +117,6 @@ let
     steps.purge
     steps.installNix
     steps.nixCache
-    steps.removeUnbuildable
   ];
 in
 {

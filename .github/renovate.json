@@ -12,7 +12,7 @@
   },
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": ["before 1am"],
+    "schedule": ["before 11pm"],
     "commitMessageAction": "update",
     "prBodyDefinitions": {
       "Change": "All flake inputs updated"
@@ -35,7 +35,8 @@
       "matchDatasources": ["github-tags"],
       "automerge": false,
       "pinDigests": true,
-      "commitMessagePrefix": "chore(actions):"
+      "commitMessagePrefix": "actions:",
+      "addLabels": ["dependencies", "automated"]
     },
     {
       "matchManagers": ["nix"],
@@ -43,7 +44,8 @@
       "automergeType": "pr",
       "automergeStrategy": "rebase",
       "commitMessagePrefix": "flake.lock:",
-      "prBodyNotes": ["This PR updates nix flake inputs."]
+      "prBodyNotes": ["This PR updates nix flake inputs."],
+      "addLabels": ["dependencies", "automated"]
     },
     {
       "matchUpdateTypes": ["lockFileMaintenance"],

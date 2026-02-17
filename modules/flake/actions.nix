@@ -31,7 +31,7 @@ let
     checkout = "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd"; # v6.0.2
     nothing-but-nix = "wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7"; # v10
     install-nix-action = "cachix/install-nix-action@2126ae7fc54c9df00dd18f7f18754393182c73cd"; # v31.9.1
-    cache-nix-action = "nix-community/cache-nix-action@7df957e333c1e5da7721f60227dbba6d06080569"; # v7.0.2
+    cachix = "cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1"; # v16
     nix-diff-action = "natsukium/nix-diff-action@374bf5037dc84fc520da2002beef2f2bd96f4e9b"; # v1.0.2
     alls-green = "re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe"; # v1.2.2
     create-pull-request = "peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0"; # v8.1.0
@@ -62,25 +62,31 @@ let
         '';
       };
     };
-    nixCache = {
-      name = "Setup Nix cache";
-      uses = actions.cache-nix-action;
+    cachix = {
+      name = "Setup Cachix";
+      uses = actions.cachix;
       "with" = {
-        primary-key = "nix-\${{ runner.os }}-\${{ runner.arch }}-\${{ hashFiles('**/*.nix', '**/flake.lock') }}";
-        restore-prefixes-first-match = "nix-\${{ runner.os }}-\${{ runner.arch }}-";
-        gc-max-store-size-linux = "5G";
-        purge = true;
-        purge-prefixes = "nix-\${{ runner.os }}-\${{ runner.arch }}-";
-        purge-created = 0;
-        purge-last-accessed = 0;
-        purge-primary-key = "never";
+        name = "som3cache";
+        authToken = "\${{ secrets.CACHIX_AUTH_TOKEN }}";
+        extraPullNames = "nix-community";
       };
+    };
+    removeUnbuildable = {
+      name = "Remove unbuildable files";
+      run = "rm -f modules/vmware.nix modules/school/cisco.nix";
     };
     nixFastBuild = flakeAttr: {
       name = "Fast nix build";
       run = ''
-        nix run nixpkgs#nix-fast-build -- --no-nom --skip-cached --retries=3 --option accept-flake-config true --flake="${flakeRef}#${flakeAttr}"
+        nix run nixpkgs#nix-fast-build -- \
+          --no-nom \
+          --skip-cached \
+          --retries=3 \
+          --cachix-cache som3cache \
+          --option accept-flake-config true \
+          --flake="${flakeRef}#${flakeAttr}"
       '';
+      env.CACHIX_AUTH_TOKEN = "\${{ secrets.CACHIX_AUTH_TOKEN }}";
     };
     generateAppToken = {
       name = "Generate App Token";
@@ -116,7 +122,7 @@ let
     steps.checkout
     steps.purge
     steps.installNix
-    steps.nixCache
+    steps.cachix
   ];
 in
 {
@@ -172,7 +178,10 @@ in
               matrix.attrs = nixosHosts;
             };
             runs-on = "\${{ matrix.attrs.runsOn }}";
-            steps = commonSteps ++ [ (steps.nixFastBuild "\${{ matrix.attrs.output }}") ];
+            steps = commonSteps ++ [
+              steps.removeUnbuildable
+              (steps.nixFastBuild "\${{ matrix.attrs.output }}")
+            ];
           };
 
           check = {
@@ -278,7 +287,7 @@ in
               }
             )
             steps.installNix
-            steps.nixCache
+            steps.cachix
             {
               name = "Regenerate workflows";
               run = "nix run .#render-workflows";

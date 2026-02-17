@@ -1,9 +1,9 @@
-{ self, inputs, ... }:
+{ inputs, ... }:
 {
   flake.modules.nixos.server = {
     imports = [ inputs.comin.nixosModules.comin ];
     services.comin = {
-      enable = self ? rev;
+      enable = true;
       remotes = [
         {
           name = "origin";

@@ -30,8 +30,8 @@ let
   actions = {
     checkout = "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd"; # v6.0.2
     nothing-but-nix = "wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7"; # v10
-    install-nix-action = "cachix/install-nix-action@2126ae7fc54c9df00dd18f7f18754393182c73cd"; # v31.9.1
-    cache-nix-action = "nix-community/cache-nix-action@7df957e333c1e5da7721f60227dbba6d06080569"; # v7.0.2
+    nix-installer = "DeterminateSystems/nix-installer-action@main";
+    magic-nix-cache = "DeterminateSystems/magic-nix-cache-action@main";
     nix-diff-action = "natsukium/nix-diff-action@374bf5037dc84fc520da2002beef2f2bd96f4e9b"; # v1.0.2
     alls-green = "re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe"; # v1.2.2
     create-pull-request = "peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0"; # v8.1.0
@@ -51,10 +51,10 @@ let
     };
     installNix = {
       name = "Install Nix";
-      uses = actions.install-nix-action;
+      uses = actions.nix-installer;
       "with" = {
-        github_access_token = "\${{ secrets.GITHUB_TOKEN }}";
-        extra_nix_config = ''
+        diagnostic-endpoint = "";
+        extra-conf = ''
           accept-flake-config = true
           always-allow-substitutes = true
           builders-use-substitutes = true
@@ -64,17 +64,8 @@ let
     };
     nixCache = {
       name = "Setup Nix cache";
-      uses = actions.cache-nix-action;
-      "with" = {
-        primary-key = "nix-\${{ runner.os }}-\${{ runner.arch }}-\${{ hashFiles('**/*.nix', '**/flake.lock') }}";
-        restore-prefixes-first-match = "nix-\${{ runner.os }}-\${{ runner.arch }}-";
-        gc-max-store-size-linux = "5G";
-        purge = true;
-        purge-prefixes = "nix-\${{ runner.os }}-\${{ runner.arch }}-";
-        purge-created = 0;
-        purge-last-accessed = 0;
-        purge-primary-key = "never";
-      };
+      uses = actions.magic-nix-cache;
+      "with".diagnostic-endpoint = "";
     };
     nixFastBuild = flakeAttr: {
       name = "Fast nix build";

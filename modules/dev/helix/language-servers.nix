@@ -46,7 +46,7 @@ in
             formatting.command = [ (lib.getExe pkgs.nixfmt) ];
             options =
               let
-                flake = ''(builtins.getFlake "${self}")'';
+                flake = "(builtins.getFlake (toString ${self}))";
                 nixos-expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
               in
               {

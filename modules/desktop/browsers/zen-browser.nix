@@ -10,6 +10,7 @@
 
       programs.zen-browser = {
         enable = true;
+        suppressXdgMigrationWarning = true;
         profiles.default = {
           id = 0;
           name = "default";

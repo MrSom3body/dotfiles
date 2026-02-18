@@ -34,6 +34,9 @@ let
     cachix = "cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1"; # v16
     nix-diff-action = "natsukium/nix-diff-action@374bf5037dc84fc520da2002beef2f2bd96f4e9b"; # v1.0.2
     alls-green = "re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe"; # v1.2.2
+    upload-artifact = "actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f"; # v6
+    action-gh-release = "softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b"; # v2
+    download-artifact = "actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131"; # v7
     create-pull-request = "peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0"; # v8.1.0
     create-github-app-token = "actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf"; # v2.2.1
   };
@@ -87,6 +90,16 @@ let
           --flake="${flakeRef}#${flakeAttr}"
       '';
       env.CACHIX_AUTH_TOKEN = "\${{ secrets.CACHIX_AUTH_TOKEN }}";
+    };
+    uploadArtifacts = data: {
+      name = "Upload artifacts";
+      uses = actions.upload-artifact;
+      "with" = data;
+    };
+    downloadArtifacts = data: {
+      name = "Download artifacts";
+      uses = actions.download-artifact;
+      "with" = data;
     };
     generateAppToken = {
       name = "Generate App Token";
@@ -256,6 +269,105 @@ in
         };
       };
 
+      ".github/workflows/iso-build.yaml" = {
+        name = "ISO Build";
+        on = {
+          schedule = [ { cron = "0 0 * * mon"; } ];
+          workflow_dispatch = { };
+        };
+
+        jobs = {
+          build-images = {
+            strategy.matrix.image = [ "sanctuary" ];
+            steps = commonSteps ++ [
+              (steps.nixFastBuild "images.\${{ matrix.image }}")
+              (steps.uploadArtifacts {
+                name = "\${{ matrix.image }}-iso-image";
+                path = "result-*/iso/*.iso";
+              })
+            ];
+          };
+          publish-images = {
+            needs = [ "build-images" ];
+            steps = [
+              (steps.downloadArtifacts { merge-multiple = true; })
+              {
+                name = "Generate date";
+                id = "get-date";
+                run = ''echo "date=$(date +'%Y-%m-%d-%H%M%S')" >> "''${GITHUB_OUTPUT}"'';
+              }
+              {
+                name = "Generate checksums";
+                run = "sha256sum *.iso > checksums.txt";
+              }
+              {
+                name = "Create release";
+                uses = actions.action-gh-release;
+                "with" = {
+                  name = "🛠  Weekly ISO Release — \${{ steps.get-date.outputs.date }}";
+                  tag_name = "iso-\${{ steps.get-date.outputs.date }}";
+                  files = ''
+                    *.iso
+                    checksums.txt
+                  '';
+                  body = ''
+                    > [!CAUTION]
+                    > These ISOs have my public keys added. This means I can SSH into them without any password.
+
+                    These ISOs are built straight from my NixOS configs in [MrSom3body/dotfiles](https://github.com/MrSom3body/dotfiles) and meant **only** for me to be able to just plug these in and run `nixos-anywhere`.
+
+                    ## 📦 What’s inside
+
+                    | Image         | Purpose                                      |
+                    | ------------- | -------------------------------------------- |
+                    | **sanctuary** | ISO to install NixOS with my public SSH keys |
+
+                    ## 🔒 Verify checksum
+
+                    ```bash
+                    sha256sum -c checksums.txt
+                    ```
+                  '';
+                };
+              }
+            ];
+          };
+        };
+      };
+
+      ".github/workflows/topology-update.yaml" = {
+        name = "Topology Update";
+        on = {
+          schedule = [ { cron = "0 0 1,15 * *"; } ];
+          workflow_dispatch = { };
+        };
+
+        jobs = {
+          update-topology = {
+            steps = commonSteps ++ [
+              steps.generateAppToken
+              {
+                name = "Build topology";
+                run = "nix build .#topology.x86_64-linux.config.output";
+              }
+              {
+                name = "Generate WebP";
+                run = "nix run nixpkgs#librsvg -- -o .github/assets/topology.webp ./result/main.svg";
+              }
+              (steps.createPullRequest {
+                commit-message = "assets: update topology image";
+                title = "assets: update topology image";
+                body = "This PR updates the network topology image generated from the latest Nix configuration.";
+                labels = ''
+                  automated
+                '';
+              })
+              (steps.automerge "steps.create-pr.outputs.pull-request-number")
+            ];
+          };
+        };
+      };
+
       ".github/workflows/regenerate-workflows.yaml" = {
         name = "Regenerate workflows";
         on = {
@@ -304,39 +416,6 @@ in
             }
             (steps.automerge "github.event.pull_request.number")
           ];
-        };
-      };
-
-      ".github/workflows/topology-update.yaml" = {
-        name = "Topology Update";
-        on = {
-          schedule = [ { cron = "0 0 1,15 * *"; } ];
-          workflow_dispatch = { };
-        };
-
-        jobs = {
-          update-topology = {
-            steps = commonSteps ++ [
-              steps.generateAppToken
-              {
-                name = "Build topology";
-                run = "nix build .#topology.x86_64-linux.config.output";
-              }
-              {
-                name = "Generate WebP";
-                run = "nix run nixpkgs#librsvg -- -o .github/assets/topology.webp ./result/main.svg";
-              }
-              (steps.createPullRequest {
-                commit-message = "assets: update topology image";
-                title = "assets: update topology image";
-                body = "This PR updates the network topology image generated from the latest Nix configuration.";
-                labels = ''
-                  automated
-                '';
-              })
-              (steps.automerge "steps.create-pr.outputs.pull-request-number")
-            ];
-          };
         };
       };
     };

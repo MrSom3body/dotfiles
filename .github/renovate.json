@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
+  "timezone": "Europe/Vienna",
   "gitIgnoredAuthors": [
     "261862837+MrSom3body-Bot[bot]@users.noreply.github.com"
   ],
@@ -12,7 +13,6 @@
   },
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": ["before 11pm"],
     "commitMessageAction": "update",
     "prBodyDefinitions": {
       "Change": "All flake inputs updated"
@@ -41,6 +41,7 @@
     {
       "matchManagers": ["nix"],
       "automerge": true,
+      "automergeSchedule": ["* 4-6 * * *"],
       "automergeType": "pr",
       "automergeStrategy": "rebase",
       "commitMessagePrefix": "flake.lock:",
@@ -50,6 +51,7 @@
     {
       "matchUpdateTypes": ["lockFileMaintenance"],
       "automerge": true,
+      "automergeSchedule": ["* 4-6 * * *"],
       "automergeType": "pr",
       "automergeStrategy": "rebase",
       "commitMessagePrefix": "flake.lock:",

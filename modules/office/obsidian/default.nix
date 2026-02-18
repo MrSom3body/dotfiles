@@ -58,6 +58,7 @@
 
           corePlugins = [
             "backlink"
+            "bases"
             "bookmarks"
             "canvas"
             "command-palette"
@@ -76,6 +77,7 @@
             "switcher"
             "tag-pane"
             "templates"
+            "webviewer"
             "word-count"
           ];
 

@@ -20,7 +20,6 @@ jobs:
       uses: cachix/install-nix-action@2126ae7fc54c9df00dd18f7f18754393182c73cd
       with:
         extra_nix_config: |-
-          accept-flake-config = true
           always-allow-substitutes = true
           builders-use-substitutes = true
           max-jobs = auto
@@ -40,7 +39,6 @@ jobs:
           --skip-cached \
           --retries=3 \
           --cachix-cache som3cache \
-          --option accept-flake-config true \
           --flake="git+file:.#images.${{ matrix.image }}"
     - name: Upload artifacts
       uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f

@@ -58,7 +58,6 @@ let
       "with" = {
         github_access_token = "\${{ secrets.GITHUB_TOKEN }}";
         extra_nix_config = ''
-          accept-flake-config = true
           always-allow-substitutes = true
           builders-use-substitutes = true
           max-jobs = auto
@@ -86,7 +85,6 @@ let
           --skip-cached \
           --retries=3 \
           --cachix-cache som3cache \
-          --option accept-flake-config true \
           --flake="${flakeRef}#${flakeAttr}"
       '';
       env.CACHIX_AUTH_TOKEN = "\${{ secrets.CACHIX_AUTH_TOKEN }}";

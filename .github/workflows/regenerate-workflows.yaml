@@ -24,7 +24,6 @@ jobs:
       uses: cachix/install-nix-action@2126ae7fc54c9df00dd18f7f18754393182c73cd
       with:
         extra_nix_config: |-
-          accept-flake-config = true
           always-allow-substitutes = true
           builders-use-substitutes = true
           max-jobs = auto

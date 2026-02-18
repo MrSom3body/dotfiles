@@ -11,6 +11,7 @@
           inherit (pkgs)
             git
             just
+            nix-fast-build
             ripgrep
             sops
             ;

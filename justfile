@@ -84,7 +84,7 @@ deploy-all *args:
 
 [group("iso")]
 build-iso iso_name="sanctuary":
-    nix run nixpkgs#nix-fast-build -- --skip-cached --flake "{{flake}}#images.{{iso_name}}"
+    nix-fast-build --skip-cached --flake "{{flake}}#images.{{iso_name}}"
 
 
 # ---------- others ---------- #

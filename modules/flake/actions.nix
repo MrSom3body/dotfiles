@@ -76,9 +76,9 @@ let
       run = "rm -f modules/vmware.nix modules/school/cisco.nix";
     };
     nixFastBuild = flakeAttr: {
-      name = "Fast nix build";
+      name = "Nix build";
       run = ''
-        nix run nixpkgs#nix-fast-build -- \
+        nix develop --command -- nix-fast-build \
           --no-nom \
           --skip-cached \
           --retries=3 \

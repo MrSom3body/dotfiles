@@ -13,6 +13,7 @@
   },
   "lockFileMaintenance": {
     "enabled": true,
+    "schedule": ["* 3-6 * * *"],
     "commitMessageAction": "update",
     "prBodyDefinitions": {
       "Change": "All flake inputs updated"
@@ -41,7 +42,6 @@
     {
       "matchManagers": ["nix"],
       "automerge": true,
-      "automergeSchedule": ["* 4-6 * * *"],
       "automergeType": "pr",
       "automergeStrategy": "rebase",
       "commitMessagePrefix": "flake.lock:",
@@ -51,7 +51,6 @@
     {
       "matchUpdateTypes": ["lockFileMaintenance"],
       "automerge": true,
-      "automergeSchedule": ["* 4-6 * * *"],
       "automergeType": "pr",
       "automergeStrategy": "rebase",
       "commitMessagePrefix": "flake.lock:",

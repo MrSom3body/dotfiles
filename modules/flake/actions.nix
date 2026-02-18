@@ -217,7 +217,7 @@ in
       ".github/workflows/diff.yaml" = {
         name = "Diff";
         on = {
-          pull_request = { };
+          pull_request.paths = [ "flake.lock" ];
           workflow_dispatch = { };
         };
 

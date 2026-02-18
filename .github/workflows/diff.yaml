@@ -81,5 +81,7 @@ jobs:
         mode: comment-only
 name: Diff
 'on':
-  pull_request: {}
+  pull_request:
+    paths:
+    - flake.lock
   workflow_dispatch: {}

@@ -8,6 +8,8 @@
           allowedBridges = [
             "nm-bridge"
             "virbr0"
+            "virbr1"
+            "virbr2"
           ];
           qemu = {
             runAsRoot = false;

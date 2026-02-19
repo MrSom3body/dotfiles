@@ -54,7 +54,6 @@ in
 
           boot = {
             kernelPackages = pkgs.linuxPackages_6_18; # TODO remove when https://github.com/NixOS/nixpkgs/issues/489947#issuecomment-3904846755 gets resolved
-            kernelParams = [ "amdgpu.dcdebugmask=0x40000" ];
           };
           hardware.asus.battery.chargeUpto = 80;
           security.tpm2.enable = true;

@@ -1,6 +1,7 @@
 # 🖥️ dotfiles
 
-![time spent last month](https://waka.sndh.dev/api/badge/MrSom3body/interval:last_30_days/project:dotfiles?label=last%2030d) <sup>(wow I <s>wasted</s> invested so much time?)</sup>
+[![CI](https://github.com/MrSom3body/dotfiles/actions/workflows/ci.yaml/badge.svg)](https://github.com/MrSom3body/dotfiles/actions/workflows/ci.yaml) ![time spent last month](https://waka.sndh.dev/api/badge/MrSom3body/interval:last_30_days/project:dotfiles?label=last%2030d)
+<sup>(wow I <s>wasted</s> invested so much time?)</sup>
 
 Welcome to my dotfiles repository!
 

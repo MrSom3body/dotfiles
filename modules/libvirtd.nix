@@ -30,7 +30,6 @@
       environment.systemPackages = builtins.attrValues {
         inherit (pkgs)
           gnome-connections
-          gnome-boxes
           ;
       };
     };

@@ -15,14 +15,18 @@ in
         caddy.virtualHosts = {
           "${meta.services.searx.domain}" = {
             extraConfig = ''
-              reverse_proxy http://localhost:${toString meta.services.searx.port}
+              reverse_proxy http://localhost:${toString meta.services.searx.port} {
+                header_up X-Forwarded-For {client_ip}
+              }
             '';
           };
         };
 
         searx = {
           enable = true;
+          redisCreateLocally = true;
           environmentFile = config.sops.secrets.searx.path;
+
           settings = {
             use_default_settings = true;
 
@@ -32,7 +36,9 @@ in
               bind_address = "127.0.0.1";
               secret_key = "@SEARX_SECRET_KEY@";
               method = "GET";
+              public_instance = true;
               image_proxy = true;
+              limiter = true;
             };
 
             general = {

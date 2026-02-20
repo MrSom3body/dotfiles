@@ -43,7 +43,10 @@ in
         nixd = {
           command = lib.getExe pkgs.nixd;
           config.nixd = {
-            formatting.command = [ (lib.getExe pkgs.nixfmt) ];
+            formatting.command = [
+              (lib.getExe pkgs.nixfmt)
+              "--strict"
+            ];
             options =
               let
                 flake = "(builtins.getFlake (toString ${self}))";

@@ -14,7 +14,10 @@
       };
 
       programs = {
-        nixfmt.enable = true;
+        nixfmt = {
+          enable = true;
+          strict = true;
+        };
         deadnix.enable = true;
         statix.enable = true;
 

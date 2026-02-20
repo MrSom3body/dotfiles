@@ -1,9 +1,7 @@
 { inputs, ... }:
 {
   flake.modules.nixos."hosts/promethea" = {
-    imports = [
-      inputs.disko.nixosModules.disko
-    ];
+    imports = [ inputs.disko.nixosModules.disko ];
 
     disko.devices = {
       disk = {

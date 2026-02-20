@@ -27,12 +27,7 @@
                 volumePercentage
                 ;
             };
-            enabledCustomApps = builtins.attrValues {
-              inherit (spicePkgs.apps)
-                lyricsPlus
-                ncsVisualizer
-                ;
-            };
+            enabledCustomApps = builtins.attrValues { inherit (spicePkgs.apps) lyricsPlus ncsVisualizer; };
           };
       };
   };

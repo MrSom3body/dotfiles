@@ -4,12 +4,7 @@
     {
       services.printing = {
         enable = true;
-        drivers = builtins.attrValues {
-          inherit (pkgs)
-            cups-filters
-            cups-browsed
-            ;
-        };
+        drivers = builtins.attrValues { inherit (pkgs) cups-filters cups-browsed; };
       };
     };
 }

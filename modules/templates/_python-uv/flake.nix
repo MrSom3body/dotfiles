@@ -34,11 +34,7 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      ...
-    }@inputs:
+    { self, nixpkgs, ... }@inputs:
     let
       inherit (nixpkgs) lib;
 
@@ -53,9 +49,7 @@
 
       workspace = inputs.uv2nix.lib.workspace.loadWorkspace { workspaceRoot = ./.; };
 
-      overlay = workspace.mkPyprojectOverlay {
-        sourcePreference = "wheel";
-      };
+      overlay = workspace.mkPyprojectOverlay { sourcePreference = "wheel"; };
 
       # Extend generated overlay with build fixups
       #
@@ -74,9 +68,7 @@
       python = pkgs.python313;
 
       pythonSet =
-        (pkgs.callPackage inputs.pyproject-nix.build.packages {
-          inherit python;
-        }).overrideScope
+        (pkgs.callPackage inputs.pyproject-nix.build.packages { inherit python; }).overrideScope
           (
             lib.composeManyExtensions [
               inputs.pyproject-build-systems.overlays.default

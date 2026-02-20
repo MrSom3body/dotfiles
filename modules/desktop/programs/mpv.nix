@@ -9,13 +9,7 @@
           scripts = [
             pkgs.mpvScripts.builtins.autoload
           ]
-          ++ builtins.attrValues {
-            inherit (pkgs.mpvScripts)
-              modernz
-              mpris
-              thumbfast
-              ;
-          };
+          ++ builtins.attrValues { inherit (pkgs.mpvScripts) modernz mpris thumbfast; };
         };
 
         bindings = {

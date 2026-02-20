@@ -18,9 +18,7 @@
           }
 
           # Default
-          {
-            automount = false;
-          }
+          { automount = false; }
         ];
       };
     };

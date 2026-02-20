@@ -27,10 +27,6 @@
 
       programs.virt-manager.enable = true;
 
-      environment.systemPackages = builtins.attrValues {
-        inherit (pkgs)
-          gnome-connections
-          ;
-      };
+      environment.systemPackages = builtins.attrValues { inherit (pkgs) gnome-connections; };
     };
 }

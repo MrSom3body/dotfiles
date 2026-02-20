@@ -1,5 +1,1 @@
-{
-  perSystem = _: {
-    packages = { };
-  };
-}
+{ perSystem = _: { packages = { }; }; }

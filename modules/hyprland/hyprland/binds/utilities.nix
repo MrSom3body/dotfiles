@@ -45,9 +45,7 @@
           # "SUPER SHIFT, O, Ask ollama something, exec, uwsm app -- fish -c \"chat -fcs\""
         ];
 
-      binddo = [
-        "SUPER SHIFT, COMMA, Dismiss all notifications, exec, fnottctl dismiss all"
-      ];
+      binddo = [ "SUPER SHIFT, COMMA, Dismiss all notifications, exec, fnottctl dismiss all" ];
 
       binddl = [
         # TODO move back to bindd when https://github.com/hyprwm/hyprlock/issues/793 gets resolved

@@ -8,11 +8,6 @@
           reverse=false
         '';
 
-      home.packages = builtins.attrValues {
-        inherit (pkgs)
-          dust
-          sd
-          ;
-      };
+      home.packages = builtins.attrValues { inherit (pkgs) dust sd; };
     };
 }

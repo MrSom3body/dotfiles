@@ -23,9 +23,7 @@
                     libnotify
                     ;
                 })
-                ++ [
-                  config.programs.hyprland.package
-                ]
+                ++ [ config.programs.hyprland.package ]
               );
 
               init-script = # bash

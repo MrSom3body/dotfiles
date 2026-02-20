@@ -16,11 +16,7 @@
         };
 
         graphics.extraPackages = builtins.attrValues {
-          inherit (pkgs)
-            intel-compute-runtime-legacy1
-            intel-media-sdk
-            libva-vdpau-driver
-            ;
+          inherit (pkgs) intel-compute-runtime-legacy1 intel-media-sdk libva-vdpau-driver;
         };
       };
 

@@ -31,9 +31,7 @@
       name = hostName + fixedParts;
     in
     {
-      imports = [
-        (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
-      ];
+      imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
 
       image = {
         baseName = mkImageMediaOverride name;

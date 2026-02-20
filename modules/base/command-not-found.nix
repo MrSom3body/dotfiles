@@ -2,9 +2,7 @@
 {
   flake.modules = {
     nixos.nixos = {
-      imports = [
-        inputs.nix-index-database.nixosModules.nix-index
-      ];
+      imports = [ inputs.nix-index-database.nixosModules.nix-index ];
 
       programs = {
         command-not-found.enable = false;

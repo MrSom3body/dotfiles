@@ -20,13 +20,9 @@
             gesture_positive = false;
           };
 
-          hyprexpo-gesture = [
-            "3, vertical, expo"
-          ];
+          hyprexpo-gesture = [ "3, vertical, expo" ];
 
-          bindd = [
-            "SUPER, U, Open expose, hyprexpo:expo, toggle"
-          ];
+          bindd = [ "SUPER, U, Open expose, hyprexpo:expo, toggle" ];
         };
       };
     };

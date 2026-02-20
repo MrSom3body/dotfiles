@@ -59,9 +59,7 @@
             custom_formats = [
               # uncensored
               {
-                trash_ids = [
-                  "026d5aadd1a6b4e550b134cb6c72b3ca"
-                ];
+                trash_ids = [ "026d5aadd1a6b4e550b134cb6c72b3ca" ];
                 assign_scores_to = [
                   {
                     name = "Remux-1080p - Anime";
@@ -71,9 +69,7 @@
               }
               # 10bit
               {
-                trash_ids = [
-                  "b2550eb333d27b75833e25b8c2557b38"
-                ];
+                trash_ids = [ "b2550eb333d27b75833e25b8c2557b38" ];
                 assign_scores_to = [
                   {
                     name = "Remux-1080p - Anime";
@@ -84,9 +80,7 @@
 
               # anime dual audio
               {
-                trash_ids = [
-                  "418f50b10f1907201b6cfdf881f467b7"
-                ];
+                trash_ids = [ "418f50b10f1907201b6cfdf881f467b7" ];
                 assign_scores_to = [
                   {
                     name = "Remux-1080p - Anime";
@@ -133,9 +127,7 @@
             custom_formats = [
               # uncensored
               {
-                trash_ids = [
-                  "064af5f084a0a24458cc8ecd3220f93f"
-                ];
+                trash_ids = [ "064af5f084a0a24458cc8ecd3220f93f" ];
                 assign_scores_to = [
                   {
                     name = "Remux-1080p - Anime";
@@ -145,9 +137,7 @@
               }
               # 10bit
               {
-                trash_ids = [
-                  "a5d148168c4506b55cf53984107c396e"
-                ];
+                trash_ids = [ "a5d148168c4506b55cf53984107c396e" ];
                 assign_scores_to = [
                   {
                     name = "Remux-1080p - Anime";
@@ -158,9 +148,7 @@
 
               # anime dual audio
               {
-                trash_ids = [
-                  "4a3b087eea2ce012fcc1ce319259a3be"
-                ];
+                trash_ids = [ "4a3b087eea2ce012fcc1ce319259a3be" ];
                 assign_scores_to = [
                   {
                     name = "Remux-1080p - Anime";

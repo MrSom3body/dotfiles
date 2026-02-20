@@ -2,8 +2,6 @@
   flake.modules.homeManager.school =
     { pkgs, ... }:
     {
-      home.packages = [
-        pkgs.ciscoPacketTracer8
-      ];
+      home.packages = [ pkgs.ciscoPacketTracer8 ];
     };
 }

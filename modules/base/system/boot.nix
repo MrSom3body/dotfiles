@@ -9,9 +9,7 @@ in
     { config, pkgs, ... }:
     {
       boot = {
-        initrd = mkIf (flake.lib.isInstall config) {
-          systemd.enable = true;
-        };
+        initrd = mkIf (flake.lib.isInstall config) { systemd.enable = true; };
 
         kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 

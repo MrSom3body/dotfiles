@@ -3,11 +3,7 @@
     { pkgs, ... }:
     {
       home.packages = builtins.attrValues {
-        inherit (pkgs)
-          proton-authenticator
-          proton-pass
-          protonvpn-gui
-          ;
+        inherit (pkgs) proton-authenticator proton-pass protonvpn-gui;
       };
     };
 }

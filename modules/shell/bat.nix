@@ -5,11 +5,7 @@
       programs = {
         bat = {
           enable = true;
-          extraPackages = builtins.attrValues {
-            inherit (pkgs.bat-extras)
-              batman
-              ;
-          };
+          extraPackages = builtins.attrValues { inherit (pkgs.bat-extras) batman; };
         };
 
         fish.functions = {

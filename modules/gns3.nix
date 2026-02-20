@@ -34,8 +34,6 @@
             vpcs
             ;
         }
-        ++ [
-          self.packages.${pkgs.stdenv.hostPlatform.system}.gns3-auto-conf
-        ];
+        ++ [ self.packages.${pkgs.stdenv.hostPlatform.system}.gns3-auto-conf ];
     };
 }

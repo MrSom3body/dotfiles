@@ -6,14 +6,7 @@
 }:
 {
   default = pkgs.mkShell {
-    packages =
-      builtins.attrValues {
-        inherit (pkgs)
-          just
-          uv
-          ;
-      }
-      ++ [ python ];
+    packages = builtins.attrValues { inherit (pkgs) just uv; } ++ [ python ];
 
     env = {
       # Prevent uv from managing Python downloads

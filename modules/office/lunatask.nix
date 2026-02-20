@@ -4,8 +4,6 @@
     {
       home.packages = [ pkgs.lunatask ];
 
-      xdg.autostart.entries = [
-        "${pkgs.lunatask}/share/applications/lunatask.desktop"
-      ];
+      xdg.autostart.entries = [ "${pkgs.lunatask}/share/applications/lunatask.desktop" ];
     };
 }

@@ -24,11 +24,7 @@
         }
         # my packages
         ++ builtins.attrValues {
-          inherit (self.packages.${pkgs.stdenv.hostPlatform.system})
-            hyprcast
-            touchpad-toggle
-            wl-ocr
-            ;
+          inherit (self.packages.${pkgs.stdenv.hostPlatform.system}) hyprcast touchpad-toggle wl-ocr;
         };
     };
 }

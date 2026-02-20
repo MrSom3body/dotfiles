@@ -79,9 +79,7 @@
               in
               "match:namespace ^(${elements})$";
 
-            bars = [
-              "waybar"
-            ];
+            bars = [ "waybar" ];
 
             menus = [
               "rofi"

@@ -6,11 +6,7 @@
     (
       { config, ... }:
       let
-        inherit (config.lib.topology)
-          mkInternet
-          mkConnection
-          mkRouter
-          ;
+        inherit (config.lib.topology) mkInternet mkConnection mkRouter;
       in
       {
         nodes = {

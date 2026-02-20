@@ -12,11 +12,7 @@
     homeManager.desktop =
       { pkgs, ... }:
       {
-        home.packages = builtins.attrValues {
-          inherit (pkgs)
-            seahorse
-            ;
-        };
+        home.packages = builtins.attrValues { inherit (pkgs) seahorse; };
       };
   };
 }

@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 {
   pre-commit-check = inputs.git-hooks-nix.lib.${pkgs.stdenv.hostPlatform.system}.run {
     src = ../.;

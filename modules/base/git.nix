@@ -9,9 +9,7 @@ in
         enable = true;
 
         settings = {
-          user = {
-            inherit (meta.users.karun) name email;
-          };
+          user = { inherit (meta.users.karun) name email; };
 
           alias = {
             a = "add";

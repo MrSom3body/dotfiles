@@ -1,3 +1,1 @@
-{
-  flake.modules.nixos.desktop.boot.plymouth.enable = true;
-}
+{ flake.modules.nixos.desktop.boot.plymouth.enable = true; }

@@ -19,12 +19,7 @@
     homeManager.desktop =
       { pkgs, ... }:
       {
-        home.packages = builtins.attrValues {
-          inherit (pkgs)
-            procps
-            systemd
-            ;
-        };
+        home.packages = builtins.attrValues { inherit (pkgs) procps systemd; };
 
         services.kdeconnect = {
           enable = true;

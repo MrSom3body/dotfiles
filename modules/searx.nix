@@ -22,7 +22,23 @@ in
 
         searx = {
           enable = true;
+          redisCreateLocally = true;
           environmentFile = config.sops.secrets.searx.path;
+
+          limiterSettings = {
+            real_ip = {
+              x_for = 1;
+              ipv4_prefix = 32;
+              ipv6_prefix = 56;
+            };
+            botdetection = {
+              trusted_proxies = [
+                "127.0.0.1"
+                "::1"
+              ];
+            };
+          };
+
           settings = {
             use_default_settings = true;
 
@@ -33,11 +49,13 @@ in
               secret_key = "@SEARX_SECRET_KEY@";
               method = "GET";
               image_proxy = true;
+              limiter = true;
             };
 
             general = {
               instance_name = "Karun's SearXNG";
               donation_url = "https://ko-fi.com/mrsom3body";
+              public_instance = true;
             };
 
             ui = {

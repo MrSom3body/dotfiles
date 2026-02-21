@@ -30,10 +30,10 @@
           "SUPER CTRL, COMMA, Toggle do not disturb mode, exec, fnott-dnd"
 
           # Screenshots
-          ", PRINT, Take screenshot of screen, exec, ${runOnce "grimblast"} --freeze --notify copysave area"
-          "SHIFT, PRINT, Take and edit screenshot of screen, exec, ${runOnce "grimblast"} --freeze edit area"
-          "SUPER, PRINT, Take screenshot of window, exec, ${runOnce "grimblast"} --freeze --notify copysave screen"
-          "SUPER SHIFT, PRINT, Take and edit screenshot of window, exec, ${runOnce "grimblast"} --freeze edit screen"
+          ", PRINT, Take screenshot of a window, exec, ${runOnce "grimblast"} --freeze --notify copysave area"
+          "SHIFT, PRINT, Take and edit screenshot of a window, exec, ${runOnce "grimblast"} --freeze edit area"
+          "SUPER, PRINT, Take screenshot of a screen, exec, ${runOnce "grimblast"} --freeze --notify copysave output"
+          "SUPER SHIFT, PRINT, Take and edit screenshot of a screen, exec, ${runOnce "grimblast"} --freeze edit output"
 
           # Screencast
           "SUPER, R, Start/stop screencast (without audio), exec, uwsm app -- hyprcast"

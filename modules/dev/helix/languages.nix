@@ -137,7 +137,6 @@ in
           };
           language-servers = [
             "ty"
-            "basedpyright"
             "ruff"
             "gpt"
             "codebook"

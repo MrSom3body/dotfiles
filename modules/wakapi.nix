@@ -10,6 +10,8 @@ in
         sops.secrets.wakapi = {
           sopsFile = ../secrets/wakapi.env;
           format = "dotenv";
+          owner = "wakapi";
+          group = "wakapi";
         };
 
         services = {
@@ -37,7 +39,21 @@ in
                 disable_frontpage = true;
               };
 
-              mail.enabled = false;
+              mail =
+                let
+                  mail = "noreply@${config.networking.domain}";
+                in
+                {
+                  enabled = true;
+                  provider = "smtp";
+                  sender = "Wakapi <${mail}>";
+                  smtp = {
+                    host = "smtp.protonmail.ch";
+                    port = 587;
+                    username = mail;
+                    tls = false;
+                  };
+                };
             };
           };
 

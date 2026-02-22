@@ -16,6 +16,9 @@
             disableYoloMode = true;
             auth.selectedType = "oauth-personal";
           };
+          experimental = {
+            plan = true;
+          };
         };
       };
     };

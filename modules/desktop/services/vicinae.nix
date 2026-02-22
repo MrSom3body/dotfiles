@@ -11,7 +11,7 @@
 
         settings = {
           pop_to_root_on_close = true;
-          close_on_focus_loss = false;
+          close_on_focus_loss = true;
           search_files_in_root = true;
 
           providers = {

@@ -24,10 +24,6 @@ in
       home.packages = [ pkgs.typstyle ]; # for formatting typst
 
       programs.helix.languages.language-server = {
-        basedpyright = {
-          command = lib.getExe' pkgs.basedpyright "basedpyright-langserver";
-          config.python.analysis.typeCheckingMode = "basic";
-        };
         bash-language-server.command = lib.getExe pkgs.bash-language-server;
         codebook = {
           command = lib.getExe pkgs.codebook;

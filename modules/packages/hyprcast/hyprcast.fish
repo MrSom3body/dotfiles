@@ -1,4 +1,4 @@
-#!/usr/bin/env -S fish --no-config
+#!/usr/bin/env fish
 
 function print_help
     echo "Usage: hyprcast.fish [flags]"
@@ -13,6 +13,10 @@ end
 
 function notify
     notify-send -a hyprcast $argv
+end
+
+function get_output
+    hyprctl monitors -j | jq '.[] | select(.focused == true) | .name' -r
 end
 
 set options h/help
@@ -60,11 +64,13 @@ pkill -35 waybar
 if set -ql _flag_a
     wl-screenrec \
         -f $file_name \
+        -o (get_output) \
         --audio --audio-device (wpctl inspect @DEFAULT_AUDIO_SINK@ | grep "node.name" | cut -d \" -f2).monitor
 else
     wl-screenrec \
-        -f $file_name
+        -f $file_name \
+        -o (get_output)
 end
 pkill -35 waybar
 
-notify -t 3000 -i $file_name "Screencast finished" "Saved to $file_name"
+notify -t 3000 "Screencast finished" "Saved to $file_name"

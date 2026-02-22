@@ -18,10 +18,11 @@ in
         '';
 
         fixupPhase = ''
-          wrapProgram $out/bin/${name} --set PATH ${
+          wrapProgram $out/bin/${name} --prefix PATH : ${
             lib.makeBinPath [
               pkgs.coreutils
               pkgs.fish
+              pkgs.jq
               pkgs.libnotify
               pkgs.procps
               pkgs.wireplumber

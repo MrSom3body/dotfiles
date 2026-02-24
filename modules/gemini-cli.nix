@@ -11,6 +11,7 @@
             previewFeatures = true;
             vimMode = true;
           };
+          ui.hidebanner = true;
           privacy.usageStatisticsEnabled = false;
           security = {
             disableYoloMode = true;

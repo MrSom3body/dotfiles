@@ -11,7 +11,7 @@ in
         package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.gemini-cli;
         settings = {
           ui = {
-            hidebanner = true;
+            hideBanner = true;
             footer.hideContextPercentage = false;
             inlineThinkingMode = "full";
             showCitations = true;

@@ -115,6 +115,11 @@ in
               "sonix-usb-device-keyboard, keyboard, allow"
               "sonix-usb-device-consumer-control, keyboard, allow"
 
+              # Presentation control
+              "qiya-wireless-device, keyboard, allow"
+              "qiya-wireless-device-system-control, keyboard, allow"
+              "qiya-wireless-device-consumer-control, keyboard, allow"
+
               # Deny everything else
               ".*, keyboard, deny"
             ];

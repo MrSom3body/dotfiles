@@ -13,7 +13,7 @@
   },
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": ["* 3-6 * * *"],
+    "schedule": ["* 3-9 * * *"],
     "commitMessageAction": "update",
     "prBodyDefinitions": {
       "Change": "All flake inputs updated"

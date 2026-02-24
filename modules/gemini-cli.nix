@@ -17,6 +17,7 @@ in
             showCitations = true;
             showModelInfoInChat = true;
             showStatusInTitle = true;
+            useAlternateBuffer = true;
           };
 
           general = {

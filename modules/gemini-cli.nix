@@ -32,7 +32,10 @@ in
             disableYoloMode = true;
             auth.selectedType = "oauth-personal";
           };
-          experimental.plan = true;
+          experimental = {
+            enableAgents = true;
+            plan = true;
+          };
 
           privacy.usageStatisticsEnabled = false;
         };

@@ -26,7 +26,6 @@ let
     "lanzaboote"
     "libvirtd"
     "logitech"
-    "ntfy-client"
     "opentabletdriver"
     "podman"
     "printing"

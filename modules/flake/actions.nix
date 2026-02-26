@@ -34,7 +34,7 @@ let
     cachix = "cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1"; # v16
     nix-diff-action = "natsukium/nix-diff-action@374bf5037dc84fc520da2002beef2f2bd96f4e9b"; # v1.0.2
     alls-green = "re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe"; # v1.2.2
-    upload-artifact = "actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f"; # v6
+    upload-artifact = "actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f"; # v7
     action-gh-release = "softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b"; # v2.5.0
     download-artifact = "actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131"; # v7
     create-pull-request = "peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0"; # v8.1.0

@@ -36,7 +36,7 @@ let
     alls-green = "re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe"; # v1.2.2
     upload-artifact = "actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f"; # v7
     action-gh-release = "softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b"; # v2.5.0
-    download-artifact = "actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131"; # v7
+    download-artifact = "actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3"; # v8
     create-pull-request = "peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0"; # v8.1.0
     create-github-app-token = "actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf"; # v2.2.1
   };

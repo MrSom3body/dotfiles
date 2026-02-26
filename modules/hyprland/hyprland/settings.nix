@@ -102,7 +102,7 @@ in
 
           dwindle = {
             pseudotile = true;
-            preserve_split = true;
+            preserve_split = false;
           };
 
           master = {

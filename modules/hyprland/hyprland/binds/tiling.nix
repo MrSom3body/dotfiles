@@ -4,7 +4,7 @@
       # Controls
       "SUPER, Q, Close focused window, killactive"
       "SUPER, F, Fullscreen focused window, fullscreen"
-      "SUPER, I, Change split direction, togglesplit"
+      "SUPER, I, Change split direction, layoutmsg, swapsplit"
       "SUPER, W, Toggle floating, togglefloating"
       "SUPER, P, Pin focused window, pin"
 

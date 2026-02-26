@@ -26,6 +26,7 @@ in
             vimMode = true;
             checkpointing.enabled = true;
           };
+          ide.enabled = true;
           context.discoveryMaxDirs = 1000;
           tools.shell.showColor = true;
           security = {

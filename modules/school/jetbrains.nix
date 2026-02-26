@@ -21,15 +21,14 @@
             temurin-bin
             ;
         }
-        ++ [
-          (buildIdeWithPlugins pkgs "datagrip" pluginList)
-          (buildIdeWithPlugins pkgs "idea" pluginList)
-          # (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.phpstorm plugins)
-          # (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.pycharm-professional plugins)
-        ];
+        ++ [ (buildIdeWithPlugins pkgs "idea" pluginList) ];
 
-      xdg.configFile."ideavim/ideavimrc".text = ''
-        source ${inputs.helix-vim}/src/helix.idea.vim
-      '';
+      xdg.configFile = {
+        "ideavim/ideavimrc".text = ''
+          source ${inputs.helix-vim}/src/helix.idea.vim
+        '';
+        "JetBrains/IntelliJIdea${pkgs.jetbrains.idea.version}/idea64.vmoptions".text =
+          "-Dawt.toolkit.name=WLToolkit";
+      };
     };
 }

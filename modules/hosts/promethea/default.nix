@@ -17,6 +17,7 @@ let
     "adb"
     "atuin"
     "bluetooth"
+    "claude-code"
     # "design"
     "emulation"
     "fingerprint"

@@ -28,8 +28,8 @@
       resolved = {
         enable = true;
         settings.Resolve = {
-          DNSOverTLS = "true";
-          DNSSEC = "true";
+          DNSOverTLS = "opportunistic";
+          DNSSEC = "allow-downgrade";
         };
       };
 

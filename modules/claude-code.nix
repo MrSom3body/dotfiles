@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.claude =
+  flake.modules.homeManager.claude-code =
     { pkgs, ... }:
     {
       programs.claude-code = {

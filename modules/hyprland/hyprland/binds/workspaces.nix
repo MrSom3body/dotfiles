@@ -1,19 +1,6 @@
 {
   flake.modules.homeManager.hyprland = {
     wayland.windowManager.hyprland.settings.bindd = [
-      # Special workspaces
-      "SUPER, A, Toggle special workspace, togglespecialworkspace, magic"
-      "SUPER SHIFT, A, Move focused window to special workspace, movetoworkspace, special:magic"
-
-      "SUPER, S, Toggle Spotify workspace, togglespecialworkspace, spotify"
-      "SUPER SHIFT, S, Move focused window to Spotify workspace, movetoworkspace, special:spotify"
-      "SUPER, M, Toggle Monitor workspace, togglespecialworkspace, monitor"
-      "SUPER SHIFT, M, Move focused window to Monitor workspace, movetoworkspace, special:monitor"
-      "SUPER, X, Toggle Discord workspace, togglespecialworkspace, discord"
-      "SUPER SHIFT, X, Move focused window to Discord workspace, movetoworkspace, special:discord"
-      "SUPER, T, Toggle todo workspace, togglespecialworkspace, todo"
-      "SUPER SHIFT, T, Move focused window to todo workspace, movetoworkspace, special:todo"
-
       # Switch workspaces
       "SUPER, Prior, Switch to next workspace, workspace, r-1"
       "SUPER, Next, Switch to previous workspace, workspace, r+1"

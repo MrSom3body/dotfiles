@@ -107,29 +107,11 @@
             "${toRegex blurred}, blur true, ignore_alpha 0"
           ];
 
-        workspace =
-          let
-            gaps = "50";
-          in
-          [
-            # Smart Gaps
-            "w[tv1], gapsout:0, gapsin:0"
-            "f[1], gapsout:0, gapsin:0"
-
-            "special:magic, gapsout:${gaps}"
-
-            "special:spotify, on-created-empty:uwsm app -- spotify"
-            "special:spotify, gapsout:${gaps}"
-
-            "special:monitor, on-created-empty:uwsm app -- xdg-terminal-exec btop"
-            "special:monitor, gapsout:${gaps}"
-
-            "special:discord, on-created-empty:uwsm app -- vesktop"
-            "special:discord, gapsout:${gaps}"
-
-            "special:todo, on-created-empty:uwsm app -- lunatask"
-            "special:todo, gapsout:${gaps}"
-          ];
+        workspace = [
+          # Smart Gaps
+          "w[tv1], gapsout:0, gapsin:0"
+          "f[1], gapsout:0, gapsin:0"
+        ];
       };
     };
 }

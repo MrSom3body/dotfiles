@@ -14,11 +14,8 @@
         [
           # Launcher
           "SUPER, D, Open application launcher, exec, vicinae toggle"
-          "SUPER, MINUS, Open display manager, exec, vicinae-monitors"
-          "SUPER, SPACE, Open file/directory picker, exec, vicinae vicinae://extensions/vicinae/files/search"
           "ALT, TAB, Open window switcher, exec, vicinae vicinae://extensions/vicinae/wm/switch-windows"
           "SUPER, PERIOD, Open symbols search, exec, vicinae vicinae://extensions/vicinae/core/search-emojis"
-          "SUPER, odiaeresis, Connect/disconnect from a vpnc VPN, exec, vicinae-vpnc"
 
           # Clipboard
           "SUPER, V, Show clipboard history, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
@@ -35,13 +32,7 @@
           "SUPER, PRINT, Take screenshot of a screen, exec, ${runOnce "grimblast"} --freeze --notify copysave output"
           "SUPER SHIFT, PRINT, Take and edit screenshot of a screen, exec, ${runOnce "grimblast"} --freeze edit output"
 
-          # Screencast
-          "SUPER, R, Start/stop screencast (without audio), exec, uwsm app -- hyprcast"
-          "SUPER SHIFT, R, Start/stop screencast (with audio), exec, uwsm app -- hyprcast -a"
-
           # Other stuff
-          "SUPER, O, Copy text from screen, exec, wl-ocr -nc"
-          "SUPER, C, Open color picker, exec, ${runOnce "hyprpicker -a"}"
           # "SUPER SHIFT, O, Ask ollama something, exec, uwsm app -- fish -c \"chat -fcs\""
         ];
 

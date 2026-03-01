@@ -29,6 +29,7 @@
             ];
 
             modules-right = [
+              "hyprland/submap"
               "custom/hyprcast"
               "backlight"
               "wireplumber"
@@ -148,6 +149,10 @@
                 on-scroll-up = "${playerctl} volume 0.1+";
                 on-scroll-down = "${playerctl} volume 0.1-";
               };
+
+            "hyprland/submap" = {
+              format = "󰧹 {}";
+            };
 
             "custom/hyprcast" =
               let

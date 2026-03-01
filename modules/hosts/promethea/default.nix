@@ -72,7 +72,7 @@ in
         { pkgs, ... }:
         {
           home.packages = [
-            pkgs.calibre
+            pkgs.stable.calibre # TODO make unstable again when https://github.com/NixOS/nixpkgs/issues/493843 gets resolved
             pkgs.logseq
             pkgs.todoist-electron
           ];

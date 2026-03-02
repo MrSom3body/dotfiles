@@ -22,7 +22,7 @@
 
           hyprexpo-gesture = [ "3, vertical, expo" ];
 
-          bindd = [ "SUPER, U, Open expose, hyprexpo:expo, toggle" ];
+          bindd = [ "SUPER, O, Open expose, hyprexpo:expo, toggle" ];
         };
       };
     };

@@ -41,7 +41,6 @@ in
             border_size = border.size;
             gaps_in = 5;
             gaps_out = 10;
-            layout = "dwindle";
 
             # Set to true enable resizing windows by clicking and dragging on borders and gaps
             resize_on_border = false;
@@ -108,6 +107,17 @@ in
           master = {
             new_status = "master";
           };
+
+          scrolling =
+            let
+              oneThird = 1.0 / 3.0;
+              twoThirds = 2.0 / 3.0;
+            in
+            {
+              column_width = twoThirds;
+              explicit_column_widths = "${toString oneThird}, 0.5, ${toString twoThirds}";
+              focus_fit_method = 1;
+            };
 
           cursor = {
             no_hardware_cursors = false;

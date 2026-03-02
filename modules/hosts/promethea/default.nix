@@ -76,53 +76,56 @@ in
             pkgs.logseq
             pkgs.todoist-electron
           ];
-          wayland.windowManager.hyprland.settings = {
-            monitorv2 = [
-              {
-                output = "eDP-1";
-                mode = "1920x1080@60.08Hz";
-                position = "auto";
-                scale = "1";
-              }
-              {
-                output = "desc:AOC 24B3HMA2 1OVQ5HA003115";
-                mode = "1920x1080@100.00Hz";
-                position = "auto";
-                scale = "1";
-              }
-            ];
+          wayland.windowManager.hyprland = {
+            layout = "scrolling";
+            settings = {
+              monitorv2 = [
+                {
+                  output = "eDP-1";
+                  mode = "1920x1080@60.08Hz";
+                  position = "auto";
+                  scale = "1";
+                }
+                {
+                  output = "desc:AOC 24B3HMA2 1OVQ5HA003115";
+                  mode = "1920x1080@100.00Hz";
+                  position = "auto";
+                  scale = "1";
+                }
+              ];
 
-            workspace = [
-              "4, monitor:HDMI-A-1"
-              "5, monitor:HDMI-A-1"
-            ];
+              workspace = [
+                "4, monitor:HDMI-A-1"
+                "5, monitor:HDMI-A-1"
+              ];
 
-            permission = [
-              ### Keyboards ###
-              "video-bus, keyboard, allow"
-              "asus-wmi-hotkeys, keyboard, allow"
-              "at-translated-set-2-keyboard, keyboard, allow"
+              permission = [
+                ### Keyboards ###
+                "video-bus, keyboard, allow"
+                "asus-wmi-hotkeys, keyboard, allow"
+                "at-translated-set-2-keyboard, keyboard, allow"
 
-              # Logitech
-              "mx-mchncl-m-keyboard, keyboard, allow"
-              "logitech-usb-receiver, keyboard, allow"
-              "logitech-usb-receiver-consumer-control, keyboard, allow"
-              "logitech-usb-receiver-system-control, keyboard, allow"
+                # Logitech
+                "mx-mchncl-m-keyboard, keyboard, allow"
+                "logitech-usb-receiver, keyboard, allow"
+                "logitech-usb-receiver-consumer-control, keyboard, allow"
+                "logitech-usb-receiver-system-control, keyboard, allow"
 
-              # Mechanical Keyboard
-              "sonix-usb-device-system-control, keyboard, allow"
-              "sonix-usb-device, keyboard, allow"
-              "sonix-usb-device-keyboard, keyboard, allow"
-              "sonix-usb-device-consumer-control, keyboard, allow"
+                # Mechanical Keyboard
+                "sonix-usb-device-system-control, keyboard, allow"
+                "sonix-usb-device, keyboard, allow"
+                "sonix-usb-device-keyboard, keyboard, allow"
+                "sonix-usb-device-consumer-control, keyboard, allow"
 
-              # Presentation control
-              "qiya-wireless-device, keyboard, allow"
-              "qiya-wireless-device-system-control, keyboard, allow"
-              "qiya-wireless-device-consumer-control, keyboard, allow"
+                # Presentation control
+                "qiya-wireless-device, keyboard, allow"
+                "qiya-wireless-device-system-control, keyboard, allow"
+                "qiya-wireless-device-consumer-control, keyboard, allow"
 
-              # Deny everything else
-              ".*, keyboard, deny"
-            ];
+                # Deny everything else
+                ".*, keyboard, deny"
+              ];
+            };
           };
         };
     };

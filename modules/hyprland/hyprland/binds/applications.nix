@@ -51,25 +51,25 @@ in
 
           bindr = [ ", catchall, submap, reset" ];
         };
-
-        settings.workspace =
-          let
-            gaps = "50";
-          in
-          [
-            "special:spotify, on-created-empty:uwsm app -- spotify"
-            "special:spotify, gapsout:${gaps}"
-
-            "special:monitor, on-created-empty:uwsm app -- xdg-terminal-exec btop"
-            "special:monitor, gapsout:${gaps}"
-
-            "special:discord, on-created-empty:uwsm app -- vesktop"
-            "special:discord, gapsout:${gaps}"
-
-            "special:todo, on-created-empty:uwsm app -- lunatask"
-            "special:todo, gapsout:${gaps}"
-          ];
       };
+
+      settings.workspace =
+        let
+          gaps = "50";
+        in
+        [
+          "special:spotify, on-created-empty:uwsm app -- spotify"
+          "special:spotify, gapsout:${gaps}"
+
+          "special:monitor, on-created-empty:uwsm app -- xdg-terminal-exec btop"
+          "special:monitor, gapsout:${gaps}"
+
+          "special:discord, on-created-empty:uwsm app -- vesktop"
+          "special:discord, gapsout:${gaps}"
+
+          "special:todo, on-created-empty:uwsm app -- lunatask"
+          "special:todo, gapsout:${gaps}"
+        ];
     };
   };
 }

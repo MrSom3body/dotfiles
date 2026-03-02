@@ -1,8 +1,11 @@
 { inputs, ... }:
 {
   flake.overlays = {
+    # from inputs
+    hyprnix = inputs.hyprnix.overlays.default;
     nix-topology = inputs.nix-topology.overlays.default;
 
+    # my overlays
     modifications = final: prev: {
       obsidian = prev.obsidian.overrideAttrs (oldAttrs: {
         postInstall = (oldAttrs.postInstall or "") + ''

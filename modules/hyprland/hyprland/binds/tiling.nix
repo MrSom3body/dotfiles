@@ -21,7 +21,7 @@
           # Controls
           "SUPER, Q, Close focused window, killactive"
           "SUPER, F, Fullscreen focused window, fullscreen"
-          "SUPER, V, Toggle floating, togglefloating"
+          "SUPER, W, Toggle floating, togglefloating"
           "SUPER, P, Pin focused window, pin"
 
           # Window grouping

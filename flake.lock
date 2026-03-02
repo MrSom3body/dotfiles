@@ -886,40 +886,6 @@
         "type": "github"
       }
     },
-    "hyprland-plugins": {
-      "inputs": {
-        "hyprland": [
-          "hyprnix",
-          "hyprland"
-        ],
-        "nixpkgs": [
-          "hyprnix",
-          "hyprland-plugins",
-          "hyprland",
-          "nixpkgs"
-        ],
-        "systems": [
-          "hyprnix",
-          "hyprland-plugins",
-          "hyprland",
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1767020608,
-        "narHash": "sha256-BSRT1Uu1ot4WfMfZc6KW0nwpmt2xl9wpUqmH/JoMTfk=",
-        "owner": "hyprwm",
-        "repo": "hyprland-plugins",
-        "rev": "d7b67e8f4ba8ebeee4ce899348fcee6291512169",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hyprwm",
-        "ref": "v0.53.0",
-        "repo": "hyprland-plugins",
-        "type": "github"
-      }
-    },
     "hyprland-protocols": {
       "inputs": {
         "nixpkgs": [
@@ -1106,7 +1072,6 @@
         "hypridle": "hypridle",
         "hyprland": "hyprland",
         "hyprland-guiutils": "hyprland-guiutils",
-        "hyprland-plugins": "hyprland-plugins",
         "hyprland-protocols": "hyprland-protocols",
         "hyprland-qt-support": "hyprland-qt-support",
         "hyprlang": "hyprlang",
@@ -1131,11 +1096,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1772217226,
-        "narHash": "sha256-20Rnh/9lMhGKUee0iSA08rzpO6EbkfH/9jGQ8Yr6yGI=",
+        "lastModified": 1772405457,
+        "narHash": "sha256-OrVqo5w2WqX9myI6SVl8pViHmPTz6SeCcQF7KzZjuZ4=",
         "owner": "hyprwm",
         "repo": "hyprnix",
-        "rev": "afc46b540f8fb9f88cafd1204017d214258fa95d",
+        "rev": "1d0b86028661365bd82fd5adae397414cf6d6262",
         "type": "github"
       },
       "original": {

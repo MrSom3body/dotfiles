@@ -590,15 +590,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1745090976,
-        "narHash": "sha256-336Aa7g666XCFarjp0lyWPRkqGM732sj6MMwkSThFsQ=",
+        "lastModified": 1772403701,
+        "narHash": "sha256-iy4e6AvmE3GNLi7b3Q3Ve8eRXPB3zJsHbXaoXIC1Qlc=",
         "owner": "MrSom3body-contrib",
         "repo": "home-manager",
-        "rev": "07ce50c71105926bd98720f30afcb1e73b82cccf",
+        "rev": "8b464b6f206269920f7814fc6e179fbeac00b522",
         "type": "github"
       },
       "original": {
         "owner": "MrSom3body-contrib",
+        "ref": "hyprland-submap-reset",
         "repo": "home-manager",
         "type": "github"
       }

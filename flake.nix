@@ -71,7 +71,7 @@
     home-manager = {
       # TODO set to upstream again when https://github.com/nix-community/home-manager/pull/8836 gets merged
       # url = "github:nix-community/home-manager";
-      url = "github:MrSom3body-contrib/home-manager";
+      url = "github:MrSom3body-contrib/home-manager/hyprland-submap-reset";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

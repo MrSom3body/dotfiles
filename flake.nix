@@ -69,7 +69,9 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      # TODO set to upstream again when https://github.com/nix-community/home-manager/pull/8836 gets merged
+      # url = "github:nix-community/home-manager";
+      url = "github:MrSom3body-contrib/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -591,16 +591,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1772403701,
-        "narHash": "sha256-iy4e6AvmE3GNLi7b3Q3Ve8eRXPB3zJsHbXaoXIC1Qlc=",
-        "owner": "MrSom3body-contrib",
+        "lastModified": 1772516620,
+        "narHash": "sha256-2r4cKdqCVlQkvcTcLUMxmsmAYZZxCMd//w/PnDnukTE=",
+        "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "8b464b6f206269920f7814fc6e179fbeac00b522",
+        "rev": "2b9504d5a0169d4940a312abe2df2c5658db8de9",
         "type": "github"
       },
       "original": {
-        "owner": "MrSom3body-contrib",
-        "ref": "hyprland-submap-reset",
+        "owner": "nix-community",
         "repo": "home-manager",
         "type": "github"
       }

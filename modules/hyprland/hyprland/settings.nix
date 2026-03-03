@@ -115,8 +115,9 @@ in
             in
             {
               column_width = twoThirds;
-              explicit_column_widths = "${toString oneThird}, 0.5, ${toString twoThirds}";
               focus_fit_method = 1;
+              explicit_column_widths = "${toString oneThird}, 0.5, ${toString twoThirds}";
+              follow_min_visible = oneThird;
             };
 
           cursor = {

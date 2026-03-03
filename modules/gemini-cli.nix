@@ -23,6 +23,11 @@ in
           general = {
             preferredEditor = programs.editor;
             previewFeatures = true;
+            sessionRetention = {
+              enabled = true;
+              maxAge = "30d";
+              maxCount = 100;
+            };
             vimMode = true;
             checkpointing.enabled = true;
           };

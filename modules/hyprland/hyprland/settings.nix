@@ -108,17 +108,12 @@ in
             new_status = "master";
           };
 
-          scrolling =
-            let
-              oneThird = 1.0 / 3.0;
-              twoThirds = 2.0 / 3.0;
-            in
-            {
-              column_width = twoThirds;
-              focus_fit_method = 1;
-              explicit_column_widths = "${toString oneThird}, 0.5, ${toString twoThirds}";
-              follow_min_visible = 0.4;
-            };
+          scrolling = {
+            column_width = "0.666667";
+            focus_fit_method = 1;
+            explicit_column_widths = "0.333333, 0.5, 0.666667";
+            follow_min_visible = 0.4;
+          };
 
           cursor = {
             no_hardware_cursors = false;

@@ -50,11 +50,8 @@ in
             inputs.nixos-hardware.nixosModules.asus-zenbook-um6702
           ];
 
-          hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
+          hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-          boot = {
-            kernelPackages = pkgs.linuxPackages_6_18; # TODO remove when https://github.com/NixOS/nixpkgs/issues/489947#issuecomment-3904846755 gets resolved
-          };
           hardware.asus.battery.chargeUpto = 80;
           security.tpm2.enable = true;
 

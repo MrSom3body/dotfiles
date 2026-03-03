@@ -21,7 +21,7 @@ jobs:
         ref: ${{ github.head_ref || github.ref_name }}
         token: ${{ steps.app-token.outputs.token }}
     - name: Install Nix
-      uses: cachix/install-nix-action@2126ae7fc54c9df00dd18f7f18754393182c73cd
+      uses: cachix/install-nix-action@19effe9fe722874e6d46dd7182e4b8b7a43c4a99
       with:
         extra_nix_config: |-
           always-allow-substitutes = true

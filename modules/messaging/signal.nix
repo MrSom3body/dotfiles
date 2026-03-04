@@ -2,6 +2,6 @@
   flake.modules.homeManager.messaging =
     { pkgs, ... }:
     {
-      home.packages = [ pkgs.signal-desktop-bin ];
+      home.packages = [ pkgs.signal-desktop ];
     };
 }

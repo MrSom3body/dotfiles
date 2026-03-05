@@ -95,7 +95,9 @@ in
           };
 
           gesture = [
-            "3, horizontal, workspace"
+            "3, left, dispatcher, layoutmsg, focus l"
+            "3, right, dispatcher, layoutmsg, focus r"
+            "4, horizontal, workspace"
             "4, down, dispatcher, exec, loginctl lock-session"
           ];
 

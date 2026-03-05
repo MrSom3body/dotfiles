@@ -62,10 +62,10 @@
           KExecWatchdogSec = lib.mkDefault "1m";
         };
 
-        sleep.extraConfig = ''
-          AllowSuspend=no
-          AllowHibernation=no
-        '';
+        sleep.settings.Sleep = {
+          AllowSuspend = "no";
+          AllowHibernation = "no";
+        };
       };
 
       virtualisation.vmVariant.virtualisation.graphics = false;

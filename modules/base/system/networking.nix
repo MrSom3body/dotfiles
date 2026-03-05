@@ -27,10 +27,7 @@
       # DNS resolver
       resolved = {
         enable = true;
-        settings.Resolve = {
-          DNSOverTLS = "opportunistic";
-          DNSSEC = "allow-downgrade";
-        };
+        settings.Resolve.DNSOverTLS = "opportunistic";
       };
 
       # network discovery, mDNS

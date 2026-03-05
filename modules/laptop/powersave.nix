@@ -7,10 +7,10 @@
       };
 
       systemd = {
-        sleep.extraConfig = ''
-          HibernateDelaySec=1h
-          HibernateMode=shutdown
-        '';
+        sleep.settings.Sleep = {
+          HibernateDelaySec = "1h";
+          HibernateMode = "shutdown";
+        };
 
         # copied from @fufexan and powertop
         services.powersave = {

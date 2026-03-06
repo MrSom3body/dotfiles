@@ -36,7 +36,7 @@ jobs:
         extraPullNames: nix-community
         name: som3cache
     - name: Generate diff (${{ matrix.attrs.hostname }})
-      uses: natsukium/nix-diff-action@374bf5037dc84fc520da2002beef2f2bd96f4e9b
+      uses: natsukium/nix-diff-action@65526931655c9561dfdb1330b8770d1673857ae9
       with:
         attributes: |-
           - displayName: ${{ matrix.attrs.hostname }}
@@ -76,7 +76,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Post diff comment
-      uses: natsukium/nix-diff-action@374bf5037dc84fc520da2002beef2f2bd96f4e9b
+      uses: natsukium/nix-diff-action@65526931655c9561dfdb1330b8770d1673857ae9
       with:
         mode: comment-only
 name: Diff

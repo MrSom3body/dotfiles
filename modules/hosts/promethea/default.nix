@@ -55,13 +55,6 @@ in
           hardware.asus.battery.chargeUpto = 80;
           security.tpm2.enable = true;
 
-          boot.kernelPatches = [
-            {
-              name = "fix-speakers";
-              patch = ./patches/fix-speakers.patch;
-            }
-          ];
-
           specialisation.enable-ollama.configuration = {
             environment.etc."specialisation".text = "enable-ollama"; # for nh
             system.nixos.tags = [ "enable-ollama" ]; # to display it in the boot loader

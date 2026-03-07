@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   flake.modules = {
     nixos.hyprland = {
@@ -14,27 +15,38 @@
         cfg = config.wayland.windowManager.hyprland;
       in
       {
-        wayland.windowManager.hyprland = {
-          enable = true;
-          systemd.enable = false;
-
-          package = null;
-          portalPackage = null;
-
-          settings.permission = builtins.map (
-            plugin: plugin + "/lib/lib${plugin.pname}.so, plugin, allow"
-          ) cfg.plugins;
+        options.wayland.windowManager.hyprland.layout = lib.mkOption {
+          type = lib.types.enum [
+            "dwindle"
+            "scrolling"
+            "master"
+          ];
+          default = "dwindle";
         };
 
-        services.network-manager-applet.enable = true;
+        config = {
+          wayland.windowManager.hyprland = {
+            enable = true;
+            systemd.enable = false;
 
-        home.file.".config/hypr/scripts" = {
-          source = ./scripts;
-        };
+            package = null;
+            portalPackage = null;
 
-        dconf.settings = {
-          "org/gnome/desktop/wm/preferences" = {
-            button-layout = "':'";
+            settings.permission = map (
+              plugin: plugin + "/lib/lib${plugin.pname}.so, plugin, allow"
+            ) cfg.plugins;
+          };
+
+          services.network-manager-applet.enable = true;
+
+          home.file.".config/hypr/scripts" = {
+            source = ./scripts;
+          };
+
+          dconf.settings = {
+            "org/gnome/desktop/wm/preferences" = {
+              button-layout = "':'";
+            };
           };
         };
       };

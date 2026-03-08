@@ -18,15 +18,19 @@
           ...
           ---
           - MouseGesture: Mouse Right
-          - Execute: [hyprctl, dispatch, workspace, r+1]
+          - Execute: [hyprctl, dispatch, layoutmsg, focus, r]
           ...
           ---
           - MouseGesture: Mouse Left
-          - Execute: [hyprctl, dispatch, workspace, r-1]
+          - Execute: [hyprctl, dispatch, layoutmsg, focus, l]
           ...
           ---
           - MouseGesture: Mouse Up
-          - Execute: [hyprctl, dispatch, 'hyprexpo:expo', toggle]
+          - Execute: [hyprctl, dispatch, workspace, r-1]
+          ...
+          ---
+          - MouseGesture: Mouse Down
+          - Execute: [hyprctl, dispatch, workspace, r+1]
           ...
         '';
 

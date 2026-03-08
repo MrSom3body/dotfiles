@@ -14,6 +14,11 @@
         '';
       });
 
+      # TODO remove when https://github.com/helix-editor/helix/pull/15407 lands in master
+      helix = prev.helix.overrideAttrs (oldAttrs: {
+        patches = (oldAttrs.patches or [ ]) ++ [ ./helix.patch ];
+      });
+
       # TODO remove when https://github.com/NixOS/nixpkgs/pull/496839 gets merged into nixos-unstable
       libvirt = prev.libvirt.overrideAttrs (oldAttrs: {
         postPatch =

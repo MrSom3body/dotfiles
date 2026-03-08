@@ -1,0 +1,153 @@
+From b142dba751815c146e72767449ed15f95b321549 Mon Sep 17 00:00:00 2001
+From: SymphonySimper <50240805+SymphonySimper@users.noreply.github.com>
+Date: Sat, 7 Mar 2026 19:38:14 +0530
+Subject: [PATCH] feat!: rm bovex-tree-sitter and queries
+
+---
+ book/src/generated/lang-support.md   |  2 +-
+ languages.toml                       |  4 --
+ runtime/queries/bovex/highlights.scm | 88 ----------------------------
+ runtime/queries/bovex/rainbows.scm   | 11 ----
+ 4 files changed, 1 insertion(+), 104 deletions(-)
+ delete mode 100644 runtime/queries/bovex/highlights.scm
+ delete mode 100644 runtime/queries/bovex/rainbows.scm
+
+diff --git a/book/src/generated/lang-support.md b/book/src/generated/lang-support.md
+index bfeaf3aad271..275086601eee 100644
+--- a/book/src/generated/lang-support.md
++++ b/book/src/generated/lang-support.md
+@@ -16,7 +16,7 @@
+ | bitbake | ✓ |  |  |  |  | `bitbake-language-server` |
+ | blade | ✓ | ✓ |  |  | ✓ |  |
+ | blueprint | ✓ |  |  |  |  | `blueprint-compiler` |
+-| bovex | ✓ |  |  |  | ✓ |  |
++| bovex |  |  |  |  |  |  |
+ | c | ✓ | ✓ | ✓ | ✓ | ✓ | `clangd` |
+ | c-sharp | ✓ | ✓ |  | ✓ |  | `roslyn-language-server`, `OmniSharp`, `csharp-ls` |
+ | c3 | ✓ |  |  |  |  | `c3-lsp` |
+diff --git a/languages.toml b/languages.toml
+index 221a9c10c966..3c4ae22030e6 100644
+--- a/languages.toml
++++ b/languages.toml
+@@ -5175,10 +5175,6 @@ indent = {tab-width = 2, unit = "  "}
+ '“' = '”'
+ '‘' = '’'
+
+-[[grammar]]
+-name = "bovex"
+-source = { git = "https://github.com/mi2ebi/tree-sitter-bovex", rev = "de7657a9cc3525b9b77c6d268da09dad5b1346b0" }
+-
+ [[language]]
+ name = "haxe"
+ scope = "source.haxe"
+diff --git a/runtime/queries/bovex/highlights.scm b/runtime/queries/bovex/highlights.scm
+deleted file mode 100644
+index cc4ffe0a9239..000000000000
+--- a/runtime/queries/bovex/highlights.scm
++++ /dev/null
+@@ -1,88 +0,0 @@
+-[(code_comment) (layout_comment)] @comment.block
+-
+-(do_decl "do" @keyword.control)
+-(val_decl "val" @keyword.storage.type)
+-(fun_decl ["fun" "and"] @keyword.storage.type)
+-(datatype_decl ["datatype" "and"] @keyword.storage.type)
+-(datatype_arm "of" @keyword.storage.type)
+-(object_decl ["object" "of"] @keyword.storage.type)
+-(type_decl "type" @keyword.storage.type)
+-(local_decl ["local" "in" "end"] @keyword.storage.modifier)
+-(open_decl "open" @keyword.control)
+-(import_decl "import" @keyword.control.import)
+-(with_expr ["with" "without"] @keyword.operator)
+-(orelse_expr ["orelse" "otherwise"] @keyword.operator)
+-(andalso_expr ["andalso" "andthen"] @keyword.operator)
+-(fn_expr ["fn" "as"] @keyword.function)
+-(if_expr ["if" "then" "else"] @keyword.control.conditional)
+-(case_expr ["case" "of"] @keyword.control)
+-(fail_expr "fail" @keyword.control)
+-(let_expr ["let" "in" "end"] @keyword.storage.modifier)
+-(pat "as" @keyword.operator)
+-
+-(boolean_lit) @constant.builtin.boolean
+-(numeric_lit) @constant.numeric.integer
+-(float_lit) @constant.numeric.float
+-(string_lit) @string.quoted.double
+-(backslash_escape) @constant.character.escape
+-
+-["=" ":" ","] @punctuation.delimiter
+-["->" "=>"] @operator
+-["(" ")" "[" "]" "{" "}"] @punctuation.bracket
+-
+-[(ident) (label)] @variable.other
+-(type_ident) @type
+-(atomic_pat (ident) @variable.other)
+-(pat (app_pat (atomic_pat (ident) @variable.parameter)))
+-
+-(type_var) @type.parameter
+-(atomic_type (type_ident) @type.builtin)
+-[(record_type) (product_type) (app_type) (arrow_type)] @type
+-
+-(atomic_expr (ident) @variable.other)
+-(project_expr) @variable.member
+-(field_binding (label) @variable.member.private)
+-(field_binding (expr) @variable.other)
+-(record_pat (ident) @variable.member.private)
+-
+-(app_expr
+-  (app_expr (atomic_expr (ident) @function.call))
+-  (atomic_expr))
+-(app_expr
+-  _
+-  [":=" "@" "::" "o" "==" "!=" "==." "!=."
+-   "<" "<=" ">" ">=" "<." "<=." ">." ">=."
+-   "+" "-" "+." "-." "*" "*." "/" "/." "div" "mod"
+-   "shl" "shr" "andb" "xorb" "orb"] @operator
+-  _)
+-
+-(app_expr
+-  (app_expr (atomic_expr (ident) @function.builtin (#eq? @function.builtin "b")))
+-  (atomic_expr (layout_lit (layout_content (layout_text) @markup.bold))))
+-(app_expr
+-  (app_expr (atomic_expr (ident) @function.builtin (#eq? @function.builtin "it")))
+-  (atomic_expr (layout_lit (layout_content (layout_text) @markup.italic))))
+-(app_expr
+-  (app_expr (atomic_expr (ident) @function.builtin (#eq? @function.builtin "rm")))
+-  (atomic_expr (layout_lit)))
+-(app_expr
+-  (app_expr (atomic_expr (ident) @function.builtin (#match? @function.builtin "^(tt|courier|fixedersys)$")))
+-  (atomic_expr (layout_lit (layout_content (layout_text) @markup.raw.inline))))
+-(app_expr
+-  (app_expr (atomic_expr (ident) @function.builtin (#eq? @function.builtin "title")))
+-  (atomic_expr (layout_lit (layout_content (layout_text) @markup.heading.1))))
+-(app_expr
+-  (app_expr (atomic_expr (ident) @function.builtin (#eq? @function.builtin "section")))
+-  (atomic_expr (layout_lit (layout_content (layout_text) @markup.heading.2))))
+-(app_expr
+-  (app_expr (atomic_expr (ident) @function.builtin (#eq? @function.builtin "subsection")))
+-  (atomic_expr (layout_lit (layout_content (layout_text) @markup.heading.3))))
+-(app_expr
+-  (app_expr (atomic_expr (ident) @function.builtin (#eq? @function.builtin "subsubsection")))
+-  (atomic_expr (layout_lit (layout_content (layout_text) @markup.heading.4))))
+-(app_expr
+-  (app_expr (atomic_expr (ident) @function.builtin (#eq? @function.builtin "paragraph")))
+-  (atomic_expr (layout_lit (layout_content (layout_text) @markup.heading.5))))
+-(app_expr
+-  (app_expr (atomic_expr (ident) @function.builtin (#eq? @function.builtin "blockquote")))
+-  (atomic_expr (layout_lit (layout_content (layout_text) @markup.quote))))
+diff --git a/runtime/queries/bovex/rainbows.scm b/runtime/queries/bovex/rainbows.scm
+deleted file mode 100644
+index f00c454f3a83..000000000000
+--- a/runtime/queries/bovex/rainbows.scm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-["(" ")" "[" "]" "{" "}"] @rainbow.bracket
+-[
+-  (tuple_expr)
+-  (record_expr)
+-  (layout_lit)
+-  (layout_antiquote)
+-  (tuple_pat)
+-  (record_pat)
+-  (atomic_type)
+-  (record_type)
+-] @rainbow.scope

@@ -30,7 +30,7 @@ let
   actions = {
     checkout = "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd"; # v6.0.2
     nothing-but-nix = "wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7"; # v10
-    install-nix-action = "cachix/install-nix-action@19effe9fe722874e6d46dd7182e4b8b7a43c4a99"; # v31.10.0
+    install-nix-action = "cachix/install-nix-action@1ca7d21a94afc7c957383a2d217460d980de4934"; # v31.10.1
     cachix = "cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1"; # v16
     nix-diff-action = "natsukium/nix-diff-action@65526931655c9561dfdb1330b8770d1673857ae9"; # v1.0.3
     alls-green = "re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe"; # v1.2.2

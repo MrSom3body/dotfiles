@@ -13,28 +13,6 @@
             --prefix PATH : ${final.lib.makeBinPath [ final.pandoc ]}
         '';
       });
-
-      # TODO remove when https://github.com/NixOS/nixpkgs/pull/496839 gets merged into nixos-unstable
-      libvirt = prev.libvirt.overrideAttrs (oldAttrs: {
-        postPatch =
-          (oldAttrs.postPatch or "")
-          + (final.lib.optionalString final.stdenv.hostPlatform.isLinux (
-            let
-              script = final.writeShellApplication {
-                name = "virt-secret-init-encryption-sh";
-                runtimeInputs = [
-                  final.coreutils
-                  final.systemd
-                ];
-                text = ''exec ${final.runtimeShell} "$@"'';
-              };
-            in
-            ''
-              substituteInPlace src/secret/virt-secret-init-encryption.service.in \
-                --replace-fail /usr/bin/sh ${script}/bin/virt-secret-init-encryption-sh
-            ''
-          ));
-      });
     };
 
     stable-packages = final: _prev: {

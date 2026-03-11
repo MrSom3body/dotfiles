@@ -16,6 +16,8 @@
           isSystem = false;
         };
       };
+
+      services.automatic-timezoned.enable = true; # automatic timezone switching
     };
 
     homeManager.laptop = {

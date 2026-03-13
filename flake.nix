@@ -157,16 +157,6 @@
       };
     };
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-      inputs = {
-        flake-compat.follows = "flake-compat";
-        flake-utils.follows = "flake-utils";
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     gotcha = {
       url = "github:MrSom3body/gotcha";
       inputs = {

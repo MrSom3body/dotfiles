@@ -38,7 +38,7 @@ let
     action-gh-release = "softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b"; # v2.5.0
     download-artifact = "actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c"; # v8.0.1
     create-pull-request = "peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0"; # v8.1.0
-    create-github-app-token = "actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf"; # v2.2.1
+    create-github-app-token = "actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349"; # v2.2.2
   };
 
   steps = {

@@ -35,7 +35,7 @@ let
     nix-diff-action = "natsukium/nix-diff-action@65526931655c9561dfdb1330b8770d1673857ae9"; # v1.0.3
     alls-green = "re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe"; # v1.2.2
     upload-artifact = "actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f"; # v7
-    action-gh-release = "softprops/action-gh-release@b25b93d384199fc0fc8c2e126b2d937a0cbeb2ae"; # v2.5.2
+    action-gh-release = "softprops/action-gh-release@1853d73993c8ca1b2c9c1a7fede39682d0ab5c2a"; # v2.5.3
     download-artifact = "actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c"; # v8.0.1
     create-pull-request = "peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0"; # v8.1.0
     create-github-app-token = "actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859"; # v3

@@ -17,15 +17,6 @@
     systems.url = "github:nix-systems/default-linux";
 
     # deduplication
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-    };
-
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "systems";
-    };
-
     gitignore = {
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,7 +40,7 @@
     comin = {
       url = "github:nlewo/comin";
       inputs = {
-        flake-compat.follows = "flake-compat";
+        flake-compat.follows = "";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -62,7 +53,7 @@
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
       inputs = {
-        flake-compat.follows = "flake-compat";
+        flake-compat.follows = "";
         gitignore.follows = "gitignore";
         nixpkgs.follows = "nixpkgs";
       };
@@ -98,7 +89,7 @@
     nix-jetbrains-plugins = {
       url = "github:nix-community/nix-jetbrains-plugins";
       inputs = {
-        flake-compat.follows = "flake-compat";
+        flake-compat.follows = "";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -106,7 +97,7 @@
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs = {
-        flake-compat.follows = "flake-compat";
+        flake-compat.follows = "";
         nixpkgs.follows = "nixpkgs";
       };
     };

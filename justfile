@@ -87,6 +87,22 @@ build-iso iso_name="sanctuary":
     nix-fast-build --skip-cached --flake "{{flake}}#images.{{iso_name}}"
 
 
+# ---------- secrets ---------- #
+
+# Verify all secrets can be decrypted with current keys
+[group("secrets")]
+check-secrets:
+    @echo "Checking secrets..."
+    @fd -e yaml -e env -e json . secrets -x sh -c 'sops --decrypt "$1" > /dev/null && echo "  OK  $1" || echo "  FAIL  $1"' -- {}
+
+# Re-encrypt all secrets with current keys from .sops.yaml (run after adding/removing a host key)
+[group("secrets")]
+rotate-secrets: check-secrets
+    @echo "Rotating secrets..."
+    @fd -e yaml -e env -e json . secrets -x sops updatekeys -y {}
+    @echo "Done. Commit the updated secret files."
+
+
 # ---------- others ---------- #
 
 [group("others")]

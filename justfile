@@ -63,8 +63,30 @@ fix-hyprlock:
 
 [group("deploy")]
 install hostname ip=hostname:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    KEYS_DIR=$(mktemp -d)
+    trap "rm -rf $KEYS_DIR" EXIT
+
+    ssh-keygen -t ed25519 -N "" -f "$KEYS_DIR/ssh_host_ed25519_key" -C "{{hostname}}"
+    AGE_KEY=$(ssh-to-age < "$KEYS_DIR/ssh_host_ed25519_key.pub")
+
+    echo ""
+    echo "Age public key for {{hostname}}:"
+    echo "  $AGE_KEY"
+    echo ""
+    read -rp "Press Enter to continue..."
+
+    mkdir -p "$KEYS_DIR/etc/ssh"
+    mv "$KEYS_DIR/ssh_host_ed25519_key" "$KEYS_DIR/etc/ssh/"
+    mv "$KEYS_DIR/ssh_host_ed25519_key.pub" "$KEYS_DIR/etc/ssh/"
+    chmod 600 "$KEYS_DIR/etc/ssh/ssh_host_ed25519_key"
+
     nix run github:nix-community/nixos-anywhere -- \
-        --flake "{{flake}}#{{hostname}}" --target-host "root@{{ip}}" \
+        --flake "{{flake}}#{{hostname}}" \
+        --target-host "root@{{ip}}" \
+        --extra-files "$KEYS_DIR" \
         --generate-hardware-config nixos-generate-config "{{flake}}/hosts/{{hostname}}/hardware-configuration.nix"
 
 

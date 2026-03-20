@@ -14,6 +14,7 @@
             nix-fast-build
             ripgrep
             sops
+            ssh-to-age
             ;
         };
 

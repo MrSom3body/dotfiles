@@ -10,6 +10,7 @@ let
 
     "atuin"
     "beszel"
+    "borgmatic"
     "ddns-updater"
     "firefox-send"
     "glance"

@@ -9,6 +9,7 @@ let
     "anubis"
     "atuin"
     "atuin-server"
+    "borgmatic"
     "immich"
     "miniflux"
     "stylix"

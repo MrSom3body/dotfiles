@@ -38,10 +38,7 @@
             }
           ];
 
-          source_directories = [
-            "/home/karun"
-            "/etc"
-          ];
+          source_directories = [ "/home/karun" ];
 
           exclude_patterns = [
             # nix
@@ -60,17 +57,20 @@
             # gaming
             "*/shadercache"
             "*/steamapps"
+            "/home/karun/.local/share/Steam"
+            "/home/karun/.local/share/umu"
+            "/home/karun/.steam"
+
+            # programs
+            "/home/karun/.local/share/vicinae"
+
+            # large & temporary files/directories
             "*.temp"
             "*.tmp"
             "*~"
-            "/home/karun/.local/share/Steam"
-            "/home/karun/.steam"
-
-            # large & temporary files/directories
             "/home/karun/.local/share/Trash"
             "/home/karun/Documents/Codes/nixpkgs"
-            "/home/karun/Downloads/ISOs"
-            "/home/karun/Games"
+            "/home/karun/Downloads"
 
             # virtualization & containers
             "/home/karun/.local/share/containers"
@@ -91,6 +91,11 @@
             "/var/lib/jellyfin/transcodes"
             "/var/lib/meilisearch"
             "/var/lib/postgresql"
+          ];
+
+          patterns = [
+            "+ /home/karun/Games/saves"
+            "- /home/karun/Games"
           ];
 
           exclude_if_present = [ ".nobackup" ];

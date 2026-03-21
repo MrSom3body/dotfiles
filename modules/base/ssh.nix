@@ -4,6 +4,12 @@
       enable = true;
       enableDefaultConfig = false;
       matchBlocks = {
+        "som3box" = {
+          hostname = "u564683.your-storagebox.de";
+          user = "u564683";
+          port = 23;
+        };
+
         "*" = {
           forwardAgent = false;
           addKeysToAgent = "no";

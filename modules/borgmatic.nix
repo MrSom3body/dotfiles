@@ -43,26 +43,54 @@
             "/etc"
           ];
 
-          exclude_patterns = lib.map (dir: "sh:" + dir) [
-            "**/.cache"
-            "**/.direnv"
-            "**/.venv"
-            "**/node_modules"
-            "**/result"
-            "**/result-*"
-            "**/__pycache__"
+          exclude_patterns = [
+            # nix
+            "/home/karun/.nix-defexpr"
+            "/home/karun/.nix-profile"
 
-            "/home/*/.local/share/Steam"
-            "/home/*/.local/share/Trash"
-            "/home/*/.local/share/containers"
-            "/home/*/Documents/Codes/nixpkgs"
-            "/home/*/Games"
-            "/home/*/dotfiles"
+            # development
+            "*/.cache"
+            "*/.direnv"
+            "*/.venv"
+            "*/__pycache__"
+            "*/node_modules"
+            "*/result"
+            "*/result-*"
 
-            "**/*.qcow2"
-            "**/*.vmdk"
-            "**/*.vmx"
+            # gaming
+            "*/shadercache"
+            "*/steamapps"
+            "*.temp"
+            "*.tmp"
+            "*~"
+            "/home/karun/.local/share/Steam"
+            "/home/karun/.steam"
+
+            # large & temporary files/directories
+            "/home/karun/.local/share/Trash"
+            "/home/karun/Documents/Codes/nixpkgs"
+            "/home/karun/Downloads/ISOs"
+            "/home/karun/Games"
+
+            # virtualization & containers
+            "/home/karun/.local/share/containers"
+            "/home/karun/.local/share/distrobox"
+            "/home/karun/.local/share/libvirt"
+            "/home/karun/vmware"
             "/var/lib/libvirt/images"
+
+            # AI/ML models (downloaded on demand, not user data)
+            "/var/lib/ollama"
+
+            # IDE caches & build tools
+            "/home/karun/.gradle"
+            "/home/karun/.m2"
+            "/home/karun/.local/share/JetBrains"
+
+            # service data that is redundant or regeneratable
+            "/var/lib/jellyfin/transcodes"
+            "/var/lib/meilisearch"
+            "/var/lib/postgresql"
           ];
 
           exclude_if_present = [ ".nobackup" ];

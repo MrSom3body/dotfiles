@@ -21,6 +21,16 @@
       services.borgmatic = {
         enable = true;
         settings = {
+          encryption_passcommand = "cat ${config.sops.secrets.borgmatic-passphrase.path}";
+          ssh_command = "ssh -i /etc/ssh/borgmatic_ed25519 -o StrictHostKeyChecking=accept-new";
+
+          compression = "auto,zstd";
+          keep_daily = 7;
+          keep_weekly = 4;
+          keep_monthly = 6;
+
+          checkpoint_interval = 300;
+
           repositories = [
             {
               path = "ssh://u564683@u564683.your-storagebox.de:23/./backups/${config.networking.hostName}";
@@ -56,14 +66,6 @@
           ];
 
           exclude_if_present = [ ".nobackup" ];
-
-          encryption_passcommand = "cat ${config.sops.secrets.borgmatic-passphrase.path}";
-          ssh_command = "ssh -i /etc/ssh/borgmatic_ed25519 -o StrictHostKeyChecking=accept-new";
-
-          compression = "auto,zstd";
-          keep_daily = 7;
-          keep_weekly = 4;
-          keep_monthly = 6;
 
           checks = [
             {

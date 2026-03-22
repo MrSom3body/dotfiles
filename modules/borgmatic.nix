@@ -1,7 +1,32 @@
 { lib, ... }:
 {
   flake.modules.nixos.borgmatic =
-    { config, ... }:
+    { config, pkgs, ... }:
+    let
+      mkNtfyHook =
+        {
+          name,
+          title,
+          tags,
+          priority,
+          message,
+        }:
+        pkgs.writeShellApplication {
+          inherit name;
+          runtimeInputs = [ pkgs.curl ];
+          text = ''
+            NTFY_PASSWORD="$(cat ${config.sops.secrets.borgmatic-ntfy-password.path})"
+            curl -s \
+              -u "borgmatic:$NTFY_PASSWORD" \
+              -H "Title: ${title}" \
+              -H "Tags: ${tags}" \
+              -H "Priority: ${priority}" \
+              -d "${message}" \
+              https://ntfy.sndh.dev/borgmatic
+          '';
+        };
+
+    in
     {
       sops.secrets = {
         borgmatic-passphrase = {
@@ -13,6 +38,12 @@
         borgmatic-ssh-key = {
           sopsFile = ../secrets/borgmatic.yaml;
           path = "/etc/ssh/borgmatic_ed25519";
+          owner = "root";
+          mode = "0400";
+        };
+
+        borgmatic-ntfy-password = {
+          sopsFile = ../secrets/borgmatic.yaml;
           owner = "root";
           mode = "0400";
         };
@@ -117,6 +148,47 @@
             {
               name = "all";
               username = "postgres";
+            }
+          ];
+
+          commands = [
+            {
+              before = "action";
+              when = [ "create" ];
+              run = [
+                (lib.getExe (mkNtfyHook {
+                  name = "borgmatic-ntfy-start";
+                  title = "Backup Started";
+                  tags = "floppy_disk";
+                  priority = "default";
+                  message = "Starting backup on ${config.networking.hostName}";
+                }))
+              ];
+            }
+            {
+              after = "action";
+              when = [ "create" ];
+              run = [
+                (lib.getExe (mkNtfyHook {
+                  name = "borgmatic-ntfy-finish";
+                  title = "Backup Completed";
+                  tags = "white_check_mark";
+                  priority = "default";
+                  message = "Backup completed successfully on ${config.networking.hostName}";
+                }))
+              ];
+            }
+            {
+              after = "error";
+              run = [
+                (lib.getExe (mkNtfyHook {
+                  name = "borgmatic-ntfy-error";
+                  title = "Backup Failed";
+                  tags = "rotating_light";
+                  priority = "high";
+                  message = "Backup failed on ${config.networking.hostName}: {error}";
+                }))
+              ];
             }
           ];
         };

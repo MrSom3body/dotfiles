@@ -22,6 +22,8 @@
                 command: ${lib.getExe pkgs.libnotify} -a "ntfy - $topic" "$t" "$m"
               - topic: miniflux
                 command: ${lib.getExe pkgs.libnotify} -a "ntfy - $topic" "$t" "$m"
+              - topic: borgmatic
+                command: ${lib.getExe pkgs.libnotify} -a "ntfy - $topic" "$t" "$m"
           '';
         };
       };

@@ -33,7 +33,7 @@
 
           repositories = [
             {
-              path = "ssh://u564683@u564683.your-storagebox.de:23/./backups/${config.networking.hostName}";
+              path = "ssh://u564683-sub1@u564683-sub1.your-storagebox.de:23/./${config.networking.hostName}";
               label = "som3box";
             }
           ];

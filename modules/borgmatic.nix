@@ -82,7 +82,7 @@
             "/var/lib/libvirt/images"
 
             # AI/ML models (downloaded on demand, not user data)
-            "/var/lib/ollama"
+            "/var/lib/private/ollama"
 
             # IDE caches & build tools
             "/home/karun/.gradle"

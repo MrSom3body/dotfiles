@@ -6,7 +6,7 @@
       flake = config.flake.meta.uri;
       upgrade = false;
       operation = "boot";
-      dates = "05:00";
+      dates = "12:00";
     };
   };
 }

@@ -9,7 +9,6 @@
           title,
           tags,
           priority,
-          message,
         }:
         pkgs.writeShellApplication {
           inherit name;
@@ -21,7 +20,7 @@
               -H "Title: ${title}" \
               -H "Tags: ${tags}" \
               -H "Priority: ${priority}" \
-              -d "${message}" \
+              -d "$*" \
               https://ntfy.sndh.dev/borgmatic
           '';
         };
@@ -156,38 +155,41 @@
               before = "action";
               when = [ "create" ];
               run = [
-                (lib.getExe (mkNtfyHook {
-                  name = "borgmatic-ntfy-start";
-                  title = "Backup Started";
-                  tags = "floppy_disk";
-                  priority = "default";
-                  message = "Starting backup on ${config.networking.hostName}";
-                }))
+                "${
+                  lib.getExe (mkNtfyHook {
+                    name = "borgmatic-ntfy-start";
+                    title = "Backup Started";
+                    tags = "floppy_disk";
+                    priority = "default";
+                  })
+                } Starting backup on ${config.networking.hostName}"
               ];
             }
             {
               after = "action";
               when = [ "create" ];
               run = [
-                (lib.getExe (mkNtfyHook {
-                  name = "borgmatic-ntfy-finish";
-                  title = "Backup Completed";
-                  tags = "white_check_mark";
-                  priority = "default";
-                  message = "Backup completed successfully on ${config.networking.hostName}";
-                }))
+                "${
+                  lib.getExe (mkNtfyHook {
+                    name = "borgmatic-ntfy-finish";
+                    title = "Backup Completed";
+                    tags = "white_check_mark";
+                    priority = "default";
+                  })
+                } Backup completed successfully on ${config.networking.hostName}"
               ];
             }
             {
               after = "error";
               run = [
-                (lib.getExe (mkNtfyHook {
-                  name = "borgmatic-ntfy-error";
-                  title = "Backup Failed";
-                  tags = "rotating_light";
-                  priority = "high";
-                  message = "Backup failed on ${config.networking.hostName}: {error}";
-                }))
+                "${
+                  lib.getExe (mkNtfyHook {
+                    name = "borgmatic-ntfy-error";
+                    title = "Backup Failed";
+                    tags = "rotating_light";
+                    priority = "high";
+                  })
+                } Backup failed on ${config.networking.hostName}: {error}"
               ];
             }
           ];

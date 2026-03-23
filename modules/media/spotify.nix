@@ -23,7 +23,7 @@
               inherit (spicePkgs.extensions)
                 adblock
                 betterGenres
-                # keyboardShortcuts
+                keyboardShortcut
                 volumePercentage
                 ;
             };

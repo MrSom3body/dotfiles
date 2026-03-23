@@ -6,6 +6,7 @@
     in
     {
       config.wayland.windowManager.hyprland.settings.bindd = lib.optionals (layout == "dwindle") [
+        "SUPER, F, Fullscreen focused window, fullscreen"
         "SUPER, I, Change split direction, layoutmsg, swapsplit"
 
         # Move window focus

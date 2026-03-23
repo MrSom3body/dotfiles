@@ -4,7 +4,6 @@
       bindd = [
         # Controls
         "SUPER, Q, Close focused window, killactive"
-        "SUPER, F, Fullscreen focused window, fullscreen"
         "SUPER, W, Toggle floating, togglefloating"
         "SUPER, P, Pin focused window, pin"
 

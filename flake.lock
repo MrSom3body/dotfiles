@@ -1814,6 +1814,7 @@
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
+        "srvos": "srvos",
         "stylix": "stylix",
         "systems": "systems_6",
         "treefmt-nix": "treefmt-nix",
@@ -1883,6 +1884,26 @@
       "original": {
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
+    "srvos": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1774492740,
+        "narHash": "sha256-iIVrkqqNMwmgQapPDsA9DczrhImfeFI3Q3lLn6Dsb3A=",
+        "owner": "nix-community",
+        "repo": "srvos",
+        "rev": "f54ed791f36a4da4235b9b170c04658900c36fda",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "srvos",
         "type": "github"
       }
     },

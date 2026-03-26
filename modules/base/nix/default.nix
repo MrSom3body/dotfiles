@@ -29,9 +29,6 @@
           nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
           channel.enable = false; # remove nix-channel related tools & configs, we use flakes instead.
 
-          daemonCPUSchedPolicy = "batch";
-          daemonIOSchedPriority = 5;
-
           settings = {
             accept-flake-config = lib.mkForce false;
             log-lines = lib.mkDefault 25; # more log lines
@@ -51,13 +48,8 @@
             keep-derivations = true;
             keep-outputs = true;
 
-            trusted-users = [
-              "root"
-              "@wheel"
-            ];
+            trusted-users = [ "@wheel" ];
           };
-
-          optimise.automatic = !config.boot.isContainer;
         };
 
       nixpkgs = {

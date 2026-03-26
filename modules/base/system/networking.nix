@@ -41,15 +41,5 @@
         };
       };
     };
-
-    # slows down boot time
-    systemd.network.wait-online.enable = false;
-    systemd.services = {
-      NetworkManager-wait-online.enable = false;
-
-      # use systemctl restart instead of a stop and a delayed start
-      systemd-networkd.stopIfChanged = false;
-      systemd-resolved.stopIfChanged = false;
-    };
   };
 }

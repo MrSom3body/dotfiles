@@ -2,7 +2,6 @@
 let
   modules = [
     "arr"
-    "base"
     "server"
     "shell"
 

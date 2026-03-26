@@ -4,7 +4,6 @@ let
   modules = [
     "oracle-keep-alive" # DO NOT REMOVE
 
-    "base"
     "server"
     "shell"
 

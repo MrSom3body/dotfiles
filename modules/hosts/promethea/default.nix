@@ -2,7 +2,6 @@
 let
   flakeConfig = config;
   modules = [
-    "base"
     "borgmatic"
     "desktop"
     "dev"

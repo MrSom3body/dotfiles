@@ -19,6 +19,6 @@
       };
     };
 
-    time.timeZone = lib.mkDefault "Europe/Vienna";
+    time.timeZone = lib.mkOverride 900 "Europe/Vienna";
   };
 }

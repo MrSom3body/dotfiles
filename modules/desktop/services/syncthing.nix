@@ -15,7 +15,15 @@
     };
 
     homeManager.desktop = {
-      services.syncthing.enable = true;
+      services.syncthing = {
+        enable = true;
+        settings.options = {
+          localAnnounceEnabled = false;
+          globalAnnounceEnabled = false;
+          natEnabled = false;
+          relaysEnabled = false;
+        };
+      };
     };
   };
 }

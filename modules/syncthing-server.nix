@@ -7,7 +7,15 @@ in
     { config, ... }:
     {
       services = {
-        syncthing.enable = true;
+        syncthing = {
+          enable = true;
+          settings.options = {
+            localAnnounceEnabled = false;
+            globalAnnounceEnabled = false;
+            natEnabled = false;
+            relaysEnabled = false;
+          };
+        };
         caddy.virtualHosts = {
           "syncthing.${config.networking.hostName}.${config.networking.domain}" = {
             extraConfig = ''

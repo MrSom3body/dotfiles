@@ -42,7 +42,7 @@ let
 
       # phones
       {
-        name = "pixel-9a";
+        name = "karuns-pixel-9a";
         id = "A2H6SC5-G662464-OKCPF7N-DYRAJLP-6EWI7UA-XKRZFHG-52PILEC-MP3L2A4";
       }
     ];

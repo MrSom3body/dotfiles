@@ -1,5 +1,8 @@
 {
   flake.modules = {
+    nixos.gaming = {
+      boot.kernelModules = [ "ntsync" ];
+    };
 
     homeManager.gaming =
       { pkgs, ... }:

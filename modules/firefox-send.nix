@@ -3,49 +3,55 @@ let
   inherit (config.flake) meta;
 in
 {
-  flake.modules.nixos.firefox-send = {
-    services = {
-      caddy.virtualHosts."${meta.services.firefox-send.domain}" = {
-        extraConfig = ''
-          reverse_proxy http://localhost:${toString meta.services.firefox-send.port}
+  flake.modules.nixos.firefox-send =
+    { config, ... }:
+    let
+      anubisCfg = config.services.anubis.instances.firefox-send.settings;
+    in
+    {
+      services = {
+        anubis.instances.firefox-send.settings.TARGET =
+          "http://127.0.0.1:${toString meta.services.firefox-send.port}";
+
+        caddy.virtualHosts."${meta.services.firefox-send.domain}".extraConfig = ''
+          reverse_proxy unix/${anubisCfg.BIND}
           tls internal
         '';
-      };
 
-      send = {
-        enable = true;
-        host = "127.0.0.1";
-        inherit (meta.services.firefox-send) port;
-        environment =
-          let
-            min = 60;
-            hour = min * 60;
-            day = hour * 24;
-          in
-          {
-            MAX_EXPIRE_SECONDS = 3 * day;
-            MAX_DOWNLOADS = 10;
-            DOWNLOAD_COUNTS = "1,2,3,5,10,25";
-            EXPIRE_TIMES_SECONDS = builtins.concatStringsSep "," (
-              map toString [
-                (5 * min)
-                (1 * hour)
-                (1 * day)
-                (3 * day)
-              ]
-            );
-            DEFAULT_DOWNLOADS = 1;
-            DEFAULT_EXPIRE_SECONDS = 1 * day;
+        send = {
+          enable = true;
+          host = "127.0.0.1";
+          inherit (meta.services.firefox-send) port;
+          environment =
+            let
+              min = 60;
+              hour = min * 60;
+              day = hour * 24;
+            in
+            {
+              MAX_EXPIRE_SECONDS = 3 * day;
+              MAX_DOWNLOADS = 10;
+              DOWNLOAD_COUNTS = "1,2,3,5,10,25";
+              EXPIRE_TIMES_SECONDS = builtins.concatStringsSep "," (
+                map toString [
+                  (5 * min)
+                  (1 * hour)
+                  (1 * day)
+                  (3 * day)
+                ]
+              );
+              DEFAULT_DOWNLOADS = 1;
+              DEFAULT_EXPIRE_SECONDS = 1 * day;
 
-            CUSTOM_TITLE = "Karun's Send";
+              CUSTOM_TITLE = "Karun's Send";
 
-            SEND_FOOTER_DMCA_URL = "mailto:send-dmca@sndh.dev";
-            SEND_FOOTER_DONATE_URL = "https://ko-fi.com/mrsom3body";
+              SEND_FOOTER_DMCA_URL = "mailto:send-dmca@sndh.dev";
+              SEND_FOOTER_DONATE_URL = "https://ko-fi.com/mrsom3body";
 
-            CUSTOM_FOOTER_TEXT = "Hosted by Karun | Not affiliated with Mozilla or Firefox.";
-            CUSTOM_FOOTER_URL = "https://karun.sndh.dev";
-          };
+              CUSTOM_FOOTER_TEXT = "Hosted by Karun | Not affiliated with Mozilla or Firefox.";
+              CUSTOM_FOOTER_URL = "https://karun.sndh.dev";
+            };
+        };
       };
     };
-  };
 }

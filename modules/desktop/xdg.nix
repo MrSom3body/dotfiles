@@ -113,6 +113,7 @@ in
 
           userDirs = {
             enable = true;
+            setSessionVariables = true;
             createDirectories = true;
             extraConfig = {
               SCREENSHOTS = "${config.xdg.userDirs.pictures}/Screenshots";

@@ -57,6 +57,10 @@ in
             search = {
               autocomplete = "duckduckgo";
               favicon_resolver = "duckduckgo";
+              formats = [
+                "html"
+                "json"
+              ];
             };
 
             engines = [

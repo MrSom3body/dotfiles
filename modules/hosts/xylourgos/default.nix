@@ -14,7 +14,7 @@ let
     "firefox-send"
     "glance"
     "ntfy"
-    "open-webui"
+    # "open-webui" # is currently broken
     "qemu-guest"
     "searx"
     "stylix"

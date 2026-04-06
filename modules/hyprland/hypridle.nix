@@ -13,7 +13,7 @@
           in
           {
             general = {
-              lock_cmd = "pgrep hyprlock || uwsm app -- ${lib.getExe config.programs.hyprlock.package}";
+              lock_cmd = "pgrep hyprlock || ${lib.getExe config.programs.hyprlock.package}";
               unlock_cmd = "pkill -SIGUSR1 hyprlock";
               before_sleep_cmd = "loginctl lock-session";
               after_sleep_cmd = "hyprctl dispatch dpms on";
@@ -40,7 +40,7 @@
               }
               {
                 timeout = 120;
-                on-timeout = "pgrep hyprlock || uwsm app -- hyprlock --grace 3";
+                on-timeout = "pgrep hyprlock || hyprlock --grace 3";
               }
               {
                 timeout = 140;

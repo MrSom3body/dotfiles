@@ -32,7 +32,13 @@ in
             checkpointing.enabled = true;
           };
           ide.enabled = true;
-          context.discoveryMaxDirs = 1000;
+          context = {
+            fileName = [
+              "AGENTS.md"
+              "GEMINI.md"
+            ];
+            discoveryMaxDirs = 1000;
+          };
           tools.shell.showColor = true;
           security = {
             disableYoloMode = true;

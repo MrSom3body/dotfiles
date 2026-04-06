@@ -45,7 +45,7 @@ in
     nixosConfigurations.promethea = flakeConfig.flake.lib.mkSystems.linux "promethea";
     modules = {
       nixos."hosts/promethea" =
-        { config, pkgs, ... }:
+        { config, ... }:
         {
           imports = (flakeConfig.flake.lib.loadNixosAndHmModuleForUser flakeConfig modules) ++ [
             inputs.nixos-hardware.nixosModules.asus-zenbook-um6702
@@ -55,13 +55,6 @@ in
 
           hardware.asus.battery.chargeUpto = 80;
           security.tpm2.enable = true;
-
-          specialisation.enable-ollama.configuration = {
-            environment.etc."specialisation".text = "enable-ollama"; # for nh
-            system.nixos.tags = [ "enable-ollama" ]; # to display it in the boot loader
-            imports = [ flakeConfig.flake.modules.nixos.ollama ];
-            services.ollama.package = pkgs.ollama-cuda;
-          };
 
           services.tailscale.extraSetFlags = [ "--accept-routes" ];
         };

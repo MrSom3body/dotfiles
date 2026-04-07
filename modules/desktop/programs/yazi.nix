@@ -42,12 +42,12 @@
             plugin.prepend_fetchers = [
               {
                 id = "git";
-                name = "*";
+                url = "*";
                 run = "git";
               }
               {
                 id = "git";
-                name = "*/";
+                url = "*/";
                 run = "git";
               }
             ];
@@ -66,7 +66,9 @@
 
           initLua = ''
             require("full-border"):setup()
-            require("git"):setup()
+            require("git"):setup {
+              order = 1500,
+            }
             require("starship"):setup()
           '';
 

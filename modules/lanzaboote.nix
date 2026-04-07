@@ -11,7 +11,7 @@
         autoGenerateKeys.enable = true;
         autoEnrollKeys = {
           enable = true;
-          autoReboot = true;
+          # autoReboot = true; # TODO uncomment when https://github.com/nix-community/lanzaboote/issues/569 gets fixed
         };
       };
 

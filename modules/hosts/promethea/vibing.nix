@@ -19,7 +19,10 @@ in
             services = {
               ollama = {
                 package = pkgs.ollama-rocm;
-                loadModels = [ "gemma4:26b-a4b-it-q4_K_M" ];
+                loadModels = [
+                  "gemma4:e4b"
+                  "gemma4:26b"
+                ];
                 rocmOverrideGfx = "10.3.0";
                 environmentVariables = {
                   OLLAMA_CONTEXT_LENGTH = "16384";
@@ -30,7 +33,7 @@ in
 
               hermes-agent = {
                 settings = {
-                  model.default = "gemma4:26b-a4b-it-q4_K_M";
+                  model.default = "gemma4:e4b";
                 };
               };
             };

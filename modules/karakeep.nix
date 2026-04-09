@@ -8,7 +8,7 @@ in
     { config, ... }:
     let
       ollamaCfg = config.services.ollama;
-      llmModel = "gemma4:e4b";
+      llmModel = "gemma4:e2b";
     in
     {
       imports = [ flakeModules.nixos.ollama ];

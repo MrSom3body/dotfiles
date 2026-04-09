@@ -24,7 +24,6 @@ let
     "flatpak"
     "gemini-cli"
     "gns3"
-    "hermes-agent"
     "lanzaboote"
     "libvirtd"
     "logitech"

@@ -13,6 +13,7 @@ let
     "ddns-updater"
     "firefox-send"
     "glance"
+    "karakeep"
     "ntfy"
     # "open-webui" # is currently broken
     "qemu-guest"

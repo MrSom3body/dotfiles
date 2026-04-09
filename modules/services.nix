@@ -54,7 +54,7 @@
         show = true;
       };
       "karakeep" = {
-        port = 9222;
+        port = 3002;
         domain = "karakeep.sndh.dev";
         icon = "di:karakeep";
         show = true;
@@ -63,9 +63,6 @@
         domain = "loxone.sndh.dev";
         icon = "di:loxone";
         show = true;
-      };
-      "meilisearch" = {
-        port = 7700;
       };
       "miniflux" = {
         port = 7070;

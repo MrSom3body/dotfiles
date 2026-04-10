@@ -37,7 +37,7 @@ let
     upload-artifact = "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a"; # v7.0.1
     action-gh-release = "softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe"; # v2.6.1
     download-artifact = "actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c"; # v8.0.1
-    create-pull-request = "peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0"; # v8.1.0
+    create-pull-request = "peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1"; # v8.1.1
     create-github-app-token = "actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859"; # v3
   };
 

@@ -16,7 +16,6 @@
         settings.model = {
           provider = "custom";
           base_url = "http://127.0.0.1:11434/v1";
-          context_length = 32768;
         };
         environmentFiles = [ config.sops.secrets."hermes-env".path ];
         addToSystemPackages = true;

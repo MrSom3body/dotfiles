@@ -34,7 +34,8 @@ in
             DB_WAL_MODE = "true";
 
             # ai
-            OLLAMA_BASE_URL = "http://localhost:${toString ollamaCfg.port}";
+            OPENAI_API_KEY = "ollama";
+            OPENAI_BASE_URL = "http://localhost:${toString ollamaCfg.port}/v1";
             INFERENCE_TEXT_MODEL = llmModel;
             INFERENCE_IMAGE_MODEL = llmModel;
           };

@@ -65,6 +65,7 @@ in
             pkgs.calibre
             pkgs.logseq
             pkgs.todoist-electron
+            pkgs.planify
           ];
           wayland.windowManager.hyprland = {
             layout = "scrolling";

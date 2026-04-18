@@ -97,6 +97,12 @@
         icon = "di:radarr";
         show = true;
       };
+      "radicale" = {
+        port = 5232;
+        domain = "dav.sndh.dev";
+        icon = "di:radicale";
+        show = true;
+      };
       "searx" = {
         port = 8888;
         domain = "search.sndh.dev";

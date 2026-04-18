@@ -17,6 +17,7 @@ let
     "ntfy"
     # "open-webui" # is currently broken
     "qemu-guest"
+    "radicale"
     "searx"
     "stylix"
     "syncthing-server"

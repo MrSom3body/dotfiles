@@ -11,7 +11,7 @@
           Service = {
             ExecStartPre = pkgs.writeShellScript "waitForNetwork" ''
               while ! ${pkgs.inetutils}/bin/ping -c 1 9.9.9.9; do
-                sleep 1
+                ${pkgs.coreutils}/bin/sleep 1
               done
             '';
             ExecStart = "${lib.getExe pkgs.ludusavi} backup --force";

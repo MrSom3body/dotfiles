@@ -21,6 +21,7 @@
           wantedBy = [ "multi-user.target" ];
           path = builtins.attrValues {
             inherit (pkgs)
+              coreutils
               iptables
               libnatpmp
               ripgrep

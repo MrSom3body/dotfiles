@@ -22,7 +22,7 @@
           "match:class .*, suppress_event maximize"
 
           # Move apps to workspaces
-          "match:class ^(Todoist|@lunatask/electron)$, workspace special:todo silent"
+          "match:class ^(Todoist|@lunatask/electron|io.github.alainm23.planify)$, workspace special:todo silent"
           "match:class ^(spotify)$, workspace special:spotify silent"
           "match:class ^(vesktop)$, workspace special:discord silent"
 

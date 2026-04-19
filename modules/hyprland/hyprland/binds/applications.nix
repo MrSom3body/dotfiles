@@ -67,7 +67,7 @@ in
           "special:discord, on-created-empty:uwsm app -- vesktop"
           "special:discord, gapsout:${gaps}"
 
-          "special:todo, on-created-empty:uwsm app -- lunatask"
+          "special:todo, on-created-empty:uwsm app -- io.github.alainm23.planify"
           "special:todo, gapsout:${gaps}"
         ];
     };

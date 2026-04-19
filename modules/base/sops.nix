@@ -10,6 +10,7 @@ let
     defaultSopsFile = ../../secrets/global.yaml;
     defaultSopsFormat = "yaml";
     validateSopsFiles = true;
+    age.generateKey = true;
   };
 in
 {
@@ -19,8 +20,11 @@ in
       {
         imports = [ inputs.sops-nix.nixosModules.sops ];
         config = lib.mkIf (flake.lib.isInstall config) {
-          sops = sopsDefaults // {
-            age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+          sops = lib.recursiveUpdate sopsDefaults {
+            age = {
+              keyFile = "/etc/sops/age/keys.txt";
+              sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+            };
             secrets.karun-password.neededForUsers = true;
           };
         };
@@ -31,8 +35,11 @@ in
       {
         imports = [ inputs.sops-nix.homeManagerModules.sops ];
         config = lib.mkIf (flake.lib.isInstall config) {
-          sops = sopsDefaults // {
-            gnupg.home = "~/.gnupg";
+          sops = lib.recursiveUpdate sopsDefaults {
+            age = {
+              keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+              sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
+            };
           };
         };
       };

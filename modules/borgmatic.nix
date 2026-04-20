@@ -52,7 +52,7 @@
         enable = true;
         settings = {
           encryption_passcommand = "cat ${config.sops.secrets.borgmatic-passphrase.path}";
-          ssh_command = "ssh -i /etc/ssh/borgmatic_ed25519 -o StrictHostKeyChecking=accept-new";
+          ssh_command = "ssh -4 -i /etc/ssh/borgmatic_ed25519 -o StrictHostKeyChecking=accept-new";
 
           compression = "auto,zstd";
           keep_daily = 7;

@@ -11,6 +11,7 @@
       };
 
       vencord = {
+        useSystem = true;
         settings = {
           autoUpdate = true;
           autoUpdateNotification = true;

@@ -17,7 +17,7 @@ in
     in
     {
       accounts.calendar = {
-        basePath = "Calendars";
+        basePath = "${config.xdg.dataHome}/calendars";
         accounts = {
           personal = {
             primary = true;

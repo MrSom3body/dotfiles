@@ -70,6 +70,10 @@
                         mountpoint = "/home";
                         inherit mountOptions;
                       };
+                      "/var/cache" = {
+                        mountpoint = "/var/cache";
+                        inherit mountOptions;
+                      };
                       "/var/log" = {
                         mountpoint = "/var/log";
                         inherit mountOptions;

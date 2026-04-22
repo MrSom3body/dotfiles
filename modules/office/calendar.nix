@@ -27,13 +27,13 @@ in
               addresses = [ email ];
               type = "discover";
             };
-            remote = rec {
+            remote = {
               type = "caldav";
               url = "https://dav.sndh.dev";
-              userName = meta.users.karun.email;
+              userName = email;
               passwordCommand = [
                 "${pass}"
-                "dav.sndh.dev/${userName}"
+                "dav.sndh.dev/${email}"
               ];
             };
             vdirsyncer = {

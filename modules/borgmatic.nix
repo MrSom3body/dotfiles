@@ -120,6 +120,7 @@
             "/home/karun/.local/share/JetBrains"
 
             # service data that is redundant or regeneratable
+            "/var/cache"
             "/var/lib/jellyfin/transcodes"
             "/var/lib/meilisearch"
             "/var/lib/postgresql"

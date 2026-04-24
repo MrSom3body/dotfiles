@@ -124,6 +124,7 @@
             "/var/lib/jellyfin/transcodes"
             "/var/lib/meilisearch"
             "/var/lib/postgresql"
+            "/var/lib/systemd/coredump"
           ];
 
           patterns = [

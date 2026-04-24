@@ -8,22 +8,21 @@
         wantedBy = [ "multi-user.target" ];
 
         serviceConfig = {
-          # 'simple' keeps the process running constantly
           Type = "simple";
 
-          # Use stress-ng to maintain exactly 25% CPU load across all cores
-          # and lock 25% of RAM
           ExecStart = ''
             ${pkgs.stress-ng}/bin/stress-ng \
               --vm 1 \
-              --vm-bytes 25% \
-              --vm-keep
+              --vm-bytes 25%
           '';
 
           # Ensure it doesn't slow down your actual services
           Nice = 19;
           CPUSchedulingPolicy = "idle";
           IOSchedulingClass = "idle";
+
+          # Soft memory cap: kernel reclaims from this cgroup first under pressure
+          MemoryHigh = "25%";
 
           Restart = "always";
           RestartSec = "10s";

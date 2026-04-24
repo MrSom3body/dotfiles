@@ -37,7 +37,10 @@ in
                 "color"
                 "displayname"
               ];
-              collections = [ "Persönlich" ];
+              collections = [
+                "Persönlich"
+                "Schule"
+              ];
             };
           };
         };

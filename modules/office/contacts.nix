@@ -31,10 +31,7 @@ in
             };
             vdirsyncer = {
               enable = true;
-              metadata = [
-                "color"
-                "displayname"
-              ];
+              metadata = [ "displayname" ];
               collections = [ "5ff7c5b5-503e-465d-bede-fc49b55f9168" ];
             };
           };

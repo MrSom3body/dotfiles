@@ -28,6 +28,7 @@
           highlight_event_days = true;
         };
         highlight_days.color = "light blue";
+        view.frame = "color";
       };
     };
   };

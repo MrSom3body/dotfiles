@@ -168,8 +168,8 @@
               ];
             }
             {
-              after = "action";
-              when = [ "create" ];
+              after = "configuration";
+              states = [ "finish" ];
               run = [
                 "${
                   lib.getExe (mkNtfyHook {

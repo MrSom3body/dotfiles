@@ -27,8 +27,10 @@
           default_event_alarm = "30m";
           highlight_event_days = true;
         };
-        highlight_days.color = "light blue";
-        view.frame = "color";
+        view = {
+          event_view_always_visible = true;
+          frame = "color";
+        };
       };
     };
   };

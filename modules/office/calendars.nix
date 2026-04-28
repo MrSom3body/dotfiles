@@ -6,11 +6,10 @@ let
 in
 {
   flake.modules.homeManager.office =
-    { lib, config, ... }:
-    let
-      pass = lib.getExe config.programs.password-store.package;
-    in
+    { config, ... }:
     {
+      sops.secrets.dav-password.sopsFile = ../../secrets/calendars.yaml;
+
       accounts.calendar = {
         basePath = "${config.xdg.dataHome}/calendars";
         accounts = {
@@ -27,8 +26,8 @@ in
               url = "https://dav.sndh.dev";
               userName = email;
               passwordCommand = [
-                "${pass}"
-                "dav.sndh.dev/${email}"
+                "cat"
+                config.sops.secrets.dav-password.path
               ];
             };
             vdirsyncer = {

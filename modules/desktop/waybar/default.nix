@@ -2,6 +2,51 @@
 {
   flake.modules.homeManager.desktop =
     { config, pkgs, ... }:
+    let
+      commonDeps = builtins.attrValues { inherit (pkgs) coreutils gnugrep systemd; };
+
+      # Function to simplify making waybar outputs
+      mkScript =
+        {
+          name ? "script",
+          deps ? [ ],
+          script ? "",
+        }:
+        lib.getExe (
+          pkgs.writeShellApplication {
+            inherit name;
+            text = script;
+            runtimeInputs = commonDeps ++ deps;
+          }
+        );
+
+      # Specialized for JSON outputs
+      mkScriptJson =
+        {
+          name ? "script",
+          deps ? [ ],
+          script ? "",
+          text ? "",
+          tooltip ? "",
+          alt ? "",
+          class ? "",
+          percentage ? "",
+        }:
+        mkScript {
+          inherit name;
+          deps = [ pkgs.jq ] ++ deps;
+          script = ''
+            ${script}
+            jq -cn \
+              --arg text "${text}" \
+              --arg tooltip "${tooltip}" \
+              --arg alt "${alt}" \
+              --arg class "${class}" \
+              --arg percentage "${percentage}" \
+              '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
+          '';
+        };
+    in
     {
       programs.waybar = {
         enable = true;
@@ -24,6 +69,7 @@
             modules-center = [
               "custom/update"
               "privacy"
+              "custom/next-event"
               "clock"
               "mpris"
             ];
@@ -38,6 +84,37 @@
               "tray"
               "custom/fnott"
             ];
+
+            "custom/next-event" = {
+              interval = 10;
+              return-type = "json";
+              exec = mkScriptJson {
+                deps = [ config.programs.khal.package ];
+                script = ''
+                  events="$(khal list now tomorrow --json title --json start-time | jq '.[] | (if ."start-time" != "" then ."start-time" + " " else "" end) + .title' -r)"
+                  if [ -z "$events" ]; then
+                    status="none"
+                  else
+                    status="has-event"
+                    khal list now 10m --json title --json start-time | jq -e '.[] | select(."start-time" != "")' >/dev/null && status="has-close-event"
+                  fi
+                '';
+                text = "$events";
+                alt = "$status";
+                tooltip = "$events";
+              };
+              format = "{icon}";
+              format-icons = {
+                has-event = "󰃭";
+                has-close-event = "󰨱";
+              };
+              tooltip-format = "{}";
+              on-click = mkScript {
+                deps = [ config.programs.khal.package ];
+                script = "xdg-terminal-exec ikhal";
+              };
+              hide-empty-text = true;
+            };
 
             "custom/actions" = {
               format = "";

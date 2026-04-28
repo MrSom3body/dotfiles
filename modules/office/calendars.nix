@@ -38,6 +38,7 @@ in
               ];
               collections = [
                 "Persönlich"
+                "Nachhilfe"
                 "Schule"
               ];
             };

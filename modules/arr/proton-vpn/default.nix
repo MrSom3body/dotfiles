@@ -49,14 +49,25 @@
           XDG_CONFIG_HOME = "${vpnHome}/.config";
           XDG_RUNTIME_DIR = "${vpnHome}/run";
         };
-        path = [ pkgs.dbus ];
+        path = [
+          pkgs.dbus
+          pkgs.proton-vpn-cli
+        ];
         serviceConfig = {
-          Type = "oneshot";
-          RemainAfterExit = true;
+          Type = "simple";
+          Restart = "always";
+          RestartSec = "30s";
           User = "protonvpn";
           Group = "protonvpn";
           ExecStartPre = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.proton-vpn-cli}/bin/protonvpn config set port-forwarding on";
-          ExecStart = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.proton-vpn-cli}/bin/protonvpn connect --p2p";
+          ExecStart = pkgs.writeShellScript "protonvpn-watchdog" ''
+            dbus-run-session protonvpn connect --p2p
+            while true; do
+              sleep 60
+              dbus-run-session protonvpn status | grep -q "Connected" || \
+                dbus-run-session protonvpn connect --p2p
+            done
+          '';
           ExecStop = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.proton-vpn-cli}/bin/protonvpn disconnect";
         };
       };

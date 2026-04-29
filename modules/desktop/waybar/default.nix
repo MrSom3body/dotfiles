@@ -85,38 +85,6 @@
               "custom/fnott"
             ];
 
-            "custom/next-event" = {
-              interval = 10;
-              return-type = "json";
-              exec = mkScriptJson {
-                deps = [ config.programs.khal.package ];
-                script = ''
-                  events="$(khal list now tomorrow --json title --json start-time | jq '.[] | (if ."start-time" != "" then ."start-time" + " " else "" end) + .title' -r)"
-                  if [ -z "$events" ]; then
-                    count=""
-                    status="none"
-                  else
-                    count="$(echo "$events" | grep -c "^")"
-                    status="has-event"
-                    khal list now 10m --json title --json start-time | jq -e '.[] | select(."start-time" != "")' >/dev/null && status="has-close-event"
-                  fi
-                '';
-                text = "$count";
-                alt = "$status";
-                tooltip = "$events";
-              };
-              format = "{icon} {text}";
-              format-icons = {
-                has-event = "󰃭";
-                has-close-event = "󰨱";
-              };
-              on-click = mkScript {
-                deps = [ config.programs.khal.package ];
-                script = "xdg-terminal-exec ikhal";
-              };
-              hide-empty-text = true;
-            };
-
             "custom/actions" = {
               format = "";
               tooltip-format = "System Actions";
@@ -174,6 +142,38 @@
               return-type = "json";
               hide-empty-text = true;
               interval = 60;
+            };
+
+            "custom/next-event" = {
+              interval = 10;
+              return-type = "json";
+              exec = mkScriptJson {
+                deps = [ config.programs.khal.package ];
+                script = ''
+                  events="$(khal list now tomorrow --json title --json start-time | jq '.[] | (if ."start-time" != "" then ."start-time" + " " else "" end) + .title' -r)"
+                  if [ -z "$events" ]; then
+                    count=""
+                    status="none"
+                  else
+                    count="$(echo "$events" | grep -c "^")"
+                    status="has-event"
+                    khal list now 30m --json title --json start-time | jq -e '.[] | select(."start-time" != "")' >/dev/null && status="has-close-event"
+                  fi
+                '';
+                text = "$count";
+                alt = "$status";
+                tooltip = "$events";
+              };
+              format = "{icon} {text}";
+              format-icons = {
+                has-event = "󰃭";
+                has-close-event = "󰨱";
+              };
+              on-click = mkScript {
+                deps = [ config.programs.khal.package ];
+                script = "xdg-terminal-exec ikhal";
+              };
+              hide-empty-text = true;
             };
 
             clock = {

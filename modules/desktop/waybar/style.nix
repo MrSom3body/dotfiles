@@ -103,6 +103,10 @@
             background: @base08;
           }
 
+          #custom-khal-events.ongoing {
+            background: @base02;
+          }
+
           #custom-update {
             background: @base02;
           }

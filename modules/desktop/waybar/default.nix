@@ -69,7 +69,7 @@
             modules-center = [
               "custom/update"
               "privacy"
-              "custom/next-event"
+              "custom/khal-events"
               "clock"
               "mpris"
             ];
@@ -144,30 +144,35 @@
               interval = 60;
             };
 
-            "custom/next-event" = {
-              interval = 10;
+            "custom/khal-events" = {
+              interval = 60;
               return-type = "json";
               exec = mkScriptJson {
                 deps = [ config.programs.khal.package ];
                 script = ''
                   events="$(khal list now tomorrow --json title --json start-time | jq '.[] | (if ."start-time" != "" then ."start-time" + " " else "" end) + .title' -r)"
-                  if [ -z "$events" ]; then
-                    count=""
-                    status="none"
-                  else
+                  count=""
+                  status="none"
+                  class=""
+                  if [ -n "$events" ]; then
                     count="$(echo "$events" | grep -c "^")"
                     status="has-event"
-                    khal list now 30m --json title --json start-time | jq -e '.[] | select(."start-time" != "")' >/dev/null && status="has-close-event"
+                    close_json="$(khal list now 30m --json title --json start-time)"
+                    now="$(date +%H:%M)"
+                    echo "$close_json" | jq -e '.[] | select(."start-time" != "")' >/dev/null && { status="has-close-event"; class="close"; }
+                    echo "$close_json" | jq -e --arg now "$now" '.[] | select(."start-time" != "" and ."start-time" <= $now)' >/dev/null && { status="has-ongoing-event"; class="ongoing"; }
                   fi
                 '';
                 text = "$count";
                 alt = "$status";
+                class = "$class";
                 tooltip = "$events";
               };
               format = "{icon} {text}";
               format-icons = {
                 has-event = "󰃭";
                 has-close-event = "󰨱";
+                has-ongoing-event = "󰃰";
               };
               on-click = mkScript {
                 deps = [ config.programs.khal.package ];

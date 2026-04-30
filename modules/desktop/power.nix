@@ -13,8 +13,8 @@
       upower.enable = true;
     };
 
-    environment.etc = {
-      "tuned/post_loaded_profile".text = "panel_power_savings";
-    };
+    # environment.etc = {
+    #   "tuned/post_loaded_profile".text = "panel_power_savings";
+    # };
   };
 }

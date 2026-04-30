@@ -9,8 +9,6 @@
         };
       };
       tlp.enable = lib.mkForce false;
-
-      upower.enable = true;
     };
 
     # environment.etc = {

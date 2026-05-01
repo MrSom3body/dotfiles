@@ -23,6 +23,7 @@ in
               pkgs.bash
               pkgs.khal
               pkgs.coreutils
+              pkgs.util-linux
               pkgs.inotify-tools
               pkgs.jq
             ]

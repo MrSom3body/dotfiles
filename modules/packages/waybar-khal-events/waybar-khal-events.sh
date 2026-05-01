@@ -2,6 +2,9 @@
 
 CALENDAR_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/calendars"
 
+exec 9>/tmp/waybar-khal-events.lock
+flock -n 9 || exit 0
+
 format_tooltip='
   group_by(."start-date")[] |
   ("<b>" + (.[0]."start-date") + "</b>"),
@@ -61,5 +64,5 @@ emit() {
 
 while true; do
   emit
-  inotifywait -t 120 -rq "$CALENDAR_DIR" 2>/dev/null
+  inotifywait -t 120 -rq "$CALENDAR_DIR" &>/dev/null
 done

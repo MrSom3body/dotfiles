@@ -1,0 +1,8 @@
+### nix ###
+/.direnv/
+/result
+/.pre-commit-config.yaml
+
+### typst ###
+/target/
+*.pdf

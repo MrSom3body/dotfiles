@@ -15,6 +15,11 @@
         path = ./_python-uv;
         description = "a python uv dev template";
       };
+
+      typst = {
+        path = ./_typst;
+        description = "a typst dev template";
+      };
     };
   };
 }

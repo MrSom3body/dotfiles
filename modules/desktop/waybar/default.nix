@@ -2,51 +2,6 @@
 {
   flake.modules.homeManager.desktop =
     { config, pkgs, ... }:
-    let
-      commonDeps = builtins.attrValues { inherit (pkgs) coreutils gnugrep systemd; };
-
-      # Function to simplify making waybar outputs
-      mkScript =
-        {
-          name ? "script",
-          deps ? [ ],
-          script ? "",
-        }:
-        lib.getExe (
-          pkgs.writeShellApplication {
-            inherit name;
-            text = script;
-            runtimeInputs = commonDeps ++ deps;
-          }
-        );
-
-      # Specialized for JSON outputs
-      mkScriptJson =
-        {
-          name ? "script",
-          deps ? [ ],
-          script ? "",
-          text ? "",
-          tooltip ? "",
-          alt ? "",
-          class ? "",
-          percentage ? "",
-        }:
-        mkScript {
-          inherit name;
-          deps = [ pkgs.jq ] ++ deps;
-          script = ''
-            ${script}
-            jq -cn \
-              --arg text "${text}" \
-              --arg tooltip "${tooltip}" \
-              --arg alt "${alt}" \
-              --arg class "${class}" \
-              --arg percentage "${percentage}" \
-              '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
-          '';
-        };
-    in
     {
       programs.waybar = {
         enable = true;
@@ -145,39 +100,15 @@
             };
 
             "custom/khal-events" = {
-              interval = 60;
               return-type = "json";
-              exec = mkScriptJson {
-                deps = [ config.programs.khal.package ];
-                script = ''
-                  events="$(khal list now tomorrow --json title --json start-time | jq '.[] | (if ."start-time" != "" then ."start-time" + " " else "" end) + .title' -r)"
-                  count=""
-                  status="none"
-                  class=""
-                  if [ -n "$events" ]; then
-                    count="$(echo "$events" | grep -c "^")"
-                    status="has-event"
-                    close_json="$(khal list now 30m --json title --json start-time)"
-                    now="$(date +%H:%M)"
-                    echo "$close_json" | jq -e '.[] | select(."start-time" != "")' >/dev/null && { status="has-close-event"; class="close"; }
-                    echo "$close_json" | jq -e --arg now "$now" '.[] | select(."start-time" != "" and ."start-time" <= $now)' >/dev/null && { status="has-ongoing-event"; class="ongoing"; }
-                  fi
-                '';
-                text = "$count";
-                alt = "$status";
-                class = "$class";
-                tooltip = "$events";
-              };
+              exec = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.waybar-khal-events;
               format = "{icon} {text}";
               format-icons = {
                 has-event = "󰃭";
                 has-close-event = "󰨱";
                 has-ongoing-event = "󰃰";
               };
-              on-click = mkScript {
-                deps = [ config.programs.khal.package ];
-                script = "xdg-terminal-exec ikhal";
-              };
+              on-click = "xdg-terminal-exec ikhal";
               hide-empty-text = true;
             };
 

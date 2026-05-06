@@ -5,12 +5,7 @@
   "gitIgnoredAuthors": [
     "261862837+MrSom3body-Bot[bot]@users.noreply.github.com"
   ],
-  "github-actions": {
-    "enabled": false
-  },
-  "nix": {
-    "enabled": true
-  },
+  "enabledManagers": ["custom.regex", "nix"],
   "lockFileMaintenance": {
     "enabled": true,
     "schedule": ["* 3-9 * * *"],

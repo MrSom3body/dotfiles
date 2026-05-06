@@ -6,6 +6,9 @@
     "261862837+MrSom3body-Bot[bot]@users.noreply.github.com"
   ],
   "enabledManagers": ["custom.regex", "nix"],
+  "nix": {
+    "enabled": true
+  },
   "lockFileMaintenance": {
     "enabled": true,
     "schedule": ["* 3-9 * * *"],

@@ -23,7 +23,6 @@ let
     "fingerprint"
     "flatpak"
     "gemini-cli"
-    "gns3"
     "jetbrains"
     "lanzaboote"
     "libvirtd"
@@ -34,7 +33,6 @@ let
     "proton"
     "rclone"
     "topology"
-    "vmware"
     "wireshark"
     "ydotool"
   ];

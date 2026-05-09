@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.school =
+  flake.modules.homeManager.jetbrains =
     { pkgs, ... }:
     let
       inherit (inputs.nix-jetbrains-plugins.lib) buildIdeWithPlugins;

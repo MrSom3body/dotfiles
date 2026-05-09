@@ -24,6 +24,7 @@ let
     "flatpak"
     "gemini-cli"
     "gns3"
+    "jetbrains"
     "lanzaboote"
     "libvirtd"
     "logitech"

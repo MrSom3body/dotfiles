@@ -40,6 +40,7 @@ in
             # Open applications
             ", B, Open browser, exec, uwsm app -- ${meta.programs.browser}"
             ", E, Open file manager, exec, uwsm app -- ${meta.programs.fileManager}"
+            ", C, Open calendar, exec, uwsm app -- xdg-terminal-exec ikhal"
             ", N, Open notes, exec, uwsm app -- obsidian"
 
             # Scratchpads

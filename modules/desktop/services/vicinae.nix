@@ -36,9 +36,15 @@
               soft-reboot.preferences.confirm = false;
               suspend.preferences.confirm = false;
             };
+            "theme".enabled = false;
             # plugins
             "@Gelei/bluetooth-0".preferences = {
               connectionToggleable = true;
+            };
+            "@posthardcode/store.raycast.lunatask" = {
+              "entrypoints" = {
+                "new-task".alias = "todo";
+              };
             };
           };
         };

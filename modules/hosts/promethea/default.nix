@@ -33,7 +33,6 @@ let
     "printing"
     "proton"
     "rclone"
-    "terraform"
     "topology"
     "vmware"
     "wireshark"

@@ -64,7 +64,7 @@ in
           home.packages = [
             pkgs.calibre
             pkgs.logseq
-            pkgs.lunatask
+            pkgs.planify
           ];
           wayland.windowManager.hyprland = {
             layout = "scrolling";

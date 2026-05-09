@@ -2,7 +2,6 @@
 {
   flake.overlays = {
     # from inputs
-    hyprnix = inputs.hyprnix.overlays.default;
     nix-topology = inputs.nix-topology.overlays.default;
 
     # my overlays

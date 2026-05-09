@@ -170,14 +170,6 @@
       };
     };
 
-    hyprnix = {
-      url = "github:hyprwm/hyprnix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-
     vicinae = {
       url = "github:vicinaehq/vicinae";
       inputs.nixpkgs.follows = "nixpkgs";

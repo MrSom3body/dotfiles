@@ -15,7 +15,7 @@
         settings.general = {
           fullscreen = true;
           early-exit = true;
-          copy-command = lib.getExe' pkgs.wl-wl-clipboard "wl-copy";
+          copy-command = lib.getExe' pkgs.wl-clipboard "wl-copy";
         };
       };
     };

@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.hyprland =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       home = {
         packages = [ pkgs.grimblast ];
@@ -15,6 +15,7 @@
         settings.general = {
           fullscreen = true;
           early-exit = true;
+          copy-command = lib.getExe' pkgs.wl-wl-clipboard "wl-copy";
         };
       };
     };

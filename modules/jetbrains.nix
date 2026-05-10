@@ -7,7 +7,7 @@
       pluginList = [
         "IdeaVIM"
         "com.almightyalpaca.intellij.plugins.discord"
-        "com.github.copilot"
+        # "com.github.copilot" # TODO uncomment when not broken
         "com.github.lonre.gruvbox-intellij-theme"
         # "com.intellij.mermaid"
       ];

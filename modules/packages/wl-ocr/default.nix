@@ -15,13 +15,12 @@ in
         nativeBuildInputs = [ pkgs.makeWrapper ];
 
         installPhase = ''
-          install -Dm755 $src/${name}.fish $out/bin/${name}
+          install -Dm755 $src/${name}.sh $out/bin/${name}
         '';
 
         fixupPhase = ''
-          wrapProgram $out/bin/${name} --set PATH ${
+          wrapProgram $out/bin/${name} --prefix PATH : ${
             lib.makeBinPath [
-              pkgs.fish
               pkgs.grim
               pkgs.libnotify
               pkgs.slurp

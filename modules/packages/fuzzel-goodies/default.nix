@@ -13,7 +13,7 @@
         installPhase = ''
           mkdir -p $out/bin
           for script in $src/*; do
-            install -Dm755 "$script" "$out/bin/$(basename -s .fish $script)"
+            install -Dm755 "$script" "$out/bin/$(basename -s .sh $script)"
           done
         '';
 
@@ -24,9 +24,9 @@
                 pkgs.bemoji
                 pkgs.cliphist
                 pkgs.fd
-                pkgs.fish
                 pkgs.fuzzel
                 pkgs.jq
+                pkgs.procps
                 pkgs.wl-clipboard
                 pkgs.wtype
                 pkgs.xdg-utils

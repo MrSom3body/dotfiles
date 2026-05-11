@@ -13,7 +13,7 @@
         installPhase = ''
           mkdir -p $out/bin
           for script in $src/*; do
-            install -Dm755 "$script" "$out/bin/$(basename -s .fish $script)"
+            install -Dm755 "$script" "$out/bin/$(basename -s .sh $script)"
           done
         '';
 
@@ -21,7 +21,6 @@
           for script in $out/bin/*; do
             wrapProgram "$script" --prefix PATH : ${
               lib.makeBinPath [
-                pkgs.fish
                 pkgs.jq
                 pkgs.procps
                 pkgs.vicinae

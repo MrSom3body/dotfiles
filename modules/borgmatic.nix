@@ -101,7 +101,7 @@
             "*.tmp"
             "*~"
             "/home/karun/.local/share/Trash"
-            "/home/karun/Documents/Codes/nixpkgs"
+            "/home/karun/Projects/nixpkgs"
             "/home/karun/Downloads"
 
             # virtualization & containers

@@ -12,7 +12,7 @@
       #       - {{\.?venv}}/**
       #       - .devenv/**
       #       - .direnv/**
-      #       - /Documents/Codes/nixpkgs/**
+      #       - /Projects/nixpkgs/**
       #       - /Documents/Schule/2024-25/INSY/oracle-volume/**
       #       + /Desktop/**
       #       + /Documents/**

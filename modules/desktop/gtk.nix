@@ -5,16 +5,15 @@
       gtk = {
         gtk4.theme = null;
         gtk3.bookmarks = map (dir: "file://${config.home.homeDirectory}/" + dir) [
+          "dotfiles"
           "Desktop"
           "Documents"
+          "Projects"
           "Downloads"
           "Games"
           "Music"
           "Videos"
-          "dotfiles"
-          "Documents/Codes"
           "Documents/Notes"
-          "Documents/Schule/2025-26"
         ];
       };
     };

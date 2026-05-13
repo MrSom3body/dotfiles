@@ -1,20 +1,15 @@
+{ inputs, ... }:
 {
   flake.modules.homeManager.desktop =
-    { pkgs, ... }:
+    { lib, config, ... }:
     {
-      systemd.user.services.tailscale-systray = {
-        Unit = {
-          Description = "Tailscale System Tray";
-          After = [ "systemd.service" ];
-        };
-
-        Service = {
-          Type = "simple";
-          ExecStart = "${pkgs.tailscale}/bin/tailscale systray";
-          Restart = "on-failure";
-        };
-
-        Install.WantedBy = [ "default.target" ];
+      imports = [ inputs.tailray.homeManagerModules.default ];
+      services.tailray = {
+        enable = true;
+        theme = config.stylix.polarity;
+      };
+      systemd.user.services.tailray = {
+        Unit.After = lib.mkForce "graphical-session.target";
       };
     };
 }

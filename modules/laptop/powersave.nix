@@ -1,10 +1,15 @@
 {
-  flake.modules = {
-    nixos.laptop = {
-      services.logind.settings.Login = {
-        HandlePowerKey = "suspend-then-hibernate";
-        HandleLidSwitch = "suspend-then-hibernate";
-      };
+  flake.modules.nixos.laptop =
+    { lib, ... }:
+    {
+      services.logind.settings.Login =
+        let
+          action = "suspend-then-hibernate";
+        in
+        {
+          HandleLidSwitch = lib.mkDefault action;
+          HandlePowerKey = lib.mkDefault action;
+        };
 
       systemd = {
         sleep.settings.Sleep = {
@@ -29,5 +34,4 @@
         };
       };
     };
-  };
 }

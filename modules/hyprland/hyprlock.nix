@@ -4,10 +4,11 @@ let
 in
 {
   flake.modules.homeManager.hyprland =
-    { config, ... }:
+    { config, osConfig, ... }:
     let
       inherit (config.lib.stylix) colors;
       rgb = color: "rgb(${color})";
+      sleepCmd = osConfig.services.logind.settings.Login.HandleLidSwitch or "suspend";
     in
     {
       programs.hyprlock = {
@@ -103,7 +104,7 @@ in
           shape = [
             {
               color = rgb colors.base00;
-              onclick = "systemctl suspend-then-hibernate";
+              onclick = "systemctl ${sleepCmd}";
               size = "120, 36"; # 10 (not visible) + 10 (from bottom) + 20 (arround text) + 16 (font)
               rounding = meta.appearance.border.radius;
               position = "0, 4";

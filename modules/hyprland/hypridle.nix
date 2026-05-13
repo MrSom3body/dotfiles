@@ -1,7 +1,10 @@
 { lib, ... }:
 {
   flake.modules.homeManager.hyprland =
-    { config, ... }:
+    { config, osConfig, ... }:
+    let
+      sleepCmd = osConfig.services.logind.settings.Login.HandleLidSwitch or "suspend";
+    in
     {
       services.hypridle = {
         enable = true;
@@ -62,7 +65,7 @@
               # If discharging
               {
                 timeout = 600;
-                on-timeout = isDischarging "systemctl suspend-then-hibernate";
+                on-timeout = isDischarging "systemctl ${sleepCmd}";
               }
             ];
           };

@@ -47,10 +47,10 @@
         icon = "di:jellyfin";
         show = true;
       };
-      "jellyseerr" = {
+      "seerr" = {
         port = 5055;
-        domain = "jellyseerr.sndh.dev";
-        icon = "di:jellyseerr";
+        domain = "seerr.sndh.dev";
+        icon = "di:seerr";
         show = true;
       };
       "karakeep" = {

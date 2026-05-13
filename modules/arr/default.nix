@@ -45,16 +45,16 @@ in
               value = mkHost meta.services.${name}.port;
             })
             [
-              "jellyseerr"
+              "seerr"
               "sonarr"
               "radarr"
               "prowlarr"
             ]
         );
 
-      jellyseerr = {
+      seerr = {
         enable = true;
-        inherit (meta.services.jellyseerr) port;
+        inherit (meta.services.seerr) port;
       };
       prowlarr = {
         enable = true;

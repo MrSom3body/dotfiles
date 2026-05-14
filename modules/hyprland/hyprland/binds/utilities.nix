@@ -14,12 +14,12 @@
         [
           # Launcher
           "SUPER, D, Open application launcher, exec, vicinae toggle"
-          "ALT, TAB, Open window switcher, exec, vicinae vicinae://extensions/vicinae/wm/switch-windows"
-          "SUPER, PERIOD, Open symbols search, exec, vicinae vicinae://extensions/vicinae/core/search-emojis"
+          "ALT, TAB, Open window switcher, exec, vicinae vicinae://launch/wm/switch-windows"
+          "SUPER, PERIOD, Open symbols search, exec, vicinae vicinae://launch/core/search-emojis"
 
           # Clipboard
-          "SUPER, V, Show clipboard history, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
-          "SUPER CTRL, V, Clear clipboard history, exec, vicinae vicinae://extensions/vicinae/clipboard/clear-history"
+          "SUPER, V, Show clipboard history, exec, vicinae vicinae://launch/clipboard/history"
+          "SUPER CTRL, V, Clear clipboard history, exec, vicinae vicinae://launch/clipboard/clear-history"
 
           # Notifcations
           "SUPER, COMMA, Open notification action, exec, fnottctl actions"

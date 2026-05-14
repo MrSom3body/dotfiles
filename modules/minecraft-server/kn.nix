@@ -9,8 +9,8 @@
         enable = true;
         enableReload = true;
         openFirewall = true;
-        package = pkgs.vanillaServers.vanilla-1_21_10;
-        jvmOpts = "-Xms1G -Xmx4G";
+        package = pkgs.minecraftServers.vanilla-26_1_2;
+        jvmOpts = "-Xms1G -Xmx8G";
         serverProperties = {
           difficulty = "normal";
           enforce-secure-profile = false;

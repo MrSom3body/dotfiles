@@ -7,6 +7,7 @@
 
     services.minecraft-servers = {
       enable = true;
+      dataDir = "/var/lib/minecraft";
       eula = true;
     };
   };

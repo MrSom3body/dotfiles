@@ -16,6 +16,11 @@
         description = "a python uv dev template";
       };
 
+      rust = {
+        path = ./_rust;
+        description = "a rust dev template";
+      };
+
       typst = {
         path = ./_typst;
         description = "a typst dev template";

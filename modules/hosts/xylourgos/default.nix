@@ -14,7 +14,6 @@ let
     "firefox-send"
     "glance"
     "karakeep"
-    "minecraft-server/kn-server"
     "ntfy"
     # "open-webui" # is currently broken
     "qemu-guest"

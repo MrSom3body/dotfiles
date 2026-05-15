@@ -10,6 +10,7 @@ let
     "atuin-server"
     "borgmatic"
     "immich"
+    "minecraft-server/kn-server"
     "miniflux"
     "stylix"
     "syncthing-server"

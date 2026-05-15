@@ -7,10 +7,9 @@
 
       services.minecraft-servers.servers.kn-server = {
         enable = true;
-        enableReload = true;
         openFirewall = true;
         package = pkgs.minecraftServers.vanilla-26_1_2;
-        jvmOpts = "-Xms1G -Xmx8G";
+        jvmOpts = "-Xms1G -Xmx4G";
         serverProperties = {
           difficulty = "normal";
           enforce-secure-profile = false;

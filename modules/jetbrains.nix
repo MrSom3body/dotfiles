@@ -16,7 +16,6 @@
       home.packages =
         builtins.attrValues {
           inherit (pkgs)
-            jetbrains-toolbox
             # JDKs
             temurin-bin
             ;

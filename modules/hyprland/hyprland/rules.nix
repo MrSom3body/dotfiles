@@ -55,7 +55,7 @@
           "match:class ^(Anki)$, match:title ^(Add)$, float true, size 600 400, center true"
 
           # Calculator
-          "match:class ^(org.gnome.Calculator)$, float true, size > >"
+          "match:class ^(org.gnome.Calculator|qalculate-gtk)$, float true, size > >"
 
           # Clock
           "match:class ^(org.gnome.clocks)$, float true, size 800 600"

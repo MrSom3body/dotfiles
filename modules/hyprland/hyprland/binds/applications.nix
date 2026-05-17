@@ -26,7 +26,7 @@ in
           # Open applications
           "SUPER, RETURN, Open terminal, exec, ${terminal}"
           "SUPER, E, Open terminal terminal file manager, exec, uwsm app -- xdg-terminal-exec ${meta.programs.terminalFileManager}"
-          ", XF86Calculator, Open calculator, exec, ${runOnce "gnome-calculator"}"
+          ", XF86Calculator, Open calculator, exec, ${runOnce "qalculate-gtk"}"
 
           # Vesktop
           "CTRL SHIFT, M, Mute on vesktop, pass, class:^(vesktop)$"

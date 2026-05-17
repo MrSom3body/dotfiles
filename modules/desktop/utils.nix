@@ -7,12 +7,12 @@
         builtins.attrValues {
           inherit (pkgs)
             # gui
-            gnome-calculator
             gnome-clocks
             gnome-disk-utility
             hyprpicker
             nautilus
             pwvucontrol
+            qalculate-gtk
             snapshot # Camera App
             # cli
             brightnessctl

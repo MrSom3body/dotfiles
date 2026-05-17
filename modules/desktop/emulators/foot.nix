@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  flake.modules.homeManager.foot =
+  flake.modules.homeManager.desktop =
     { pkgs, ... }:
     let
       foot-pipe = pkgs.writeScript "foot-pipe" ''

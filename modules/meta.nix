@@ -14,7 +14,7 @@
 
     programs = {
       editor = "hx";
-      terminal = "ghostty";
+      terminal = "foot";
       browser = "zen-beta";
       fileManager = "nautilus";
       terminalFileManager = "yazi";

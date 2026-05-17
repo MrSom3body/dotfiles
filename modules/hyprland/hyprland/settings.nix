@@ -107,7 +107,6 @@ in
             gesture = [ "4, pinch, dispatcher, exec, loginctl lock-session" ];
 
             dwindle = {
-              pseudotile = true;
               preserve_split = false;
             };
 

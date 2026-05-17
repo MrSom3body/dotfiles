@@ -15,14 +15,7 @@
               notify = title: "${lib.getExe pkgs.libnotify} -a gamemoded -u critical -t 3000 '${title}'";
 
               programs = lib.makeBinPath (
-                (builtins.attrValues {
-                  inherit (pkgs)
-                    coreutils
-                    power-profiles-daemon
-                    systemd
-                    libnotify
-                    ;
-                })
+                (builtins.attrValues { inherit (pkgs) coreutils systemd libnotify; })
                 ++ [ config.programs.hyprland.package ]
               );
 

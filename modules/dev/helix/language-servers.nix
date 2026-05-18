@@ -34,6 +34,7 @@ in
         golangci-lint-lsp.command = lib.getExe pkgs.golangci-lint-langserver;
         gopls.command = lib.getExe pkgs.gopls;
         lemminx.command = lib.getExe pkgs.lemminx;
+        lua-language-server.command = lib.getExe pkgs.lua-language-server;
         ltex-ls-plus.command = lib.getExe' pkgs.ltex-ls-plus "ltex-ls-plus";
         markdown-oxide.command = lib.getExe pkgs.markdown-oxide;
         nixd = {

@@ -100,6 +100,15 @@ in
         }
 
         {
+          name = "lua";
+          auto-format = true;
+          formatter = {
+            command = lib.getExe pkgs.stylua;
+            args = [ "-" ];
+          };
+        }
+
+        {
           name = "markdown";
           auto-format = true;
           soft-wrap.enable = true;

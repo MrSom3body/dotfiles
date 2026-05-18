@@ -32,6 +32,8 @@
             package = null;
             portalPackage = null;
 
+            configType = "hyprlang"; # TODO switch to lua
+
             settings.permission = map (
               plugin: plugin + "/lib/lib${plugin.pname}.so, plugin, allow"
             ) cfg.plugins;

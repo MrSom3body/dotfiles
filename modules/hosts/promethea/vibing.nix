@@ -2,16 +2,14 @@
 let
   flakeConfig = config;
 
-  defaultModel = "gemma4:e4b";
+  defaultModel = "gemma4:26b";
 
-  models = {
-    "gemma4:e4b" = {
-      contextLength = 16384;
-    };
-    "gemma4:26b" = {
-      contextLength = 32768;
-    };
-  };
+  models = [
+    "gemma4:e4b"
+    "gemma4:26b"
+  ];
+
+  contextLength = "65536";
 in
 {
   flake.modules.nixos."hosts/promethea" =
@@ -28,10 +26,10 @@ in
         services = {
           ollama = {
             package = pkgs.ollama-rocm;
-            loadModels = builtins.attrNames models;
+            loadModels = models;
             rocmOverrideGfx = "10.3.0";
             environmentVariables = {
-              OLLAMA_CONTEXT_LENGTH = toString models.${defaultModel}.contextLength;
+              OLLAMA_CONTEXT_LENGTH = contextLength;
               OLLAMA_FLASH_ATTENTION = "1";
               OLLAMA_KV_CACHE_TYPE = "q8_0";
             };
@@ -41,7 +39,7 @@ in
             settings = {
               model = {
                 default = defaultModel;
-                context_length = models.${defaultModel}.contextLength;
+                context_length = contextLength;
               };
             };
           };

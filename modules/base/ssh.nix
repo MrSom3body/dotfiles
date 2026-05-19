@@ -3,7 +3,7 @@
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = {
+      settings = {
         "som3box" = {
           hostname = "u564683.your-storagebox.de";
           user = "u564683";

@@ -5,23 +5,23 @@
       enableDefaultConfig = false;
       settings = {
         "som3box" = {
-          hostname = "u564683.your-storagebox.de";
-          user = "u564683";
-          port = 23;
+          Hostname = "u564683.your-storagebox.de";
+          User = "u564683";
+          Port = 23;
         };
 
         "*" = {
-          forwardAgent = false;
-          addKeysToAgent = "no";
-          compression = false;
-          serverAliveInterval = 60;
-          serverAliveCountMax = 3;
-          hashKnownHosts = true;
-          userKnownHostsFile = "~/.ssh/known_hosts";
-          controlMaster = "auto";
-          controlPath = "~/.ssh/master-%r@%n:%p";
-          controlPersist = "30m";
-          setEnv = {
+          ForwardAgent = false;
+          AddKeysToAgent = "no";
+          Compression = false;
+          ServerAliveInterval = 60;
+          ServerAliveCountMax = 3;
+          HashKnownHosts = true;
+          UserKnownHostsFile = "~/.ssh/known_hosts";
+          ControlMaster = "auto";
+          ControlPath = "~/.ssh/master-%r@%n:%p";
+          ControlPersist = "30m";
+          SetEnv = {
             TERM = "xterm-256color";
           };
         };

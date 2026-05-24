@@ -11,10 +11,10 @@ let
     "media"
     "messaging"
     "office"
-    "school"
     "shell"
 
     "adb"
+    "anki"
     "atuin"
     "bluetooth"
     "claude-code"

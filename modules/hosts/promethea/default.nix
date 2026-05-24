@@ -33,8 +33,6 @@ let
     "proton"
     "rclone"
     "topology"
-    "wireshark"
-    "ydotool"
   ];
 in
 {

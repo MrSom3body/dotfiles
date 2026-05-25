@@ -58,7 +58,12 @@
       };
 
     homeManager.stylix =
-      { pkgs, ... }:
+      {
+        lib,
+        pkgs,
+        config,
+        ...
+      }:
       {
         stylix = {
           overlays.enable = false;
@@ -82,7 +87,9 @@
             dark = "Papirus-Dark";
           };
         };
-      };
 
+        # TODO remove when https://github.com/nix-community/stylix/issues/2250 gets resolved
+        gtk.gtk4.theme = lib.mkForce config.gtk.theme;
+      };
   };
 }

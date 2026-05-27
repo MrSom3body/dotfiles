@@ -28,6 +28,7 @@
           highlight_event_days = true;
         };
         view = {
+          agenda_event_format = "{calendar-color}{cancelled}{start-end-time-style} {title}{repeat-symbol}{reset}";
           event_view_always_visible = true;
           frame = "color";
         };

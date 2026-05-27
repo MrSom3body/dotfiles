@@ -68,33 +68,37 @@
           ];
         }
 
-        # Resize columns
+        # Resize columns / floating windows
         {
           _args = [
             "SUPER + CTRL + H"
-            (lua ''hl.dsp.layout("colresize -0.2")'')
-            (desc "Decrease column size")
-          ];
-        }
-        {
-          _args = [
-            "SUPER + CTRL + J"
-            (lua "hl.dsp.window.resize({ x = 0, y = 100, relative = true })")
-            (desc "Increase window size to the bottom")
-          ];
-        }
-        {
-          _args = [
-            "SUPER + CTRL + K"
-            (lua "hl.dsp.window.resize({ x = 0, y = -100, relative = true })")
-            (desc "Increase window size to the top")
+            (lua /* lua */ ''
+              function()
+                local win = hl.get_active_window()
+                if win and win.floating then
+                  hl.dispatch(hl.dsp.window.resize({ x = -100, y = 0, relative = true }))
+                else
+                  hl.dispatch(hl.dsp.layout("colresize -0.2"))
+                end
+              end
+            '')
+            (desc "Decrease column size / resize floating window left")
           ];
         }
         {
           _args = [
             "SUPER + CTRL + L"
-            (lua ''hl.dsp.layout("colresize +0.2")'')
-            (desc "Increase column size")
+            (lua /* lua */ ''
+              function()
+                local win = hl.get_active_window()
+                if win and win.floating then
+                  hl.dispatch(hl.dsp.window.resize({ x = 100, y = 0, relative = true }))
+                else
+                  hl.dispatch(hl.dsp.layout("colresize +0.2"))
+                end
+              end
+            '')
+            (desc "Increase column size / resize floating window right")
           ];
         }
 

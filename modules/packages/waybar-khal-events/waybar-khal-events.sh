@@ -18,7 +18,7 @@ format_tooltip='
    else empty end),
   (.events[] |
     "<span foreground=\"" + (."calendar-color" // "inherit") + "\">" +
-    (if ."start-time" != "" then ."start-time" + "–" + ."end-time" + " " else "" end) +
+    (if ."start-time" != "" then ."start-time" + "-" + ."end-time" + " " else "" end) +
     (.title | @html) + "</span>"
   )
 '

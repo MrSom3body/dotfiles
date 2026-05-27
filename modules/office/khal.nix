@@ -15,11 +15,11 @@
         firstweekday = 0;
         weeknumbers = "off";
         unicode_symbols = true;
-        dateformat = "%d.%m.%Y";
         timeformat = "%H:%M";
-        datetimeformat = "%c";
-        longdateformat = "%x";
-        longdatetimeformat = "%c";
+        dateformat = "%d.%m.";
+        longdateformat = "%d.%m.%Y";
+        datetimeformat = "%d.%m. %H:%M";
+        longdatetimeformat = "%d.%m.%Y %H:%M";
       };
       settings = {
         default = {

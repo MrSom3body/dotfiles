@@ -1,31 +1,132 @@
 {
-  flake.modules.homeManager.hyprland = {
-    wayland.windowManager.hyprland.settings = {
-      bindd = [
-        # Controls
-        "SUPER, Q, Close focused window, killactive"
-        "SUPER, W, Toggle floating, togglefloating"
-        "SUPER, P, Pin focused window, pin"
+  flake.modules.homeManager.hyprland =
+    { lib, ... }:
+    {
+      wayland.windowManager.hyprland.settings.bind =
+        let
+          lua = lib.generators.mkLuaInline;
+          desc = description: { inherit description; };
+        in
+        [
+          # Controls
+          {
+            _args = [
+              "SUPER + Q"
+              (lua "hl.dsp.window.close()")
+              (desc "Close focused window")
+            ];
+          }
+          {
+            _args = [
+              "SUPER + W"
+              (lua "hl.dsp.window.float()")
+              (desc "Toggle floating")
+            ];
+          }
+          {
+            _args = [
+              "SUPER + P"
+              (lua "hl.dsp.window.pin()")
+              (desc "Pin focused window")
+            ];
+          }
 
-        # Window grouping
-        "SUPER, G, Toggle group, togglegroup"
-        "SUPER ALT, G, Move out of group, moveoutofgroup"
-        "SUPER SHIFT, G, Lock or unlock active group, lockactivegroup, toggle"
+          # Window grouping
+          {
+            _args = [
+              "SUPER + G"
+              (lua "hl.dsp.group.toggle()")
+              (desc "Toggle group")
+            ];
+          }
+          {
+            _args = [
+              "SUPER + ALT + G"
+              (lua "hl.dsp.window.move({ out_of_group = true })")
+              (desc "Move out of group")
+            ];
+          }
+          {
+            _args = [
+              "SUPER + SHIFT + G"
+              (lua "hl.dsp.group.lock_active({ action = \"toggle\" })")
+              (desc "Lock or unlock active group")
+            ];
+          }
 
-        "SUPER ALT, H, Move window to group on left, movewindoworgroup, l"
-        "SUPER ALT, J, Move window to group on bottom, movewindoworgroup, d"
-        "SUPER ALT, K, Move window to group on top, movewindoworgroup, u"
-        "SUPER ALT, L, Move window to group on right, movewindoworgroup, r"
+          {
+            _args = [
+              "SUPER + ALT + H"
+              (lua ''hl.dsp.window.move({ direction = "l", group_aware = true })'')
+              (desc "Tile window left / enter/leave group")
+            ];
+          }
+          {
+            _args = [
+              "SUPER + ALT + J"
+              (lua ''hl.dsp.window.move({ direction = "d", group_aware = true })'')
+              (desc "Tile window down / enter/leave group")
+            ];
+          }
+          {
+            _args = [
+              "SUPER + ALT + K"
+              (lua ''hl.dsp.window.move({ direction = "u", group_aware = true })'')
+              (desc "Tile window up / enter/leave group")
+            ];
+          }
+          {
+            _args = [
+              "SUPER + ALT + L"
+              (lua ''hl.dsp.window.move({ direction = "r", group_aware = true })'')
+              (desc "Tile window right / enter/leave group")
+            ];
+          }
 
-        "SUPER, TAB, Change active window in group right, changegroupactive, f"
-        "SUPER SHIFT, TAB, Change active window in group left, changegroupactive, b"
+          {
+            _args = [
+              "SUPER + TAB"
+              (lua "hl.dsp.group.next()")
+              (desc "Change active window in group right")
+            ];
+          }
+          {
+            _args = [
+              "SUPER + SHIFT + TAB"
+              (lua "hl.dsp.group.prev()")
+              (desc "Change active window in group left")
+            ];
+          }
 
-        # Floating windows
-        "SUPER SHIFT, H, Move window left (floating), moveactive, -100 0"
-        "SUPER SHIFT, J, Move window down (floating), moveactive, 0 100"
-        "SUPER SHIFT, K, Move window up (floating), moveactive, 0 -100"
-        "SUPER SHIFT, L, Move window right (floating), moveactive, 100 0"
-      ];
+          # Floating windows
+          {
+            _args = [
+              "SUPER + SHIFT + H"
+              (lua "hl.dsp.window.move({ x = -100, y = 0, relative = true })")
+              (desc "Move window left (floating)")
+            ];
+          }
+          {
+            _args = [
+              "SUPER + SHIFT + J"
+              (lua "hl.dsp.window.move({ x = 0, y = 100, relative = true })")
+              (desc "Move window down (floating)")
+            ];
+          }
+          {
+            _args = [
+              "SUPER + SHIFT + K"
+              (lua "hl.dsp.window.move({ x = 0, y = -100, relative = true })")
+              (desc "Move window up (floating)")
+            ];
+          }
+          {
+            _args = [
+              "SUPER + SHIFT + L"
+              (lua "hl.dsp.window.move({ x = 100, y = 0, relative = true })")
+              (desc "Move window right (floating)")
+            ];
+          }
+        ];
     };
-  };
 }

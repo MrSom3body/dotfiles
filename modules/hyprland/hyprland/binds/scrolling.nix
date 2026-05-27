@@ -3,40 +3,141 @@
     { config, lib, ... }:
     let
       inherit (config.wayland.windowManager.hyprland) layout;
+      lua = lib.generators.mkLuaInline;
+      desc = description: { inherit description; };
     in
     {
-      config.wayland.windowManager.hyprland.settings.bindd = lib.optionals (layout == "scrolling") [
+      config.wayland.windowManager.hyprland.settings.bind = lib.optionals (layout == "scrolling") [
         # Move window focus
-        "SUPER, H, Focus column to the left, layoutmsg, focus l"
-        "SUPER, J, Focus window below, layoutmsg, focus d"
-        "SUPER, K, Focus window above, layoutmsg, focus u"
-        "SUPER, L, Focus column to the right, layoutmsg, focus r"
+        {
+          _args = [
+            "SUPER + H"
+            (lua ''hl.dsp.layout("focus l")'')
+            (desc "Focus column to the left")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + J"
+            (lua ''hl.dsp.layout("focus d")'')
+            (desc "Focus window below")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + K"
+            (lua ''hl.dsp.layout("focus u")'')
+            (desc "Focus window above")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + L"
+            (lua ''hl.dsp.layout("focus r")'')
+            (desc "Focus column to the right")
+          ];
+        }
 
         # Move window/column
-        "SUPER SHIFT, H, Move column left, layoutmsg, swapcol l"
-        "SUPER SHIFT, J, Move window down in column, swapwindow, d"
-        "SUPER SHIFT, K, Move window up in column, swapwindow, u"
-        "SUPER SHIFT, L, Move column right, layoutmsg, swapcol r"
+        {
+          _args = [
+            "SUPER + SHIFT + H"
+            (lua ''hl.dsp.layout("swapcol l")'')
+            (desc "Move column left")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + SHIFT + J"
+            (lua ''hl.dsp.window.swap({ direction = "d" })'')
+            (desc "Move window down in column")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + SHIFT + K"
+            (lua ''hl.dsp.window.swap({ direction = "u" })'')
+            (desc "Move window up in column")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + SHIFT + L"
+            (lua ''hl.dsp.layout("swapcol r")'')
+            (desc "Move column right")
+          ];
+        }
 
         # Resize columns
-        "SUPER CTRL, H, Decrease column size, layoutmsg, colresize -0.2"
-        "SUPER CTRL, J, Increase window size to the bottom, resizeactive, 0 100"
-        "SUPER CTRL, K, Increase window size to the top, resizeactive, 0 -100"
-        "SUPER CTRL, L, Increase column size, layoutmsg, colresize +0.2"
+        {
+          _args = [
+            "SUPER + CTRL + H"
+            (lua ''hl.dsp.layout("colresize -0.2")'')
+            (desc "Decrease column size")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + CTRL + J"
+            (lua "hl.dsp.window.resize({ x = 0, y = 100, relative = true })")
+            (desc "Increase window size to the bottom")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + CTRL + K"
+            (lua "hl.dsp.window.resize({ x = 0, y = -100, relative = true })")
+            (desc "Increase window size to the top")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + CTRL + L"
+            (lua ''hl.dsp.layout("colresize +0.2")'')
+            (desc "Increase column size")
+          ];
+        }
 
         # Promote windows
-        "SUPER, M, Expel window from column, layoutmsg, promote"
+        {
+          _args = [
+            "SUPER + M"
+            (lua ''hl.dsp.layout("promote")'')
+            (desc "Expel window from column")
+          ];
+        }
 
         # Cycle preset column widths
-        "SUPER, R, Cycle column width, layoutmsg, colresize +conf"
-        "SUPER SHIFT, R, Cycle column width, layoutmsg, colresize -conf"
+        {
+          _args = [
+            "SUPER + R"
+            (lua ''hl.dsp.layout("colresize +conf")'')
+            (desc "Cycle column width")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + SHIFT + R"
+            (lua ''hl.dsp.layout("colresize -conf")'')
+            (desc "Cycle column width")
+          ];
+        }
 
         # Maximize/Fullscreen
-        "SUPER, F, Maximize focused column, fullscreen, 1"
-        "SUPER SHIFT, F, Fullscreen focused window, fullscreen, 0"
-
-        # Center focused column
-        "SUPER, C, Toggle center/fit focused column, layoutmsg, togglefit"
+        {
+          _args = [
+            "SUPER + F"
+            (lua ''hl.dsp.window.fullscreen({ mode = "maximized" })'')
+            (desc "Maximize focused column")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + SHIFT + F"
+            (lua ''hl.dsp.window.fullscreen({ mode = "fullscreen" })'')
+            (desc "Fullscreen focused window")
+          ];
+        }
       ];
     };
 }

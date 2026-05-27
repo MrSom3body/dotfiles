@@ -1,15 +1,47 @@
 {
-  flake.modules.homeManager.hyprland = {
-    wayland.windowManager.hyprland.settings = {
-      binddm = [
-        "SUPER, mouse:272, Move window with Super and left click, movewindow"
-        "SUPER, mouse:273, Resize window with Super and right click, resizewindow"
-      ];
+  flake.modules.homeManager.hyprland =
+    { lib, ... }:
+    {
+      wayland.windowManager.hyprland.settings.bind =
+        let
+          lua = lib.generators.mkLuaInline;
+        in
+        [
+          {
+            _args = [
+              "SUPER + mouse:272"
+              (lua "hl.dsp.window.drag()")
+              {
+                mouse = true;
+                description = "Move window with Super and left click";
+              }
+            ];
+          }
+          {
+            _args = [
+              "SUPER + mouse:273"
+              (lua "hl.dsp.window.resize()")
+              {
+                mouse = true;
+                description = "Resize window with Super and right click";
+              }
+            ];
+          }
 
-      bindd = [
-        "SUPER, mouse_down, Switch to next workspace, workspace, e+1"
-        "SUPER, mouse_up, Switch to previous workspace, workspace, e-1"
-      ];
+          {
+            _args = [
+              "SUPER + mouse_down"
+              (lua ''hl.dsp.focus({ workspace = "e+1" })'')
+              { description = "Switch to next workspace"; }
+            ];
+          }
+          {
+            _args = [
+              "SUPER + mouse_up"
+              (lua ''hl.dsp.focus({ workspace = "e-1" })'')
+              { description = "Switch to previous workspace"; }
+            ];
+          }
+        ];
     };
-  };
 }

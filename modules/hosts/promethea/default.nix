@@ -65,7 +65,7 @@ in
           wayland.windowManager.hyprland = {
             layout = "scrolling";
             settings = {
-              monitorv2 = [
+              monitor = [
                 {
                   output = "eDP-1";
                   mode = "1920x1080@60.08Hz";
@@ -80,36 +80,102 @@ in
                 }
               ];
 
-              workspace = [
-                "4, monitor:HDMI-A-1"
-                "5, monitor:HDMI-A-1"
+              workspace_rule = [
+                {
+                  workspace = "4";
+                  monitor = "HDMI-A-1";
+                }
+                {
+                  workspace = "5";
+                  monitor = "HDMI-A-1";
+                }
               ];
 
               permission = [
                 ### Keyboards ###
-                "video-bus, keyboard, allow"
-                "asus-wmi-hotkeys, keyboard, allow"
-                "at-translated-set-2-keyboard, keyboard, allow"
+                {
+                  binary = "video-bus";
+                  type = "keyboard";
+                  mode = "allow";
+                }
+                {
+                  binary = "asus-wmi-hotkeys";
+                  type = "keyboard";
+                  mode = "allow";
+                }
+                {
+                  binary = "at-translated-set-2-keyboard";
+                  type = "keyboard";
+                  mode = "allow";
+                }
 
                 # Logitech
-                "mx-mchncl-m-keyboard, keyboard, allow"
-                "logitech-usb-receiver, keyboard, allow"
-                "logitech-usb-receiver-consumer-control, keyboard, allow"
-                "logitech-usb-receiver-system-control, keyboard, allow"
+                {
+                  binary = "mx-mchncl-m-keyboard";
+                  type = "keyboard";
+                  mode = "allow";
+                }
+                {
+                  binary = "logitech-usb-receiver";
+                  type = "keyboard";
+                  mode = "allow";
+                }
+                {
+                  binary = "logitech-usb-receiver-consumer-control";
+                  type = "keyboard";
+                  mode = "allow";
+                }
+                {
+                  binary = "logitech-usb-receiver-system-control";
+                  type = "keyboard";
+                  mode = "allow";
+                }
 
                 # Mechanical Keyboard
-                "sonix-usb-device-system-control, keyboard, allow"
-                "sonix-usb-device, keyboard, allow"
-                "sonix-usb-device-keyboard, keyboard, allow"
-                "sonix-usb-device-consumer-control, keyboard, allow"
+                {
+                  binary = "sonix-usb-device-system-control";
+                  type = "keyboard";
+                  mode = "allow";
+                }
+                {
+                  binary = "sonix-usb-device";
+                  type = "keyboard";
+                  mode = "allow";
+                }
+                {
+                  binary = "sonix-usb-device-keyboard";
+                  type = "keyboard";
+                  mode = "allow";
+                }
+                {
+                  binary = "sonix-usb-device-consumer-control";
+                  type = "keyboard";
+                  mode = "allow";
+                }
 
                 # Presentation control
-                "qiya-wireless-device, keyboard, allow"
-                "qiya-wireless-device-system-control, keyboard, allow"
-                "qiya-wireless-device-consumer-control, keyboard, allow"
+                {
+                  binary = "qiya-wireless-device";
+                  type = "keyboard";
+                  mode = "allow";
+                }
+                {
+                  binary = "qiya-wireless-device-system-control";
+                  type = "keyboard";
+                  mode = "allow";
+                }
+                {
+                  binary = "qiya-wireless-device-consumer-control";
+                  type = "keyboard";
+                  mode = "allow";
+                }
 
                 # Deny everything else
-                ".*, keyboard, deny"
+                {
+                  binary = ".*";
+                  type = "keyboard";
+                  mode = "deny";
+                }
               ];
             };
           };

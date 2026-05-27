@@ -1,8 +1,10 @@
 {
-  flake.modules.homeManager.hyprland = {
-    wayland.windowManager.hyprland.settings = {
-      bindd =
+  flake.modules.homeManager.hyprland =
+    { lib, ... }:
+    {
+      wayland.windowManager.hyprland.settings.bind =
         let
+          lua = lib.generators.mkLuaInline;
           shorten = s: builtins.substring 0 14 s;
           runOnce =
             program:
@@ -13,35 +15,118 @@
         in
         [
           # Launcher
-          "SUPER, D, Open application launcher, exec, vicinae toggle"
-          "ALT, TAB, Open window switcher, exec, vicinae vicinae://launch/wm/switch-windows"
-          "SUPER, PERIOD, Open symbols search, exec, vicinae vicinae://launch/core/search-emojis"
+          {
+            _args = [
+              "SUPER + D"
+              (lua ''hl.dsp.exec_cmd("vicinae toggle")'')
+              { description = "Open application launcher"; }
+            ];
+          }
+          {
+            _args = [
+              "ALT + TAB"
+              (lua ''hl.dsp.exec_cmd("vicinae vicinae://launch/wm/switch-windows")'')
+              { description = "Open window switcher"; }
+            ];
+          }
+          {
+            _args = [
+              "SUPER + PERIOD"
+              (lua ''hl.dsp.exec_cmd("vicinae vicinae://launch/core/search-emojis")'')
+              { description = "Open symbols search"; }
+            ];
+          }
 
           # Clipboard
-          "SUPER, V, Show clipboard history, exec, vicinae vicinae://launch/clipboard/history"
-          "SUPER CTRL, V, Clear clipboard history, exec, vicinae vicinae://launch/clipboard/clear-history"
+          {
+            _args = [
+              "SUPER + V"
+              (lua ''hl.dsp.exec_cmd("vicinae vicinae://launch/clipboard/history")'')
+              { description = "Show clipboard history"; }
+            ];
+          }
+          {
+            _args = [
+              "SUPER + CTRL + V"
+              (lua ''hl.dsp.exec_cmd("vicinae vicinae://launch/clipboard/clear-history")'')
+              { description = "Clear clipboard history"; }
+            ];
+          }
 
-          # Notifcations
-          "SUPER, COMMA, Open notification action, exec, fnottctl actions"
-          "SUPER SHIFT, COMMA, Dismiss oldest notification, exec, fnottctl dismiss"
-          "SUPER CTRL, COMMA, Toggle do not disturb mode, exec, fnott-dnd"
+          # Notifications
+          {
+            _args = [
+              "SUPER + COMMA"
+              (lua ''hl.dsp.exec_cmd("fnottctl actions")'')
+              { description = "Open notification action"; }
+            ];
+          }
+          {
+            _args = [
+              "SUPER + SHIFT + COMMA"
+              (lua ''hl.dsp.exec_cmd("fnottctl dismiss")'')
+              { description = "Dismiss oldest notification"; }
+            ];
+          }
+          {
+            _args = [
+              "SUPER + SHIFT + COMMA"
+              (lua ''hl.dsp.exec_cmd("fnottctl dismiss all")'')
+              {
+                description = "Dismiss all notifications";
+                non_consuming = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "SUPER + CTRL + COMMA"
+              (lua ''hl.dsp.exec_cmd("fnott-dnd")'')
+              { description = "Toggle do not disturb mode"; }
+            ];
+          }
 
           # Screenshots
-          ", PRINT, Take screenshot of a window, exec, ${runOnce "grimblast"} --freeze --notify copysave area"
-          "SHIFT, PRINT, Take and edit screenshot of a window, exec, ${runOnce "grimblast"} --freeze edit area"
-          "SUPER, PRINT, Take screenshot of a screen, exec, ${runOnce "grimblast"} --freeze --notify copysave output"
-          "SUPER SHIFT, PRINT, Take and edit screenshot of a screen, exec, ${runOnce "grimblast"} --freeze edit output"
+          {
+            _args = [
+              "PRINT"
+              (lua ''hl.dsp.exec_cmd("${runOnce "grimblast"} --freeze --notify copysave area")'')
+              { description = "Take screenshot of a window"; }
+            ];
+          }
+          {
+            _args = [
+              "SHIFT + PRINT"
+              (lua ''hl.dsp.exec_cmd("${runOnce "grimblast"} --freeze edit area")'')
+              { description = "Take and edit screenshot of a window"; }
+            ];
+          }
+          {
+            _args = [
+              "SUPER + PRINT"
+              (lua ''hl.dsp.exec_cmd("${runOnce "grimblast"} --freeze --notify copysave output")'')
+              { description = "Take screenshot of a screen"; }
+            ];
+          }
+          {
+            _args = [
+              "SUPER + SHIFT + PRINT"
+              (lua ''hl.dsp.exec_cmd("${runOnce "grimblast"} --freeze edit output")'')
+              { description = "Take and edit screenshot of a screen"; }
+            ];
+          }
 
-          # Other stuff
-          # "SUPER SHIFT, O, Ask ollama something, exec, uwsm app -- fish -c \"chat -fcs\""
+          # Lock screen (locked)
+          {
+            _args = [
+              "SUPER + ESCAPE"
+              (lua ''hl.dsp.exec_cmd("loginctl lock-session")'')
+              {
+                description = "Lock screen";
+                locked = true;
+              }
+            ];
+          }
         ];
-
-      binddo = [ "SUPER SHIFT, COMMA, Dismiss all notifications, exec, fnottctl dismiss all" ];
-
-      binddl = [
-        # TODO move back to bindd when https://github.com/hyprwm/hyprlock/issues/793 gets resolved
-        "SUPER, ESCAPE, Lock screen, exec, loginctl lock-session"
-      ];
     };
-  };
 }

@@ -3,51 +3,175 @@
   flake.modules.homeManager.hyprland =
     { config, pkgs, ... }:
     {
-      wayland.windowManager.hyprland.settings =
+      wayland.windowManager.hyprland.settings.bind =
         let
+          lua = lib.generators.mkLuaInline;
           swayosd = lib.getExe' config.services.swayosd.package "swayosd-client";
+          playerctl = lib.getExe config.services.playerctld.package;
+          touchpadToggle = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.touchpad-toggle;
         in
-        {
-          bindl =
-            let
-              playerctl = lib.getExe config.services.playerctld.package;
-            in
-            [
-              # Audio control
-              ", XF86AudioPlay, exec, ${playerctl} play-pause"
-              ", XF86AudioPause, exec, ${playerctl} play-pause"
-              ", XF86AudioNext, exec, ${playerctl} next"
-              ", XF86AudioPrev, exec, ${playerctl} previous"
-              ", XF86AudioMute, exec, ${swayosd} --output-volume mute-toggle"
-              ", XF86AudioMicMute, exec, ${swayosd} --output-input mute-toggle"
+        [
+          # Audio control (locked)
+          {
+            _args = [
+              "XF86AudioPlay"
+              (lua ''hl.dsp.exec_cmd("${playerctl} play-pause")'')
+              { locked = true; }
             ];
+          }
+          {
+            _args = [
+              "XF86AudioPause"
+              (lua ''hl.dsp.exec_cmd("${playerctl} play-pause")'')
+              { locked = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioNext"
+              (lua ''hl.dsp.exec_cmd("${playerctl} next")'')
+              { locked = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioPrev"
+              (lua ''hl.dsp.exec_cmd("${playerctl} previous")'')
+              { locked = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioMute"
+              (lua ''hl.dsp.exec_cmd("${swayosd} --output-volume mute-toggle")'')
+              { locked = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioMicMute"
+              (lua ''hl.dsp.exec_cmd("${swayosd} --output-input mute-toggle")'')
+              { locked = true; }
+            ];
+          }
 
-          bindlr = [
-            # Touchpad toggle
-            ", XF86TouchpadToggle, exec, ${
-              lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.touchpad-toggle
-            }"
+          # Touchpad toggle (locked + release)
+          {
+            _args = [
+              "XF86TouchpadToggle"
+              (lua ''hl.dsp.exec_cmd("${touchpadToggle}")'')
+              {
+                locked = true;
+                release = true;
+              }
+            ];
+          }
 
-            # Caps Lock
-            ", Caps_Lock, exec, ${swayosd} --caps-lock"
+          # Caps Lock / Num Lock (locked + release)
+          {
+            _args = [
+              "Caps_Lock"
+              (lua ''hl.dsp.exec_cmd("${swayosd} --caps-lock")'')
+              {
+                locked = true;
+                release = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "Num_Lock"
+              (lua ''hl.dsp.exec_cmd("${swayosd} --num-lock")'')
+              {
+                locked = true;
+                release = true;
+              }
+            ];
+          }
 
-            # Num Lock
-            ", Num_Lock, exec, ${swayosd} --num-lock"
-          ];
+          # Volume control (locked + repeating)
+          {
+            _args = [
+              "XF86AudioRaiseVolume"
+              (lua ''hl.dsp.exec_cmd("${swayosd} --output-volume raise")'')
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioLowerVolume"
+              (lua ''hl.dsp.exec_cmd("${swayosd} --output-volume lower")'')
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "ALT + XF86AudioRaiseVolume"
+              (lua ''hl.dsp.exec_cmd("${swayosd} --output-volume +1")'')
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "ALT + XF86AudioLowerVolume"
+              (lua ''hl.dsp.exec_cmd("${swayosd} --output-volume -1")'')
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
 
-          bindel = [
-            # Volume control
-            ", XF86AudioRaiseVolume, exec, ${swayosd} --output-volume raise"
-            ", XF86AudioLowerVolume, exec, ${swayosd} --output-volume lower"
-            "ALT, XF86AudioRaiseVolume, exec, ${swayosd} --output-volume +1"
-            "ALT, XF86AudioLowerVolume, exec, ${swayosd} --output-volume -1"
-
-            # Brightness control
-            ", XF86MonBrightnessUp, exec, ${swayosd} --brightness raise"
-            ", XF86MonBrightnessDown, exec, ${swayosd} --brightness lower"
-            "ALT, XF86MonBrightnessUp, exec, ${swayosd} --brightness +1"
-            "ALT, XF86MonBrightnessDown, exec, ${swayosd} --brightness -1"
-          ];
-        };
+          # Brightness control (locked + repeating)
+          {
+            _args = [
+              "XF86MonBrightnessUp"
+              (lua ''hl.dsp.exec_cmd("${swayosd} --brightness raise")'')
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "XF86MonBrightnessDown"
+              (lua ''hl.dsp.exec_cmd("${swayosd} --brightness lower")'')
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "ALT + XF86MonBrightnessUp"
+              (lua ''hl.dsp.exec_cmd("${swayosd} --brightness +1")'')
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "ALT + XF86MonBrightnessDown"
+              (lua ''hl.dsp.exec_cmd("${swayosd} --brightness -1")'')
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+        ];
     };
 }

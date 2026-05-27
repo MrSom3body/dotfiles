@@ -4,6 +4,7 @@
     { config, osConfig, ... }:
     let
       sleepCmd = osConfig.services.logind.settings.Login.HandleLidSwitch or "suspend";
+      dpms = action: "hyprctl dispatch 'hl.dsp.dpms({ action = \"${action}\" })'";
     in
     {
       services.hypridle = {
@@ -19,7 +20,7 @@
               lock_cmd = "pgrep hyprlock || ${lib.getExe config.programs.hyprlock.package}";
               unlock_cmd = "pkill -SIGUSR1 hyprlock";
               before_sleep_cmd = "loginctl lock-session";
-              after_sleep_cmd = "hyprctl dispatch dpms on";
+              after_sleep_cmd = dpms "on";
             };
 
             listener = [
@@ -47,8 +48,8 @@
               }
               {
                 timeout = 140;
-                on-timeout = "hyprctl dispatch dpms off";
-                on-resume = "hyprctl dispatch dpms on";
+                on-timeout = dpms "off";
+                on-resume = dpms "on";
               }
 
               # If already locked
@@ -58,8 +59,8 @@
               }
               {
                 timeout = 20;
-                on-timeout = isLocked "hyprctl dispatch dpms off";
-                on-resume = "hyprctl dispatch dpms on";
+                on-timeout = isLocked (dpms "off");
+                on-resume = dpms "on";
               }
 
               # If discharging

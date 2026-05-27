@@ -3,29 +3,115 @@
     { config, lib, ... }:
     let
       inherit (config.wayland.windowManager.hyprland) layout;
+      lua = lib.generators.mkLuaInline;
+      desc = description: { inherit description; };
     in
     {
-      config.wayland.windowManager.hyprland.settings.bindd = lib.optionals (layout == "dwindle") [
-        "SUPER, F, Fullscreen focused window, fullscreen"
-        "SUPER, I, Change split direction, layoutmsg, swapsplit"
+      config.wayland.windowManager.hyprland.settings.bind = lib.optionals (layout == "dwindle") [
+        {
+          _args = [
+            "SUPER + F"
+            (lua ''hl.dsp.window.fullscreen({ mode = "fullscreen" })'')
+            (desc "Fullscreen focused window")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + I"
+            (lua ''hl.dsp.layout("swapsplit")'')
+            (desc "Change split direction")
+          ];
+        }
 
         # Move window focus
-        "SUPER, H, Focus window to the left, movefocus, l"
-        "SUPER, J, Focus window to the bottom, movefocus, d"
-        "SUPER, K, Focus window to the top, movefocus, u"
-        "SUPER, L, Focus window to the right, movefocus, r"
+        {
+          _args = [
+            "SUPER + H"
+            (lua ''hl.dsp.focus({ direction = "l" })'')
+            (desc "Focus window to the left")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + J"
+            (lua ''hl.dsp.focus({ direction = "d" })'')
+            (desc "Focus window to the bottom")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + K"
+            (lua ''hl.dsp.focus({ direction = "u" })'')
+            (desc "Focus window to the top")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + L"
+            (lua ''hl.dsp.focus({ direction = "r" })'')
+            (desc "Focus window to the right")
+          ];
+        }
 
         # Move window
-        "SUPER SHIFT, H, Move window left (tiling), swapwindow, l"
-        "SUPER SHIFT, J, Move window down (tiling), swapwindow, d"
-        "SUPER SHIFT, K, Move window up (tiling), swapwindow, u"
-        "SUPER SHIFT, L, Move window right (tiling), swapwindow, r"
+        {
+          _args = [
+            "SUPER + SHIFT + H"
+            (lua ''hl.dsp.window.swap({ direction = "l" })'')
+            (desc "Move window left (tiling)")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + SHIFT + J"
+            (lua ''hl.dsp.window.swap({ direction = "d" })'')
+            (desc "Move window down (tiling)")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + SHIFT + K"
+            (lua ''hl.dsp.window.swap({ direction = "u" })'')
+            (desc "Move window up (tiling)")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + SHIFT + L"
+            (lua ''hl.dsp.window.swap({ direction = "r" })'')
+            (desc "Move window right (tiling)")
+          ];
+        }
 
         # Resize window
-        "SUPER CTRL, H, Increase window size to the left, resizeactive, -100 0"
-        "SUPER CTRL, J, Increase window size to the bottom, resizeactive, 0 100"
-        "SUPER CTRL, K, Increase window size to the top, resizeactive, 0 -100"
-        "SUPER CTRL, L, Increase window size to the right, resizeactive, 100 0"
+        {
+          _args = [
+            "SUPER + CTRL + H"
+            (lua "hl.dsp.window.resize({ x = -100, y = 0, relative = true })")
+            (desc "Increase window size to the left")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + CTRL + J"
+            (lua "hl.dsp.window.resize({ x = 0, y = 100, relative = true })")
+            (desc "Increase window size to the bottom")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + CTRL + K"
+            (lua "hl.dsp.window.resize({ x = 0, y = -100, relative = true })")
+            (desc "Increase window size to the top")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + CTRL + L"
+            (lua "hl.dsp.window.resize({ x = 100, y = 0, relative = true })")
+            (desc "Increase window size to the right")
+          ];
+        }
       ];
     };
 }

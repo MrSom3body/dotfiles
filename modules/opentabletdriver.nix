@@ -10,7 +10,11 @@
 
     homeManager.opentabletdriver = {
       wayland.windowManager.hyprland.settings.permission = lib.mkBefore [
-        "opentabletdriver-virtual-keyboard, keyboard, allow"
+        {
+          binary = "opentabletdriver-virtual-keyboard";
+          type = "keyboard";
+          mode = "allow";
+        }
       ];
     };
   };

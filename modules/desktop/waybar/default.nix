@@ -310,7 +310,7 @@
             "custom/monitor" = {
               format = "";
               tooltip = false;
-              on-click = "hyprctl dispatch togglespecialworkspace monitor";
+              on-click = "hyprctl dispatch 'hl.dsp.workspace.toggle_special(\"monitor\")'";
             };
 
             disk = {

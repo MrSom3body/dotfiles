@@ -32,11 +32,13 @@
             package = null;
             portalPackage = null;
 
-            configType = "hyprlang"; # TODO switch to lua
+            configType = "lua";
 
-            settings.permission = map (
-              plugin: plugin + "/lib/lib${plugin.pname}.so, plugin, allow"
-            ) cfg.plugins;
+            settings.permission = map (plugin: {
+              binary = lib.escapeRegex "${plugin}/lib/lib${plugin.pname}.so";
+              type = "plugin";
+              mode = "allow";
+            }) cfg.plugins;
           };
 
           services.network-manager-applet.enable = true;

@@ -27,16 +27,27 @@ in
                 buttonSize = builtins.toString (config.stylix.fonts.sizes.desktop * 1.5);
               in
               [
-                "rgb(${config.lib.stylix.colors.base08}), ${buttonSize}, 󰖭, hyprctl dispatch killactive"
-                "rgb(${config.lib.stylix.colors.base0B}), ${buttonSize}, , hyprctl dispatch fullscreen 1"
+                "rgb(${config.lib.stylix.colors.base08}), ${buttonSize}, 󰖭, hyprctl dispatch 'hl.dsp.window.close()'"
+                "rgb(${config.lib.stylix.colors.base0B}), ${buttonSize}, , hyprctl dispatch 'hl.dsp.window.fullscreen({ mode = \"maximized\" })'"
               ];
           };
 
-          windowrule = [
+          window_rule = [
             # don't render hyprbars on tiling windows
-            "plugin:hyprbars:nobar, floating:0"
-            # don't reneder hyprbars on pinned floating windows (firefox PiP)
-            "plugin:hyprbars:nobar, floating:1, pinned:1"
+            {
+              match = {
+                floating = false;
+              };
+              "plugin:hyprbars:nobar" = true;
+            }
+            # don't render hyprbars on pinned floating windows (firefox PiP)
+            {
+              match = {
+                floating = true;
+                pinned = true;
+              };
+              "plugin:hyprbars:nobar" = true;
+            }
           ];
         };
       };

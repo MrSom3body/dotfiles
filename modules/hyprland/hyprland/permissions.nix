@@ -1,7 +1,6 @@
 { lib, ... }:
 let
-  inherit (lib) getExe;
-  inherit (lib) escapeRegex;
+  inherit (lib) getExe escapeRegex;
 in
 {
   flake.modules.homeManager.hyprland =
@@ -20,21 +19,36 @@ in
     in
     {
       wayland.windowManager.hyprland.settings = {
-        ecosystem.enforce_permissions = true;
+        config.ecosystem.enforce_permissions = true;
 
         permission = [
-          # Allow hyprlock
-          "${escapeRegex (getExe config.programs.hyprlock.package)}, screencopy, allow"
-
-          # Allow xdph
-          "${
-            escapeRegex ((builtins.toString portalPackage) + "/libexec/.xdg-desktop-portal-hyprland-wrapped")
-          }, screencopy, allow"
-
-          # Allow to screenrecording & screenshots
-          "${escapeRegex (getExe pkgs.grim)}, screencopy, allow"
-          "${escapeRegex (getExe pkgs.wl-screenrec)}, screencopy, allow"
-          "${escapeRegex (getExe pkgs.hyprpicker)}, screencopy, allow"
+          {
+            binary = escapeRegex (getExe config.programs.hyprlock.package);
+            type = "screencopy";
+            mode = "allow";
+          }
+          {
+            binary = escapeRegex (
+              (builtins.toString portalPackage) + "/libexec/.xdg-desktop-portal-hyprland-wrapped"
+            );
+            type = "screencopy";
+            mode = "allow";
+          }
+          {
+            binary = escapeRegex (getExe pkgs.grim);
+            type = "screencopy";
+            mode = "allow";
+          }
+          {
+            binary = escapeRegex (getExe pkgs.wl-screenrec);
+            type = "screencopy";
+            mode = "allow";
+          }
+          {
+            binary = escapeRegex (getExe pkgs.hyprpicker);
+            type = "screencopy";
+            mode = "allow";
+          }
         ];
       };
     };

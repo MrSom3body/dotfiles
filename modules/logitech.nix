@@ -18,19 +18,19 @@
           ...
           ---
           - MouseGesture: Mouse Right
-          - Execute: [hyprctl, dispatch, layoutmsg, focus, r]
+          - Execute: [hyprctl, dispatch, "hl.dsp.layout('focus r')"]
           ...
           ---
           - MouseGesture: Mouse Left
-          - Execute: [hyprctl, dispatch, layoutmsg, focus, l]
+          - Execute: [hyprctl, dispatch, "hl.dsp.layout('focus l')"]
           ...
           ---
           - MouseGesture: Mouse Up
-          - Execute: [hyprctl, dispatch, workspace, r-1]
+          - Execute: [hyprctl, dispatch, "hl.dsp.focus({ workspace = 'r-1' })"]
           ...
           ---
           - MouseGesture: Mouse Down
-          - Execute: [hyprctl, dispatch, workspace, r+1]
+          - Execute: [hyprctl, dispatch, "hl.dsp.focus({ workspace = 'r+1' })"]
           ...
         '';
 
@@ -56,7 +56,11 @@
         };
 
         wayland.windowManager.hyprland.settings.permission = lib.mkBefore [
-          "solaar-keyboard, keyboard, allow"
+          {
+            binary = "solaar-keyboard";
+            type = "keyboard";
+            mode = "allow";
+          }
         ];
       };
   };

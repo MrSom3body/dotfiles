@@ -37,19 +37,18 @@ while true; do
     elif [[ "$selection" == Back ]]; then
         continue
     elif [[ "$selection" == Reset ]]; then
-        hyprctl keyword "monitorv2[$selected_display]:mirror" ""
-        hyprctl keyword "monitorv2[$selected_display]:position" auto
+        hyprctl eval "hl.monitor({ output = \"$selected_display\", mirror = \"\", position = \"auto\" })"
     else
         read -ra parts <<< "$selection"
         action="${parts[0]}"
         ref_display="${parts[-1]}"
 
         case "$action" in
-            Mirror) hyprctl keyword "monitorv2[$selected_display]:mirror" "$ref_display" ;;
-            Left)   hyprctl keyword "monitorv2[$selected_display]:position" auto-center-left ;;
-            Right)  hyprctl keyword "monitorv2[$selected_display]:position" auto-center-right ;;
-            Above)  hyprctl keyword "monitorv2[$selected_display]:position" auto-center-up ;;
-            Below)  hyprctl keyword "monitorv2[$selected_display]:position" auto-center-down ;;
+            Mirror) hyprctl eval "hl.monitor({ output = \"$selected_display\", mirror = \"$ref_display\" })" ;;
+            Left)   hyprctl eval "hl.monitor({ output = \"$selected_display\", position = \"auto-center-left\" })" ;;
+            Right)  hyprctl eval "hl.monitor({ output = \"$selected_display\", position = \"auto-center-right\" })" ;;
+            Above)  hyprctl eval "hl.monitor({ output = \"$selected_display\", position = \"auto-center-up\" })" ;;
+            Below)  hyprctl eval "hl.monitor({ output = \"$selected_display\", position = \"auto-center-down\" })" ;;
         esac
     fi
 

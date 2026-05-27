@@ -10,7 +10,7 @@ print_help() {
 }
 
 enable_touchpad() {
-    hyprctl "keyword device[$touchpad]:enabled" true
+    hyprctl eval "hl.device({ name = \"$touchpad\", enabled = true })"
     if command -v swayosd-client &>/dev/null; then
         swayosd-client --custom-message "Touchpad enabled" --custom-icon touchpad-enabled
     fi
@@ -18,7 +18,7 @@ enable_touchpad() {
 }
 
 disable_touchpad() {
-    hyprctl "keyword device[$touchpad]:enabled" false
+    hyprctl eval "hl.device({ name = \"$touchpad\", enabled = false })"
     if command -v swayosd-client &>/dev/null; then
         swayosd-client --custom-message "Touchpad disabled" --custom-icon touchpad-disabled
     fi

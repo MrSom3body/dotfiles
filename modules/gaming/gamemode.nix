@@ -27,12 +27,12 @@
               start-script = pkgs.writeShellScript "gamemode-start" ''
                 ${init-script}
                 hyprctl getoption input:kb_options -j | ${lib.getExe pkgs.jq} ".str" -r > $XDG_RUNTIME_DIR/hypr-kb-options
-                hyprctl keyword input:kb_options ""
+                hyprctl eval 'hl.config({ input = { kb_options = "" } })'
                 ${notify "Game Mode enabled!"}
               '';
               end-script = pkgs.writeShellScript "gamemode-end" ''
                 ${init-script}
-                hyprctl keyword input:kb_options $(cat $XDG_RUNTIME_DIR/hypr-kb-options)
+                hyprctl eval "hl.config({ input = { kb_options = \"$(cat $XDG_RUNTIME_DIR/hypr-kb-options)\" } })"
                 ${notify "Game Mode disabled!"}
               '';
             in

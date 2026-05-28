@@ -66,9 +66,9 @@
               }
               {
                 _args = [
-                  "D"
+                  "M"
                   (lua ''hl.dsp.exec_cmd("vicinae-monitors")'')
-                  { description = "Open display manager"; }
+                  { description = "Open monitor manager"; }
                 ];
               }
 

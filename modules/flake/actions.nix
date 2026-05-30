@@ -27,6 +27,12 @@ let
 
   checkPlatforms = lib.unique (map (c: { inherit (c) runsOn hostPlatform; }) nixosHosts);
 
+  generateAllAttrs =
+    let
+      lines = map (h: "- displayName: ${h.hostname}\n  attribute: ${h.output}") nixosHosts;
+    in
+    lib.concatStringsSep "\n" lines;
+
   actions = {
     checkout = "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd"; # v6.0.2
     nothing-but-nix = "wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7"; # v10
@@ -228,39 +234,20 @@ in
 
         jobs = {
           generate-diffs = {
-            name = "Generate Diff (\${{ matrix.attrs.hostname}})";
-            runs-on = "\${{ matrix.attrs.runsOn }}";
-            permissions.contents = "read";
-            strategy = {
-              fail-fast = false;
-              matrix.attrs = nixosHosts;
+            name = "Generate Diff";
+            runs-on = runners.x86_64-linux;
+            permissions = {
+              contents = "read";
+              pull-requests = "write";
             };
             steps = commonSteps ++ [
               {
-                name = "Generate diff (\${{ matrix.attrs.hostname }})";
+                name = "Generate diff";
                 uses = actions.nix-diff-action;
                 "with" = {
-                  mode = "diff-only";
-                  attributes = ''
-                    - displayName: ''${{ matrix.attrs.hostname }}
-                      attribute: ''${{ matrix.attrs.output }}
-                  '';
+                  mode = "full";
+                  attributes = generateAllAttrs;
                 };
-              }
-            ];
-          };
-          post-diff-comment = {
-            name = "Post comment";
-            needs = [ "generate-diffs" ];
-            permissions = {
-              actions = "read";
-              pull-requests = "write";
-            };
-            steps = [
-              {
-                name = "Post diff comment";
-                uses = actions.nix-diff-action;
-                "with".mode = "comment-only";
               }
             ];
           };

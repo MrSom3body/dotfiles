@@ -9,7 +9,10 @@
         sopsFile = ../secrets/hermes.yaml;
         owner = "hermes";
         group = "hermes";
+        mode = "0440";
       };
+
+      users.users.karun.extraGroups = [ "hermes" ];
 
       services.hermes-agent = {
         enable = true;

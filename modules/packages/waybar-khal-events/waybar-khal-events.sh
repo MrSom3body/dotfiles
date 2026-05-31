@@ -14,7 +14,12 @@ format_tooltip='
     end
   )[] |
   (if .date != "" then
-    "<b>" + (if .date == $today then "Today, " elif .date == $tomorrow then "Tomorrow, " else "" end) + .date + "</b>"
+    "<b>" + (
+      if .date == $today then "Today, "
+      elif .date == $tomorrow then "Tomorrow, "
+      else (.date | strptime("%d.%m.%Y") | strftime("%A, "))
+      end
+    ) + .date + "</b>"
    else empty end),
   (.events[] |
     "<span foreground=\"" + (."calendar-color" // "inherit") + "\">" +

@@ -2,9 +2,6 @@
 
 CALENDAR_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/calendars"
 
-exec 9>/tmp/waybar-khal-events.lock
-flock -n 9 || exit 0
-
 format_tooltip='
   reduce .[] as $item ([];
     if length == 0 or .[-1].date != $item."start-date-long" then
@@ -80,7 +77,22 @@ emit() {
     '{text:$text,tooltip:$tooltip,alt:$alt,class:$class}'
 }
 
-while true; do
-  emit
-  inotifywait -t 120 -rq "$CALENDAR_DIR" &>/dev/null
-done
+exec 9>/tmp/waybar-khal-events.lock
+if flock -n 9; then
+  # Master instance: processes events and updates cache
+  while true; do
+    out=$(emit)
+    echo "$out" > /tmp/waybar-khal-events-cache.json
+    echo "$out"
+    inotifywait -t 120 -rq "$CALENDAR_DIR" &>/dev/null
+  done
+else
+  # Follower instance: just outputs the cache when it changes
+  while [[ ! -f /tmp/waybar-khal-events-cache.json ]]; do sleep 1; done
+  cat /tmp/waybar-khal-events-cache.json
+  
+  while true; do
+    inotifywait -qq -e close_write /tmp/waybar-khal-events-cache.json &>/dev/null
+    cat /tmp/waybar-khal-events-cache.json
+  done
+fi

@@ -6,7 +6,7 @@
   flake.modules.homeManager.antigravity-cli =
     { pkgs, ... }:
     {
-      home.packages = [ inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity ];
+      home.packages = [ inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity-cli ];
       # programs.gemini-cli = {
       #   enable = true;
       #   package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.gemini-cli;

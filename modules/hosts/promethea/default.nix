@@ -58,7 +58,7 @@ in
         {
           home.packages = [
             pkgs.calibre
-            pkgs.logseq
+            # pkgs.logseq # TODO broken due to https://github.com/NixOS/nixpkgs/issues/521305
             pkgs.planify
           ];
           wayland.windowManager.hyprland = {

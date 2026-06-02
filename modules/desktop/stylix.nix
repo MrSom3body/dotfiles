@@ -46,6 +46,8 @@
             size = 24;
           };
 
+          # TODO remove when https://github.com/nix-community/stylix/pull/2337 gets merged
+          targets.kmscon.enable = false;
           targets.fish.enable = false;
 
           # opacity = {

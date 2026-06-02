@@ -25,7 +25,7 @@ in
 
               pages = [
                 {
-                  name = "Homelab";
+                  name = "Karun's Homelab";
                   hide-desktop-navigation = true;
                   center-vertically = true;
                   width = "slim";

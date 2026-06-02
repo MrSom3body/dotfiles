@@ -14,7 +14,5 @@
     programs.regreet = {
       enable = true;
     };
-
-    services.accounts-daemon.enable = true; # TODO remove when https://github.com/NixOS/nixpkgs/pull/519416 lands in unstable
   };
 }

@@ -1,6 +1,12 @@
 { inputs, ... }:
 {
-  flake.overlays = {
+  flake.overlays = rec {
+    default = inputs.nixpkgs.lib.composeManyExtensions [
+      nix-topology
+      modifications
+      stable-packages
+    ];
+
     # from inputs
     nix-topology = inputs.nix-topology.overlays.default;
 

@@ -57,6 +57,8 @@
                 keep-outputs = true;
 
                 trusted-users = [ "@wheel" ];
+
+                use-xdg-base-directories = true; # Why wouldn't this be the default?
               };
             };
 

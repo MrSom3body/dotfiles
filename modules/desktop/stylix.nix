@@ -10,7 +10,7 @@
         imports = [ inputs.stylix.nixosModules.stylix ];
         stylix = {
           enable = true;
-          image = ../../walls/gruvbox/secluded-grove.png;
+          image = ../../walls/gruvbox/overgrown-city.png;
           polarity = "dark";
           base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
 

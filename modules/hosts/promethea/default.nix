@@ -38,12 +38,12 @@ in
   flake = {
     nixosConfigurations.promethea = flakeConfig.flake.lib.mkSystems.linux "promethea";
     modules = {
-      nixos."hosts/promethea" = { config, ... }: {
+      nixos."hosts/promethea" = {
         imports = (flakeConfig.flake.lib.loadNixosAndHmModuleForUser flakeConfig modules) ++ [
           inputs.nixos-hardware.nixosModules.asus-zenbook-um6702
         ];
 
-        hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+        hardware.nvidia.branch = "latest";
 
         hardware.asus.battery.chargeUpto = 80;
         security.tpm2.enable = true;

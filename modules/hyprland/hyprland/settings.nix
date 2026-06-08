@@ -169,8 +169,8 @@ in
                 {
                   type = "spring";
                   mass = 1;
-                  stiffness = 50;
-                  dampening = 10;
+                  stiffness = 60;
+                  dampening = 11;
                 }
               ];
             }

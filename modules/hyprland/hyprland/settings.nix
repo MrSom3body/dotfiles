@@ -162,6 +162,31 @@ in
             }
           ];
 
+          curve = [
+            {
+              _args = [
+                "bounce"
+                {
+                  type = "spring";
+                  mass = 1;
+                  stiffness = 50;
+                  dampening = 10;
+                }
+              ];
+            }
+            {
+              _args = [
+                "slight_bounce"
+                {
+                  type = "spring";
+                  mass = 1;
+                  stiffness = 80;
+                  dampening = 14;
+                }
+              ];
+            }
+          ];
+
           animation = [
             {
               leaf = "fade";
@@ -178,8 +203,8 @@ in
             {
               leaf = "windows";
               enabled = true;
-              speed = 3;
-              bezier = "default";
+              speed = 8;
+              spring = "bounce";
               style = "slide";
             }
           ];
@@ -199,7 +224,7 @@ in
               leaf = "workspaces";
               enabled = true;
               speed = 2;
-              bezier = "default";
+              spring = "slight_bounce";
               style = "slide";
             }
           ];
@@ -218,7 +243,7 @@ in
               leaf = "workspaces";
               enabled = true;
               speed = 2;
-              bezier = "default";
+              spring = "slight_bounce";
               style = "slidevert";
             }
           ];

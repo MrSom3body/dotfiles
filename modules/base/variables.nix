@@ -4,6 +4,7 @@ let
 in
 {
   flake.modules.nixos.nixos = {
+    programs.vim.defaultEditor = false;
     environment.sessionVariables = {
       EDITOR = lib.mkDefault programs.editor;
       BROWSER = lib.mkDefault "echo";

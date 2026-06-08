@@ -44,14 +44,6 @@
       '';
 
       serviceConfig = {
-        Type = "simple";
-
-        ExecStart = ''
-          ${pkgs.stress-ng}/bin/stress-ng \
-            --vm 1 \
-            --vm-bytes 25%
-        '';
-
         # Ensure it doesn't slow down your actual services
         Nice = 19;
         CPUSchedulingPolicy = "idle";

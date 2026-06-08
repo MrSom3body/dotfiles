@@ -9,10 +9,8 @@
       };
     };
 
-    homeManager.desktop =
-      { pkgs, ... }:
-      {
-        home.packages = builtins.attrValues { inherit (pkgs) seahorse; };
-      };
+    homeManager.desktop = { pkgs, ... }: {
+      home.packages = builtins.attrValues { inherit (pkgs) seahorse; };
+    };
   };
 }

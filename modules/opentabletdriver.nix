@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   flake.modules = {
     nixos.opentabletdriver = {
       hardware.opentabletdriver = {

@@ -1,67 +1,64 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   flake.modules = {
     nixos.logitech = {
       hardware.logitech.wireless.enable = true;
     };
 
-    homeManager.logitech =
-      { config, pkgs, ... }:
-      {
-        home.packages = [ pkgs.solaar ];
-        home.file.".config/solaar/rules.yaml".text = ''
-          ---
-          - Key: [Screen Capture, pressed]
-          - KeyPress:
-            - Print
-            - click
-          ...
-          ---
-          - MouseGesture: Mouse Right
-          - Execute: [hyprctl, dispatch, "hl.dsp.layout('focus r')"]
-          ...
-          ---
-          - MouseGesture: Mouse Left
-          - Execute: [hyprctl, dispatch, "hl.dsp.layout('focus l')"]
-          ...
-          ---
-          - MouseGesture: Mouse Up
-          - Execute: [hyprctl, dispatch, "hl.dsp.focus({ workspace = 'r-1' })"]
-          ...
-          ---
-          - MouseGesture: Mouse Down
-          - Execute: [hyprctl, dispatch, "hl.dsp.focus({ workspace = 'r+1' })"]
-          ...
-        '';
+    homeManager.logitech = { config, pkgs, ... }: {
+      home.packages = [ pkgs.solaar ];
+      home.file.".config/solaar/rules.yaml".text = ''
+        ---
+        - Key: [Screen Capture, pressed]
+        - KeyPress:
+          - Print
+          - click
+        ...
+        ---
+        - MouseGesture: Mouse Right
+        - Execute: [hyprctl, dispatch, "hl.dsp.layout('focus r')"]
+        ...
+        ---
+        - MouseGesture: Mouse Left
+        - Execute: [hyprctl, dispatch, "hl.dsp.layout('focus l')"]
+        ...
+        ---
+        - MouseGesture: Mouse Up
+        - Execute: [hyprctl, dispatch, "hl.dsp.focus({ workspace = 'r-1' })"]
+        ...
+        ---
+        - MouseGesture: Mouse Down
+        - Execute: [hyprctl, dispatch, "hl.dsp.focus({ workspace = 'r+1' })"]
+        ...
+      '';
 
-        systemd.user.services.solaar = {
-          Install.WantedBy = [ config.wayland.systemd.target ];
+      systemd.user.services.solaar = {
+        Install.WantedBy = [ config.wayland.systemd.target ];
 
-          Unit = {
-            Description = "Linux devices manager for the Logitech Unifying Receiver";
-            After = [ config.wayland.systemd.target ];
-          };
-
-          Service = {
-            ExecStart = lib.concatStringsSep " " [
-              "${pkgs.solaar}/bin/solaar"
-              "--window"
-              "hide"
-              "--battery-icons"
-              "regular"
-              # "--restart-on-wake-up"
-            ];
-            Restart = "on-failure";
-          };
+        Unit = {
+          Description = "Linux devices manager for the Logitech Unifying Receiver";
+          After = [ config.wayland.systemd.target ];
         };
 
-        wayland.windowManager.hyprland.settings.permission = lib.mkBefore [
-          {
-            binary = "solaar-keyboard";
-            type = "keyboard";
-            mode = "allow";
-          }
-        ];
+        Service = {
+          ExecStart = lib.concatStringsSep " " [
+            "${pkgs.solaar}/bin/solaar"
+            "--window"
+            "hide"
+            "--battery-icons"
+            "regular"
+            # "--restart-on-wake-up"
+          ];
+          Restart = "on-failure";
+        };
       };
+
+      wayland.windowManager.hyprland.settings.permission = lib.mkBefore [
+        {
+          binary = "solaar-keyboard";
+          type = "keyboard";
+          mode = "allow";
+        }
+      ];
+    };
   };
 }

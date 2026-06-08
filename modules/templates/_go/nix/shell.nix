@@ -1,23 +1,20 @@
-{ inputs, ... }:
-{
+{ inputs, ... }: {
   imports = [ inputs.treefmt-nix.flakeModule ];
 
-  perSystem =
-    { config, pkgs, ... }:
-    {
-      devShells.default = pkgs.mkShellNoCC {
-        packages = builtins.attrValues {
-          inherit (pkgs)
-            go
-            gopls
-            gotools
-            go-tools
-            ;
-        };
-
-        shellHook = ''
-          ${config.pre-commit.settings.shellHook}
-        '';
+  perSystem = { config, pkgs, ... }: {
+    devShells.default = pkgs.mkShellNoCC {
+      packages = builtins.attrValues {
+        inherit (pkgs)
+          go
+          gopls
+          gotools
+          go-tools
+          ;
       };
+
+      shellHook = ''
+        ${config.pre-commit.settings.shellHook}
+      '';
     };
+  };
 }

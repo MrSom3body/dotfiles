@@ -1,5 +1,4 @@
-{ inputs, ... }:
-{
+{ inputs, ... }: {
   flake.modules.nixos."hosts/pandora" = {
     imports = [ inputs.disko.nixosModules.disko ];
 

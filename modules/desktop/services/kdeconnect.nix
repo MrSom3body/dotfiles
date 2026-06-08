@@ -16,16 +16,14 @@
         };
       };
 
-    homeManager.desktop =
-      { pkgs, ... }:
-      {
-        home.packages = builtins.attrValues { inherit (pkgs) procps systemd; };
+    homeManager.desktop = { pkgs, ... }: {
+      home.packages = builtins.attrValues { inherit (pkgs) procps systemd; };
 
-        services.kdeconnect = {
-          enable = true;
-          package = pkgs.kdePackages.kdeconnect-kde;
-          indicator = true;
-        };
+      services.kdeconnect = {
+        enable = true;
+        package = pkgs.kdePackages.kdeconnect-kde;
+        indicator = true;
       };
+    };
   };
 }

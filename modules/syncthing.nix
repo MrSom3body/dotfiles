@@ -66,28 +66,26 @@ in
       };
     in
     {
-      nixos.syncthing-server =
-        { config, ... }:
-        {
-          inherit networking;
+      nixos.syncthing-server = { config, ... }: {
+        inherit networking;
 
-          services = {
-            syncthing = {
-              enable = true;
-              inherit settings;
-              overrideFolders = false;
-            };
-            caddy.virtualHosts = {
-              "syncthing.${config.networking.hostName}.${config.networking.domain}" = {
-                extraConfig = ''
-                  reverse_proxy http://127.0.0.1:${toString meta.services.syncthing.port} {
-                    header_up Host {upstream_hostport}
-                  }
-                '';
-              };
+        services = {
+          syncthing = {
+            enable = true;
+            inherit settings;
+            overrideFolders = false;
+          };
+          caddy.virtualHosts = {
+            "syncthing.${config.networking.hostName}.${config.networking.domain}" = {
+              extraConfig = ''
+                reverse_proxy http://127.0.0.1:${toString meta.services.syncthing.port} {
+                  header_up Host {upstream_hostport}
+                }
+              '';
             };
           };
         };
+      };
 
       nixos.syncthing = { inherit networking; };
 

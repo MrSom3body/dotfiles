@@ -1,13 +1,11 @@
 {
-  flake.modules.homeManager.dev =
-    { pkgs, ... }:
-    {
-      home.packages = [ pkgs.tokei ];
+  flake.modules.homeManager.dev = { pkgs, ... }: {
+    home.packages = [ pkgs.tokei ];
 
-      xdg.configFile."tokei.toml".text =
-        # toml
-        ''
-          sort = "lines"
-        '';
-    };
+    xdg.configFile."tokei.toml".text =
+      # toml
+      ''
+        sort = "lines"
+      '';
+  };
 }

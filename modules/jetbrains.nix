@@ -1,5 +1,4 @@
-{ inputs, ... }:
-{
+{ inputs, ... }: {
   flake.modules.homeManager.jetbrains =
     { pkgs, ... }:
     let

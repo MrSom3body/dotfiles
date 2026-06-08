@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   flake.modules.nixos.desktop = {
     system.autoUpgrade = {
       enable = true;

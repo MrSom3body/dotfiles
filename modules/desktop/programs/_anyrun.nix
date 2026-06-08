@@ -1,5 +1,4 @@
-{ lib, inputs, ... }:
-{
+{ lib, inputs, ... }: {
   flake.modules.homeManager.desktop =
     {
       osConfig ? null,

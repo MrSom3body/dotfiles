@@ -1,5 +1,4 @@
-{ lib, inputs, ... }:
-{
+{ lib, inputs, ... }: {
   imports = [ inputs.flake-parts.flakeModules.modules ];
 
   options.flake = {

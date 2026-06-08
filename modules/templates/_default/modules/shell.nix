@@ -1,15 +1,13 @@
 {
-  perSystem =
-    { config, pkgs, ... }:
-    {
-      devShells.default = pkgs.mkShell {
-        packages = builtins.attrValues { inherit (pkgs) git; };
+  perSystem = { config, pkgs, ... }: {
+    devShells.default = pkgs.mkShell {
+      packages = builtins.attrValues { inherit (pkgs) git; };
 
-        buildInputs = [ ];
+      buildInputs = [ ];
 
-        shellHook = ''
-          ${config.pre-commit.settings.shellHook}
-        '';
-      };
+      shellHook = ''
+        ${config.pre-commit.settings.shellHook}
+      '';
     };
+  };
 }

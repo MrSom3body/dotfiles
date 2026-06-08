@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   flake.modules.nixos.borgmatic =
     { config, pkgs, ... }:
     let

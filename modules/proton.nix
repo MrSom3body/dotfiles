@@ -1,7 +1,5 @@
 {
-  flake.modules.homeManager.proton =
-    { pkgs, ... }:
-    {
-      home.packages = builtins.attrValues { inherit (pkgs) proton-authenticator proton-pass proton-vpn; };
-    };
+  flake.modules.homeManager.proton = { pkgs, ... }: {
+    home.packages = builtins.attrValues { inherit (pkgs) proton-authenticator proton-pass proton-vpn; };
+  };
 }

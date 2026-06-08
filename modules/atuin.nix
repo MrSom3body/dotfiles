@@ -1,30 +1,28 @@
 {
-  flake.modules.homeManager.atuin =
-    { osConfig, ... }:
-    {
-      programs = {
-        atuin = {
-          enable = true;
-          settings = {
-            workspaces = true;
+  flake.modules.homeManager.atuin = { osConfig, ... }: {
+    programs = {
+      atuin = {
+        enable = true;
+        settings = {
+          workspaces = true;
 
-            # binds
-            keymap_mode = "auto";
+          # binds
+          keymap_mode = "auto";
 
-            # appearance
-            style = "compact";
-            inline_height = 20;
+          # appearance
+          style = "compact";
+          inline_height = 20;
 
-            # sync
-            sync_address = "https://atuin.${osConfig.networking.domain}";
-            sync_frequency = "0";
-          };
+          # sync
+          sync_address = "https://atuin.${osConfig.networking.domain}";
+          sync_frequency = "0";
         };
       };
-
-      programs.fish.binds."k" = {
-        mode = "default";
-        command = "_atuin_bind_up";
-      };
     };
+
+    programs.fish.binds."k" = {
+      mode = "default";
+      command = "_atuin_bind_up";
+    };
+  };
 }

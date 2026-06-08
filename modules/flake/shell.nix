@@ -1,32 +1,30 @@
 {
-  perSystem =
-    { config, pkgs, ... }:
-    {
-      devShells.default = pkgs.mkShell {
-        name = "dotfiles";
+  perSystem = { config, pkgs, ... }: {
+    devShells.default = pkgs.mkShell {
+      name = "dotfiles";
 
-        buildInputs = config.pre-commit.settings.enabledPackages;
+      buildInputs = config.pre-commit.settings.enabledPackages;
 
-        packages = builtins.attrValues {
-          inherit (pkgs)
-            git
-            just
-            nix-fast-build
-            ripgrep
-            sops
-            ssh-to-age
-            ;
-        };
-
-        shellHook = ''
-          ${config.pre-commit.settings.shellHook}
-
-          tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "last 5 commits"
-          git log --all --decorate --graph --oneline -5
-          echo
-          tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "status"
-          git status --short
-        '';
+      packages = builtins.attrValues {
+        inherit (pkgs)
+          git
+          just
+          nix-fast-build
+          ripgrep
+          sops
+          ssh-to-age
+          ;
       };
+
+      shellHook = ''
+        ${config.pre-commit.settings.shellHook}
+
+        tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "last 5 commits"
+        git log --all --decorate --graph --oneline -5
+        echo
+        tput setaf 2; tput bold; echo -n "Git: "; tput sgr0; echo "status"
+        git status --short
+      '';
     };
+  };
 }

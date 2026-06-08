@@ -1,5 +1,4 @@
-{ inputs, ... }:
-{
+{ inputs, ... }: {
   flake.modules.nixos.server = {
     imports = [ inputs.comin.nixosModules.comin ];
     services.comin = {

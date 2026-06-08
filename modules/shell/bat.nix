@@ -1,28 +1,26 @@
 {
-  flake.modules.homeManager.shell =
-    { pkgs, ... }:
-    {
-      programs = {
-        bat = {
-          enable = true;
-          extraPackages = builtins.attrValues { inherit (pkgs.bat-extras) batman; };
-        };
+  flake.modules.homeManager.shell = { pkgs, ... }: {
+    programs = {
+      bat = {
+        enable = true;
+        extraPackages = builtins.attrValues { inherit (pkgs.bat-extras) batman; };
+      };
 
-        fish.functions = {
-          man = {
-            body = "batman $argv";
-            wraps = "batman";
-          };
-          cat = {
-            body = "bat $argv";
-            wraps = "bat";
-          };
+      fish.functions = {
+        man = {
+          body = "batman $argv";
+          wraps = "batman";
         };
-
-        bash.shellAliases = {
-          cat = "bat";
-          man = "batman";
+        cat = {
+          body = "bat $argv";
+          wraps = "bat";
         };
       };
+
+      bash.shellAliases = {
+        cat = "bat";
+        man = "batman";
+      };
     };
+  };
 }

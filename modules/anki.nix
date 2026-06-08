@@ -1,22 +1,20 @@
 {
-  flake.modules.homeManager.anki =
-    { config, ... }:
-    {
-      sops.secrets = {
-        anki-username.sopsFile = ../secrets/anki.yaml;
-        anki-key.sopsFile = ../secrets/anki.yaml;
-      };
+  flake.modules.homeManager.anki = { config, ... }: {
+    sops.secrets = {
+      anki-username.sopsFile = ../secrets/anki.yaml;
+      anki-key.sopsFile = ../secrets/anki.yaml;
+    };
 
-      programs.anki = {
-        enable = true;
-        profiles."User 1" = {
-          default = true;
-          sync = {
-            autoSync = true;
-            usernameFile = config.sops.secrets.anki-username.path;
-            keyFile = config.sops.secrets.anki-key.path;
-          };
+    programs.anki = {
+      enable = true;
+      profiles."User 1" = {
+        default = true;
+        sync = {
+          autoSync = true;
+          usernameFile = config.sops.secrets.anki-username.path;
+          keyFile = config.sops.secrets.anki-key.path;
         };
       };
     };
+  };
 }

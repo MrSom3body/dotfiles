@@ -1,5 +1,4 @@
-{ inputs, ... }:
-{
+{ inputs, ... }: {
   flake.modules.nixos."hosts/xylourgos" = {
     imports = [ inputs.disko.nixosModules.disko ];
 

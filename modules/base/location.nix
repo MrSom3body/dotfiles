@@ -1,4 +1,1 @@
-{ config, ... }:
-{
-  flake.modules.nixos.nixos = { inherit (config.flake.meta) location; };
-}
+{ config, ... }: { flake.modules.nixos.nixos = { inherit (config.flake.meta) location; }; }

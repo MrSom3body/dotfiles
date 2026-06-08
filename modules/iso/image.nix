@@ -1,5 +1,4 @@
-{ self, lib, ... }:
-{
+{ self, lib, ... }: {
   flake.modules.nixos.iso =
     {
       config,

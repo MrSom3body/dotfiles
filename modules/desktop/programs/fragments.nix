@@ -1,7 +1,1 @@
-{
-  flake.modules.homeManager.desktop =
-    { pkgs, ... }:
-    {
-      home.packages = [ pkgs.fragments ];
-    };
-}
+{ flake.modules.homeManager.desktop = { pkgs, ... }: { home.packages = [ pkgs.fragments ]; }; }

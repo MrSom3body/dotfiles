@@ -4,23 +4,21 @@ let
 in
 {
   flake.modules = {
-    nixos.desktop =
-      { pkgs, ... }:
-      {
-        xdg.portal = {
-          enable = true;
-          xdgOpenUsePortal = true;
-          config = {
-            common.default = [ "gtk" ];
-            hyprland.default = [
-              "gtk"
-              "hyprland"
-            ];
-          };
-
-          extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    nixos.desktop = { pkgs, ... }: {
+      xdg.portal = {
+        enable = true;
+        xdgOpenUsePortal = true;
+        config = {
+          common.default = [ "gtk" ];
+          hyprland.default = [
+            "gtk"
+            "hyprland"
+          ];
         };
+
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
       };
+    };
 
     homeManager.desktop =
       { config, pkgs, ... }:

@@ -43,8 +43,6 @@
           size = 24;
         };
 
-        # TODO remove when https://github.com/nix-community/stylix/pull/2337 gets merged
-        targets.kmscon.enable = false;
         targets.fish.enable = false;
 
         # opacity = {
@@ -56,39 +54,29 @@
       };
     };
 
-    homeManager.stylix =
-      {
-        lib,
-        pkgs,
-        config,
-        ...
-      }:
-      {
-        stylix = {
-          overlays.enable = false;
+    homeManager.stylix = { pkgs, ... }: {
+      stylix = {
+        overlays.enable = false;
 
-          targets = {
-            firefox.profileNames = [ "default" ];
-            zen-browser.profileNames = [ "default" ];
-            fish.enable = false;
-            kitty.variant256Colors = true;
-            rofi.enable = false;
-            waybar = {
-              addCss = false;
-              font = "sansSerif";
-            };
-          };
-
-          icons = {
-            enable = true;
-            package = pkgs.papirus-icon-theme;
-            light = "Papirus-Light";
-            dark = "Papirus-Dark";
+        targets = {
+          firefox.profileNames = [ "default" ];
+          zen-browser.profileNames = [ "default" ];
+          fish.enable = false;
+          kitty.variant256Colors = true;
+          rofi.enable = false;
+          waybar = {
+            addCss = false;
+            font = "sansSerif";
           };
         };
 
-        # TODO remove when https://github.com/nix-community/stylix/issues/2250 gets resolved
-        gtk.gtk4.theme = lib.mkForce config.gtk.theme;
+        icons = {
+          enable = true;
+          package = pkgs.papirus-icon-theme;
+          light = "Papirus-Light";
+          dark = "Papirus-Dark";
+        };
       };
+    };
   };
 }

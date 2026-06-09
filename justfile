@@ -14,7 +14,7 @@ default:
 
 todo:
     @echo TO-DOs in:
-    @rg --files-with-matches TODO || echo "Everything's done!"
+    @rg -g !justfile -C 5 TODO || echo "Everything's done!"
 
 
 # ---------- dev ---------- #

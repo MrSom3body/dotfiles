@@ -67,7 +67,7 @@
         definedAliases = [ "@np" ];
       };
       "nixpkgs-pr" = {
-        urls = [ { template = "https://nixpkgs-tracker.ocfox.me/?pr={searchTerms}"; } ];
+        urls = [ { template = "https://nixpk.gs/pr-tracker.html?pr={searchTerms}"; } ];
         icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = [ "@npr" ];
       };

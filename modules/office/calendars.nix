@@ -51,7 +51,7 @@ in
           };
           remote = {
             type = "http";
-            url = "https://www.wien.gv.at/spezial/daten/ics/feiertage.ics";
+            url = "https://calendar.google.com/calendar/ical/de.austrian%23holiday%40group.v.calendar.google.com/public/basic.ics";
           };
           vdirsyncer = {
             enable = true;

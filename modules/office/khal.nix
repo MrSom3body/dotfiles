@@ -2,11 +2,20 @@
   flake.modules.homeManager.office = {
     xdg.mimeApps = {
       associations.added = {
-        "text/calendar" = "khal.desktop";
+        "text/calendar" = "khal-import.desktop";
       };
       defaultApplications = {
-        "text/calendar" = "khal.desktop";
+        "text/calendar" = "khal-import.desktop";
       };
+    };
+
+    xdg.desktopEntries."khal-import" = {
+      name = "Khal Import";
+      exec = "khal import %f";
+      terminal = true;
+      mimeType = [ "text/calendar" ];
+      icon = "x-office-calendar";
+      noDisplay = true;
     };
 
     programs.khal = {

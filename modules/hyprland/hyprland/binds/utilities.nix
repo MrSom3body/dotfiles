@@ -72,7 +72,7 @@
             (lua ''hl.dsp.exec_cmd("fnottctl dismiss all")'')
             {
               description = "Dismiss all notifications";
-              non_consuming = true;
+              long_press = true;
             }
           ];
         }

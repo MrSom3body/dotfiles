@@ -18,6 +18,7 @@ let
     "antigravity-cli"
     "atuin"
     "bluetooth"
+    "claude-code"
     # "design"
     "emulation"
     "fingerprint"

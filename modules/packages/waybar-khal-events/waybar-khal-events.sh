@@ -2,6 +2,27 @@
 
 CALENDAR_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/calendars"
 
+# Maps khal/urwid named colors to Pango-compatible hex + bold.
+# Light colors are bold to match khal's own bold_for_light_color convention.
+COLOR_MAP='{
+  "black":         {"color": "#000000", "bold": false},
+  "dark red":      {"color": "#aa0000", "bold": false},
+  "dark green":    {"color": "#00aa00", "bold": false},
+  "brown":         {"color": "#aa5500", "bold": false},
+  "dark blue":     {"color": "#0000aa", "bold": false},
+  "dark magenta":  {"color": "#aa00aa", "bold": false},
+  "dark cyan":     {"color": "#00aaaa", "bold": false},
+  "light gray":    {"color": "#aaaaaa", "bold": true},
+  "dark gray":     {"color": "#555555", "bold": false},
+  "light red":     {"color": "#ff5555", "bold": true},
+  "light green":   {"color": "#55ff55", "bold": true},
+  "yellow":        {"color": "#ffff55", "bold": true},
+  "light blue":    {"color": "#5555ff", "bold": true},
+  "light magenta": {"color": "#ff55ff", "bold": true},
+  "light cyan":    {"color": "#55ffff", "bold": true},
+  "white":         {"color": "#ffffff", "bold": true}
+}'
+
 format_tooltip='
   reduce .[] as $item ([];
     if length == 0 or .[-1].date != $item."start-date-long" then
@@ -19,7 +40,12 @@ format_tooltip='
     ) + .date + "</b>"
    else empty end),
   (.events[] |
-    "<span foreground=\"" + (."calendar-color" // "inherit") + "\">" +
+    (."calendar-color") as $raw |
+    ($color_map[$raw] // {color: (if ($raw // "") | startswith("#") then $raw else null end), bold: false}) as $style |
+    "<span" +
+    (if $style.color then " foreground=\"" + $style.color + "\"" else "" end) +
+    (if $style.bold then " weight=\"bold\"" else "" end) +
+    ">" +
     (if ."start-time" != "" then ."start-time" + "-" + ."end-time" + " " else "" end) +
     (.title | @html) + "</span>"
   )
@@ -71,7 +97,7 @@ emit() {
     --arg today "$today" \
     --arg tomorrow "$tomorrow" \
     --arg text "$text" \
-    --arg tooltip "$(jq -r --arg today "$today" --arg tomorrow "$tomorrow" "$format_tooltip" <<<"$events_json")" \
+    --arg tooltip "$(jq -r --arg today "$today" --arg tomorrow "$tomorrow" --argjson color_map "$COLOR_MAP" "$format_tooltip" <<<"$events_json")" \
     --arg alt "$status" \
     --arg class "$class" \
     '{text:$text,tooltip:$tooltip,alt:$alt,class:$class}'
@@ -82,7 +108,7 @@ if flock -n 9; then
   # Master instance: processes events and updates cache
   while true; do
     out=$(emit)
-    echo "$out" > /tmp/waybar-khal-events-cache.json
+    echo "$out" >/tmp/waybar-khal-events-cache.json
     echo "$out"
     inotifywait -t 120 -rq "$CALENDAR_DIR" &>/dev/null
   done
@@ -90,7 +116,7 @@ else
   # Follower instance: just outputs the cache when it changes
   while [[ ! -f /tmp/waybar-khal-events-cache.json ]]; do sleep 1; done
   cat /tmp/waybar-khal-events-cache.json
-  
+
   while true; do
     inotifywait -qq -e close_write /tmp/waybar-khal-events-cache.json &>/dev/null
     cat /tmp/waybar-khal-events-cache.json

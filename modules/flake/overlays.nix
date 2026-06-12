@@ -11,6 +11,15 @@
 
     # my overlays
     modifications = final: prev: {
+      # TODO remove when https://github.com/NixOS/nixpkgs/pull/530302 lands in unstable
+      regreet = prev.regreet.overrideAttrs (oldAttrs: {
+        buildInputs = (oldAttrs.buildInputs or [ ]) ++ [
+          final.gst_all_1.gstreamer
+          final.gst_all_1.gst-plugins-good
+          final.gst_all_1.gst-plugins-base
+        ];
+      });
+
       obsidian = prev.obsidian.overrideAttrs (oldAttrs: {
         postInstall = (oldAttrs.postInstall or "") + ''
           wrapProgram $out/bin/obsidian \

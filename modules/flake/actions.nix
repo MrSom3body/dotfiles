@@ -71,6 +71,7 @@ let
           always-allow-substitutes = true
           builders-use-substitutes = true
           max-jobs = auto
+          experimental-features = nix-command flakes pipe-operators
         '';
       };
     };

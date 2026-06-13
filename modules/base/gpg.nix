@@ -15,6 +15,11 @@
       enable = true;
       enableSshSupport = true;
       pinentry.package = pkgs.wayprompt;
+
+      defaultCacheTtl = 1800;
+      maxCacheTtl = 7200;
+      defaultCacheTtlSsh = 1800;
+      maxCacheTtlSsh = 7200;
     };
   };
 }

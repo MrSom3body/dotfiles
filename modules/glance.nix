@@ -54,15 +54,18 @@ in
                         allVirtualHosts = lib.concatMapAttrs (
                           _name: conf: conf.config.services.caddy.virtualHosts
                         ) flake.nixosConfigurations;
-                        allServices = lib.filterAttrs (
-                          _name: service:
-                          (service.show or false) && (service ? "domain") && (allVirtualHosts ? "${service.domain}")
-                        ) meta.services;
-                        privateServices = lib.filterAttrs (_name: service: (!service.public or false)) allServices;
-                        publicServices = lib.filterAttrs (_name: service: (service.public or false)) allServices;
+                        allServices =
+                          meta.services
+                          |> lib.filterAttrs (
+                            _name: service:
+                            (service.show or false) && (service ? "domain") && (allVirtualHosts ? "${service.domain}")
+                          );
+                        privateServices = allServices |> lib.filterAttrs (_name: service: (!service.public or false));
+                        publicServices = allServices |> lib.filterAttrs (_name: service: (service.public or false));
                         formatServices =
                           services:
-                          lib.mapAttrsToList (
+                          services
+                          |> lib.mapAttrsToList (
                             name: service:
                             {
                               title = name;
@@ -72,7 +75,7 @@ in
                             // lib.optionalAttrs (service ? "alt-status-codes") {
                               "alt-status-codes" = service."alt-status-codes";
                             }
-                          ) services;
+                          );
                       in
                       [
                         {

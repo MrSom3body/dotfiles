@@ -26,6 +26,7 @@ jobs:
           always-allow-substitutes = true
           builders-use-substitutes = true
           max-jobs = auto
+          experimental-features = nix-command flakes pipe-operators
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup Cachix
       uses: cachix/cachix-action@5f2d7c5294214f71b873db4b969586b980625e71
@@ -99,6 +100,7 @@ jobs:
           always-allow-substitutes = true
           builders-use-substitutes = true
           max-jobs = auto
+          experimental-features = nix-command flakes pipe-operators
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup Cachix
       uses: cachix/cachix-action@5f2d7c5294214f71b873db4b969586b980625e71

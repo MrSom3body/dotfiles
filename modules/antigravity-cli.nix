@@ -5,6 +5,19 @@
 {
   flake.modules.homeManager.antigravity-cli = { pkgs, ... }: {
     home.packages = [ inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity-cli ];
+    programs.antigravity-cli = {
+      enable = true;
+      package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity-cli;
+      settings = {
+        altScreenMode = "default";
+        artifactReviewPolicy = "asks-for-review";
+        colorScheme = "terminal";
+        toolPermission = "proceed-in-sandbox";
+        showTips = true;
+        showFeedbackSurvey = false;
+        enableTelemetry = false;
+      };
+    };
     # programs.gemini-cli = {
     #   enable = true;
     #   package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.gemini-cli;

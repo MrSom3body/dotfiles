@@ -25,17 +25,13 @@ let
 
   flakeRef = "git+file:.";
 
-  checkPlatforms =
-    nixosHosts
-    |> map (c: {
-      inherit (c) runsOn hostPlatform;
-    })
-    |> lib.unique;
+  checkPlatforms = lib.unique (map (c: { inherit (c) runsOn hostPlatform; }) nixosHosts);
 
   generateAllAttrs =
-    nixosHosts
-    |> map (h: "- displayName: ${h.hostname}\n  attribute: ${h.output}")
-    |> lib.concatStringsSep "\n";
+    let
+      lines = map (h: "- displayName: ${h.hostname}\n  attribute: ${h.output}") nixosHosts;
+    in
+    lib.concatStringsSep "\n" lines;
 
   actions = {
     checkout = "actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10"; # v6.0.3

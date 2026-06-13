@@ -48,6 +48,7 @@
                 "flakes"
                 "auto-allocate-uids"
                 "configurable-impure-env"
+                "pipe-operators"
               ];
               impure-env = [ "NIXPKGS_ALLOW_UNFREE" ];
 

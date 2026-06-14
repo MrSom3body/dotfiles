@@ -1,6 +1,7 @@
 { inputs, ... }: {
   flake.overlays = rec {
     default = inputs.nixpkgs.lib.composeManyExtensions [
+      lixify
       nix-topology
       modifications
       stable-packages
@@ -10,6 +11,17 @@
     nix-topology = inputs.nix-topology.overlays.default;
 
     # my overlays
+    lixify = final: prev: {
+      inherit (prev.lixPackageSets.latest)
+        lix # so that I can set the lix version in one place
+        colmena
+        nix-eval-jobs
+        nix-fast-build
+        nixpkgs-review
+        ;
+      nix-direnv = prev.nix-direnv.override { nix = final.lix; };
+    };
+
     modifications = final: prev: {
       # TODO remove when https://github.com/NixOS/nixpkgs/pull/530302 lands in unstable
       regreet = prev.regreet.overrideAttrs (oldAttrs: {

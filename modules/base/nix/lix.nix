@@ -1,5 +1,1 @@
-{ inputs, ... }: {
-  flake.modules.nixos.nixos = {
-    imports = [ inputs.lix-module.nixosModules.default ];
-  };
-}
+{ flake.modules.nixos.nixos = { pkgs, ... }: { nix.package = pkgs.lix; }; }

@@ -49,7 +49,7 @@ in
           };
 
           hostnames = {
-            remove = [ "(.*\.)?nixos.wiki$" ];
+            remove = [ "(.*\\.)?nixos.wiki$" ];
           };
 
           search = {

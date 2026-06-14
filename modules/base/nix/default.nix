@@ -48,9 +48,9 @@
                 "flakes"
                 "auto-allocate-uids"
 
+                "pipe-operator" # note the missing s on Lix
                 # WARN This is not available in Lix
                 # "configurable-impure-env"
-                # "pipe-operators"
               ];
               # WARN This is not available in Lix
               # impure-env = [ "NIXPKGS_ALLOW_UNFREE" ];

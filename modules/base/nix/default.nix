@@ -47,10 +47,13 @@
                 "nix-command"
                 "flakes"
                 "auto-allocate-uids"
-                "configurable-impure-env"
-                "pipe-operators"
+
+                # WARN This is not available in Lix
+                # "configurable-impure-env"
+                # "pipe-operators"
               ];
-              impure-env = [ "NIXPKGS_ALLOW_UNFREE" ];
+              # WARN This is not available in Lix
+              # impure-env = [ "NIXPKGS_ALLOW_UNFREE" ];
 
               keep-derivations = true;
               keep-outputs = true;
@@ -71,7 +74,8 @@
         }:
         {
           nixpkgs = lib.mkIf (osConfig == null || !osConfig.home-manager.useGlobalPkgs) sharedNixpkgs;
-          home.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
+          # WARN This is not available in Lix
+          # home.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
         };
     };
 }

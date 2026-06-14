@@ -31,7 +31,6 @@ let
     "podman"
     "printing"
     "proton"
-    "rclone"
     "topology"
   ];
 in

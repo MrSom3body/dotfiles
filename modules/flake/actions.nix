@@ -38,7 +38,7 @@ let
     |> lib.concatStringsSep "\n";
 
   actions = {
-    checkout = "actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10"; # v6.0.3
+    checkout = "actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0"; # v7
     nothing-but-nix = "wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7"; # v10
     install-nix-action = "cachix/install-nix-action@8aa03977d8d733052d78f4e008a241fd1dbf36b3"; # v31.10.6
     cachix = "cachix/cachix-action@5f2d7c5294214f71b873db4b969586b980625e71"; # v17

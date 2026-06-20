@@ -7,7 +7,7 @@ in
     images.sanctuary = config.flake.nixosConfigurations.sanctuary.config.system.build.isoImage;
     nixosConfigurations.sanctuary = config.flake.lib.mkSystems.linux "sanctuary";
     modules.nixos."hosts/sanctuary" = {
-      imports = config.flake.lib.loadNixosAndHmModuleForUser config modules;
+      imports = config.flake.lib.loadNixosAndHmModules config modules;
     };
   };
 }

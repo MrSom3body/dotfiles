@@ -17,7 +17,7 @@ in
     images.athenas = config.flake.nixosConfigurations.athenas.config.system.build.isoImage;
     nixosConfigurations.athenas = config.flake.lib.mkSystems.linux "athenas";
     modules.nixos."hosts/athenas" = {
-      imports = config.flake.lib.loadNixosAndHmModuleForUser config modules;
+      imports = config.flake.lib.loadNixosAndHmModules config modules;
 
       boot.supportedFilesystems = [ "ntfs" ]; # allow mounting windows
     };

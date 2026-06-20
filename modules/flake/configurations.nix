@@ -49,20 +49,17 @@ in
         ;
     };
 
-    loadNixosAndHmModuleForUser =
+    loadNixosAndHmModules =
       config: modules:
       assert builtins.isAttrs config;
       assert builtins.isList modules;
       let
         checks = map (
           module:
-          lib.throwIf
-            (
-              !(builtins.hasAttr module config.flake.modules.nixos)
-              && !(builtins.hasAttr module config.flake.modules.homeManager)
-            )
-            "loadNixosAndHmModuleForUser: module '${module}' has neither a NixOS nor a Home Manager module"
-            true
+          lib.throwIf (
+            !(builtins.hasAttr module config.flake.modules.nixos)
+            && !(builtins.hasAttr module config.flake.modules.homeManager)
+          ) "loadNixosAndHmModules: module '${module}' has neither a NixOS nor a Home Manager module" true
         ) modules;
       in
       builtins.deepSeq checks (

@@ -39,7 +39,7 @@ in
     nixosConfigurations.promethea = flakeConfig.flake.lib.mkSystems.linux "promethea";
     modules = {
       nixos."hosts/promethea" = {
-        imports = (flakeConfig.flake.lib.loadNixosAndHmModuleForUser flakeConfig modules) ++ [
+        imports = (flakeConfig.flake.lib.loadNixosAndHmModules flakeConfig modules) ++ [
           inputs.nixos-hardware.nixosModules.asus-zenbook-um6702
         ];
 

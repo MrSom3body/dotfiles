@@ -31,22 +31,15 @@ let
       ];
     };
 
-  linux = mkNixos "x86_64-linux" "nixos";
-  linux-arm = mkNixos "aarch64-linux" "nixos";
-
-  wsl = mkNixos "x86_64-linux" "wsl";
 in
 {
   flake.lib = {
     isInstall = config: !(lib.hasAttrByPath [ "isoImage" ] config);
 
     mkSystems = {
-      inherit
-        linux
-        linux-arm
-
-        wsl
-        ;
+      linux = mkNixos "x86_64-linux" "nixos";
+      linux-arm = mkNixos "aarch64-linux" "nixos";
+      wsl = mkNixos "x86_64-linux" "wsl";
     };
 
     loadNixosAndHmModules =

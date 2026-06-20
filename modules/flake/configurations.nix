@@ -53,15 +53,29 @@ in
       config: modules:
       assert builtins.isAttrs config;
       assert builtins.isList modules;
-      (builtins.map (module: config.flake.modules.nixos.${module} or { }) modules)
-      ++ [
-        {
-          imports = [ inputs.home-manager.nixosModules.home-manager ];
+      let
+        checks = map (
+          module:
+          lib.throwIf
+            (
+              !(builtins.hasAttr module config.flake.modules.nixos)
+              && !(builtins.hasAttr module config.flake.modules.homeManager)
+            )
+            "loadNixosAndHmModuleForUser: module '${module}' has neither a NixOS nor a Home Manager module"
+            true
+        ) modules;
+      in
+      builtins.deepSeq checks (
+        (map (module: config.flake.modules.nixos.${module} or { }) modules)
+        ++ [
+          {
+            imports = [ inputs.home-manager.nixosModules.home-manager ];
 
-          home-manager.users.karun.imports = builtins.map (
-            module: config.flake.modules.homeManager.${module} or { }
-          ) modules;
-        }
-      ];
+            home-manager.users.karun.imports = map (
+              module: config.flake.modules.homeManager.${module} or { }
+            ) modules;
+          }
+        ]
+      );
   };
 }

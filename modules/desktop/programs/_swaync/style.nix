@@ -2,8 +2,8 @@
   flake.modules.homeManager.desktop = {
     services.swaync.style =
       let
-        radius = builtins.toString config.flake.meta.appearance.border.radius;
-        border-size = builtins.toString config.flake.meta.appearance.border.size;
+        radius = toString config.flake.meta.appearance.border.radius;
+        border-size = toString config.flake.meta.appearance.border.size;
       in
       # css
       ''

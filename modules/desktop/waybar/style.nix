@@ -2,8 +2,8 @@
   flake.modules.homeManager.desktop = { pkgs, ... }: {
     programs.waybar.style =
       let
-        borderRadius = builtins.toString config.flake.meta.appearance.border.radius;
-        borderSize = builtins.toString config.flake.meta.appearance.border.size;
+        borderRadius = toString config.flake.meta.appearance.border.radius;
+        borderSize = toString config.flake.meta.appearance.border.size;
       in
       # css
       ''

@@ -28,9 +28,7 @@ in
             mode = "allow";
           }
           {
-            binary = escapeRegex (
-              (builtins.toString portalPackage) + "/libexec/.xdg-desktop-portal-hyprland-wrapped"
-            );
+            binary = escapeRegex ((toString portalPackage) + "/libexec/.xdg-desktop-portal-hyprland-wrapped");
             type = "screencopy";
             mode = "allow";
           }

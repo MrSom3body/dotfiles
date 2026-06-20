@@ -22,7 +22,7 @@ in
           bar_button_padding = config.stylix.fonts.sizes.desktop / 2;
           hyprbars-button =
             let
-              buttonSize = builtins.toString (config.stylix.fonts.sizes.desktop * 1.5);
+              buttonSize = toString (config.stylix.fonts.sizes.desktop * 1.5);
             in
             [
               "rgb(${config.lib.stylix.colors.base08}), ${buttonSize}, 󰖭, hyprctl dispatch 'hl.dsp.window.close()'"

@@ -57,8 +57,7 @@ in
       programs.rofi = {
         enable = true;
         package = pkgs.rofi-wayland;
-        font =
-          config.stylix.fonts.sansSerif.name + " " + builtins.toString config.stylix.fonts.sizes.applications;
+        font = config.stylix.fonts.sansSerif.name + " " + toString config.stylix.fonts.sizes.applications;
 
         extraConfig = {
           modi = "run,drun,window,filebrowser";
@@ -89,7 +88,7 @@ in
             # quotes
             inherit (config.lib.formats.rasi) mkLiteral;
             opacity = lib.toHexString (builtins.floor ((config.stylix.opacity.popups - 0.0) * 255));
-            border-radius = mkLiteral (builtins.toString meta.appearance.border.radius + "px");
+            border-radius = mkLiteral (toString meta.appearance.border.radius + "px");
           in
           {
             "*" = {

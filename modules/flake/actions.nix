@@ -42,7 +42,7 @@ let
     nothing-but-nix = "wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7"; # v10
     install-nix-action = "cachix/install-nix-action@8aa03977d8d733052d78f4e008a241fd1dbf36b3"; # v31.10.6
     cachix = "cachix/cachix-action@5f2d7c5294214f71b873db4b969586b980625e71"; # v17
-    nix-diff-action = "natsukium/nix-diff-action@b5c316c6cafc8470037d7f330b178aaeeba96ba4"; # v1.1.0
+    nix-diff-action = "natsukium/nix-diff-action@4091452e4c7b3c7ea4ecbaec84be7f0066d810d7"; # v1.1.1
     alls-green = "re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe"; # v1.2.2
     upload-artifact = "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a"; # v7.0.1
     action-gh-release = "softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b"; # v3.0.1

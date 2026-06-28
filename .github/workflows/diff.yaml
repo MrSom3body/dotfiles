@@ -38,7 +38,7 @@ jobs:
         extraPullNames: nix-community
         name: som3cache
     - name: Generate diff
-      uses: natsukium/nix-diff-action@b5c316c6cafc8470037d7f330b178aaeeba96ba4
+      uses: natsukium/nix-diff-action@4091452e4c7b3c7ea4ecbaec84be7f0066d810d7
       with:
         attributes: |-
           - displayName: athenas

@@ -8,11 +8,10 @@ concurrency:
   group: diff-${{ github.head_ref || github.ref_name }}
 jobs:
   generate-diffs:
-    name: Generate Diff
+    name: Generate Diff (${{ matrix.attrs.hostname }})
     permissions:
       contents: read
-      pull-requests: write
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.attrs.runsOn }}
     steps:
     - name: Checkout
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
@@ -37,21 +36,50 @@ jobs:
         authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
         extraPullNames: nix-community
         name: som3cache
-    - name: Generate diff
+    - name: Generate diff (${{ matrix.attrs.hostname }})
       uses: natsukium/nix-diff-action@4091452e4c7b3c7ea4ecbaec84be7f0066d810d7
       with:
         attributes: |-
-          - displayName: athenas
-            attribute: nixosConfigurations.athenas.config.system.build.toplevel
-          - displayName: pandora
-            attribute: nixosConfigurations.pandora.config.system.build.toplevel
-          - displayName: promethea
-            attribute: nixosConfigurations.promethea.config.system.build.toplevel
-          - displayName: sanctuary
-            attribute: nixosConfigurations.sanctuary.config.system.build.toplevel
-          - displayName: xylourgos
-            attribute: nixosConfigurations.xylourgos.config.system.build.toplevel
-        mode: full
+          - displayName: ${{ matrix.attrs.hostname }}
+            attribute: ${{ matrix.attrs.output }}
+        mode: diff-only
+    strategy:
+      fail-fast: false
+      matrix:
+        attrs:
+        - hostPlatform: x86_64-linux
+          hostname: athenas
+          output: nixosConfigurations.athenas.config.system.build.toplevel
+          runsOn: ubuntu-latest
+        - hostPlatform: x86_64-linux
+          hostname: pandora
+          output: nixosConfigurations.pandora.config.system.build.toplevel
+          runsOn: ubuntu-latest
+        - hostPlatform: x86_64-linux
+          hostname: promethea
+          output: nixosConfigurations.promethea.config.system.build.toplevel
+          runsOn: ubuntu-latest
+        - hostPlatform: x86_64-linux
+          hostname: sanctuary
+          output: nixosConfigurations.sanctuary.config.system.build.toplevel
+          runsOn: ubuntu-latest
+        - hostPlatform: aarch64-linux
+          hostname: xylourgos
+          output: nixosConfigurations.xylourgos.config.system.build.toplevel
+          runsOn: ubuntu-24.04-arm
+  post-diff-comment:
+    name: Post comment
+    needs:
+    - generate-diffs
+    permissions:
+      actions: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+    - name: Post diff comment
+      uses: natsukium/nix-diff-action@4091452e4c7b3c7ea4ecbaec84be7f0066d810d7
+      with:
+        mode: comment-only
 name: Diff
 'on':
   pull_request:

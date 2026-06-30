@@ -3,11 +3,14 @@
     networking = {
       domain = "sndh.dev";
 
+      nftables.enable = true;
+
       useNetworkd = true;
       networkmanager = {
         enable = true;
         dns = "systemd-resolved";
         wifi = {
+          backend = "iwd";
           macAddress = "random";
           powersave = true;
         };

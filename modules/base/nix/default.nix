@@ -39,6 +39,14 @@
               accept-flake-config = lib.mkForce false;
               log-lines = lib.mkDefault 25; # more log lines
 
+              min-free = 128000000;
+              max-free = 1000000000;
+
+              connect-timeout = 0;
+              fallback = true;
+
+              warn-dirty = false;
+
               cores = 0;
               max-jobs = "auto";
 

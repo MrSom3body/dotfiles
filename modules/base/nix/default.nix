@@ -41,6 +41,7 @@
 
               min-free = 128000000;
               max-free = 1000000000;
+              auto-optimise-store = true;
 
               connect-timeout = 0;
               fallback = true;

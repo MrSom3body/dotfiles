@@ -32,11 +32,6 @@ let
     })
     |> lib.unique;
 
-  generateAllAttrs =
-    nixosHosts
-    |> map (h: "- displayName: ${h.hostname}\n  attribute: ${h.output}")
-    |> lib.concatStringsSep "\n";
-
   actions = {
     checkout = "actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0"; # v7
     nothing-but-nix = "wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7"; # v10
@@ -239,20 +234,39 @@ in
 
         jobs = {
           generate-diffs = {
-            name = "Generate Diff";
-            runs-on = runners.x86_64-linux;
-            permissions = {
-              contents = "read";
-              pull-requests = "write";
+            name = "Generate Diff (\${{ matrix.attrs.hostname }})";
+            runs-on = "\${{ matrix.attrs.runsOn }}";
+            permissions.contents = "read";
+            strategy = {
+              fail-fast = false;
+              matrix.attrs = nixosHosts;
             };
             steps = commonSteps ++ [
               {
-                name = "Generate diff";
+                name = "Generate diff (\${{ matrix.attrs.hostname }})";
                 uses = actions.nix-diff-action;
                 "with" = {
-                  mode = "full";
-                  attributes = generateAllAttrs;
+                  mode = "diff-only";
+                  attributes = ''
+                    - displayName: ''${{ matrix.attrs.hostname }}
+                      attribute: ''${{ matrix.attrs.output }}
+                  '';
                 };
+              }
+            ];
+          };
+          post-diff-comment = {
+            name = "Post comment";
+            needs = [ "generate-diffs" ];
+            permissions = {
+              actions = "read";
+              pull-requests = "write";
+            };
+            steps = [
+              {
+                name = "Post diff comment";
+                uses = actions.nix-diff-action;
+                "with".mode = "comment-only";
               }
             ];
           };

@@ -1,22 +1,29 @@
-{
+{ lib, ... }: {
   flake.modules = {
-    nixos.laptop = {
-      # enable location service
-      location.provider = "geoclue2";
+    nixos.laptop =
+      { config, ... }:
+      let
+        usingWpaSupplicant = config.networking.networkmanager.wifi.backend == "wpa_supplicant";
+      in
+      lib.mkMerge [
+        (lib.mkIf usingWpaSupplicant {
+          # geoclue2 only works accurately with wpa_supplicant :/
+          location.provider = "geoclue2";
+          services.geoclue2 = {
+            enable = true;
+            geoProviderUrl = "https://beacondb.net/v1/geolocate";
+            submissionUrl = "https://beacondb.net/v2/geosubmit";
+            submissionNick = "geoclue";
+          };
 
-      # provide location
-      services.geoclue2 = {
-        enable = true;
-        geoProviderUrl = "https://beacondb.net/v1/geolocate";
-        submissionUrl = "https://beacondb.net/v2/geosubmit";
-        submissionNick = "geoclue";
-      };
+          # automatic timezone using geoclue2
+          services.automatic-timezoned.enable = true;
+        })
 
-      services.automatic-timezoned.enable = true; # automatic timezone switching
-    };
-
-    homeManager.laptop = {
-      services.gammastep.provider = "geoclue2";
-    };
+        (lib.mkIf (!usingWpaSupplicant) {
+          # automatic timezone using IP
+          services.tzupdate.enable = true;
+        })
+      ];
   };
 }

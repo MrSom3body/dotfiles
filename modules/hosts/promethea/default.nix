@@ -14,7 +14,6 @@ let
     "shell"
 
     "adb"
-    "anki"
     "antigravity-cli"
     "atuin"
     "bluetooth"

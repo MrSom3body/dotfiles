@@ -20,6 +20,7 @@ let
     "bluetooth"
     "claude-code"
     # "design"
+    "distrobox"
     "emulation"
     "fingerprint"
     "flatpak"

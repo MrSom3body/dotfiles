@@ -20,7 +20,6 @@
     environment.systemPackages = builtins.attrValues {
       inherit (pkgs)
         #docker-compose # start group of containers for dev
-        distrobox
         dive # look into docker image layers
         podman-compose # start group of containers for dev
         podman-tui # status of containers in the terminal

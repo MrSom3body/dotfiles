@@ -5,9 +5,9 @@ let
 in
 {
   flake.modules.nixos.arr = {
-    imports = with modules.nixos; [
-      jellyfin
-      transmission
+    imports = [
+      modules.nixos.jellyfin
+      modules.nixos.transmission
     ];
 
     systemd = {

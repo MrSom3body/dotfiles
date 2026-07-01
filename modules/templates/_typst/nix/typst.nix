@@ -43,16 +43,18 @@
 
       # Watch a project and recompile on changes
       watch-script = typixLib.watchTypstProject commonArgs;
+
+      watch-app = inputs.flake-utils.lib.mkApp { drv = watch-script; };
     in
     {
       checks = { inherit build-drv build-script watch-script; };
 
       packages.default = build-drv;
 
-      apps = rec {
-        default = watch;
+      apps = {
+        default = watch-app;
         build = inputs.flake-utils.lib.mkApp { drv = build-script; };
-        watch = inputs.flake-utils.lib.mkApp { drv = watch-script; };
+        watch = watch-app;
       };
 
       devShells.default = typixLib.devShell {

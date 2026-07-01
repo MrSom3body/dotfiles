@@ -73,6 +73,11 @@ in
       in
       {
         xdg = {
+          terminal-exec = {
+            enable = true;
+            settings.default = [ "${meta.programs.terminal}.desktop" ];
+          };
+
           mimeApps = {
             enable = true;
             defaultApplications = {
@@ -122,9 +127,6 @@ in
         home.packages = [
           # used by `gio open` and xdp-gtk
           pkgs.xdg-utils
-          (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
-            ${meta.programs.terminal} -e "$@"
-          '')
         ];
       };
   };

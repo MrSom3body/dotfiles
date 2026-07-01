@@ -10,9 +10,26 @@
         enable = true;
         dns = "systemd-resolved";
         wifi = {
+          backend = "iwd"; # or wpa_supplicant (default)
           macAddress = "random";
           powersave = true;
         };
+      };
+
+      wireless.iwd.settings = {
+        Settings.AutoConnect = true;
+
+        General = {
+          # NOTE: networkmanager cannot control iwd address randomisation
+          AddressRandomization = "network";
+          AddressRandomizationRange = "full";
+
+          ManagementFrameProtection = 1;
+
+          RoamRetryInterval = 15;
+        };
+
+        DriverQuirks.DefaultInterface = ""; # https://github.com/NixOS/nixpkgs/issues/454655
       };
 
       nameservers = [

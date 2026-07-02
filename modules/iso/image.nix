@@ -53,10 +53,6 @@
               To log in over ssh you must set a password for either "karun" or "root"
               with `passwd` (prefix with `sudo` for "root"), or add your public key to
               /home/nixos/.ssh/authorized_keys or /root/.ssh/authorized_keys.
-
-              If you need a wireless connection, type
-              `sudo systemctl start wpa_supplicant` and configure a
-              network using `wpa_cli`. See the NixOS manual for details.
             ''
             + lib.optionalString config.services.xserver.enable ''
 

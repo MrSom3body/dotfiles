@@ -59,6 +59,7 @@ in
           command = lib.getExe pkgs.phpactor;
           args = [ "language-server" ];
         };
+        qmlls.command = lib.getExe' pkgs.kdePackages.qtdeclarative "qmlls";
         ruff.command = lib.getExe pkgs.ruff;
         rumdl.command = lib.getExe pkgs.rumdl;
         sqls.command = lib.getExe pkgs.sqls;

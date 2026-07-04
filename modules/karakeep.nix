@@ -5,7 +5,7 @@ let
 in
 {
   flake.modules.nixos.karakeep =
-    { config, ... }:
+    { config, pkgs, ... }:
     let
       ollamaCfg = config.services.ollama;
       llmModel = "gemma4:e2b";
@@ -26,6 +26,8 @@ in
 
         karakeep = {
           enable = true;
+          # TODO remove when https://github.com/NixOS/nixpkgs/issues/529285 gets resolved for karakeep
+          package = pkgs.stable.karakeep;
           extraEnvironment = {
             PORT = toString meta.services.karakeep.port;
             NEXTAUTH_URL = "http://localhost:${toString meta.services.karakeep.port}";

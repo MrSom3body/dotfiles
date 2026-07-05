@@ -12,5 +12,8 @@
     };
 
     services.pulseaudio.enable = lib.mkForce false;
+
+    # userland niceness
+    security.rtkit.enable = true;
   };
 }

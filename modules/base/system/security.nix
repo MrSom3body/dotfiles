@@ -69,15 +69,10 @@
       '';
     };
 
-    security = {
-      # userland niceness
-      rtkit.enable = true;
-
-      # use sudo-rs
-      sudo-rs = {
-        enable = true;
-        execWheelOnly = true;
-      };
+    # use sudo-rs
+    security.sudo-rs = {
+      enable = true;
+      execWheelOnly = true;
     };
   };
 }

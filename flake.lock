@@ -324,6 +324,7 @@
     "gitignore": {
       "inputs": {
         "nixpkgs": [
+          "wakatime-ls",
           "nixpkgs"
         ]
       },
@@ -822,7 +823,6 @@
         "disko": "disko",
         "flake-parts": "flake-parts",
         "git-hooks-nix": "git-hooks-nix",
-        "gitignore": "gitignore",
         "gotcha": "gotcha",
         "helix": "helix",
         "helix-vim": "helix-vim",
@@ -1278,9 +1278,7 @@
     },
     "wakatime-ls": {
       "inputs": {
-        "gitignore": [
-          "gitignore"
-        ],
+        "gitignore": "gitignore",
         "nixpkgs": [
           "nixpkgs"
         ],

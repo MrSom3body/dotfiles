@@ -18,11 +18,6 @@
     systems.url = "github:nix-systems/default-linux";
 
     # deduplication
-    gitignore = {
-      url = "github:hercules-ci/gitignore.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -56,7 +51,6 @@
       url = "github:cachix/git-hooks.nix";
       inputs = {
         flake-compat.follows = "";
-        gitignore.follows = "gitignore";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -192,7 +186,6 @@
     wakatime-ls = {
       url = "github:mrnossiom/wakatime-ls";
       inputs = {
-        gitignore.follows = "gitignore";
         nixpkgs.follows = "nixpkgs";
         rust-overlay.follows = "rust-overlay";
       };

@@ -17,6 +17,7 @@ let
     "antigravity-cli"
     "atuin"
     "bluetooth"
+    "clamav"
     "claude-code"
     # "design"
     "distrobox"

@@ -11,6 +11,7 @@ let
     "immich"
     "minecraft-server/kn-server"
     "miniflux"
+    "smartd"
     "stylix"
     "syncthing-server"
     # "transmission" # commented out because already imported in arr

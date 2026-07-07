@@ -31,6 +31,7 @@ let
     "opentabletdriver"
     "podman"
     "printing"
+    "smartd"
     "proton"
     "topology"
   ];

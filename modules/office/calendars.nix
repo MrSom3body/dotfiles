@@ -37,6 +37,7 @@ in
             ];
             collections = [
               "Persönlich"
+              "Arbeit"
               "Nachhilfe"
               "Schule"
             ];

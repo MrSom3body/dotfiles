@@ -16,6 +16,7 @@
         showTips = true;
         showFeedbackSurvey = false;
         enableTelemetry = false;
+        trustedWorkspaces = [ "/home/karun/dotfiles" ];
       };
     };
     # programs.gemini-cli = {

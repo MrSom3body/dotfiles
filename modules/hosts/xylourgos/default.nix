@@ -32,7 +32,7 @@ in
     modules.nixos."hosts/${hostName}" = {
       imports = config.flake.lib.loadNixosAndHmModules config modules;
       services = {
-        beszel.agent.environment.BESZEL_AGENT_EXTRA_FILESYSTEMS = "sdb";
+        beszel.agent.environment.BESZEL_AGENT_EXTRA_FILESYSTEMS = "sdb1";
         ollama.loadModels = [
           "gemma3:12b"
           "gemma3n:e4b"

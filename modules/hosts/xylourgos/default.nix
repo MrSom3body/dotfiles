@@ -31,11 +31,14 @@ in
     nixosConfigurations.${hostName} = config.flake.lib.mkSystems.linux-arm hostName;
     modules.nixos."hosts/${hostName}" = {
       imports = config.flake.lib.loadNixosAndHmModules config modules;
-      services.ollama.loadModels = [
-        "gemma3:12b"
-        "gemma3n:e4b"
-        "qwen3:8b"
-      ];
+      services = {
+        beszel.agent.environment.BESZEL_AGENT_EXTRA_FILESYSTEMS = "sdb";
+        ollama.loadModels = [
+          "gemma3:12b"
+          "gemma3n:e4b"
+          "qwen3:8b"
+        ];
+      };
     };
   };
 }

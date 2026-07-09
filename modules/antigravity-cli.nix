@@ -9,6 +9,7 @@
       enable = true;
       package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity-cli;
       settings = {
+        model = "Gemini 3.1 Pro (High)";
         altScreenMode = "default";
         artifactReviewPolicy = "asks-for-review";
         colorScheme = "terminal";

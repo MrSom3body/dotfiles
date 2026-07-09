@@ -30,7 +30,7 @@ in
           package = pkgs.stable.karakeep;
           extraEnvironment = {
             PORT = toString meta.services.karakeep.port;
-            NEXTAUTH_URL = "http://127.0.0.1:${toString meta.services.karakeep.port}";
+            NEXTAUTH_URL = "https://${meta.services.karakeep.domain}";
             DISABLE_SIGNUPS = "true";
             DISABLE_NEW_RELEASE_CHECK = "true";
             DB_WAL_MODE = "true";

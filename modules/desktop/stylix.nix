@@ -77,6 +77,9 @@
           dark = "Papirus-Dark";
         };
       };
+
+      # TODO remove when https://github.com/nix-community/stylix/pull/2407 gets merged
+      home.pointerCursor.enable = true;
     };
   };
 }

@@ -7,7 +7,7 @@ in
     services.ollama = {
       enable = true;
       syncModels = true;
-      port = meta.services.karakeep.port;
+      port = meta.services.ollama.port;
     };
   };
 }

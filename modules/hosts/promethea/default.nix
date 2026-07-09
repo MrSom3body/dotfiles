@@ -18,7 +18,6 @@ let
     "atuin"
     "bluetooth"
     "clamav"
-    "claude-code"
     # "design"
     "distrobox"
     "emulation"

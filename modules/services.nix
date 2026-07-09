@@ -107,6 +107,7 @@
         port = 8888;
         domain = "search.sndh.dev";
         icon = "di:searxng";
+        alt-status-codes = [ 423 ];
         show = true;
         public = true;
       };

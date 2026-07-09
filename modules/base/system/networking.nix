@@ -10,7 +10,7 @@
         enable = true;
         dns = "systemd-resolved";
         wifi = {
-          backend = "wpa_supplicant"; # iwd or wpa_supplicant (default)
+          backend = "iwd"; # iwd or wpa_supplicant (default)
           macAddress = "random";
           powersave = true;
         };

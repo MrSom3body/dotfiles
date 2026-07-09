@@ -30,14 +30,14 @@ in
           package = pkgs.stable.karakeep;
           extraEnvironment = {
             PORT = toString meta.services.karakeep.port;
-            NEXTAUTH_URL = "http://localhost:${toString meta.services.karakeep.port}";
+            NEXTAUTH_URL = "http://127.0.0.1:${toString meta.services.karakeep.port}";
             DISABLE_SIGNUPS = "true";
             DISABLE_NEW_RELEASE_CHECK = "true";
             DB_WAL_MODE = "true";
 
             # ai
             OPENAI_API_KEY = "ollama";
-            OPENAI_BASE_URL = "http://localhost:${toString ollamaCfg.port}/v1";
+            OPENAI_BASE_URL = "http://127.0.0.1:${toString ollamaCfg.port}/v1";
             INFERENCE_TEXT_MODEL = llmModel;
             INFERENCE_IMAGE_MODEL = llmModel;
           };

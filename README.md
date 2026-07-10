@@ -11,18 +11,19 @@ These configurations are built primarily for _my workflow_ and systems, but than
 
 You can find all my custom packages in this repo to import them into your flake.
 
-| Package           | Use                                                                                                                          |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `auto-kbd-bl`     | Automatically turn the keyboard backlight on when the screen brightness falls under a threshold                              |
-| `fnott-dnd`       | Toggle `fnott`'s DND status (because it doesn't provide a way to toggle it :( )                                              |
-| `vicinae-goodies` | Vicinae scripts for monitor management and vpnc connections                                                                  |
-| `fuzzel-goodies`  | Fuzzel scripts for a bunch of functionality like: emoji picker, file picker, hyprland window picker, ...                     |
-| `gns3-auto-confg` | Automatically create basic configuration files for cisco devices                                                             |
-| `hyprcast`        | Record your screen with wl-screenrec with notification support (most useful when run with a key bind)                        |
-| `power-monitor`   | Automatically switch between power-saver and performance mode when plugging or unplugging your laptop (copied from @fufexan) |
-| `touchpad-toggle` | Toggle your touchpad on Hyprland                                                                                             |
-| `waybar-update`   | Waybar module to display an icon if there is a new generation available (e. g. after an update)                              |
-| `wl-ocr`          | OCR your screen on wayland                                                                                                   |
+| Package                | Use                                                                                                                          |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `auto-kbd-bl`          | Automatically turn the keyboard backlight on when the screen brightness falls under a threshold                              |
+| `fnott-dnd`            | Toggle `fnott`'s DND status (because it doesn't provide a way to toggle it :( )                                              |
+| `fuzzel-goodies`       | Fuzzel scripts for a bunch of functionality like: emoji picker, file picker, hyprland window picker, ...                     |
+| `gns3-auto-confg`      | Automatically create basic configuration files for cisco devices                                                             |
+| `hypr-focus-or-launch` | Allows to focus or run a program if not already open on Hyprland                                                             |
+| `hyprcast`             | Record your screen with wl-screenrec with notification support (most useful when run with a key bind)                        |
+| `power-monitor`        | Automatically switch between power-saver and performance mode when plugging or unplugging your laptop (copied from @fufexan) |
+| `touchpad-toggle`      | Toggle your touchpad on Hyprland                                                                                             |
+| `vicinae-goodies`      | Vicinae scripts for monitor management and vpnc connections                                                                  |
+| `waybar-update`        | Waybar module to display an icon if there is a new generation available (e. g. after an update)                              |
+| `wl-ocr`               | OCR your screen on wayland                                                                                                   |
 
 ## 🖼️ Showcase
 

@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, self, ... }: {
   flake.modules = {
     nixos.hyprland = {
       programs.hyprland = {
@@ -9,7 +9,7 @@
     };
 
     homeManager.hyprland =
-      { config, ... }:
+      { config, pkgs, ... }:
       let
         cfg = config.wayland.windowManager.hyprland;
       in
@@ -24,6 +24,8 @@
         };
 
         config = {
+          home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.hypr-focus-or-launch ];
+
           wayland.windowManager.hyprland = {
             enable = true;
             systemd.enable = false;
@@ -39,8 +41,6 @@
               mode = "allow";
             }) cfg.plugins;
           };
-
-          services.network-manager-applet.enable = true;
 
           home.file.".config/hypr/scripts" = {
             source = ./scripts;

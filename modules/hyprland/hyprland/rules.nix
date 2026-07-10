@@ -4,8 +4,8 @@
       window_rule =
         let
           floatingSize = {
-            w = 600;
-            h = 400;
+            w = 900;
+            h = 600;
           };
         in
         [
@@ -102,6 +102,16 @@
           {
             match = {
               class = "^(nm-connection-editor)$";
+            };
+            float = true;
+            size = "${toString floatingSize.w} ${toString floatingSize.h}";
+            center = true;
+          }
+
+          # Impala
+          {
+            match = {
+              class = "^(impala)$";
             };
             float = true;
             size = "${toString floatingSize.w} ${toString floatingSize.h}";

@@ -64,5 +64,25 @@
             echo -en "\e]133;D\e\\"
           end
         '';
+
+      xdg.desktopEntries.foot = {
+        name = "Foot";
+        genericName = "Terminal";
+        comment = "A wayland native terminal emulator";
+        exec = "foot";
+        icon = "foot";
+        terminal = false;
+        categories = [
+          "System"
+          "TerminalEmulator"
+        ];
+        settings = {
+          Keywords = "shell;prompt;command;commandline;";
+          X-TerminalArgExec = "-e";
+          X-TerminalArgAppId = "-a";
+          X-TerminalArgTitle = "-T";
+          X-TerminalArgDir = "-D";
+        };
+      };
     };
 }

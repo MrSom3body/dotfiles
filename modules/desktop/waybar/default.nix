@@ -339,7 +339,7 @@
           network = {
             format = "{icon}";
             format-wifi = "{icon}";
-            format-ethernet = "󰀂";
+            format-ethernet = "󰈀";
             format-disconnected = "󰤮";
             format-icons = [
               "󰤯"
@@ -350,7 +350,7 @@
             ];
             tooltip-format = "{ifname} via {gwaddr}";
             tooltip-format-wifi = "{icon}  {essid}\nIP: {ipaddr}\nSignal: {signalStrength}%\nFreq: {frequency} GHz\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
-            tooltip-format-ethernet = "  {ifname}\nIP: {ipaddr}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
+            tooltip-format-ethernet = "󰈀  {ifname}\nIP: {ipaddr}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
             tooltip-format-disconnected = "Disconnected";
             on-click = "hypr-focus-or-launch -p impala xdg-terminal-exec --app-id=impala ${lib.getExe pkgs.impala}";
           };

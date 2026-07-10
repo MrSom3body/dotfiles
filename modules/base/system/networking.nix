@@ -14,14 +14,11 @@
           macAddress = "random";
           powersave = true;
         };
-        settings = {
-          device = {
-            "wifi.iwd.autoconnect" = "false";
-          };
-        };
       };
 
       wireless.iwd.settings = {
+        Settings.AutoConnect = true;
+
         General = {
           # NOTE: networkmanager cannot control iwd address randomisation
           AddressRandomization = "network";

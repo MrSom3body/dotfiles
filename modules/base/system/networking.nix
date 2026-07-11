@@ -1,4 +1,4 @@
-{
+{ lib, ... }: {
   flake.modules.nixos.nixos = { pkgs, ... }: {
     networking = {
       domain = "sndh.dev";
@@ -7,7 +7,7 @@
 
       useNetworkd = true;
       networkmanager = {
-        enable = false;
+        enable = lib.mkDefault false;
         dns = "systemd-resolved";
         wifi = {
           backend = "iwd"; # iwd or wpa_supplicant (default)

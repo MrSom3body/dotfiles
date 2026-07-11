@@ -44,7 +44,10 @@ in
           inputs.nixos-hardware.nixosModules.asus-zenbook-um6702
         ];
 
-        hardware.nvidia.branch = "latest";
+        hardware.nvidia = {
+          branch = "latest";
+          dynamicBoost.enable = false;
+        };
 
         hardware.asus.battery.chargeUpto = 80;
         security.tpm2.enable = true;

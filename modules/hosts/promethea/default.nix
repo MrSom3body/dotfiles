@@ -49,7 +49,10 @@ in
         hardware.asus.battery.chargeUpto = 80;
         security.tpm2.enable = true;
 
-        services.tailscale.extraSetFlags = [ "--accept-routes" ];
+        services = {
+          tailscale.extraSetFlags = [ "--accept-routes" ];
+          beszel.agent.environment.BESZEL_AGENT_SKIP_GPU = "true"; # breaks D3 sleep on Nvidia
+        };
       };
 
       homeManager."hosts/promethea" = { pkgs, ... }: {

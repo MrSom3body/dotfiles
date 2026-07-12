@@ -16,7 +16,7 @@
       path = builtins.attrValues {
         inherit (pkgs)
           coreutils
-          iptables
+          nftables
           libnatpmp
           ripgrep
           transmission_4
@@ -40,15 +40,19 @@
               PORT=$(rg "Mapped public port (\d+)" -or '$1' ${outPath})
 
               if [[ -n "$PORT" && "$PORT" != "$OLD_PORT" ]]; then
-                echo "Allowing port $PORT via iptables"
+                echo "Allowing port $PORT via nftables"
 
-                if [[ -n "$OLD_PORT" ]]; then
-                  iptables -D INPUT -p tcp --dport "$OLD_PORT" -i ${vpnInterface} -j ACCEPT || true
-                  iptables -D INPUT -p udp --dport "$OLD_PORT" -i ${vpnInterface} -j ACCEPT || true
-                fi
+                # Create table and chain if they don't exist
+                nft add table inet proton-vpn-port-forward
+                nft add chain inet proton-vpn-port-forward input '{ type filter hook input priority filter - 1; policy accept; }'
 
-                iptables -I INPUT -p tcp --dport "$PORT" -i ${vpnInterface} -j ACCEPT
-                iptables -I INPUT -p udp --dport "$PORT" -i ${vpnInterface} -j ACCEPT
+                # Flush chain to remove old rules
+                nft flush chain inet proton-vpn-port-forward input
+
+                # Add new rules
+                nft add rule inet proton-vpn-port-forward input iifname "${vpnInterface}" tcp dport "$PORT" accept
+                nft add rule inet proton-vpn-port-forward input iifname "${vpnInterface}" udp dport "$PORT" accept
+                
                 OLD_PORT="$PORT"
 
                 # Set transmission port

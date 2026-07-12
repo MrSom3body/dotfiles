@@ -2,7 +2,6 @@
   flake.modules = {
     nixos.nixos = { config, ... }: {
       networking.firewall = {
-        checkReversePath = "loose";
         trustedInterfaces = [ config.services.tailscale.interfaceName ];
         allowedUDPPorts = [ config.services.tailscale.port ];
       };

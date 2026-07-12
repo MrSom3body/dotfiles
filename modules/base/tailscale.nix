@@ -1,6 +1,13 @@
 { lib, ... }: {
   flake.modules = {
-    nixos.nixos = {
+    nixos.nixos = { config, ... }: {
+      networking.firewall = {
+        trustedInterfaces = [ config.services.tailscale.interfaceName ];
+        allowedUDPPorts = [ config.services.tailscale.port ];
+      };
+
+      systemd.services.tailscaled.serviceConfig.Environment = [ "TS_DEBUG_FIREWALL_MODE=nftables" ];
+
       services = {
         tailscale = {
           enable = true;

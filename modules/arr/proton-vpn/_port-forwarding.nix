@@ -42,17 +42,16 @@
               if [[ -n "$PORT" && "$PORT" != "$OLD_PORT" ]]; then
                 echo "Allowing port $PORT via nftables"
 
-                # Create table and chain if they don't exist
-                nft add table inet proton-vpn-port-forward
-                nft add chain inet proton-vpn-port-forward input '{ type filter hook input priority filter - 1; policy accept; }'
+                # Delete the old rules from the NixOS firewall
+                if [[ -n "$OLD_PORT" ]]; then
+                  nft delete rule inet nixos-fw input-allow iifname "${vpnInterface}" tcp dport "$OLD_PORT" accept 2>/dev/null || true
+                  nft delete rule inet nixos-fw input-allow iifname "${vpnInterface}" udp dport "$OLD_PORT" accept 2>/dev/null || true
+                fi
 
-                # Flush chain to remove old rules
-                nft flush chain inet proton-vpn-port-forward input
+                # Insert the new rules directly into the NixOS firewall's allow list
+                nft insert rule inet nixos-fw input-allow iifname "${vpnInterface}" tcp dport "$PORT" accept
+                nft insert rule inet nixos-fw input-allow iifname "${vpnInterface}" udp dport "$PORT" accept
 
-                # Add new rules
-                nft add rule inet proton-vpn-port-forward input iifname "${vpnInterface}" tcp dport "$PORT" accept
-                nft add rule inet proton-vpn-port-forward input iifname "${vpnInterface}" udp dport "$PORT" accept
-                
                 OLD_PORT="$PORT"
 
                 # Set transmission port

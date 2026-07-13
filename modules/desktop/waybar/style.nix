@@ -241,6 +241,21 @@
           color: @base00;
           background: @base0A;
         }
+
+        #bluetooth.disabled,
+        #bluetooth.off {
+          color: @base03;
+        }
+
+        #bluetooth.connected {
+          color: @base00;
+          background: @base0D;
+        }
+
+        #network.disabled {
+          color: @base03;
+        }
+
         #network.disconnected {
           color: @base00;
           background: @base08;

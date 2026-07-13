@@ -1,8 +1,11 @@
-{ lib, ... }: {
+{ lib, ... }:
+let
+  name = "hypr-focus-or-launch";
+in
+{
   perSystem = { pkgs, ... }: {
     packages.hypr-focus-or-launch = pkgs.stdenv.mkDerivation {
-      name = "hypr-focus-or-launch";
-
+      inherit name;
       src = ./scripts;
 
       nativeBuildInputs = [ pkgs.makeWrapper ];

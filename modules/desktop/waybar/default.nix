@@ -349,6 +349,7 @@
             tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
             tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
             on-click = "hypr-focus-or-launch-tui bluetui";
+            on-click-right = "rfkill toggle bluetooth";
           };
 
           network = {
@@ -370,6 +371,7 @@
             tooltip-format-ethernet = "󰈀  {ifname}\nIP: {ipaddr}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
             tooltip-format-disconnected = "Disconnected";
             on-click = "hypr-focus-or-launch-tui impala";
+            on-click-right = "rfkill toggle wifi";
           };
 
           "custom/fnott" =

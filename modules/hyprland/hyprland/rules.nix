@@ -1,14 +1,21 @@
 { lib, ... }: {
   flake.modules.homeManager.hyprland = { config, ... }: {
-    wayland.windowManager.hyprland.settings = {
-      window_rule =
-        let
-          floatingSize = {
-            w = 900;
-            h = 600;
-          };
-        in
-        [
+    wayland.windowManager.hyprland.settings =
+      let
+        floatingSize = {
+          w = 900;
+          h = 600;
+        };
+
+        toMatch =
+          list:
+          let
+            elements = lib.concatStringsSep "|" list;
+          in
+          "^(${elements})$";
+      in
+      {
+        window_rule = [
           # inhibit idle when fullscreen
           {
             match = {
@@ -67,7 +74,11 @@
           # Move apps to workspaces
           {
             match = {
-              class = "^(Todoist|@lunatask/electron|io.github.alainm23.planify)$";
+              class = toMatch [
+                "Todoist"
+                "@lunatask/electron"
+                "io.github.alainm23.planify"
+              ];
             };
             workspace = "special:todo silent";
           }
@@ -87,51 +98,24 @@
           # Dim some programs
           {
             match = {
-              class = "^(xdg-desktop-portal-gtk)$";
+              class = toMatch [
+                "xdg-desktop-portal-gtk"
+                "polkit-gnome-authentication-agent-1"
+              ];
             };
             dim_around = true;
           }
-          {
-            match = {
-              class = "^(polkit-gnome-authentication-agent-1)$";
-            };
-            dim_around = true;
-          }
 
-          # NetworkManager applet
+          # Floating utilities
           {
             match = {
-              class = "^(nm-connection-editor)$";
-            };
-            float = true;
-            size = "${toString floatingSize.w} ${toString floatingSize.h}";
-            center = true;
-          }
-
-          # Impala
-          {
-            match = {
-              class = "^(impala)$";
-            };
-            float = true;
-            size = "${toString floatingSize.w} ${toString floatingSize.h}";
-            center = true;
-          }
-
-          # Blueman
-          {
-            match = {
-              class = "^(.blueman-manager-wrapped)$";
-            };
-            float = true;
-            size = "${toString floatingSize.w} ${toString floatingSize.h}";
-            center = true;
-          }
-
-          # Audio control
-          {
-            match = {
-              class = "^(com.saivert.pwvucontrol)$";
+              class = toMatch [
+                "nm-connection-editor"
+                "impala"
+                ".blueman-manager-wrapped"
+                "wiremix"
+                "com.saivert.pwvucontrol"
+              ];
             };
             float = true;
             size = "${toString floatingSize.w} ${toString floatingSize.h}";
@@ -188,7 +172,10 @@
           # Calculator
           {
             match = {
-              class = "^(org.gnome.Calculator|qalculate-gtk)$";
+              class = toMatch [
+                "org.gnome.Calculator"
+                "qalculate-gtk"
+              ];
             };
             float = true;
           }
@@ -213,13 +200,11 @@
           # Games
           {
             match = {
-              class = "^(Minecraft.*)$";
-            };
-            immediate = true;
-          }
-          {
-            match = {
-              class = "^(steam_app_.*)$";
+              class = toMatch [
+                "Minecraft.*"
+                "steam_app_.*"
+                "hl2_linux"
+              ];
             };
             immediate = true;
           }
@@ -229,78 +214,65 @@
             };
             render_unfocused = true;
           }
-          {
-            match = {
-              class = "^(hl2_linux)$";
-            };
-            immediate = true;
-          }
         ];
 
-      layer_rule =
-        let
-          toMatch =
-            list:
-            let
-              elements = lib.concatStringsSep "|" list;
-            in
-            "^(${elements})$";
+        layer_rule =
+          let
+            bars = [ "waybar" ];
 
-          bars = [ "waybar" ];
+            menus = [
+              "rofi"
+              "launcher"
+              "vicinae"
+            ];
 
-          menus = [
-            "rofi"
-            "launcher"
-            "vicinae"
-          ];
+            notifications = [
+              "swaync-control-center"
+              "notifications"
+            ];
 
-          notifications = [
-            "swaync-control-center"
-            "notifications"
-          ];
-
-          blurred = lib.concatLists [
-            bars
-            menus
-            notifications
-          ];
-        in
-        [
-          {
+            blurred = lib.concatLists [
+              bars
+              menus
+              notifications
+            ];
+          in
+          [
+            {
+              match = {
+                namespace = toMatch menus;
+              };
+              animation = "slide";
+              dim_around = true;
+            }
+            {
+              match = {
+                namespace = toMatch notifications;
+              };
+              animation = "slide right";
+            }
+          ]
+          ++ lib.optional (config.stylix.opacity.desktop != 1.0) {
             match = {
-              namespace = toMatch menus;
+              namespace = toMatch blurred;
             };
-            animation = "slide";
-            dim_around = true;
-          }
-          {
-            match = {
-              namespace = toMatch notifications;
-            };
-            animation = "slide right";
-          }
-        ]
-        ++ lib.optional (config.stylix.opacity.desktop != 1.0) {
-          match = {
-            namespace = toMatch blurred;
+            blur = true;
+            ignore_alpha = 0;
           };
-          blur = true;
-          ignore_alpha = 0;
-        };
 
-      workspace_rule = [
-        # Smart Gaps
-        {
-          workspace = "w[tv1]s[false]";
-          gaps_out = 0;
-          gaps_in = 0;
-        }
-        {
-          workspace = "f[1]s[false]";
-          gaps_out = 0;
-          gaps_in = 0;
-        }
-      ];
-    };
+        workspace_rule = [
+          # Smart Gaps
+          {
+            workspace = "w[tv1]s[false]";
+            gaps_out = 0;
+            gaps_in = 0;
+          }
+          {
+            workspace = "f[1]s[false]";
+            gaps_out = 0;
+            gaps_in = 0;
+          }
+        ];
+      };
   };
 }

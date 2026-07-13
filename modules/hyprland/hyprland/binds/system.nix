@@ -29,14 +29,21 @@
               _args = [
                 "A"
                 (lua ''hl.dsp.exec_cmd("hypr-focus-or-launch-tui wiremix")'')
-                { description = "Toggle audio mixer workspace"; }
+                { description = "Open audio mixer"; }
+              ];
+            }
+            {
+              _args = [
+                "B"
+                (lua ''hl.dsp.exec_cmd("hypr-focus-or-launch-tui bluetui")'')
+                { description = "Open Bluetooth manager"; }
               ];
             }
             {
               _args = [
                 "N"
                 (lua ''hl.dsp.exec_cmd("hypr-focus-or-launch-tui impala")'')
-                { description = "Toggle networks workspace"; }
+                { description = "Open network configuration"; }
               ];
             }
             {

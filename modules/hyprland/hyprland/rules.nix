@@ -112,6 +112,7 @@
               class = toMatch [
                 "nm-connection-editor"
                 "impala"
+                "bluetui"
                 ".blueman-manager-wrapped"
                 "wiremix"
                 "com.saivert.pwvucontrol"

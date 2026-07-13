@@ -205,7 +205,7 @@
               "󰕾"
             ];
             tooltip-format = "{volume}% on {node_name}";
-            on-click = lib.getExe pkgs.pwvucontrol;
+            on-click = "hypr-focus-or-launch -p wiremix xdg-terminal-exec --app-id=wiremix ${lib.getExe pkgs.wiremix}";
             on-click-right = "${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle";
           };
 

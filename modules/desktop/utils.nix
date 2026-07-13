@@ -8,7 +8,6 @@
           gnome-disk-utility
           hyprpicker
           nautilus
-          pwvucontrol
           qalculate-gtk
           snapshot # Camera App
           # cli

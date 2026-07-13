@@ -27,6 +27,20 @@
           [
             {
               _args = [
+                "A"
+                (lua ''hl.dsp.exec_cmd("hypr-focus-or-launch-tui wiremix")'')
+                { description = "Toggle audio mixer workspace"; }
+              ];
+            }
+            {
+              _args = [
+                "N"
+                (lua ''hl.dsp.exec_cmd("hypr-focus-or-launch-tui impala")'')
+                { description = "Toggle networks workspace"; }
+              ];
+            }
+            {
+              _args = [
                 "R"
                 (lua ''hl.dsp.exec_cmd("uwsm app -- hyprcast")'')
                 { description = "Start/stop screencast (without audio)"; }

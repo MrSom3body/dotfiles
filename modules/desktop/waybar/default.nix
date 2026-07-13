@@ -205,7 +205,7 @@
               "󰕾"
             ];
             tooltip-format = "{volume}% on {node_name}";
-            on-click = "hypr-focus-or-launch -p wiremix xdg-terminal-exec --app-id=wiremix ${lib.getExe pkgs.wiremix}";
+            on-click = "hypr-focus-or-launch-tui wiremix";
             on-click-right = "${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle";
           };
 
@@ -352,7 +352,7 @@
             tooltip-format-wifi = "{icon}  {essid}\nIP: {ipaddr}\nSignal: {signalStrength}%\nFreq: {frequency} GHz\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
             tooltip-format-ethernet = "󰈀  {ifname}\nIP: {ipaddr}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
             tooltip-format-disconnected = "Disconnected";
-            on-click = "hypr-focus-or-launch -p impala xdg-terminal-exec --app-id=impala ${lib.getExe pkgs.impala}";
+            on-click = "hypr-focus-or-launch-tui impala";
           };
 
           "custom/fnott" =

@@ -252,6 +252,12 @@
           background: @base0D;
         }
 
+        #bluetooth.discoverable,
+        #bluetooth.pairable {
+          color: @base00;
+          background: @base0B;
+        }
+
         #network.disabled {
           color: @base03;
         }

@@ -55,13 +55,6 @@
             }
             {
               _args = [
-                "V"
-                (lua ''hl.dsp.exec_cmd("vicinae-vpnc")'')
-                { description = "Connect/disconnect from a vpnc VPN"; }
-              ];
-            }
-            {
-              _args = [
                 "M"
                 (lua ''hl.dsp.exec_cmd("vicinae-monitors")'')
                 { description = "Open monitor manager"; }

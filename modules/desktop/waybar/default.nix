@@ -340,7 +340,9 @@
             format = "{icon}";
             format-wifi = "{icon}";
             format-ethernet = "󰈀";
+            format-linked = "󰤫";
             format-disconnected = "󰤮";
+            format-disabled = "󰀝";
             format-icons = [
               "󰤯"
               "󰤟"

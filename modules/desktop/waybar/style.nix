@@ -241,6 +241,15 @@
           color: @base00;
           background: @base0A;
         }
+        #network.disconnected {
+          color: @base00;
+          background: @base08;
+        }
+
+        #network.linked {
+          color: @base00;
+          background: @base0A;
+        }
       '';
 
     xdg.configFile."waybar/style.css" = {

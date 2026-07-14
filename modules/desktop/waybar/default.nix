@@ -367,9 +367,11 @@
               "󰤨"
             ];
             tooltip-format = "{ifname} via {gwaddr}";
-            tooltip-format-wifi = "{icon}  {essid}\nIP: {ipaddr}\nSignal: {signalStrength}%\nFreq: {frequency} GHz\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
-            tooltip-format-ethernet = "󰈀  {ifname}\nIP: {ipaddr}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
+            tooltip-format-wifi = "{icon}  {essid}\nIP: {ipaddr}\nGW: {gwaddr}\nSignal: {signalStrength}%\nFreq: {frequency} GHz\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
+            tooltip-format-ethernet = "󰈀  {ifname}\nIP: {ipaddr}\nGW: {gwaddr}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
+            tooltip-format-linked = "{ifname} (No IP)";
             tooltip-format-disconnected = "Disconnected";
+            tooltip-format-disabled = "Disabled";
             on-click = "hypr-focus-or-launch-tui impala";
             on-click-right = "rfkill toggle wifi";
           };

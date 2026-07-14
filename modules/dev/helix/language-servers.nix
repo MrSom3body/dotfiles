@@ -24,6 +24,7 @@ in
       home.packages = [ pkgs.typstyle ]; # for formatting typst
 
       programs.helix.languages.language-server = {
+        ansible-language-server.command = lib.getExe pkgs.ansible-language-server;
         bash-language-server.command = lib.getExe pkgs.bash-language-server;
         codebook = {
           command = lib.getExe pkgs.codebook;

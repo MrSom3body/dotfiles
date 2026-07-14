@@ -8,17 +8,17 @@
     programs.antigravity-cli = {
       enable = true;
       package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity-cli;
-      settings = {
-        model = "Gemini 3.1 Pro (High)";
-        altScreenMode = "default";
-        artifactReviewPolicy = "asks-for-review";
-        colorScheme = "terminal";
-        toolPermission = "proceed-in-sandbox";
-        showTips = true;
-        showFeedbackSurvey = false;
-        enableTelemetry = false;
-        trustedWorkspaces = [ "/home/karun/dotfiles" ];
-      };
+      # settings = {
+      #   model = "Gemini 3.1 Pro (High)";
+      #   altScreenMode = "default";
+      #   artifactReviewPolicy = "asks-for-review";
+      #   colorScheme = "terminal";
+      #   toolPermission = "proceed-in-sandbox";
+      #   showTips = true;
+      #   showFeedbackSurvey = false;
+      #   enableTelemetry = false;
+      #   trustedWorkspaces = [ "/home/karun/dotfiles" ];
+      # };
     };
     # programs.gemini-cli = {
     #   enable = true;

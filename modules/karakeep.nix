@@ -26,8 +26,7 @@ in
 
         karakeep = {
           enable = true;
-          # TODO remove when https://github.com/NixOS/nixpkgs/issues/529285 gets resolved for karakeep
-          package = pkgs.stable.karakeep;
+          package = pkgs.karakeep;
           extraEnvironment = {
             PORT = toString meta.services.karakeep.port;
             NEXTAUTH_URL = "https://${meta.services.karakeep.domain}";

@@ -817,6 +817,7 @@
         "vicinae": "vicinae",
         "vicinae-extensions": "vicinae-extensions",
         "wakatime-ls": "wakatime-ls",
+        "watt": "watt",
         "zen-browser": "zen-browser"
       }
     },
@@ -1261,6 +1262,26 @@
       "original": {
         "owner": "mrnossiom",
         "repo": "wakatime-ls",
+        "type": "github"
+      }
+    },
+    "watt": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784038405,
+        "narHash": "sha256-KjVSapJOMsnWZSKK2/7I7YXACEiMeQxFyWCHWjcuCM0=",
+        "owner": "NotAShelf",
+        "repo": "watt",
+        "rev": "5d47bd5b6cc6fb451fe2cc0bfb24b1374db9f447",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotAShelf",
+        "repo": "watt",
         "type": "github"
       }
     },

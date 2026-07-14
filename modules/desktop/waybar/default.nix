@@ -358,7 +358,7 @@
             format-ethernet = "󰈀";
             format-linked = "󰤫";
             format-disconnected = "󰤮";
-            format-disabled = "󰀝";
+            format-disabled = "󰤮";
             format-icons = [
               "󰤯"
               "󰤟"

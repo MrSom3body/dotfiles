@@ -361,6 +361,7 @@
             tooltip-format-linked = "{ifname} (No IP)";
             tooltip-format-disconnected = "Disconnected";
             tooltip-format-disabled = "Disabled";
+            interval = 3;
             on-click = "hypr-focus-or-launch-tui impala";
             on-click-right = "rfkill toggle wifi";
           };

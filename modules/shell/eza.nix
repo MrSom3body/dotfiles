@@ -8,7 +8,6 @@
         "--group-directories-first"
         "--header"
         "--smart-group"
-        "--hyperlink"
       ];
     };
   };

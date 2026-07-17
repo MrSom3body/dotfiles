@@ -116,6 +116,7 @@
                 ".blueman-manager-wrapped"
                 "wiremix"
                 "com.saivert.pwvucontrol"
+                "dua"
               ];
             };
             float = true;

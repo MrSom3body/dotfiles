@@ -41,9 +41,37 @@
             }
             {
               _args = [
+                "C"
+                (lua ''hl.dsp.exec_cmd("${runOnce "hyprpicker -a"}")'')
+                { description = "Open color picker"; }
+              ];
+            }
+            {
+              _args = [
+                "D"
+                (lua ''hl.dsp.exec_cmd("hypr-focus-or-launch-tui dua i")'')
+                { description = "Open disk usage analyzer"; }
+              ];
+            }
+            {
+              _args = [
+                "M"
+                (lua ''hl.dsp.exec_cmd("vicinae-monitors")'')
+                { description = "Open monitor manager"; }
+              ];
+            }
+            {
+              _args = [
                 "N"
                 (lua ''hl.dsp.exec_cmd("hypr-focus-or-launch-tui impala")'')
                 { description = "Open network configuration"; }
+              ];
+            }
+            {
+              _args = [
+                "O"
+                (lua ''hl.dsp.exec_cmd("wl-ocr -nc")'')
+                { description = "Copy text from screen"; }
               ];
             }
             {
@@ -58,27 +86,6 @@
                 "SHIFT + R"
                 (lua ''hl.dsp.exec_cmd("uwsm app -- hyprcast -a")'')
                 { description = "Start/stop screencast (with audio)"; }
-              ];
-            }
-            {
-              _args = [
-                "O"
-                (lua ''hl.dsp.exec_cmd("wl-ocr -nc")'')
-                { description = "Copy text from screen"; }
-              ];
-            }
-            {
-              _args = [
-                "C"
-                (lua ''hl.dsp.exec_cmd("${runOnce "hyprpicker -a"}")'')
-                { description = "Open color picker"; }
-              ];
-            }
-            {
-              _args = [
-                "M"
-                (lua ''hl.dsp.exec_cmd("vicinae-monitors")'')
-                { description = "Open monitor manager"; }
               ];
             }
 

@@ -10,12 +10,6 @@ let
       '';
     });
 
-    # TODO remove when https://github.com/NixOS/nixpkgs/issues/542512 gets resolved
-    vesktop = (prev.vesktop.override { electron_40 = prev.electron_42; }).overrideAttrs (oldAttrs: {
-      preBuild =
-        builtins.replaceStrings [ "exit 1" ] [ "echo 'ignored strict version mismatch'" ]
-          oldAttrs.preBuild;
-    });
   };
 
   stable-packages = final: _prev: {

@@ -22,6 +22,10 @@
               type = lib.types.str;
               default = "di:${name}";
             };
+            group = lib.mkOption {
+              type = lib.types.str;
+              default = "misc";
+            };
             show = lib.mkOption {
               type = lib.types.bool;
               default = true;
@@ -41,56 +45,92 @@
   };
 
   config.flake.meta.services = {
-    atuin.port = 8987;
-    beszel.port = 8090;
+    atuin = {
+      port = 8987;
+      group = "utils";
+    };
+    beszel = {
+      port = 8090;
+      group = "infra";
+    };
     "ddns-updater" = {
       port = 8000;
       domain = "ddns.sndh.dev";
+      group = "infra";
     };
     "firefox-send" = {
       port = 1443;
       domain = "send.sndh.dev";
       public = true;
+      group = "utils";
     };
     flaresolverr = {
       port = 8191;
       domain = null;
       show = false;
+      group = "infra";
     };
     gatus = {
       port = 3003;
       domain = "status.sndh.dev";
+      group = "dash";
     };
     glance = {
       port = 8080;
       domain = "home.sndh.dev";
+      group = "dash";
     };
-    immich.port = 2283;
+    immich = {
+      port = 2283;
+      group = "media";
+    };
     jellyfin = {
       port = 8096; # WARN don't change
+      group = "media";
     };
-    seerr.port = 5055;
-    karakeep.port = 3002;
-    loxone = { };
+    seerr = {
+      port = 5055;
+      group = "arr";
+    };
+    karakeep = {
+      port = 3002;
+      group = "apps";
+    };
+    loxone = {
+      group = "home";
+    };
     miniflux = {
       port = 7070;
       domain = "read.sndh.dev";
+      group = "apps";
     };
-    ntfy.port = 2586;
+    ntfy = {
+      port = 2586;
+      group = "utils";
+    };
     ollama = {
       port = 11434;
       domain = null;
       show = false;
+      group = "ai";
     };
     "open-webui" = {
       port = 3000;
       domain = "ai.sndh.dev";
+      group = "ai";
     };
-    prowlarr.port = 9696;
-    radarr.port = 7878;
+    prowlarr = {
+      port = 9696;
+      group = "arr";
+    };
+    radarr = {
+      port = 7878;
+      group = "arr";
+    };
     radicale = {
       port = 5232;
       domain = "dav.sndh.dev";
+      group = "apps";
     };
     searx = {
       port = 8888;
@@ -98,21 +138,28 @@
       icon = "di:searxng";
       alt-status-codes = [ 429 ];
       public = true;
+      group = "apps";
     };
-    sonarr.port = 8989;
+    sonarr = {
+      port = 8989;
+      group = "arr";
+    };
     syncthing = {
       port = 8384;
       domain = null;
       show = false;
+      group = "utils";
     };
     transmission = {
       port = 9091;
       alt-status-codes = [ 401 ];
+      group = "arr";
     };
     wakapi = {
       port = 3001;
       domain = "waka.sndh.dev";
       public = true;
+      group = "utils";
     };
   };
 }

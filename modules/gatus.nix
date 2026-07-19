@@ -16,7 +16,7 @@ let
       in
       {
         inherit name;
-        inherit (srv) url;
+        inherit (srv) url group;
         interval = "5m";
         conditions = [
           statusCondition

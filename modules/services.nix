@@ -99,6 +99,7 @@
     gatus = {
       port = 3003;
       domain = "status.sndh.dev";
+      public = true;
       group = "dash";
     };
     glance = {
@@ -132,6 +133,7 @@
     };
     ntfy = {
       port = 2586;
+      public = true;
       group = "utils";
     };
     ollama = {

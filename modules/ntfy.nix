@@ -22,13 +22,19 @@ in
           auth-default-access = "deny-all";
           auth-users = [
             "karun:$2a$10$SjFiHl/DfANiKFrlLiE9hOomGBdG2m8.yDn5ZBJFeU9GgTlzy6kbO:admin"
-            "arr:$2a$10$mFqmMvBRl5Jn3Gb.0aRwyOIiaVhKA0qG3SOsDQb5Rp4zB5FPk3jJe:user"
+
+            # alerts
             "beszel:$2a$10$GwpUNbfqI3iZG.nD0t8mfukzre7I4vsg9k728zfwS7NlyXK8lGR9W:user"
-            "miniflux:$2a$10$T14gqSrymV6cs0Fecg5vIuMAvWPjIJySz/46WQGWl9Wx0BqXy4RW.:user"
+            "gatus:$2a$10$7eXgEQS.UVdXN/NChaCxtOePvgdkuvTPz83dJtJdPAmTy7Em1XEwG:user"
             "borgmatic:$2a$10$BbHUEkw0xGt4brZdLegi2./xM55wYtImYt2N/UQg.D8L3LHiM4Cbm:user"
+
+            # other stuff
+            "arr:$2a$10$mFqmMvBRl5Jn3Gb.0aRwyOIiaVhKA0qG3SOsDQb5Rp4zB5FPk3jJe:user"
+            "miniflux:$2a$10$T14gqSrymV6cs0Fecg5vIuMAvWPjIJySz/46WQGWl9Wx0BqXy4RW.:user"
           ];
           auth-access = [
             # alerts
+            "gatus:alerts:wo"
             "borgmatic:alerts:wo"
             "beszel:alerts:wo"
 

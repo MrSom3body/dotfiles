@@ -1,6 +1,7 @@
-{ config, lib, ... }:
+{ lib, ... }@flakeArgs:
 let
-  inherit (config.flake) meta;
+  flakeConfig = flakeArgs.config;
+  inherit (flakeConfig.flake) meta;
 
   mkServiceEndpoints =
     services:
@@ -28,11 +29,17 @@ let
             defaultGatusConditions ++ srv.gatus.conditions
           else
             srv.gatus.conditions;
+        alerts = [ { type = "ntfy"; } ];
       }
     ) services;
 in
 {
-  flake.modules.nixos.gatus = {
+  flake.modules.nixos.gatus = { config, ... }: {
+    sops.secrets.gatus = {
+      sopsFile = ../secrets/gatus.env;
+      format = "dotenv";
+    };
+
     services = {
       caddy.virtualHosts."${meta.services.gatus.domain}" = {
         extraConfig = ''
@@ -42,6 +49,7 @@ in
 
       gatus = {
         enable = true;
+        environmentFile = config.sops.secrets.gatus.path;
         settings = {
           web.port = meta.services.gatus.port;
           ui = {
@@ -50,7 +58,15 @@ in
             link = meta.services.gatus.url;
             default-sort-by = "group";
           };
-          endpoints = mkServiceEndpoints (config.flake.lib.getRunningServices config.flake);
+          endpoints = mkServiceEndpoints (flakeConfig.flake.lib.getRunningServices flakeConfig.flake);
+          alerting.ntfy = {
+            topic = "alerts";
+            url = meta.services.ntfy.url;
+            token = "$NTFY_TOKEN";
+            click = meta.services.gatus.url;
+            priority = 5;
+            default-alert.send-on-resolved = true;
+          };
         };
       };
     };

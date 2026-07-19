@@ -8,9 +8,11 @@ let
       name: srv:
       let
         statusCodes = [ 200 ] ++ srv.alt-status-codes;
-        statusCondition = builtins.concatStringsSep " || " (
-          map (c: "[STATUS] == ${toString c}") statusCodes
-        );
+        statusCondition =
+          if builtins.length srv.alt-status-codes == 0 then
+            "[STATUS] == 200"
+          else
+            "[STATUS] == any(${builtins.concatStringsSep ", " (map toString statusCodes)})";
       in
       {
         inherit name;

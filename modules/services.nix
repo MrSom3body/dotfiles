@@ -34,9 +34,28 @@
               type = lib.types.bool;
               default = false;
             };
+            external = lib.mkOption {
+              type = lib.types.bool;
+              default = false;
+            };
             alt-status-codes = lib.mkOption {
               type = lib.types.listOf lib.types.int;
               default = [ ];
+            };
+            gatus = lib.mkOption {
+              type = lib.types.submodule {
+                options = {
+                  defaultConditions = lib.mkOption {
+                    type = lib.types.bool;
+                    default = true;
+                  };
+                  conditions = lib.mkOption {
+                    type = lib.types.listOf lib.types.str;
+                    default = [ ];
+                  };
+                };
+              };
+              default = { };
             };
           };
         }
@@ -45,6 +64,13 @@
   };
 
   config.flake.meta.services = {
+    website = {
+      domain = "karun.sndh.dev";
+      icon = "mdi:web";
+      external = true;
+      public = true;
+      group = "misc";
+    };
     atuin = {
       port = 8987;
       group = "utils";

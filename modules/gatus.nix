@@ -13,15 +13,21 @@ let
             "[STATUS] == 200"
           else
             "[STATUS] == any(${builtins.concatStringsSep ", " (map toString statusCodes)})";
+
+        defaultGatusConditions = [
+          statusCondition
+          "[RESPONSE_TIME] < 500"
+        ];
       in
       {
         inherit name;
         inherit (srv) url group;
         interval = "5m";
-        conditions = [
-          statusCondition
-          "[RESPONSE_TIME] < 500"
-        ];
+        conditions =
+          if srv.gatus.defaultConditions then
+            defaultGatusConditions ++ srv.gatus.conditions
+          else
+            srv.gatus.conditions;
       }
     ) services;
 in
@@ -38,18 +44,7 @@ in
         enable = true;
         settings = {
           web.port = meta.services.gatus.port;
-          endpoints = [
-            {
-              name = "website";
-              url = "https://karun.sndh.dev";
-              interval = "5m";
-              conditions = [
-                "[STATUS] == 200"
-                "[RESPONSE_TIME] < 300"
-              ];
-            }
-          ]
-          ++ mkServiceEndpoints (config.flake.lib.getRunningServices config.flake);
+          endpoints = mkServiceEndpoints (config.flake.lib.getRunningServices config.flake);
         };
       };
     };

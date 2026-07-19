@@ -9,7 +9,6 @@ let
           --prefix PATH : ${final.lib.makeBinPath [ final.pandoc ]}
       '';
     });
-
   };
 
   stable-packages = final: _prev: {

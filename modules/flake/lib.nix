@@ -44,7 +44,7 @@ in
         ) flake.nixosConfigurations;
       in
       lib.filterAttrs (
-        _name: service: (service ? domain) && (allVirtualHosts ? "${service.domain}")
+        _name: service: (service.domain != null) && (allVirtualHosts ? "${service.domain}")
       ) flake.meta.services;
 
     mkSystems = {

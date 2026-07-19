@@ -1,145 +1,118 @@
-{
-  flake = {
-    meta.services = {
-      "atuin" = {
-        port = 8987;
-        domain = "atuin.sndh.dev";
-        icon = "di:atuin";
-        show = true;
-      };
-      "beszel" = {
-        port = 8090;
-        domain = "beszel.sndh.dev";
-        icon = "di:beszel";
-        show = true;
-      };
-      "ddns-updater" = {
-        port = 8000;
-        domain = "ddns.sndh.dev";
-        icon = "di:ddns-updater";
-        show = true;
-      };
-      "firefox-send" = {
-        port = 1443;
-        domain = "send.sndh.dev";
-        icon = "di:firefox-send";
-        show = true;
-        public = true;
-      };
-      "flaresolverr" = {
-        port = 8191;
-      };
-      "gatus" = {
-        port = 3003;
-        domain = "status.sndh.dev";
-        icon = "di:gatus";
-        show = true;
-      };
-      "glance" = {
-        port = 8080;
-        domain = "home.sndh.dev";
-        icon = "di:glance";
-        show = true;
-      };
-      "immich" = {
-        port = 2283;
-        domain = "immich.sndh.dev";
-        icon = "di:immich";
-        show = true;
-      };
-      "jellyfin" = {
-        port = 8096; # WARN don't change
-        domain = "jellyfin.sndh.dev";
-        icon = "di:jellyfin";
-        show = true;
-      };
-      "seerr" = {
-        port = 5055;
-        domain = "seerr.sndh.dev";
-        icon = "di:seerr";
-        show = true;
-      };
-      "karakeep" = {
-        port = 3002;
-        domain = "karakeep.sndh.dev";
-        icon = "di:karakeep";
-        show = true;
-      };
-      "loxone" = {
-        domain = "loxone.sndh.dev";
-        icon = "di:loxone";
-        show = true;
-      };
-      "miniflux" = {
-        port = 7070;
-        domain = "read.sndh.dev";
-        icon = "di:miniflux";
-        show = true;
-      };
-      "ntfy" = {
-        port = 2586;
-        domain = "ntfy.sndh.dev";
-        icon = "di:ntfy";
-        show = true;
-      };
-      "ollama" = {
-        port = 11434;
-      };
-      "open-webui" = {
-        port = 3000;
-        domain = "ai.sndh.dev";
-        icon = "di:open-webui";
-        show = true;
-      };
-      "prowlarr" = {
-        port = 9696;
-        domain = "prowlarr.sndh.dev";
-        icon = "di:prowlarr";
-        show = true;
-      };
-      "radarr" = {
-        port = 7878;
-        domain = "radarr.sndh.dev";
-        icon = "di:radarr";
-        show = true;
-      };
-      "radicale" = {
-        port = 5232;
-        domain = "dav.sndh.dev";
-        icon = "di:radicale";
-        show = true;
-      };
-      "searx" = {
-        port = 8888;
-        domain = "search.sndh.dev";
-        icon = "di:searxng";
-        alt-status-codes = [ 429 ];
-        show = true;
-        public = true;
-      };
-      "sonarr" = {
-        port = 8989;
-        domain = "sonarr.sndh.dev";
-        icon = "di:sonarr";
-        show = true;
-      };
-      "syncthing" = {
-        port = 8384;
-      };
-      "transmission" = {
-        port = 9091;
-        domain = "transmission.sndh.dev";
-        icon = "di:transmission";
-        alt-status-codes = [ 401 ];
-        show = true;
-      };
-      "wakapi" = {
-        port = 3001;
-        domain = "waka.sndh.dev";
-        icon = "di:wakapi";
-        show = true;
-        public = true;
-      };
+{ lib, ... }: {
+  options.flake.meta.services = lib.mkOption {
+    description = "Global registry of homelab services";
+    type = lib.types.attrsOf (
+      lib.types.submodule (
+        { name, config, ... }: {
+          options = {
+            port = lib.mkOption {
+              type = lib.types.nullOr lib.types.port;
+              default = null;
+            };
+            domain = lib.mkOption {
+              type = lib.types.nullOr lib.types.str;
+              default = "${name}.sndh.dev";
+            };
+            url = lib.mkOption {
+              type = lib.types.nullOr lib.types.str;
+              readOnly = true;
+              default = if config.domain != null then "https://${config.domain}" else null;
+            };
+            icon = lib.mkOption {
+              type = lib.types.str;
+              default = "di:${name}";
+            };
+            show = lib.mkOption {
+              type = lib.types.bool;
+              default = true;
+            };
+            public = lib.mkOption {
+              type = lib.types.bool;
+              default = false;
+            };
+            alt-status-codes = lib.mkOption {
+              type = lib.types.listOf lib.types.int;
+              default = [ ];
+            };
+          };
+        }
+      )
+    );
+  };
+
+  config.flake.meta.services = {
+    atuin.port = 8987;
+    beszel.port = 8090;
+    "ddns-updater" = {
+      port = 8000;
+      domain = "ddns.sndh.dev";
+    };
+    "firefox-send" = {
+      port = 1443;
+      domain = "send.sndh.dev";
+      public = true;
+    };
+    flaresolverr = {
+      port = 8191;
+      domain = null;
+      show = false;
+    };
+    gatus = {
+      port = 3003;
+      domain = "status.sndh.dev";
+    };
+    glance = {
+      port = 8080;
+      domain = "home.sndh.dev";
+    };
+    immich.port = 2283;
+    jellyfin = {
+      port = 8096; # WARN don't change
+    };
+    seerr.port = 5055;
+    karakeep.port = 3002;
+    loxone = { };
+    miniflux = {
+      port = 7070;
+      domain = "read.sndh.dev";
+    };
+    ntfy.port = 2586;
+    ollama = {
+      port = 11434;
+      domain = null;
+      show = false;
+    };
+    "open-webui" = {
+      port = 3000;
+      domain = "ai.sndh.dev";
+    };
+    prowlarr.port = 9696;
+    radarr.port = 7878;
+    radicale = {
+      port = 5232;
+      domain = "dav.sndh.dev";
+    };
+    searx = {
+      port = 8888;
+      domain = "search.sndh.dev";
+      icon = "di:searxng";
+      alt-status-codes = [ 429 ];
+      public = true;
+    };
+    sonarr.port = 8989;
+    syncthing = {
+      port = 8384;
+      domain = null;
+      show = false;
+    };
+    transmission = {
+      port = 9091;
+      alt-status-codes = [ 401 ];
+    };
+    wakapi = {
+      port = 3001;
+      domain = "waka.sndh.dev";
+      public = true;
     };
   };
 }

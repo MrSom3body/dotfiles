@@ -51,10 +51,9 @@ in
                     size = "full";
                     widgets =
                       let
-                        allServices =
-                          flake.lib.getRunningServices flake |> lib.filterAttrs (_name: service: service.show or false);
-                        privateServices = allServices |> lib.filterAttrs (_name: service: (!service.public or false));
-                        publicServices = allServices |> lib.filterAttrs (_name: service: (service.public or false));
+                        allServices = flake.lib.getRunningServices flake |> lib.filterAttrs (_name: service: service.show);
+                        privateServices = allServices |> lib.filterAttrs (_name: service: !service.public);
+                        publicServices = allServices |> lib.filterAttrs (_name: service: service.public);
                         formatServices =
                           services:
                           services
@@ -62,11 +61,10 @@ in
                             name: service:
                             {
                               title = name;
-                              url = "https://" + service.domain;
+                              inherit (service) url icon;
                             }
-                            // lib.optionalAttrs (service ? "icon") { inherit (service) icon; }
-                            // lib.optionalAttrs (service ? "alt-status-codes") {
-                              "alt-status-codes" = service."alt-status-codes";
+                            // lib.optionalAttrs (service.alt-status-codes != [ ]) {
+                              "alt-status-codes" = service.alt-status-codes;
                             }
                           );
                       in

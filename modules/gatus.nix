@@ -7,14 +7,14 @@ let
     lib.mapAttrsToList (
       name: srv:
       let
-        statusCodes = [ 200 ] ++ (srv.alt-status-codes or [ ]);
+        statusCodes = [ 200 ] ++ srv.alt-status-codes;
         statusCondition = builtins.concatStringsSep " || " (
           map (c: "[STATUS] == ${toString c}") statusCodes
         );
       in
       {
         inherit name;
-        url = "https://${srv.domain}";
+        inherit (srv) url;
         interval = "5m";
         conditions = [
           statusCondition

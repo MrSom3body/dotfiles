@@ -64,7 +64,7 @@ in
             url = meta.services.ntfy.url;
             token = "$NTFY_TOKEN";
             click = meta.services.gatus.url;
-            priority = 5;
+            priority = 4;
             default-alert = {
               send-on-resolved = true;
               failure-threshold = 6;

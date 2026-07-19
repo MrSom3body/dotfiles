@@ -5,7 +5,7 @@ let
 in
 {
   flake.modules.nixos.borgmatic =
-    { config, ... }:
+    { config, pkgs, ... }:
     let
       inherit (config.networking) hostName;
     in
@@ -29,7 +29,16 @@ in
           owner = "root";
           mode = "0400";
         };
+
+        borgmatic-gatus-token = {
+          sopsFile = ../secrets/borgmatic-gatus.env;
+          format = "dotenv";
+        };
       };
+
+      systemd.services.borgmatic.serviceConfig.EnvironmentFile = [
+        "-${config.sops.secrets.borgmatic-gatus-token.path}"
+      ];
 
       services.borgmatic = {
         enable = true;
@@ -165,6 +174,22 @@ in
               "finish"
             ];
           };
+
+          commands = [
+            {
+              after = "action";
+              when = [ "create" ];
+              run = [
+                "${lib.getExe pkgs.curl} -X POST -H \"Authorization: Bearer $BORGMATIC_GATUS_TOKEN\" \"${meta.services.gatus.url}/api/v1/endpoints/backups_${hostName}/external?success=true\""
+              ];
+            }
+            {
+              after = "error";
+              run = [
+                "${lib.getExe pkgs.curl} -G -X POST -H \"Authorization: Bearer $BORGMATIC_GATUS_TOKEN\" \"${meta.services.gatus.url}/api/v1/endpoints/backups_${hostName}/external\" --data-urlencode \"success=false\" --data-urlencode \"error={error}\""
+              ];
+            }
+          ];
         };
       };
     };

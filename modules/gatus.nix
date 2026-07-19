@@ -40,6 +40,15 @@ in
       format = "dotenv";
     };
 
+    sops.secrets.borgmatic-gatus-token = {
+      sopsFile = ../secrets/borgmatic-gatus.env;
+      format = "dotenv";
+    };
+
+    systemd.services.gatus.serviceConfig.EnvironmentFile = [
+      "-${config.sops.secrets.borgmatic-gatus-token.path}"
+    ];
+
     services = {
       caddy.virtualHosts."${meta.services.gatus.domain}" = {
         extraConfig = ''
@@ -59,6 +68,20 @@ in
             default-sort-by = "group";
           };
           endpoints = mkServiceEndpoints (flakeConfig.flake.lib.getRunningServices flakeConfig.flake);
+          external-endpoints =
+            lib.mapAttrsToList
+              (name: _conf: {
+                inherit name;
+                group = "backups";
+                token = "\${BORGMATIC_GATUS_TOKEN}";
+                heartbeat.interval = "48h";
+                alerts = [ { type = "ntfy"; } ];
+              })
+              (
+                lib.filterAttrs (
+                  _name: conf: conf.config.services.borgmatic.enable or false
+                ) flakeConfig.flake.nixosConfigurations
+              );
           alerting.ntfy = {
             topic = "alerts";
             url = meta.services.ntfy.url;

@@ -12,6 +12,7 @@ let
     "borgmatic"
     "ddns-updater"
     "firefox-send"
+    "gatus"
     "glance"
     # "karakeep" # TODO enable when https://github.com/NixOS/nixpkgs/issues/529285 gets resolved for karakeep
     "ntfy"

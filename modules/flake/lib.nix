@@ -36,6 +36,17 @@ in
   flake.lib = {
     isInstall = config: !(lib.hasAttrByPath [ "isoImage" ] config);
 
+    getRunningServices =
+      flake:
+      let
+        allVirtualHosts = lib.concatMapAttrs (
+          _name: conf: conf.config.services.caddy.virtualHosts or { }
+        ) flake.nixosConfigurations;
+      in
+      lib.filterAttrs (
+        _name: service: (service ? domain) && (allVirtualHosts ? "${service.domain}")
+      ) flake.meta.services;
+
     mkSystems = {
       linux = mkNixos "x86_64-linux" "nixos";
       linux-arm = mkNixos "aarch64-linux" "nixos";

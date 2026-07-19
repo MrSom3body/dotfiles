@@ -29,6 +29,12 @@
       "flaresolverr" = {
         port = 8191;
       };
+      "gatus" = {
+        port = 3003;
+        domain = "status.sndh.dev";
+        icon = "di:gatus";
+        show = true;
+      };
       "glance" = {
         port = 8080;
         domain = "home.sndh.dev";

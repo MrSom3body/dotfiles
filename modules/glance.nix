@@ -51,15 +51,8 @@ in
                     size = "full";
                     widgets =
                       let
-                        allVirtualHosts = lib.concatMapAttrs (
-                          _name: conf: conf.config.services.caddy.virtualHosts
-                        ) flake.nixosConfigurations;
                         allServices =
-                          meta.services
-                          |> lib.filterAttrs (
-                            _name: service:
-                            (service.show or false) && (service ? "domain") && (allVirtualHosts ? "${service.domain}")
-                          );
+                          flake.lib.getRunningServices flake |> lib.filterAttrs (_name: service: service.show or false);
                         privateServices = allServices |> lib.filterAttrs (_name: service: (!service.public or false));
                         publicServices = allServices |> lib.filterAttrs (_name: service: (service.public or false));
                         formatServices =

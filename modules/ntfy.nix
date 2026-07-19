@@ -28,16 +28,18 @@ in
             "borgmatic:$2a$10$BbHUEkw0xGt4brZdLegi2./xM55wYtImYt2N/UQg.D8L3LHiM4Cbm:user"
           ];
           auth-access = [
-            "borgmatic:borgmatic:rw"
+            # alerts
+            "borgmatic:alerts:wo"
+            "beszel:alerts:wo"
 
-            "arr:jellyseer:rw"
-            "arr:prowlarr:rw"
-            "arr:radarr:rw"
-            "arr:sonarr:rw"
+            # arr
+            "arr:seerr:wo"
+            "arr:prowlarr:wo"
+            "arr:radarr:wo"
+            "arr:sonarr:wo"
 
-            "beszel:beszel:rw"
-
-            "miniflux:miniflux:rw"
+            # misc
+            "miniflux:miniflux:wo"
           ];
 
           attachment-cache-dir = "/var/lib/ntfy-sh/attachments";

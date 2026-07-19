@@ -23,7 +23,7 @@ let
       {
         inherit name;
         inherit (srv) url group;
-        interval = "5m";
+        interval = "30s";
         conditions =
           if srv.gatus.defaultConditions then
             defaultGatusConditions ++ srv.gatus.conditions
@@ -65,7 +65,10 @@ in
             token = "$NTFY_TOKEN";
             click = meta.services.gatus.url;
             priority = 5;
-            default-alert.send-on-resolved = true;
+            default-alert = {
+              send-on-resolved = true;
+              failure-threshold = 6;
+            };
           };
         };
       };

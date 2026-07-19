@@ -23,7 +23,6 @@ let
     "emulation"
     "fingerprint"
     "flatpak"
-    "jetbrains"
     "lanzaboote"
     "libvirtd"
     "logitech"

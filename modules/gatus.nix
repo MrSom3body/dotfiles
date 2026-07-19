@@ -44,6 +44,12 @@ in
         enable = true;
         settings = {
           web.port = meta.services.gatus.port;
+          ui = {
+            title = "status | som3lab";
+            header = "som3lab's uptime";
+            link = meta.services.gatus.url;
+            default-sort-by = "group";
+          };
           endpoints = mkServiceEndpoints (config.flake.lib.getRunningServices config.flake);
         };
       };

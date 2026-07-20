@@ -60,10 +60,6 @@ in
         enable = true;
         settings.server.port = meta.services.prowlarr.port;
       };
-      flaresolverr = {
-        enable = true;
-        inherit (meta.services.flaresolverr) port;
-      };
       sonarr = {
         enable = true;
         settings.server.port = meta.services.sonarr.port;

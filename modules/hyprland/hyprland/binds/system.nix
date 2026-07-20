@@ -41,6 +41,13 @@
             }
             {
               _args = [
+                "CTRL + B"
+                (lua ''hl.dsp.exec_cmd("rfkill toggle bluetooth")'')
+                { description = "Toggle Bluetooth"; }
+              ];
+            }
+            {
+              _args = [
                 "C"
                 (lua ''hl.dsp.exec_cmd("${runOnce "hyprpicker -a"}")'')
                 { description = "Open color picker"; }
@@ -62,13 +69,6 @@
             }
             {
               _args = [
-                "N"
-                (lua ''hl.dsp.exec_cmd("hypr-focus-or-launch-tui impala")'')
-                { description = "Open network configuration"; }
-              ];
-            }
-            {
-              _args = [
                 "O"
                 (lua ''hl.dsp.exec_cmd("wl-ocr -nc")'')
                 { description = "Copy text from screen"; }
@@ -86,6 +86,20 @@
                 "SHIFT + R"
                 (lua ''hl.dsp.exec_cmd("uwsm app -- hyprcast -a")'')
                 { description = "Start/stop screencast (with audio)"; }
+              ];
+            }
+            {
+              _args = [
+                "W"
+                (lua ''hl.dsp.exec_cmd("hypr-focus-or-launch-tui impala")'')
+                { description = "Open Wi-Fi configuration"; }
+              ];
+            }
+            {
+              _args = [
+                "CTRL + W"
+                (lua ''hl.dsp.exec_cmd("rfkill toggle wifi")'')
+                { description = "Toggle Wi-Fi"; }
               ];
             }
 

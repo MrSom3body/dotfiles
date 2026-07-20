@@ -66,14 +66,14 @@ in
           };
           storage =
             let
-              results = 10000;
+              results = 1000;
             in
             {
               path = "/var/lib/gatus/data.db";
               type = "sqlite";
               caching = true;
               maximum-number-of-results = results;
-              maximum-number-of-events = results / 100;
+              maximum-number-of-events = results / 2;
             };
           endpoints = mkServiceEndpoints (flakeConfig.flake.lib.getRunningServices flakeConfig.flake);
           external-endpoints =

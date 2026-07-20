@@ -64,6 +64,17 @@ in
             link = meta.services.gatus.url;
             default-sort-by = "group";
           };
+          storage =
+            let
+              results = 10000;
+            in
+            {
+              path = "/var/lib/gatus/data.db";
+              type = "sqlite";
+              caching = true;
+              maximum-number-of-results = results;
+              maximum-number-of-events = results / 100;
+            };
           endpoints = mkServiceEndpoints (flakeConfig.flake.lib.getRunningServices flakeConfig.flake);
           external-endpoints =
             lib.mapAttrsToList

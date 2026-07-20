@@ -15,10 +15,7 @@ let
           else
             "[STATUS] == any(${builtins.concatStringsSep ", " (map toString statusCodes)})";
 
-        defaultGatusConditions = [
-          statusCondition
-          "[RESPONSE_TIME] < 500"
-        ];
+        defaultGatusConditions = [ statusCondition ];
       in
       {
         inherit name;

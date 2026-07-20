@@ -42,11 +42,65 @@ in
         allVirtualHosts = lib.concatMapAttrs (
           _name: conf: conf.config.services.caddy.virtualHosts or { }
         ) flake.nixosConfigurations;
+
+        hostSpecificServices = lib.flatten (
+          lib.mapAttrsToList (
+            name: service:
+            if service.hostSpecific && service.checkEnabled != null then
+              lib.filter (x: x != null) (
+                lib.mapAttrsToList (
+                  hostName: hostConf:
+                  if service.checkEnabled hostConf.config then
+                    let
+                      evalDomain =
+                        if builtins.isString service.domain then
+                          service.domain
+                        else
+                          (if service.domain != null then service.domain hostName else null);
+                      evalUrl =
+                        if builtins.isString service.url then
+                          service.url
+                        else
+                          (if service.url != null then service.url hostName else null);
+                    in
+                    if
+                      service.external
+                      || (evalDomain != null && (allVirtualHosts ? "${evalDomain}"))
+                      || (evalDomain == null)
+                    then
+                      service
+                      // {
+                        name = "${name}-${hostName}";
+                        title = "${service.title} (${hostName})";
+                        domain = evalDomain;
+                        url = evalUrl;
+                      }
+                    else
+                      null
+                  else
+                    null
+                ) flake.nixosConfigurations
+              )
+            else
+              [ ]
+          ) flake.meta.services
+        );
+
+        globalServices = lib.mapAttrsToList (name: service: service // { inherit name; }) (
+          lib.filterAttrs (
+            _name: service:
+            !service.hostSpecific
+            && (service.domain != null)
+            && (service.external || (allVirtualHosts ? "${service.domain}"))
+          ) flake.meta.services
+        );
       in
-      lib.filterAttrs (
-        _name: service:
-        (service.domain != null) && (service.external || (allVirtualHosts ? "${service.domain}"))
-      ) flake.meta.services;
+      builtins.listToAttrs (
+        map (s: {
+          inherit (s) name;
+          value = s;
+        }) (globalServices ++ hostSpecificServices)
+      );
 
     mkSystems = {
       linux = mkNixos "x86_64-linux" "nixos";

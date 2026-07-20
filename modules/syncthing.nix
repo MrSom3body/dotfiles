@@ -76,13 +76,19 @@ in
             overrideFolders = false;
           };
           caddy.virtualHosts = {
-            "syncthing.${config.networking.hostName}.${config.networking.domain}" = {
-              extraConfig = ''
-                reverse_proxy http://127.0.0.1:${toString meta.services.syncthing.port} {
-                  header_up Host {upstream_hostport}
-                }
-              '';
-            };
+            "${
+              if builtins.isString meta.services.syncthing.domain then
+                meta.services.syncthing.domain
+              else
+                meta.services.syncthing.domain config.networking.hostName
+            }" =
+              {
+                extraConfig = ''
+                  reverse_proxy http://127.0.0.1:${toString meta.services.syncthing.port} {
+                    header_up Host {upstream_hostport}
+                  }
+                '';
+              };
           };
         };
       };

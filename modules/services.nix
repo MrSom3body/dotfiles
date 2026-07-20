@@ -10,13 +10,27 @@
               default = null;
             };
             domain = lib.mkOption {
-              type = lib.types.nullOr lib.types.str;
+              type = lib.types.nullOr (lib.types.either lib.types.str (lib.types.functionTo lib.types.str));
               default = "${name}.sndh.dev";
             };
+            title = lib.mkOption {
+              type = lib.types.str;
+              default = name;
+              description = "Display name for the service";
+            };
             url = lib.mkOption {
-              type = lib.types.nullOr lib.types.str;
+              type = lib.types.nullOr (lib.types.either lib.types.str (lib.types.functionTo lib.types.str));
               readOnly = true;
-              default = if config.domain != null then "https://${config.domain}" else null;
+              default =
+                if config.domain != null then
+                  (
+                    if builtins.isString config.domain then
+                      "https://${config.domain}"
+                    else
+                      hostName: "https://${config.domain hostName}"
+                  )
+                else
+                  null;
             };
             icon = lib.mkOption {
               type = lib.types.str;
@@ -37,6 +51,16 @@
             external = lib.mkOption {
               type = lib.types.bool;
               default = false;
+            };
+            hostSpecific = lib.mkOption {
+              type = lib.types.bool;
+              default = false;
+              description = "Whether this service runs independently on multiple hosts";
+            };
+            checkEnabled = lib.mkOption {
+              type = lib.types.nullOr (lib.types.functionTo lib.types.bool);
+              default = null;
+              description = "Function to check if the service is enabled on a host config";
             };
             alt-status-codes = lib.mkOption {
               type = lib.types.listOf lib.types.int;
@@ -81,8 +105,10 @@
     };
     "ddns-updater" = {
       port = 8000;
-      domain = "ddns.sndh.dev";
+      domain = hostName: "ddns.${hostName}.sndh.dev";
       group = "infra";
+      hostSpecific = true;
+      checkEnabled = hostConf: hostConf.services.ddns-updater.enable or false;
     };
     "firefox-send" = {
       port = 1443;
@@ -174,9 +200,11 @@
     };
     syncthing = {
       port = 8384;
-      domain = null;
-      show = false;
+      domain = hostName: "syncthing.${hostName}.sndh.dev";
+      show = true;
       group = "utils";
+      hostSpecific = true;
+      checkEnabled = hostConf: hostConf.services.syncthing.enable or false;
     };
     transmission = {
       port = 9091;

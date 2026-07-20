@@ -6,7 +6,7 @@ let
   mkServiceEndpoints =
     services:
     lib.mapAttrsToList (
-      name: srv:
+      _name: srv:
       let
         statusCodes = [ 200 ] ++ srv.alt-status-codes;
         statusCondition =
@@ -18,7 +18,7 @@ let
         defaultGatusConditions = [ statusCondition ];
       in
       {
-        inherit name;
+        name = srv.title;
         inherit (srv) url group;
         interval = "30s";
         conditions =

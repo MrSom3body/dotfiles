@@ -58,10 +58,9 @@ in
                           services:
                           services
                           |> lib.mapAttrsToList (
-                            name: service:
+                            _name: service:
                             {
-                              title = name;
-                              inherit (service) url icon;
+                              inherit (service) title url icon;
                             }
                             // lib.optionalAttrs (service.alt-status-codes != [ ]) {
                               "alt-status-codes" = service.alt-status-codes;

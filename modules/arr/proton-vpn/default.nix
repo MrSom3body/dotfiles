@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.arrr =
+  flake.modules.nixos.arr =
     { config, ... }:
     let
       active = "de-834";

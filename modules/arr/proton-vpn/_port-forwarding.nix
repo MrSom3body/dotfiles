@@ -16,7 +16,7 @@
       path = builtins.attrValues {
         inherit (pkgs)
           coreutils
-          iptables
+          nftables
           libnatpmp
           ripgrep
           transmission_4
@@ -40,19 +40,23 @@
               PORT=$(rg "Mapped public port (\d+)" -or '$1' ${outPath})
 
               if [[ -n "$PORT" && "$PORT" != "$OLD_PORT" ]]; then
-                echo "Allowing port $PORT via iptables"
+                echo "Allowing port $PORT via nftables"
 
-                if [[ -n "$OLD_PORT" ]]; then
-                  iptables -D INPUT -p tcp --dport "$OLD_PORT" -i ${vpnInterface} -j ACCEPT || true
-                  iptables -D INPUT -p udp --dport "$OLD_PORT" -i ${vpnInterface} -j ACCEPT || true
-                fi
+                # Ensure our custom chain exists and is flushed
+                nft 'add chain inet nixos-fw protonvpn-ports' 2>/dev/null || true
+                nft 'flush chain inet nixos-fw protonvpn-ports'
+                nft "add rule inet nixos-fw protonvpn-ports tcp dport $PORT accept"
+                nft "add rule inet nixos-fw protonvpn-ports udp dport $PORT accept"
 
-                iptables -I INPUT -p tcp --dport "$PORT" -i ${vpnInterface} -j ACCEPT
-                iptables -I INPUT -p udp --dport "$PORT" -i ${vpnInterface} -j ACCEPT
                 OLD_PORT="$PORT"
 
                 # Set transmission port
                 TR_AUTH=":$(cat ${config.sops.secrets.transmission-password.path})" transmission-remote localhost --port "$PORT" --authenv --no-portmap
+              fi
+
+              # Ensure jump rule exists (in case the NixOS firewall was reloaded)
+              if ! nft list chain inet nixos-fw input 2>/dev/null | rg -q 'jump protonvpn-ports'; then
+                nft "insert rule inet nixos-fw input iifname ${vpnInterface} jump protonvpn-ports" 2>/dev/null || true
               fi
 
               sleep 45

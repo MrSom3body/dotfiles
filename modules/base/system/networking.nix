@@ -30,6 +30,10 @@
 
             RoamRetryInterval = 15;
           };
+          Scan = {
+            DisablePeriodicScan = false;
+            DisableRoamingScan = false;
+          };
 
           DriverQuirks.DefaultInterface = ""; # https://github.com/NixOS/nixpkgs/issues/454655
         };

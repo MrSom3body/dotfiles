@@ -33,7 +33,7 @@ let
     |> lib.unique;
 
   actions = {
-    checkout = "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"; # v7
+    checkout = "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"; # v7.0.1
     nothing-but-nix = "wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7"; # v10
     install-nix-action = "cachix/install-nix-action@630ae543ea3a38a9a4166f03376c02c50f408342"; # v31.11.0
     cachix = "cachix/cachix-action@5f2d7c5294214f71b873db4b969586b980625e71"; # v17

@@ -19,6 +19,7 @@
       transmission = {
         settings = {
           bind-address-ipv4 = "10.2.0.2";
+          bind-address-ipv6 = "::1";
           rpc-authentication-required = true;
           download-dir = "/media/torrents";
         };

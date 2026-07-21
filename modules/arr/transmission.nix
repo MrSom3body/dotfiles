@@ -22,6 +22,8 @@
           bind-address-ipv6 = "::1";
           rpc-authentication-required = true;
           download-dir = "/media/torrents";
+          incomplete-dir = "/media/torrents/.incomplete";
+          incomplete-dir-enabled = true;
         };
 
         credentialsFile = config.sops.templates."transmission.json".path;

@@ -62,6 +62,15 @@
       keymap = {
         mgr.prepend_keymap = [
           {
+            # WARN this has never worked for firefox 🥀
+            # see https://bugzilla.mozilla.org/show_bug.cgi?id=864052
+            on = "y";
+            run = [
+              ''shell -- for path in %s; do echo "file://$path"; done | ${lib.getExe' pkgs.wl-clipboard "wl-copy"} -t text/uri-list''
+              "yank"
+            ];
+          }
+          {
             on = "M";
             run = "plugin mount";
             desc = "Open mount";

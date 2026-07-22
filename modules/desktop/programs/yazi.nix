@@ -92,6 +92,16 @@
             on = "<C-n>";
             run = ''shell '${lib.getExe pkgs.ripdrag} "$@" -x 2>/dev/null &' --confirm'';
           }
+          {
+            on = "<C-s>";
+            run = ''shell --block -- send-to-phone "$@"'';
+            desc = "Send to phone (Auto-select)";
+          }
+          {
+            on = "<A-s>";
+            run = ''shell --block -- send-to-phone --no-auto "$@"'';
+            desc = "Send to phone (Force menu)";
+          }
         ];
       };
     };

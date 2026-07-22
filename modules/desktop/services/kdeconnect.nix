@@ -1,4 +1,4 @@
-{
+{ self, ... }: {
   flake.modules = {
     nixos.desktop =
       let
@@ -17,7 +17,9 @@
       };
 
     homeManager.desktop = { pkgs, ... }: {
-      home.packages = builtins.attrValues { inherit (pkgs) procps systemd; };
+      home.packages = builtins.attrValues { inherit (pkgs) procps systemd; } ++ [
+        self.packages.${pkgs.stdenv.hostPlatform.system}.send-to-phone
+      ];
 
       services.kdeconnect = {
         enable = true;

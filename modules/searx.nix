@@ -78,15 +78,6 @@ in
               name = "duden";
               disabled = false;
             }
-
-            {
-              name = "google";
-              disabled = true;
-            }
-            {
-              name = "startpage";
-              disabled = true;
-            }
           ];
         };
 

@@ -173,6 +173,10 @@
       domain = "ai.sndh.dev";
       group = "ai";
     };
+    paperless = {
+      port = 3004;
+      group = "apps";
+    };
     prowlarr = {
       port = 9696;
       group = "arr";

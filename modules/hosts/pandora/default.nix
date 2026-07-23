@@ -11,6 +11,7 @@ let
     "immich"
     "minecraft-server/kn-server"
     "miniflux"
+    "paperless"
     "smartd"
     "stylix"
     "syncthing-server"

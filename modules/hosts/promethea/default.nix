@@ -18,6 +18,7 @@ let
     "atuin"
     "bluetooth"
     "clamav"
+    "copilot-cli"
     # "design"
     "distrobox"
     "emulation"

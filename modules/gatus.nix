@@ -20,7 +20,7 @@ let
       {
         name = srv.title;
         inherit (srv) url group;
-        interval = "30s";
+        interval = "1m";
         conditions =
           if srv.gatus.defaultConditions then
             defaultGatusConditions ++ srv.gatus.conditions
@@ -64,17 +64,11 @@ in
             link = meta.services.gatus.url;
             default-sort-by = "group";
           };
-          storage =
-            let
-              results = 1000;
-            in
-            {
-              path = "/var/lib/gatus/data.db";
-              type = "sqlite";
-              caching = true;
-              maximum-number-of-results = results;
-              maximum-number-of-events = results / 2;
-            };
+          storage = {
+            path = "/var/lib/gatus/data.db";
+            type = "sqlite";
+            caching = true;
+          };
           endpoints = mkServiceEndpoints (flakeConfig.flake.lib.getRunningServices flakeConfig.flake);
           external-endpoints =
             lib.mapAttrsToList

@@ -17,6 +17,7 @@
 
     services = {
       transmission = {
+        group = "arr";
         settings = {
           bind-address-ipv4 = "10.2.0.2";
           bind-address-ipv6 = "::1";

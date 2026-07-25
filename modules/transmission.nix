@@ -18,11 +18,14 @@ in
         settings = {
           rpc-port = meta.services.transmission.port;
 
-          speed-limit-up = 2000;
-          speed-limit-up-enabled = true;
-
           ratio-limit = 1;
           ratio-limit-enabled = true;
+
+          alt_speed_time_enabled = true;
+          alt_speed_up = 3000; # kB/s
+          alt_speed_down = 3000; # kB/s
+          alt_speed_time_begin = 1 * 60; # min
+          alt_speed_time_end = 11 * 60; # min
         };
       };
     };

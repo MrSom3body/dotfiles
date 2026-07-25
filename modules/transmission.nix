@@ -18,6 +18,8 @@ in
         settings = {
           rpc-port = meta.services.transmission.port;
 
+          incomplete_dir_enabled = false;
+
           ratio-limit = 1;
           ratio-limit-enabled = true;
 

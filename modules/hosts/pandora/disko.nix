@@ -6,7 +6,7 @@
       disk = {
         main = {
           type = "disk";
-          device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_250GB_S3YJNF0JC14829N";
+          device = "/dev/vda";
           content = {
             type = "gpt";
             partitions = {
@@ -59,7 +59,7 @@
 
         media = {
           type = "disk";
-          device = "/dev/disk/by-id/ata-TOSHIBA_DT01ACA050_95GHSX9AS";
+          device = "/dev/vdb";
           content = {
             type = "gpt";
             partitions = {

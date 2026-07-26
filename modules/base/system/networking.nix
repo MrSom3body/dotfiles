@@ -4,6 +4,7 @@
       domain = "sndh.dev";
 
       nftables.enable = true;
+      useDHCP = true;
 
       useNetworkd = true;
       networkmanager = {

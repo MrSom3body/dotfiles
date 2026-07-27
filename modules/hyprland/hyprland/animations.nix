@@ -12,9 +12,9 @@
               "bounce"
               {
                 type = "spring";
-                mass = 1;
-                stiffness = 60;
-                dampening = 11;
+                mass = 0.8;
+                stiffness = 400;
+                dampening = 25;
               }
             ];
           }
@@ -23,9 +23,9 @@
               "slight_bounce"
               {
                 type = "spring";
-                mass = 1;
-                stiffness = 80;
-                dampening = 14;
+                mass = 0.8;
+                stiffness = 440;
+                dampening = 30;
               }
             ];
           }

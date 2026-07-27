@@ -28,10 +28,12 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         LogLevel = "VERBOSE";
+        ModuliFile = toString (
+          pkgs.runCommand "filterModuliFile" { } ''
+            awk '$5 >= 3071' "${config.programs.ssh.package}/etc/ssh/moduli" >"$out"
+          ''
+        );
       };
-      moduliFile = pkgs.runCommand "filterModuliFile" { } ''
-        awk '$5 >= 3071' "${config.programs.ssh.package}/etc/ssh/moduli" >"$out"
-      '';
     };
   };
 }

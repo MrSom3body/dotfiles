@@ -1,5 +1,5 @@
 { config, ... }: {
-  flake.modules.homeManager.homeManager = { pkgs, ... }: {
+  flake.modules.homeManager.homeManager = { pkgs, lib, ... }: {
     programs = {
       gpg = {
         enable = true;
@@ -8,13 +8,12 @@
           keyserver = "hkps://keys.openpgp.org";
         };
       };
-      wayprompt.enable = true;
     };
 
     services.gpg-agent = {
       enable = true;
       enableSshSupport = true;
-      pinentry.package = pkgs.wayprompt;
+      pinentry.package = lib.mkDefault pkgs.pinentry-curses;
 
       defaultCacheTtl = 1800;
       maxCacheTtl = 7200;

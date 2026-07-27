@@ -82,17 +82,6 @@ in
               }
             ];
 
-            workspace_rule = [
-              {
-                workspace = "4";
-                monitor = "HDMI-A-1";
-              }
-              {
-                workspace = "5";
-                monitor = "HDMI-A-1";
-              }
-            ];
-
             permission = [
               ### Keyboards ###
               {

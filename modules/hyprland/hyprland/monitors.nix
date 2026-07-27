@@ -9,24 +9,6 @@
           scale = "auto";
         }
       ];
-
-      workspace_rule = [
-        {
-          workspace = "1";
-          monitor = "eDP-1";
-          default = true;
-        }
-        {
-          workspace = "2";
-          monitor = "eDP-1";
-          default = true;
-        }
-        {
-          workspace = "3";
-          monitor = "eDP-1";
-          default = true;
-        }
-      ];
     };
   };
 }

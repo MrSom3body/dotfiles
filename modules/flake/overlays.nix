@@ -9,6 +9,21 @@ let
           --prefix PATH : ${final.lib.makeBinPath [ final.pandoc ]}
       '';
     });
+
+    # TODO remove when https://github.com/NixOS/nixpkgs/issues/542586 gets resolved
+    pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+      (_pyFinal: pyPrev: {
+        paho-mqtt = pyPrev.paho-mqtt.overridePythonAttrs (oldAttrs: {
+          disabledTests = (oldAttrs.disabledTests or [ ]) ++ [
+            "test_callback_v1_mqtt3"
+            "test_callback_v2_mqtt3"
+            "test_03_publish_helper_qos0"
+            "test_03_publish_helper_qos0_v5"
+            "test_08_ssl_fake_cacert"
+          ];
+        });
+      })
+    ];
   };
 
   stable-packages = final: _prev: {

@@ -13,6 +13,7 @@ in
       pkgs,
       lib,
       osConfig,
+      config,
       ...
     }:
     {
@@ -22,6 +23,11 @@ in
       };
 
       home.packages = [ pkgs.typstyle ]; # for formatting typst
+
+      programs.fish.interactiveShellInit = ''
+        set -gx LT_USERNAME $(cat ${config.sops.secrets."language-tool/username".path})
+        set -gx LT_API_KEY $(cat ${config.sops.secrets."language-tool/api-key".path})
+      '';
 
       programs.helix.languages.language-server = {
         ansible-language-server.command = lib.getExe pkgs.ansible-language-server;
@@ -36,7 +42,16 @@ in
         gopls.command = lib.getExe pkgs.gopls;
         lemminx.command = lib.getExe pkgs.lemminx;
         lua-language-server.command = lib.getExe pkgs.lua-language-server;
-        ltex-ls-plus.command = lib.getExe' pkgs.ltex-ls-plus "ltex-ls-plus";
+        ltex-ls-plus = {
+          command = lib.getExe' pkgs.ltex-ls-plus "ltex-ls-plus";
+          config.ltex = {
+            languageToolHttpServerUri = "https://api.languagetoolplus.com/";
+            languageToolOrg = {
+              username = "\${LT_USERNAME}";
+              apiKey = "\${LT_API_KEY}";
+            };
+          };
+        };
         markdown-oxide.command = lib.getExe pkgs.markdown-oxide;
         nixd = {
           command = lib.getExe pkgs.nixd;

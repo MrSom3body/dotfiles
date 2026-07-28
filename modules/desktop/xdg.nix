@@ -24,7 +24,7 @@ in
       { config, pkgs, ... }:
       let
         browser = [ "zen.desktop" ];
-        imageViewer = [ "org.gnome.Loupe.desktop" ];
+        imageViewer = [ "imv-dir.desktop" ];
         videoPlayer = [ "mpv.desktop" ];
         audioPlayer = [ "io.bassi.Amberol.desktop" ];
 
@@ -37,7 +37,18 @@ in
             }) list
           );
 
-        images = xdgAssociations "image" [ "png" "svg" "jpeg" "gif" "heif" ] imageViewer;
+        images = xdgAssociations "image" [
+          "png"
+          "svg"
+          "jpeg"
+          "gif"
+          "heif"
+          "webp"
+          "avif"
+          "jxl"
+          "bmp"
+          "tiff"
+        ] imageViewer;
         audios = xdgAssociations "audio" [ "mp3" "flac" "wav" "aac" ] audioPlayer;
         videos = xdgAssociations "video" [ "mp4" "avi" "mkv" ] videoPlayer;
 

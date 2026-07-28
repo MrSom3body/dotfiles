@@ -413,11 +413,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1785206571,
-        "narHash": "sha256-bhfPsjMIorXYnRoMIYkq8bqdtegsRe8s/Fvhf6sVTOQ=",
+        "lastModified": 1785214792,
+        "narHash": "sha256-Btu3R0vEzzt4tPnxIvqzuR1slBvWXzP3E4fx8xwFLOw=",
         "owner": "NousResearch",
         "repo": "hermes-agent",
-        "rev": "84858d76ba4a77a66f1f65cf0289325767b82f13",
+        "rev": "3c388db06b6543821f15ed62efb9d8e7cd9bb9be",
         "type": "github"
       },
       "original": {
@@ -501,11 +501,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785206702,
-        "narHash": "sha256-VsQhavo5LHsvKaOCW7XNYYDr4JfWLOvMkdp+hsyj3EE=",
+        "lastModified": 1785206787,
+        "narHash": "sha256-QXnVNc4GXjpQl88yo87Mr/nJ0eQGn8GLySCQqudrTEQ=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "5761f3751c5a628f92d4d18b6cf8f79f095ca116",
+        "rev": "f22857db0b1147caae1250c439d1a21a815b4d6f",
         "type": "github"
       },
       "original": {
@@ -565,11 +565,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1785124120,
-        "narHash": "sha256-+p0pdzJPbVGS6B/XmNmDuh51Xr4ZblwXwFutxYW4IUw=",
+        "lastModified": 1785208700,
+        "narHash": "sha256-CWH9baHOJoqa7AH+WWgGXO9ULqnhIBaVSnaoYeb/Vlk=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "c6a0defd344b6f7b7b618b3820a724aebf704dc2",
+        "rev": "38aff2958f87e29f463b549b79596ac46c6ab11b",
         "type": "github"
       },
       "original": {
@@ -830,11 +830,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785131767,
-        "narHash": "sha256-VNbQv2P0zgaNh96mT4LrnX7hdXgiC5nBH+uvyrrVX7U=",
+        "lastModified": 1785216007,
+        "narHash": "sha256-KrGilCiFVxEQOaBD3TODhklZzE7uICQvqsBWgycIABA=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "c67ce00525464a710971351c183ce67acb6ca827",
+        "rev": "8ec8a5a41f8d8244e672829c9cd705416139d3f0",
         "type": "github"
       },
       "original": {
@@ -1274,11 +1274,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785131374,
-        "narHash": "sha256-Q0ZYPY5CH223ws+0CtQP1B0B/QkdM9JYIE6mR9lFUUk=",
+        "lastModified": 1785216303,
+        "narHash": "sha256-oCdqwzYt5WZgxpnypBWHQyXnTC2jIhBuyUyr4VPAreU=",
         "owner": "NotAShelf",
         "repo": "watt",
-        "rev": "a1b28eb2305e15266bcf69e8c39da0e91d7708f3",
+        "rev": "ea6143c75ce690484dcce95997244870ad4ce3f4",
         "type": "github"
       },
       "original": {

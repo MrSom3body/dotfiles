@@ -81,11 +81,6 @@ in
             follow_min_visible = 0.4;
           };
 
-          cursor = {
-            no_hardware_cursors = false;
-            use_cpu_buffer = true;
-          };
-
           group = lib.mkForce {
             "col.border_active" = groupBorderActive;
             "col.border_inactive" = groupBorderInactive;

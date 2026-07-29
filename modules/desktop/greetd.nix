@@ -14,6 +14,7 @@
 
     programs.regreet = {
       enable = true;
+      settings.skip_selection = true;
     };
   };
 }

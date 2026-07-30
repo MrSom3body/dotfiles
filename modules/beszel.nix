@@ -8,6 +8,7 @@ in
       beszel.hub = {
         enable = true;
         inherit (meta.services.beszel) port;
+        environment.APP_URL = meta.services.beszel.url;
       };
 
       caddy.virtualHosts = {

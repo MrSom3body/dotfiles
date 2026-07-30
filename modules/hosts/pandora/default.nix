@@ -5,7 +5,6 @@ let
     "server"
     "shell"
 
-    "actual"
     "atuin"
     "atuin-server"
     "borgmatic"

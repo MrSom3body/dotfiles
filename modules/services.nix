@@ -95,6 +95,11 @@
       public = true;
       group = "misc";
     };
+    actual = {
+      port = 3006;
+      group = "apps";
+      domain = "budget.sndh.dev";
+    };
     atuin = {
       port = 8987;
       group = "utils";

@@ -212,7 +212,7 @@ in
             tokenEndpointAuthMethod = "client_secret_post";
           };
 
-          passwordLogin.enabled = true;
+          passwordLogin.enabled = false;
           reverseGeocoding.enabled = true;
 
           server = {

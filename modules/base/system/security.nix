@@ -77,7 +77,13 @@
       };
 
       # accept acme terms
-      acme.acceptTerms = true;
+      acme = {
+        acceptTerms = true;
+        defaults = {
+          email = "karun@${config.networking.domain}";
+          dnsProvider = "cloudflare";
+        };
+      };
     };
   };
 }

@@ -12,28 +12,22 @@ in
       certDir = cert.directory;
     in
     {
-      sops.secrets = {
-        acme-cloudflare-token.sopsFile = ../secrets/acme.yaml;
+      sops.secrets =
+        let
+          kanidmSecrets = {
+            sopsFile = ../secrets/kanidm.yaml;
+            owner = "kanidm";
+            group = "kanidm";
+            mode = "440";
+          };
+        in
+        {
+          acme-cloudflare-token.sopsFile = ../secrets/acme.yaml;
 
-        kanidm-admin-password = {
-          sopsFile = ../secrets/kanidm.yaml;
-          owner = "kanidm";
-          group = "kanidm";
-          mode = "440";
+          kanidm-admin-password = kanidmSecrets;
+          kanidm-idm-admin-password = kanidmSecrets;
+          kanidm-oauth2-wakapi = kanidmSecrets;
         };
-        kanidm-idm-admin-password = {
-          sopsFile = ../secrets/kanidm.yaml;
-          owner = "kanidm";
-          group = "kanidm";
-          mode = "440";
-        };
-        kanidm-oauth2-wakapi = {
-          sopsFile = ../secrets/kanidm.yaml;
-          owner = "kanidm";
-          group = "kanidm";
-          mode = "440";
-        };
-      };
 
       users.groups.kanidm-tls = { };
       users.users.caddy.extraGroups = [ "kanidm-tls" ];

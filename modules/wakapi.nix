@@ -40,7 +40,17 @@ in
             security = {
               insecure_cookies = false;
               allow_signup = false;
+              oidc_allow_signup = true;
               disable_frontpage = true;
+
+              oidc = [
+                {
+                  name = "kanidm";
+                  display_name = "som3sso";
+                  client_id = "wakapi";
+                  endpoint = "https://${meta.services.kanidm.domain}/oauth2/openid/wakapi";
+                }
+              ];
             };
 
             mail =

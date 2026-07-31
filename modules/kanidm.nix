@@ -27,6 +27,12 @@ in
           group = "kanidm";
           mode = "440";
         };
+        kanidm-oauth2-wakapi = {
+          sopsFile = ../secrets/kanidm.yaml;
+          owner = "kanidm";
+          group = "kanidm";
+          mode = "440";
+        };
       };
 
       users.groups.kanidm-tls = { };
@@ -73,7 +79,27 @@ in
               displayName = "Karun";
               legalName = "Karun";
               mailAddresses = [ "karun@${rdomain}" ];
-              groups = [ ];
+              groups = [ "wakapi.access" ];
+            };
+
+            groups = {
+              "wakapi.access" = { };
+            };
+
+            systems.oauth2 = {
+              wakapi = {
+                displayName = "wakapi";
+                originUrl = "${meta.services.wakapi.url}/oidc/kanidm/callback";
+                originLanding = meta.services.wakapi.url;
+                basicSecretFile = config.sops.secrets.kanidm-oauth2-wakapi.path;
+                allowInsecureClientDisablePkce = true;
+                preferShortUsername = true;
+                scopeMaps."wakapi.access" = [
+                  "openid"
+                  "email"
+                  "profile"
+                ];
+              };
             };
           };
         };

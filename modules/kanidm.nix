@@ -27,6 +27,7 @@ in
           kanidm-admin-password = kanidmSecrets;
           kanidm-idm-admin-password = kanidmSecrets;
           kanidm-oauth2-wakapi = kanidmSecrets;
+          kanidm-oauth2-immich = kanidmSecrets;
         };
 
       users.groups.kanidm-tls = { };
@@ -73,10 +74,14 @@ in
               displayName = "Karun";
               legalName = "Karun";
               mailAddresses = [ "karun@${rdomain}" ];
-              groups = [ "wakapi.access" ];
+              groups = [
+                "immich.access"
+                "wakapi.access"
+              ];
             };
 
             groups = {
+              "immich.access".overwriteMembers = false;
               "wakapi.access".overwriteMembers = false;
             };
 
@@ -89,6 +94,23 @@ in
                 allowInsecureClientDisablePkce = true;
                 preferShortUsername = true;
                 scopeMaps."wakapi.access" = [
+                  "openid"
+                  "email"
+                  "profile"
+                ];
+              };
+              immich = {
+                displayName = "immich";
+                originUrl = [
+                  "${meta.services.immich.url}/api/oauth/mobile-redirect" # mobile
+                  "${meta.services.immich.url}/auth/login" # web login
+                  "${meta.services.immich.url}/user-settings" # settings link
+                ];
+                originLanding = meta.services.immich.url;
+                basicSecretFile = config.sops.secrets.kanidm-oauth2-immich.path;
+                allowInsecureClientDisablePkce = true;
+                preferShortUsername = true;
+                scopeMaps."immich.access" = [
                   "openid"
                   "email"
                   "profile"

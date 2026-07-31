@@ -77,7 +77,7 @@ in
             };
 
             groups = {
-              "wakapi.access" = { };
+              "wakapi.access".overwriteMembers = false;
             };
 
             systems.oauth2 = {

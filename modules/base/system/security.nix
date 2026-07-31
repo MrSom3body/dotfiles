@@ -69,10 +69,15 @@
       '';
     };
 
-    # use sudo-rs
-    security.sudo-rs = {
-      enable = true;
-      execWheelOnly = true;
+    security = {
+      # use sudo-rs
+      sudo-rs = {
+        enable = true;
+        execWheelOnly = true;
+      };
+
+      # accept acme terms
+      acme.acceptTerms = true;
     };
   };
 }

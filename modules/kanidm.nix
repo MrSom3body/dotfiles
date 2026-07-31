@@ -28,6 +28,7 @@ in
           kanidm-idm-admin-password = kanidmSecrets;
           kanidm-oauth2-wakapi = kanidmSecrets;
           kanidm-oauth2-immich = kanidmSecrets;
+          kanidm-oauth2-paperless = kanidmSecrets;
         };
 
       users.groups.kanidm-tls = { };
@@ -76,29 +77,18 @@ in
               mailAddresses = [ "karun@${rdomain}" ];
               groups = [
                 "immich.access"
+                "paperless.access"
                 "wakapi.access"
               ];
             };
 
             groups = {
               "immich.access".overwriteMembers = false;
+              "paperless.access".overwriteMembers = false;
               "wakapi.access".overwriteMembers = false;
             };
 
             systems.oauth2 = {
-              wakapi = {
-                displayName = "wakapi";
-                originUrl = "${meta.services.wakapi.url}/oidc/kanidm/callback";
-                originLanding = meta.services.wakapi.url;
-                basicSecretFile = config.sops.secrets.kanidm-oauth2-wakapi.path;
-                allowInsecureClientDisablePkce = true;
-                preferShortUsername = true;
-                scopeMaps."wakapi.access" = [
-                  "openid"
-                  "email"
-                  "profile"
-                ];
-              };
               immich = {
                 displayName = "immich";
                 originUrl = [
@@ -111,6 +101,34 @@ in
                 allowInsecureClientDisablePkce = true;
                 preferShortUsername = true;
                 scopeMaps."immich.access" = [
+                  "openid"
+                  "email"
+                  "profile"
+                ];
+              };
+              paperless = {
+                public = true;
+                displayName = "paperless";
+                originUrl = [
+                  "x-paperless://oidc-callback" # Swift Paperless (iOS App)
+                  "${meta.services.paperless.url}/accounts/oidc/kanidm/login/callback/"
+                ];
+                originLanding = meta.services.paperless.url;
+                preferShortUsername = true;
+                scopeMaps."paperless.access" = [
+                  "openid"
+                  "email"
+                  "profile"
+                ];
+              };
+              wakapi = {
+                displayName = "wakapi";
+                originUrl = "${meta.services.wakapi.url}/oidc/kanidm/callback";
+                originLanding = meta.services.wakapi.url;
+                basicSecretFile = config.sops.secrets.kanidm-oauth2-wakapi.path;
+                allowInsecureClientDisablePkce = true;
+                preferShortUsername = true;
+                scopeMaps."wakapi.access" = [
                   "openid"
                   "email"
                   "profile"

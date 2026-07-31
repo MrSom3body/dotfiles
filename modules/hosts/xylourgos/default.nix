@@ -14,6 +14,7 @@ let
     "firefox-send"
     "gatus"
     "glance"
+    "kanidm"
     # "karakeep" # TODO enable when https://github.com/NixOS/nixpkgs/issues/529285 gets resolved for karakeep
     "ntfy"
     # "open-webui" # is currently broken

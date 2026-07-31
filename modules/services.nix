@@ -146,6 +146,12 @@
       port = 8096; # WARN don't change
       group = "media";
     };
+    kanidm = {
+      port = 3007;
+      domain = "sso.sndh.dev";
+      public = true;
+      group = "infra";
+    };
     seerr = {
       port = 5055;
       group = "arr";

@@ -24,7 +24,7 @@
           replace_existing_custom_formats = true;
 
           media_naming = {
-            series = "default";
+            series = "jellyfin-tvdb";
             season = "default";
             episodes = {
               rename = true;
@@ -33,6 +33,8 @@
               anime = "default";
             };
           };
+
+          media_management.propers_and_repacks = "do_not_prefer";
 
           include = [
             { template = "sonarr-quality-definition-anime"; }
@@ -99,12 +101,14 @@
           replace_existing_custom_formats = true;
 
           media_naming = {
-            folder = "default";
+            folder = "jellyfin-tmdb";
             movie = {
               rename = true;
-              standard = "default";
+              standard = "jellyfin-tmdb";
             };
           };
+
+          media_management.propers_and_repacks = "do_not_prefer";
 
           include = [
             { template = "radarr-quality-definition-movie"; }

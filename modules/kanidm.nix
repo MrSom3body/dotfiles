@@ -28,7 +28,6 @@ in
           kanidm-idm-admin-password = kanidmSecrets;
           kanidm-oauth2-wakapi = kanidmSecrets;
           kanidm-oauth2-immich = kanidmSecrets;
-          kanidm-oauth2-paperless = kanidmSecrets;
         };
 
       users.groups.kanidm-tls = { };

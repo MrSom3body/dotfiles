@@ -25,7 +25,7 @@ in
 
           PAPERLESS_APPS = "allauth.socialaccount.providers.openid_connect";
           PAPERLESS_SOCIAL_ACCOUNT_SYNC_GROUPS = true;
-          PAPERLESS_SOCIALACCOUNT_PROVIDERS = {
+          PAPERLESS_SOCIALACCOUNT_PROVIDERS = builtins.toJSON {
             openid_connect = {
               OAUTH_PKCE_ENABLED = true;
               APPS = [

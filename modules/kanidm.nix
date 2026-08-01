@@ -75,17 +75,36 @@ in
               displayName = "Karun";
               legalName = "Karun";
               mailAddresses = [ "karun@${rdomain}" ];
-              groups = [
-                "immich.access"
-                "paperless.access"
-                "wakapi.access"
-              ];
+              groups = [ "admin.role" ];
             };
 
             groups = {
-              "immich.access".overwriteMembers = false;
-              "paperless.access".overwriteMembers = false;
-              "wakapi.access".overwriteMembers = false;
+              "admin.role" = { };
+              "family.role".overwriteMembers = false;
+
+              ### access ###
+              "immich.access".members = [
+                "admin.role"
+                "family.role"
+              ];
+              "paperless.access".members = [
+                "admin.role"
+                "family.role"
+              ];
+              "wakapi.access".members = [
+                "admin.role"
+                "family.role"
+              ];
+
+              ### permissions ###
+              "paperless.viewer".members = [
+                "admin.role"
+                "family.role"
+              ];
+              "paperless.editor".members = [
+                "admin.role"
+                "family.role"
+              ];
             };
 
             systems.oauth2 = {
@@ -119,6 +138,7 @@ in
                   "openid"
                   "email"
                   "profile"
+                  "groups"
                 ];
               };
               wakapi = {

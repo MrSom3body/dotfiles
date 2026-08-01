@@ -33,8 +33,9 @@ in
 
           kanidm-admin-password = kanidmSecrets;
           kanidm-idm-admin-password = kanidmSecrets;
-          kanidm-oauth2-wakapi = kanidmSecrets;
           kanidm-oauth2-immich = kanidmSecrets;
+          kanidm-oauth2-miniflux = kanidmSecrets;
+          kanidm-oauth2-wakapi = kanidmSecrets;
         };
 
       users.groups.kanidm-tls = { };
@@ -97,6 +98,10 @@ in
                 "admin.role"
                 "family.role"
               ];
+              "miniflux.access".members = [
+                "admin.role"
+                "family.role"
+              ];
               "wakapi.access".members = [
                 "admin.role"
                 "family.role"
@@ -147,6 +152,20 @@ in
                   "email"
                   "profile"
                   "groups_name"
+                ];
+              };
+              miniflux = {
+                displayName = "miniflux";
+                imageFile = getIcon "miniflux" "sha256-EyAyRYpTOhRFHYw6EIovyYMF6AT8TschgxvoZ3vQqLU=";
+                originUrl = "${meta.services.miniflux.url}/oidc/kanidm/callback";
+                originLanding = meta.services.miniflux.url;
+                basicSecretFile = config.sops.secrets.kanidm-oauth2-miniflux.path;
+                allowInsecureClientDisablePkce = true;
+                preferShortUsername = true;
+                scopeMaps."miniflux.access" = [
+                  "openid"
+                  "email"
+                  "profile"
                 ];
               };
               wakapi = {

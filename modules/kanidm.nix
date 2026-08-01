@@ -82,10 +82,17 @@ in
               displayName = "Karun";
               legalName = "Karun";
               mailAddresses = [ "karun@${rdomain}" ];
-              groups = [ "admin.role" ];
+              groups = [
+                "idm_admins"
+                "admin.role"
+              ];
             };
 
             groups = {
+              ### builtins ###
+              "idm_admins".overwriteMembers = false;
+
+              ### roles ###
               "admin.role" = { };
               "family.role".overwriteMembers = false;
 

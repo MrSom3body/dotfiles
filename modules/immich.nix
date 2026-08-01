@@ -5,10 +5,7 @@ in
 {
   flake.modules.nixos.immich = { config, ... }: {
     sops.secrets = {
-      immich = {
-        sopsFile = ../secrets/immich.env;
-        format = "dotenv";
-      };
+      immich-env.sopsFile = ../secrets/immich.yaml;
       immich-oauth-secret.sopsFile = ../secrets/immich.yaml;
     };
 
@@ -17,7 +14,7 @@ in
         enable = true;
         host = "127.0.0.1";
         inherit (meta.services.immich) port;
-        secretsFile = config.sops.secrets.immich.path;
+        secretsFile = config.sops.secrets.immich-env.path;
         settings = {
           backup.database = {
             cronExpression = "0 23 * * *";

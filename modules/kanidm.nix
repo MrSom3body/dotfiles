@@ -10,6 +10,13 @@ in
       rdomain = config.networking.domain;
       cert = config.security.acme.certs.${domain};
       certDir = cert.directory;
+
+      getIcon =
+        name: sha256:
+        pkgs.fetchurl {
+          url = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/${name}.svg";
+          inherit sha256;
+        };
     in
     {
       sops.secrets =
@@ -109,6 +116,7 @@ in
             systems.oauth2 = {
               immich = {
                 displayName = "immich";
+                imageFile = getIcon "immich" "sha256-pdSkOJnmP/x+lyRgNPf2PN/cQQqoA8VxPVRSkGAcTYk=";
                 originUrl = [
                   "${meta.services.immich.url}/api/oauth/mobile-redirect" # mobile
                   "${meta.services.immich.url}/auth/login" # web login
@@ -127,6 +135,7 @@ in
               paperless = {
                 public = true;
                 displayName = "paperless";
+                imageFile = getIcon "paperless" "sha256-udDLXdrUFvUPAfALlvfbXzdO6cnL8a1FIB4sczf9P+k=";
                 originUrl = [
                   "x-paperless://oidc-callback" # Swift Paperless (iOS App)
                   "${meta.services.paperless.url}/accounts/oidc/kanidm/login/callback/"
@@ -142,6 +151,7 @@ in
               };
               wakapi = {
                 displayName = "wakapi";
+                imageFile = getIcon "wakapi" "sha256-QMAB0lrV/PaN3jERZPeB3Dequ8XWwq+qsMooEp/WlqY=";
                 originUrl = "${meta.services.wakapi.url}/oidc/kanidm/callback";
                 originLanding = meta.services.wakapi.url;
                 basicSecretFile = config.sops.secrets.kanidm-oauth2-wakapi.path;

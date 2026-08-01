@@ -44,7 +44,7 @@ in
                 "openid"
                 "profile"
                 "email"
-                "groups"
+                "groups_name"
               ];
             };
           };

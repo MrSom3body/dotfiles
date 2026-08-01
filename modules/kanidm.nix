@@ -137,7 +137,7 @@ in
                   "openid"
                   "email"
                   "profile"
-                  "groups"
+                  "groups_name"
                 ];
               };
               wakapi = {

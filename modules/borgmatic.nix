@@ -30,14 +30,15 @@ in
           mode = "0400";
         };
 
-        borgmatic-gatus-token = {
-          sopsFile = ../secrets/borgmatic-gatus.env;
-          format = "dotenv";
+        borgmatic-env = {
+          sopsFile = ../secrets/borgmatic.yaml;
+          owner = "root";
+          mode = "0400";
         };
       };
 
       systemd.services.borgmatic.serviceConfig.EnvironmentFile = [
-        "-${config.sops.secrets.borgmatic-gatus-token.path}"
+        "-${config.sops.secrets.borgmatic-env.path}"
       ];
 
       services.borgmatic = {

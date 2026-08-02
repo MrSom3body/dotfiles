@@ -26,8 +26,8 @@ in
           alt_speed_time_enabled = true;
           alt_speed_up = 3000; # kB/s
           alt_speed_down = 3000; # kB/s
-          alt_speed_time_begin = 11 * 60; # min
-          alt_speed_time_end = 1 * 60; # min
+          alt_speed_time_begin = 9 * 60; # min
+          alt_speed_time_end = 23 * 60; # min
         };
       };
     };

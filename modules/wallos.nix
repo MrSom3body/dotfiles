@@ -28,6 +28,7 @@ in
           OIDC_REDIRECT_URL = "${meta.services.wallos.url}/index.php";
           OIDC_SCOPES = "openid email profile";
           OIDC_AUTO_CREATE_USER = "true";
+          OIDC_DISABLE_PASSWORD_LOGIN = "true";
           SSRF_ALLOWLIST = meta.services.kanidm.domain;
         };
         environmentFiles = [ config.sops.secrets.wallos-oauth-secret.path ];

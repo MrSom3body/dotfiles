@@ -232,5 +232,10 @@
       public = true;
       group = "utils";
     };
+    wallos = {
+      port = 3008;
+      domain = "subs.sndh.dev";
+      group = "apps";
+    };
   };
 }

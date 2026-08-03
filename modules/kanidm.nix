@@ -14,8 +14,13 @@ in
 
       getIcon =
         name: sha256:
+        let
+          parts = pkgs.lib.splitString "." name;
+          ext = if builtins.length parts > 1 then pkgs.lib.last parts else "svg";
+          iconName = builtins.head parts;
+        in
         pkgs.fetchurl {
-          url = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/${name}.svg";
+          url = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/${ext}/${iconName}.${ext}";
           inherit sha256;
         };
     in
@@ -37,6 +42,7 @@ in
           kanidm-oauth2-immich = kanidmSecrets;
           kanidm-oauth2-miniflux = kanidmSecrets;
           kanidm-oauth2-wakapi = kanidmSecrets;
+          kanidm-oauth2-wallos = kanidmSecrets;
         };
 
       users.groups.kanidm-tls = { };
@@ -114,6 +120,10 @@ in
                 "admin.role"
                 "family.role"
               ];
+              "wallos.access".members = [
+                "admin.role"
+                "family.role"
+              ];
 
               ### permissions ###
               "paperless.viewer".members = [
@@ -185,6 +195,20 @@ in
                 allowInsecureClientDisablePkce = true;
                 preferShortUsername = true;
                 scopeMaps."wakapi.access" = [
+                  "openid"
+                  "email"
+                  "profile"
+                ];
+              };
+              wallos = {
+                displayName = "wallos";
+                imageFile = getIcon "wallos.png" "sha256-/OI3NriQUigJTbAd4W5cLT4KS05Vb58ogYreGxUC7Kw=";
+                originUrl = "${meta.services.wallos.url}/index.php";
+                originLanding = meta.services.wallos.url;
+                basicSecretFile = config.sops.secrets.kanidm-oauth2-wallos.path;
+                allowInsecureClientDisablePkce = true;
+                preferShortUsername = true;
+                scopeMaps."wallos.access" = [
                   "openid"
                   "email"
                   "profile"

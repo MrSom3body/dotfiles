@@ -2,10 +2,12 @@
   flake.modules.nixos.arr =
     { config, ... }:
     let
+      inherit (config.networking) hostName;
+
       active = "de-834";
       wgSecret = field: {
         key = "protonvpn/${active}/${field}";
-        sopsFile = ../../../secrets/protonvpn.yaml;
+        sopsFile = ../../../secrets/${hostName}/protonvpn.yaml;
       };
     in
     {

@@ -31,72 +31,68 @@ let
     ) services;
 in
 {
-  flake.modules.nixos.gatus = { config, ... }: {
-    sops.secrets.gatus = {
-      sopsFile = ../secrets/gatus.env;
-      format = "dotenv";
-    };
-
-    sops.secrets.borgmatic-gatus-token = {
-      sopsFile = ../secrets/borgmatic-gatus.env;
-      format = "dotenv";
-    };
-
-    systemd.services.gatus.serviceConfig.EnvironmentFile = [
-      "-${config.sops.secrets.borgmatic-gatus-token.path}"
-    ];
-
-    services = {
-      caddy.virtualHosts."${meta.services.gatus.domain}" = {
-        extraConfig = ''
-          reverse_proxy http://localhost:${toString meta.services.gatus.port}
-        '';
+  flake.modules.nixos.gatus =
+    { config, ... }:
+    let
+      inherit (config.networking) hostName;
+    in
+    {
+      sops.secrets.gatus = {
+        sopsFile = ../secrets/${hostName}/gatus.env;
+        format = "dotenv";
       };
 
-      gatus = {
-        enable = true;
-        environmentFile = config.sops.secrets.gatus.path;
-        settings = {
-          web.port = meta.services.gatus.port;
-          ui = {
-            title = "status | som3lab";
-            header = "som3lab's uptime";
-            link = meta.services.gatus.url;
-            default-sort-by = "group";
-          };
-          storage = {
-            path = "/var/lib/gatus/data.db";
-            type = "sqlite";
-            caching = true;
-          };
-          endpoints = mkServiceEndpoints (flakeConfig.flake.lib.getRunningServices flakeConfig.flake);
-          external-endpoints =
-            lib.mapAttrsToList
-              (name: _conf: {
-                inherit name;
-                group = "backups";
-                token = "\${BORGMATIC_GATUS_TOKEN}";
-                heartbeat.interval = "48h";
-                alerts = [ { type = "ntfy"; } ];
-              })
-              (
-                lib.filterAttrs (
-                  _name: conf: conf.config.services.borgmatic.enable or false
-                ) flakeConfig.flake.nixosConfigurations
-              );
-          alerting.ntfy = {
-            topic = "alerts";
-            url = meta.services.ntfy.url;
-            token = "$NTFY_TOKEN";
-            click = meta.services.gatus.url;
-            priority = 4;
-            default-alert = {
-              send-on-resolved = true;
-              failure-threshold = 6;
+      services = {
+        caddy.virtualHosts."${meta.services.gatus.domain}" = {
+          extraConfig = ''
+            reverse_proxy http://localhost:${toString meta.services.gatus.port}
+          '';
+        };
+
+        gatus = {
+          enable = true;
+          environmentFile = config.sops.secrets.gatus.path;
+          settings = {
+            web.port = meta.services.gatus.port;
+            ui = {
+              title = "status | som3lab";
+              header = "som3lab's uptime";
+              link = meta.services.gatus.url;
+              default-sort-by = "group";
+            };
+            storage = {
+              path = "/var/lib/gatus/data.db";
+              type = "sqlite";
+              caching = true;
+            };
+            endpoints = mkServiceEndpoints (flakeConfig.flake.lib.getRunningServices flakeConfig.flake);
+            external-endpoints =
+              lib.mapAttrsToList
+                (name: _conf: {
+                  inherit name;
+                  group = "backups";
+                  token = "\${BORGMATIC_GATUS_TOKEN}";
+                  heartbeat.interval = "48h";
+                  alerts = [ { type = "ntfy"; } ];
+                })
+                (
+                  lib.filterAttrs (
+                    _name: conf: conf.config.services.borgmatic.enable or false
+                  ) flakeConfig.flake.nixosConfigurations
+                );
+            alerting.ntfy = {
+              topic = "alerts";
+              url = meta.services.ntfy.url;
+              token = "$NTFY_TOKEN";
+              click = meta.services.gatus.url;
+              priority = 4;
+              default-alert = {
+                send-on-resolved = true;
+                failure-threshold = 6;
+              };
             };
           };
         };
       };
     };
-  };
 }

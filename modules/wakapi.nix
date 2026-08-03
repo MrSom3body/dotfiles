@@ -6,11 +6,12 @@ in
   flake.modules.nixos.wakapi =
     { config, ... }:
     let
+      inherit (config.networking) hostName;
       anubisCfg = config.services.anubis.instances.wakapi.settings;
     in
     {
       sops.secrets.wakapi = {
-        sopsFile = ../secrets/wakapi.env;
+        sopsFile = ../secrets/${hostName}/wakapi.env;
         format = "dotenv";
         owner = "wakapi";
         group = "wakapi";

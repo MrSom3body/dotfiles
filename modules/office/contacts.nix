@@ -6,7 +6,7 @@ let
 in
 {
   flake.modules.homeManager.office = { config, ... }: {
-    sops.secrets.dav-password.sopsFile = ../../secrets/calendars.yaml;
+    sops.secrets.dav-password.sopsFile = ../../secrets/user/calendars.yaml;
 
     accounts.contact = {
       basePath = "${config.xdg.dataHome}/contacts";

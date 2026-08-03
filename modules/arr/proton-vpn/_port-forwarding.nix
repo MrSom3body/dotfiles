@@ -1,5 +1,10 @@
-{ vpnInterface, requiredService }: { config, pkgs, ... }: {
-  sops.secrets.transmission-password.sopsFile = ../../../secrets/transmission.yaml;
+{ vpnInterface, requiredService }:
+{ config, pkgs, ... }:
+let
+  inherit (config.networking) hostName;
+in
+{
+  sops.secrets.transmission-password.sopsFile = ../../../secrets/${hostName}/transmission.yaml;
 
   systemd.services.proton-transmission =
     let

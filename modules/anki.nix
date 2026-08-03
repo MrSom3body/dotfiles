@@ -1,8 +1,8 @@
 {
   flake.modules.homeManager.anki = { config, ... }: {
     sops.secrets = {
-      anki-username.sopsFile = ../secrets/anki.yaml;
-      anki-key.sopsFile = ../secrets/anki.yaml;
+      anki-username.sopsFile = ../secrets/user/anki.yaml;
+      anki-key.sopsFile = ../secrets/user/anki.yaml;
     };
 
     programs.anki = {

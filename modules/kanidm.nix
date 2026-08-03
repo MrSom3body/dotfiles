@@ -7,6 +7,7 @@ in
   flake.modules.nixos.kanidm =
     { config, pkgs, ... }:
     let
+      inherit (config.networking) hostName;
       rdomain = config.networking.domain;
       cert = config.security.acme.certs.${domain};
       certDir = cert.directory;
@@ -22,14 +23,14 @@ in
       sops.secrets =
         let
           kanidmSecrets = {
-            sopsFile = ../secrets/kanidm.yaml;
+            sopsFile = ../secrets/${hostName}/kanidm.yaml;
             owner = "kanidm";
             group = "kanidm";
             mode = "440";
           };
         in
         {
-          acme-cloudflare-token.sopsFile = ../secrets/acme.yaml;
+          acme-cloudflare-token.sopsFile = ../secrets/${hostName}/acme.yaml;
 
           kanidm-admin-password = kanidmSecrets;
           kanidm-idm-admin-password = kanidmSecrets;

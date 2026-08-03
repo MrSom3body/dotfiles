@@ -6,8 +6,8 @@ let
 in
 {
   flake.modules.homeManager.office = { config, ... }: {
-    sops.secrets.dav-password.sopsFile = ../../secrets/calendars.yaml;
-    sops.secrets.htl3r-cal.sopsFile = ../../secrets/calendars.yaml;
+    sops.secrets.dav-password.sopsFile = ../../secrets/user/calendars.yaml;
+    sops.secrets.htl3r-cal.sopsFile = ../../secrets/user/calendars.yaml;
 
     accounts.calendar = {
       basePath = "${config.xdg.dataHome}/calendars";

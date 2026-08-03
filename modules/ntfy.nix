@@ -31,6 +31,7 @@ in
             # other stuff
             "arr:$2a$10$mFqmMvBRl5Jn3Gb.0aRwyOIiaVhKA0qG3SOsDQb5Rp4zB5FPk3jJe:user"
             "miniflux:$2a$10$T14gqSrymV6cs0Fecg5vIuMAvWPjIJySz/46WQGWl9Wx0BqXy4RW.:user"
+            "wallos:$2a$10$At3RFpiDyZ3kWpuWcjAsHup690R3zJpMI/kWmWCrkvOqAJSBhCpqm:user"
           ];
           auth-access = [
             # alerts
@@ -46,6 +47,7 @@ in
 
             # misc
             "miniflux:miniflux:wo"
+            "wallos:subscriptions:wo"
           ];
 
           attachment-cache-dir = "/var/lib/ntfy-sh/attachments";

@@ -12,8 +12,8 @@ in
       sops.secrets.wallos-oauth-secret.sopsFile = ../secrets/${hostName}/wallos.yaml;
 
       systemd.tmpfiles.rules = [
-        "d /var/lib/wallos/db 0777 root root -"
-        "d /var/lib/wallos/logos 0777 root root -"
+        "d /var/lib/wallos/db 0750 root root -"
+        "d /var/lib/wallos/logos 0750 root root -"
       ];
 
       virtualisation.oci-containers.containers.wallos = {
@@ -24,16 +24,16 @@ in
           OIDC_ENABLED = "true";
           OIDC_ISSUER = "${meta.services.kanidm.url}/oauth2/openid/wallos";
           OIDC_CLIENT_ID = "wallos";
-          OIDC_CLIENT_SECRET_FILE = config.sops.secrets.wallos-oauth-secret.path;
           OIDC_PROVIDER_NAME = "som3sso";
           OIDC_REDIRECT_URL = "${meta.services.wallos.url}/index.php";
           OIDC_SCOPES = "openid email profile";
           OIDC_AUTO_CREATE_USER = "true";
           SSRF_ALLOWLIST = meta.services.kanidm.domain;
         };
+        environmentFiles = [ config.sops.secrets.wallos-oauth-secret.path ];
         volumes = [
-          "/var/lib/wallos/db:/var/www/html/db"
-          "/var/lib/wallos/logos:/var/www/html/logos"
+          "/var/lib/wallos/db:/var/www/html/db:U"
+          "/var/lib/wallos/logos:/var/www/html/logos:U"
         ];
       };
 

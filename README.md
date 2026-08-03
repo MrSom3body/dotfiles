@@ -15,7 +15,7 @@ Here is an overview of the systems managed in this repository, including some st
 | :-------------- | :-------- | :-------------- | :----------------- | :-------- | :----------- | :---------------------------------------------- |
 | **`promethea`** | 💻 Laptop | `x86_64-linux`  | AMD Ryzen 9 6900HX | 32GB DDR5 | RTX 3050 4GB | Main Daily Driver, Development, Gaming          |
 | **`pandora`**   | 🗄️ Server | `x86_64-linux`  | Intel i5-4590      | 8GB DDR3  | -            | Media Server, Home Automation, Minecraft Server |
-| **`xylourgos`** | ☁️ VPS    | `aarch64-linux` | ARM (4 Cores)      | 24GB      | -            | Services Hub, Search, Monitoring Hub            |
+| **`xylourgos`** | ☁️ VPS    | `aarch64-linux` | ARM (2 Cores)      | 12GB      | -            | Services Hub, Search, Monitoring Hub            |
 | **`athenas`**   | 💿 ISO    | `x86_64-linux`  | Any                | Any       | -            | Graphical Rescue System                         |
 | **`sanctuary`** | 💿 ISO    | `x86_64-linux`  | Any                | Any       | -            | Minimal System Installer                        |
 

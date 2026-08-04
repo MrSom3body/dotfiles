@@ -38,7 +38,7 @@
             };
             group = lib.mkOption {
               type = lib.types.str;
-              default = "misc";
+              default = "apps";
             };
             show = lib.mkOption {
               type = lib.types.bool;
@@ -93,7 +93,7 @@
       icon = "mdi:web";
       external = true;
       public = true;
-      group = "misc";
+      group = "apps";
     };
     actual = {
       port = 3006;
@@ -131,12 +131,12 @@
       port = 3003;
       domain = "status.sndh.dev";
       public = true;
-      group = "dash";
+      group = "infra";
     };
     glance = {
       port = 8080;
       domain = "home.sndh.dev";
-      group = "dash";
+      group = "utils";
     };
     immich = {
       port = 2283;
@@ -154,14 +154,14 @@
     };
     seerr = {
       port = 5055;
-      group = "arr";
+      group = "media";
     };
     karakeep = {
       port = 3002;
       group = "apps";
     };
     loxone = {
-      group = "home";
+      group = "apps";
     };
     miniflux = {
       port = 7070;
@@ -177,12 +177,12 @@
       port = 11434;
       domain = null;
       show = false;
-      group = "ai";
+      group = "apps";
     };
     "open-webui" = {
       port = 3000;
       domain = "ai.sndh.dev";
-      group = "ai";
+      group = "apps";
     };
     paperless = {
       port = 3004;
@@ -190,11 +190,11 @@
     };
     prowlarr = {
       port = 9696;
-      group = "arr";
+      group = "media";
     };
     radarr = {
       port = 7878;
-      group = "arr";
+      group = "media";
     };
     radicale = {
       port = 5232;
@@ -211,26 +211,26 @@
     };
     sonarr = {
       port = 8989;
-      group = "arr";
+      group = "media";
     };
     syncthing = {
       port = 8384;
       domain = hostName: "syncthing.${hostName}.sndh.dev";
       show = true;
-      group = "utils";
+      group = "infra";
       hostSpecific = true;
       checkEnabled = hostConf: hostConf.services.syncthing.enable or false;
     };
     transmission = {
       port = 9091;
       alt-status-codes = [ 401 ];
-      group = "arr";
+      group = "media";
     };
     wakapi = {
       port = 3001;
       domain = "waka.sndh.dev";
       public = true;
-      group = "utils";
+      group = "apps";
     };
     wallos = {
       port = 3008;

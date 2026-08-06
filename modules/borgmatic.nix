@@ -165,15 +165,8 @@ in
               priority = "low";
               tags = "${hostName},borgmatic,white_check_mark";
             };
-            fail = {
-              title = "Backup failed";
-              message = "Backup failed on ${config.networking.hostName}: {error}";
-              priority = "high";
-              tags = "${hostName},borgmatic,rotating_light";
-            };
             states = [
               "start"
-              "fail"
               "finish"
             ];
           };
@@ -183,13 +176,14 @@ in
               after = "action";
               when = [ "create" ];
               run = [
-                "${lib.getExe pkgs.curl} -X POST -H \"Authorization: Bearer $BORGMATIC_GATUS_TOKEN\" \"${meta.services.gatus.url}/api/v1/endpoints/backups_${hostName}/external?success=true\""
+                ''${lib.getExe pkgs.curl} -s -X POST -H "Authorization: Bearer $BORGMATIC_GATUS_TOKEN" "${meta.services.gatus.url}/api/v1/endpoints/backups_${hostName}/external?success=true"''
               ];
             }
             {
               after = "error";
               run = [
-                "${lib.getExe pkgs.curl} -G -X POST -H \"Authorization: Bearer $BORGMATIC_GATUS_TOKEN\" \"${meta.services.gatus.url}/api/v1/endpoints/backups_${hostName}/external\" --data-urlencode \"success=false\" --data-urlencode \"error={error}\""
+                ''${lib.getExe pkgs.curl} -s -G -X POST -H "Authorization: Bearer $BORGMATIC_GATUS_TOKEN" "${meta.services.gatus.url}/api/v1/endpoints/backups_${hostName}/external" --data-urlencode "success=false"''
+                ''${lib.getExe pkgs.curl} -s -o /dev/null -u "borgmatic:$(cat ${config.sops.secrets.borgmatic-ntfy-password.path})" -H "Title: Backup failed" -H "Priority: high" -H "Tags: ${hostName},borgmatic,rotating_light" -d "Backup failed on ${hostName}: {error}" "${meta.services.ntfy.url}/alerts"''
               ];
             }
           ];

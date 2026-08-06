@@ -54,7 +54,7 @@ in
           auto-format = true;
           language-servers = [
             "gopls"
-            "golangci-lint-langserver"
+            "golangci-lint-lsp"
             "codebook"
           ];
         }

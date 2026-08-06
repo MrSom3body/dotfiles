@@ -22,26 +22,18 @@ in
         "language-tool/api-key" = { };
       };
 
-      home.packages = [ pkgs.typstyle ]; # for formatting typst
-
       programs.fish.interactiveShellInit = ''
         set -gx LT_USERNAME $(cat ${config.sops.secrets."language-tool/username".path})
         set -gx LT_API_KEY $(cat ${config.sops.secrets."language-tool/api-key".path})
       '';
 
       programs.helix.languages.language-server = {
-        ansible-language-server.command = lib.getExe pkgs.ansible-language-server;
         bash-language-server.command = lib.getExe pkgs.bash-language-server;
         codebook = {
           command = lib.getExe pkgs.codebook;
           args = [ "serve" ];
         };
-        docker-compose-langserver.command = lib.getExe pkgs.docker-compose-language-service;
         fish-lsp.command = lib.getExe pkgs.fish-lsp;
-        golangci-lint-lsp.command = lib.getExe pkgs.golangci-lint-langserver;
-        gopls.command = lib.getExe pkgs.gopls;
-        lemminx.command = lib.getExe pkgs.lemminx;
-        lua-language-server.command = lib.getExe pkgs.lua-language-server;
         ltex-ls-plus = {
           command = lib.getExe' pkgs.ltex-ls-plus "ltex-ls-plus";
           config.ltex = {
@@ -71,32 +63,19 @@ in
               };
           };
         };
-        phpactor = {
-          command = lib.getExe pkgs.phpactor;
-          args = [ "language-server" ];
-        };
-        qmlls.command = lib.getExe' pkgs.kdePackages.qtdeclarative "qmlls";
-        ruff.command = lib.getExe pkgs.ruff;
         rumdl.command = lib.getExe pkgs.rumdl;
-        sqls.command = lib.getExe pkgs.sqls;
         superhtml.command = lib.getExe pkgs.superhtml;
         taplo.command = lib.getExe pkgs.taplo;
-        terraform-ls.command = lib.getExe pkgs.terraform-ls;
-        tinymist = {
-          command = lib.getExe pkgs.tinymist;
-          config = {
-            exportPdf = "onType";
-            outputPath = "$root/target/$dir/$name";
-            formatterMode = "typstyle";
-            formatterPrintWidth = 80;
-            lint = {
-              enabled = true;
-              when = "onType";
-            };
+        tinymist.config = {
+          exportPdf = "onType";
+          outputPath = "$root/target/$dir/$name";
+          formatterMode = "typstyle";
+          formatterPrintWidth = 80;
+          lint = {
+            enabled = true;
+            when = "onType";
           };
         };
-        ty.command = lib.getExe pkgs.ty;
-        typescript-language-server.command = lib.getExe pkgs.typescript-language-server;
         vscode-css-language-server.command = lib.getExe' pkgs.vscode-langservers-extracted "vscode-css-language-server";
         vscode-html-language-server.command = lib.getExe' pkgs.vscode-langservers-extracted "vscode-html-language-server";
         vscode-json-language-server.command = lib.getExe' pkgs.vscode-langservers-extracted "vscode-json-language-server";

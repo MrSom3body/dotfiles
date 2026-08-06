@@ -61,6 +61,8 @@ in
             }
           ];
 
+          btrfs = { };
+
           source_directories = [ "/home/karun" ];
 
           exclude_patterns = [

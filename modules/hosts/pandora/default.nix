@@ -8,6 +8,7 @@ let
     "atuin"
     "atuin-server"
     "borgmatic"
+    "cloudflared"
     "immich"
     "minecraft-server/kn-server"
     "miniflux"

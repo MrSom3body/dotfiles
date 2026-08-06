@@ -3,8 +3,11 @@ let
   inherit (config.flake) meta;
 in
 {
-  flake.modules.nixos.ntfy = {
+  flake.modules.nixos.ntfy = { config, ... }: {
     services = {
+      cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.ntfy.domain}" =
+        "http://localhost:${toString meta.services.ntfy.port}";
+
       caddy.virtualHosts."${meta.services.ntfy.domain}" = {
         extraConfig = ''
           reverse_proxy http://localhost:${toString meta.services.ntfy.port}
@@ -15,7 +18,7 @@ in
         enable = true;
         settings = {
           listen-http = "127.0.0.1:${toString meta.services.ntfy.port}";
-          base-url = "https://ntfy.sndh.dev";
+          base-url = meta.services.ntfy.url;
           behind-proxy = true;
 
           auth-file = "/var/lib/ntfy-sh/user.db";

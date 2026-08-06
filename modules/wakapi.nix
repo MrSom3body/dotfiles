@@ -17,6 +17,9 @@ in
       };
 
       services = {
+        cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.wakapi.domain}" =
+          "http://localhost:${toString meta.services.wakapi.port}";
+
         caddy.virtualHosts.${meta.services.wakapi.domain}.extraConfig = ''
           reverse_proxy http://127.0.0.1:${toString meta.services.wakapi.port}
           tls internal

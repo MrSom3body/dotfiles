@@ -15,14 +15,15 @@ in
       };
 
       services = {
-        caddy.virtualHosts = {
-          "${meta.services.searx.domain}" = {
-            extraConfig = ''
-              reverse_proxy http://localhost:${toString meta.services.searx.port} {
-                header_up X-Forwarded-For {client_ip}
-              }
-            '';
-          };
+        cloudflared.tunnels.${hostName}.ingress."${meta.services.searx.domain}" =
+          "http://localhost:${toString meta.services.searx.port}";
+
+        caddy.virtualHosts."${meta.services.searx.domain}" = {
+          extraConfig = ''
+            reverse_proxy http://localhost:${toString meta.services.searx.port} {
+              header_up X-Forwarded-For {client_ip}
+            }
+          '';
         };
 
         searx = {

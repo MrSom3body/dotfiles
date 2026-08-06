@@ -43,6 +43,9 @@ in
       };
 
       services = {
+        cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.gatus.domain}" =
+          "http://localhost:${toString meta.services.gatus.port}";
+
         caddy.virtualHosts."${meta.services.gatus.domain}" = {
           extraConfig = ''
             reverse_proxy http://localhost:${toString meta.services.gatus.port}

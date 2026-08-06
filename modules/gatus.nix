@@ -35,6 +35,7 @@ in
     { config, ... }:
     let
       inherit (config.networking) hostName;
+      anubisCfg = config.services.anubis.instances.gatus.settings;
     in
     {
       sops.secrets.gatus = {
@@ -43,12 +44,15 @@ in
       };
 
       services = {
+        anubis.instances.gatus.settings.TARGET = "http://localhost:${toString meta.services.gatus.port}";
+
         cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.gatus.domain}" =
-          "http://localhost:${toString meta.services.gatus.port}";
+          "unix:${anubisCfg.BIND}";
 
         caddy.virtualHosts."${meta.services.gatus.domain}" = {
           extraConfig = ''
-            reverse_proxy http://localhost:${toString meta.services.gatus.port}
+            reverse_proxy unix/${anubisCfg.BIND}
+            tls internal
           '';
         };
 

@@ -62,6 +62,7 @@ I’ve drawn inspiration from these fantastic projects, people and sources:
 - [Vimjoyer](https://www.youtube.com/@vimjoyer)
 - [Automatic Flake Updates](https://xyven.dev/articles/automatic-flake-updates-with-garnix)
 - [poz/niksos](https://git.poz.pet/poz/niksos)
+- [isabelroses/dotfiles](https://github.com/isabelroses/dotfiles)
 - and many many more...
 
 Feel free to explore, adapt, and contribute!

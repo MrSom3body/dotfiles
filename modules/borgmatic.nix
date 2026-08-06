@@ -37,9 +37,11 @@ in
         };
       };
 
-      systemd.services.borgmatic.serviceConfig.EnvironmentFile = [
-        "-${config.sops.secrets.borgmatic-env.path}"
-      ];
+      systemd.services.borgmatic.serviceConfig = {
+        EnvironmentFile = [ "-${config.sops.secrets.borgmatic-env.path}" ];
+        AmbientCapabilities = [ "CAP_SYS_ADMIN" ];
+        CapabilityBoundingSet = [ "CAP_SYS_ADMIN" ];
+      };
 
       services.borgmatic = {
         enable = true;

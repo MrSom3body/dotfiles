@@ -61,7 +61,7 @@ in
             }
           ];
 
-          btrfs = { };
+          btrfs.btrfs_command = "${pkgs.btrfs-progs}/bin/btrfs";
 
           source_directories = [ "/home/karun" ];
 

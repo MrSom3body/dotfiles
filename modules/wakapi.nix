@@ -7,7 +7,6 @@ in
     { config, ... }:
     let
       inherit (config.networking) hostName;
-      anubisCfg = config.services.anubis.instances.wakapi.settings;
     in
     {
       sops.secrets.wakapi = {
@@ -18,7 +17,10 @@ in
       };
 
       services = {
-        anubis.instances.wakapi.settings.TARGET = "http://127.0.0.1:${toString meta.services.wakapi.port}";
+        caddy.virtualHosts.${meta.services.wakapi.domain}.extraConfig = ''
+          reverse_proxy http://127.0.0.1:${toString meta.services.wakapi.port}
+          tls internal
+        '';
 
         wakapi = {
           enable = true;
@@ -27,7 +29,7 @@ in
           settings = {
             server = {
               inherit (meta.services.wakapi) port;
-              public_url = "https://${meta.services.wakapi.domain}";
+              public_url = meta.services.wakapi.url;
             };
 
             db = {
@@ -71,11 +73,6 @@ in
               };
           };
         };
-
-        caddy.virtualHosts.${meta.services.wakapi.domain}.extraConfig = ''
-          reverse_proxy unix/${anubisCfg.BIND}
-          tls internal
-        '';
       };
     };
 }

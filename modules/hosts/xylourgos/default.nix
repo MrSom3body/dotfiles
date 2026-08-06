@@ -11,7 +11,6 @@ let
     "beszel"
     "borgmatic"
     "cloudflared"
-    "ddns-updater"
     "firefox-send"
     "gatus"
     "glance"

@@ -173,10 +173,15 @@ in
 
           commands = [
             {
+              before = "action";
+              when = [ "create" ];
+              run = [ "date +%s > /run/borgmatic-start" ];
+            }
+            {
               after = "action";
               when = [ "create" ];
               run = [
-                ''${lib.getExe pkgs.curl} -s -X POST -H "Authorization: Bearer $BORGMATIC_GATUS_TOKEN" "${meta.services.gatus.url}/api/v1/endpoints/backups_${hostName}/external?success=true"''
+                ''${lib.getExe pkgs.curl} -s -X POST -H "Authorization: Bearer $BORGMATIC_GATUS_TOKEN" "${meta.services.gatus.url}/api/v1/endpoints/backups_${hostName}/external?success=true&duration=$(( $(date +%s) - $(cat /run/borgmatic-start) ))s"''
               ];
             }
             {

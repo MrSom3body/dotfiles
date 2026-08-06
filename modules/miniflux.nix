@@ -27,7 +27,7 @@ in
             BASE_URL = "https://${meta.services.miniflux.domain}";
 
             OAUTH2_PROVIDER = "oidc";
-            OAUTH2_PROVIDER_NAME = "som3sso";
+            OAUTH2_OIDC_PROVIDER_NAME = "som3sso";
             OAUTH2_CLIENT_ID = "miniflux";
             OAUTH2_OIDC_DISCOVERY_ENDPOINT = "${meta.services.kanidm.url}/oauth2/openid/miniflux";
             OAUTH2_REDIRECT_URL = "${meta.services.miniflux.url}/oauth2/oidc/callback";

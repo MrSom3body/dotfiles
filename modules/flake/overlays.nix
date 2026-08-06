@@ -9,16 +9,6 @@ let
           --prefix PATH : ${final.lib.makeBinPath [ final.pandoc ]}
       '';
     });
-
-    # TODO remove when https://nixpk.gs/pr-tracker.html?pr=549253 lands in nixos-unstable
-    hyprland = prev.hyprland.overrideAttrs (oldAttrs: {
-      postPatch = ''
-        substituteInPlace CMakeLists.txt start/CMakeLists.txt hyprpm/CMakeLists.txt \
-          --replace-fail "glaze 7...<8" "glaze"
-
-      ''
-      + (oldAttrs.postPatch or "");
-    });
   };
 
   stable-packages = final: _prev: {

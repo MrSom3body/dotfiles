@@ -185,7 +185,7 @@ in
               miniflux = {
                 displayName = "miniflux";
                 imageFile = getIcon "miniflux" "sha256-EyAyRYpTOhRFHYw6EIovyYMF6AT8TschgxvoZ3vQqLU=";
-                originUrl = "${meta.services.miniflux.url}/oidc/kanidm/callback";
+                originUrl = "${meta.services.miniflux.url}/oauth2/oidc/callback";
                 originLanding = meta.services.miniflux.url;
                 basicSecretFile = config.sops.secrets.kanidm-oauth2-miniflux.path;
                 allowInsecureClientDisablePkce = true;

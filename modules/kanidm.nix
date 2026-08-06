@@ -77,6 +77,10 @@ in
               bindaddress = "127.0.0.1:${toString meta.services.kanidm.port}";
               tls_chain = "${certDir}/cert.pem";
               tls_key = "${certDir}/key.pem";
+              http_client_address_info.x-forward-for = [
+                "127.0.0.1"
+                "::1"
+              ];
             };
           };
           provision = {

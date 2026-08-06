@@ -46,6 +46,7 @@
           };
 
           "hyprland/workspaces" = {
+            all-outputs = true;
             show-special = true;
             special-visible-only = true;
             format = "{icon}";
@@ -59,7 +60,11 @@
             };
 
             persistent-workspaces = {
-              "*" = 5;
+              "1" = [ ];
+              "2" = [ ];
+              "3" = [ ];
+              "4" = [ ];
+              "5" = [ ];
             };
           };
 

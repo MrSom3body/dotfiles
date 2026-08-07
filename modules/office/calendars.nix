@@ -7,7 +7,6 @@ in
 {
   flake.modules.homeManager.office = { config, ... }: {
     sops.secrets.dav-password.sopsFile = ../../secrets/user/calendars.yaml;
-    sops.secrets.htl3r-cal.sopsFile = ../../secrets/user/calendars.yaml;
 
     accounts.calendar = {
       basePath = "${config.xdg.dataHome}/calendars";
@@ -39,7 +38,6 @@ in
               "Persönlich"
               "Arbeit"
               "Nachhilfe"
-              "Schule"
             ];
           };
         };
@@ -56,24 +54,6 @@ in
           };
           vdirsyncer = {
             enable = true;
-            collections = null;
-            partialSync = "revert";
-          };
-        };
-
-        HTL3R = {
-          khal = {
-            enable = true;
-            color = "light blue";
-            readOnly = true;
-          };
-          remote.type = "http";
-          vdirsyncer = {
-            enable = true;
-            urlCommand = [
-              "cat"
-              config.sops.secrets.htl3r-cal.path
-            ];
             collections = null;
             partialSync = "revert";
           };

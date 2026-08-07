@@ -814,7 +814,6 @@
         "srvos": "srvos",
         "stylix": "stylix",
         "systems": "systems_5",
-        "tailray": "tailray",
         "treefmt-nix": "treefmt-nix",
         "vicinae": "vicinae",
         "vicinae-extensions": "vicinae-extensions",
@@ -1064,26 +1063,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "tailray": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1785143690,
-        "narHash": "sha256-Kb5l6bPzCy6XGQTuPXbzxv4DWzafrqZ0PHKKTq1mdk8=",
-        "owner": "NotAShelf",
-        "repo": "tailray",
-        "rev": "88b314bdad1946a431ad342dfc90aa8735b53dab",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NotAShelf",
-        "repo": "tailray",
         "type": "github"
       }
     },

@@ -1,5 +1,5 @@
 { lib, ... }: {
-  flake.modules.nixos.nixos = { pkgs, ... }: {
+  flake.modules.nixos.nixos = {
     networking = {
       domain = "sndh.dev";
 
@@ -10,51 +10,10 @@
       networkmanager = {
         enable = lib.mkDefault false;
         dns = "systemd-resolved";
-        wifi = {
-          backend = "iwd"; # iwd or wpa_supplicant (default)
-          macAddress = "random";
-          powersave = true;
-        };
       };
-
-      wireless.iwd = {
-        enable = true;
-        settings = {
-          Settings.AutoConnect = true;
-
-          General = {
-            # NOTE: networkmanager cannot control iwd address randomisation
-            AddressRandomization = "network";
-            AddressRandomizationRange = "full";
-
-            ManagementFrameProtection = 1;
-
-            RoamRetryInterval = 15;
-          };
-          Scan = {
-            DisablePeriodicScan = false;
-            DisableRoamingScan = false;
-          };
-
-          DriverQuirks.DefaultInterface = ""; # https://github.com/NixOS/nixpkgs/issues/454655
-        };
-      };
-
-      nameservers = [
-        "9.9.9.9#dns.quad9.net"
-        "149.112.112.112#dns.quad9.net"
-        "2620:fe::fe#dns.quad9.net"
-        "2620:fe::9#dns.quad9.net"
-      ];
     };
 
     services = {
-      # DNS resolver
-      resolved = {
-        enable = true;
-        settings.Resolve.DNSOverTLS = "opportunistic";
-      };
-
       # network discovery, mDNS
       avahi = {
         enable = true;
@@ -66,7 +25,5 @@
         };
       };
     };
-
-    environment.systemPackages = [ pkgs.impala ];
   };
 }

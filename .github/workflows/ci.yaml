@@ -40,12 +40,9 @@ jobs:
         CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
       name: Nix build
       run: |-
-        nix develop --command -- nix-fast-build \
-          --no-nom \
-          --skip-cached \
-          --retries=3 \
-          --cachix-cache som3cache \
-          --flake="git+file:.#${{ matrix.attrs.output }}"
+        nix build -L \
+          --keep-going \
+          "git+file:.#${{ matrix.attrs.output }}"
     strategy:
       fail-fast: false
       matrix:

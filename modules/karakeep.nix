@@ -13,6 +13,11 @@ in
     {
       imports = [ flakeModules.nixos.ollama ];
 
+      # TODO remove when https://nixpk.gs/pr-tracker.html?pr=549487 lands in unstable
+      systemd.services.meilisearch.serviceConfig.ExecStartPre = pkgs.lib.mkAfter [
+        "${pkgs.gnused}/bin/sed -i '/experimental_dumpless_upgrade/d' \${RUNTIME_DIRECTORY}/config.toml"
+      ];
+
       services = {
         caddy.virtualHosts = {
           "${meta.services.karakeep.domain}" = {
@@ -27,7 +32,6 @@ in
         karakeep = {
           enable = true;
           package = pkgs.karakeep;
-          meilisearch.experimental_dumpless_upgrade = false; # TODO remove when https://nixpk.gs/pr-tracker.html?pr=549487 lands in unstable
           extraEnvironment = {
             PORT = toString meta.services.karakeep.port;
             NEXTAUTH_URL = "https://${meta.services.karakeep.domain}";

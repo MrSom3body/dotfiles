@@ -27,6 +27,7 @@ in
         karakeep = {
           enable = true;
           package = pkgs.karakeep;
+          meilisearch.experimental_dumpless_upgrade = false; # TODO remove when https://nixpk.gs/pr-tracker.html?pr=549487 lands in unstable
           extraEnvironment = {
             PORT = toString meta.services.karakeep.port;
             NEXTAUTH_URL = "https://${meta.services.karakeep.domain}";

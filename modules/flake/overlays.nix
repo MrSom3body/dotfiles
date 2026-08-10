@@ -9,6 +9,21 @@ let
           --prefix PATH : ${final.lib.makeBinPath [ final.pandoc ]}
       '';
     });
+
+    microbin = prev.microbin.overrideAttrs (_oldAttrs: rec {
+      version = "2.1.4";
+      src = prev.fetchFromGitHub {
+        owner = "szabodanika";
+        repo = "microbin";
+        rev = "v${version}";
+        hash = "sha256-ipSMiUJgbZ0kijGs7Ok8bRTGdFzygIPEY6ZuJ/eRb9s=";
+      };
+      cargoDeps = prev.rustPlatform.fetchCargoVendor {
+        inherit src;
+        hash = "sha256-vvSQfXu67RNBXzfDIE2rcfUOcAfTACaVRvSBBITJ9gY=";
+      };
+      patches = [ ];
+    });
   };
 
   stable-packages = final: _prev: {

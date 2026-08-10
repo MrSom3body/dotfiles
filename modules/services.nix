@@ -167,6 +167,11 @@
     loxone = {
       group = "apps";
     };
+    microbin = {
+      port = 3009;
+      domain = "share.sndh.dev";
+      group = "apps";
+    };
     miniflux = {
       port = 7070;
       domain = "read.sndh.dev";

@@ -16,6 +16,7 @@ let
     "glance"
     "kanidm"
     "karakeep"
+    "microbin"
     "ntfy"
     "open-webui"
     "qemu-guest"

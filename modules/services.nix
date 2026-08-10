@@ -170,6 +170,7 @@
     microbin = {
       port = 3009;
       domain = "share.sndh.dev";
+      icon = "di:microbin.png";
       group = "apps";
     };
     miniflux = {
@@ -245,6 +246,7 @@
     wallos = {
       port = 3008;
       domain = "subs.sndh.dev";
+      icon = "di:wallos.png";
       group = "apps";
     };
   };

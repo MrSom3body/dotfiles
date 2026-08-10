@@ -106,6 +106,7 @@
     };
     beszel = {
       port = 8090;
+      domain = "monitor.sndh.dev";
       group = "infra";
     };
     "ddns-updater" = {
@@ -140,10 +141,12 @@
     };
     immich = {
       port = 2283;
+      domain = "photos.sndh.dev";
       group = "media";
     };
     jellyfin = {
       port = 8096; # WARN don't change
+      domain = "tv.sndh.dev";
       group = "media";
     };
     kanidm = {
@@ -158,6 +161,7 @@
     };
     karakeep = {
       port = 3002;
+      domain = "bookmarks.sndh.dev";
       group = "apps";
     };
     loxone = {
@@ -186,6 +190,7 @@
     };
     paperless = {
       port = 3004;
+      domain = "docs.sndh.dev";
       group = "apps";
     };
     prowlarr = {

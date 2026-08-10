@@ -41,6 +41,7 @@ in
           kanidm-idm-admin-password = kanidmSecrets;
           kanidm-oauth2-immich = kanidmSecrets;
           kanidm-oauth2-miniflux = kanidmSecrets;
+          kanidm-oauth2-karakeep = kanidmSecrets;
           kanidm-oauth2-wakapi = kanidmSecrets;
           kanidm-oauth2-wallos = kanidmSecrets;
         };
@@ -134,6 +135,10 @@ in
                 "admin.role"
                 "family.role"
               ];
+              "karakeep.access".members = [
+                "admin.role"
+                "family.role"
+              ];
 
               ### permissions ###
               "paperless.viewer".members = [
@@ -191,6 +196,20 @@ in
                 allowInsecureClientDisablePkce = true;
                 preferShortUsername = true;
                 scopeMaps."miniflux.access" = [
+                  "openid"
+                  "email"
+                  "profile"
+                ];
+              };
+              karakeep = {
+                displayName = "Karakeep";
+                imageFile = getIcon "karakeep" "sha256-KeEmIa4ymHglxLhMdK+2cnZsXVMnXBvGr9NB7svg+rQ=";
+                originUrl = "${meta.services.karakeep.url}/api/auth/callback/custom";
+                originLanding = meta.services.karakeep.url;
+                basicSecretFile = config.sops.secrets.kanidm-oauth2-karakeep.path;
+                allowInsecureClientDisablePkce = true;
+                preferShortUsername = true;
+                scopeMaps."karakeep.access" = [
                   "openid"
                   "email"
                   "profile"

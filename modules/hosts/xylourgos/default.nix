@@ -15,7 +15,7 @@ let
     "gatus"
     "glance"
     "kanidm"
-    # "karakeep" # TODO enable when https://github.com/NixOS/nixpkgs/issues/529285 gets resolved for karakeep
+    "karakeep"
     "ntfy"
     "open-webui"
     "qemu-guest"

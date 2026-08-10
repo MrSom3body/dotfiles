@@ -35,7 +35,7 @@ in
           MICROBIN_GC_DAYS = 7;
 
           MICROBIN_ENABLE_BURN_AFTER = true;
-          MICROBIN_DEFAULT_BURN_AFTER = 10;
+          MICROBIN_DEFAULT_BURN_AFTER = 0;
 
           MICROBIN_QR = true;
 

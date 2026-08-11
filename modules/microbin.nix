@@ -26,20 +26,22 @@ in
           MICROBIN_HIDE_HEADER = false;
           MICROBIN_HIDE_FOOTER = true;
 
-          MICROBIN_NO_LISTING = true;
-
+          MICROBIN_NO_LISTING = false;
           MICROBIN_HIGHLIGHTSYNTAX = true;
-          MICROBIN_PRIVATE = true;
-
-          MICROBIN_EDITABLE = true;
-          MICROBIN_GC_DAYS = 7;
-
-          MICROBIN_ENABLE_BURN_AFTER = true;
-          MICROBIN_DEFAULT_BURN_AFTER = 0;
 
           MICROBIN_QR = true;
 
-          MICROBIN_ENABLE_READONLY = true;
+          MICROBIN_PRIVATE = true; # unlisted mode
+          MICROBIN_ENABLE_READONLY = true; # protected mode
+          MICROBIN_ENCRYPTION_SERVER_SIDE = true; # secret mode
+          MICROBIN_ENCRYPTION_CLIENT_SIDE = true; # private mode
+          MICROBIN_DEFAULT_PRIVACY = "unlisted";
+
+          MICROBIN_ENABLE_BURN_AFTER = true;
+          MICROBIN_DEFAULT_BURN_AFTER = 1;
+
+          MICROBIN_GC_DAYS = 7;
+
         };
         passwordFile = config.sops.secrets.microbin-env.path;
       };

@@ -11,7 +11,7 @@ let
     "beszel"
     "borgmatic"
     "cloudflared"
-    "firefox-send"
+    "cryptgeon"
     "gatus"
     "glance"
     "kanidm"

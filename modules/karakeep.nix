@@ -16,11 +16,6 @@ in
 
       sops.secrets.karakeep-env.sopsFile = ../secrets/${config.networking.hostName}/karakeep.yaml;
 
-      # TODO remove when https://nixpk.gs/pr-tracker.html?pr=549487 lands in unstable
-      systemd.services.meilisearch.serviceConfig.ExecStartPre = pkgs.lib.mkAfter [
-        "${pkgs.gnused}/bin/sed -i '/experimental_dumpless_upgrade/d' \${RUNTIME_DIRECTORY}/config.toml"
-      ];
-
       services = {
         caddy.virtualHosts = {
           "${meta.services.karakeep.domain}" = {

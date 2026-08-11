@@ -12,8 +12,8 @@ in
       sops.secrets.wallos-oauth-secret.sopsFile = ../secrets/${hostName}/wallos.yaml;
 
       systemd.tmpfiles.rules = [
-        "d /var/lib/wallos/db 0750 root root -"
-        "d /var/lib/wallos/logos 0750 root root -"
+        "d /var/lib/wallos/db 0750 82 82 -"
+        "d /var/lib/wallos/logos 0750 82 82 -"
       ];
 
       virtualisation.oci-containers.containers.wallos = {
@@ -33,8 +33,8 @@ in
         };
         environmentFiles = [ config.sops.secrets.wallos-oauth-secret.path ];
         volumes = [
-          "/var/lib/wallos/db:/var/www/html/db:U"
-          "/var/lib/wallos/logos:/var/www/html/logos:U"
+          "/var/lib/wallos/db:/var/www/html/db"
+          "/var/lib/wallos/logos:/var/www/html/logos"
         ];
       };
 

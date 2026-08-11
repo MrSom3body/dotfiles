@@ -113,6 +113,7 @@
       port = 3010;
       domain = "send.sndh.dev";
       group = "utils";
+      icon = "sh:cryptgeon";
     };
     "ddns-updater" = {
       port = 8000;

@@ -109,6 +109,11 @@
       domain = "monitor.sndh.dev";
       group = "infra";
     };
+    cryptgeon = {
+      port = 3010;
+      domain = "send.sndh.dev";
+      group = "utils";
+    };
     "ddns-updater" = {
       port = 8000;
       domain = hostName: "ddns.${hostName}.sndh.dev";

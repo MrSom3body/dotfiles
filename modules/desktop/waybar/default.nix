@@ -141,7 +141,7 @@
             {
               player = "spotify";
               format = "{player_icon} {status_icon} <b>{title}</b> by <i>{artist}</i>";
-              tooltip-format = "Album: {album}";
+              tooltip-format = "{player_icon} {player} ({status})\n\nTitle: {title}\nArtist: {artist}\nAlbum: {album}\nLength: {length}";
               artist-len = 12;
               title-len = 22;
               ellipsis = "...";

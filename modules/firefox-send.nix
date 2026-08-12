@@ -3,7 +3,8 @@ let
   inherit (config.flake) meta;
 in
 {
-  flake.modules.nixos.firefox-send = { config, ... }: {
+  flake.modules.nixos.firefox-send = { config, pkgs, ... }: {
+
     services = {
       cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.firefox-send.domain}" =
         "http://localhost:${toString meta.services.firefox-send.port}";
@@ -46,6 +47,30 @@ in
             CUSTOM_FOOTER_TEXT = "Hosted by Karun | Not affiliated with Mozilla or Firefox.";
             CUSTOM_FOOTER_URL = "https://karun.sndh.dev";
           };
+      };
+    };
+
+    systemd = {
+      services.send-cleanup = {
+        description = "Cleanup old Firefox Send uploads";
+        script = ''
+          ${pkgs.findutils}/bin/find ${config.services.send.dataDir}/uploads -type f -mmin +${
+            toString (config.services.send.environment.MAX_EXPIRE_SECONDS / 60)
+          } -print -delete
+        '';
+        serviceConfig = {
+          Type = "oneshot";
+          User = "root";
+        };
+      };
+
+      timers.send-cleanup = {
+        description = "Daily cleanup of old Firefox Send uploads";
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnCalendar = "daily";
+          Persistent = true;
+        };
       };
     };
   };

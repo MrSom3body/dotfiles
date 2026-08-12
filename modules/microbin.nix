@@ -17,6 +17,7 @@ in
 
       microbin = {
         enable = true;
+        passwordFile = config.sops.secrets.microbin-env.path;
         settings = {
           MICROBIN_BIND = "127.0.0.1";
           MICROBIN_PORT = meta.services.microbin.port;
@@ -41,9 +42,7 @@ in
           MICROBIN_DEFAULT_BURN_AFTER = 1;
 
           MICROBIN_GC_DAYS = 7;
-
         };
-        passwordFile = config.sops.secrets.microbin-env.path;
       };
     };
   };

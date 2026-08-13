@@ -12,6 +12,7 @@ let
     "immich"
     "minecraft-server/kn-server"
     "miniflux"
+    "nextdns-link"
     "paperless"
     "smartd"
     "stylix"

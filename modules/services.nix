@@ -162,6 +162,12 @@
       public = true;
       group = "infra";
     };
+    "oauth2-proxy" = {
+      port = 4180;
+      domain = "auth-proxy.sndh.dev";
+      group = "infra";
+      show = false;
+    };
     seerr = {
       port = 5055;
       group = "media";

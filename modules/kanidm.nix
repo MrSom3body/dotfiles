@@ -39,6 +39,10 @@ in
 
           kanidm-admin-password = kanidmSecrets;
           kanidm-idm-admin-password = kanidmSecrets;
+
+          kanidm-oauth2-auth-proxy = kanidmSecrets;
+          oauth2-proxy-cookie.sopsFile = ../secrets/${hostName}/kanidm.yaml;
+
           kanidm-oauth2-immich = kanidmSecrets;
           kanidm-oauth2-miniflux = kanidmSecrets;
           kanidm-oauth2-karakeep = kanidmSecrets;
@@ -60,7 +64,41 @@ in
             service = "https://localhost:${toString meta.services.kanidm.port}";
             originRequest.noTLSVerify = true; # needed as cert is for sso.sndh.dev and not localhost
           };
+          ingress."${meta.services.oauth2-proxy.domain}" = {
+            service = "https://localhost:443";
+            originRequest.originServerName = meta.services.oauth2-proxy.domain;
+          };
         };
+
+        caddy.virtualHosts."${meta.services.oauth2-proxy.domain}" = {
+          extraConfig = ''
+            reverse_proxy http://127.0.0.1:${toString meta.services.oauth2-proxy.port}
+          '';
+        };
+
+        oauth2-proxy =
+          let
+            clientID = "oauth2-proxy";
+          in
+          {
+            enable = true;
+            provider = "oidc";
+            inherit clientID;
+            clientSecretFile = config.sops.secrets.kanidm-oauth2-auth-proxy.path;
+            cookie.secretFile = config.sops.secrets.oauth2-proxy-cookie.path;
+            cookie.domain = ".${rdomain}";
+            redirectURL = "${meta.services.oauth2-proxy.url}/oauth2/callback";
+            oidcIssuerUrl = "${meta.services.kanidm.url}/oauth2/openid/${clientID}";
+            email.domains = [ "*" ];
+            httpAddress = "http://127.0.0.1:${toString meta.services.oauth2-proxy.port}";
+            scope = "openid email profile groups_name";
+            extraConfig = {
+              skip-provider-button = "true";
+              whitelist-domain = ".${rdomain}";
+              pass-user-headers = "true";
+              set-xauthrequest = "true";
+            };
+          };
 
         caddy.virtualHosts.${domain} = {
           useACMEHost = domain;
@@ -116,6 +154,10 @@ in
               "family.role".overwriteMembers = false;
 
               ### access ###
+              "oauth2-proxy.access".members = [
+                "admin.role"
+                "family.role"
+              ];
               "immich.access".members = [
                 "admin.role"
                 "family.role"
@@ -153,6 +195,20 @@ in
             };
 
             systems.oauth2 = {
+              oauth2-proxy = {
+                displayName = "OAuth2 Proxy";
+                originUrl = "${meta.services.oauth2-proxy.url}/oauth2/callback";
+                originLanding = meta.services.oauth2-proxy.url;
+                basicSecretFile = config.sops.secrets.kanidm-oauth2-auth-proxy.path;
+                allowInsecureClientDisablePkce = true;
+                preferShortUsername = true;
+                scopeMaps."oauth2-proxy.access" = [
+                  "openid"
+                  "email"
+                  "profile"
+                  "groups_name"
+                ];
+              };
               immich = {
                 displayName = "immich";
                 imageFile = getIcon "immich" "sha256-pdSkOJnmP/x+lyRgNPf2PN/cQQqoA8VxPVRSkGAcTYk=";

@@ -18,31 +18,37 @@ in
       microbin = {
         enable = true;
         passwordFile = config.sops.secrets.microbin-env.path;
-        settings = {
-          MICROBIN_BIND = "127.0.0.1";
-          MICROBIN_PORT = meta.services.microbin.port;
-          MICROBIN_PUBLIC_PATH = meta.services.microbin.url;
+        settings =
+          let
+            MICROBIN_NO_LISTING = true; # removes the /list endpoint
+          in
+          {
+            MICROBIN_BIND = "127.0.0.1";
+            MICROBIN_PORT = meta.services.microbin.port;
+            MICROBIN_PUBLIC_PATH = meta.services.microbin.url;
 
-          MICROBIN_TITLE = "Karun's MicroBin";
-          MICROBIN_HIDE_HEADER = false;
-          MICROBIN_HIDE_FOOTER = true;
+            MICROBIN_TITLE = "Karun's MicroBin";
+            MICROBIN_HIDE_HEADER = false;
+            MICROBIN_HIDE_FOOTER = true;
 
-          MICROBIN_NO_LISTING = false;
-          MICROBIN_HIGHLIGHTSYNTAX = true;
+            MICROBIN_DEFAULT_EXPIRY = "1hour";
+            MICROBIN_MAX_EXPIRY = "24hour";
+            MICROBIN_ENABLE_BURN_AFTER = true;
+            MICROBIN_DEFAULT_BURN_AFTER = 1;
+            MICROBIN_GC_DAYS = 7;
 
-          MICROBIN_QR = true;
+            inherit MICROBIN_NO_LISTING;
+            MICROBIN_HIGHLIGHTSYNTAX = true;
 
-          MICROBIN_PRIVATE = true; # unlisted mode
-          MICROBIN_ENABLE_READONLY = true; # protected mode
-          MICROBIN_ENCRYPTION_SERVER_SIDE = true; # secret mode
-          MICROBIN_ENCRYPTION_CLIENT_SIDE = true; # private mode
-          MICROBIN_DEFAULT_PRIVACY = "unlisted";
+            MICROBIN_QR = true;
 
-          MICROBIN_ENABLE_BURN_AFTER = true;
-          MICROBIN_DEFAULT_BURN_AFTER = 1;
+            MICROBIN_PRIVATE = !MICROBIN_NO_LISTING; # unlisted mode (can be disabled when MICROBIN_NO_LISTING is enabled)
+            MICROBIN_ENABLE_READONLY = true; # protected mode
+            MICROBIN_ENCRYPTION_SERVER_SIDE = true; # secret mode
+            MICROBIN_ENCRYPTION_CLIENT_SIDE = true; # private mode
+            MICROBIN_DEFAULT_PRIVACY = "unlisted";
 
-          MICROBIN_GC_DAYS = 7;
-        };
+          };
       };
     };
   };

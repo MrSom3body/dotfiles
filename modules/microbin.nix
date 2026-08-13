@@ -13,7 +13,22 @@ in
       };
 
       caddy.virtualHosts."${meta.services.microbin.domain}".extraConfig = ''
-        reverse_proxy http://127.0.0.1:${toString meta.services.microbin.port}
+        handle /auth_admin* {
+          forward_auth ${meta.services.oauth2-proxy.url} {
+            uri /oauth2/auth?allowed_groups=admin.role
+            copy_headers X-Auth-Request-User X-Auth-Request-Email
+
+            @error status 401
+            handle_response @error {
+              redir ${meta.services.oauth2-proxy.url}/oauth2/start?rd={scheme}://{host}{uri}
+            }
+          }
+          reverse_proxy http://127.0.0.1:${toString meta.services.microbin.port}
+        }
+
+        handle {
+          reverse_proxy http://127.0.0.1:${toString meta.services.microbin.port}
+        }
       '';
 
       fail2ban.jails.microbin = ''

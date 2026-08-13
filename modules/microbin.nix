@@ -12,7 +12,6 @@ in
 
       caddy.virtualHosts."${meta.services.microbin.domain}".extraConfig = ''
         reverse_proxy http://127.0.0.1:${toString meta.services.microbin.port}
-        tls internal
       '';
 
       microbin = {
@@ -47,7 +46,6 @@ in
             MICROBIN_ENCRYPTION_SERVER_SIDE = true; # secret mode
             MICROBIN_ENCRYPTION_CLIENT_SIDE = true; # private mode
             MICROBIN_DEFAULT_PRIVACY = "unlisted";
-
           };
       };
     };

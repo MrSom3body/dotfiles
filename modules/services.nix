@@ -112,6 +112,7 @@
     cryptgeon = {
       port = 3010;
       domain = "send.sndh.dev";
+      public = true;
       group = "utils";
       icon = "sh:cryptgeon";
     };
@@ -177,6 +178,7 @@
       port = 3009;
       domain = "share.sndh.dev";
       icon = "di:microbin.png";
+      public = true;
       group = "apps";
     };
     miniflux = {

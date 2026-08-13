@@ -111,7 +111,7 @@
     };
     cryptgeon = {
       port = 3010;
-      domain = "send.sndh.dev";
+      domain = "crypt.sndh.dev";
       public = true;
       group = "utils";
       icon = "sh:cryptgeon";

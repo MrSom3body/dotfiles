@@ -56,9 +56,10 @@ in
 
       services = {
         cloudflared.tunnels.${config.networking.hostName} = {
-          ingress."${meta.services.kanidm.domain}" =
-            "https://localhost:${toString meta.services.kanidm.port}";
-          originRequest.noTLSVerify = true; # needed as cert is for sso.sndh.dev and not localhost
+          ingress."${meta.services.kanidm.domain}" = {
+            service = "https://localhost:${toString meta.services.kanidm.port}";
+            originRequest.noTLSVerify = true; # needed as cert is for sso.sndh.dev and not localhost
+          };
         };
 
         caddy.virtualHosts.${domain} = {

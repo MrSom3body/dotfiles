@@ -97,6 +97,7 @@ in
               whitelist-domain = ".${rdomain}";
               pass-user-headers = "true";
               set-xauthrequest = "true";
+              code-challenge-method = "S256";
             };
           };
 
@@ -200,7 +201,6 @@ in
                 originUrl = "${meta.services.oauth2-proxy.url}/oauth2/callback";
                 originLanding = meta.services.oauth2-proxy.url;
                 basicSecretFile = config.sops.secrets.kanidm-oauth2-auth-proxy.path;
-                allowInsecureClientDisablePkce = true;
                 preferShortUsername = true;
                 scopeMaps."oauth2-proxy.access" = [
                   "openid"

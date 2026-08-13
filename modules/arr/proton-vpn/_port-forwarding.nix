@@ -56,7 +56,7 @@ in
                 OLD_PORT="$PORT"
 
                 # Set transmission port
-                TR_AUTH=":$(cat ${config.sops.secrets.transmission-password.path})" transmission-remote localhost --port "$PORT" --authenv --no-portmap
+                TR_AUTH="$(cat ${config.services.transmission.settings.rpc-username}):$(cat ${config.sops.secrets.transmission-password.path})" transmission-remote localhost --port "$PORT" --authenv --no-portmap
               fi
 
               # Ensure jump rule exists (in case the NixOS firewall was reloaded)

@@ -31,6 +31,7 @@ in
         package = pkgs.transmission_4;
         credentialsFile = config.sops.templates."transmission.json".path;
         settings = {
+          rpc-username = "karun";
           rpc-port = meta.services.transmission.port;
           rpc-authentication-required = true;
 

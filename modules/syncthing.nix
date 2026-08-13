@@ -14,6 +14,10 @@ let
     );
 
   settings = {
+    gui = {
+      user = "";
+      password = "";
+    };
     options = {
       urAccepted = -1;
 
@@ -84,6 +88,8 @@ in
             }" =
               {
                 extraConfig = ''
+                  import oauth2_routes
+                  import oauth2 admin.role
                   reverse_proxy http://127.0.0.1:${toString meta.services.syncthing.port} {
                     header_up Host {upstream_hostport}
                   }

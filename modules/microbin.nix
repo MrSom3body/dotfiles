@@ -7,8 +7,10 @@ in
     sops.secrets.microbin-env.sopsFile = ../secrets/${config.networking.hostName}/microbin.yaml;
 
     services = {
-      cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.microbin.domain}" =
-        "http://localhost:${toString meta.services.microbin.port}";
+      cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.microbin.domain}" = {
+        service = "https://localhost:443";
+        originRequest.originServerName = meta.services.microbin.domain;
+      };
 
       caddy.virtualHosts."${meta.services.microbin.domain}".extraConfig = ''
         reverse_proxy http://127.0.0.1:${toString meta.services.microbin.port}

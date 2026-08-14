@@ -4,7 +4,7 @@
     let
       inherit (config.networking) hostName;
 
-      active = "de-834";
+      active = "de-14";
       wgSecret = field: {
         key = "protonvpn/${active}/${field}";
         sopsFile = ../../../secrets/${hostName}/protonvpn.yaml;

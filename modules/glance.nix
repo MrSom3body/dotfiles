@@ -23,8 +23,8 @@ in
 
             pages = [
               {
-                name = "Karun's Homelab";
-                hide-desktop-navigation = true;
+                name = "som3lab";
+                hide-desktop-navigation = false;
                 center-vertically = true;
                 width = "slim";
                 columns = [
@@ -81,6 +81,102 @@ in
                           sites = formatServices privateServices;
                         }
                       ];
+                  }
+                ];
+              }
+              {
+                name = "Maintenance";
+                width = "slim";
+                columns = [
+                  {
+                    size = "small";
+                    widgets = [
+                      {
+                        type = "search";
+                        placeholder = "Search NixOS...";
+                        bangs = [
+                          {
+                            title = "Packages";
+                            shortcut = "!np";
+                            url = "https://search.nixos.org/packages?channel=unstable&query={QUERY}";
+                          }
+                          {
+                            title = "Options";
+                            shortcut = "!no";
+                            url = "https://search.nixos.org/options?channel=unstable&query={QUERY}";
+                          }
+                          {
+                            title = "Nixpkgs PRs";
+                            shortcut = "!pr";
+                            url = "https://github.com/NixOS/nixpkgs/pulls?q=is%3Apr+{QUERY}";
+                          }
+                        ];
+                      }
+                      {
+                        type = "rss";
+                        title = "NixOS Blog";
+                        style = "vertical-list";
+                        limit = 5;
+                        feeds = [
+                          {
+                            url = "https://nixos.org/blog/announcements-rss.xml";
+                            title = "Announcements";
+                          }
+                        ];
+                      }
+                    ];
+                  }
+                  {
+                    size = "full";
+                    widgets = [
+                      {
+                        type = "custom-api";
+                        title = "My Nixpkgs Activity";
+                        cache = "15m";
+                        url = "https://api.github.com/search/issues?q=repo:NixOS/nixpkgs+is:open+involves:MrSom3body&sort=updated&order=desc";
+                        template = ''
+                          <ul class="list list-gap-10 collapsible-container" data-collapse-after="5">
+                          {{ range .JSON.Array "items" }}
+                            <li>
+                              <a class="size-h4 color-highlight block text-truncate" href="{{ .String "html_url" }}">{{ .String "title" }}</a>
+                              <ul class="list-horizontal-text">
+                                <li class="color-primary">#{{ .Int "number" }}</li>
+                                <li {{ .String "updated_at" | parseTime "RFC3339" | toRelativeTime }}></li>
+                                <li>{{ .String "state" }}</li>
+                                <li>by {{ .String "user.login" }}</li>
+                              </ul>
+                            </li>
+                          {{ end }}
+                          {{ if eq (.JSON.Array "items" | len) 0 }}
+                            <li class="color-paragraph">No recent activity.</li>
+                          {{ end }}
+                          </ul>
+                        '';
+                      }
+                      {
+                        type = "releases";
+                        title = "Upstream Releases";
+                        show-source-icon = true;
+                        collapse-after = 5;
+                        limit = 10;
+                        repositories = [
+                          "lunatask/lunatask"
+                          "marty-oehme/bemoji"
+                        ];
+                      }
+                      {
+                        type = "rss";
+                        title = "Upstream Tags";
+                        style = "vertical-list";
+                        limit = 10;
+                        feeds = [
+                          {
+                            url = "https://github.com/timvisee/send/tags.atom";
+                            title = "timvisee/send";
+                          }
+                        ];
+                      }
+                    ];
                   }
                 ];
               }

@@ -24,13 +24,6 @@ in
         }
       '';
 
-      fail2ban.jails.microbin = ''
-        enabled = true
-        filter = microbin
-        backend = systemd
-        journalmatch = _SYSTEMD_UNIT=microbin.service
-      '';
-
       microbin = {
         enable = true;
         passwordFile = config.sops.secrets.microbin-env.path;
@@ -66,11 +59,5 @@ in
           };
       };
     };
-
-    environment.etc."fail2ban/filter.d/microbin.conf".text = ''
-      [Definition]
-      failregex = - <HOST> "GET /auth_admin/incorrect HTTP/\d\.\d" 200
-      ignoreregex =
-    '';
   };
 }

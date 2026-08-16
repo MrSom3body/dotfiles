@@ -21,6 +21,7 @@ let
         name = srv.title;
         inherit (srv) url group;
         interval = "1m";
+        client.network = "tcp4";
         conditions =
           if srv.gatus.defaultConditions then
             defaultGatusConditions ++ srv.gatus.conditions

@@ -131,20 +131,21 @@ in
                     widgets = [
                       {
                         type = "custom-api";
-                        title = "My Nixpkgs Activity";
+                        title = "My Nix Activity";
                         cache = "15m";
-                        url = "https://api.github.com/search/issues?q=repo:NixOS/nixpkgs+is:open+involves:MrSom3body&sort=updated&order=desc";
-                        template = ''
+                        url = "https://api.github.com/search/issues?q=org:NixOS+org:nix-community+is:open+involves:MrSom3body&sort=updated&order=desc";
+                        template = /* html */ ''
                           <ul class="list list-gap-10 collapsible-container" data-collapse-after="5">
                           {{ range .JSON.Array "items" }}
                             <li>
-                              <a class="size-h4 color-highlight block text-truncate" href="{{ .String "html_url" }}">{{ .String "title" }}</a>
-                              <ul class="list-horizontal-text">
-                                <li class="color-primary">#{{ .Int "number" }}</li>
-                                <li {{ .String "updated_at" | parseTime "RFC3339" | toRelativeTime }}></li>
-                                <li>{{ .String "state" }}</li>
-                                <li>by {{ .String "user.login" }}</li>
-                              </ul>
+                              <a href="{{ .String "html_url" }}" class="block" style="text-decoration: none; color: inherit;">
+                                <div class="size-h4 color-highlight text-truncate">{{ .String "title" }}</div>
+                                <ul class="list-horizontal-text">
+                                  <li><span class="color-primary">{{ .String "repository_url" | trimPrefix "https://api.github.com/repos/" }}</span>#{{ .Int "number" }}</li>
+                                  <li {{ .String "updated_at" | parseTime "RFC3339" | toRelativeTime }}></li>
+                                  <li>by {{ .String "user.login" }}</li>
+                                </ul>
+                              </a>
                             </li>
                           {{ end }}
                           {{ if eq (.JSON.Array "items" | len) 0 }}

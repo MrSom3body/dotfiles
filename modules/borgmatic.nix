@@ -92,8 +92,6 @@ in
             "/home/karun/.local/share/vicinae"
 
             # large & temporary files/directories
-            "*.db-shm"
-            "*.db-wal"
             "*.temp"
             "*.tmp"
             "*~"

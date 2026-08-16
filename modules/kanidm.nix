@@ -313,5 +313,14 @@ in
           BindReadOnlyPaths = [ certDir ];
         };
       };
+
+      systemd.services.oauth2-proxy = {
+        after = [ "kanidm.service" ];
+        wants = [ "kanidm.service" ];
+        serviceConfig = {
+          Restart = "always";
+          RestartSec = "10s";
+        };
+      };
     };
 }

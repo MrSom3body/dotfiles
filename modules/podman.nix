@@ -4,7 +4,10 @@
       # Enable common container config files in /etc/containers
       containers.enable = true;
 
-      podman.enable = true;
+      podman = {
+        enable = true;
+        autoUpdate.enable = true;
+      };
     };
   };
 }

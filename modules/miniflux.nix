@@ -26,6 +26,8 @@ in
             LISTEN_ADDR = "localhost:${toString meta.services.miniflux.port}";
             BASE_URL = "https://${meta.services.miniflux.domain}";
 
+            INTEGRATION_ALLOW_PRIVATE_NETWORKS = 1;
+
             /*
               This disabled password auth completely. To give yourself admin use
               the following command:

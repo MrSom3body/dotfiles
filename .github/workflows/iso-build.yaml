@@ -35,14 +35,18 @@ jobs:
         CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
       name: Nix build
       run: |-
-        nix build -L \
-          --keep-going \
-          "git+file:.#images.${{ matrix.image }}"
+        nix develop --command -- nix-fast-build \
+          --no-nom \
+          --skip-cached \
+          --retries=3 \
+          --cachix-cache som3cache \
+          --out-link result \
+          --flake="git+file:.#images.${{ matrix.image }}"
     - name: Upload artifacts
       uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
       with:
         name: ${{ matrix.image }}-iso-image
-        path: result/iso/*.iso
+        path: result-*/iso/*.iso
     strategy:
       matrix:
         image:

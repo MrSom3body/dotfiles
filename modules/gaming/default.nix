@@ -10,7 +10,7 @@
           goverlay
           heroic
           # mindustry-wayland
-          # modrinth-app # TODO currently broken
+          modrinth-app
           r2modman
           ;
       };

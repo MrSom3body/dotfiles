@@ -22,10 +22,16 @@ in
           enable = true;
           adminCredentialsFile = config.sops.secrets.miniflux-env.path;
           config = {
-            CREATE_ADMIN = 1;
+            CREATE_ADMIN = 0;
             LISTEN_ADDR = "localhost:${toString meta.services.miniflux.port}";
             BASE_URL = "https://${meta.services.miniflux.domain}";
 
+            /*
+              This disabled password auth completely. To give yourself admin use
+              the following command:
+              sudo -u postgres psql -d miniflux -c "UPDATE users SET is_admin=true WHERE username='karun';"
+            */
+            DISABLE_LOCAL_AUTH = "true";
             OAUTH2_PROVIDER = "oidc";
             OAUTH2_OIDC_PROVIDER_NAME = "som3sso";
             OAUTH2_CLIENT_ID = "miniflux";

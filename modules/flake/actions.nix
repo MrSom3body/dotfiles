@@ -85,11 +85,14 @@ let
     };
     nixFastBuild = flakeAttr: {
       name = "Nix build";
-      # TODO switch back to nix-fast-build
       run = ''
-        nix build -L \
-          --keep-going \
-          "${flakeRef}#${flakeAttr}"
+        nix develop --command -- nix-fast-build \
+          --no-nom \
+          --skip-cached \
+          --retries=3 \
+          --cachix-cache som3cache \
+          --out-link result \
+          --flake="${flakeRef}#${flakeAttr}"
       '';
       env.CACHIX_AUTH_TOKEN = "\${{ secrets.CACHIX_AUTH_TOKEN }}";
     };
@@ -286,7 +289,7 @@ in
               (steps.nixFastBuild "images.\${{ matrix.image }}")
               (steps.uploadArtifacts {
                 name = "\${{ matrix.image }}-iso-image";
-                path = "result/iso/*.iso"; # TODO switch back to result- when using nix-fast-build again
+                path = "result-*/iso/*.iso";
               })
             ];
           };

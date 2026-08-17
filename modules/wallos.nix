@@ -18,7 +18,6 @@ in
 
       virtualisation.oci-containers.containers.wallos = {
         image = "ghcr.io/ellite/wallos:latest";
-        labels."io.containers.autoupdate" = "registry";
         ports = [ "127.0.0.1:${toString meta.services.wallos.port}:80" ];
         environment = {
           TZ = config.time.timeZone;

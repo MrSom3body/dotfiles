@@ -24,7 +24,6 @@ in
 
     virtualisation.oci-containers.containers.cryptgeon = {
       image = "docker.io/cupcakearmy/cryptgeon:latest";
-      labels."io.containers.autoupdate" = "registry";
       environment = {
         THEME_PAGE_TITLE = "Karun's Cryptgeon";
 

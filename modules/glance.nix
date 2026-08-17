@@ -23,27 +23,24 @@ in
 
             pages = [
               {
-                name = "som3lab";
+                name = "Home";
                 hide-desktop-navigation = false;
                 center-vertically = true;
-                width = "slim";
+                width = "wide";
                 columns = [
                   {
                     size = "small";
                     widgets = [
                       {
-                        type = "server-stats";
-                        servers = lib.singleton {
-                          type = "local";
-                          name = config.networking.hostName;
-                        };
+                        type = "weather";
+                        units = "metric";
+                        hour-format = "24h";
+                        location = "Vienna, Austria";
+                        show-area-name = true;
                       }
                       {
-                        type = "repository";
-                        repository = "MrSom3body/dotfiles";
-                        pull-requests-limit = 5;
-                        issues-limit = 5;
-                        commits-limit = 5;
+                        type = "calendar";
+                        first-day-of-week = "monday";
                       }
                     ];
                   }
@@ -82,14 +79,50 @@ in
                         }
                       ];
                   }
+                  {
+                    size = "small";
+                    widgets = [
+                      {
+                        type = "server-stats";
+                        servers = lib.singleton {
+                          type = "local";
+                          name = config.networking.hostName;
+                        };
+                      }
+                      {
+                        type = "repository";
+                        repository = "MrSom3body/dotfiles";
+                        pull-requests-limit = 5;
+                        issues-limit = 5;
+                        commits-limit = 5;
+                      }
+                    ];
+                  }
                 ];
               }
               {
                 name = "Maintenance";
-                width = "slim";
+                width = "wide";
                 columns = [
                   {
                     size = "small";
+                    widgets = [
+                      {
+                        type = "rss";
+                        title = "NixOS Blog";
+                        style = "vertical-list";
+                        limit = 5;
+                        feeds = [
+                          {
+                            url = "https://nixos.org/blog/announcements-rss.xml";
+                            title = "Announcements";
+                          }
+                        ];
+                      }
+                    ];
+                  }
+                  {
+                    size = "full";
                     widgets = [
                       {
                         type = "search";
@@ -113,29 +146,12 @@ in
                         ];
                       }
                       {
-                        type = "rss";
-                        title = "NixOS Blog";
-                        style = "vertical-list";
-                        limit = 5;
-                        feeds = [
-                          {
-                            url = "https://nixos.org/blog/announcements-rss.xml";
-                            title = "Announcements";
-                          }
-                        ];
-                      }
-                    ];
-                  }
-                  {
-                    size = "full";
-                    widgets = [
-                      {
                         type = "custom-api";
                         title = "My Nix Activity";
                         cache = "15m";
                         url = "https://api.github.com/search/issues?q=org:NixOS+org:nix-community+is:open+involves:MrSom3body&sort=updated&order=desc";
                         template = /* html */ ''
-                          <ul class="list list-gap-10 collapsible-container" data-collapse-after="5">
+                          <ul class="list list-gap-10 collapsible-container" data-collapse-after="10">
                           {{ range .JSON.Array "items" }}
                             <li>
                               <a href="{{ .String "html_url" }}" class="block" style="text-decoration: none; color: inherit;">
@@ -154,6 +170,11 @@ in
                           </ul>
                         '';
                       }
+                    ];
+                  }
+                  {
+                    size = "small";
+                    widgets = [
                       {
                         type = "releases";
                         title = "Upstream Releases";

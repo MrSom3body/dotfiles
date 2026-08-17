@@ -4,70 +4,104 @@ let
   inherit (config.flake) modules;
 in
 {
-  flake.modules.nixos.arr = {
-    imports = [
-      modules.nixos.jellyfin
-      modules.nixos.transmission
-    ];
+  flake.modules.nixos.arr =
+    { config, lib, ... }:
+    let
+      mkArrTemplate = app: {
+        content = ''
+          ${lib.toUpper app}__AUTH__APIKEY="${config.sops.placeholder."${app}-api-key"}"
+        '';
+      };
 
-    systemd = {
-      tmpfiles.rules = [
-        "d /media 2775 root arr -"
-        "d /media/animes 2775 root arr -"
-        "d /media/movies 2775 root arr -"
-        "d /media/shows 2775 root arr -"
-        "d /media/torrents 2775 root arr -"
-        "d /media/torrents/movies 2775 root arr -"
-        "d /media/torrents/shows 2775 root arr -"
+      mkArrVirtualHost = port: {
+        extraConfig = ''
+          @api path /api/* /feed/* /*/api /*/download
+
+          handle @api {
+            reverse_proxy http://localhost:${toString port}
+          }
+
+          handle {
+            import oauth2_routes
+            import oauth2 admin.role
+
+            reverse_proxy http://localhost:${toString port}
+          }
+        '';
+      };
+
+      mkArrService = app: {
+        enable = true;
+        settings = {
+          server.port = meta.services.${app}.port;
+          auth = {
+            required = "Enabled";
+            method = "External";
+          };
+        };
+        environmentFiles = [ config.sops.templates."${app}.env".path ];
+      };
+    in
+    {
+      imports = [
+        modules.nixos.jellyfin
+        modules.nixos.transmission
       ];
-    };
 
-    users.groups.arr.members = [
-      "jellyfin"
-      "sonarr"
-      "radarr"
-      "transmission"
-    ];
+      sops = {
+        secrets = {
+          prowlarr-api-key.sopsFile = ../../secrets/${config.networking.hostName}/arr.yaml;
+          sonarr-api-key.sopsFile = ../../secrets/${config.networking.hostName}/arr.yaml;
+          radarr-api-key.sopsFile = ../../secrets/${config.networking.hostName}/arr.yaml;
+        };
 
-    services = {
-      caddy.virtualHosts =
-        let
-          mkHost = port: {
+        templates = {
+          "prowlarr.env" = mkArrTemplate "prowlarr";
+          "sonarr.env" = mkArrTemplate "sonarr";
+          "radarr.env" = mkArrTemplate "radarr";
+        };
+      };
+
+      systemd = {
+        tmpfiles.rules = [
+          "d /media 2775 root arr -"
+          "d /media/animes 2775 root arr -"
+          "d /media/movies 2775 root arr -"
+          "d /media/shows 2775 root arr -"
+          "d /media/torrents 2775 root arr -"
+          "d /media/torrents/movies 2775 root arr -"
+          "d /media/torrents/shows 2775 root arr -"
+        ];
+      };
+
+      users.groups.arr.members = [
+        "jellyfin"
+        "transmission"
+        "sonarr"
+        "radarr"
+        "prowlarr"
+      ];
+
+      services = {
+        caddy.virtualHosts = {
+          "${meta.services.prowlarr.domain}" = mkArrVirtualHost meta.services.prowlarr.port;
+          "${meta.services.sonarr.domain}" = mkArrVirtualHost meta.services.sonarr.port;
+          "${meta.services.radarr.domain}" = mkArrVirtualHost meta.services.radarr.port;
+          "${meta.services.seerr.domain}" = {
             extraConfig = ''
-              reverse_proxy http://localhost:${toString port}
+              reverse_proxy http://localhost:${toString meta.services.seerr.port}
             '';
           };
-        in
-        builtins.listToAttrs (
-          map
-            (name: {
-              name = meta.services.${name}.domain;
-              value = mkHost meta.services.${name}.port;
-            })
-            [
-              "seerr"
-              "sonarr"
-              "radarr"
-              "prowlarr"
-            ]
-        );
+        };
 
-      seerr = {
-        enable = true;
-        inherit (meta.services.seerr) port;
-      };
-      prowlarr = {
-        enable = true;
-        settings.server.port = meta.services.prowlarr.port;
-      };
-      sonarr = {
-        enable = true;
-        settings.server.port = meta.services.sonarr.port;
-      };
-      radarr = {
-        enable = true;
-        settings.server.port = meta.services.radarr.port;
+        seerr = {
+          enable = true;
+          inherit (meta.services.seerr) port;
+        };
+
+        prowlarr = mkArrService "prowlarr";
+        sonarr = mkArrService "sonarr";
+        radarr = mkArrService "radarr";
       };
     };
-  };
 }

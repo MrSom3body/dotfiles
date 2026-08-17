@@ -6,6 +6,7 @@ in
   flake.modules.nixos.transmission = { config, pkgs, ... }: {
     sops = {
       secrets.transmission-password.sopsFile = ../secrets/${config.networking.hostName}/transmission.yaml;
+      secrets.transmission-basic-auth.sopsFile = ../secrets/${config.networking.hostName}/transmission.yaml;
 
       templates."transmission.json" = {
         owner = "transmission";
@@ -17,12 +18,36 @@ in
             }
           '';
       };
+
+      templates."transmission-caddy.env" = {
+        owner = "caddy";
+        content = ''
+          TRANSMISSION_BASIC_AUTH="${config.sops.placeholder.transmission-basic-auth}"
+        '';
+      };
     };
+
+    systemd.services.caddy.serviceConfig.EnvironmentFile = [
+      "-${config.sops.templates."transmission-caddy.env".path}"
+    ];
 
     services = {
       caddy.virtualHosts."${meta.services.transmission.domain}" = {
         extraConfig = ''
-          reverse_proxy http://localhost:${toString meta.services.transmission.port}
+          @has_auth_header header Authorization *
+
+          handle @has_auth_header {
+            reverse_proxy http://localhost:${toString meta.services.transmission.port}
+          }
+
+          handle {
+            import oauth2_routes
+            import oauth2 admin.role
+
+            reverse_proxy http://localhost:${toString meta.services.transmission.port} {
+              header_up Authorization "{$TRANSMISSION_BASIC_AUTH}"
+            }
+          }
         '';
       };
 

@@ -70,11 +70,9 @@ in
           };
         };
 
-        caddy.virtualHosts."${meta.services.oauth2-proxy.domain}" = {
-          extraConfig = ''
-            reverse_proxy http://127.0.0.1:${toString meta.services.oauth2-proxy.port}
-          '';
-        };
+        caddy.virtualHosts."${meta.services.oauth2-proxy.domain}".extraConfig = ''
+          reverse_proxy http://127.0.0.1:${toString meta.services.oauth2-proxy.port}
+        '';
 
         oauth2-proxy =
           let

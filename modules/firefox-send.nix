@@ -6,12 +6,13 @@ in
   flake.modules.nixos.firefox-send = { config, pkgs, ... }: {
 
     services = {
-      cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.firefox-send.domain}" =
-        "http://localhost:${toString meta.services.firefox-send.port}";
+      cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.firefox-send.domain}" = {
+        service = "https://localhost:443";
+        originRequest.originServerName = meta.services.firefox-send.domain;
+      };
 
       caddy.virtualHosts."${meta.services.firefox-send.domain}".extraConfig = ''
         reverse_proxy http://127.0.0.1:${toString meta.services.firefox-send.port}
-        tls internal
       '';
 
       send = {

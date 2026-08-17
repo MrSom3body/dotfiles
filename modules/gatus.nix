@@ -47,15 +47,14 @@ in
       services = {
         anubis.instances.gatus.settings.TARGET = "http://localhost:${toString meta.services.gatus.port}";
 
-        cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.gatus.domain}" =
-          "unix:${anubisCfg.BIND}";
-
-        caddy.virtualHosts."${meta.services.gatus.domain}" = {
-          extraConfig = ''
-            reverse_proxy unix/${anubisCfg.BIND}
-            tls internal
-          '';
+        cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.gatus.domain}" = {
+          service = "https://localhost:443";
+          originRequest.originServerName = meta.services.gatus.domain;
         };
+
+        caddy.virtualHosts."${meta.services.gatus.domain}".extraConfig = ''
+          import anubis unix/${anubisCfg.BIND}
+        '';
 
         gatus = {
           enable = true;

@@ -5,8 +5,10 @@ in
 {
   flake.modules.nixos.cryptgeon = { config, ... }: {
     services = {
-      cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.cryptgeon.domain}" =
-        "http://localhost:${toString meta.services.cryptgeon.port}";
+      cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.cryptgeon.domain}" = {
+        service = "https://localhost:443";
+        originRequest.originServerName = meta.services.cryptgeon.domain;
+      };
 
       caddy.virtualHosts.${meta.services.cryptgeon.domain}.extraConfig = ''
         reverse_proxy http://127.0.0.1:${toString meta.services.cryptgeon.port}

@@ -15,16 +15,14 @@ in
       };
 
       services = {
-        cloudflared.tunnels.${hostName}.ingress."${meta.services.searx.domain}" =
-          "http://localhost:${toString meta.services.searx.port}";
-
-        caddy.virtualHosts."${meta.services.searx.domain}" = {
-          extraConfig = ''
-            reverse_proxy http://localhost:${toString meta.services.searx.port} {
-              header_up X-Forwarded-For {client_ip}
-            }
-          '';
+        cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.searx.domain}" = {
+          service = "https://localhost:443";
+          originRequest.originServerName = meta.services.searx.domain;
         };
+
+        caddy.virtualHosts."${meta.services.searx.domain}".extraConfig = ''
+          reverse_proxy http://localhost:${toString meta.services.searx.port}
+        '';
 
         searx = {
           enable = true;

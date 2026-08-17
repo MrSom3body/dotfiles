@@ -5,14 +5,14 @@ in
 {
   flake.modules.nixos.ntfy = { config, ... }: {
     services = {
-      cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.ntfy.domain}" =
-        "http://localhost:${toString meta.services.ntfy.port}";
-
-      caddy.virtualHosts."${meta.services.ntfy.domain}" = {
-        extraConfig = ''
-          reverse_proxy http://localhost:${toString meta.services.ntfy.port}
-        '';
+      cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.ntfy.domain}" = {
+        service = "https://localhost:443";
+        originRequest.originServerName = meta.services.ntfy.domain;
       };
+
+      caddy.virtualHosts."${meta.services.ntfy.domain}".extraConfig = ''
+        reverse_proxy http://localhost:${toString meta.services.ntfy.port}
+      '';
 
       ntfy-sh = {
         enable = true;

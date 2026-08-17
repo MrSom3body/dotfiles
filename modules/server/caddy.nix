@@ -16,14 +16,18 @@ in
         globalConfig = ''
           acme_dns cloudflare {$CF_TOKEN}
           servers {
-            trusted_proxies cloudflare {
-              interval 1h
-              timeout 15s
-            }
+            trusted_proxies static 127.0.0.0/8 ::1/128
             trusted_proxies_strict
+            client_ip_headers Cf-Connecting-Ip X-Forwarded-For
           }
         '';
         extraConfig = ''
+          (anubis) {
+            reverse_proxy {args[0]} {
+              header_up X-Real-Ip {client_ip}
+            }
+          }
+
           (oauth2) {
             @not_oauth2 not path /oauth2/*
             forward_auth @not_oauth2 ${meta.services.oauth2-proxy.url} {
@@ -54,11 +58,8 @@ in
           }
         '';
         package = pkgs.caddy.withPlugins {
-          plugins = [
-            "github.com/caddy-dns/cloudflare@v0.2.3"
-            "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
-          ];
-          hash = "sha256-67G7UrynoP+IwRRG6BY4qxktHFz5sHqjA+enR4DB/14=";
+          plugins = [ "github.com/caddy-dns/cloudflare@v0.2.3" ];
+          hash = "sha256-to0fhW7LWBocw1ccpPQ7e2nod7iJO9gkWZpjHsZDeu4=";
         };
       };
     };

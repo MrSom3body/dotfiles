@@ -174,7 +174,7 @@
     };
     karakeep = {
       port = 3002;
-      domain = "bookmarks.sndh.dev";
+      domain = "links.sndh.dev";
       group = "apps";
     };
     loxone = {

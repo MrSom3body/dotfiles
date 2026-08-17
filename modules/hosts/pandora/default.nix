@@ -14,6 +14,7 @@ let
     "miniflux"
     "nextdns-link"
     "paperless"
+    "podman"
     "smartd"
     "stylix"
     "syncthing-server"

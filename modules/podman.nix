@@ -6,5 +6,7 @@
 
       podman.enable = true;
     };
+
+    systemd.timers.podman-auto-update.wantedBy = [ "multi-user.target" ];
   };
 }

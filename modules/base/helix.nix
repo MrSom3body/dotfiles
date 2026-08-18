@@ -27,7 +27,10 @@
             end-of-line-diagnostics = "hint";
             inline-diagnostics.cursor-line = "error";
 
-            lsp.display-inlay-hints = true;
+            lsp = {
+              display-inlay-hints = true;
+              inlay-hints-length-limit = 30;
+            };
 
             cursor-shape = {
               normal = "block";

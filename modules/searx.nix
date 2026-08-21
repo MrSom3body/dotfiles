@@ -54,6 +54,10 @@ in
 
             hostnames = {
               remove = [ "(.*\\.)?nixos.wiki$" ];
+              replace = {
+                "(.*\\.)?youtube\\.com$" = "inv.nadeko.net";
+                "(.*\\.)?youtu\\.be$" = "inv.nadeko.net";
+              };
             };
 
             search = {

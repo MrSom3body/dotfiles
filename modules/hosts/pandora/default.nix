@@ -10,7 +10,7 @@ let
     "borgmatic"
     "cloudflared"
     "immich"
-    "minecraft-server/kn-server"
+    "minecraft-server/home-server"
     "miniflux"
     "nextdns-link"
     "paperless"

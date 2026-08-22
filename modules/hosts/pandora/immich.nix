@@ -6,5 +6,7 @@
       "video"
       "render"
     ];
+
+    systemd.services.immich.environment.LIBVA_DRIVER_NAME = "i965";
   };
 }

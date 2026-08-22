@@ -12,8 +12,11 @@
         enableHybridCodec = true;
       };
 
-      graphics.extraPackages = builtins.attrValues {
-        inherit (pkgs) intel-compute-runtime-legacy1 intel-media-sdk libva-vdpau-driver;
+      graphics = {
+        enable = true;
+        extraPackages = builtins.attrValues {
+          inherit (pkgs) intel-compute-runtime-legacy1 intel-vaapi-driver libva-vdpau-driver;
+        };
       };
     };
 
@@ -22,7 +25,10 @@
     };
 
     environment.sessionVariables.LIBVA_DRIVER_NAME = "i965";
-    systemd.services.jellyfin.environment.LIBVA_DRIVER_NAME = "i965";
+    systemd.services.jellyfin.environment = {
+      LIBVA_DRIVER_NAME = "i965";
+      LIBVA_DRIVERS_PATH = "/run/opengl-driver/lib/dri";
+    };
     systemd.services.immich.environment.LIBVA_DRIVER_NAME = "i965";
   };
 }

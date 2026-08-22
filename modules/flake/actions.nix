@@ -38,7 +38,7 @@ let
     install-nix-action = "cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24"; # v31.11.1
     cachix = "cachix/cachix-action@5f2d7c5294214f71b873db4b969586b980625e71"; # v17
     nix-diff-action = "natsukium/nix-diff-action@4091452e4c7b3c7ea4ecbaec84be7f0066d810d7"; # v1.1.1
-    alls-green = "re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe"; # v1.2.2
+    alls-green = "re-actors/alls-green@b5b5b37504aa4183270bd3d855c52a67f212be35"; # v1.3.0
     upload-artifact = "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a"; # v7.0.1
     action-gh-release = "softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228"; # v3.0.2
     download-artifact = "actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c"; # v8.0.1

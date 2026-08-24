@@ -3,7 +3,7 @@
     home.packages = builtins.attrValues {
       inherit (pkgs)
         # Documents
-        libreoffice-fresh
+        libreoffice
         simple-scan
         xournalpp
         # Communication

@@ -43,11 +43,13 @@ jobs:
           --cachix-cache som3cache \
           --out-link result \
           --flake="git+file:.#images.${{ matrix.image }}"
+    - name: Copy ISO to root dir
+      run: cp result-*/iso/*.iso .
     - name: Upload artifacts
       uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
       with:
         name: ${{ matrix.image }}-iso-image
-        path: result-*/iso/*.iso
+        path: '*.iso'
     strategy:
       matrix:
         image:

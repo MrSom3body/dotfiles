@@ -290,9 +290,13 @@ in
             strategy.matrix.image = [ "sanctuary" ];
             steps = commonSteps ++ [
               (steps.nixFastBuild "images.\${{ matrix.image }}")
+              {
+                name = "Copy ISO to root dir";
+                run = "cp result-*/iso/*.iso .";
+              }
               (steps.uploadArtifacts {
                 name = "\${{ matrix.image }}-iso-image";
-                path = "result-*/iso/*.iso";
+                path = "*.iso";
               })
             ];
           };

@@ -144,6 +144,15 @@
           background: @base0A;
         }
 
+        #gamemode {
+          color: @base00;
+          background: @base08;
+          border-radius: ${borderRadius}px;
+
+          padding: 0.2rem 0.5rem;
+          margin: 0.4rem 0.2rem;
+        }
+
         #battery.warning {
           color: @base00;
           background: @base0A;

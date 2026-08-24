@@ -31,6 +31,7 @@
             "custom/hyprcast"
             "backlight"
             "wireplumber"
+            "gamemode"
             "group/power"
             "group/hardware"
             "tray"
@@ -173,6 +174,16 @@
               interval = "once";
               signal = 1;
             };
+
+          gamemode = {
+            format = "{glyph}";
+            format-alt = "{glyph}";
+            glyph = " ";
+            hide-not-running = true;
+            use-icon = false;
+            tooltip = true;
+            tooltip-format = "Games running: {count}";
+          };
 
           backlight = {
             format = "{icon}";

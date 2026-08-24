@@ -50,7 +50,10 @@ let
     checkout = {
       name = "Checkout";
       uses = actions.checkout;
-      "with".token = "\${{ secrets.GITHUB_TOKEN }}";
+      "with" = {
+        fetch-depth = 0;
+        token = "\${{ secrets.GITHUB_TOKEN }}";
+      };
     };
     purge = {
       name = "Purge non-Nix files";

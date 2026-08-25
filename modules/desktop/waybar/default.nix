@@ -177,8 +177,8 @@
 
           gamemode = {
             format = "{glyph}";
-            format-alt = "{glyph}";
-            glyph = " ";
+            format-alt = "{glyph} {count}";
+            glyph = "󰊗";
             hide-not-running = true;
             use-icon = false;
             tooltip = true;

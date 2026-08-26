@@ -104,6 +104,10 @@
       port = 8987;
       group = "utils";
     };
+    bazarr = {
+      port = 6767;
+      group = "media";
+    };
     beszel = {
       port = 8090;
       domain = "monitor.sndh.dev";

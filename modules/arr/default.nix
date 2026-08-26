@@ -80,6 +80,7 @@ in
         "sonarr"
         "radarr"
         "prowlarr"
+        "bazarr"
       ];
 
       services = {
@@ -87,6 +88,7 @@ in
           "${meta.services.prowlarr.domain}" = mkArrVirtualHost meta.services.prowlarr.port;
           "${meta.services.sonarr.domain}" = mkArrVirtualHost meta.services.sonarr.port;
           "${meta.services.radarr.domain}" = mkArrVirtualHost meta.services.radarr.port;
+          "${meta.services.bazarr.domain}" = mkArrVirtualHost meta.services.bazarr.port;
           "${meta.services.seerr.domain}" = {
             extraConfig = ''
               reverse_proxy http://localhost:${toString meta.services.seerr.port}
@@ -97,6 +99,11 @@ in
         seerr = {
           enable = true;
           inherit (meta.services.seerr) port;
+        };
+
+        bazarr = {
+          enable = true;
+          listenPort = meta.services.bazarr.port;
         };
 
         prowlarr = mkArrService "prowlarr";

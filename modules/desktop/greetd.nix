@@ -27,6 +27,7 @@
           };
         remember = {
           username = true;
+          session = true;
           user_session = true;
         };
       };

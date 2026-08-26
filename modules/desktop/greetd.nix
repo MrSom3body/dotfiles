@@ -1,6 +1,6 @@
 { lib, ... }: {
   flake.modules.nixos.desktop =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     let
       tuigreet-config = (pkgs.formats.toml { }).generate "tuigreet-config.toml" {
         display.show_time = true;
@@ -17,6 +17,14 @@
           prompt_padding = 1;
         };
 
+        sessions =
+          let
+            sessionData = config.services.displayManager.sessionData.desktops;
+          in
+          {
+            sessions_dirs = [ "${sessionData}/share/wayland-sessions" ];
+            xsessions_dirs = [ "${sessionData}/share/xsessions" ];
+          };
         remember = {
           username = true;
           user_session = true;

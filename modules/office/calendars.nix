@@ -5,8 +5,9 @@ let
   inherit (meta.users.karun) email;
 in
 {
-  flake.modules.homeManager.office = { config, ... }: {
+  flake.modules.homeManager.office = { config, pkgs, ... }: {
     sops.secrets.dav-password.sopsFile = ../../secrets/user/calendars.yaml;
+    sops.secrets.wallos-api-key.sopsFile = ../../secrets/user/calendars.yaml;
 
     accounts.calendar = {
       basePath = "${config.xdg.dataHome}/calendars";
@@ -38,6 +39,28 @@ in
               "Persönlich"
               "Arbeit"
               "Nachhilfe"
+            ];
+          };
+        };
+
+        subscriptions = {
+          khal = {
+            enable = true;
+            color = "light green";
+            readOnly = true;
+          };
+          remote.type = "http";
+          vdirsyncer = {
+            enable = true;
+            collections = null;
+            urlCommand = [
+              (toString (
+                pkgs.writeShellScript "wallos-ical-url" ''
+                  printf '%s%s' \
+                    '${meta.services.wallos.url}/api/subscriptions/get_ical_feed.php?api_key=' \
+                    "$(cat ${config.sops.secrets.wallos-api-key.path})"
+                ''
+              ))
             ];
           };
         };

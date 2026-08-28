@@ -48,7 +48,7 @@
               ":sh rm -f /tmp/helix-yazi"
               '':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/helix-yazi''
               '':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty''
-              ":open %sh{cat /tmp/helix-yazi}"
+              ":open %sh{sed 's|^search://[^/]*/||' /tmp/helix-yazi}"
               ":redraw"
               ":set mouse false"
               ":set mouse true"

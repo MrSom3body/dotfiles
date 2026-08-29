@@ -7,6 +7,7 @@ in
     { config, ... }:
     let
       inherit (config.networking) hostName;
+      cfg = meta.services.searx;
     in
     {
       sops.secrets.searx = {
@@ -14,27 +15,35 @@ in
         format = "dotenv";
       };
 
+      systemd.tmpfiles.rules = [ "d /var/cache/searx-favicons 0750 searx searx - -" ];
+
       services = {
         cloudflared.tunnels.${config.networking.hostName}.ingress."${meta.services.searx.domain}" = {
           service = "https://localhost:443";
-          originRequest.originServerName = meta.services.searx.domain;
+          originRequest.originServerName = cfg.domain;
         };
 
-        caddy.virtualHosts."${meta.services.searx.domain}".extraConfig = ''
-          reverse_proxy http://localhost:${toString meta.services.searx.port}
+        caddy.virtualHosts."${cfg.domain}".extraConfig = ''
+          reverse_proxy http://localhost:${toString cfg.port}
         '';
 
         searx = {
           enable = true;
           redisCreateLocally = true;
+          configureUwsgi = true;
           environmentFile = config.sops.secrets.searx.path;
+
+          uwsgiConfig = {
+            disable-logging = true;
+            http = "localhost:${toString cfg.port}";
+          };
 
           settings = {
             use_default_settings = true;
 
             server = {
-              base_url = "https://${meta.services.searx.domain}";
-              inherit (meta.services.searx) port;
+              base_url = "https://${cfg.domain}";
+              inherit (cfg) port;
               bind_address = "127.0.0.1";
               secret_key = "@SEARX_SECRET_KEY@";
               method = "GET";
@@ -93,7 +102,7 @@ in
             favicons = {
               cfg_schema = 1;
               cache = {
-                db_url = "/var/cache/searx/faviconcache.db";
+                db_url = "/var/cache/searx-favicons/faviconcache.db";
                 LIMIT_TOTAL_BYTES = 2147483648;
                 HOLD_TIME = 5184000;
                 BLOB_MAX_BYTES = 40960;

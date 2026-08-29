@@ -14,6 +14,7 @@
           name = "default";
           isDefault = true;
           inherit (defaults) settings search;
+          presets.betterfox.enable = true;
           mods = [
             "253a3a74-0cc4-47b7-8b82-996a64f030d5" # Floating History
             "906c6915-5677-48ff-9bfc-096a02a72379" # Floating Status Bar

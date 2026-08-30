@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
   inherit (config) flake;
   inherit (flake) meta;
@@ -27,10 +27,12 @@ in
               config.sops.secrets.dav-password.path
             ];
           };
-          vdirsyncer = {
+          pimsync = {
             enable = true;
-            metadata = [ "displayname" ];
-            collections = [ "5ff7c5b5-503e-465d-bede-fc49b55f9168" ];
+            extraPairDirectives = lib.singleton {
+              name = "collections";
+              params = [ "all" ];
+            };
           };
         };
       };

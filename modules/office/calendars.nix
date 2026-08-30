@@ -1,5 +1,7 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
+  inherit (lib) singleton;
+
   inherit (config) flake;
   inherit (flake) meta;
   inherit (meta.users.karun) email;
@@ -29,17 +31,12 @@ in
               config.sops.secrets.dav-password.path
             ];
           };
-          vdirsyncer = {
+          pimsync = {
             enable = true;
-            metadata = [
-              "color"
-              "displayname"
-            ];
-            collections = [
-              "Persönlich"
-              "Arbeit"
-              "Nachhilfe"
-            ];
+            extraPairDirectives = singleton {
+              name = "collections";
+              params = [ "all" ];
+            };
           };
         };
 
@@ -48,19 +45,37 @@ in
             enable = true;
             color = "light green";
             readOnly = true;
+            type = "discover";
           };
           remote.type = "http";
-          vdirsyncer = {
+          pimsync = {
             enable = true;
-            collections = null;
-            urlCommand = [
-              (toString (
-                pkgs.writeShellScript "wallos-ical-url" ''
-                  printf '%s%s' \
-                    '${meta.services.wallos.url}/api/subscriptions/get_ical_feed.php?api_key=' \
-                    "$(cat ${config.sops.secrets.wallos-api-key.path})"
-                ''
-              ))
+            extraPairDirectives = singleton {
+              name = "collections";
+              params = [ "all" ];
+            };
+            extraRemoteStorageDirectives = [
+              {
+                name = "collection_id";
+                params = [ "subscriptions" ];
+              }
+              {
+                name = "url";
+                children = [
+                  {
+                    name = "cmd";
+                    params = [
+                      (toString (
+                        pkgs.writeShellScript "wallos-ical-url" ''
+                          printf '%s%s' \
+                            '${meta.services.wallos.url}/api/subscriptions/get_ical_feed.php?api_key=' \
+                            "$(cat ${config.sops.secrets.wallos-api-key.path})"
+                        ''
+                      ))
+                    ];
+                  }
+                ];
+              }
             ];
           };
         };
@@ -70,15 +85,22 @@ in
             enable = true;
             color = "light red";
             readOnly = true;
+            type = "discover";
           };
           remote = {
             type = "http";
             url = "https://calendar.google.com/calendar/ical/de.austrian%23holiday%40group.v.calendar.google.com/public/basic.ics";
           };
-          vdirsyncer = {
+          pimsync = {
             enable = true;
-            collections = null;
-            partialSync = "revert";
+            extraPairDirectives = singleton {
+              name = "collections";
+              params = [ "all" ];
+            };
+            extraRemoteStorageDirectives = singleton {
+              name = "collection_id";
+              params = [ "Feiertage" ];
+            };
           };
         };
       };

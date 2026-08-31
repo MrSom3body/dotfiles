@@ -11,7 +11,10 @@
 
     services.resolved = {
       enable = true;
-      settings.Resolve.DNSOverTLS = "opportunistic";
+      settings.Resolve = {
+        DNSSEC = "allow-downgrade";
+        DNSOverTLS = "opportunistic";
+      };
     };
   };
 }

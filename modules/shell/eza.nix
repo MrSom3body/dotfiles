@@ -7,6 +7,7 @@
       extraOptions = [
         "--group-directories-first"
         "--header"
+        "--group"
         "--smart-group"
       ];
     };

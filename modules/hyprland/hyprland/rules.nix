@@ -18,9 +18,7 @@
         window_rule = [
           # inhibit idle when fullscreen
           {
-            match = {
-              fullscreen = true;
-            };
+            match.fullscreen = true;
             idle_inhibit = "always";
           }
 
@@ -65,60 +63,48 @@
 
           # Ignore maximize requests from apps
           {
-            match = {
-              class = ".*";
-            };
+            match.class = ".*";
             suppress_event = "maximize";
           }
 
           # Move apps to workspaces
           {
-            match = {
-              class = toMatch [
-                "Todoist"
-                "@lunatask/electron"
-                "io.github.alainm23.planify"
-              ];
-            };
+            match.class = toMatch [
+              "Todoist"
+              "@lunatask/electron"
+              "io.github.alainm23.planify"
+            ];
             workspace = "special:todo silent";
           }
           {
-            match = {
-              class = "^(spotify)$";
-            };
+            match.class = "^(spotify)$";
             workspace = "special:spotify silent";
           }
           {
-            match = {
-              class = "^(vesktop)$";
-            };
+            match.class = "^(vesktop)$";
             workspace = "special:discord silent";
           }
 
           # Dim some programs
           {
-            match = {
-              class = toMatch [
-                "xdg-desktop-portal-gtk"
-                "polkit-gnome-authentication-agent-1"
-              ];
-            };
+            match.class = toMatch [
+              "xdg-desktop-portal-gtk"
+              "polkit-gnome-authentication-agent-1"
+            ];
             dim_around = true;
           }
 
           # Floating utilities
           {
-            match = {
-              class = toMatch [
-                "nm-connection-editor"
-                "impala"
-                "bluetui"
-                ".blueman-manager-wrapped"
-                "wiremix"
-                "com.saivert.pwvucontrol"
-                "dua"
-              ];
-            };
+            match.class = toMatch [
+              "nm-connection-editor"
+              "impala"
+              "bluetui"
+              ".blueman-manager-wrapped"
+              "wiremix"
+              "com.saivert.pwvucontrol"
+              "dua"
+            ];
             float = true;
             size = "${toString floatingSize.w} ${toString floatingSize.h}";
             center = true;
@@ -126,27 +112,21 @@
 
           # Udiskie
           {
-            match = {
-              class = "^(udiskie)$";
-            };
+            match.class = "^(udiskie)$";
             float = true;
             center = true;
           }
 
           # Picture-in-Picture
           {
-            match = {
-              title = "^(Picture-in-Picture)$";
-            };
+            match.title = "^(Picture-in-Picture)$";
             float = true;
             pin = true;
           }
 
           # Proton Pass
           {
-            match = {
-              class = "^(Proton Pass)$";
-            };
+            match.class = "^(Proton Pass)$";
             float = true;
             no_screen_share = true;
           }
@@ -173,47 +153,37 @@
 
           # Calculator
           {
-            match = {
-              class = toMatch [
-                "org.gnome.Calculator"
-                "qalculate-gtk"
-              ];
-            };
+            match.class = toMatch [
+              "org.gnome.Calculator"
+              "qalculate-gtk"
+            ];
             float = true;
           }
 
           # Clock
           {
-            match = {
-              class = "^(org.gnome.clocks)$";
-            };
+            match.class = "^(org.gnome.clocks)$";
             float = true;
             size = "800 600";
           }
 
           # Grayjay
           {
-            match = {
-              title = "^(Grayjay)$";
-            };
+            match.title = "^(Grayjay)$";
             tile = true;
           }
 
           # Games
           {
-            match = {
-              class = toMatch [
-                "Minecraft.*"
-                "steam_app_.*"
-                "hl2_linux"
-              ];
-            };
+            match.class = toMatch [
+              "Minecraft.*"
+              "steam_app_.*"
+              "hl2_linux"
+            ];
             immediate = true;
           }
           {
-            match = {
-              class = "^(steam_app_960090)$";
-            };
+            match.class = "^(steam_app_960090)$";
             render_unfocused = true;
           }
         ];
@@ -241,23 +211,17 @@
           in
           [
             {
-              match = {
-                namespace = toMatch menus;
-              };
+              match.namespace = toMatch menus;
               animation = "slide";
               dim_around = true;
             }
             {
-              match = {
-                namespace = toMatch notifications;
-              };
+              match.namespace = toMatch notifications;
               animation = "slide right";
             }
           ]
           ++ lib.optional (config.stylix.opacity.desktop != 1.0) {
-            match = {
-              namespace = toMatch blurred;
-            };
+            match.namespace = toMatch blurred;
             blur = true;
             ignore_alpha = 0;
           };

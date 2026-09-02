@@ -11,6 +11,11 @@
           onState = [ "routable" ];
           script = ''
             #!${pkgs.runtimeShell}
+            case "$IFACE" in
+              wl*|en*|eth*) ;;
+              *) exit 0 ;;
+            esac
+
             TZ=$(${lib.getExe pkgs.tzupdate} -p)
             CURRENT_TZ=$(${lib.getExe' pkgs.systemd "timedatectl"} show --property=Timezone --value)
 

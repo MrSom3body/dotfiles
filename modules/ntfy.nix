@@ -47,6 +47,7 @@ in
             "arr:prowlarr:wo"
             "arr:radarr:wo"
             "arr:sonarr:wo"
+            "arr:bazarr:wo"
 
             # misc
             "miniflux:miniflux:wo"

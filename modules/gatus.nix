@@ -96,6 +96,7 @@ in
               default-alert = {
                 send-on-resolved = true;
                 failure-threshold = 6;
+                minimum-reminder-interval = "1h";
               };
             };
           };

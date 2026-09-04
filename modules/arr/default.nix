@@ -1,11 +1,12 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
+  inherit (lib) mkForce;
   inherit (config.flake) meta;
   inherit (config.flake) modules;
 in
 {
   flake.modules.nixos.arr =
-    { config, lib, ... }:
+    { config, ... }:
     let
       mkArrTemplate = app: {
         content = ''
@@ -65,7 +66,6 @@ in
       systemd = {
         tmpfiles.rules = [
           "d /media 2775 root arr -"
-          "a+ /media - - - - d:g:arr:rwX"
           "d /media/animes 2775 root arr -"
           "d /media/movies 2775 root arr -"
           "d /media/shows 2775 root arr -"
@@ -73,6 +73,12 @@ in
           "d /media/torrents/movies 2775 root arr -"
           "d /media/torrents/shows 2775 root arr -"
         ];
+        services = {
+          bazarr.serviceConfig.UMask = mkForce "0002";
+          prowlarr.serviceConfig.UMask = mkForce "0002";
+          radarr.serviceConfig.UMask = mkForce "0002";
+          sonarr.serviceConfig.UMask = mkForce "0002";
+        };
       };
 
       users.groups.arr.members = [

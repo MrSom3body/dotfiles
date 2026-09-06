@@ -10,6 +10,8 @@
         pop_to_root_on_close = true;
         close_on_focus_loss = false;
         search_files_in_root = true;
+        tray.enabled = false;
+        keybinding = "vim";
 
         providers = {
           # core

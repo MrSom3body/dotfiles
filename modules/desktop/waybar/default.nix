@@ -351,8 +351,8 @@
             format-no-controller = "";
             tooltip-format = "{controller_alias}\t{controller_address}";
             tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
-            tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
-            tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
+            tooltip-format-enumerate-connected = "{device_alias}";
+            tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_battery_percentage}%";
             on-click = "hypr-focus-or-launch-tui bluetui";
             on-click-right = "rfkill toggle bluetooth";
           };

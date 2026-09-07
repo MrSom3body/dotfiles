@@ -106,7 +106,10 @@
       };
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -161,6 +164,7 @@
       url = "github:NousResearch/hermes-agent";
       inputs = {
         flake-parts.follows = "flake-parts";
+        home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
     };

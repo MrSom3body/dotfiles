@@ -39,48 +39,32 @@ in
     getRunningServices =
       flake:
       let
-        allVirtualHosts = lib.concatMapAttrs (
-          _name: conf: conf.config.services.caddy.virtualHosts or { }
-        ) flake.nixosConfigurations;
-
         hostSpecificServices = lib.flatten (
           lib.mapAttrsToList (
             name: service:
-            if service.hostSpecific && service.checkEnabled != null then
-              lib.filter (x: x != null) (
-                lib.mapAttrsToList (
-                  hostName: hostConf:
-                  if service.checkEnabled hostConf.config then
-                    let
-                      evalDomain =
-                        if builtins.isString service.domain then
-                          service.domain
-                        else
-                          (if service.domain != null then service.domain hostName else null);
-                      evalUrl =
-                        if builtins.isString service.url then
-                          service.url
-                        else
-                          (if service.url != null then service.url hostName else null);
-                    in
-                    if
-                      service.external
-                      || (evalDomain != null && (allVirtualHosts ? "${evalDomain}"))
-                      || (evalDomain == null)
-                    then
-                      service
-                      // {
-                        name = "${name}-${hostName}";
-                        title = "${service.title} (${hostName})";
-                        domain = evalDomain;
-                        url = evalUrl;
-                      }
+            if service.hostSpecific && service.enable then
+              map (
+                hostName:
+                let
+                  evalDomain =
+                    if builtins.isString service.domain then
+                      service.domain
                     else
-                      null
-                  else
-                    null
-                ) flake.nixosConfigurations
-              )
+                      (if service.domain != null then service.domain hostName else null);
+                  evalUrl =
+                    if builtins.isString service.url then
+                      service.url
+                    else
+                      (if service.url != null then service.url hostName else null);
+                in
+                service
+                // {
+                  name = "${name}-${hostName}";
+                  title = "${service.title} (${hostName})";
+                  domain = evalDomain;
+                  url = evalUrl;
+                }
+              ) service.hosts
             else
               [ ]
           ) flake.meta.services
@@ -88,10 +72,7 @@ in
 
         globalServices = lib.mapAttrsToList (name: service: service // { inherit name; }) (
           lib.filterAttrs (
-            _name: service:
-            !service.hostSpecific
-            && (service.domain != null)
-            && (service.external || (allVirtualHosts ? "${service.domain}"))
+            _name: service: !service.hostSpecific && service.enable && (service.domain != null)
           ) flake.meta.services
         );
       in

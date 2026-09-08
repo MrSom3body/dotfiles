@@ -52,15 +52,20 @@
               type = lib.types.bool;
               default = false;
             };
+            enable = lib.mkOption {
+              type = lib.types.bool;
+              default = true;
+              description = "Whether this service is currently deployed/active";
+            };
             hostSpecific = lib.mkOption {
               type = lib.types.bool;
               default = false;
               description = "Whether this service runs independently on multiple hosts";
             };
-            checkEnabled = lib.mkOption {
-              type = lib.types.nullOr (lib.types.functionTo lib.types.bool);
-              default = null;
-              description = "Function to check if the service is enabled on a host config";
+            hosts = lib.mkOption {
+              type = lib.types.listOf lib.types.str;
+              default = [ ];
+              description = "List of hostnames where this host-specific service runs";
             };
             alt-status-codes = lib.mkOption {
               type = lib.types.listOf lib.types.int;
@@ -96,6 +101,7 @@
       group = "apps";
     };
     actual = {
+      enable = false;
       port = 3006;
       group = "apps";
       domain = "budget.sndh.dev";
@@ -114,6 +120,7 @@
       group = "infra";
     };
     cryptgeon = {
+      enable = false;
       port = 3010;
       domain = "crypt.sndh.dev";
       public = true;
@@ -121,11 +128,12 @@
       icon = "sh:cryptgeon";
     };
     "ddns-updater" = {
+      enable = false;
       port = 8000;
       domain = hostName: "ddns.${hostName}.sndh.dev";
       group = "infra";
       hostSpecific = true;
-      checkEnabled = hostConf: hostConf.services.ddns-updater.enable or false;
+      hosts = [ ];
     };
     "firefox-send" = {
       port = 1443;
@@ -248,7 +256,10 @@
       show = true;
       group = "infra";
       hostSpecific = true;
-      checkEnabled = hostConf: hostConf.services.syncthing.enable or false;
+      hosts = [
+        "pandora"
+        "xylourgos"
+      ];
     };
     transmission = {
       port = 9091;

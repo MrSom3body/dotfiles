@@ -53,35 +53,6 @@
           # Git Stuff
           gti = "git"; # because I can't type
           g = "git";
-          ga = "git add";
-          gb = "git branch";
-          gc = "git commit";
-          gca = "git commit --amend";
-          gcm = {
-            setCursor = "%";
-            expansion = "git commit -m \"%\"";
-          };
-          gd = "git diff";
-          gds = "git diff --staged";
-          gf = "git commit --amend --no-edit";
-          gg = "git log --all --decorate --graph --oneline";
-          gl = "git log --oneline";
-          gll = "git log";
-          gp = "git push";
-          gpf = "git push --force-with-lease";
-          gpl = "git pull";
-          gpt = "git push --tags";
-          gr = "git rebase";
-          grc = "git rebase --continue";
-          gra = "git rebase --abort";
-          gri = {
-            setCursor = "%";
-            expansion = "git rebase -i HEAD~%";
-          };
-          gs = "git status --short";
-          gss = "git status";
-          gsw = "git switch";
-          gt = "git tag";
         };
       };
 

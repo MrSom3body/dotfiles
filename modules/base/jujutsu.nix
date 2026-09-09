@@ -9,7 +9,28 @@ in
       settings = {
         user = { inherit (meta.users.karun) name email; };
 
-        ui.default-command = "log";
+        git = {
+          sign-on-push = true;
+        };
+
+        signing = {
+          backend = "gpg";
+          inherit (meta.users.karun) key;
+        };
+
+        ui = {
+          default-command = "log";
+          diff-editor = ":builtin";
+        };
+
+        aliases = {
+          n = [ "new" ];
+          l = [
+            "log"
+            "-r"
+            "ancestors(reachable(@, mutable()), 2)"
+          ];
+        };
       };
     };
   };

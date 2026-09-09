@@ -19,7 +19,7 @@ in
         };
 
         ui = {
-          default-command = "log";
+          default-command = "l";
           diff-editor = ":builtin";
         };
 

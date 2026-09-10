@@ -77,7 +77,7 @@ in
               {
                 output = "desc:AOC 24B3HMA2 1OVQ5HA003115";
                 mode = "1920x1080@100.00Hz";
-                position = "auto";
+                position = "auto-left";
                 scale = "1";
               }
             ];

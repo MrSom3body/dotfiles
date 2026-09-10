@@ -13,8 +13,8 @@
     import-tree.url = "github:vic/import-tree";
 
     # https://deer.social/profile/did:plc:mojgntlezho4qt7uvcfkdndg/post/3loogwsoqok2w
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
-    nixpkgs-stable.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
+    nixpkgs-stable.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
     systems.url = "github:nix-systems/default-linux";
 
     # deduplication

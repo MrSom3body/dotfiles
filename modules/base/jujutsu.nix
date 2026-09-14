@@ -32,6 +32,11 @@ in
             "ancestors(reachable(@, mutable()), 2)"
           ];
         };
+
+        revsets.bookmark-advance-to = "closest_pushable(@)";
+        revset-aliases."closest_pushable(to)" = ''
+          heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))
+        '';
       };
     };
   };

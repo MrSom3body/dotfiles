@@ -21,11 +21,7 @@ in
         ui = {
           default-command = "l";
           diff-editor = ":builtin";
-          pager = [
-            "sh"
-            "-c"
-            "exec \${PAGER:-less -FRXK}"
-          ];
+          pager = "less -FRXK";
         };
 
         aliases = {

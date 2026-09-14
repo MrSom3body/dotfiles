@@ -74,6 +74,7 @@ in
           "d /media/torrents/shows 2775 root arr -"
         ];
         services = {
+          transmission.serviceConfig.UMask = mkForce "0002";
           bazarr.serviceConfig.UMask = mkForce "0002";
           prowlarr.serviceConfig.UMask = mkForce "0002";
           radarr.serviceConfig.UMask = mkForce "0002";

@@ -70,11 +70,13 @@
     };
 
     security = {
-      # use sudo-rs
-      sudo-rs = {
+      # use run0
+      run0 = {
         enable = true;
-        execWheelOnly = true;
+        sudo-shim.enable = true;
       };
+      sudo.enable = false;
+      sudo-rs.enable = false;
 
       # accept acme terms
       acme = {

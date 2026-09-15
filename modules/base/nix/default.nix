@@ -48,6 +48,8 @@
 
               warn-dirty = false;
 
+              keep-going = true;
+
               cores = 0;
               max-jobs = "auto";
 
@@ -55,10 +57,15 @@
               experimental-features = [
                 "nix-command"
                 "flakes"
-                "auto-allocate-uids"
                 "configurable-impure-env"
                 "pipe-operators"
+                "auto-allocate-uids"
+                "cgroups"
               ];
+
+              auto-allocate-uids = true;
+              use-cgroups = true;
+
               impure-env = [ "NIXPKGS_ALLOW_UNFREE" ];
 
               keep-derivations = true;

@@ -28,6 +28,17 @@ let
       }
     );
 
+    # TODO remove when https://github.com/nixos/nixpkgs/issues/562919 gets resolved
+    linux-firmware = prev.linux-firmware.overrideAttrs {
+      version = "20260810";
+      src = final.fetchFromGitLab {
+        owner = "kernel-firmware";
+        repo = "linux-firmware";
+        tag = "20260810";
+        hash = "sha256-P/fPpqaatp8Z2GV+I/OChiWGn6AhV+8w1RMFuX/LqHc=";
+      };
+    };
+
     obsidian = prev.obsidian.overrideAttrs (oldAttrs: {
       postInstall = (oldAttrs.postInstall or "") + ''
         wrapProgram $out/bin/obsidian \

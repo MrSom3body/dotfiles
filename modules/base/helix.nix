@@ -2,7 +2,6 @@
   flake.modules = {
     nixos.nixos = { pkgs, ... }: {
       environment.systemPackages = [ inputs.helix.packages.${pkgs.stdenv.hostPlatform.system}.helix ];
-      programs.nano.enable = false; # eww
     };
 
     homeManager.homeManager = { pkgs, ... }: {

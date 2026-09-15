@@ -6,6 +6,7 @@
       remotes = [
         {
           name = "origin";
+          branches.main.operation = "boot";
           url = "https://github.com/MrSom3body/dotfiles.git";
         }
       ];

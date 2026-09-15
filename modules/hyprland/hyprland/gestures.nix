@@ -3,13 +3,7 @@
     { lib, config, ... }:
     let
       inherit (config.wayland.windowManager.hyprland) layout;
-      luaFunc =
-        func:
-        lib.generators.mkLuaInline ''
-          function()
-            ${func}
-          end
-        '';
+      luaFunc = func: lib.generators.mkLuaInline "function() ${func} end";
     in
     {
       wayland.windowManager.hyprland.settings = {

@@ -16,6 +16,7 @@
         settings.bind =
           let
             lua = lib.generators.mkLuaInline;
+            luaFunc = func: lua "function() ${func} end";
             shorten = s: builtins.substring 0 14 s;
             runOnce =
               program:
@@ -106,7 +107,7 @@
             {
               _args = [
                 "SHIFT + minus"
-                (lua ''function() hl.config({["cursor.zoom_factor"] = 1}) end'')
+                (luaFunc ''hl.config({["cursor.zoom_factor"] = 1})'')
                 { description = "Reset zoom"; }
               ];
             }
@@ -115,7 +116,7 @@
             {
               _args = [
                 "plus"
-                (lua ''function() hl.config({["cursor.zoom_factor"] = hl.get_config("cursor.zoom_factor") * 1.1}) end'')
+                (luaFunc ''hl.config({["cursor.zoom_factor"] = hl.get_config("cursor.zoom_factor") * 1.1})'')
                 {
                   description = "Zoom in";
                   repeating = true;
@@ -125,7 +126,7 @@
             {
               _args = [
                 "minus"
-                (lua ''function() local f = hl.get_config("cursor.zoom_factor") * 0.9; hl.config({["cursor.zoom_factor"] = f < 1 and 1 or f}) end'')
+                (luaFunc ''local f = hl.get_config("cursor.zoom_factor") * 0.9; hl.config({["cursor.zoom_factor"] = f < 1 and 1 or f})'')
                 {
                   description = "Zoom out";
                   repeating = true;

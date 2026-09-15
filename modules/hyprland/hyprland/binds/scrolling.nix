@@ -4,6 +4,7 @@
     let
       inherit (config.wayland.windowManager.hyprland) layout;
       lua = lib.generators.mkLuaInline;
+      luaFunc = func: lua "function() ${func} end";
       desc = description: { inherit description; };
     in
     {
@@ -72,14 +73,12 @@
         {
           _args = [
             "SUPER + CTRL + H"
-            (lua /* lua */ ''
-              function()
-                local win = hl.get_active_window()
-                if win and win.floating then
-                  hl.dispatch(hl.dsp.window.resize({ x = -100, y = 0, relative = true }))
-                else
-                  hl.dispatch(hl.dsp.layout("colresize -0.2"))
-                end
+            (luaFunc /* lua */ ''
+              local win = hl.get_active_window()
+              if win and win.floating then
+                hl.dispatch(hl.dsp.window.resize({ x = -100, y = 0, relative = true }))
+              else
+                hl.dispatch(hl.dsp.layout("colresize -0.2"))
               end
             '')
             (desc "Decrease column size / resize floating window left")
@@ -88,14 +87,12 @@
         {
           _args = [
             "SUPER + CTRL + L"
-            (lua /* lua */ ''
-              function()
-                local win = hl.get_active_window()
-                if win and win.floating then
-                  hl.dispatch(hl.dsp.window.resize({ x = 100, y = 0, relative = true }))
-                else
-                  hl.dispatch(hl.dsp.layout("colresize +0.2"))
-                end
+            (luaFunc /* lua */ ''
+              local win = hl.get_active_window()
+              if win and win.floating then
+                hl.dispatch(hl.dsp.window.resize({ x = 100, y = 0, relative = true }))
+              else
+                hl.dispatch(hl.dsp.layout("colresize +0.2"))
               end
             '')
             (desc "Increase column size / resize floating window right")

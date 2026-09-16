@@ -106,7 +106,7 @@ deploy-all *args:
 
 [group("iso")]
 build-iso iso_name="sanctuary":
-    nix-fast-build --skip-cached --flake "{{flake}}#images.{{iso_name}}"
+    nix-fast-build --skip-cached --flake "{{flake}}#images.{{iso_name}}" --out-link result
 
 
 # ---------- secrets ---------- #

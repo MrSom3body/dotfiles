@@ -40,7 +40,11 @@ in
       systemd.services.borgmatic.serviceConfig = {
         EnvironmentFile = [ "-${config.sops.secrets.borgmatic-env.path}" ];
         AmbientCapabilities = [ "CAP_SYS_ADMIN" ];
-        CapabilityBoundingSet = [ "CAP_SYS_ADMIN" ];
+        CapabilityBoundingSet = [
+          "CAP_SYS_ADMIN"
+          "CAP_SETUID"
+          "CAP_SETGID"
+        ];
       };
 
       services.borgmatic = {
@@ -140,12 +144,19 @@ in
             }
           ];
 
-          postgresql_databases = lib.mkIf config.services.postgresql.enable [
-            {
-              name = "all";
-              username = "postgres";
-            }
-          ];
+          postgresql_databases =
+            let
+              setpriv = lib.getExe' pkgs.util-linux "setpriv";
+            in
+            lib.mkIf config.services.postgresql.enable [
+              {
+                name = "all";
+                username = "postgres";
+                pg_dump_command = "${setpriv} --reuid=postgres --regid=postgres --init-groups ${config.services.postgresql.package}/bin/pg_dumpall";
+                pg_restore_command = "${setpriv} --reuid=postgres --regid=postgres --init-groups ${config.services.postgresql.package}/bin/pg_restore";
+                psql_command = "${setpriv} --reuid=postgres --regid=postgres --init-groups ${config.services.postgresql.package}/bin/psql";
+              }
+            ];
 
           ntfy = {
             topic = "alerts";

@@ -79,8 +79,14 @@ in
                   inherit name;
                   group = "backups";
                   token = "\${BORGMATIC_GATUS_TOKEN}";
-                  heartbeat.interval = "48h";
-                  alerts = [ { type = "ntfy"; } ];
+                  heartbeat.interval = "24h";
+                  alerts = [
+                    {
+                      type = "ntfy";
+                      failure-threshold = 2;
+                      success-threshold = 1;
+                    }
+                  ];
                 })
                 (
                   lib.filterAttrs (

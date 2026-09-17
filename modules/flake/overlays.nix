@@ -42,12 +42,12 @@ let
 
       # TODO remove when https://github.com/nixos/nixpkgs/issues/562919 gets resolved
       linux-firmware = overrideIfOlder prev.linux-firmware "20260911" (_: {
-        version = "20260810";
+        version = "20260916";
         src = final.fetchFromGitLab {
           owner = "kernel-firmware";
           repo = "linux-firmware";
-          tag = "20260810";
-          hash = "sha256-P/fPpqaatp8Z2GV+I/OChiWGn6AhV+8w1RMFuX/LqHc=";
+          tag = "20260916";
+          hash = "sha256-VbDTRN/i+a1BrKnDtdDFxanp3BQujBhe9CyWay9GTXY=";
         };
       });
 

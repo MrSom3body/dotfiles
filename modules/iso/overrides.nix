@@ -10,9 +10,8 @@ in
     networking.networkmanager.enable = mkForce false;
     boot.supportedFilesystems.zfs = mkForce false;
     security = {
-      run0.wheelNeedsPassword = false;
       sudo.enable = false;
-      sudo-rs.enable = false;
+      sudo-rs.wheelNeedsPassword = false;
     };
   };
 }

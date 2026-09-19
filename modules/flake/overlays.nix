@@ -18,16 +18,16 @@ let
       # TODO remove when https://github.com/NixOS/nixpkgs/pull/558436 gets merged
       tsukimi = overrideIfOlder prev.tsukimi "26.9.1" (
         finalAttrs: previousAttrs: {
-          version = "26.9.1";
+          version = "26.9.2";
           src = prev.fetchFromGitHub {
             owner = "tsukinaha";
             repo = "tsukimi";
             tag = "v${finalAttrs.version}";
-            hash = "sha256-YhagPMD5nSzLCWQc+LjStezMvzapxw+an1pxN2AdZPM=";
+            hash = "sha256-qlkXQxae8rhDgIJk60NzD6yk6b71S8jTGuChcnW9VuM=";
           };
           cargoDeps = prev.rustPlatform.fetchCargoVendor {
             inherit (finalAttrs) pname version src;
-            hash = "sha256-EQyG2ZSAHP5Tc6WSWyNa950en4SX+kbzgUUKeVnAswg=";
+            hash = "sha256-Phwn2qBPVaGEyzaBHIg9vq8LEFI0DsSUWkHrpimjy30=";
           };
           nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [
             prev.blueprint-compiler

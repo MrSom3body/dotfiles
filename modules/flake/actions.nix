@@ -60,11 +60,13 @@ let
       id = "filter";
       uses = actions.paths-filter;
       "with" = {
+        predicate-quantifier = "some-with-excludes";
         filters = ''
           needs_ci:
             - '**'
             - '!**.md'
             - '!.github/assets/**'
+            - '!walls/**'
             - '!LICENSE'
         '';
       };

@@ -109,6 +109,7 @@ jobs:
     steps:
     - uses: re-actors/alls-green@b5b5b37504aa4183270bd3d855c52a67f212be35
       with:
+        allowed-skips: flake-check, build
         jobs: ${{ toJSON(needs) }}
   flake-check:
     if: ${{ needs.changes.outputs.needs_ci == 'true' || github.event_name == 'workflow_dispatch'

@@ -250,6 +250,7 @@ in
                 uses = actions.alls-green;
                 "with" = {
                   jobs = "\${{ toJSON(needs) }}";
+                  allowed-skips = "flake-check, build";
                 };
               }
             ];

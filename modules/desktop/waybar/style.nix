@@ -45,9 +45,9 @@
           padding: 0.2rem 0.5rem;
         }
 
-        window#waybar.battery-critical {
+        /*window#waybar.battery-critical {
           background: mix(@base00, @base08, 0.3);
-        }
+        }*/
 
         #custom-actions {
           color: @base0B;

@@ -37,6 +37,7 @@ let
     nothing-but-nix = "wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7"; # v10
     install-nix-action = "cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24"; # v31.11.1
     cachix = "cachix/cachix-action@38b082610b782e7e93e209c35fd730d399dee866"; # v17
+    paths-filter = "dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d"; # v4.0.3
     nix-diff-action = "natsukium/nix-diff-action@4091452e4c7b3c7ea4ecbaec84be7f0066d810d7"; # v1.1.1
     alls-green = "re-actors/alls-green@b5b5b37504aa4183270bd3d855c52a67f212be35"; # v1.3.0
     upload-artifact = "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a"; # v7.0.1
@@ -53,6 +54,19 @@ let
       "with" = {
         fetch-depth = 0;
         token = "\${{ secrets.GITHUB_TOKEN }}";
+      };
+    };
+    pathsFilter = {
+      id = "filter";
+      uses = actions.paths-filter;
+      "with" = {
+        filters = ''
+          needs_ci:
+            - '**'
+            - '!**.md'
+            - '!.github/assets/**'
+            - '!LICENSE'
+        '';
       };
     };
     purge = {
@@ -159,24 +173,11 @@ in
       ".github/workflows/ci.yaml" = {
         name = "CI";
         on = {
-          push = {
-            branches = [
-              "main"
-              "testing-*"
-            ];
-            paths-ignore = [
-              "**.md"
-              ".github/assets/**"
-              "LICENSE"
-            ];
-          };
-          pull_request = {
-            paths-ignore = [
-              "**.md"
-              ".github/assets/**"
-              "LICENSE"
-            ];
-          };
+          push.branches = [
+            "main"
+            "testing-*"
+          ];
+          pull_request = { };
           workflow_dispatch = { };
         };
 
@@ -186,8 +187,21 @@ in
         };
 
         jobs = {
+          changes = {
+            name = "Check for changed files";
+            runs-on = "ubuntu-latest";
+            outputs.needs_ci = "\${{ steps.filter.outputs.needs_ci }}";
+            steps = [
+              steps.checkout
+              steps.pathsFilter
+            ];
+          };
+
           flake-check = {
             name = "Flake check (\${{ matrix.systems.hostPlatform }})";
+            needs = [ "changes" ];
+            "if" =
+              "\${{ needs.changes.outputs.needs_ci == 'true' || github.event_name == 'workflow_dispatch' }}";
             strategy = {
               fail-fast = false;
               matrix.systems = checkPlatforms;
@@ -207,6 +221,9 @@ in
 
           build = {
             name = "Build \${{ matrix.attrs.hostname }} (\${{ matrix.attrs.hostPlatform }})";
+            needs = [ "changes" ];
+            "if" =
+              "\${{ needs.changes.outputs.needs_ci == 'true' || github.event_name == 'workflow_dispatch' }}";
             strategy = {
               fail-fast = false;
               matrix.attrs = nixosHosts;
@@ -221,6 +238,7 @@ in
           check = {
             name = "All checks";
             needs = [
+              "changes"
               "flake-check"
               "build"
             ];

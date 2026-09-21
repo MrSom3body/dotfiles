@@ -8,7 +8,11 @@ concurrency:
   group: ci-${{ github.head_ref || github.ref_name }}
 jobs:
   build:
+    if: ${{ needs.changes.outputs.needs_ci == 'true' || github.event_name == 'workflow_dispatch'
+      }}
     name: Build ${{ matrix.attrs.hostname }} (${{ matrix.attrs.hostPlatform }})
+    needs:
+    - changes
     runs-on: ${{ matrix.attrs.runsOn }}
     steps:
     - name: Checkout
@@ -72,10 +76,31 @@ jobs:
           hostname: xylourgos
           output: nixosConfigurations.xylourgos.config.system.build.toplevel
           runsOn: ubuntu-24.04-arm
+  changes:
+    name: Check for changed files
+    outputs:
+      needs_ci: ${{ steps.filter.outputs.needs_ci }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - id: filter
+      uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36
+      with:
+        filters: |-
+          needs_ci:
+            - '**'
+            - '!**.md'
+            - '!.github/assets/**'
+            - '!LICENSE'
   check:
     if: always()
     name: All checks
     needs:
+    - changes
     - flake-check
     - build
     runs-on: ubuntu-latest
@@ -84,7 +109,11 @@ jobs:
       with:
         jobs: ${{ toJSON(needs) }}
   flake-check:
+    if: ${{ needs.changes.outputs.needs_ci == 'true' || github.event_name == 'workflow_dispatch'
+      }}
     name: Flake check (${{ matrix.systems.hostPlatform }})
+    needs:
+    - changes
     runs-on: ${{ matrix.systems.runsOn }}
     steps:
     - name: Checkout
@@ -125,17 +154,9 @@ jobs:
           runsOn: ubuntu-24.04-arm
 name: CI
 'on':
-  pull_request:
-    paths-ignore:
-    - '**.md'
-    - .github/assets/**
-    - LICENSE
+  pull_request: {}
   push:
     branches:
     - main
     - testing-*
-    paths-ignore:
-    - '**.md'
-    - .github/assets/**
-    - LICENSE
   workflow_dispatch: {}

@@ -114,7 +114,7 @@ let
       id = "app-token";
       uses = actions.create-github-app-token;
       "with" = {
-        app-id = "\${{ secrets.APP_ID }}";
+        client-id = "\${{ secrets.APP_ID }}";
         private-key = "\${{ secrets.APP_PRIVATE_KEY }}";
       };
     };
@@ -159,11 +159,24 @@ in
       ".github/workflows/ci.yaml" = {
         name = "CI";
         on = {
-          push.branches = [
-            "main"
-            "testing-*"
-          ];
-          pull_request = { };
+          push = {
+            branches = [
+              "main"
+              "testing-*"
+            ];
+            paths-ignore = [
+              "**.md"
+              ".github/assets/**"
+              "LICENSE"
+            ];
+          };
+          pull_request = {
+            paths-ignore = [
+              "**.md"
+              ".github/assets/**"
+              "LICENSE"
+            ];
+          };
           workflow_dispatch = { };
         };
 

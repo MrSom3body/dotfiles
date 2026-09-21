@@ -125,9 +125,17 @@ jobs:
           runsOn: ubuntu-24.04-arm
 name: CI
 'on':
-  pull_request: {}
+  pull_request:
+    paths-ignore:
+    - '**.md'
+    - .github/assets/**
+    - LICENSE
   push:
     branches:
     - main
     - testing-*
+    paths-ignore:
+    - '**.md'
+    - .github/assets/**
+    - LICENSE
   workflow_dispatch: {}

@@ -26,10 +26,19 @@ in
 
         aliases = {
           n = [ "new" ];
+          e = [ "edit" ];
           l = [
             "log"
             "-r"
             "ancestors(reachable(@, mutable()), 2)"
+          ];
+          gf = [
+            "git"
+            "fetch"
+          ];
+          gp = [
+            "git"
+            "push"
           ];
         };
 

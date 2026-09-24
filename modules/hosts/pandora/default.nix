@@ -27,9 +27,6 @@ in
 {
   flake = {
     nixosConfigurations.pandora = config.flake.lib.mkSystems.linux "pandora";
-    modules.nixos."hosts/pandora" = {
-      imports = config.flake.lib.loadNixosAndHmModules config modules;
-      services.beszel.agent.environment.BESZEL_AGENT_EXTRA_FILESYSTEMS = "sdb1";
-    };
+    modules.nixos."hosts/pandora".imports = config.flake.lib.loadNixosAndHmModules config modules;
   };
 }

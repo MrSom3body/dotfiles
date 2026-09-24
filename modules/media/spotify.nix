@@ -17,12 +17,7 @@
         {
           enable = true;
           enabledExtensions = builtins.attrValues {
-            inherit (spicePkgs.extensions)
-              adblock
-              betterGenres
-              keyboardShortcut
-              volumePercentage
-              ;
+            inherit (spicePkgs.extensions) adblock keyboardShortcut volumePercentage;
           };
           enabledCustomApps = builtins.attrValues { inherit (spicePkgs.apps) lyricsPlus ncsVisualizer; };
         };

@@ -17,7 +17,6 @@ let
     "antigravity-cli"
     "atuin"
     "bluetooth"
-    "clamav"
     "copilot-cli"
     # "design"
     "distrobox"

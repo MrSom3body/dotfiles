@@ -4,16 +4,16 @@ let
 
   modifications =
     final: prev:
-    let
-      overrideIfOlder =
-        pkg: expectedVersion: overrideArgs:
-        let
-          noOverride = final.lib.versionAtLeast pkg.version expectedVersion;
-        in
-        final.lib.warnIf noOverride ''
-          ${pkg.pname or pkg.name} >= ${expectedVersion} is now in nixpkgs, the override can be removed.
-        '' (if noOverride then pkg else pkg.overrideAttrs overrideArgs);
-    in
+    # let
+    #   overrideIfOlder =
+    #     pkg: expectedVersion: overrideArgs:
+    #     let
+    #       noOverride = final.lib.versionAtLeast pkg.version expectedVersion;
+    #     in
+    #     final.lib.warnIf noOverride ''
+    #       ${pkg.pname or pkg.name} >= ${expectedVersion} is now in nixpkgs, the override can be removed.
+    #     '' (if noOverride then pkg else pkg.overrideAttrs overrideArgs);
+    # in
     {
       obsidian = prev.obsidian.overrideAttrs (oldAttrs: {
         postInstall = (oldAttrs.postInstall or "") + ''

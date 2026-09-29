@@ -32,10 +32,11 @@
           {
             # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
             registry = lib.mapAttrs (_: v: { flake = v; }) flakeInputs;
-            nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
             channel.enable = false; # remove nix-channel related tools & configs, we use flakes instead.
 
             settings = {
+              nix-path = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
+
               accept-flake-config = lib.mkForce false;
               log-lines = lib.mkDefault 25; # more log lines
 

@@ -3,8 +3,9 @@
     nixos.desktop.imports = [ config.flake.modules.nixos.stylix ];
     homeManager.desktop.imports = [ config.flake.modules.homeManager.stylix ];
 
-    nixos.stylix = { pkgs, ... }: {
+    nixos.stylix = { pkgs, lib, ... }: {
       imports = [ inputs.stylix.nixosModules.stylix ];
+      fonts.fontconfig.enable = lib.mkForce true; # allow fonts to work on graphical ISOs
       stylix = {
         enable = true;
         image = ../../walls/gruvbox/overgrown-city.png;

@@ -40,7 +40,7 @@ let
     paths-filter = "dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d"; # v4.0.3
     nix-diff-action = "natsukium/nix-diff-action@4091452e4c7b3c7ea4ecbaec84be7f0066d810d7"; # v1.1.1
     alls-green = "re-actors/alls-green@b5b5b37504aa4183270bd3d855c52a67f212be35"; # v1.3.0
-    upload-artifact = "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a"; # v7.0.1
+    upload-artifact = "actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9"; # v7.0.2
     action-gh-release = "softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64"; # v3.0.3
     download-artifact = "actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333"; # v8.0.2
     create-pull-request = "peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1"; # v8.1.1

@@ -74,7 +74,7 @@ jobs:
     - name: Generate checksums
       run: sha256sum *.iso > checksums.txt
     - name: Create release
-      uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64
+      uses: softprops/action-gh-release@8a0cd651e5b2365bd640854a3fa5dfc70e4875f3
       with:
         body: "> [!CAUTION]\n> These ISOs have my public keys added. This means I\
           \ can SSH into them without any password.\n\nThese ISOs are built straight\

@@ -13,7 +13,7 @@ jobs:
         fetch-depth: 0
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: Purge non-Nix files
-      uses: wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7
+      uses: wimpysworld/nothing-but-nix@59a79ef03bc486f0acca5480b7edf426ae7e7b0c
       with:
         hatchet-protocol: rampage
     - name: Install Nix

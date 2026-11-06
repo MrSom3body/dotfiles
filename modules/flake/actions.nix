@@ -34,7 +34,7 @@ let
 
   actions = {
     checkout = "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"; # v7.0.1
-    nothing-but-nix = "wimpysworld/nothing-but-nix@687c797a730352432950c707ab493fcc951818d7"; # v10
+    nothing-but-nix = "wimpysworld/nothing-but-nix@59a79ef03bc486f0acca5480b7edf426ae7e7b0c"; # v11
     install-nix-action = "cachix/install-nix-action@75c75c31ebece974e48ebc36b4ad125bd97bd97b"; # v31.11.3
     cachix = "cachix/cachix-action@38b082610b782e7e93e209c35fd730d399dee866"; # v17
     paths-filter = "dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d"; # v4.0.3

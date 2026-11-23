@@ -23,7 +23,7 @@ jobs:
       with:
         hatchet-protocol: rampage
     - name: Install Nix
-      uses: cachix/install-nix-action@3dc140bfc76c49fbd4dd958429132e3746bcb086
+      uses: cachix/install-nix-action@382a9ed9481c7c1f94f68b72ef105b3417c73877
       with:
         extra_nix_config: |-
           always-allow-substitutes = true
